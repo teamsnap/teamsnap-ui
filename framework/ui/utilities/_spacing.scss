@@ -1,0 +1,69 @@
+/**
+ * Spacing utilities
+ *
+ * .u-space-[position]-[size]
+ * .u-pad-[position]-[size]
+ *
+ * Where [position] is:
+ * (null = all), top, bottom, right, left, sides, ends
+ *
+ * Where [size] is:
+ * none, (null = default), small, large
+ */
+
+@mixin make-space-utils($size, $value) {
+  .u-space#{$size},
+  .u-space-top#{$size},
+  .u-space-ends#{$size} {
+   margin-top: $value !important;
+  }
+  .u-space#{$size},
+  .u-space-bottom#{$size},
+  .u-space-ends#{$size} {
+   margin-bottom: $value !important;
+  }
+  .u-space#{$size},
+  .u-space-right#{$size},
+  .u-space-sides#{$size} {
+   margin-right: $value !important;
+  }
+  .u-space#{$size},
+  .u-space-left#{$size},
+  .u-space-sides#{$size} {
+   margin-left: $value !important;
+  }
+}
+
+@include make-space-utils(-none, 0);
+@include make-space-utils(null, $bs);
+@include make-space-utils(-xsmall, $bs--xsmall);
+@include make-space-utils(-small, $bs--small);
+@include make-space-utils(-large, $bs--large);
+
+@mixin make-padding-utils($size, $value) {
+  .u-pad#{$size},
+  .u-pad-top#{$size},
+  .u-pad-ends#{$size} {
+   padding-top: $value !important;
+  }
+  .u-pad#{$size},
+  .u-pad-bottom#{$size},
+  .u-pad-ends#{$size} {
+   padding-bottom: $value !important;
+  }
+  .u-pad#{$size},
+  .u-pad-right#{$size},
+  .u-pad-sides#{$size} {
+   padding-right: $value !important;
+  }
+  .u-pad#{$size},
+  .u-pad-left#{$size},
+  .u-pad-sides#{$size} {
+   padding-left: $value !important;
+  }
+}
+
+@include make-padding-utils(-none, 0);
+@include make-padding-utils(null, $es);
+@include make-padding-utils(-small, $es--small);
+@include make-padding-utils(-large, $es--large);

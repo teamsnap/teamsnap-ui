@@ -1,0 +1,11 @@
+//---------------------------------------//
+//        Works with TS-Accordion
+//---------------------------------------//
+
+[data-accordion] {
+  display: none;
+}
+
+[data-accordion].js-active {
+  display: block;
+}

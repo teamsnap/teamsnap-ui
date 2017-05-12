@@ -1,0 +1,62 @@
+//------------------------------------------------------------//
+
+// * Font Settings
+// * 1. Font Families
+// * 2. Base Font Settings
+// * 3. Heading Font Settings
+// * 4. Text Link Settings
+
+//------------------------------------------------------------//
+
+// 1. Font Families
+
+$open-sans:                             'Open Sans', Helvetica, sans-serif !default;
+
+$museo-100:   'MuseoSansRounded100Regular', 'Open Sans', Arial, sans-serif !default;
+$museo-300:   'MuseoSansRounded300Regular', 'Open Sans', Arial, sans-serif !default;
+$museo-500:   'MuseoSansRounded500Regular', 'Open Sans', Arial, sans-serif !default;
+$museo-700:   'MuseoSansRounded700Regular', 'Open Sans', Arial, sans-serif !default;
+$museo-900:   'MuseoSansRounded900Regular', 'Open Sans', Arial, sans-serif !default;
+$museo-1000: 'MuseoSansRounded1000Regular', 'Open Sans', Arial, sans-serif !default;
+
+// 2. Base Font Settings
+
+$base-font-family:                                     $open-sans !default;
+$base-font-size:                                             13px !default;
+$small-font-size:                    round($base-font-size * 0.9) !default;
+$tiny-font-size:                    round($small-font-size * 0.9) !default;
+
+$base-font-color:                                     $color-info !default;
+$light-font-color:                             $color-info--light !default;
+
+$base-line-height:                                            1.4 !default;
+$tight-line-height:                                          1.15 !default;
+
+$base-font-weight:                                         normal !default;
+$med-font-weight:                                             600 !default;
+$bold-font-weight:                                         bolder !default;
+
+// 3. Heading Font Settings
+
+$heading-font-family:                                  $museo-700 !default;
+$sub-heading-font-family:                              $open-sans !default;
+
+$heading-font-color:                               $color-primary !default;
+$sub-heading-font-color:                         $color-secondary !default;
+
+$heading-size--primary:             round($base-font-size * 2.25) !default;
+$heading-size--secondary:           round($base-font-size * 1.75) !default;
+$heading-size--minor:               round($base-font-size * 1.25) !default;
+$heading-size--small:               round($base-font-size * 1.00) !default;
+$heading-size--xs:                  round($base-font-size * 0.85) !default;
+
+$heading-line-height--primary:                                  2 !default;
+$heading-line-height--secondary:                              1.7 !default;
+$heading-line-height--minor:                                  1.5 !default;
+$heading-line-height--small:                                  1.4 !default;
+$heading-line-height--xs:                                    1.15 !default;
+
+// 4. Link Settings
+
+$link-color:                                $color-primary--light !default;
+$link-color--hover:                                $color-primary !default;

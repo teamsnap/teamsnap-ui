@@ -1,0 +1,89 @@
+//*//////////////////////////////////////////
+
+//      Structural Elements Modifiers
+
+//*//////////////////////////////////////////
+
+[class*="full-width"] {
+  width:  100%;
+}
+
+[class*="clear-left"] {
+  clear: both;
+}
+
+[class*="clear-right"] {
+  clear: both;
+}
+
+[class*="clear-both"] {
+  clear: both;
+}
+
+[class*="pull-left"] {
+  float: left;
+}
+
+[class*="pull-right"] {
+  float: right;
+}
+
+[class*="centered"],
+[class*="center-block"] {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+[class*="align-left"] {
+  text-align: left;
+}
+
+[class*="align-right"] {
+  text-align: right;
+}
+
+[class*="align-center"] {
+  text-align: center;
+}
+
+@each $breakpoint in $breakpoints {
+
+  $alias:     nth($breakpoint, 1);
+  $condition: nth($breakpoint, 2);
+
+  @include media-query($alias) {
+
+    // General Element Modifiers
+
+    [class*="full-width-#{$alias}"] {
+      width:  100%;
+    }
+
+    [class*="clear-#{$alias}"] {
+      clear: both;
+    }
+
+    [class*="pull-left-#{$alias}"] {
+      float: left;
+    }
+
+    [class*="pull-right-#{$alias}"] {
+      float: right;
+    }
+
+    [class*="align-left-#{$alias}"] {
+      text-align: left;
+    }
+
+    [class*="align-right-#{$alias}"] {
+      text-align: right;
+    }
+
+    [class*="align-center-#{$alias}"] {
+      text-align: center;
+    }
+
+  }
+
+}

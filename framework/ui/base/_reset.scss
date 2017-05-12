@@ -1,0 +1,90 @@
+html {
+  background: $ui-background;
+  -ms-text-size-adjust: 100%;
+}
+
+img {
+  max-width: 100%;
+  height:    auto;
+  border:    none;
+}
+
+abbr[title] {
+  border-bottom: none;
+  padding-bottom:   0;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+code,
+kbd,
+pre,
+samp {
+  white-space:             pre-wrap;
+  font-family: monospace, monospace;
+  font-size:                    1em;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font:  inherit;
+  margin:      0;
+}
+
+button {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor:            pointer;
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border:  0;
+  padding: 0;
+}
+
+u,
+ins {
+    text-decoration: none;
+}
+
+ins {
+    border-bottom: 1px solid;
+}
+
+address {
+  display: block;
+  padding: $vertical-element-spacing 0;
+}
+
+select {
+  background-color: $ui-white;
+  border: 1px solid $ui-divider;
+  font-size: $small-font-size;
+  height: $button-height--small;
+  font-family: $base-font-family;
+  color: $color-info--light;
+  font-weight: normal;
+}

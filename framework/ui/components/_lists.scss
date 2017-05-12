@@ -1,0 +1,51 @@
+ul, ol {
+  margin-bottom: 0;
+  // this is hard set for the outside positioning on the list item
+  padding-left: 15px;
+  padding-bottom: $vertical-block-spacing--small;
+  @include min-width(sm) {
+    padding-bottom: $vertical-block-spacing;
+  }
+  &[class*="--no-ui"], // Legacy naming
+  &[class*="--no-style"], // Legacy naming
+  &[class*="--reset"] {
+    padding: 0;
+    margin: 0;
+    &, li {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+  }
+  /**
+   * Dot Separated Inline List
+   * 1. Display items in a row
+   * 2. Display items inline-block as a fallback for flex.
+   * 3. Add separator as a pseudo element to all but the last child.
+   * 4. Include separator glyph as content.
+   * 5. Add spacing on either side of separator.
+   **/
+  &[class*="--dot-separated"] {
+    display: flex; /* 1 */
+    li {
+      display: inline-block; /* 2 */
+    }
+    li:not(:last-child)::after { /* 3 */
+      content: '·'; /* 4 */
+      padding-right: $hes--small; /* 5 */
+      padding-left: $hes--small; /* 5 */
+    }
+  }
+}
+
+li {
+  padding-bottom: $vertical-element-spacing;
+  list-style-position: outside;
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+dfn {
+  font-style: italic;
+}

@@ -1,0 +1,87 @@
+//------------------------------------------------------------//
+
+// * State Color Settings
+// * 1.  Mostly used to define off and on states
+// * 2. These should stay consistant across themes
+
+//------------------------------------------------------------//
+
+$color-success:                                 #7fc243 !default;
+$color-success--light:     lighten($color-success, 45%) !default;
+$color-success--dark:      darken($color-success, 7.5%) !default;
+$color-success--bg:        lighten($color-success, 45%) !default;
+
+$color-danger:                                  #e26362 !default;
+$color-danger--light:       lighten($color-danger, 30%) !default;
+$color-danger--dark:        darken($color-danger, 7.5%) !default;
+$color-danger--bg:          lighten($color-danger, 30%) !default;
+
+//------------------------------------------------------------//
+
+// * Primary Color Settings
+// * 1.  $color-primary : used on titles and tabs
+// * 2.  $color-primary--light : clickable text elements
+
+//-----------------------------------------------------------//
+
+$color-primary:                                 #1667AC !default;
+$color-primary--light:                          #0279CE !default;
+$color-primary--dark:        darken($color-primary, 5%) !default;
+$color-primary--muted:                          #45647f !default;
+$color-primary--bg:                             #e7eef8 !default;
+
+$color-secondary:                               #1667AC !default;
+$color-secondary--light:                        #469eea !default;
+$color-secondary--dark:                         #1667AC !default;
+$color-secondary--muted:                        #45647f !default;
+$color-secondary--bg:                           #e7edf4 !default;
+
+$color-highlight:                        $color-success !default;
+$color-highlight--light:          $color-success--light !default;
+$color-highlight--dark:            $color-success--dark !default;
+
+$color-user-highlight: rgba($color-primary--light, .02) !default;
+
+$color-warning:                                 #ff8f00 !default;
+$color-warning--light:                          #ff8f00 !default;
+$color-warning--dark:                           #ff8f00 !default;
+$color-warning--bg:                             #fdf7ef !default;
+
+$color-info:                                    #494949 !default;
+$color-info--light:                             #797979 !default;
+$color-info--dark:                              #292929 !default;
+
+$color-facebook:                                #3B5998 !default;
+
+//------------------------------------------------------------//
+
+// * Ui Color Settings
+// * 1.  Primarily Used on structural elements
+// * 1a. backgrounds, borders, etc.
+// * 2.  Generally not used on CTAs unless as a default
+
+//------------------------------------------------------------//
+
+$ui-foreground:              #ffffff !default;
+$ui-foreground--light:       #ffffff !default;
+$ui-foreground--dark:        #ffffff !default;
+
+$ui-middleground:            #fcfcfc !default;
+$ui-middleground--light:     #fefefe !default;
+$ui-middleground--dark:      #f8f8f8 !default;
+
+$ui-background:              #f4f4f4 !default;
+$ui-background--light:       #f4f4f4 !default;
+$ui-background--dark:        #f4f4f4 !default;
+
+$ui-divider:                 #d6d6d6 !default;
+$ui-divider--light:          #e6e6e6 !default;
+$ui-divider--dark:           #d6d6d6 !default;
+
+$ui-highlight:               #fcfcfc !default;
+$ui-highlight--light:        #fefefe !default;
+$ui-highlight--dark:         #f8f8f8 !default;
+
+$ui-white:                      #fff !default;
+$ui-grey:                       #999 !default;
+$ui-black:                      #333 !default;

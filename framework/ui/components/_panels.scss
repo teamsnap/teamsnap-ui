@@ -1,0 +1,163 @@
+///*//////////////////////////////////////////////////*\
+
+// After the first cleanup pass, this should be updated
+
+//\*//////////////////////////////////////////////////*/
+
+
+[class*="__panel"],
+[class*="__small-panel"] {
+  margin-bottom:             $vbs--small;
+  border-width:                      1px;
+  border-style:                    solid;
+  border-color:              $ui-divider;
+  border-radius:  $default-border-radius;
+  box-sizing:                 border-box;
+  list-style:                       none;
+}
+
+// cleans up border radius for top element
+[class*="__panel-header"]:first-child,
+[class*="__panel-body"]:first-child {
+  border-top-right-radius: $default-border-radius;
+  border-top-left-radius: $default-border-radius;
+}
+
+// cleans up border radius for bottom element
+[class*="__panel-body"]:last-child,
+[class*="__panel-footer"]:last-child {
+  border-bottom-right-radius: $default-border-radius;
+  border-bottom-left-radius: $default-border-radius;
+  margin-bottom: 0;
+}
+
+[class*="__panel-title"],
+[class*="__panel-sub-head"],
+[class*="__panel-header"],
+[class*="__panel-footer"],
+[class*="__panel-body"],
+[class*="__panel-row"] {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+[class*="__panel-footer"],
+[class*="__panel-sub-head"],
+[class*="__panel-row"] {
+  padding: $ves--large $hes--large;
+}
+
+[class*="__panel-header"] {
+  padding: $ves--large $hes--large;
+}
+[class*="__panel-row--inset"] {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: $horizontal-element-spacing--large;
+  margin-right: $horizontal-element-spacing--large;
+}
+
+[class*="__panel-sub-head"],
+[class*="__panel-header"],
+[class*="__panel-row"] {
+  border-bottom: 1px solid $ui-divider;
+  &:last-child {
+    border-bottom: none;
+  }
+  &[class*="--warning"] {
+      background-color: $color-secondary--light;
+      border-color: $color-secondary;
+  }
+}
+[class*="__panel-header--no-border"] {
+  border:none;
+}
+
+[class*="__panel-row--no-border"] {
+  border-bottom: none;
+  padding-bottom: $vertical-block-spacing--large;
+}
+
+[class*="__panel-footer"] {
+  border-top: 1px solid $ui-divider;
+}
+
+[class*="__panel-header"] {
+  color:              $panel-header-text-color;
+  background-color:     $panel-header-bg-color;
+  font-family:        $sub-heading-font-family;
+  font-size:              $heading-size--small;
+  h1, h2, h3, h4,
+  [class*="__panel-title"] {
+    font-family: inherit;
+    font-size:   inherit;
+    color:       inherit;
+    padding:           0;
+    margin:            0;
+  }
+}
+
+[class*="__subheader"],
+[class*="__panel-sub-head"] {
+  border-top:1px solid $ui-divider;
+}
+
+[class*="__panel-body"] {
+  background-color: $panel-body-bg-color;
+  border:                           none;
+  border-radius:                       0;
+  padding-left:                        0;
+  padding-right:                       0;
+  &[class*="--inset"] {
+    padding:     $vbs--small $hbs--small;
+  }
+}
+
+[class*="__panel-footer"] {
+  background-color: $panel-footer-bg-color;
+  color: $panel-footer-text-color;
+}
+
+// clean up for tables as the panel body
+
+table[class*="__panel-body"],
+table[class*="__panel-row"] {
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  th[scope=row] {
+    width:                                   35%;
+    color:          $table-sub-header-text-color;
+    border-right:   1px solid $ui-divider--light;
+    font-size:                   $base-font-size;
+    font-family:               $base-font-family;
+    background-color: $table-sub-header-bg-color;
+    text-align:                             left;
+    font-weight:                $med-font-weight;
+  }
+  tr, th {
+    &:first-child {
+      border-left: none;
+    }
+    &:last-child {
+      border-right: none;
+    }
+  }
+  tr:first-child {
+    td, th {
+      border-top: none;
+
+      &[class*="__subheader"] {
+        border-top:1px solid $ui-divider;
+      }
+    }
+  }
+}

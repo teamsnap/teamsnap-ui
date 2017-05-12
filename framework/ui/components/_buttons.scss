@@ -1,0 +1,438 @@
+//*//////////////////////////////////////////////
+
+//  @mixin button-color
+//
+//  @mixin button
+//
+// note: adding the half reskin buttons here
+
+//*//////////////////////////////////////////////
+
+//* Button Color Mixin
+
+@mixin button-color($color) {
+  // highlight buttons
+  @if $color == $color-highlight {
+    background-color:                    $color-highlight;
+    border-color:                  $color-highlight--dark;
+    color:                                      $ui-white;
+    &:hover,
+    &:active,
+    &:focus {
+      background-color:    darken( $color-highlight, 5% );
+      border-color: darken( $color-highlight--dark, 10% );
+      color:                                    $ui-white;
+      outline:                                       none;
+      transition: {
+        property:          background-color, border-color;
+        duration:                      .25s,         .25s;
+        timing-function:        ease-in-out,  ease-in-out;
+      }
+    }
+    &.active {
+      background:         darken($color-highlight, 2.5%);
+      box-shadow: 0 1px 0 darken( $color-highlight--dark, 10% ) inset;
+    }
+  }
+  // primary color buttons
+  @else if $color == $color-primary {
+    background-color:                           $color;
+    border-color:               darken( $color, 7.5% );
+    color:                                   $ui-white;
+    &:hover,
+    &:active,
+    &:focus {
+      background-color:           darken( $color, 5% );
+      border-color:              darken( $color, 20% );
+      color:                                 $ui-white;
+      outline:                                    none;
+      transition: {
+        property:       background-color, border-color;
+        duration:                   .25s,         .25s;
+        timing-function:     ease-in-out,  ease-in-out;
+      }
+    }
+    &.active {
+      background:                 darken($color, 2.5%);
+      box-shadow: 0 1px 0 darken( $color, 7.5% ) inset;
+    }
+  }
+  // danger button
+  @else if $color == $color-danger {
+    border-color:                $button-border-color;
+    background:                         $button-color;
+    color:                              $color-danger;
+    &:hover,
+    &:active,
+    &:focus {
+      background:                       $color-danger;
+      border-color:               $color-danger--dark;
+      color:                                $ui-white;
+      outline:                                   none;
+      transition: {
+        property:      background-color, border-color;
+        duration:                  .25s,         .25s;
+        timing-function:    ease-in-out,  ease-in-out;
+      }
+    }
+  }
+  // Facebook Buttons
+  @else if $color == $color-facebook {
+    background-color:                           $color;
+    border-color:               darken( $color, 7.5% );
+    color:                                   $ui-white;
+    &:hover,
+    &:active,
+    &:focus {
+      background-color:           darken( $color, 5% );
+      border-color:              darken( $color, 20% );
+      color:                                 $ui-white;
+      outline:                                    none;
+      transition: {
+        property:       background-color, border-color;
+        duration:                   .25s,         .25s;
+        timing-function:     ease-in-out,  ease-in-out;
+      }
+    }
+    &.active {
+      background:                 darken($color, 2.5%);
+      box-shadow: 0 1px 0 darken( $color, 7.5% ) inset;
+    }
+  }
+  // default button
+  @else {
+    border-color:                $button-border-color;
+    background:                         $button-color;
+    color:                         $button-text-color;
+    &:hover,
+    &:active,
+    &:focus {
+      background:           darken($button-color, 5%);
+      border-color: darken($button-border-color, 10%);
+      color:                       $button-text-color;
+      outline:                                   none;
+      transition: {
+        property:      background-color, border-color;
+        duration:                  .25s,         .25s;
+        timing-function:    ease-in-out,  ease-in-out;
+      }
+    }
+    &.active {
+      background:           darken($button-color, 5%);
+      box-shadow:  0 1px 0 $button-border-color inset;
+    }
+  }
+  // button color override for the disabeled state
+  &.disabled,
+  &[disabled],
+  &[disabled="true"] {
+    &, &:hover, &:active {
+      color: $color-info--light;
+      background-color: transparent;
+      border-color: $ui-divider;
+      border-bottom-width: 1px;
+      cursor: default;
+    }
+  }
+} // end button color mixin
+
+//* Button Mixin
+
+@mixin button($type, $color) {
+  // Base Button Styles
+  border-width:                             1px;
+  @if $button-style == 'raised' {
+    border-bottom-width:                    2px;
+  }
+  border-style:                           solid;
+  border-radius:          $button-border-radius;
+  text-decoration:                         none;
+  white-space:                           nowrap;
+  cursor:                               pointer;
+  display:                         inline-block;
+  box-shadow:                              none;
+  vertical-align:                        middle;
+  font-family:                $base-font-family;
+  font-weight:                 $med-font-weight;
+  margin:                                     0;
+  // cleanup for buttons with icons
+  &:before, &:after {
+    vertical-align: middle;
+    display: inline;
+    line-height: inherit;
+  }
+  &:before {
+    padding-right: 3px;
+  }
+  &:after {
+    padding-left: 3px;
+  }
+
+  //----------------------------------------------//
+  //      button type styles (size & shape)
+  //----------------------------------------------//
+
+  // large button
+  @if $type == large {
+    height:                $button-height--large;
+    line-height:           $button-height--large;
+    padding:  0 (  $button-height--large / 1.5 );
+    font-size:         ( $base-font-size * 1.1 );
+    &:before {
+      padding-right: ( $horizontal-element-spacing--small * 1.25 );
+    }
+    &:after {
+      padding-left: ( $horizontal-element-spacing--small * 1.25 );
+    }
+  }
+  // small button
+  @else if $type == small {
+    height:                 $button-height--small;
+    line-height:    ( $button-height--small - 2 );
+    padding:  0 (   $button-height--small * 0.5 );
+    font-size:                   $small-font-size;
+    &:before,
+    &:after {
+      line-height:     inherit;
+      vertical-align:   middle;
+      display:          inline;
+      padding:               0;
+    }
+  }
+  // icon button
+  @else if $type == icon {
+    height:                 $button-height--small;
+    line-height:    ( $button-height--small - 2 );
+    padding:  0                               5px;
+    font-size:                   $small-font-size;
+    &:before,
+    &:after {
+      line-height:     inherit;
+      vertical-align:   middle;
+      display:          inline;
+      padding:               0;
+    }
+  }
+  // standard button
+  @else {
+    border-radius:       $button-border-radius;
+    height:                     $button-height;
+    padding:       0 ( $button-height / 1.75 );
+    line-height:        ( $button-height - 2 );
+    font-size:                 $base-font-size;
+  }
+
+  //----------------------------------------------//
+  //            button color styles
+  //----------------------------------------------//
+
+  @include button-color($color);
+
+  //----------------------------------------------//
+  //             button cleanup
+  //----------------------------------------------//
+
+  // cleanup for half reskin button elements
+  a, span, i {
+    color: inherit;
+  }
+
+} // end button mixin
+
+button,
+[class*="button"] {
+  @include button(default, default);
+}
+
+.button.large,
+[class*="large-button"] {
+  @include button(large, default);
+}
+
+.button.small,
+[class*="small-button"] {
+  @include button(small, default);
+  // this needs to go eventually,
+  // turning off icons or small button
+  &:before {
+    display: none;
+  }
+}
+
+.button.icon-button,
+[class*="icon-button"] {
+  @include button(icon, default);
+}
+
+//  * Button Color Modifications & Icon defaults
+
+[class*="button"] {
+  &[class*="danger"],
+  &[class*="ss-delete"] {
+    @include button-color($color-danger);
+  }
+  &[class*="success"],
+  &[class*="ss-plus"],
+  &[class*="ss-check"],
+  &[class*="ss-addcalendar"],
+  &[class*="ss-uploadcloud"] {
+    @include button-color($color-highlight);
+  }
+  &[class*="primary"] {
+    @include button-color($color-primary);
+  }
+  &[class*="default"],
+  &[class*="info"] {
+    @include button-color(default);
+  }
+  &[class*="old-facebook"] {
+    @include button-color($color-facebook);
+  }
+}
+
+// minor button spacing cleanup
+
+button + button,
+[class*="button"] + [class*="button"] {
+  margin-left: $horizontal-element-spacing--small;
+}
+
+
+//*----------------------------------------------//
+//               Button Group Styles
+//----------------------------------------------*//
+
+//  * button styles are defined as stand alone buttons
+//  * buttons within a group are adjusted to fit together
+
+.csv_button,
+.hrs__grouped-buttons,
+[class*="button-group"] {
+  // reset button styles for
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: none;
+  &:hover {
+    background-color: transparent;
+  }
+  // adjust buttons inside group
+  [class*="button"] {
+    float: left;
+    margin: 0;
+    border-radius: 0;
+    &:first-child {
+      -webkit-border-bottom-left-radius:  $button-border-radius;
+         -moz-border-radius-bottomleft:   $button-border-radius;
+              border-bottom-left-radius:  $button-border-radius;
+      -webkit-border-top-left-radius:     $button-border-radius;
+         -moz-border-radius-topleft:      $button-border-radius;
+              border-top-left-radius:     $button-border-radius;
+    }
+    &:last-child {
+      -webkit-border-top-right-radius:    $button-border-radius;
+         -moz-border-top-right-radius:    $button-border-radius;
+              border-top-right-radius:    $button-border-radius;
+      -webkit-border-bottom-right-radius: $button-border-radius;
+         -moz-border-bottom-rightradius:  $button-border-radius;
+              border-bottom-right-radius: $button-border-radius;
+    }
+    // this applies to all active buttons
+    &.active {
+      border-bottom-width:                        1px;
+    }
+    & + button,
+    & + [class*="button"] {
+      margin-left:0;
+    }
+  }
+}
+
+
+//*----------------------------------------------//
+//             Button Drop Down Styles
+//----------------------------------------------*//
+
+//  * button styles are defined as stand alone buttons
+//  * buttons within a group are adjusted to fit together
+
+[class*="--ss-dropdown"],
+[class="--drop-down"] {
+  position: relative;
+}
+
+// this icon button should be re-worked
+
+[class*="--icon"] {
+  padding: 0;
+  width: $button-height--small + 4px;
+  text-align: center;
+  &:before,
+  &:after {
+    padding: 0;
+    margin: 0;
+  }
+  & + [class*="--icon"] {
+    margin-left: 5px;
+  }
+}
+
+[class="--drop-down"]:after {
+  @include ss-pika;
+  content: '▾'
+}
+
+[class*="drop-down-menu"] {
+  position: absolute;
+  top: 99%;
+  left: 0;
+  height: 0;
+  width: 200px;
+  overflow: hidden;
+  background: $ui-middleground;
+  padding: 0 $horizontal-element-spacing;
+  border-radius: $border-radius--small;
+  z-index: 9999;
+}
+
+[class*="drop-down-flyout"] {
+  position: relative;
+  &:after {
+    @include ss-pika;
+    content: '▹';
+    float: right;
+    clear: right;
+    vertical-align: middle;
+  }
+  // re-position the menu on flyouts
+  [class*="drop-down-menu"] {
+    top: 0;
+    left: 100%;
+  }
+}
+
+[class*="drop-down-item"],
+[class*="drop-down-flyout"] {
+  border-bottom: 1px solid $ui-divider;
+  padding: $vertical-element-spacing 0;
+  line-height: $tight-line-height;
+  list-style: none;
+  font-size: 12px;
+  font-family: $museo-500;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+[class*="ss-dropdown"],
+[class="--drop-down"],
+[class*="drop-down-flyout"] {
+  &:hover {
+    & > ul {
+      height: auto;
+      overflow: visible;
+      border: 1px solid $ui-divider;
+      box-shadow: 0 0 1px rgba(0, 0, 25, .15);
+    }
+  }
+}

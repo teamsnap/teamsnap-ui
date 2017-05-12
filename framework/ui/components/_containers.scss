@@ -1,0 +1,55 @@
+//*//////////////////////////////////////////
+
+//     Foundational Structural Elements
+
+//*/////////////////////////////////////////
+
+[class*="-container"],
+[class*="__container"]{
+  margin: 0 auto;
+  max-width: $max-site-width;
+}
+
+//  * contianing blocks
+[class*="-container"],
+[class*="-header"],
+[class*="-footer"],
+[class*="-block"],
+[class*="-row"],
+
+//  * containing elements
+[class*="__container"],
+[class*="__header"],
+[class*="__footer"],
+[class*="__block"],
+[class*="__row"] {
+  clear: both;
+  margin: 0 auto;
+  max-width: $max-site-width;
+  &:after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+[class*="__row"] {
+  padding-top:    ( $vertical-block-spacing--small * 0.34 );
+  padding-bottom: ( $vertical-block-spacing--small * 0.34 );
+}
+[class*="__row-large"] {
+  padding-top:    ( $vertical-block-spacing );
+  padding-bottom: ( $vertical-block-spacing );
+}
+
+// Structural Element Modifiers
+
+[class*="header--primary"] {
+  padding-top: 30px;
+  line-height: 60px;
+}
+
+[class*="header--secondary"] {
+  height: 65px;
+  line-height: 64px;
+}

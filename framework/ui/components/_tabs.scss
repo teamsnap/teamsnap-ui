@@ -1,0 +1,50 @@
+//---------------------------------------//
+//         Works with TS-Tabs
+//---------------------------------------//
+
+[class*="__sub-nav"] {
+  border-bottom: {
+    width: 3px;
+    style: solid;
+    color: $ui-divider;
+  }
+  padding: 0;
+  margin: $vertical-element-spacing 0;
+}
+
+[class*="__sub-nav-item"],
+[class*="__sub-nav-item"]:last-child {
+  list-style: none;
+  display: inline-block;
+  cursor: pointer;
+  padding: $ves--small $hes--large;
+  border-color: transparent;
+  color: $link-color;
+  margin-bottom: -3px;
+  font-family: $heading-font-family;
+  font-weight: bolder;
+  &.js-active,
+  &:hover {
+    color: $color-primary;
+  }
+  &.js-active {
+    border-color: $color-primary;
+  }
+}
+
+li[class*="__sub-nav-item"] {
+  font-size: $small-font-size;
+  font-family: $heading-font-family;
+}
+
+//---------------------------------------//
+//             Javascript
+//---------------------------------------//
+
+[data-tab] {
+  display: none;
+}
+
+[data-tab].js-active {
+  display: inline-block;
+}

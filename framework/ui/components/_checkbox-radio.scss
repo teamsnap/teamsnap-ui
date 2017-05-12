@@ -1,0 +1,191 @@
+//------------------------------------------------------------/
+//  Radio Buttons & Check Boxes
+//  * set up the container as parent & minor spacing
+//  * hide the checkbox and place on top of label
+//  * style the label unchecked checkbox & radio
+//  * setting up disabled & checked states
+//  * add in the inline modifier
+//------------------------------------------------------------/
+
+[class*="__radio"],
+[class*="__checkbox"] {
+  position:                              relative;
+  padding-bottom:                               0;
+  vertical-align:                          middle;
+  input[type="checkbox"],
+  input[type="radio"] {
+    opacity:                                    0;
+    height:                                  100%;
+    width:                      $check-radio-size;
+    cursor:                               pointer;
+    z-index:                                    5;
+    position:                            absolute;
+    left:                                       0;
+    top:                                        0;
+    bottom:                                     0;
+  }
+  label,
+  [class*="radio-label"],
+  [class*="checkbox-label"] {
+    position:                            relative;
+    display:                                block;
+    min-height:                    ( $vbs * .75 );
+    padding-left: $check-radio-size + $ves--small;
+    padding-bottom:                           5px;
+    padding-top:                              5px;
+    &:before {
+      @include ss-pika;
+      content:                                '✓';
+      background-color:                 $ui-white;
+      box-shadow:   1px 1px 1px $ui-divider inset;
+      border:               1px solid $ui-divider;
+      color:                            $ui-white;
+      text-align:                          center;
+      font-size:           $check-radio-icon-size;
+      vertical-align:                      middle;
+      height:                   $check-radio-size;
+      width:                    $check-radio-size;
+      line-height:          $check-radio-size + 1;
+      margin:                                auto;
+      display:                              block;
+      position:                          absolute;
+      top:                                      0;
+      bottom:                                   0;
+      left:                                     0;
+    }
+    &[class*="--large"] {
+      padding-left: $check-radio-size--large + $ves;
+
+      &:before {
+        font-size:           $check-radio-icon-size--large;
+        height:                   $check-radio-size--large;
+        width:                    $check-radio-size--large;
+        line-height:          $check-radio-size--large + 1;
+      }
+    }
+  }
+  label[disabled],
+  input[disabled] + label{
+    &:before {
+      content:                                '🔒';
+      background-color:               $ui-divider;
+      color:                            $ui-white;
+    }
+  }
+  input[type="radio"]:checked,
+  input[type="checkbox"]:checked {
+    & + label:before,
+    & + [class*="radio-label"]:before,
+    & + [class*="checkbox-label"]:before {
+      background-color:           $color-success;
+      box-shadow:                           none;
+      border:                               none;
+    }
+  }
+  &[class*="--inline"] {
+    display:                        inline-block;
+    min-height:                   ( $vbs * .75 );
+    padding-bottom:                            0;
+    & + [class*="--inline"] {
+      margin-left:                          $hes;
+      padding-left:                         $hes;
+      border-left:         1px solid $ui-divider;
+      input[type="checkbox"],
+      input[type="radio"] {
+        left:                               $hes;
+      }
+    }
+  }
+}
+
+// the only difference between the two is the border radius
+
+[class*="__checkbox"] {
+  label:before,
+  [class*="checkbox-label"]:before {
+    border-radius: $border-radius--small;
+  }
+}
+
+[class*="__radio"] {
+  label:before,
+  [class*="radio-label"]:before {
+    border-radius: ( $vertical-block-spacing * .55 ) / 2;
+  }
+}
+
+//------------------------------------------------------------/
+//  Checkbox Toggle Element
+//  * set up the container as parent & inline-block
+//  * hide the checkbox and place on top of label
+//  * style the label as the off state
+//  * change it to on state when checkbox is checked
+//
+//  NOTE: this is the ideal toggle setup, but there is also
+//  a half-reskin toggle in the half-reskin/base file
+//
+//------------------------------------------------------------/
+
+[class*="__check-toggle"] {
+  position:                                      relative;
+  display:                                   inline-block;
+  input[type="checkbox"] { // hide the checkbox on tip
+    cursor:                                       pointer;
+    position:                                    absolute;
+    top:                                                0;
+    left:                                               0;
+    height:                                          100%;
+    width:                                           100%;
+    opacity:                                            0;
+    z-index:                                            5;
+  }
+  label { // Style the label element as the toggle
+    padding:                                          2px;
+    text-align:                                     right;
+    position:                                    relative;
+    display:                                 inline-block;
+    color:                                      $ui-white;
+    font-size:                           $small-font-size;
+    box-sizing:                               content-box;
+    height:                                $toggle-height;
+    width:                                  $toggle-width;
+    line-height:                           $toggle-height;
+    border-radius:                         $toggle-height;
+    background-color:                       $color-danger;
+    box-shadow:  0 0 2px darken($color-danger, 10%) inset;
+    &:hover {
+                                         color: $ui-white;
+    }
+    &:before {
+      content:                                      'off';
+      padding-right:                                  4px;
+      display:                               inline-block;
+    }
+    &:after {
+      content: '';
+      display:                                      block;
+      height:                              $toggle-height;
+      width:                               $toggle-height;
+      border-radius:                       $toggle-height;
+      background:                               $ui-white;
+      position:                                  absolute;
+      top:                                            2px;
+      left:                                           2px;
+      right:                                         auto;
+    }
+  }
+  input[type="checkbox"]:checked + label {
+    background-color:                      $color-success;
+    box-shadow: 0 0 2px darken($color-success, 10%) inset;
+    text-align:                                      left;
+    &:before {
+      content: 'on';
+      padding-left:                                   4px;
+      display:                               inline-block;
+    }
+    &:after {
+      left:                                          auto;
+      right:                                          2px;
+    }
+  }
+}

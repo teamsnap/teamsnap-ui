@@ -1,0 +1,181 @@
+//*----------------------------------------------//
+//           General Structure Styles
+//
+//              Variable Dependencies
+//
+//  * $vertical-element-spacing;
+//  * $vertical-element-spacing--small
+//  * $horizontal-element-spacing
+//  * $ui-middleground
+//  * $ui-divider
+//  * $border-radius--small
+
+//----------------------------------------------*//
+
+//  * Notes
+
+::-webkit-input-placeholder {
+   color: darken($ui-divider, 15%);
+  font-size: $small-font-size;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: darken($ui-divider, 15%);
+  font-size: $small-font-size;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: darken($ui-divider, 15%);
+  font-size: $small-font-size;
+}
+
+:-ms-input-placeholder {
+   color: darken($ui-divider, 15%);
+  font-size: $small-font-size;
+}
+
+form {
+  padding-bottom: $vertical-block-spacing;
+}
+
+fieldset, .form__block {
+  border: 1px solid $ui-divider;
+  border-radius: $default-border-radius;
+  margin: 0 0 $vertical-block-spacing--small 0;
+  padding: $ves--large $hes--large;
+}
+
+legend {
+  border:                                 none;
+  padding:         $vertical-element-spacing 0;
+  font-size:              $heading-size--small;
+  font-weight:               $base-font-weight;
+  line-height:     $heading-line-height--small;
+  font-family:            $heading-font-family;
+}
+
+optgroup {
+  font-weight: bold;
+}
+
+// form component spacing
+
+[class*="__input"],
+[class*="__radio"],
+[class*="__checkbox"] {
+  display: block;
+  position: relative;
+  padding-bottom: $vertical-element-spacing--large;
+  label {
+    display: block;
+    padding-bottom: $vertical-element-spacing--small;
+  }
+}
+
+//*----------------------------------------------//
+//           Text and Number Input Styles
+//----------------------------------------------*//
+
+//  * Notes
+
+input {
+  line-height: normal;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="password"] {
+  height: $form-input-height;
+  line-height: $form-input-line-height;
+  padding: 0 $horizontal-element-spacing;
+}
+
+input[type="file"] {
+  font-size: $small-font-size;
+}
+
+textarea {
+  overflow: auto;
+  padding: $horizontal-element-spacing;
+}
+
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="password"] {
+  box-sizing:                       border-box;
+  box-shadow: 0 0 2px $ui-divider--light inset;
+  background-color:       $form-input-bg-color;
+  border-width:                            1px;
+  border-style:                          solid;
+  border-color:                    $ui-divider;
+  border-radius:         $border-radius--small;
+
+    &:disabled {
+    background: $ui-highlight--dark;
+    color:                 $ui-grey;
+    cursor:             not-allowed;
+  }
+}
+
+[class*="__input"],
+[class*="__form-input"] {
+  label {
+    display: block;
+    font-size: $small-font-size;
+    font-weight: $med-font-weight;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="search"],
+  input[type="password"] {
+    width: 100%;
+  }
+  &[class*="--inline"] {
+    display: inline-block;
+    padding: 0;
+
+    label,
+    input {
+      display: inline-block;
+    }
+  }
+  &.disabled{
+    &:after {
+      @include ss-pika;
+      content:                                                            '🔒';
+      color:                                                 $ui-divider--dark;
+      position:                                                       absolute;
+      top:                                                                 5px;
+      right:                                                               5px;
+      display:                                                    inline-block;
+      height:                 $form-input-height - $horizontal-element-spacing;
+      line-height: $form-input-line-height - $horizontal-element-spacing + 2px;
+    }
+  }
+}
+
+[class*="__input-required"],
+[class*="__input-error"] {
+  display: inline;
+  padding: 0;
+}

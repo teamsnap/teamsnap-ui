@@ -1,0 +1,43 @@
+@charset "UTF-8";
+@font-face
+{
+  font-family: "pictonic";
+  src: asset-url('new-skin/pictonic.eot'),
+       asset-url('new-skin/pictonic.ttf') format('truetype'),
+       asset-url('new-skin/pictonic.woff') format('woff'),
+       asset-url('new-skin/pictonic.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin pictonic {
+  font-family: "pictonic";
+  font-weight: normal; font-style: normal;
+  -webkit-font-smoothing:  antialiased !important;
+  -moz-font-smoothing:  antialiased !important;
+  font-smoothing:  antialiased !important;
+  line-height: inherit;
+}
+
+[class*="pt-"] {
+  &:before {
+    padding-right: 3px;
+    @include pictonic;
+  }
+}
+
+[class*="pt-instagram"]:before { content:""; }
+[class*="pt-twitter-2"]:before { content:""; }
+[class*="pt-twitter-3"]:before { content:""; }
+[class*="pt-twitter"]:before { content:""; }
+[class*="pt-twitter-1"]:before { content:""; }
+[class*="pt-share"]:before { content:""; }
+[class*="pt-pinterest"]:before { content:""; }
+[class*="pt-picasa"]:before { content:""; }
+[class*="pt-paypal"]:before { content:""; }
+[class*="pt-g-plus"]:before { content:""; }
+[class*="pt-flickr"]:before { content:""; }
+[class*="pt-blogger"]:before { content:""; }
+[class*="pt-youtube"]:before { content:""; }
+[class*="pt-facebook"]:before { content:""; }
+[class*="pt-rss"]:before { content:""; }

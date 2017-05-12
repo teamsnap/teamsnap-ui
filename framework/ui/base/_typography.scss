@@ -1,0 +1,141 @@
+/*--------------------/
+    Base Body Copy
+/--------------------*/
+
+body {
+  font: {
+    family:      $base-font-family;
+    size:          $base-font-size;
+    weight:      $base-font-weight;
+  }
+  color:          $base-font-color;
+}
+
+p, li, pre, code  {
+  line-height: $base-line-height;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+small,
+.small-text {
+  font-family: $base-font-family;
+  color:      $color-info--light;
+  font-size:                 90%;
+}
+
+cite {
+  font-size: $small-font-size;
+}
+
+abbr[title],
+dfn[title] {
+  cursor: help;
+}
+
+sub,
+sup {
+  font-size: 80%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+a {
+  color:          $link-color;
+  cursor:             pointer;
+  text-decoration:       none;
+  background:     transparent;
+  small, span, em, i, b, strong, sub, sup {
+    color:            inherit;
+  }
+  &:hover {
+    color: $link-color--hover;
+  }
+  &:active,
+  &:hover {
+    outline:                0;
+  }
+}
+
+blockquote {
+  margin: $vertical-element-spacing 0;
+  padding: $vertical-block-spacing--small;
+  border-top: 3px $ui-divider solid;
+  border-bottom: 3px $ui-divider solid;
+  strong {
+    color: $color-secondary;
+  }
+}
+
+/*--------------------/
+    Base Headings
+/--------------------*/
+
+h1, h2, h3 {
+  font-family:            $heading-font-family;
+}
+
+h4, h5, h6 {
+  font-family:               $base-font-family;
+}
+
+h1 {
+  font-size:            $heading-size--primary;
+  line-height:   $heading-line-height--primary;
+}
+
+h2 {
+  font-size:          $heading-size--secondary;
+  line-height: $heading-line-height--secondary;
+}
+
+h3 {
+  font-size:              $heading-size--minor;
+  line-height:     $heading-line-height--minor;
+}
+
+h4 {
+  font-size:              $heading-size--small;
+  font-weight:                $med-font-weight;
+  line-height:     $heading-line-height--small;
+}
+
+h5 {
+  font-size:                 $heading-size--xs;
+  font-weight:                $med-font-weight;
+  line-height:        $heading-line-height--xs;
+}
+
+h6 {
+  font-size:                 $heading-size--xs;
+  font-weight:               $base-font-weight;
+  line-height:        $heading-line-height--xs;
+}
+
+h1, h2, h3 {
+  color: $color-primary;
+}
+
+/*--------------------/
+   Element Spacing
+/--------------------*/
+
+h1, h2, h3, p, ul {
+  margin-bottom: $vertical-element-spacing--large;
+}
+
+h4, h5, h6, ul {
+  margin-bottom: $vertical-element-spacing;
+}

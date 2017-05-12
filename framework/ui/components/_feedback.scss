@@ -1,0 +1,31 @@
+[class*="__feed-back"] {
+  padding:                      $ves $hes;
+  margin:                   $vbs--small 0;
+  border-width:                       1px;
+  border-style:                     solid;
+  border-radius:   $default-border-radius;
+  line-height:       $default-line-height;
+  vertical-align:                  middle;
+  color:             $feedback-text-color;
+  background-color:    $feedback-bg-color;
+  border-color:    $feedback-border-color;
+  @include                          clear;
+}
+
+[class*="__feed-back"][class*="--warning"] {
+  background-color:    $color-warning--bg;
+  border-color:            $color-warning;
+  color:             $color-warning--dark;
+}
+
+[class*="__feed-back"][class*="--success"] {
+  background-color: $color-success--light;
+  border-color:            $color-success;
+  color:             $color-success--dark;
+}
+
+[class*="__feed-back"][class*="--danger"] {
+  background-color:  $color-danger--light;
+  border-color:       $color-danger--dark;
+  color:              $color-danger--dark;
+}

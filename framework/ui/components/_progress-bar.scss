@@ -1,0 +1,66 @@
+[class*="__progress-title"] {
+  margin: 0;
+  padding-top: $vertical-element-spacing;
+  padding-bottom: $vertical-element-spacing--small;
+  text-align: left;
+}
+
+[class*="__progress-bar"],
+[class*="__large-progress-bar"] {
+  position: relative;
+  background: $ui-background;
+  height: $vertical-element-spacing;
+  border-radius: ($vertical-element-spacing / 2);
+  margin-top: $vertical-element-spacing--small;
+  margin-bottom: $vertical-element-spacing--large;
+  box-shadow: 0 0 2px darken($ui-background, 3%) inset;
+  overflow: hidden;
+  clear: both;
+}
+
+[class*="__large-progress-bar"],
+[class*="__progress-bar--large"] {
+  height: $vertical-element-spacing--large;
+  border-radius: ($vertical-element-spacing--large / 2);
+}
+
+[class*="__progress-bar--small"] {
+  height: $vertical-element-spacing--small;
+  border-radius: ($vertical-element-spacing--small / 2);
+}
+
+[class*="__progress-status"] {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $color-primary;
+  // gets overridden inline
+  width: auto;
+}
+
+//----------------------------------------------//
+// Styles the progress bar for different status
+//---------------------------------------------//
+
+[class*="__progress-status--active"],
+[class*="__progress-status--success"],
+[class*="__progress-status--waiting-for-payment"],
+[class*="__progress-status--paid"],
+[class*="__progress-status--completed"] {
+  background: $color-success;
+}
+
+[class*="__progress-status--danger"],
+[class*="__progress-status--canceled"],
+[class*="__progress-status--failed"],
+[class*="__progress-status--danger"]{
+  background: $color-danger;
+}
+
+[class*="__progress-status--completed"],
+[class*="__progress-status--authorized"],
+[class*="__progress-status--charged-back"],
+[class*="__progress-status--refunded"] {
+  background: $color-info--light;
+}

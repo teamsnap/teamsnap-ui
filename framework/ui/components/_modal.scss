@@ -1,0 +1,113 @@
+//*----------------------------------------------//
+//               Temp Code for Modal Styles
+//----------------------------------------------*//
+
+//  * The Modals need a littl refactoring
+//  * These are just some temp styles for the current setup
+
+.Snap-Modal__Overlay--fade-in {
+  position:                        fixed;
+  z-index:                           100;
+  top:                               0px;
+  left:                              0px;
+  height:                           100%;
+  width:                            100%;
+  background-color: $modal-overlay-color;
+  filter:              alpha(opacity=50);
+  transition:       all .25s ease-in-out;
+  -moz-opacity:                     0.50;
+  opacity:                          0.50;
+  display:                          none;
+  &[data-state="modal-open"] {
+    display:                       block;
+  }
+}
+
+[data-ui="snap-modal"] {
+  position:                        fixed;
+  background:            $modal-bg-color;
+  z-index:                           102;
+  color:               $modal-text-color;
+  display: none;
+  border: 10px solid $modal-border-color;
+  box-shadow:                $box-shadow;
+  border-radius:  $default-border-radius;
+  text-align:                       left;
+  padding:       $vbs--small $hes--small;
+  font-size:             $base-font-size;
+  font-weight: normal;
+  h2 {
+    font-size:      $heading-size--minor;
+    text-align:                   center;
+    margin-top:                        0;
+    padding-bottom:                    0;
+  }
+  &[data-state="modal-open"] {
+    display:                       block;
+  }
+  .Custom-Fields__panel {
+    margin:                            0;
+  }
+}
+
+
+[data-ui="snap-modal"] p {
+  margin:                     0 0 $ves 0;
+  line-height:         $base-line-height;
+}
+
+//*----------------------------------------------//
+//               Modal Styles
+//----------------------------------------------*//
+
+//  * These Styles will be kept after the modal is refactored
+
+[class*="__modal-container"] {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  background-color: rgba(#000, .25);
+  &.js-active {
+    display: block;
+    overflow-y: scroll;
+  }
+}
+
+[class*="__modal-content"] {
+  margin: 40px auto;
+  height: auto;
+  width: 100%;
+  max-width: 600px;
+  background: $ui-foreground;
+  z-index: 102;
+  color: $color-info;
+  border: 10px solid $ui-background;
+  box-shadow: 0 0 3px rgba( darken($color-primary, 20%), .5);
+  border-radius: 10px;
+  text-align: left;
+  padding: 15px;
+}
+
+[class*="__modal-header"] {
+  padding-bottom: $vertical-block-spacing--small;
+  // still working on the details here
+  // margin-bottom: $vertical-block-spacing--small;
+  // border-bottom: 1px solid $ui-divider;
+}
+
+[class*="__modal-footer"] {
+  padding-top: $vertical-block-spacing--small;
+  margin-top: $vertical-block-spacing--small;
+  //border-top: 1px solid $ui-divider;
+}
+
+[class*="__modal-error"] {
+  @extend [class*="__feed-back"];
+  @extend [class*="__feed-back"][class*="--danger"];
+  margin-bottom: $vertical-element-spacing--small;
+}

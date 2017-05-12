@@ -1,0 +1,112 @@
+//------------------------------------------------------------//
+
+// * Element Settings
+// * 1. Shared Style Settings
+// * 2. Buttons
+// * 3. Panels
+// * 4. Tables
+// * 5. Form Elements
+// * 6. Feedback
+// * 7. Callouts
+// * 8. Tooltips
+// * 9. Photo Thumb Placeholder
+// * 10. Modal Color Settings
+
+//------------------------------------------------------------//
+
+// 1. Shared Stle Settings
+
+$notification-bg:                  $color-danger !default;
+$notification-color:                   $ui-white !default;
+
+$box-shadow:        0 0 3px rgba($ui-black, .25) !default;
+$box-shadow--small: 0 0 2px rgba($ui-black, .15) !default;
+
+$border-radius:                              5px !default;
+$border-radius--small:                       3px !default;
+$border-radius--large:                       8px !default;
+
+$default-border-radius:    $border-radius--large !default;
+
+// 2. Base Button Settings
+
+$button-style:                            raised !default;
+
+$button-border-radius:            $border-radius !default;
+$button-height:                             34px !default;
+$button-height--large:                      46px !default;
+$button-height--small:                      22px !default;
+
+$button-color:                    $ui-foreground !default;
+$button-border-color:                $ui-divider !default;
+$button-text-color:                  $color-info !default;
+
+// 3. Base Panel Element Settings
+
+$panel-header-bg-color:           $ui-foreground !default;
+$panel-header-text-color:            $color-info !default;
+
+$panel-sub-header-bg-color:       $ui-foreground !default;
+$panel-sub-header-text-color:        $color-info !default;
+
+$panel-body-bg-color:             $ui-foreground !default;
+$panel-body-text-color:              $color-info !default;
+
+$panel-footer-bg-color:           $ui-foreground !default;
+$panel-footer-text-color:            $color-info !default;
+
+// 4. Base Table Element Settings
+
+$table-header-bg-color:           $ui-foreground !default;
+$table-header-text-color:            $color-info !default;
+
+$table-sub-header-bg-color:        $ui-highlight !default;
+$table-sub-header-text-color:        $color-info !default;
+
+$table-body-bg-color:             $ui-foreground !default;
+$table-body-text-color:              $color-info !default;
+
+// 5. Base Form Element Settings
+
+$check-radio-size:                          14px !default;
+$check-radio-size--large:                   19px !default;
+$check-radio-icon-size:                      7px !default;
+$check-radio-icon-size--large:              10px !default;
+
+$toggle-height:                             15px !default;
+$toggle-width:                              34px !default;
+$toggle-font-size:              $small-font-size !default;
+
+$form-input-bg-color:       $ui-foreground--dark !default;
+$form-input-height:                         30px !default;
+$form-input-line-height:                    30px !default;
+
+$form-select-bg-color:      $ui-foreground--dark !default;
+$form-select-text-color:             $color-info !default;
+$form-select-height:                        30px !default;
+$form-select-line-height:                   30px !default;
+
+// 6. Base Feedback Settings
+
+$feedback-text-color:     $color-secondary--dark !default;
+$feedback-bg-color:         $color-secondary--bg !default;
+$feedback-border-color:  $color-secondary--light !default;
+
+// 7. Base Callout Settings
+
+// 8. Base Tooltip Settings
+
+$tooltip-border-radius:                     10px !default;
+
+// 9. Photo Thumb Placeholder
+
+$placeholder-bg-color:   $ui-middleground--light !default;
+$placeholder-figure-color:           $ui-divider !default;
+$placeholder-border-color:           $ui-divider !default;
+
+// 10. Modal Color Settings
+
+$modal-bg-color:                  $ui-foreground !default;
+$modal-text-color:                   $color-info !default;
+$modal-overlay-color:                  $ui-black !default;
+$modal-border-color:                 $ui-divider !default;
