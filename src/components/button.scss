@@ -1,3 +1,5 @@
+@import "./base/config";
+
 /**
  * @define default Button
  */
@@ -30,7 +32,7 @@ $Button-padding: 0 ($Button-height / 1.75);
   font-size: $Button-font-size;
   font-weight: $Button-font-weight;
   height: $Button-height;
-  line-height: normal;
+  line-height: $Button-line-height;
   margin: 0;
   padding: $Button-padding;
   text-decoration: none;
