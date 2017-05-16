@@ -1,0 +1,116 @@
+/**
+ * State Color Settings
+ *
+ * These should stay consistent across themes
+ */
+
+$color-success:        #7fc243 !default;
+$color-success--light: lighten($color-success, 45%) !default;
+$color-success--dark:  darken($color-success, 7.5%) !default;
+$color-success--bg:    lighten($color-success, 45%) !default;
+
+$color-danger:         #e26362 !default;
+$color-danger--light:  lighten($color-danger, 30%) !default;
+$color-danger--dark:   darken($color-danger, 7.5%) !default;
+$color-danger--bg:     lighten($color-danger, 30%) !default;
+
+$color-warning:        #ff8f00 !default;
+$color-warning--light: #ff8f00 !default;
+$color-warning--dark:  #ff8f00 !default;
+$color-warning--bg:    #fdf7ef !default;
+
+$color-info:           #494949 !default;
+$color-info--light:    #797979 !default;
+$color-info--dark:     #292929 !default;
+
+/**
+ * Brand Colors
+ *
+ * These can change for different themes
+ */
+
+$color-primary:          #1667AC !default;
+$color-primary--light:   #0279CE !default;
+$color-primary--dark:    darken($color-primary, 5%) !default;
+$color-primary--muted:   #45647f !default;
+$color-primary--bg:      #e7eef8 !default;
+
+$color-secondary:        #1667AC !default;
+$color-secondary--light: #469eea !default;
+$color-secondary--dark:  #1667AC !default;
+$color-secondary--muted: #45647f !default;
+$color-secondary--bg:    #e7edf4 !default;
+
+$color-highlight:        $color-success !default;
+$color-highlight--light: $color-success--light !default;
+$color-highlight--dark:  $color-success--dark !default;
+
+$color-user-highlight:   rgba($color-primary--light, .02) !default;
+
+/**
+ * UI Colors
+ */
+
+$ui-foreground:          #ffffff !default;
+$ui-foreground--light:   #ffffff !default;
+$ui-foreground--dark:    #ffffff !default;
+
+$ui-middleground:        #fcfcfc !default;
+$ui-middleground--light: #fefefe !default;
+$ui-middleground--dark:  #f8f8f8 !default;
+
+$ui-background:          #f4f4f4 !default;
+$ui-background--light:   #f4f4f4 !default;
+$ui-background--dark:    #f4f4f4 !default;
+
+$ui-divider:             #d6d6d6 !default;
+$ui-divider--light:      #e6e6e6 !default;
+$ui-divider--dark:       #d6d6d6 !default;
+
+$ui-highlight:           #fcfcfc !default;
+$ui-highlight--light:    #fefefe !default;
+$ui-highlight--dark:     #f8f8f8 !default;
+
+$ui-white:               #fff !default;
+$ui-grey:                #999 !default;
+$ui-black:               #333 !default;
+
+
+/**
+ * Transitions
+ */
+
+$duration-short: 250ms;
+
+
+/**
+ * Borders
+ */
+
+$border-radius-small:  3px !default;
+$border-radius-medium: 5px !default;
+$border-radius-large:  8px !default;
+
+$border-width-small:   1px;
+$border-width-medium:  2px;
+
+
+/**
+ * Typography
+ */
+
+ $open-sans:  'Open Sans', Helvetica, sans-serif !default;
+
+ $base-font-family:  $open-sans !default;
+ $base-font-size:    13px !default;
+ $small-font-size:   round($base-font-size * 0.9) !default;
+
+ $base-font-color:   $color-info !default;
+ $light-font-color:  $color-info--light !default;
+
+ $base-line-height:  1.4 !default;
+ $tight-line-height: 1.15 !default;
+
+ $base-font-weight:  normal !default;
+ $med-font-weight:   600 !default;
+ $bold-font-weight:  bolder !default;

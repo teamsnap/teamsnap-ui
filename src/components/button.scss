@@ -1,0 +1,217 @@
+/**
+ * @define default Button
+ */
+
+$Button-bg: $ui-white;
+$Button-bg-hover: $ui-background;
+$Button-color: $color-info;
+$Button-border-color: $ui-divider;
+$Button-border-color-hover: darken($Button-border-color, 10%);
+$Button-border-radius: $border-radius-medium;
+$Button-border-width: $border-width-small;
+$Button-border-bottom-width: $border-width-medium;
+$Button-disabled-opacity: 0.4;
+$Button-font-family: $base-font-family;
+$Button-font-size: $base-font-size;
+$Button-font-weight: $med-font-weight;
+$Button-height: 34px;
+$Button-line-height: $Button-height - 2;
+$Button-padding: 0 ($Button-height / 1.75);
+
+.Button {
+  background-color: $Button-bg;
+  border: $Button-border-color solid $Button-border-width;
+  border-bottom-width: $Button-border-bottom-width;
+  border-radius: $Button-border-radius;
+  color: $Button-color;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $Button-font-family;
+  font-size: $Button-font-size;
+  font-weight: $Button-font-weight;
+  height: $Button-height;
+  line-height: normal;
+  margin: 0;
+  padding: $Button-padding;
+  text-decoration: none;
+  transition: all $duration-short ease-in-out;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $Button-bg-hover;
+    border-color: $Button-border-color-hover;
+    outline: none;
+  }
+
+  &.is-active {
+    background-color: $Button-bg-hover;
+    box-shadow: 0 1px 0 $Button-border-color inset;
+  }
+
+  &.is-disabled,
+  &:disabled {
+    &,
+    &:hover,
+    &:active {
+      background-color: $Button-bg;
+      border-color: $Button-border-color;
+      cursor: not-allowed;
+      opacity: $Button-disabled-opacity;
+    }
+  }
+}
+
+/**
+ * Modifier: Button Primary
+ */
+
+$Button--primary-bg: $color-primary;
+$Button--primary-bg-hover: darken($Button--primary-bg, 5%);
+$Button--primary-color: $ui-white;
+$Button--primary-border-color: darken($Button--primary-bg, 7.5%);
+$Button--primary-border-color-hover: darken($Button--primary-bg, 10%);
+
+.Button--primary {
+  background-color: $Button--primary-bg;
+  border-color: $Button--primary-border-color;
+  color: $Button--primary-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $Button--primary-bg-hover;
+    border-color: $Button--primary-border-color-hover;
+  }
+
+  &.is-active {
+    background-color: $Button--primary-bg-hover;
+    box-shadow: 0 1px 0 $Button--primary-border-color inset;
+  }
+
+  &.is-disabled,
+  &:disabled {
+    &,
+    &:hover,
+    &:active {
+      background-color: $Button--primary-bg;
+      border-color: $Button--primary-border-color;
+    }
+  }
+}
+
+/**
+ * Modifier: Button Positive
+ */
+
+$Button--positive-bg: $color-highlight;
+$Button--positive-bg-hover: darken($Button--positive-bg, 5%);
+$Button--positive-color: $ui-white;
+$Button--positive-border-color: $color-highlight--dark;
+$Button--positive-border-color-hover: darken($Button--positive-bg, 10%);
+
+.Button--positive {
+  background-color: $Button--positive-bg;
+  border-color: $Button--positive-border-color;
+  color: $Button--positive-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $Button--positive-bg-hover;
+    border-color: $Button--positive-border-color-hover;
+  }
+
+  &.is-active {
+    background-color: $Button--positive-bg-hover;
+    box-shadow: 0 1px 0 $Button--positive-border-color inset;
+  }
+
+  &.is-disabled,
+  &:disabled {
+    &,
+    &:hover,
+    &:active {
+      background-color: $Button--positive-bg;
+      border-color: $Button--positive-border-color;
+    }
+  }
+}
+
+/**
+ * Modifier: Button Negative
+ */
+
+$Button--negative-bg: $ui-white;
+$Button--negative-bg-hover: $color-danger;
+$Button--negative-color: $color-danger;
+$Button--negative-color-hover: $ui-white;
+$Button--negative-border-color: $ui-divider;
+$Button--negative-border-color-hover: $color-danger--dark;
+
+.Button--negative {
+  background-color: $Button--negative-bg;
+  border-color: $Button--negative-border-color;
+  color: $Button--negative-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $Button--negative-bg-hover;
+    border-color: $Button--negative-border-color-hover;
+    color: $Button--negative-color-hover;
+  }
+
+  &.is-active {
+    background-color: $Button--negative-bg-hover;
+    border-color: $Button--negative-border-color-hover;
+    box-shadow: 0 1px 0 $Button--negative-border-color-hover inset;
+    color: $Button--negative-color-hover;
+  }
+
+  &.is-disabled,
+  &:disabled {
+    &,
+    &:hover,
+    &:active {
+      background-color: $Button--negative-bg;
+      border-color: $Button--negative-border-color;
+      color: $Button--negative-color;
+    }
+  }
+}
+
+/**
+ * Modifier: Button Small
+ */
+
+$Button--small-font-size: $small-font-size;
+$Button--small-height: 22px;
+$Button--small-line-height: $Button--small-height - 2;
+$Button--small-padding: 0 ($Button--small-height * 0.5);
+
+
+.Button--small {
+  font-size: $Button--small-font-size;
+  height: $Button--small-height;
+  line-height: $Button--small-line-height;
+  padding: $Button--small-padding;
+}
+
+/**
+ * Modifier: Button Large
+ */
+
+$Button--large-font-size: $base-font-size * 1.1;
+$Button--large-height: 46px;
+$Button--large-line-height: $Button--large-height - 2;
+$Button--large-padding: 0 ($Button--large-height / 1.5);
+
+.Button--large {
+  font-size: $Button--large-font-size;
+  height: $Button--large-height;
+  line-height: $Button--large-line-height;
+  padding: $Button--large-padding;
+}
