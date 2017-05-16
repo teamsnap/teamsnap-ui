@@ -70,10 +70,10 @@ $Button-padding: 0 ($Button-height / 1.75);
  * Modifier: Button Primary
  */
 
-$Button--primary-bg: $color-primary;
+$Button--primary-bg: $color-highlight;
 $Button--primary-bg-hover: darken($Button--primary-bg, 5%);
 $Button--primary-color: $ui-white;
-$Button--primary-border-color: darken($Button--primary-bg, 7.5%);
+$Button--primary-border-color: $color-highlight--dark;
 $Button--primary-border-color-hover: darken($Button--primary-bg, 10%);
 
 .Button--primary {
@@ -100,44 +100,6 @@ $Button--primary-border-color-hover: darken($Button--primary-bg, 10%);
     &:active {
       background-color: $Button--primary-bg;
       border-color: $Button--primary-border-color;
-    }
-  }
-}
-
-/**
- * Modifier: Button Positive
- */
-
-$Button--positive-bg: $color-highlight;
-$Button--positive-bg-hover: darken($Button--positive-bg, 5%);
-$Button--positive-color: $ui-white;
-$Button--positive-border-color: $color-highlight--dark;
-$Button--positive-border-color-hover: darken($Button--positive-bg, 10%);
-
-.Button--positive {
-  background-color: $Button--positive-bg;
-  border-color: $Button--positive-border-color;
-  color: $Button--positive-color;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: $Button--positive-bg-hover;
-    border-color: $Button--positive-border-color-hover;
-  }
-
-  &.is-active {
-    background-color: $Button--positive-bg-hover;
-    box-shadow: 0 1px 0 $Button--positive-border-color inset;
-  }
-
-  &.is-disabled,
-  &:disabled {
-    &,
-    &:hover,
-    &:active {
-      background-color: $Button--positive-bg;
-      border-color: $Button--positive-border-color;
     }
   }
 }
