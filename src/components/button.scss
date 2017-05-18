@@ -73,6 +73,7 @@ $Button-padding: 0 ($Button-height / 1.75);
 $Button--primary-bg: $color-highlight;
 $Button--primary-bg-hover: darken($Button--primary-bg, 5%);
 $Button--primary-color: $ui-white;
+$Button--primary-color-hover: $ui-white;
 $Button--primary-border-color: $color-highlight--dark;
 $Button--primary-border-color-hover: darken($Button--primary-bg, 10%);
 
@@ -86,6 +87,7 @@ $Button--primary-border-color-hover: darken($Button--primary-bg, 10%);
   &:focus {
     background-color: $Button--primary-bg-hover;
     border-color: $Button--primary-border-color-hover;
+    color: $Button--primary-color-hover;
   }
 
   &.is-active {
@@ -100,6 +102,7 @@ $Button--primary-border-color-hover: darken($Button--primary-bg, 10%);
     &:active {
       background-color: $Button--primary-bg;
       border-color: $Button--primary-border-color;
+      color: $Button--primary-color-hover;
     }
   }
 }
