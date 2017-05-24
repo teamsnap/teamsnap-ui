@@ -114,3 +114,61 @@ $border-width-medium:  2px;
  $base-font-weight:  normal !default;
  $med-font-weight:   600 !default;
  $bold-font-weight:  bolder !default;
+
+  // Heading Font Settings
+
+  // TODO : take audit of the museo fonts used and clean up heading font variables
+  $museo-100:   'MuseoSansRounded100Regular', 'Open Sans', Arial, sans-serif !default;
+  $museo-300:   'MuseoSansRounded300Regular', 'Open Sans', Arial, sans-serif !default;
+  $museo-500:   'MuseoSansRounded500Regular', 'Open Sans', Arial, sans-serif !default;
+  $museo-700:   'MuseoSansRounded700Regular', 'Open Sans', Arial, sans-serif !default;
+  $museo-900:   'MuseoSansRounded900Regular', 'Open Sans', Arial, sans-serif !default;
+  $museo-1000: 'MuseoSansRounded1000Regular', 'Open Sans', Arial, sans-serif !default;
+
+  $heading-font-family:                                  $museo-700 !default;
+  $sub-heading-font-family:                              $open-sans !default;
+
+  $heading-font-color:                               $color-primary !default;
+  $sub-heading-font-color:                         $color-secondary !default;
+
+  // TODO : Revisit typographic scale to find common ground with marketing
+  $heading-size--primary:             round($base-font-size * 2.25) !default;
+  $heading-size--secondary:           round($base-font-size * 1.75) !default;
+  $heading-size--minor:               round($base-font-size * 1.25) !default;
+  $heading-size--small:               round($base-font-size * 1.00) !default;
+  $heading-size--xs:                  round($base-font-size * 0.85) !default;
+
+  $heading-line-height--primary:                                  2 !default;
+  $heading-line-height--secondary:                              1.7 !default;
+  $heading-line-height--minor:                                  1.5 !default;
+  $heading-line-height--small:                                  1.4 !default;
+  $heading-line-height--xs:                                    1.15 !default;
+
+/**
+ * Spacing
+ */
+
+$block-spacing:                           25px !default;
+$block-spacing--xsmall:                    7px !default;
+$block-spacing--small:                    15px !default;
+$block-spacing--large:                    40px !default;
+
+$element-spacing:                          9px !default;
+$element-spacing--small:                   6px !default;
+$element-spacing--large:                  15px !default;
+
+$horizontal-block-spacing:                25px !default;
+$horizontal-block-spacing--small:         15px !default;
+$horizontal-block-spacing--large:         40px !default;
+
+$horizontal-element-spacing:               9px !default;
+$horizontal-element-spacing--small:        6px !default;
+$horizontal-element-spacing--large:       14px !default;
+
+$vertical-block-spacing:                  25px !default;
+$vertical-block-spacing--small:           15px !default;
+$vertical-block-spacing--large:           40px !default;
+
+$vertical-element-spacing:                 7px !default;
+$vertical-element-spacing--small:          4px !default;
+$vertical-element-spacing--large:         12px !default;

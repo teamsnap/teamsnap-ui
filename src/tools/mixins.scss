@@ -1,0 +1,11 @@
+/**
+ * Simple clear mixin
+ */
+
+@mixin clear {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}

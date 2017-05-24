@@ -1,0 +1,197 @@
+@import "../base/config.scss";
+
+//------------------------------------------------------------//
+
+// * StepNav Component
+// * 1. Settings
+// * 2. Define Default StepNav
+// * 3. Small Modifier
+// * 4. Title Modifier
+// * 5. Responsive Mixin
+
+// TODO : document global dependencies
+// TODO : Add Small StepNav Modifier
+// TODO : Add Titled Modifier
+
+//------------------------------------------------------------//
+
+// * 1. Settings
+
+$StepNav-size: 60px;
+$StepNav-border: 4px;
+
+$StepNav-size--small: 40px;
+$StepNav-border--small: 2px;
+
+// * 2. Define Default StepNav
+
+.StepNav {
+  padding-left: ($StepNav-size * 1.25);
+  position: relative;
+  @include clear();
+  padding-bottom: $vertical-block-spacing--small;
+  &.steps-2 {
+    .StepNav-Step {
+      width: 100%;
+    }
+  }
+  &.steps-3 {
+    .StepNav-Step {
+      width: 50%;
+    }
+  }
+  &.steps-4 {
+    .StepNav-Step {
+      width: 33%;
+    }
+  }
+}
+
+.StepNav-Step {
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  display: block;
+  float: left;
+  padding: 0;
+
+  &:before {
+    content: '';
+    width: 100%;
+    display: block;
+    position: absolute;
+    background: $ui-divider;
+    height: $StepNav-border;
+    top: ($StepNav-size / 2);
+    right: ($StepNav-size * 1.25);
+  }
+
+  &:first-child {
+    position: absolute;
+    left: 0;
+    top: 0;
+    .StepNav-Item {
+      float: left;
+    }
+    &:before {
+      display: none;
+    }
+  }
+
+  &.is-enabled {
+    .StepNav-Icon,
+    .StepNav-Title {
+      color: $color-primary;
+      transition: color .35s ease-in-out;
+    }
+    .StepNav-Icon:before {
+      border-color: $color-primary;
+      transition: border-color .35s ease-in-out;
+    }
+    &:before {
+      background-color: $color-primary;
+      transition: background-color .35s ease-in-out;
+    }
+  }
+
+  &.is-active,
+  &.is-enabled a:hover {
+    .StepNav-Icon {
+      color: $ui-white;
+      &:before {
+        box-shadow: 0 0 ( $StepNav-border / 2 ) $color-primary--dark inset;
+        border-color: $ui-divider;
+        background-color: $color-primary;
+      }
+    }
+  }
+}
+
+.StepNav-Item {
+  float: right;
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+
+.StepNav-Icon,
+.StepNav-Title {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  color: $ui-divider;
+}
+
+.StepNav-Title {
+  padding-top: $StepNav-border;
+  font-family: $base-font-family;
+  font-size: $heading-size--small;
+}
+
+.StepNav-Icon {
+  width: $StepNav-size;
+  padding: 0 ( $StepNav-border * 2 );
+  background: #fff;
+  box-sizing: content-box;
+  line-height: $StepNav-size;
+  &:before {
+    font-size: ($StepNav-size * 0.43);
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    vertical-align: middle;
+    height: $StepNav-size;
+    width: $StepNav-size;
+    border-radius: ($StepNav-size / 2);
+    line-height: inherit;
+    padding: 0;
+    border: {
+      style: solid;
+      color: $ui-divider;
+      width: $StepNav-border;
+    }
+  }
+}
+
+// * 3. Modifier : Small StepNav (coming soon)
+
+// * 4. Modifier : Titled StepNav (coming soon)
+
+// * 5. Responsive Mixin and Usage
+
+@mixin Responsive-StepNav($size, $border) {
+  padding-left: ($size * 1.25);
+  .StepNav-Step {
+    &:before {
+      height: $border;
+      top: ($size / 2);
+      right: ($size * 1.25);
+    }
+  }
+  .StepNav-Title {
+    padding-top: $border;
+  }
+  .StepNav-Icon {
+    width: $size;
+    padding: 0 ( $border * 2 );
+  }
+  .StepNav-Icon {
+    line-height: $size;
+    &:before {
+      font-size: ($size * 0.43);
+      border: {
+        width: $border;
+      }
+      height: $size;
+      width: $size;
+      border-radius: ($size / 2);
+      line-height: inherit;
+    }
+  }
+  .is-active,
+  .is-enabled a:hover {
+    .StepNav-Icon:before {
+      box-shadow: 0 0 ( $border / 2 ) $color-primary--dark inset;
+    }
+  }
+}
