@@ -24,10 +24,11 @@ $StepNav-border--small: 2px;
 
 // * 2. Define Default StepNav
 
+.StepNav {}
+
 .StepNav-steps {
   padding-left: ($StepNav-size * 1.25);
   position: relative;
-  @include clear();
   padding-bottom: $vertical-block-spacing--small;
   display: flex;
 }
@@ -55,8 +56,7 @@ $StepNav-border--small: 2px;
     position: absolute;
     left: 0;
     top: 0;
-    .StepNav-stepLink,
-    .StepNav-stepItem {
+    .StepNav-stepLink {
       float: left;
     }
     &:before {
@@ -81,7 +81,7 @@ $StepNav-border--small: 2px;
   }
 
   &.is-active,
-  &.is-enabled StepNav-link:hover {
+  &.is-enabled .StepNav-stepLink:hover {
     .StepNav-stepIcon {
       color: $ui-white;
       &:before {
@@ -93,23 +93,18 @@ $StepNav-border--small: 2px;
   }
 }
 
-.StepNav-stepLink,
-.StepNav-stepItem {
+.StepNav-stepLink {
   float: right;
   position: relative;
   z-index: 10;
-  text-align: center;
+  color: $ui-divider;
 }
 
-.StepNav-stepIcon,
 .StepNav-stepTitle {
   display: block;
   text-align: center;
   margin: 0 auto;
   color: $ui-divider;
-}
-
-.StepNav-stepTitle {
   padding-top: $StepNav-border;
   font-family: $base-font-family;
   font-size: $heading-size--small;
