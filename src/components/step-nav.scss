@@ -1,0 +1,229 @@
+@import "../base/config.scss";
+
+//------------------------------------------------------------//
+
+// * StepNav Component
+// * 1. Settings
+// * 2. Define Default StepNav
+// * 3. Size Modifier Mixin
+// * 4. Small Modifier
+// * 5. Titled Modifier
+
+// TODO : document global dependencies
+// TODO : Add Titled Modifier
+
+//------------------------------------------------------------//
+
+// * 1. Settings
+
+$StepNav-size: 60px;
+$StepNav-border: 4px;
+
+$StepNav-size--small: 40px;
+$StepNav-border--small: 2px;
+
+// * 2. Define Default StepNav
+
+.StepNav {}
+
+.StepNav-steps {
+  padding-left: ($StepNav-size * 1.25);
+  position: relative;
+  padding-bottom: $vertical-block-spacing--small;
+  display: flex;
+}
+
+.StepNav-step {
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  display: block;
+  padding: 0;
+  flex: auto;
+
+  &:before {
+    content: '';
+    width: 100%;
+    display: block;
+    position: absolute;
+    background: $ui-divider;
+    height: $StepNav-border;
+    top: ($StepNav-size / 2);
+    right: ($StepNav-size * 1.25);
+  }
+
+  &:first-child {
+    position: absolute;
+    left: 0;
+    top: 0;
+    .StepNav-stepLink {
+      float: left;
+    }
+    &:before {
+      display: none;
+    }
+  }
+
+  &.is-enabled {
+    .StepNav-stepIcon,
+    .StepNav-stepTitle {
+      color: $color-primary;
+      transition: color .35s ease-in-out;
+    }
+    .StepNav-stepIcon:before {
+      border-color: $color-primary;
+      transition: border-color .35s ease-in-out;
+    }
+    &:before {
+      background-color: $color-primary;
+      transition: background-color .35s ease-in-out;
+    }
+  }
+
+  &.is-active,
+  &.is-enabled .StepNav-stepLink:hover {
+    .StepNav-stepIcon {
+      color: $ui-white;
+      &:before {
+        box-shadow: 0 0 ( $StepNav-border / 2 ) $color-primary--dark inset;
+        border-color: $ui-divider;
+        background-color: $color-primary;
+      }
+    }
+  }
+}
+
+.StepNav-stepLink {
+  float: right;
+  position: relative;
+  z-index: 10;
+  color: $ui-divider;
+}
+
+.StepNav-stepTitle {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  color: $ui-divider;
+  padding-top: $StepNav-border;
+  font-family: $base-font-family;
+  font-size: $heading-size--small;
+}
+
+.StepNav-stepIcon {
+  width: $StepNav-size;
+  padding: 0 ( $StepNav-border * 2 );
+  background: #fff;
+  box-sizing: content-box;
+  line-height: $StepNav-size;
+  &:before {
+    font-size: ($StepNav-size * 0.43);
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    vertical-align: middle;
+    height: $StepNav-size;
+    width: $StepNav-size;
+    border-radius: ($StepNav-size / 2);
+    line-height: inherit;
+    padding: 0;
+    border: {
+      style: solid;
+      color: $ui-divider;
+      width: $StepNav-border;
+    }
+  }
+}
+
+// * 3. Modifier : Size Modifier Mixin
+
+@mixin StepNav--sizeModifier($size, $border) {
+  padding-left: ($size * 1.25);
+  .StepNav-step {
+    &:before {
+      height: $border;
+      top: ($size / 2);
+      right: ($size * 1.25);
+    }
+  }
+  .StepNav-stepTitle {
+    padding-top: $border;
+  }
+  .StepNav-stepIcon {
+    width: $size;
+    padding: 0 ( $border * 2 );
+  }
+  .StepNav-stepIcon {
+    line-height: $size;
+    &:before {
+      font-size: ($size * 0.43);
+      border: {
+        width: $border;
+      }
+      height: $size;
+      width: $size;
+      border-radius: ($size / 2);
+      line-height: inherit;
+    }
+  }
+  .is-active,
+  .is-enabled a:hover {
+    .StepNav-stepIcon:before {
+      box-shadow: 0 0 ( $border / 2 ) $color-primary--dark inset;
+    }
+  }
+}
+
+// * 5. Modifier : Small StepNav
+
+.StepNav--small {
+  .StepNav-steps {
+    @include StepNav--sizeModifier($StepNav-size--small, $StepNav-border--small)
+  }
+  .StepNav-stepTitle {
+    display: none;
+  }
+}
+
+// * 6. Modifier : Titled Modifier
+
+.StepNav--titled {
+
+  .StepNav-title,
+  .StepNav-steps {
+    float: left;
+  }
+
+  .StepNav-title {
+    width: 55%
+  }
+
+  .StepNav-steps {
+    width: 45%;
+  }
+
+  .StepNav-step:first-child:before {
+    display: block;
+  }
+}
+
+.StepNav-title {
+  overflow: hidden;
+}
+
+.StepNav-titleText {
+  position: relative;
+  margin: 0;
+  padding-right: $hes;
+  display: inline-block;
+  line-height: $StepNav-size;
+  &:before {
+    content: '';
+    position: absolute;
+    top: ($StepNav-size / 2);
+    left: 100%;
+    height: $StepNav-border;
+    width: 1000%;
+    background: $color-primary;
+  }
+}
