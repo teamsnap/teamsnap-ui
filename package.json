@@ -1,19 +1,29 @@
 {
-  "name": "teamsnap-ui",
+  "name": "@teamsnap/teamsnap-ui",
   "version": "0.2.0",
   "description": "a CSS component library for TeamSnap",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "sass-lint 'src/**/*.scss' -v",
+    "prepublish": "npm run lint"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/teamsnap/teamsnap-ui.git"
   },
-  "author": "",
+  "author": "TeamSnap Developers <oss@teamsnap.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/teamsnap/teamsnap-ui/issues"
   },
-  "homepage": "https://github.com/teamsnap/teamsnap-ui#readme"
+  "homepage": "https://github.com/teamsnap/teamsnap-ui#readme",
+  "keywords": [
+    "css",
+    "sass",
+    "suit"
+  ],
+  "devDependencies": {
+    "sass-lint": "^1.10.2"
+  }
 }
