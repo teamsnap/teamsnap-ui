@@ -1,0 +1,36 @@
+// * Percentage based size classes for a 24 column grid
+
+$cols: 24;
+
+@for $i from 1 through ($cols) {
+  .u-size#{$i}of#{$cols} {
+    flex-basis: auto !important;
+    width: $i / $cols * 100% !important;
+  }
+}
+
+.u-sizeFull {
+  flex-basis: auto !important;
+  width: 100% !important;
+}
+
+// * Intrinsic widths from SUITCSS: https://github.com/suitcss/utils-size
+
+// * Make an element shrink wrap its content.
+
+.u-sizeFit {
+  flex-basis: auto !important;
+}
+
+// * Make an element fill the remaining space.
+// *
+// * 1. Be explicit to work around IE10 bug with shorthand flex
+// *    http://git.io/vllC7
+// * 2. IE10 ignores previous `flex-basis` value. Setting again here fixes
+// *    http://git.io/vllMt
+
+
+.u-sizeFill {
+  flex: 1 1 0% !important; // 1
+  flex-basis: 0% !important; // 2
+}
