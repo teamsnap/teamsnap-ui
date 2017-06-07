@@ -12,7 +12,7 @@ Once installed styles can be applied and composed via [css modules](http://)
 
 ```
 .CustomButton {
-  composes: Button--primary from 'teamsnap-ui/src/components/button.scss';
+  composes: Button Button--primary from 'teamsnap-ui/src/components/button.scss';
   ... custom styles
 }
 ```
