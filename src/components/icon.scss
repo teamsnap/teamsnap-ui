@@ -1,0 +1,25 @@
+// * Icon component
+// *
+// * 1. Fine tune the positioning of the icon
+// * 2. Fill with currentColor by default
+// *
+
+.Icon {
+  position: relative; // 1
+  margin: 0;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  font-size: 1em;
+  vertical-align: middle;
+  top: -1px; // 1
+  fill: currentColor; // 2
+}
+
+// * Modifier -- large icon relative to parent text
+
+$Icon--large-size: 1.25em;
+
+.Icon--large {
+  font-size: $Icon--large-size;
+}
