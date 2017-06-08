@@ -1,0 +1,39 @@
+[class*="color-light-gray"],
+[class*="text-color-light-gray"] {
+  color: $color-info--light;
+}
+
+[class*="color-success"],
+[class*="text-color-success"] {
+  color: $color-success;
+}
+
+[class*="color-warning"],
+[class*="text-color-warning"] {
+  color: $color-warning;
+}
+
+[class*="color-danger"],
+[class*="text-color-danger"] {
+  color: $color-danger;
+}
+
+[class*="color-info"],
+[class*="text-color-info"] {
+  color: $color-info;
+}
+
+[class*="color-primary"],
+[class*="text-color-primary"] {
+  color: $color-primary;
+}
+
+[class*="color-secondary"],
+[class*="text-color-secondary"] {
+  color: $color-secondary;
+}
+
+[class*="color-highlight"],
+[class*="text-color-highlight"] {
+  color: $color-highlight;
+}

@@ -1,0 +1,97 @@
+/**
+ * Site Wide Spacing & Layout Settings
+ *
+ * 1.  $site-wide is the max-width of the site's content
+ * 2.  Controls the vertical & horizontal spacing site wide
+ * 3.  I avoided terms like $gutter, because we don't use a column based grid
+ * 4.  Block Spacing controls larger structural spacing
+ * 4a. lists, divs, blocks, etc.
+ * 5.  Adding in short hand mapping for easier use
+ */
+
+$default-line-height:                     1.15 !default;
+
+$max-site-width:                        1300px !default;
+$min-site-width:                        1200px !default;
+
+$default-spacing:                         10px !default;
+
+$block-spacing:                           25px !default;
+$block-spacing--xsmall:                    7px !default;
+$block-spacing--small:                    15px !default;
+$block-spacing--large:                    40px !default;
+
+$element-spacing:                          9px !default;
+$element-spacing--small:                   6px !default;
+$element-spacing--large:                  15px !default;
+
+$horizontal-block-spacing:                25px !default;
+$horizontal-block-spacing--small:         15px !default;
+$horizontal-block-spacing--large:         40px !default;
+
+$horizontal-element-spacing:               9px !default;
+$horizontal-element-spacing--small:        6px !default;
+$horizontal-element-spacing--large:       14px !default;
+
+$vertical-block-spacing:                  25px !default;
+$vertical-block-spacing--small:           15px !default;
+$vertical-block-spacing--large:           40px !default;
+
+$vertical-element-spacing:                 7px !default;
+$vertical-element-spacing--small:          4px !default;
+$vertical-element-spacing--large:         12px !default;
+
+// Short hand spacing variables
+
+$bs:                                     $block-spacing;
+$bs--xsmall:                     $block-spacing--xsmall;
+$bs--small:                       $block-spacing--small;
+$bs--large:                       $block-spacing--large;
+
+$es:                                   $element-spacing;
+$es--small:                     $element-spacing--small;
+$es--large:                     $element-spacing--large;
+
+$hbs:                         $horizontal-block-spacing;
+$hbs--small:           $horizontal-block-spacing--small;
+$hbs--large:           $horizontal-block-spacing--large;
+
+$hes:                       $horizontal-element-spacing;
+$hes--small:         $horizontal-element-spacing--small;
+$hes--large:         $horizontal-element-spacing--large;
+
+$vbs:                           $vertical-block-spacing;
+$vbs--small:             $vertical-block-spacing--small;
+$vbs--large:             $vertical-block-spacing--large;
+
+$ves:                         $vertical-element-spacing;
+$ves--small:           $vertical-element-spacing--small;
+$ves--large:           $vertical-element-spacing--large;
+
+/**
+ * Responsive Settings
+ *
+ * 1.  the Breakpoints array is used by the media-query mixin
+ * 2.  Alternatively the min-width and max-width mixins use
+ */
+
+$responsive:   false !default;
+
+  $screen-xs:      0;
+  $screen-sm:      0;
+  $screen-md:      0;
+  $screen-lg:      0;
+
+@if $responsive == true {
+  $screen-xs:  480px;
+  $screen-sm:  768px;
+  $screen-md:  992px;
+  $screen-lg: 1200px;
+}
+
+$breakpoints: (
+  'xs'        'screen and (min-width: #{$screen-xs})',
+  'sm'        'screen and (min-width: #{$screen-sm})',
+  'md'	      'screen and (min-width: #{$screen-md})',
+  'lg'	      'screen and (min-width: #{$screen-lg})'
+);

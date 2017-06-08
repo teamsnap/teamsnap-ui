@@ -1,0 +1,121 @@
+// doesn't look like this was being loaded and was
+// in a seperate partial, still want to store here
+// for now
+
+/*
+
+[class*="__callout"] {
+  background-color: $ui-foreground;
+  padding: $vertical-element-spacing $horizontal-element-spacing;
+  margin: $vertical-block-spacing--small 0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $ui-divider;
+  border-radius: $defualt-border-radius;
+  line-height:     $defualt-line-height;
+  vertical-align: middle;
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+[class*="__callout"][class*="--warning"] {
+  background-color: $color-secondary--light;
+  border-color: $color-secondary;
+}
+
+*/
+
+[class*="large-callout-panel"] {
+  padding: $vertical-block-spacing $horizontal-block-spacing--large;
+  border: 2px solid $ui-divider;
+  border-radius: $border-radius--large;
+  margin: $vertical-block-spacing--small 0;
+  @include clear;
+}
+
+[class*="large-callout-icon"] {
+  color: $color-primary;
+  margin-right: $horizontal-element-spacing;
+  display: block;
+  font-size: 100px;
+  line-height: 1.5;
+  vertical-align: middle;
+  float: left;
+  &:before {
+    vertical-align: middle;
+  }
+}
+
+[class*="large-callout-title"] {
+  color: $color-primary;
+  font-family: $heading-font-family;
+  padding: $vertical-element-spacing--large 0 $vertical-element-spacing 0;
+  margin-bottom: 0;
+  font-size: 20px;
+  text-align: left;
+}
+
+[class*="__small-callout"] {
+  background-color: $ui-foreground;
+  padding: $vertical-element-spacing--large $horizontal-element-spacing--large;
+  margin: $vertical-block-spacing--small 0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $ui-divider;
+  border-radius: $default-border-radius;
+  line-height:     $default-line-height;
+  vertical-align: middle;
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+// these dashboard callouts need to be reworked after reskin
+
+.dashboard__callout--small {
+  border-width: 1px;
+  border-style: solid;
+  border-color: $ui-divider;
+  border-radius: $default-border-radius;
+  font-size: $base-font-size;
+  background: lighten(desaturate($color-primary, 35%), 60%);
+  border-color: lighten(desaturate($color-primary, 25%), 35%);
+  padding: $vertical-element-spacing $horizontal-element-spacing;
+  color: $color-primary;
+}
+
+.dashboard__callout {
+  padding: $vertical-block-spacing $horizontal-block-spacing--large;
+  border: 2px solid $ui-divider;
+  border-radius: $border-radius--large;
+  margin: $vertical-block-spacing--small 0;
+  h3 {
+    color: $color-primary;
+    font-family: $heading-font-family;
+    padding: $vertical-element-spacing--large 0 $vertical-element-spacing 0;
+    margin-bottom: 0;
+    font-size: 20px;
+  }
+  i {
+    color: $color-primary;
+    margin-right: $horizontal-element-spacing;
+    display: block;
+    vertical-align: middle;
+    font-size: 90px;
+    line-height: 1.15;
+    float: left;
+    &:before {
+      vertical-align: middle;
+    }
+  }
+  p {
+    font-size: $base-font-size;
+    margin-bottom: 0;
+  }
+  @include clear;
+}

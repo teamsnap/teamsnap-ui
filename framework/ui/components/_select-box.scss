@@ -1,0 +1,127 @@
+//*----------------------------------------------//
+//              The Select Box
+//
+//  * Needs JS to function properly
+//  * Trying something new around sizing, to where the
+//    the select controls sizing and the span is absolute
+//    was seeing some alignment issues with span controlling
+//    the width of the container
+//
+//----------------------------------------------*//
+
+[class*="select-box"] {
+  height:                     $form-select-height;
+  line-height:     $form-select-line-height - 2px;
+  color:                  $form-select-text-color;
+  background-color:         $form-select-bg-color;
+  position:                              relative;
+  display:                           inline-block;
+  box-shadow:                                none;
+  font-family:                  $base-font-family;
+  margin-right:                       $hes--small;
+  padding-right:                             22px;
+  border-radius:            $button-border-radius;
+  border:                   1px solid $ui-divider;
+  cursor:                                 pointer;
+  &:hover {
+    background: darken($form-select-bg-color, 5%);
+  }
+  select {
+    cursor:          pointer;
+    z-index:               2;
+    position:       relative;
+    top:                   0;
+    left:                  0;
+    height:             100%;
+    width: calc(100% + 22px);
+    background:  transparent;
+    border:             none;
+    opacity:               0;
+  }
+  [class*="select-text"],
+  [class*="select-option"] {
+    position:             absolute;
+    top:                         0;
+    left:                     $hes;
+    font-weight:            normal;
+    font-family: $base-font-family;
+    font-size:    $small-font-size;
+    width:       calc(100% - 30px);
+    white-space:            nowrap;
+    overflow:               hidden;
+    text-overflow:        ellipsis;
+    text-align:               left;
+  }
+  span:before,
+  span:after {
+    // this can be cut after reskin once markup is
+    // more consistant
+    display:           none;
+   }
+  .onion-loader-indicator {
+    position: relative;
+    top:          auto;
+    left:         auto;
+    margin-top:  $hes;
+    margin-left: $hes;
+  }
+  &:after {
+    @include ss-pika;
+    content:                                                             '▾';
+    position:                                                       absolute;
+    top:                                                                 3px;
+    right:                                                                 0;
+    display:                                                    inline-block;
+    height:                 $form-input-height - $horizontal-element-spacing;
+    line-height: $form-input-line-height - $horizontal-element-spacing + 2px;
+    font-size:                                     ( $small-font-size * .6 );
+    border-left:                                1px solid $ui-divider--light;
+    padding-left:                         $horizontal-element-spacing--small;
+    padding-right:                        $horizontal-element-spacing--small;
+  }
+  &[class*="--fullwidth"] {
+    width:            100%;
+    box-sizing: border-box;
+    &:after {
+      float:         right;
+    }
+  }
+  &.disabled {
+    background: $ui-highlight--dark;
+    color: $ui-divider--light;
+      select {
+        cursor: not-allowed;
+      }
+      [class*="select-text"],
+      [class*="select-option"] {
+        color:$ui-grey;
+    }
+  }
+}
+
+option {
+  font-family: $base-font-family;
+  background:     $ui-foreground;
+  color:             $color-info;
+}
+
+
+// for select-boxes text in half reskin
+// this should be cleaned up
+
+[class*="select-box"] {
+  span[class*="dropdown"],
+  span[class*="text"],
+  span[class*="option"],
+  span[class*="hrs"],
+  span[class*="--"],
+  span[class*="__"] {
+      position:             absolute;
+      top:                         0;
+      left:                     $hes;
+      font-weight:            normal;
+      font-family: $base-font-family;
+      color: $form-select-text-color;
+      font-size:    $small-font-size;
+  }
+}

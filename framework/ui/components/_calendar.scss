@@ -1,0 +1,172 @@
+//--------------------------------//
+//     Full Calendar View
+//
+//  Note: used on C&L, Team Tab,
+//  and the Dashboard/Calendar.
+//  Also, dependent on table
+//  element.
+//
+//--------------------------------//
+
+.calendar__month {
+  vertical-align: middle;
+  line-height: $button-height;
+}
+
+.calendar__month-title {
+  color:               $color-primary;
+  font-size:     $heading-size--minor;
+  &:hover {
+    color:      $color-primary--light;
+  }
+}
+
+.calendar__month-nav-ss-navigateleft,
+.calendar__month-nav-ss-navigateright {
+  color:               $color-primary;
+  font-size:     $heading-size--small;
+  &:hover {
+    color:      $color-primary--light;
+  }
+}
+
+.calendar__month-nav-ss-navigateleft {
+  margin-right:           $ves--large;
+}
+
+.calendar__month-nav-ss-navigateright {
+  margin-left:            $ves--large;
+}
+
+.calender__month-nav-current {
+  margin-right:           $hes--large;
+  position:                  absolute;
+  right:                            0;  
+}
+
+.calendar__day {
+  vertical-align:              top;
+  border-left: {
+    width:                     1px;
+    style:                   solid;
+    color:             $ui-divider;
+  }
+  width:                       14%;
+  height:                    135px;
+  &:first-child {
+    border-left:              none;
+  }
+}
+
+.calendar__day-number {
+  display:                   block;
+  float:                      left;
+  background:    $ui-divider--dark;
+  height:                     22px;
+  width:                      22px;
+  line-height:                23px;
+  font-size:                   90%;
+  text-align:               center;
+  font-weight:                bold;
+  color:                 $ui-white;
+  border-radius:              11px;
+  &.current_date {
+    background:     $color-primary;
+  }
+}
+
+.calendar__utility-links {
+  float:                     right;
+  font-size: $small-font-size * .9;
+  color:        $color-info--light;
+  margin-top:                  5px;
+  display:                    none;
+}
+
+.calendar__day:hover {
+  .calendar__utility-links {
+    display:                 block;
+  }
+}
+
+.calendar__utility-link {
+  text-decoration:            none;
+  color:               $link-color;
+  font-size: $small-font-size * .9;
+}
+
+.calendar__utility-link:hover  {
+  text-decoration:       underline;
+  color:        $link-color--hover;
+}
+
+.calendar__birthday {
+  font-size:                   85%;
+}
+
+.calendar__event,
+.calendar__birthday {
+  display:                   block;
+  padding:                  $ves 0;
+  clear:                      both;
+}
+
+.calendar__event,
+.calendar__birthday {
+  & + .calendar__event {
+    border-top: {
+      width:                   1px;
+      style:                dotted;
+      color:    $ui-divider--light;
+    }
+  }
+}
+
+.calendar__event-name,
+.calendar__event-notes,
+.calendar__event-result,
+.calendar__event-details,
+.calendar__event-location {
+  display:                  block;
+}
+
+.calendar__event-name,
+.calendar__event-notes,
+.calendar__event-result {
+  padding-top:                3px;
+}
+
+.calendar__event-location {
+  padding-top:                2px;
+  color:              $color-info;
+}
+
+.calendar__event-notes,
+.calendar__event-badge,
+.calendar__event-details,
+.calendar__event-location {
+  font-size:                  85%;
+}
+
+.calendar__event-badge {
+  display:           inline-block;
+  padding:                2px 4px;
+  word-wrap:               nowrap;
+  background:      $ui-foreground;
+  color:       $color-info--light;
+  margin-top:                 2px;
+  border: {
+    width:                    1px;
+    style:                  solid;
+    color:     $ui-divider--light;
+    radius:                   3px;
+  }
+}
+
+.calendar__event-canceled {
+  color:            $color-danger;
+}
+
+.calendar__footer {
+  line-height:     $button-height;
+}

@@ -1,0 +1,80 @@
+//-----------------------------------------------/
+//  * The Schedule Dropdowns should use this
+//  * note: might be nice to update this and
+//    the top nav to use the same code
+//----------------------------------------------/
+
+[class*="__dropdown-parent"] {
+  position:                        relative;
+  &:hover > [class*="__dropdown-content"] {
+    opacity:                              1;
+    z-index:                            999;
+  }
+}
+
+[class*="__dropdown-title"] {
+  font-weight:                          900;
+  line-height:                          .75;
+  font-family:         $heading-font-family;
+  vertical-align:                  text-top;
+}
+
+[class*="__dropdown-content"] {
+  opacity:                                0;
+  z-index:                             -999;
+  transition:      opacity .25s ease-in-out;
+  border-radius:                        5px;
+  border: 1px solid             $ui-divider;
+  box-shadow:            $box-shadow--small;
+  background:                 $button-color;
+  padding:                                0;
+  width:                              200px;
+  position:                        absolute;
+  left:                              -100px;
+  top:                                 100%;
+  margin-top:                          10px;
+  list-style:                          none;
+  &:before {
+    content:                             '';
+    top:                              -25px;
+    left: 0;
+    position:                      absolute;
+    width:                             100%;
+    height:                            25px;
+  }
+}
+
+[class*="__dropdown-tip"] {
+  &:before,
+  &:after {
+    content:                             '';
+    position:                      absolute;
+    width:                                0;
+    height:                               0;
+    left:                               50%;
+  }
+  &:before {
+    margin-left:                       -1px;
+    top:                              -11px;
+    border-left:     11px solid transparent;
+    border-right:    11px solid transparent;
+    border-bottom:   11px solid $ui-divider;
+  }
+  &:after {
+    top:                              -10px;
+    border-left:     10px solid transparent;
+    border-right:    10px solid transparent;
+    border-bottom: 10px solid $button-color;
+  }
+}
+
+[class*="__dropdown-item"] {
+  position:                        relative;
+  display:                            block;
+  text-align:                          left;
+  padding:                        $ves $hes;
+  border-bottom:      1px $ui-divider solid;
+  &:last-child {
+    border-bottom:                        0;
+  }
+}

@@ -1,0 +1,22 @@
+/**
+ * Percentage based size classes for a 24 column grid
+ *
+ * .u-size1of24,
+ * .u-size2of24,
+ *  .....
+ * .u-size23of24,
+ * .u-size-full
+ *
+ */
+
+$cols: 24;
+
+@for $i from 1 through ($cols - 1) {
+  .u-size#{$i}of#{$cols} {
+    width: $i / $cols * 100% !important;
+  }
+}
+
+.u-size-full {
+  width: 100% !important;
+}

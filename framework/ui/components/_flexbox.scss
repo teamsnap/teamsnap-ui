@@ -1,0 +1,46 @@
+//*//////////////////////////////////////////////
+
+//          Flex Box Styles
+
+//  * Base Styles
+
+// notes:
+// ~ used on home tab
+// ~ may be used on main tabs (or extended)
+// ~ the home tab flex item needs updating
+
+//*//////////////////////////////////////////////
+
+//  * Base Styles
+
+[class*="flexbox"],
+//update on the class name
+[class*="__flexbox"] {
+  //fallback for non-flex browsers
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  //flex code
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  &[class*="--inline"] {
+    display: inline-flex;
+  }
+  &[class*="--center"] {
+    align-items: center;
+  }
+}
+
+[class*="flexbox-item"],
+//update on the class name
+[class*="__flex-item"] {
+  //fallback for non-flex browsers
+  float: left;
+  box-sizing: border-box;
+  //flex code
+  flex: 1 1 auto;
+  flex-direction: column;
+}

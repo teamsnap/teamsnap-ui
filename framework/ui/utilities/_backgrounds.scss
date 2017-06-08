@@ -1,0 +1,23 @@
+html {
+  background: $ui-background;
+}
+
+[class*="bg-white"] {
+  background-color: $ui-white;
+}
+
+[class*="bg-foreground"] {
+  background-color: $ui-foreground;
+}
+
+[class*="bg-middleground"] {
+  background-color: $ui-middleground;
+}
+
+[class*="bg-background"] {
+  background-color: $ui-background;
+}
+
+[class*="bg-highlight"] {
+  background-color: $ui-highlight;
+}

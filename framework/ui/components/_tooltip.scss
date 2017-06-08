@@ -1,0 +1,45 @@
+[class*="--tooltip"],
+[class*="__tooltip"] {
+  position: relative;
+  cursor: help;
+  color: $color-primary;
+  text-decoration-line: underline;
+
+  &[class*="--input"] {
+    color: $base-font-color;
+    text-decoration: none;
+  }
+}
+
+[class*="__tooltip-message"] {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -25%;
+  max-width: 400px;
+  min-width: 300px;
+  padding: $hes--small;
+  background-color: $ui-foreground;
+  border: 1px $ui-divider solid;
+  color: $base-font-color;
+  box-shadow: 0 0 5px $ui-divider;
+  z-index: 100;
+  font-family: $open-sans;
+  font-size: $tiny-font-size;
+  font-weight: normal;
+  text-align: left;
+  text-decoration: none;
+
+  &[data-position="right"]{
+    left:calc(100% + 5px);
+    margin: 0;
+    top:0;
+  }
+}
+
+[class*="__tooltip"]:hover {
+  [class*="__tooltip-message"] {
+   display: block;
+  }
+}

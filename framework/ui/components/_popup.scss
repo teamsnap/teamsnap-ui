@@ -1,0 +1,103 @@
+// seperatly defining the popup sizing to
+// make it easy to change popup sizes on
+// as need basis
+
+@mixin popup-sizing($width, $height) {
+
+  margin-top: ( 0 - ( $height / 2 ));
+  width: $width;
+  min-height: $height;
+  padding: $vertical-block-spacing--small $horizontal-block-spacing--small;
+
+}
+
+.js-popup-control,
+[data-control="popup"],
+[data-dismiss] {
+  cursor: pointer;
+}
+
+[class*="__popup"] {
+  position: relative;
+  display: inline-block;
+}
+
+.js-popup-content,
+[class*="__popup-content"] {
+
+  // hides the popup and sets it behind everything,
+  // without losing it's structure. Needed to ts-responsive.js
+  opacity: 0;
+  z-index: -999;
+  visibility: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  background-color: $ui-foreground;
+  border: {
+    width: 1px;
+    color: $ui-divider;
+    style: solid;
+    radius: $default-border-radius;
+  }
+  color: $color-info;
+  box-shadow: 0 0 5px $ui-divider;
+  z-index: 100;
+  font-family: $base-font-family;
+  font-weight: normal;
+  text-align: left;
+
+  * {
+    white-space: normal;
+  }
+
+  // default sizing
+  @include popup-sizing(250px, 150px);
+
+}
+
+[class*="__popup-header"],
+[class*="__popup-body"],
+[class*="__popup-footer"] {
+  display: block;
+}
+
+[class*="__popup-header"],
+[class*="__popup-body"] {
+  padding-bottom: $vertical-element-spacing;
+}
+
+[class*="__popup-footer"] {
+  padding-top: $vertical-element-spacing;
+  padding-bottom: $vertical-element-spacing;
+}
+
+[class*="__popup"].js-open,
+[class*="__popup"].js-active {
+  [class*="__popup-content"] {
+    opacity: 1;
+    z-index: 999;
+    visibility: visible;
+  }
+}
+
+// this is being used on the league registration,
+// should be consolidated with above
+
+.js-popup {
+    position: relative;
+    display: inline-block;
+    z-index: 500;
+   .js-popup-content {
+      display: none;
+     &.js-open,
+     &.js-active {
+       display: block;
+       opacity: 1;
+       z-index: 999;
+       visibility: visible;
+    }
+  }
+}

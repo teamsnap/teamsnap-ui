@@ -1,0 +1,38 @@
+hr {
+  border: {
+    width: 1px;
+    style: solid;
+    color: $ui-divider;
+  }
+  height:                                   1px;
+  border-bottom:            1px solid $ui-white;
+  margin-bottom: $vbs--small;
+  width:                                   100%;
+}
+
+hr.ui-light {
+  background: $ui-divider;
+}
+
+.space-divider {
+  border: none;
+  background: none;
+  margin-top: $vbs--small;
+  margin-bottom: $vbs--small;
+}
+
+.large-divider {
+  border-top: none;
+  border-bottom: 3px solid $ui-divider;
+  margin: $vertical-block-spacing 0;
+  height: 1px;
+  background: none;
+}
+
+.small-divider {
+  border-top: none;
+  border-bottom: 1px solid $ui-divider;
+  margin: $ves 0;
+  height: 1px;
+  background: none;
+}

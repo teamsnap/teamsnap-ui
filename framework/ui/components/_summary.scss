@@ -1,0 +1,163 @@
+@mixin summary-item() {
+  list-style: none;
+  @include clear();
+  margin: $vertical-element-spacing--small 0;
+  padding: 0;
+  position: relative;
+  line-height: 30px;
+  &:before {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    bottom: 40%;
+    left: 0;
+    border-top: {
+      width: 1px;
+      style: dotted;
+      color: $ui-divider;
+    }
+  }
+  & > {
+    h3, h4, h5, h6, p,
+    strong, output, small, span {
+      position: relative;
+      z-index: 10;
+      display: inline-block;
+      vertical-align: baseline;
+      background: $ui-white;
+      padding: 0 $vertical-element-spacing;
+      font-size: $base-font-size;
+      font-family: $base-font-family;
+      margin: {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+      line-height: inherit;
+    }
+    h3, h4, h5, h6, p,
+    [class*="pull-left"] {
+      float: left;
+      padding-left: 0;
+    }
+    output, small, span,
+    [class*="pull-right"] {
+      float: right;
+      padding-right: 0;
+    }
+  }
+  &[class*="--small"] {
+    // trying to think of a better way to do this : 20px is perfect
+    line-height: $horizontal-block-spacing - $default-spacing;
+    & > {
+      h3, h4, h5, h6, p,
+      output, small, span {
+        font-size: $small-font-size;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+[class*="summary-header"] {
+  font-size: $small-font-size;
+  font-family: $heading-font-family;
+  font-weight: bolder;
+  padding-top: $vertical-element-spacing--large;
+  padding-bottom: $vertical-element-spacing--small;
+  color: $color-primary;
+  border-bottom: {
+    width: 2px;
+    style: solid;
+    color: $ui-divider;
+  }
+}
+
+[class*="summary-body"] {
+  margin: 0;
+  padding: 0 $horizontal-block-spacing--small;
+  li {
+    @include summary-item;
+  }
+}
+
+[class*="summary-item"] {
+  @include summary-item;
+}
+
+[class*="summary-footer"] {
+  @include summary-item;
+  border-top: 2px solid $ui-divider;
+  padding-top: $vertical-element-spacing;
+  padding-bottom: $vertical-element-spacing--large;
+  margin-top: $vertical-element-spacing;
+  h3, h4, h5, h6,
+  output, small, span {
+    font-size: $heading-size--minor;
+    font-family: $heading-font-family;
+  }
+  & > {
+    h3, h4, h5, h6, p,
+    [class*="pull-left"] {
+      padding-left: $horizontal-block-spacing--small;
+    }
+    output, small, span,
+    [class*="pull-right"] {
+      padding-right: $horizontal-block-spacing--small;
+    }
+  }
+}
+
+[class*="__summary--flush"] {
+  [class*="__summary-body"] {
+    padding: 0;
+  }
+}
+
+//------------------------------------------//
+//         Transaction Log Addition
+
+// * note : this could be reworked
+//------------------------------------------//
+
+[data-transaction] {
+  &[data-status="paid"] {
+    & > {
+      h3, h4, h5, h6, p {
+        &:before {
+          @include ss-pika;
+          content: '✓ ';
+          color: $color-success;
+        }
+      }
+      output, small, span {
+        &:after {
+          content: ' paid';
+          color: $color-info--light;
+        }
+      }
+    }
+  }
+  &[data-status="scheduled"] {
+    & > {
+      h3, h4, h5, h6, p {
+        &:before {
+          @include ss-pika;
+          content: '⏲';
+          color: $color-info--light;
+        }
+      }
+    }
+  }
+  [data-selected="false"]:after {
+    content: ' pay now';
+    color: #7BBA30;
+  }
+  [data-selected="true"]:after {
+    content: ' ✓ selected';
+    color: #999;
+  }
+}
