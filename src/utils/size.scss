@@ -1,17 +1,48 @@
-// * Percentage based size classes for a 24 column grid
+@import "../base/config.scss";
 
-$cols: 24;
+// * Percentage-based size classes for a 24 column grid,
+// * with reduced fractions for divisors of 24
+// *
+// * Responsive sizing included contingent on truth of $responsive
 
-@for $i from 1 through ($cols) {
-  .u-size#{$i}of#{$cols} {
-    flex-basis: auto !important;
-    width: $i / $cols * 100% !important;
+$cols: (2, 3, 4, 6, 8, 12, 24);
+$responsive: true;
+
+@each $col in $cols {
+  @for $i from 1 through ($col - 1) {
+    .u-size#{$i}of#{$col} {
+      flex-basis: auto !important;
+      width: $i / $col * 100% !important;
+    }
+    @if $responsive == true {
+      @each $name, $value in $breakpoints {
+        @media (min-width: $value) {
+          .u-#{$name}-size#{$i}of#{$col} {
+            flex-basis: auto !important;
+            width: $i / $col * 100% !important;
+          }
+        }
+      }
+    }
   }
 }
+
+// * 100% width
 
 .u-sizeFull {
   flex-basis: auto !important;
   width: 100% !important;
+}
+
+@if $responsive == true {
+  @each $name, $value in $breakpoints {
+    @media (min-width: $value) {
+      .u-#{$name}-sizeFull {
+        flex-basis: auto !important;
+        width: 100% !important;
+      }
+    }
+  }
 }
 
 // * Intrinsic widths from SUITCSS: https://github.com/suitcss/utils-size
