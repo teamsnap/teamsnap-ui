@@ -15,11 +15,3 @@
   top: -1px; // 1
   fill: currentColor; // 2
 }
-
-// * Modifier -- large icon relative to parent text
-
-$Icon--large-size: 1.25em;
-
-.Icon--large {
-  font-size: $Icon--large-size;
-}
