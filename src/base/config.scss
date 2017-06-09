@@ -192,3 +192,15 @@ $vbs--large:             $vertical-block-spacing--large;
 $ves:                         $vertical-element-spacing;
 $ves--small:           $vertical-element-spacing--small;
 $ves--large:           $vertical-element-spacing--large;
+
+
+// * Responsive Breakpooints
+
+$responsive: false !default;
+
+$breakpoints: (
+  'xs':  480px,
+  'sm':  768px,
+  'md':  992px,
+  'lg': 1200px
+)
