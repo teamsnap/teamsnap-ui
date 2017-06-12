@@ -10,7 +10,7 @@
 // * 5. Titled Modifier
 
 // TODO : document global dependencies
-// TODO : Add Titled Modifier
+// TODO : further responsive cleanup, especually on titled setp nav
 
 //------------------------------------------------------------//
 
@@ -18,16 +18,19 @@
 
 $StepNav-size: 60px;
 $StepNav-border: 4px;
+$StepNav-paddedWidth: $StepNav-size + ($StepNav-border * 2);
+$StepNav-titleWidth: 150px;
 
 $StepNav-size--small: 40px;
 $StepNav-border--small: 2px;
+$StepNav-paddedWidth--small: $StepNav-size--small + ($StepNav-border--small * 2);
 
 // * 2. Define Default StepNav
 
 .StepNav {}
 
 .StepNav-steps {
-  padding-left: ($StepNav-size * 1.25);
+  padding-left: $StepNav-paddedWidth;
   position: relative;
   padding-bottom: $vertical-block-spacing--small;
   display: flex;
@@ -35,7 +38,6 @@ $StepNav-border--small: 2px;
 
 .StepNav-step {
   position: relative;
-  overflow: hidden;
   list-style: none;
   display: block;
   padding: 0;
@@ -43,13 +45,13 @@ $StepNav-border--small: 2px;
 
   &:before {
     content: '';
-    width: 100%;
+    width: calc(100% - #{$StepNav-paddedWidth});
     display: block;
     position: absolute;
     background: $ui-divider;
     height: $StepNav-border;
     top: ($StepNav-size / 2);
-    right: ($StepNav-size * 1.25);
+    right: ($StepNav-paddedWidth);
   }
 
   &:first-child {
@@ -98,6 +100,7 @@ $StepNav-border--small: 2px;
   position: relative;
   z-index: 10;
   color: $ui-divider;
+  padding: 0 $StepNav-border;
 }
 
 .StepNav-stepTitle {
@@ -105,14 +108,16 @@ $StepNav-border--small: 2px;
   text-align: center;
   margin: 0 auto;
   color: $ui-divider;
-  padding-top: $StepNav-border;
   font-family: $base-font-family;
   font-size: $heading-size--small;
+  position: absolute;
+  width: $StepNav-titleWidth;
+  bottom: -20px;
+  left: calc( 0px - #{(($StepNav-titleWidth - $StepNav-paddedWidth) / 2)});
 }
 
 .StepNav-stepIcon {
   width: $StepNav-size;
-  padding: 0 ( $StepNav-border * 2 );
   background: #fff;
   box-sizing: content-box;
   line-height: $StepNav-size;
@@ -137,21 +142,25 @@ $StepNav-border--small: 2px;
 
 // * 3. Modifier : Size Modifier Mixin
 
-@mixin StepNav--sizeModifier($size, $border) {
-  padding-left: ($size * 1.25);
+@mixin StepNav--sizeModifier($size, $border, $paddedWidth) {
+  padding-left: $paddedWidth;
   .StepNav-step {
     &:before {
+      width: calc(100% - #{$paddedWidth});
       height: $border;
       top: ($size / 2);
-      right: ($size * 1.25);
+      right: $paddedWidth;
     }
+  }
+  .StepNav-stepLink {
+    padding: 0 $border;
   }
   .StepNav-stepTitle {
     padding-top: $border;
+    width: $StepNav-titleWidth;
   }
   .StepNav-stepIcon {
     width: $size;
-    padding: 0 ( $border * 2 );
   }
   .StepNav-stepIcon {
     line-height: $size;
@@ -178,7 +187,7 @@ $StepNav-border--small: 2px;
 
 .StepNav--small {
   .StepNav-steps {
-    @include StepNav--sizeModifier($StepNav-size--small, $StepNav-border--small)
+    @include StepNav--sizeModifier($StepNav-size--small, $StepNav-border--small, $StepNav-paddedWidth--small)
   }
   .StepNav-stepTitle {
     display: none;
