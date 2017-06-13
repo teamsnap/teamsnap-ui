@@ -18,12 +18,11 @@
 
 $StepNav-size: 60px;
 $StepNav-spacing: 4px;
-$StepNav-paddedWidth: $StepNav-size + ($StepNav-spacing * 2);
 $StepNav-titleWidth: 150px;
+$StepNav-paddedWidth: $StepNav-size + ($StepNav-spacing * 2);
 
 $StepNav-size--small: 40px;
 $StepNav-spacing--small: 2px;
-$StepNav-paddedWidth--small: $StepNav-size--small + ($StepNav-spacing--small * 2);
 
 // * 2. Define Default StepNav
 
@@ -87,7 +86,7 @@ $StepNav-paddedWidth--small: $StepNav-size--small + ($StepNav-spacing--small * 2
     .StepNav-stepIcon {
       color: $ui-white;
       &:before {
-        box-shadow: 0 0 ( $StepNav-spacing / 2 ) $color-primary--dark inset;
+        box-shadow: 0 0 ($StepNav-spacing / 2) $color-primary--dark inset;
         border-color: $ui-divider;
         background-color: $color-primary;
       }
@@ -184,7 +183,7 @@ $StepNav-paddedWidth--small: $StepNav-size--small + ($StepNav-spacing--small * 2
   .is-active,
   .is-enabled a:hover {
     .StepNav-stepIcon:before {
-      box-shadow: 0 0 ( $spacing / 2 ) $color-primary--dark inset;
+      box-shadow: 0 0 ($spacing / 2) $color-primary--dark inset;
     }
   }
 }
