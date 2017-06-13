@@ -17,13 +17,13 @@
 // * 1. Settings
 
 $StepNav-size: 60px;
-$StepNav-border: 4px;
-$StepNav-paddedWidth: $StepNav-size + ($StepNav-border * 2);
+$StepNav-spacing: 4px;
+$StepNav-paddedWidth: $StepNav-size + ($StepNav-spacing * 2);
 $StepNav-titleWidth: 150px;
 
 $StepNav-size--small: 40px;
-$StepNav-border--small: 2px;
-$StepNav-paddedWidth--small: $StepNav-size--small + ($StepNav-border--small * 2);
+$StepNav-spacing--small: 2px;
+$StepNav-paddedWidth--small: $StepNav-size--small + ($StepNav-spacing--small * 2);
 
 // * 2. Define Default StepNav
 
@@ -49,7 +49,7 @@ $StepNav-paddedWidth--small: $StepNav-size--small + ($StepNav-border--small * 2)
     display: block;
     position: absolute;
     background: $ui-divider;
-    height: $StepNav-border;
+    height: $StepNav-spacing;
     top: ($StepNav-size / 2);
     right: ($StepNav-paddedWidth);
   }
@@ -87,7 +87,7 @@ $StepNav-paddedWidth--small: $StepNav-size--small + ($StepNav-border--small * 2)
     .StepNav-stepIcon {
       color: $ui-white;
       &:before {
-        box-shadow: 0 0 ( $StepNav-border / 2 ) $color-primary--dark inset;
+        box-shadow: 0 0 ( $StepNav-spacing / 2 ) $color-primary--dark inset;
         border-color: $ui-divider;
         background-color: $color-primary;
       }
@@ -100,7 +100,7 @@ $StepNav-paddedWidth--small: $StepNav-size--small + ($StepNav-border--small * 2)
   position: relative;
   z-index: 10;
   color: $ui-divider;
-  padding: 0 $StepNav-border;
+  padding: 0 $StepNav-spacing;
 }
 
 .StepNav-stepTitle {
@@ -112,8 +112,9 @@ $StepNav-paddedWidth--small: $StepNav-size--small + ($StepNav-border--small * 2)
   font-size: $heading-size--small;
   position: absolute;
   width: $StepNav-titleWidth;
-  bottom: -20px;
+  top: 100%;
   left: calc( 0px - #{(($StepNav-titleWidth - $StepNav-paddedWidth) / 2)});
+  padding-top: $StepNav-spacing;
 }
 
 .StepNav-stepIcon {
@@ -135,28 +136,33 @@ $StepNav-paddedWidth--small: $StepNav-size--small + ($StepNav-border--small * 2)
     border: {
       style: solid;
       color: $ui-divider;
-      width: $StepNav-border;
+      width: $StepNav-spacing;
     }
   }
 }
 
 // * 3. Modifier : Size Modifier Mixin
 
-@mixin StepNav--sizeModifier($size, $border, $paddedWidth) {
+@mixin StepNav--sizeModifier($size, $spacing) {
+
+  // redefine paddedWidth based on size and spacing
+  $paddedWidth: $size + ($spacing * 2);
+
+  // override CSS values to update stap nav size
   padding-left: $paddedWidth;
   .StepNav-step {
     &:before {
       width: calc(100% - #{$paddedWidth});
-      height: $border;
+      height: $spacing;
       top: ($size / 2);
       right: $paddedWidth;
     }
   }
   .StepNav-stepLink {
-    padding: 0 $border;
+    padding: 0 $spacing;
   }
   .StepNav-stepTitle {
-    padding-top: $border;
+    padding-top: $spacing;
     width: $StepNav-titleWidth;
   }
   .StepNav-stepIcon {
@@ -167,7 +173,7 @@ $StepNav-paddedWidth--small: $StepNav-size--small + ($StepNav-border--small * 2)
     &:before {
       font-size: ($size * 0.43);
       border: {
-        width: $border;
+        width: $spacing;
       }
       height: $size;
       width: $size;
@@ -178,7 +184,7 @@ $StepNav-paddedWidth--small: $StepNav-size--small + ($StepNav-border--small * 2)
   .is-active,
   .is-enabled a:hover {
     .StepNav-stepIcon:before {
-      box-shadow: 0 0 ( $border / 2 ) $color-primary--dark inset;
+      box-shadow: 0 0 ( $spacing / 2 ) $color-primary--dark inset;
     }
   }
 }
@@ -187,7 +193,7 @@ $StepNav-paddedWidth--small: $StepNav-size--small + ($StepNav-border--small * 2)
 
 .StepNav--small {
   .StepNav-steps {
-    @include StepNav--sizeModifier($StepNav-size--small, $StepNav-border--small, $StepNav-paddedWidth--small)
+    @include StepNav--sizeModifier($StepNav-size--small, $StepNav-spacing--small)
   }
   .StepNav-stepTitle {
     display: none;
@@ -231,7 +237,7 @@ $StepNav-paddedWidth--small: $StepNav-size--small + ($StepNav-border--small * 2)
     position: absolute;
     top: ($StepNav-size / 2);
     left: 100%;
-    height: $StepNav-border;
+    height: $StepNav-spacing;
     width: 1000%;
     background: $color-primary;
   }
