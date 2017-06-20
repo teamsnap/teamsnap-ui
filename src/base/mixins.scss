@@ -1,0 +1,186 @@
+//------------------------------------------------------------//
+
+// * TeamSnap-UI Mixins
+// * 1. media-query()
+// * used to dynamically write namespaced classes per
+//   screen size; "sm" works on small screens and up.
+// * 2. min-width()
+// * used in the flow of styles. Can be nested and
+//   used to add styles based on screen width. Width up.
+// * 3. max-width()
+// * used in the flow of styles. Can be nested and
+//   used to add styles based on screen width. Width down.
+// * 4. liner-gradient()
+// * simple gradient mixin. Should only be used very lightly
+// * in support of an image background; see registration.
+// * 5. clear()
+// * method for self clearing a parent with floated children
+
+// Notes:
+// * min-width / max-width may be included in newer Sass v3+
+// * do we need this media-query mixin? can we simplify?
+
+// TODO : look into newer SASS media queries further
+// TODO : look into simplifying media-query
+
+//------------------------------------------------------------//
+
+// * 1. media-query()
+
+// * Example
+//
+//   @each $breakpoint in $breakpoints {
+//     $alias:     nth($breakpoint, 1);
+//     $condition: nth($breakpoint, 2);
+//     @include media-query($alias) {
+//       .Component-#{$alias} {
+//         /responsive style/
+//       }
+//     }
+//   }
+
+@mixin media-query($mq) {
+
+  $breakpoint-found: false;
+
+  // Loop through the list of breakpoints we’ve provided in our settings file.
+  @each $breakpoint in $breakpoints {
+
+    // Grab the alias and the condition from their respective locations in
+    // the list.
+    $alias:     nth($breakpoint, 1);
+    $condition: nth($breakpoint, 2);
+
+    // If the media query we’ve specified has an alias and a condition...
+    @if $mq == $alias and $condition {
+
+      // ...tell the mixin that we’ve found it...
+      $breakpoint-found: true;
+
+      // ...and spit it out here.
+      @media #{$condition} {
+        @content;
+      }
+
+    }
+
+  }
+
+  // If the user specifies a non-exitent alias, send them a warning.
+  @if $breakpoint-found == false{
+    @warn "Oops! Breakpoint ‘#{$mq}’ does not exist."
+  }
+
+}
+
+// * 2. min-width()
+
+// * Example
+//
+//   .Component {
+//    /styles/
+//    @include min-width('md') {
+//      /responsive styles/
+//    }
+//   }
+
+@mixin min-width($width) {
+
+  @if $width == xs {
+    @media only screen and (min-width: $screen-xs) {
+      @content;
+    }
+  }
+
+  @else if $width == sm {
+    @media only screen and (min-width: $screen-sm) {
+      @content;
+    }
+  }
+
+  @else if $width == md {
+    @media only screen and (min-width: $screen-md) {
+      @content;
+    }
+  }
+
+  @else if $width == lg {
+    @media only screen and (min-width: $screen-lg) {
+      @content;
+    }
+  }
+
+}
+
+// * 3. max-width()
+
+// * Example
+//
+//   .Component {
+//    /styles/
+//    @include max-width('md') {
+//      /responsive styles/
+//    }
+//   }
+
+@mixin max-width($width) {
+
+  @if $width == xs {
+    @media only screen and (max-width: $screen-xs) {
+      @content;
+    }
+  }
+
+  @else if $width == sm {
+    @media only screen and (max-width: $screen-sm) {
+      @content;
+    }
+  }
+
+  @else if $width == md {
+    @media only screen and (max-width: $screen-md) {
+      @content;
+    }
+  }
+
+  @else if $width == lg {
+    @media only screen and (max-width: $screen-lg) {
+      @content;
+    }
+  }
+
+}
+
+// * 4. liner-gradient()
+
+// * Example
+//
+//   .Component {
+//    @include clear;
+//   }
+
+@mixin liner-gradient($from, $to, $default) {
+  background-color: $default;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr = $from, endColorstr = $to, GradientType = 0 );
+  background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+  background-image: -webkit-linear-gradient(top, $from, $to);
+  background-image: -moz-linear-gradient(top, $from, $to);
+  background-image: -o-linear-gradient(top, $from, $to);
+  background-image: linear-gradient(to bottom, $from, $to);
+}
+
+// * 5. clear()
+
+// * Example
+//
+//   .Component {
+//    @include clear;
+//   }
+
+@mixin clear {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}

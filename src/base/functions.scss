@@ -1,0 +1,138 @@
+//------------------------------------------------------------//
+
+// * TeamSnap-UI Functions
+// * 1. Basic Math Helper Functions
+// * 2. Font Scaling Function
+// * 3. Color Scaling Function
+// * 4. Grid Scaling Function
+
+// Notes:
+// * Scale functions are used to create consistancy on our
+// spacing, font sizing, and color varients
+
+// TODO : look at updating scaleGrid() to use negative steps
+
+//------------------------------------------------------------//
+
+// * 1. Basic Math Helper Functions
+
+@function quarter($number) {
+  $number: round($number / 4);
+  @return $number
+}
+
+@function halve($number) {
+  $number: round($number / 2);
+  @return $number
+}
+
+@function double($number) {
+  $number: round($number * 2);
+  @return $number
+}
+
+@function quadruple($number) {
+  $number: round($number * 4);
+  @return $number
+}
+
+@function convertNegative($number) {
+  $number: $number * -1;
+  @return $number
+}
+
+// * 2. Font Scaling Function
+
+@function scaleFont($property, $step) {
+
+  // common rules of our font scale
+  $ratio: 1.125;
+
+  // handles nagative steps for font scale
+  @if ($step < 0) {
+    $step: convertNegative($step);
+    @for $i from 1 through $step {
+      $property: $property / $ratio;
+    }
+  }
+
+  // handles base & positive steps for font scale
+  @else if ($step > 0) {
+    @for $i from 1 through $step {
+      $property: $property * $ratio;
+    }
+  }
+
+  // round pixel values to nearest whole number
+  @if (unit($property) == 'px') {
+    $property: round($property);
+  }
+
+  @return $property;
+
+}
+
+// * 3. Color Scaling Function
+
+@function scaleColor($color, $step) {
+
+  // common rules of our color scale
+  $tintMax:  10;
+  $shadeMax: -4;
+  $ratio:   10%;
+
+  // setting the base $color variable as hue
+  $color: $color;
+
+  // adds an extra 5% tint after 90% (or six steps)
+  @if ($step >= $tintMax) {
+    $color: mix(white, $color, 95%);
+  }
+
+  // mixes the base color in increments of white by 15%
+  @else if ($step >= 0 ) and ($step < $tintMax) {
+    $color: mix(white, $color, ($step * $ratio));
+  }
+
+  // mixes the base color in increments of black by 15%
+  @else if ($step < 0 ) and ($step >= $shadeMax) {
+    $step: convertNegative($step);
+    $color: mix(black, $color, ($step * $ratio));
+  }
+
+  // caps shading to a 2 step limit
+  @else if ($step < $shadeMax) {
+    $step: convertNegative($shadeMax);
+    $color: mix(black, $color, ($ratio * $step));
+  }
+
+  @return $color
+
+}
+
+// * 4. Grid Scaling Function
+
+@function scaleGrid($step) {
+
+  // common rules of our spacing scale
+  $base-unit: 8px;
+
+  // setting the base $spacing variable as the base unit
+  $spacing: $base-unit;
+
+  // Handles lower steps below base unit (2, 4)
+  @if ($step < .5) {
+    $spacing: round($spacing * 0.25);
+  }
+  @else if ($step >= .5) and ($step < 1) {
+    $spacing: round($spacing * 0.5);
+  }
+
+  // Handles steps equal to or about base unit
+  @else {
+    $spacing: round($spacing * $step);
+  }
+
+  @return $spacing;
+
+}

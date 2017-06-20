@@ -1,200 +1,149 @@
+//------------------------------------------------------------//
 
-// TODO Revisit spacing scale and look to simplify around an 8px grid
-// TODO Revisit typographic scale to find common ground with marketing
-// TODO take audit of the museo fonts used and clean up heading font variables
+// * TeamSnap-UI Config Variables
+// * 1. TeamSnap Colors
+// * 1.a Color Utilities
+// * 1.b Spot Colors (link, facebook, twitter, etc.)
+// * 2. Typography
+// * 2.a Font Families
+// * 2.b Font Weights
+// * 2.c Font Sizes
+// * 2.d Letter Spacing
+// * 2.e Line Heights
+// * 3. Spacing
+// * 4. Responsive
+// * 5. Borders
+// * 6. Transitions
+// * 7. Box Shadows
 
+// Notes:
+// * scaleColor(), scaleFont(), and scaleGrid() functions or
+// variable utilities should be used to create consistancy in
+// color, typography, and spacing across TeamSnap web
 
-// * State Color Settings
-// *
-// * These should stay consistent across themes
+// TODO : add color variables for other social media platforms
 
-$color-success:        #7fc243 !default;
-$color-success--light: lighten($color-success, 45%) !default;
-$color-success--dark:  darken($color-success, 7.5%) !default;
-$color-success--bg:    lighten($color-success, 45%) !default;
+//------------------------------------------------------------//
 
-$color-danger:         #e26362 !default;
-$color-danger--light:  lighten($color-danger, 30%) !default;
-$color-danger--dark:   darken($color-danger, 7.5%) !default;
-$color-danger--bg:     lighten($color-danger, 30%) !default;
+// * 1. TeamSnap Colors
 
-$color-warning:        #ff8f00 !default;
-$color-warning--light: #ff8f00 !default;
-$color-warning--dark:  #ff8f00 !default;
-$color-warning--bg:    #fdf7ef !default;
+$ts-blue:                                  #1A6BAF !default;
+$ts-darkblue:                              #13426E !default;
+$ts-orange:                                #FF8F00 !default;
+$ts-darkorange:                            #f75b02 !default;
+$ts-green:                                 #7fc243 !default;
+$ts-red:                                   #e26362 !default;
 
-$color-info:           #494949 !default;
-$color-info--light:    #797979 !default;
-$color-info--dark:     #292929 !default;
+$ts-black:                                 #222222 !default;
+$ts-grey:                                  #d6d6d6 !default;
+$ts-white:                                 #ffffff !default;
 
+// * 1.a Color Utilities
 
-// * Brand Colors
-// *
-// * These can change for different themes
+$cu-foreground:                          $ts-white !default;
+$cu-foreground--light:                   $ts-white !default;
+$cu-foreground--dark:                    $ts-white !default;
 
-$color-primary:          #1667AC !default;
-$color-primary--light:   #0279CE !default;
-$color-primary--dark:    darken($color-primary, 5%) !default;
-$color-primary--muted:   #45647f !default;
-$color-primary--bg:      #e7eef8 !default;
+$cu-middleground:         scaleColor($ts-grey, 10) !default;
+$cu-middleground--light:  scaleColor($ts-grey, 10) !default;
+$cu-middleground--dark:   scaleColor($ts-grey, 10) !default;
 
-$color-secondary:        #1667AC !default;
-$color-secondary--light: #469eea !default;
-$color-secondary--dark:  #1667AC !default;
-$color-secondary--muted: #45647f !default;
-$color-secondary--bg:    #e7edf4 !default;
+$cu-background:            scaleColor($ts-grey, 8) !default;
+$cu-background--light:     scaleColor($ts-grey, 8) !default;
+$cu-background--dark:      scaleColor($ts-grey, 8) !default;
 
-$color-highlight:        $color-success !default;
-$color-highlight--light: $color-success--light !default;
-$color-highlight--dark:  $color-success--dark !default;
+$cu-divider:               scaleColor($ts-grey, 0) !default;
+$cu-divider--light:        scaleColor($ts-grey, 4) !default;
+$cu-divider--dark:         scaleColor($ts-grey, 0) !default;
 
-$color-user-highlight:   rgba($color-primary--light, .02) !default;
+$cu-info:                 scaleColor($ts-black, 1) !default;
+$cu-info--light:          scaleColor($ts-black, 3) !default;
+$cu-info--dark:           scaleColor($ts-black, 0) !default;
 
+$cu-positive:                            $ts-green !default;
+$cu-positive--light:   scaleColor($cu-positive, 1) !default;
+$cu-positive--dark:   scaleColor($cu-positive, -2) !default;
+$cu-positive--bg:     scaleColor($cu-positive, 10) !default;
 
-// * UI Colors
+$cu-negative:                              $ts-red !default;
+$cu-negative--light:   scaleColor($cu-negative, 1) !default;
+$cu-negative--dark:   scaleColor($cu-negative, -2) !default;
+$cu-negative--bg:     scaleColor($cu-negative, 10) !default;
 
-$ui-foreground:          #ffffff !default;
-$ui-foreground--light:   #ffffff !default;
-$ui-foreground--dark:    #ffffff !default;
+$cu-primary:                              $ts-blue !default;
+$cu-primary--light:     scaleColor($cu-primary, 1) !default;
+$cu-primary--dark:     scaleColor($cu-primary, -2) !default;
+$cu-primary--bg:       scaleColor($cu-primary, 10) !default;
 
-$ui-middleground:        #fcfcfc !default;
-$ui-middleground--light: #fefefe !default;
-$ui-middleground--dark:  #f8f8f8 !default;
+$cu-secondary:                           $ts-green !default;
+$cu-secondary--light: scaleColor($cu-secondary, 1) !default;
+$cu-secondary--dark: scaleColor($cu-secondary, -2) !default;
+$cu-secondary--bg:   scaleColor($cu-secondary, 10) !default;
 
-$ui-background:          #f4f4f4 !default;
-$ui-background--light:   #f4f4f4 !default;
-$ui-background--dark:    #f4f4f4 !default;
+$cu-highlight:                          $ts-orange !default;
+$cu-highlight--light: scaleColor($cu-highlight, 1) !default;
+$cu-highlight--dark:  scaleColor($cu-highlight, 0) !default;
+$cu-highlight--bg:   scaleColor($cu-highlight, 10) !default;
 
-$ui-divider:             #d6d6d6 !default;
-$ui-divider--light:      #e6e6e6 !default;
-$ui-divider--dark:       #d6d6d6 !default;
+// * 1.a Spot Colors (link, facebook, twitter, etc.)
 
-$ui-highlight:           #fcfcfc !default;
-$ui-highlight--light:    #fefefe !default;
-$ui-highlight--dark:     #f8f8f8 !default;
+$color-facebook:                           #3B5998 !default;
 
-$ui-white:               #fff !default;
-$ui-grey:                #999 !default;
-$ui-black:               #333 !default;
+// * 2. Typography
 
+$fontSize:          13px !default;
+$lineHeight:         1.5 !default;
+$letterSpacing: -0.005em !default;
 
-// * Transitions
+// * 2.a Font Families
 
-$duration-short: 250ms;
+$tu-museo500-fontFamily:   'MuseoSansRounded500Regular', 'Open Sans', Arial, sans-serif !default;
+$tu-museo700-fontFamily:   'MuseoSansRounded700Regular', 'Open Sans', Arial, sans-serif !default;
+$tu-museo1000-fontFamily: 'MuseoSansRounded1000Regular', 'Open Sans', Arial, sans-serif !default;
 
+$tu-openSans-fontFamily: 'Open Sans', Helvetica, sans-serif !default;
 
-// * Borders
+// * 2.b Font Weights
 
-$border-radius-small:  3px !default;
-$border-radius-medium: 5px !default;
-$border-radius-large:  8px !default;
+$tu-base-fontWeight:      400 !default;
+$tu-semibold-fontWeight:  600 !default;
+$tu-bold-fontWeight:      700 !default;
 
-$border-width-small:   1px;
-$border-width-medium:  2px;
+// * 2.c Font Sizes
 
+$tu-xsmall-fontSize:           scaleFont($fontSize, -2) !default;
+$tu-small-fontSize:            scaleFont($fontSize, -1) !default;
+$tu-base-fontSize:              scaleFont($fontSize, 0) !default;
+$tu-large-fontSize:             scaleFont($fontSize, 2) !default;
+$tu-xlarge-fontSize:            scaleFont($fontSize, 5) !default;
+$tu-xxlarge-fontSize:           scaleFont($fontSize, 6) !default;
 
-// * Typography
+// * 2.d Font Letter Spacing
 
-$open-sans:  'Open Sans', Helvetica, sans-serif !default;
+$tu-xsmall-letterSpacing: scaleFont($letterSpacing, -2) !default;
+$tu-small-letterSpacing:  scaleFont($letterSpacing, -1) !default;
+$tu-base-letterSpacing:    scaleFont($letterSpacing, 0) !default;
+$tu-large-letterSpacing:   scaleFont($letterSpacing, 2) !default;
+$tu-xlarge-letterSpacing:  scaleFont($letterSpacing, 5) !default;
+$tu-xxlarge-letterSpacing: scaleFont($letterSpacing, 6) !default;
 
-$base-font-family:  $open-sans !default;
-$base-font-size:    13px !default;
-$small-font-size:   round($base-font-size * 0.9) !default;
+// * 2.e Font Line Height
 
-$base-font-color:   $color-info !default;
-$light-font-color:  $color-info--light !default;
+$tu-small-lineHeight:        scaleFont($lineHeight, -2) !default;
+$tu-base-lineHeight:          scaleFont($lineHeight, 0) !default;
+$tu-large-lineHeight:         scaleFont($lineHeight, 2) !default;
 
-$base-line-height:  1.4 !default;
-$tight-line-height: 1.15 !default;
+// * 3. Spacing
 
-$base-font-weight:  normal !default;
-$med-font-weight:   600 !default;
-$bold-font-weight:  bolder !default;
+$su-xxsmall:   scaleGrid(.25) !default; // 2px
+$su-xsmall:     scaleGrid(.5) !default; // 4px
+$su-small:       scaleGrid(1) !default; // 8px
+$su-default:     scaleGrid(2) !default; // 16px
+$su-large:       scaleGrid(3) !default; // 24px
+$su-xlarge:      scaleGrid(4) !default; // 32px
+$su-xxlarge:     scaleGrid(5) !default; // 40px
 
-// Heading Font Settings
-
-$museo-100:   'MuseoSansRounded100Regular', 'Open Sans', Arial, sans-serif !default;
-$museo-300:   'MuseoSansRounded300Regular', 'Open Sans', Arial, sans-serif !default;
-$museo-500:   'MuseoSansRounded500Regular', 'Open Sans', Arial, sans-serif !default;
-$museo-700:   'MuseoSansRounded700Regular', 'Open Sans', Arial, sans-serif !default;
-$museo-900:   'MuseoSansRounded900Regular', 'Open Sans', Arial, sans-serif !default;
-$museo-1000: 'MuseoSansRounded1000Regular', 'Open Sans', Arial, sans-serif !default;
-
-$heading-font-family:                                  $museo-700 !default;
-$sub-heading-font-family:                              $open-sans !default;
-
-$heading-font-color:                               $color-primary !default;
-$sub-heading-font-color:                         $color-secondary !default;
-
-$heading-size--primary:             round($base-font-size * 2.25) !default;
-$heading-size--secondary:           round($base-font-size * 1.75) !default;
-$heading-size--minor:               round($base-font-size * 1.25) !default;
-$heading-size--small:               round($base-font-size * 1.00) !default;
-$heading-size--xs:                  round($base-font-size * 0.85) !default;
-
-$heading-line-height--primary:                                  2 !default;
-$heading-line-height--secondary:                              1.7 !default;
-$heading-line-height--minor:                                  1.5 !default;
-$heading-line-height--small:                                  1.4 !default;
-$heading-line-height--xs:                                    1.15 !default;
-
-
-// * Spacing
-
-$block-spacing:                           25px !default;
-$block-spacing--xsmall:                    7px !default;
-$block-spacing--small:                    15px !default;
-$block-spacing--large:                    40px !default;
-
-$element-spacing:                          9px !default;
-$element-spacing--small:                   6px !default;
-$element-spacing--large:                  15px !default;
-
-$horizontal-block-spacing:                25px !default;
-$horizontal-block-spacing--small:         15px !default;
-$horizontal-block-spacing--large:         40px !default;
-
-$horizontal-element-spacing:               9px !default;
-$horizontal-element-spacing--small:        6px !default;
-$horizontal-element-spacing--large:       14px !default;
-
-$vertical-block-spacing:                  25px !default;
-$vertical-block-spacing--small:           15px !default;
-$vertical-block-spacing--large:           40px !default;
-
-$vertical-element-spacing:                 7px !default;
-$vertical-element-spacing--small:          4px !default;
-$vertical-element-spacing--large:         12px !default;
-
-// shorthand spacing variables
-
-$bs:                                     $block-spacing;
-$bs--xsmall:                     $block-spacing--xsmall;
-$bs--small:                       $block-spacing--small;
-$bs--large:                       $block-spacing--large;
-
-$es:                                   $element-spacing;
-$es--small:                     $element-spacing--small;
-$es--large:                     $element-spacing--large;
-
-$hbs:                         $horizontal-block-spacing;
-$hbs--small:           $horizontal-block-spacing--small;
-$hbs--large:           $horizontal-block-spacing--large;
-
-$hes:                       $horizontal-element-spacing;
-$hes--small:         $horizontal-element-spacing--small;
-$hes--large:         $horizontal-element-spacing--large;
-
-$vbs:                           $vertical-block-spacing;
-$vbs--small:             $vertical-block-spacing--small;
-$vbs--large:             $vertical-block-spacing--large;
-
-$ves:                         $vertical-element-spacing;
-$ves--small:           $vertical-element-spacing--small;
-$ves--large:           $vertical-element-spacing--large;
-
-
-// * Responsive Breakpooints
+// * 4. Responsive
 
 $responsive: false !default;
 
@@ -203,4 +152,26 @@ $breakpoints: (
   'sm':  768px,
   'md':  992px,
   'lg': 1200px
-)
+);
+
+// * 5. Borders
+
+$border-radius-small:             scaleGrid(.25) !default;
+$border-radius-medium:             scaleGrid(.5) !default;
+$border-radius--large:              scaleGrid(1) !default;
+
+$border-width-small:                         1px !default;
+$border-width-medium:             scaleGrid(.25) !default;
+$border-width-large:               scaleGrid(.5) !default;
+
+// * 6. Transitions
+
+$duration-short: 250ms;
+
+// * 7. Box Shadows
+
+$box-shadow-small:   0 0 2px rgba($ts-black, .15) !default;
+$box-shadow-medium:  0 0 4px rgba($ts-black, .25) !default;
+$box-shadow-large:   0 0 6px rgba($ts-black, .25) !default;
+
+$inset-box-shadow:   0 0 2px rgba($ts-black, .15) !default;
