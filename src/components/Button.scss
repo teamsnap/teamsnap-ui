@@ -1,24 +1,24 @@
-@import "../base/config.scss";
+@import "../base/index.scss";
 
 /**
  * @define default Button
  */
 
-$Button-bg: $ui-white;
-$Button-bg-hover: $ui-background;
-$Button-color: $color-info;
-$Button-border-color: $ui-divider;
-$Button-border-color-hover: darken($Button-border-color, 10%);
+$Button-bg: $ts-white;
+$Button-bg-hover: cui-background;
+$Button-color: $cu-info;
+$Button-border-color: $cu-divider;
+$Button-border-color-hover: scaleColor($Button-border-color, -1);
 $Button-border-radius: $border-radius-medium;
 $Button-border-width: $border-width-small;
 $Button-border-bottom-width: $border-width-medium;
 $Button-disabled-opacity: 0.4;
-$Button-font-family: $base-font-family;
-$Button-font-size: $base-font-size;
-$Button-font-weight: $med-font-weight;
-$Button-height: 34px;
-$Button-line-height: $Button-height - 2;
-$Button-padding: 0 ($Button-height / 1.75);
+$Button-font-family: $tu-openSans-fontFamily;
+$Button-font-size: $tu-base-fontSize;
+$Button-font-weight: $tu-semibold-fontWeight;
+$Button-height: scaleGrid(4);
+$Button-line-height: $Button-height - 3;
+$Button-padding: 0 scaleGrid(2);
 
 .Button {
   background-color: $Button-bg;
@@ -50,7 +50,8 @@ $Button-padding: 0 ($Button-height / 1.75);
 
   &.is-active {
     background-color: $Button-bg-hover;
-    box-shadow: 0 1px 0 $Button-border-color inset;
+    border-bottom-width: 1px;
+    border-top-width: $Button-border-bottom-width;
   }
 
   &.is-disabled,
@@ -70,12 +71,12 @@ $Button-padding: 0 ($Button-height / 1.75);
  * Modifier: Button Primary
  */
 
-$Button--primary-bg: $color-highlight;
-$Button--primary-bg-hover: darken($Button--primary-bg, 5%);
-$Button--primary-color: $ui-white;
-$Button--primary-color-hover: $ui-white;
-$Button--primary-border-color: $color-highlight--dark;
-$Button--primary-border-color-hover: darken($Button--primary-bg, 10%);
+$Button--primary-bg: $cu-secondary;
+$Button--primary-bg-hover: scaleColor($Button--primary-bg, -1);
+$Button--primary-color: $ts-white;
+$Button--primary-color-hover: $ts-white;
+$Button--primary-border-color: $cu-secondary--dark;
+$Button--primary-border-color-hover: scaleColor($cu-secondary--dark, -1);
 
 .Button--primary {
   background-color: $Button--primary-bg;
@@ -92,7 +93,6 @@ $Button--primary-border-color-hover: darken($Button--primary-bg, 10%);
 
   &.is-active {
     background-color: $Button--primary-bg-hover;
-    box-shadow: 0 1px 0 $Button--primary-border-color inset;
   }
 
   &.is-disabled,
@@ -111,12 +111,12 @@ $Button--primary-border-color-hover: darken($Button--primary-bg, 10%);
  * Modifier: Button Negative
  */
 
-$Button--negative-bg: $ui-white;
-$Button--negative-bg-hover: $color-danger;
-$Button--negative-color: $color-danger;
-$Button--negative-color-hover: $ui-white;
-$Button--negative-border-color: $ui-divider;
-$Button--negative-border-color-hover: $color-danger--dark;
+$Button--negative-bg: $ts-white;
+$Button--negative-bg-hover: $cu-negative;
+$Button--negative-color: $cu-negative;
+$Button--negative-color-hover: $ts-white;
+$Button--negative-border-color: $cu-divider;
+$Button--negative-border-color-hover: $cu-negative--dark;
 
 .Button--negative {
   background-color: $Button--negative-bg;
@@ -134,7 +134,6 @@ $Button--negative-border-color-hover: $color-danger--dark;
   &.is-active {
     background-color: $Button--negative-bg-hover;
     border-color: $Button--negative-border-color-hover;
-    box-shadow: 0 1px 0 $Button--negative-border-color-hover inset;
     color: $Button--negative-color-hover;
   }
 
@@ -154,10 +153,10 @@ $Button--negative-border-color-hover: $color-danger--dark;
  * Modifier: Button Small
  */
 
-$Button--small-font-size: $small-font-size;
-$Button--small-height: 22px;
-$Button--small-line-height: $Button--small-height - 2;
-$Button--small-padding: 0 ($Button--small-height * 0.5);
+$Button--small-font-size: $tu-small-fontSize;
+$Button--small-height: scaleGrid(3);
+$Button--small-line-height: $Button--small-height - 3;
+$Button--small-padding: 0 $su-small;
 
 
 .Button--small {
@@ -171,10 +170,10 @@ $Button--small-padding: 0 ($Button--small-height * 0.5);
  * Modifier: Button Large
  */
 
-$Button--large-font-size: $base-font-size * 1.1;
-$Button--large-height: 46px;
-$Button--large-line-height: $Button--large-height - 2;
-$Button--large-padding: 0 ($Button--large-height / 1.5);
+$Button--large-font-size: $tu-base-fontSize;
+$Button--large-height: scaleGrid(5);
+$Button--large-line-height: $Button--large-height - 3;
+$Button--large-padding: 0 scaleGrid(3);
 
 .Button--large {
   font-size: $Button--large-font-size;

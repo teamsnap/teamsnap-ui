@@ -1,4 +1,4 @@
-@import "../base/config.scss";
+@import "../base/index.scss";
 
 //------------------------------------------------------------//
 
@@ -16,22 +16,24 @@
 
 // * 1. Settings
 
-$StepNav-size: 60px;
-$StepNav-spacing: 4px;
+$StepNav-size: scaleGrid(7);
+$StepNav-spacing: scaleGrid(.5);
 $StepNav-titleWidth: 150px;
 $StepNav-paddedWidth: $StepNav-size + ($StepNav-spacing * 2);
 
-$StepNav-size--small: 40px;
-$StepNav-spacing--small: 2px;
+$StepNav-size--small: scaleGrid(5);
+$StepNav-spacing--small: scaleGrid(.25);
 
 // * 2. Define Default StepNav
 
-.StepNav {}
+.StepNav {
+  padding-bottom: $su-large;
+}
 
 .StepNav-steps {
   padding-left: $StepNav-paddedWidth;
   position: relative;
-  padding-bottom: $vertical-block-spacing--small;
+  padding-bottom: $su-xsmall;
   display: flex;
 }
 
@@ -47,7 +49,7 @@ $StepNav-spacing--small: 2px;
     width: calc(100% - #{$StepNav-paddedWidth});
     display: block;
     position: absolute;
-    background: $ui-divider;
+    background: $cu-divider;
     height: $StepNav-spacing;
     top: ($StepNav-size / 2);
     right: ($StepNav-paddedWidth);
@@ -68,15 +70,15 @@ $StepNav-spacing--small: 2px;
   &.is-enabled {
     .StepNav-stepIcon,
     .StepNav-stepTitle {
-      color: $color-primary;
+      color: $cu-primary;
       transition: color .35s ease-in-out;
     }
     .StepNav-stepIcon:before {
-      border-color: $color-primary;
+      border-color: $cu-primary;
       transition: border-color .35s ease-in-out;
     }
     &:before {
-      background-color: $color-primary;
+      background-color: $cu-primary;
       transition: background-color .35s ease-in-out;
     }
   }
@@ -84,11 +86,11 @@ $StepNav-spacing--small: 2px;
   &.is-active,
   &.is-enabled .StepNav-stepLink:hover {
     .StepNav-stepIcon {
-      color: $ui-white;
+      color: $ts-white;
       &:before {
-        box-shadow: 0 0 ($StepNav-spacing / 2) $color-primary--dark inset;
-        border-color: $ui-divider;
-        background-color: $color-primary;
+        box-shadow: 0 0 ($StepNav-spacing / 2) $cu-primary--dark inset;
+        border-color: $cu-divider;
+        background-color: $cu-primary;
       }
     }
   }
@@ -98,7 +100,7 @@ $StepNav-spacing--small: 2px;
   float: right;
   position: relative;
   z-index: 10;
-  color: $ui-divider;
+  color: $cu-divider;
   padding: 0 $StepNav-spacing;
 }
 
@@ -106,9 +108,9 @@ $StepNav-spacing--small: 2px;
   display: block;
   text-align: center;
   margin: 0 auto;
-  color: $ui-divider;
-  font-family: $base-font-family;
-  font-size: $heading-size--small;
+  color: $cu-divider;
+  font-family: $tu-openSans-fontFamily;
+  font-size: $tu-base-fontSize;
   position: absolute;
   width: $StepNav-titleWidth;
   top: 100%;
@@ -134,7 +136,7 @@ $StepNav-spacing--small: 2px;
     padding: 0;
     border: {
       style: solid;
-      color: $ui-divider;
+      color: $cu-divider;
       width: $StepNav-spacing;
     }
   }
@@ -183,7 +185,7 @@ $StepNav-spacing--small: 2px;
   .is-active,
   .is-enabled a:hover {
     .StepNav-stepIcon:before {
-      box-shadow: 0 0 ($spacing / 2) $color-primary--dark inset;
+      box-shadow: 0 0 ($spacing / 2) $cu-primary--dark inset;
     }
   }
 }
@@ -191,17 +193,23 @@ $StepNav-spacing--small: 2px;
 // * 5. Modifier : Small StepNav
 
 .StepNav--small {
+  padding-bottom: 0;
+
   .StepNav-steps {
     @include StepNav--sizeModifier($StepNav-size--small, $StepNav-spacing--small)
   }
+
   .StepNav-stepTitle {
     display: none;
   }
+
 }
 
 // * 6. Modifier : Titled Modifier
 
 .StepNav--titled {
+
+  @include clear;
 
   .StepNav-title,
   .StepNav-steps {
@@ -228,7 +236,7 @@ $StepNav-spacing--small: 2px;
 .StepNav-titleText {
   position: relative;
   margin: 0;
-  padding-right: $hes;
+  padding-right: $su-small;
   display: inline-block;
   line-height: $StepNav-size;
   &:before {
@@ -238,6 +246,6 @@ $StepNav-spacing--small: 2px;
     left: 100%;
     height: $StepNav-spacing;
     width: 1000%;
-    background: $color-primary;
+    background: $cu-primary;
   }
 }
