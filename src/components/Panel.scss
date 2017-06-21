@@ -1,0 +1,68 @@
+//------------------------------------------------------------//
+
+// * Panels
+// * 1. Panel Settings
+// * 2. Base Panel
+
+// Notes:
+// * also add to TeamSnap-UI sketch doc and create some rules
+// around panel usage
+
+// TODO : Create embedable version of panel for demos
+// TODO : Add modifier for panel with button in header
+// TODO : look into panel with table body; do we need it?
+// TODO : revisit theming and how that relates to panel styles
+// TODO : revisit panel-footer alignment pattern
+// TODO : Refactor containers and header in classic; conflicts
+
+//------------------------------------------------------------//
+
+// * 1. Panel Settings
+
+$Panel-bg-color: $cu-foreground !default;
+$Panel-header-text-color: $cu-info !default;
+
+// * 2. Base Panel
+
+.Panel {
+  padding: 0;
+  background: $Panel-bg-color;
+  margin-bottom: $su-default;
+  border: $border-width-small solid $cu-divider;
+  border-radius: $border-radius-large;
+  box-sizing: border-box;
+}
+
+.Panel-header,
+.Panel-body,
+.Panel-footer {
+  padding: $su-default;
+}
+
+.Panel-header {
+  color: $Panel-header-text-color;
+  font-family: $base-font-family;
+  font-size: $tu-base-fontSize;
+  font-weight: $tu-bold-fontWeight;
+  border-bottom: $border-width-small solid $cu-divider;
+}
+
+.Panel-row {
+  padding: $su-small 0;
+  border-bottom: $border-width-small solid $cu-divider--light;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+}
+
+.Panel-footer {
+  border-top: 1px solid $cu-divider;
+  text-align: right;
+}
