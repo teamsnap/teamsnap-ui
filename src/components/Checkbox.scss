@@ -1,0 +1,123 @@
+//------------------------------------------------------------//
+
+// * Checkboxes
+// * 1. Checkbox Settings
+// * 2. Default Checkbox
+// * 3. Radio Checkbox
+// * 4. Inline Checkbox
+
+// Notes:
+// * disabling a checkbox only needs to be done on the input
+
+// TODO : look into large modifier for default checkbox
+// TODO : look into svg icons for checkboxes
+
+//------------------------------------------------------------//
+
+// * 1. Checkbox Settings
+
+$Checkbox-size: scaleGrid(2) !default;
+$Checkbox-icon-size: scaleFont($fontSize, -3) !default;
+$Checkbox-bg-color: $cu-foreground !default;
+
+// * 2. Default Checkbox
+
+.Checkbox {
+  position: relative;
+  padding-bottom: $su-default;
+}
+
+.Checkbox-input {
+  opacity: 0;
+  height: $Checkbox-size;
+  width: $Checkbox-size;
+  cursor: pointer;
+  z-index: 5;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.Checkbox-label {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  padding-left: $Checkbox-size + $su-xsmall;
+
+  &:before {
+    @include ss-pika;
+    content: '';
+    display: block;
+    cursor: pointer;
+    color: $ts-white;
+    text-align: center;
+    font-size: $Checkbox-icon-size;
+    height: $Checkbox-size;
+    width: $Checkbox-size;
+    line-height: $Checkbox-size + 1; // ss-pika checkmark sits up high
+    background-color: $Checkbox-bg-color;
+    box-shadow: $inset-box-shadow-small;
+    border: $border-width-small solid $cu-divider;
+    border-radius: $border-radius-small;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    top:  0;
+    bottom: 0;
+  }
+
+}
+
+[disabled] {
+
+  &,
+  & + .Checkbox-label {
+    cursor: not-allowed;
+  }
+
+  & + .Checkbox-label:before {
+    content: '🔒';
+    box-shadow: none;
+    background-color: $cu-divider;
+    line-height: $Checkbox-size;
+    color: $Checkbox-bg-color;
+  }
+
+}
+
+.Checkbox-input:checked {
+  & + .Checkbox-label:before {
+    content: '✓';
+    background-color: $cu-positive;
+    box-shadow: none;
+    border: none;
+  }
+}
+
+// * 3. Radio Checkbox
+
+.Checkbox--radio {
+  .Checkbox-label:before {
+    border-radius: ( $Checkbox-size / 2 );
+  }
+}
+
+// * 4. Inline Checkbox
+
+.Checkbox--inline {
+  display: inline-block;
+  padding-bottom: 0;
+
+  & + .Checkbox--inline {
+    margin-left: $su-xsmall;
+    padding-left: $su-small;
+    border-left: $border-width-small solid $cu-divider;
+    .Checkbox-input {
+      left: $su-small;
+    }
+  }
+
+}
+
+

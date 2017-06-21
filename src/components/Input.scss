@@ -1,0 +1,160 @@
+//------------------------------------------------------------//
+
+// * Input
+// * 1. Input Settings
+// * 2. Base Input
+// * 3. Inline Modifiers
+// * 4. Amount and Calendar Modifier
+
+// Notes:
+// * size utilities should be used on the Input-element to
+// modify sizing
+// * all the classic element styling is coming through
+
+// TODO : Refactor classic form styling to resolve conflicts
+// TODO : replace calendar font icon with svg version
+
+//------------------------------------------------------------//
+
+// * 1. Input Settings
+
+$form-input-height: $su-xlarge !default;
+$form-input-bg-color: $cu-foreground--dark !default;
+
+// * 2. Base Input
+
+.Input {
+  display: block;
+  position: relative;
+  padding-bottom: $su-default;
+}
+
+.Input-label {
+  display: block;
+  padding-bottom: $su-xxsmall;
+  font-size: $tu-small-fontSize;
+  font-weight: $tu-semibold-fontWeight;
+}
+
+.Input-element {
+  cursor: text;
+  height: $form-input-height;
+  line-height: $form-input-height;
+  padding: 0 $su-small;
+  box-sizing: border-box;
+  box-shadow: $inset-box-shadow-medium;
+  background-color: $form-input-bg-color;
+  border: $border-width-small solid $cu-divider;
+  border-radius: $border-radius-medium;
+
+  &:disabled {
+    background: $cu-middleground--dark;
+    color: $ts-grey;
+    cursor: not-allowed;
+  }
+
+  &::-ms-clear {
+    display: none;
+  }
+
+}
+
+.Input-message {
+  display: inline;
+  padding: 0;
+}
+
+.is-required {
+  .Input-label:after {
+    content: '*';
+    display: inline-block;
+    padding-left: $su-xsmall;
+    color: $cu-info--light;
+  }
+}
+
+// * 3. Inline Modifiers
+
+.Input--inline {
+  display: inline-block;
+  padding: 0;
+  margin: 0 $su-default $su-xsmall 0;
+}
+
+.Input-label--inline {
+  display: inline-block;
+  padding-right: $su-xsmall;
+  text-align: right;
+}
+
+.is-required {
+  .Input-label--inline:after {
+    display: none;
+  }
+  .Input-label--inline:before {
+    content: '*';
+    display: inline-block;
+    padding-right: $su-xsmall;
+    color: $cu-info--light;
+  }
+}
+
+// * 4. Amount and Calendar Modifier
+
+.Input--amount,
+.Input--datepicker {
+
+  .Input-element {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+  }
+
+  .Input-amountElement,
+  .Input-datepickerElement {
+    width: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .Input-amountElement {
+    padding-left: scaleGrid(5);
+    position: relative;
+    z-index: 5;
+  }
+
+  .Input-datepickerElement {
+    padding-right: scaleGrid(5);
+  }
+
+  .Input-amountCurrency,
+  .Input-datepickerIcon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: scaleGrid(4);
+    height: ( $form-input-height - $su-small );
+    line-height: ( $form-input-height - $su-small );
+    text-align: center;
+  }
+
+  .Input-amountCurrency {
+    left: 0;
+    border-right: $border-width-small solid $cu-divider--light;
+  }
+
+  .Input-datepickerIcon {
+    right: 0;
+    border-left: $border-width-small solid $cu-divider--light;
+    z-index: 5;
+    cursor: pointer;
+    &:before {
+      content: '📅';
+      @include ss-pika;
+    }
+  }
+
+}

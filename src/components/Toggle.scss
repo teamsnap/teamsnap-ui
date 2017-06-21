@@ -1,0 +1,97 @@
+//------------------------------------------------------------//
+
+// * Toggle
+// * 1. Toggle Settings
+// * 2. Toggle
+
+// Notes:
+// * was up in the air about lumping this is with checkbox,
+// ended up not doing it because the CSS is too different
+
+// TODO : make a large modifier
+
+//------------------------------------------------------------//
+
+// * 1. Toggle Settings
+
+$Toggle-height: scaleGrid(2) !default;
+$Toggle-width: scaleGrid(5) !default;
+$Toggle-font-size: $tu-small-fontSize !default;
+
+// * 2. Toggle
+
+.Toggle {
+  position: relative;
+  display: inline-block;
+}
+
+.Toggle-input {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  z-index: 5;
+}
+
+.Toggle-label {
+  padding: scaleGrid(.25);
+  text-align: right;
+  position: relative;
+  display: inline-block;
+  color: $ts-white;
+  font-size: $tu-small-fontSize;
+  box-sizing: content-box;
+  height: $Toggle-height;
+  width: $Toggle-width;
+  line-height: $Toggle-height;
+  border-radius: $Toggle-height;
+  background-color: $cu-negative;
+  box-shadow: 0 0 2px scaleColor($cu-negative, -2) inset;
+
+  &:hover {
+    color: $ts-white;
+  }
+
+  &:before {
+    content: 'off';
+    padding-right: scaleGrid(.5);
+    display: inline-block;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    height: $Toggle-height;
+    width: $Toggle-height;
+    border-radius: $Toggle-height;
+    background: $ts-white;
+    position: absolute;
+    top: scaleGrid(.25);
+    left: scaleGrid(.25);
+    right: auto;
+  }
+
+}
+
+.Toggle-input:checked {
+  & + .Toggle-label {
+    background-color: $cu-positive;
+    box-shadow: 0 0 2px scaleColor($cu-positive, -2) inset;
+    text-align: left;
+
+    &:before {
+      content: 'on';
+      padding-left: scaleGrid(.5);
+      display:  inline-block;
+    }
+
+    &:after {
+      left: auto;
+      right: scaleGrid(.25);
+    }
+
+  }
+}

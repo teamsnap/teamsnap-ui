@@ -57,7 +57,7 @@ $cu-divider--light:        scaleColor($ts-grey, 4) !default;
 $cu-divider--dark:         scaleColor($ts-grey, 0) !default;
 
 $cu-info:                 scaleColor($ts-black, 1) !default;
-$cu-info--light:          scaleColor($ts-black, 3) !default;
+$cu-info--light:          scaleColor($ts-black, 4) !default;
 $cu-info--dark:           scaleColor($ts-black, 0) !default;
 
 $cu-positive:                            $ts-green !default;
@@ -156,13 +156,13 @@ $breakpoints: (
 
 // * 5. Borders
 
-$border-radius-small:             scaleGrid(.25) !default;
-$border-radius-medium:             scaleGrid(.5) !default;
-$border-radius--large:              scaleGrid(1) !default;
+$border-radius-small:  scaleGrid(.25) !default;
+$border-radius-medium:  scaleGrid(.5) !default;
+$border-radius-large:    scaleGrid(1) !default;
 
-$border-width-small:                         1px !default;
-$border-width-medium:             scaleGrid(.25) !default;
-$border-width-large:               scaleGrid(.5) !default;
+$border-width-small:             1px !default;
+$border-width-medium: scaleGrid(.25) !default;
+$border-width-large:   scaleGrid(.5) !default;
 
 // * 6. Transitions
 
@@ -170,8 +170,10 @@ $duration-short: 250ms;
 
 // * 7. Box Shadows
 
-$box-shadow-small:   0 0 2px rgba($ts-black, .15) !default;
-$box-shadow-medium:  0 0 4px rgba($ts-black, .25) !default;
-$box-shadow-large:   0 0 6px rgba($ts-black, .25) !default;
+$box-shadow-small:  0 0 2px rgba($ts-black, .15) !default;
+$box-shadow-medium: 0 0 4px rgba($ts-black, .25) !default;
+$box-shadow-large:  0 0 6px rgba($ts-black, .25) !default;
 
-$inset-box-shadow:   0 0 2px rgba($ts-black, .15) !default;
+$inset-box-shadow-small:  1px 1px 1px rgba($ts-black, .15) inset !default;
+$inset-box-shadow-medium: 1px 1px 2px rgba($ts-black, .15) inset !default;
+$inset-box-shadow-large:  1px 1px 3px rgba($ts-black, .15) inset !default;

@@ -15,6 +15,8 @@
 // * in support of an image background; see registration.
 // * 5. clear()
 // * method for self clearing a parent with floated children
+// * 6. ss-pika()
+// * adds needed CSS for ss-pika icons to be used
 
 // Notes:
 // * min-width / max-width may be included in newer Sass v3+
@@ -183,4 +185,31 @@
     display: block;
     clear: both;
   }
+}
+
+// * 6. ss-pika()
+
+// * Example
+//
+//   .Component:before {
+//     content: 'icon';
+//     @include ss-pika;
+//   }
+
+@mixin ss-pika {
+  font-family:                 "SSPika";
+  font-style:                    normal;
+  font-weight:                   normal;
+  text-decoration:                 none;
+  text-rendering:    optimizeLegibility;
+  line-height:                  inherit;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings:  "liga=1";
+  -moz-font-feature-settings:    "liga";
+  -ms-font-feature-settings:   "liga" 1;
+  -o-font-feature-settings:      "liga";
+  font-feature-settings:         "liga";
+  -webkit-font-smoothing:   antialiased;
+  vertical-align:                middle;
+  font-size:                      87.5%;
 }
