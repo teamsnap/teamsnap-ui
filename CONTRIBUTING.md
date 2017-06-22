@@ -6,6 +6,18 @@ Once your user is created and added to the org this guide details the steps to p
 
 <https://docs.npmjs.com/getting-started/publishing-npm-packages>
 
+#### Steps for publishing an update
+
+* rebase and get  your branch ahead of master
+* then from your working branch
+* `npm login --scope=@teamsnap`
+* `npm version major/minor/patch -m “commit message”`
+* `git push origin branch-name`
+* merge branch into master from git
+* `git checkout master`
+* `git pull origin master`
+* `npm publish`
+
 **Note**
 
 The sass-lint plugin is configured as a prepublish step so if there are linting errors you will need to resolve them before publishing.
