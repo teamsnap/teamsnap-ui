@@ -5,7 +5,7 @@
  */
 
 $Button-bg: $ts-white;
-$Button-bg-hover: cui-background;
+$Button-bg-hover: $cu-background;
 $Button-color: $cu-info;
 $Button-border-color: $cu-divider;
 $Button-border-color-hover: scaleColor($Button-border-color, -1);
