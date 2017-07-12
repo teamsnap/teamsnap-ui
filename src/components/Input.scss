@@ -1,4 +1,4 @@
-@import "../base/index.scss";
+@import "../config/index.scss";
 
 //------------------------------------------------------------//
 
@@ -28,7 +28,7 @@ $form-input-bg-color: $cu-foreground--dark !default;
 .Input {
   display: block;
   position: relative;
-  padding-bottom: $su-default;
+  padding-bottom: $su-medium;
 }
 
 .Input-label {
@@ -80,7 +80,7 @@ $form-input-bg-color: $cu-foreground--dark !default;
 .Input--inline {
   display: inline-block;
   padding: 0;
-  margin: 0 $su-default $su-xsmall 0;
+  margin: 0 $su-medium $su-xsmall 0;
 }
 
 .Input-label--inline {

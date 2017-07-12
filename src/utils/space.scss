@@ -1,3 +1,5 @@
+@import "../config/index.scss";
+
 //  **
 //  Spacing utilities
 //
@@ -22,7 +24,7 @@ $spaces: (
   'None': 0,
   'Xs': $su-xsmall,
   'Sm': $su-small,
-  'Md': $su-default,
+  'Md': $su-medium,
   'Lg': $su-large
 );
 

@@ -1,4 +1,4 @@
-@import "../base/index.scss";
+@import "../config/index.scss";
 
 //------------------------------------------------------------//
 
@@ -29,7 +29,7 @@ $Panel-header-text-color: $cu-info !default;
 .Panel {
   padding: 0;
   background: $Panel-bg-color;
-  margin-bottom: $su-default;
+  margin-bottom: $su-medium;
   border: $border-width-small solid $cu-divider;
   border-radius: $border-radius-large;
   box-sizing: border-box;
@@ -64,7 +64,7 @@ $Panel-header-text-color: $cu-info !default;
 .Panel-footer,
 .Panel-row,
 .Panel-cell {
-  padding: $su-default;
+  padding: $su-medium;
 }
 
 .Panel-header {

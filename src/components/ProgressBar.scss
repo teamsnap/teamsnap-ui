@@ -1,3 +1,5 @@
+@import "../config/index.scss";
+
 // * Progress Bar component
 // *
 // *
@@ -10,7 +12,7 @@
   border-radius: $border-radius-large;
   margin-bottom: $su-small;
   .ProgressBar--large & {
-    height: $su-default;
+    height: $su-medium;
   }
   .ProgressBar--small & {
     height: $su-xsmall;
@@ -54,7 +56,7 @@
   display: block;
   height: auto;
   width: 100%;
-  margin-bottom: $su-default;
+  margin-bottom: $su-medium;
   .circle {
     clip: rect(0, scaleGrid(7), scaleGrid(7), scaleGrid(7)/2 );
     left: 0;
@@ -94,10 +96,10 @@
     width: scaleGrid(10);
     height: scaleGrid(10);
     &:before {
-      border-width: $su-default;
+      border-width: $su-medium;
     }
     .ProgressBar-status {
-      border-width: $su-default;
+      border-width: $su-medium;
       clip: rect(0, scaleGrid(10)/2, scaleGrid(10), 0);
     }
     .circle {

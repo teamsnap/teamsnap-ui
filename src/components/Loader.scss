@@ -1,4 +1,4 @@
-@import "../base/index.scss";
+@import "../config/index.scss";
 
 //------------------------------------------------------------//
 
@@ -63,7 +63,7 @@
   }
   50% {
     border-bottom-right-radius: $su-xlarge;
-    transform: translateY($su-default) scale(1,.9) rotate(45deg) ;
+    transform: translateY($su-medium) scale(1,.9) rotate(45deg) ;
   }
   75% {
     transform: translateY($su-small) rotate(67.5deg);
@@ -162,7 +162,7 @@
 
 .Loader-message {
   display: block;
-  padding: $su-default 0;
+  padding: $su-medium 0;
   font-size: $tu-large-fontSize;
   color: $cu-info--light;
 }

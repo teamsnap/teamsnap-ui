@@ -1,4 +1,4 @@
-@import "../base/index.scss";
+@import "../config/index.scss";
 
 //------------------------------------------------------------//
 
@@ -26,7 +26,7 @@ $Checkbox-bg-color: $cu-foreground !default;
 
 .Checkbox {
   position: relative;
-  padding-bottom: $su-default;
+  padding-bottom: $su-medium;
 }
 
 .Checkbox-input {

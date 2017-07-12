@@ -1,3 +1,5 @@
+@import "../config/index.scss";
+
 .u-block {
   display: block !important;
 }
@@ -59,7 +61,7 @@
       .u-#{$name}-inlineBlock {
         display: inline-block !important;
         max-width: 100%;
-      }    
+      }
     }
   }
 }
