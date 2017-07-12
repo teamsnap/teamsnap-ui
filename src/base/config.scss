@@ -136,8 +136,9 @@ $tu-large-lineHeight:         scaleFont($lineHeight, 2) !default;
 
 // * 3. Spacing
 
-$su-xxsmall:   scaleGrid(.25) !default; // 2px
-$su-xsmall:     scaleGrid(.5) !default; // 4px
+$su-xxxsmall:   scaleGrid(-3) !default; // 1px
+$su-xxsmall:    scaleGrid(-2) !default; // 2px
+$su-xsmall:     scaleGrid(-1) !default; // 4px
 $su-small:       scaleGrid(1) !default; // 8px
 $su-default:     scaleGrid(2) !default; // 16px
 $su-large:       scaleGrid(3) !default; // 24px
@@ -157,13 +158,13 @@ $breakpoints: (
 
 // * 5. Borders
 
-$border-radius-small:  scaleGrid(.25) !default;
-$border-radius-medium:  scaleGrid(.5) !default;
-$border-radius-large:    scaleGrid(1) !default;
+$border-radius-small:  scaleGrid(-2) !default; // 2px
+$border-radius-medium: scaleGrid(-1) !default; // 4px
+$border-radius-large:   scaleGrid(1) !default; // 8px
 
-$border-width-small:             1px !default;
-$border-width-medium: scaleGrid(.25) !default;
-$border-width-large:   scaleGrid(.5) !default;
+$border-width-small:   scaleGrid(-3) !default; // 1px
+$border-width-medium:  scaleGrid(-2) !default; // 2px
+$border-width-large:   scaleGrid(-1) !default; // 4px
 
 // * 6. Transitions
 

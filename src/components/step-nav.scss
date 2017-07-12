@@ -17,12 +17,12 @@
 // * 1. Settings
 
 $StepNav-size: scaleGrid(7);
-$StepNav-spacing: scaleGrid(.5);
+$StepNav-spacing: scaleGrid(-1);
 $StepNav-titleWidth: 150px;
 $StepNav-paddedWidth: $StepNav-size + ($StepNav-spacing * 2);
 
 $StepNav-size--small: scaleGrid(5);
-$StepNav-spacing--small: scaleGrid(.25);
+$StepNav-spacing--small: scaleGrid(-2);
 
 // * 2. Define Default StepNav
 
