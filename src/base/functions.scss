@@ -139,8 +139,9 @@
         $next-value: $grid-value;
       }
       
-      $grid-value-scaled: ($grid-value / 8);
-      $next-value-scaled: ($next-value / 8);
+      $unitless-base: ($base-unit / (($base-unit * 0) + 1));
+      $grid-value-scaled: ($grid-value / $unitless-base);
+      $next-value-scaled: ($next-value / $unitless-base);
       $midpoint: (($next-value-scaled - $grid-value-scaled) / 2) + $grid-value-scaled;
       @if $step < $midpoint {
         $spacing: round($spacing * $grid-value-scaled);
