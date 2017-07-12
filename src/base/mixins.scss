@@ -87,32 +87,11 @@
 //   }
 
 @mixin min-width($width) {
-
-  @if $width == xs {
-    @media only screen and (min-width: $screen-xs) {
-      @content;
-    }
+  @include media-query-for-width(min-width, $width) {
+    @content;
   }
-
-  @else if $width == sm {
-    @media only screen and (min-width: $screen-sm) {
-      @content;
-    }
-  }
-
-  @else if $width == md {
-    @media only screen and (min-width: $screen-md) {
-      @content;
-    }
-  }
-
-  @else if $width == lg {
-    @media only screen and (min-width: $screen-lg) {
-      @content;
-    }
-  }
-
 }
+
 
 // * 3. max-width()
 
@@ -126,32 +105,29 @@
 //   }
 
 @mixin max-width($width) {
-
-  @if $width == xs {
-    @media only screen and (max-width: $screen-xs) {
-      @content;
-    }
+  @include media-query-for-width(max-width, $width) {
+    @content;
   }
-
-  @else if $width == sm {
-    @media only screen and (max-width: $screen-sm) {
-      @content;
-    }
-  }
-
-  @else if $width == md {
-    @media only screen and (max-width: $screen-md) {
-      @content;
-    }
-  }
-
-  @else if $width == lg {
-    @media only screen and (max-width: $screen-lg) {
-      @content;
-    }
-  }
-
 }
+
+
+// Private use only
+@mixin media-query-for-width($mode, $width) {
+  $breakpoint-found: false;
+  @each $breakpoint in map-keys($breakpoints) {
+    @if $width == $breakpoint {
+      $breakpoint-found: true;
+      @media only screen and (#{$mode}: map-get($breakpoints, $breakpoint)) {
+        @content;
+      }
+    }
+  }
+  
+  @if not $breakpoint-found {
+    @warn "Oops! Breakpoint ‘#{$width}’ does not exist."
+  }
+}
+
 
 // * 4. liner-gradient()
 
