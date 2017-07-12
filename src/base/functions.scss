@@ -119,20 +119,35 @@
 
   // setting the base $spacing variable as the base unit
   $spacing: $base-unit;
-
-  // Handles lower steps below base unit (2, 4)
-  @if ($step < .5) {
-    $spacing: round($spacing * 0.25);
+  
+  @if $step >= 1 {
+    @return $spacing * round($step);
   }
-  @else if ($step >= .5) and ($step < 1) {
-    $spacing: round($spacing * 0.5);
+  
+  // These are the only acceptable values when scaling the grid down
+  $grid-values: (0, 1, 2, 4, 8);
+  
+  $has-been-set: false;
+  @each $grid-value in $grid-values {
+    @if not $has-been-set {
+      $index: index($grid-values, $grid-value);
+      
+      $next-value: null;
+      @if length($grid-values) >= $index + 1 {
+        $next-value: nth($grid-values, $index + 1);
+      } @else {
+        $next-value: $grid-value;
+      }
+      
+      $grid-value-scaled: ($grid-value / 8);
+      $next-value-scaled: ($next-value / 8);
+      $midpoint: (($next-value-scaled - $grid-value-scaled) / 2) + $grid-value-scaled;
+      @if $step < $midpoint {
+        $spacing: round($spacing * $grid-value-scaled);
+        $has-been-set: true;
+      }
+    }
   }
-
-  // Handles steps equal to or about base unit
-  @else {
-    $spacing: round($spacing * $step);
-  }
-
+  
   @return $spacing;
-
 }

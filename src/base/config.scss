@@ -136,6 +136,7 @@ $tu-large-lineHeight:         scaleFont($lineHeight, 2) !default;
 
 // * 3. Spacing
 
+$su-xxxsmall: scaleGrid(.125) !default; // 1px
 $su-xxsmall:   scaleGrid(.25) !default; // 2px
 $su-xsmall:     scaleGrid(.5) !default; // 4px
 $su-small:       scaleGrid(1) !default; // 8px
