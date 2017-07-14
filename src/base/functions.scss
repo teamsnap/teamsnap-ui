@@ -114,41 +114,26 @@
 
 @function scaleGrid($step) {
 
-  // common rules of our spacing scale
-  $base-unit: 8px;
+  // defines base grid spacing unit and rounds step value to enforce
+  $spacing: 8px;
+  $step: round($step);
 
-  // setting the base $spacing variable as the base unit
-  $spacing: $base-unit;
-  
-  @if $step >= 1 {
-    @return $spacing * round($step);
+  // Handles all positive values
+  @if $step > 0 {
+    @return $spacing * $step;
   }
-  
-  // These are the only acceptable values when scaling the grid down
-  $grid-values: (0, 1, 2, 4, 8);
-  
-  $has-been-set: false;
-  @each $grid-value in $grid-values {
-    @if not $has-been-set {
-      $index: index($grid-values, $grid-value);
-      
-      $next-value: null;
-      @if length($grid-values) >= $index + 1 {
-        $next-value: nth($grid-values, $index + 1);
-      } @else {
-        $next-value: $grid-value;
-      }
-      
-      $unitless-base: ($base-unit / (($base-unit * 0) + 1));
-      $grid-value-scaled: ($grid-value / $unitless-base);
-      $next-value-scaled: ($next-value / $unitless-base);
-      $midpoint: (($next-value-scaled - $grid-value-scaled) / 2) + $grid-value-scaled;
-      @if $step < $midpoint {
-        $spacing: round($spacing * $grid-value-scaled);
-        $has-been-set: true;
-      }
+
+  @if $step < 0 {
+    // converts negative values if $step <= 0
+    $step: convertNegative($step);
+
+    // halves base unit based on negative step values
+    @for $i from 1 through $step {
+      $spacing: $spacing / 2;
     }
   }
-  
+
+  // return spacing if not previous defined with positive step
   @return $spacing;
+
 }
