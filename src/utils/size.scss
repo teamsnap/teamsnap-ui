@@ -8,39 +8,12 @@
 $cols: (2, 3, 4, 6, 8, 12, 24);
 $responsive: true;
 
+// Generate base utility size classes
 @each $col in $cols {
   @for $i from 1 through ($col - 1) {
     .u-size#{$i}of#{$col} {
       flex-basis: auto !important;
       width: $i / $col * 100% !important;
-    }
-    @if $responsive == true {
-      @each $name, $value in $breakpoints {
-        @media (min-width: $value) {
-          .u-#{$name}-size#{$i}of#{$col} {
-            flex-basis: auto !important;
-            width: $i / $col * 100% !important;
-          }
-        }
-      }
-    }
-  }
-}
-
-// * 100% width
-
-.u-sizeFull {
-  flex-basis: auto !important;
-  width: 100% !important;
-}
-
-@if $responsive == true {
-  @each $name, $value in $breakpoints {
-    @media (min-width: $value) {
-      .u-#{$name}-sizeFull {
-        flex-basis: auto !important;
-        width: 100% !important;
-      }
     }
   }
 }
@@ -48,7 +21,6 @@ $responsive: true;
 // * Intrinsic widths from SUITCSS: https://github.com/suitcss/utils-size
 
 // * Make an element shrink wrap its content.
-
 .u-sizeFit {
   flex-basis: auto !important;
 }
@@ -59,9 +31,43 @@ $responsive: true;
 // *    http://git.io/vllC7
 // * 2. IE10 ignores previous `flex-basis` value. Setting again here fixes
 // *    http://git.io/vllMt
-
-
 .u-sizeFill {
   flex: 1 1 0% !important; // 1
   flex-basis: 0% !important; // 2
+}
+
+// * 100% width
+.u-sizeFull, .u-size1of1 {
+  flex-basis: auto !important;
+  width: 100% !important;
+}
+
+// * Generate responsive utility size classes for each 'breakpoint'
+@if $responsive == true {
+  @each $name, $value in $breakpoints {
+    @media (min-width: $value) {
+      @each $col in $cols {
+        @for $i from 1 through ($col - 1) {
+          .u-#{$name}-size#{$i}of#{$col} {
+            flex-basis: auto !important;
+            width: $i / $col * 100% !important;
+          }
+        }
+      }
+
+      .u-#{$name}-sizeFit {
+        flex-basis: auto !important;
+      }
+
+      .u-#{$name}-sizeFill {
+        flex: 1 1 0% !important;
+        flex-basis: 0% !important;
+      }
+
+      .u-#{$name}-sizeFull, .u-#{$name}-size1of1 {
+        flex-basis: auto !important;
+        width: 100% !important;
+      }
+    }
+  }
 }
