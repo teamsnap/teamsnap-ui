@@ -1,0 +1,35 @@
+// * ButtonGroup
+
+$ButtonGroup-border-radius: $border-radius-medium;
+$ButtonGroup-space: -1 * $border-width-small;
+
+
+// * 1. Lay out items left to right
+// * 2. Make IE10 play nice
+
+.ButtonGroup {
+  display: flex; // 1
+  display: -ms-flexbox; // 2
+}
+
+
+// * 1. Overlap elements and override any vertical margins.
+// * 2. Reset `border-radius` so corners line up.
+
+.ButtonGroup > * {
+  margin: 0 $ButtonGroup-space; // 1
+  border-radius: 0; // 2
+}
+
+
+// * Apply border-radius outer edges of first and last children
+
+.ButtonGroup > *:first-child {
+  border-top-left-radius: $ButtonGroup-border-radius;
+  border-bottom-left-radius: $ButtonGroup-border-radius;
+}
+
+.ButtonGroup > *:last-child {
+  border-top-right-radius: $ButtonGroup-border-radius;
+  border-bottom-right-radius: $ButtonGroup-border-radius;
+}
