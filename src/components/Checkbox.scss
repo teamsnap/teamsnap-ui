@@ -90,6 +90,13 @@ $Checkbox-bg-color: $cu-foreground !default;
   }
 }
 
+.Checkbox-input,
+.Checkbox-input:checked {
+  &:focus + .Checkbox-label:before {
+    box-shadow: 0px 0px 2px 2px highlight;
+  }
+}
+
 // * 3. Radio Checkbox
 
 .Checkbox--radio {
@@ -114,5 +121,3 @@ $Checkbox-bg-color: $cu-foreground !default;
   }
 
 }
-
-
