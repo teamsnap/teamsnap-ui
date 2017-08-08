@@ -36,6 +36,11 @@
   @return $number
 }
 
+@function negative($number) {
+  $number: 0 - $number;
+  @return $number
+}
+
 @function convertNegative($number) {
   $number: $number * -1;
   @return $number

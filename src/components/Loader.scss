@@ -1,0 +1,195 @@
+//------------------------------------------------------------//
+
+// * Loaders
+// * 1 Loading Animations
+// * 1.a Jello Animation
+// * 1.b Pulse Animation
+// * 1.c Spin Animation
+// * 2 Loader
+// * 3 Loader Modifiers
+
+// Notes:
+// * Animations are indepented from the loader element to
+// provide more flexibility.
+// * By default all animations are inline, the loader component
+// is needed to bring animations to a block level
+
+// TODO : Add page loader midifiers for full screen and such
+// TODO : Add Indicators and Loader variable settings
+
+//------------------------------------------------------------//
+
+// * 1. Loading Animations
+
+// * 1.a Jello Animation
+
+.JelloAnimation {
+  display: inline-block;
+  position: relative;
+  height: scaleGrid(5);
+  width: scaleGrid(5);
+}
+
+.JelloAnimation-box {
+  width: scaleGrid(4);
+  height: scaleGrid(4);
+  background: $ts-orange;
+  animation: jelloBoxAnimation 500ms linear infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: $border-radius-small;
+}
+
+.JelloAnimation-shadow {
+  width: scaleGrid(4);
+  height: $su-xsmall;
+  background: $cu-divider--light;
+  position: absolute;
+  bottom: negative($su-xsmall);
+  left: 0;
+  border-radius: 50%;
+  animation: jelloShadowAnimation 500ms linear infinite;
+}
+
+@keyframes jelloBoxAnimation {
+  17% {
+    border-bottom-right-radius: $border-radius-small;
+  }
+  25% {
+    transform: translateY($su-small) rotate(22.5deg);
+  }
+  50% {
+    border-bottom-right-radius: $su-xlarge;
+    transform: translateY($su-default) scale(1,.9) rotate(45deg) ;
+  }
+  75% {
+    transform: translateY($su-small) rotate(67.5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(90deg);
+  }
+}
+
+@keyframes jelloShadowAnimation {
+  50% {
+    transform: scale(1.2,1);
+  }
+}
+
+// * 1.b Pulse Animation
+
+.PulseAnimation {}
+
+.PulseAnimation-dot {
+  display: inline-block;
+  width: $su-small;
+  height: $su-small;
+  background-color: $cu-info--light;
+  border-radius: 100%;
+  animation: PulseAnimation 1.5s infinite ease-in-out both;
+}
+
+.PulseAnimation-dot:nth-child(1) {
+  animation-delay: -500ms;
+}
+
+.PulseAnimation-dot:nth-child(2) {
+  animation-delay: -250ms;
+}
+
+@keyframes PulseAnimation {
+  0%, 80%, 100% {
+    transform: scale(0)
+  }
+  40% {
+    transform: scale(1.0)
+  }
+}
+
+// * 1.c Spin Animation
+
+.SpinAnimation {
+  display: inline-block;
+  width: $su-large;
+  height: $su-large;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin: $su-xsmall;
+  border-top: solid $su-xxsmall $cu-info;
+  border-right: solid $su-xxsmall transparent;
+  box-shadow: 0 0 0 1px $cu-info--light;
+  animation: SpinAnimation 1s linear infinite;
+}
+
+@keyframes SpinAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// * 2 Loader
+
+.Loader {
+  display: block;
+  text-align: center;
+  padding: $su-small 0;
+}
+
+.Loader-indicator {
+  position: relative;
+  height: $su-xlarge;
+  margin-bottom: $su-small;
+  display: flex;
+  justify-content: center;
+}
+
+.Loader-indicatorText {
+  font-size: $tu-large-fontSize;
+  font-weight: $tu-bold-fontWeight;
+  line-height: $su-xlarge;
+  color: $cu-info;
+  padding-left: $su-xsmall;
+}
+
+.Loader-message {
+  display: block;
+  padding: $su-default 0;
+  font-size: $tu-large-fontSize;
+  color: $cu-info--light;
+}
+
+// * 2.a Loader Modifiers
+
+.Loader--jello {
+
+  .Loader-indicator {
+    height: scaleGrid(6);
+  }
+
+  .Loader-indicatorText {
+    line-height: scaleGrid(5);
+    color: $cu-info--light;
+    font-weight: $tu-base-fontWeight;
+  }
+
+  .Loader-message {
+    font-size: $tu-xlarge-fontSize;
+    font-weight: $tu-semibold-fontWeight;
+  }
+
+}
+
+.Loader--fixedCenter {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}

@@ -1,0 +1,39 @@
+//------------------------------------------------------------//
+
+// * Dividers
+// * 1. Default Divider
+// * 2. Indented Divider
+// * 3. Thick Divider
+// * 4. Space Divider
+
+//------------------------------------------------------------//
+
+// * 1. Default Divider
+
+.Divider {
+  border: none;
+  border-top: 1px solid $cu-divider;
+  background: transparent;
+  color: transparent;
+  margin: $su-small 0;
+}
+
+// * 2. Idented Divider
+
+.Divider--indented {
+  border-bottom: 1px solid $cu-foreground;
+}
+
+// * 3. Thick Divider
+
+.Divider--thick {
+  border-top-width: $su-xsmall;
+}
+
+// * 4. Space Divider
+
+.Divider--space {
+  border: none;
+  margin: 0;
+  padding: $su-default;
+}
