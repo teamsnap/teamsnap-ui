@@ -68,24 +68,19 @@ $Checkbox-bg-color: $cu-foreground !default;
     top:  0;
     bottom: 0;
   }
-
 }
 
-[disabled] {
+.Checkbox-input:disabled + .Checkbox-label {
+  cursor: not-allowed;
+  color: $cu-divider--light;
 
-  &,
-  & + .Checkbox-label {
-    cursor: not-allowed;
-  }
-
-  & + .Checkbox-label:before {
+  &:before {
     content: '🔒';
     box-shadow: none;
     background-color: $cu-divider;
     line-height: $Checkbox-size;
     color: $Checkbox-bg-color;
   }
-
 }
 
 .Checkbox-input:checked {
@@ -94,6 +89,13 @@ $Checkbox-bg-color: $cu-foreground !default;
     background-color: $cu-positive;
     box-shadow: none;
     border: none;
+  }
+}
+
+.Checkbox-input,
+.Checkbox-input:checked {
+  &:focus + .Checkbox-label:before {
+    box-shadow: 0px 0px 2px 2px highlight;
   }
 }
 
@@ -121,5 +123,3 @@ $Checkbox-bg-color: $cu-foreground !default;
   }
 
 }
-
-

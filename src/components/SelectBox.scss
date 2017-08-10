@@ -5,15 +5,6 @@
 // * Select Box
 // * 1. Select Box Settings
 // * 2. Select Box
-// * 3. Static Modifier
-
-// Notes:
-// * Needs JS to function properly. Would just use the
-// appearance property, but it's not fully supported; caniuse
-
-// TODO : use prettySelect() to get this functioning here
-// TODO : creat pure CSS alternative with appearance
-// TODO : make that drop down space re-usable elsewhere; mixin
 
 //------------------------------------------------------------//
 
@@ -23,23 +14,13 @@ $SelectBox-bg-color: $cu-foreground--dark !default;
 $SelectBox-bg-color--hover: scaleColor($cu-foreground--dark, -1) !default;
 $SelectBox-text-color: $cu-info !default;
 $SelectBox-height: $su-xlarge !default;
+$SelectBox-indicator-width: scaleGrid(4);
 
 // * 2. Select Box
 
 .SelectBox {
-  height: $SelectBox-height;
-  line-height: $SelectBox-height;
-  color:$SelectBox-text-color;
-  background-color: $SelectBox-bg-color;
   position: relative;
   display: inline-block;
-  box-shadow: none;
-  font-family: $base-font-family;
-  margin-right: $su-xsmall;
-  padding-right: scaleGrid(4);
-  border-radius: $border-radius-medium;
-  border: 1px solid $cu-divider;
-  cursor: pointer;
 
   &:after {
     @include ss-pika;
@@ -49,88 +30,56 @@ $SelectBox-height: $su-xlarge !default;
     bottom: 0;
     right: 0;
     margin: auto;
-    width: scaleGrid(4);
+    width: $SelectBox-indicator-width;
     color: scaleColor($cu-info, 6);
     font-size: $tu-xsmall-fontSize;
     height: ( $SelectBox-height - $su-small );
     line-height: ( $SelectBox-height - $su-xsmall );
     text-align: center;
     border-left: $border-width-small solid $cu-divider--light;
+    pointer-events: none;
   }
-
-  &:hover {
-    background: $SelectBox-bg-color--hover;
-  }
-
 }
 
 .SelectBox-options {
-  cursor: pointer;
-  z-index: 5;
-  position: relative;
-  height: 100%;
-  width: calc(100% + #{scaleGrid(4)});
-  background:  transparent;
-  border:             none;
-  opacity:               0;
-
-  option {
-    font-family: $base-font-family;
-    background: $cu-foreground;
-    color: $cu-info;
-  }
-
-}
-
-.SelectBox-text {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: $su-small;
-  color: $SelectBox-text-color;
-  font-weight: normal;
+  height: $SelectBox-height;
+  width: 100%;
+  line-height: $SelectBox-height;
+  padding-right: $SelectBox-indicator-width + $su-small;
+  padding-left: $su-small;
+  color: $cu-info;
+  background-color: $SelectBox-bg-color;
   font-family: $base-font-family;
-  font-size: $tu-small-fontSize;
-  width: calc(100% - #{scaleGrid(5)});
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: left;
-}
+  border-radius: $border-radius-medium;
+  border: 1px solid $cu-divider;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 
-.is-disabled {
-  background: $cu-middleground--dark;
-  color: $cu-divider--light;
-  select {
-    cursor: not-allowed;
-  }
-  [class*="select-text"],
-  [class*="select-option"] {
-    color:$ts-grey;
-  }
-}
-
-
-// * 3. Static Modifier
-
-.SelectBox--static {
-  padding-right: 0;
-
-  .SelectBox-options {
-    opacity: 1;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    padding: 0 scaleGrid(5) 0 $su-small;
-    line-height: ( $SelectBox-height );
-    color: $cu-info;
-    width: auto;
-    float: left;
-  }
-
-  .SelectBox-text {
+  // Hide IE select arrow
+  &::-ms-expand {
     display: none;
   }
 
+  // Apply the IE and Edge native focus style
+  &:focus::-ms-value {
+    background: highlight;
+    color: white;
+  }
+
+  &:hover:not(:disabled):not(.is-disabled) {
+    background: $SelectBox-bg-color--hover;
+  }
+
+  &:disabled,
+  &.is-disabled {
+    color: $cu-divider--light;
+    cursor: not-allowed;
+  }
+}
+
+// * Deprecated - No longer have a JS dependency
+.SelectBox-text {
+  display: none;
 }
