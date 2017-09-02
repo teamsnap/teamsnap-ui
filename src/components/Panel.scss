@@ -5,6 +5,7 @@
 // * Panels
 // * 1. Panel Settings
 // * 2. Base Panel
+// * 3. Panel Modifiers
 
 // Notes:
 // * also add to TeamSnap-UI sketch doc and create some rules
@@ -12,7 +13,6 @@
 
 // TODO : Create embedable version of panel for demos
 // TODO : Add modifier for panel with button in header
-// TODO : look into panel with table body; do we need it?
 // TODO : revisit theming and how that relates to panel styles
 // TODO : revisit panel-footer alignment pattern
 // TODO : Refactor containers and header in classic; conflicts
@@ -35,36 +35,121 @@ $Panel-header-text-color: $cu-info !default;
   box-sizing: border-box;
 }
 
+// 1. Panel body has no padding by default. Padding is set on rows and cells,
+//    instead. Can be overriden in markup with spacing utilities as necessary.
+// 2. Override some styles applied to the base <table> element, so that
+//   .Panel-body can be applied to a <table>.
+
+.Panel-body {
+  padding: 0; // 1
+  border: 0; // 2
+  margin-bottom: 0; // 2
+  width: 100%; // 2
+}
+
+// Hide overflowing panel corners by setting border radius on corner children
+
+.Panel-body:first-child .Panel-row:first-child .Panel-cell:first-child {
+  border-top-left-radius: $border-radius-large;
+}
+
+.Panel-body:first-child .Panel-row:first-child .Panel-cell:last-child {
+  border-top-right-radius: $border-radius-large;
+}
+
+.Panel-body:last-child .Panel-row:last-child .Panel-cell:first-child {
+  border-bottom-left-radius: $border-radius-large;
+}
+
+.Panel-body:last-child .Panel-row:last-child .Panel-cell:last-child {
+  border-bottom-right-radius: $border-radius-large;
+}
+
 .Panel-header,
-.Panel-body,
-.Panel-footer {
+.Panel-footer,
+.Panel-row,
+.Panel-cell {
   padding: $su-default;
 }
 
 .Panel-header {
+  border-bottom: $border-width-small solid $cu-divider;
+}
+
+.Panel-title {
   color: $Panel-header-text-color;
   font-family: $base-font-family;
   font-size: $tu-base-fontSize;
   font-weight: $tu-bold-fontWeight;
-  border-bottom: $border-width-small solid $cu-divider;
+  padding: 0;
+  margin: 0;
 }
 
-.Panel-row {
-  padding: $su-small 0;
+.Panel-row:not(:last-child) {
   border-bottom: $border-width-small solid $cu-divider--light;
+}
 
-  &:first-child {
-    padding-top: 0;
-  }
+// Override default <table> cell styles for when table markup is used
+.Panel-cell {
+  border-top: 0;
+  border-bottom: 0;
+}
 
-  &:last-child {
-    padding-bottom: 0;
-    border-bottom: 0;
-  }
-
+.Panel-cell--header {
+  background-color: $cu-background--light;
+  border-right: solid 1px $cu-divider--light;
 }
 
 .Panel-footer {
   border-top: 1px solid $cu-divider;
   text-align: right;
+}
+
+
+// * 3. Modifiers
+
+.Panel--striped .Panel-row:nth-child(even) {
+  background-color: $cu-background--light;
+}
+
+// .Panel--[bpMax]-stacked
+//
+// Responsive layout for 2 column tables that sets borders and border-radius
+// for children based on the max width that the table is stacked
+//
+// eg:
+// + .Panel--xsMax-stacked
+// + .Panel--smMax-stacked
+// + .Panel--mdMax-stacked
+//
+// 1. Remove default right border and add bottom border instead
+// 2. These children are now "inside" so they don't need a border-radius
+// 3. The first and last cells are now full width, so they need
+//    an extra border-radius
+
+@if $responsive == true {
+  @each $name, $value in $max-breakpoints {
+    @media (max-width: $value) {
+      .Panel--#{$name}-stacked {
+
+        .Panel-cell--header {
+          border-right: 0; // 1
+          border-bottom: 1px solid $cu-divider--light;  // 1
+        }
+
+        .Panel-body:first-child .Panel-row:first-child .Panel-cell:last-child,
+        .Panel-body:last-child .Panel-row:last-child .Panel-cell:first-child {
+          border-radius: 0; // 2
+        }
+
+        .Panel-body:first-child .Panel-row:first-child .Panel-cell:first-child {
+          border-top-right-radius: $border-radius-large; // 3
+        }
+
+        .Panel-body:last-child .Panel-row:last-child .Panel-cell:last-child {
+          border-bottom-left-radius: $border-radius-large; // 3
+        }
+      }
+    }
+  }
 }

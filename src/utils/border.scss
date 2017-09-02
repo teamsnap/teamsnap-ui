@@ -1,0 +1,36 @@
+$borders: (
+  'Right': right,
+  'Left': left,
+  'Bottom': bottom,
+  'Top': top
+);
+
+@each $name, $value in $borders {
+  .u-border#{$name} {
+    border-#{$value}: 1px solid $cu-divider--light;
+  }
+  .u-border#{$name}None {
+    border-#{$value}: 0;
+  }
+  .u-borderNone {
+    border: 0;
+  }
+}
+
+@if $responsive == true {
+  @each $bp-name, $bp-value in $breakpoints {
+    @media (min-width: $bp-value) {
+      @each $name, $value in $borders {
+        .u-#{$bp-name}-border#{$name} {
+          border-#{$value}: 1px solid $cu-divider--light;
+        }
+        .u-#{$bp-name}-border#{$name}None {
+          border-#{$value}: 0;
+        }
+        .u-#{$bp-name}-borderNone {
+          border: 0;
+        }
+      }
+    }
+  }
+}

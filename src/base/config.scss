@@ -147,13 +147,28 @@ $su-xxlarge:     scaleGrid(5) !default; // 40px
 // * 4. Responsive
 
 $responsive: false !default;
+$breakpoint-xs: 480px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 992px;
+$breakpoint-lg: 1200px;
+
+$breakpoint-xs-max: $breakpoint-sm - 1px;
+$breakpoint-sm-max: $breakpoint-md - 1px;
+$breakpoint-md-max: $breakpoint-lg - 1px;
 
 $breakpoints: (
-  'xs':  480px,
-  'sm':  768px,
-  'md':  992px,
-  'lg': 1200px
+  'xs':  $breakpoint-xs,
+  'sm':  $breakpoint-sm,
+  'md':  $breakpoint-md,
+  'lg': $breakpoint-lg
 );
+
+$max-breakpoints: (
+  'xsMax':  $breakpoint-xs-max,
+  'smMax':  $breakpoint-sm-max,
+  'mdMax':  $breakpoint-md-max
+);
+
 
 // * 5. Borders
 
