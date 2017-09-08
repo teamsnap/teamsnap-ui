@@ -1,0 +1,41 @@
+/**
+ * Horizontal text alignment
+ */
+
+.u-textCenter {
+  text-align: center !important;
+}
+
+.u-textLeft {
+  text-align: left !important;
+}
+
+.u-textRight {
+  text-align: right !important;
+}
+
+/**
+ * Prevent whitespace wrapping
+ */
+
+.u-textNoWrap {
+  white-space: nowrap !important;
+}
+
+@if $responsive == true {
+  @each $name, $value in $breakpoints {
+    @media (min-width: $value) {
+      .u-#{$name}-textCenter {
+        text-align: center !important;
+      }
+
+      .u-#{$name}-textLeft {
+        text-align: left !important;
+      }
+
+      .u-#{$name}-textRight {
+        text-align: right !important;
+      }
+    }
+  }
+}

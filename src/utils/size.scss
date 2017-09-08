@@ -23,6 +23,7 @@ $responsive: true;
 // * Make an element shrink wrap its content.
 .u-sizeFit {
   flex-basis: auto !important;
+  width: auto !important;
 }
 
 // * Make an element fill the remaining space.
@@ -57,6 +58,7 @@ $responsive: true;
 
       .u-#{$name}-sizeFit {
         flex-basis: auto !important;
+        width: auto !important;
       }
 
       .u-#{$name}-sizeFill {
