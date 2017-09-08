@@ -53,18 +53,21 @@
   // common rules of our font scale
   $ratio: 1.125;
 
-  // handles nagative steps for font scale
-  @if ($step < 0) {
-    $step: convertNegative($step);
+  // rounding step to nearest whole
+  $step: round($step);
+
+  // handles base & positive steps for font scale
+  @if ($step > 0) {
     @for $i from 1 through $step {
-      $property: $property / $ratio;
+      $property: $property * $ratio;
     }
   }
 
-  // handles base & positive steps for font scale
-  @else if ($step > 0) {
+  // handles nagative steps for font scale
+  @else if ($step < 0) {
+    $step: convertNegative($step);
     @for $i from 1 through $step {
-      $property: $property * $ratio;
+      $property: $property / $ratio;
     }
   }
 
@@ -86,8 +89,8 @@
   $shadeMax: -4;
   $ratio:   10%;
 
-  // setting the base $color variable as hue
-  $color: $color;
+  // rounding step to nearest whole
+  $step: round($step);
 
   // adds an extra 5% tint after 90% (or six steps)
   @if ($step >= $tintMax) {
@@ -119,23 +122,25 @@
 
 @function scaleGrid($step) {
 
-  // common rules of our spacing scale
-  $base-unit: 8px;
+  // defines base grid spacing unit and rounds step value to enforce
+  $spacing: 8px;
 
-  // setting the base $spacing variable as the base unit
-  $spacing: $base-unit;
+  // rounding step to nearest whole
+  $step: round($step);
 
-  // Handles lower steps below base unit (2, 4)
-  @if ($step < .5) {
-    $spacing: round($spacing * 0.25);
-  }
-  @else if ($step >= .5) and ($step < 1) {
-    $spacing: round($spacing * 0.5);
+  // Handles all positive values
+  @if $step > 0 {
+    $spacing: $spacing * $step;
   }
 
-  // Handles steps equal to or about base unit
-  @else {
-    $spacing: round($spacing * $step);
+  @else if $step < 0 {
+    // converts negative values if $step <= 0
+    $step: convertNegative($step);
+
+    // halves base unit based on negative step values
+    @for $i from 1 through $step {
+      $spacing: $spacing / 2;
+    }
   }
 
   @return $spacing;

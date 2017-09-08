@@ -39,7 +39,7 @@ $Toggle-font-size: $tu-small-fontSize !default;
 }
 
 .Toggle-label {
-  padding: scaleGrid(.25);
+  padding: scaleGrid(-2);
   text-align: right;
   position: relative;
   display: inline-block;
@@ -59,7 +59,7 @@ $Toggle-font-size: $tu-small-fontSize !default;
 
   &:before {
     content: 'off';
-    padding-right: scaleGrid(.5);
+    padding-right: scaleGrid(-1);
     display: inline-block;
   }
 
@@ -71,8 +71,8 @@ $Toggle-font-size: $tu-small-fontSize !default;
     border-radius: $Toggle-height;
     background: $ts-white;
     position: absolute;
-    top: scaleGrid(.25);
-    left: scaleGrid(.25);
+    top: scaleGrid(-2);
+    left: scaleGrid(-2);
     right: auto;
   }
 
@@ -86,13 +86,13 @@ $Toggle-font-size: $tu-small-fontSize !default;
 
     &:before {
       content: 'on';
-      padding-left: scaleGrid(.5);
+      padding-left: scaleGrid(-1);
       display:  inline-block;
     }
 
     &:after {
       left: auto;
-      right: scaleGrid(.25);
+      right: scaleGrid(-2);
     }
 
   }
