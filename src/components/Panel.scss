@@ -37,14 +37,9 @@ $Panel-header-text-color: $cu-info !default;
 
 // 1. Panel body has no padding by default. Padding is set on rows and cells,
 //    instead. Can be overriden in markup with spacing utilities as necessary.
-// 2. Override some styles applied to the base <table> element, so that
-//   .Panel-body can be applied to a <table>.
 
 .Panel-body {
   padding: 0; // 1
-  border: 0; // 2
-  margin-bottom: 0; // 2
-  width: 100%; // 2
 }
 
 // Hide overflowing panel corners by setting border radius on corner children
@@ -89,14 +84,8 @@ $Panel-header-text-color: $cu-info !default;
   border-bottom: $border-width-small solid $cu-divider--light;
 }
 
-// Override default <table> cell styles for when table markup is used
-.Panel-cell {
-  border-top: 0;
-  border-bottom: 0;
-}
-
 .Panel-cell--header {
-  background-color: $cu-background--light;
+  background-color: $cu-middleground;
   border-right: solid 1px $cu-divider--light;
 }
 
@@ -109,7 +98,7 @@ $Panel-header-text-color: $cu-info !default;
 // * 3. Modifiers
 
 .Panel--striped .Panel-row:nth-child(even) {
-  background-color: $cu-background--light;
+  background-color: $cu-middleground;
 }
 
 // .Panel--[bpMax]-stacked
