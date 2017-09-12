@@ -1,0 +1,42 @@
+.SummaryList-header {
+  color: $base-font-color;
+  .SummaryList-header-description {
+    color: $base-font-color;
+    float: left;
+  }
+  .SummaryList-header-value {
+    color: $base-font-color;
+    float: right;
+    clear: right;
+  }
+}
+
+.SummaryList-row {
+  border-top: $border-width-large solid $ts-grey;
+  padding: $su-default 0;
+  list-style-type: none;
+  li {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    align-items: center;
+    .SummaryList-item-value {
+      display: flex;
+      flex-grow: 1;
+      &:before {
+        content: ' ';
+        flex-grow: 1;
+        margin-bottom: 4px;
+        border-bottom: $border-width-small dashed $ts-grey;
+        width: 10%;
+      }
+    }
+  }
+}
+
+.SummaryList-footer {
+  text-align: right;
+  padding-top: $su-small;
+  border-top: $border-width-medium solid $ts-grey;
+  font-weight: $tu-semibold-fontWeight;
+}
