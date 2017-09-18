@@ -1,9 +1,9 @@
-@import "../base/index.scss";
+@import "../config/index.scss";
 
 // * @define Grid
 // * Borrowed from SUITCSS: https://github.com/suitcss/components-grid
 
-$Grid-gutter: $su-default;
+$Grid-gutter: $su-medium;
 
 // * Grid container
 // *
