@@ -1,35 +1,30 @@
-.SummaryList-header {
+.SummaryList-heading {
   color: $base-font-color;
-  .SummaryList-header-description {
-    color: $base-font-color;
-    float: left;
-  }
-  .SummaryList-header-value {
-    color: $base-font-color;
-    float: right;
-    clear: right;
-  }
+  font-size: $tu-large-fontSize;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $su-xsmall;
 }
 
-.SummaryList-row {
+.SummaryList-section {
   border-top: $border-width-large solid $ts-grey;
   padding: $su-default 0;
   list-style-type: none;
-  li {
+}
+.SummaryList-item {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  align-items: center;
+  span:last-child {
     display: flex;
-    width: 100%;
-    height: 30px;
-    align-items: center;
-    .SummaryList-item-value {
-      display: flex;
+    flex-grow: 1;
+    &:before {
+      content: ' ';
       flex-grow: 1;
-      &:before {
-        content: ' ';
-        flex-grow: 1;
-        margin-bottom: 4px;
-        border-bottom: $border-width-small dashed $ts-grey;
-        width: 10%;
-      }
+      margin-bottom: 4px;
+      border-bottom: $border-width-small dashed $ts-grey;
+      width: 10%;
     }
   }
 }
