@@ -1,0 +1,37 @@
+.SummaryList-heading {
+  color: $base-font-color;
+  font-size: $tu-large-fontSize;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $su-xsmall;
+}
+
+.SummaryList-section {
+  border-top: $border-width-large solid $ts-grey;
+  padding: $su-default 0;
+  list-style-type: none;
+}
+.SummaryList-item {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  align-items: center;
+  span:last-child {
+    display: flex;
+    flex-grow: 1;
+    &:before {
+      content: ' ';
+      flex-grow: 1;
+      margin-bottom: 4px;
+      border-bottom: $border-width-small dashed $ts-grey;
+      width: 10%;
+    }
+  }
+}
+
+.SummaryList-footer {
+  text-align: right;
+  padding-top: $su-small;
+  border-top: $border-width-medium solid $ts-grey;
+  font-weight: $tu-semibold-fontWeight;
+}
