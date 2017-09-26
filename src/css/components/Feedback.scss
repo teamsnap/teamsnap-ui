@@ -1,0 +1,120 @@
+@import "../config/index.scss";
+
+//------------------------------------------------------------//
+
+// * Feedback Component
+// * 1. Define Default FeedBack
+// * 2. Color Modifiers
+// * 3. Type Modifiers
+
+// * Notes:
+// * 1: uses fontSize variable to lineup x-height with width
+
+//------------------------------------------------------------//
+
+// * 1. Define Default FeedBack
+
+.Feedback {
+  position: relative;
+  width: 100%;
+  border: 1px solid $cu-primary;
+  border-radius: $border-radius-medium;
+  margin: $su-small 0;
+  padding: $su-small;
+  background: $ts-white;
+  padding-left: $su-xxlarge + $su-small;
+  overflow: hidden;
+}
+
+.Feedback-icon {
+  width: $su-xxlarge;
+  background: $cu-primary;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: $su-small;
+  color: $ts-white;
+}
+
+.Feedback-title {
+  font-weight: $tu-bold-fontWeight;
+  display: block;
+}
+
+.Feedback-dismiss {
+  box-sizing: content-box;
+  font-size: $tu-large-fontSize;
+  width: $tu-large-fontSize; // note 1
+  height: 100%;
+  padding: 0 $su-small;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: $cu-divider;
+  cursor: pointer;
+  &:hover {
+    color: $cu-info--light;
+  }
+}
+
+.Feedback-icon,
+.Feedback-dismiss {
+  .Icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+}
+
+// * 2. Color Modifiers
+
+.Feedback--positive {
+  border-color: $cu-positive;
+  .Feedback-icon {
+    background: $cu-positive;
+  }
+}
+
+.Feedback--negative {
+  border-color: $cu-negative;
+  .Feedback-icon {
+    background: $cu-negative;
+  }
+  .Feedback-dismiss {
+    color: $cu-negative--dark;
+  }
+}
+
+.Feedback--highlight {
+  border-color: $cu-highlight;
+  .Feedback-icon {
+    background: $cu-highlight;
+  }
+  .Feedback-dismiss {
+    color: $cu-highlight--dark;
+  }
+}
+
+// * 3. Type Modifiers
+
+.Feedback--dismissible {
+  padding-right: $su-xlarge;
+}
+
+.Feedback--popup {
+  position: fixed;
+  top: -100%;
+  width: 25%;
+  right: $su-medium;
+  box-shadow: $box-shadow-large;
+  transition: top $duration-short;
+  &.js-active {
+    top: $su-medium;
+    transition: top $duration-short;
+  }
+
+}
