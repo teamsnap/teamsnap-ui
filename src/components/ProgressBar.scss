@@ -22,6 +22,7 @@
   }
   .ProgressBar--xlarge & {
     height: $su-large;
+    border-radius: $border-radius-large * 2;
   }
 }
 .ProgressBar-title {
@@ -37,6 +38,9 @@
   }
   &.ProgressBar-status--neutral{
     background: $cu-info--light;
+  }
+  .ProgressBar--xlarge & {
+    border-radius: $border-radius-large * 2;
   }
 }
 // inline title styles
