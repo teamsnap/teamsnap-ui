@@ -7,6 +7,7 @@
 // * 2. Base Input
 // * 3. Inline Modifiers
 // * 4. Amount and Calendar Modifier
+// * 5. Errors and feedback
 
 // Notes:
 // * size utilities should be used on the Input-element to
@@ -66,7 +67,7 @@ $form-input-bg-color: $cu-foreground--dark !default;
   padding: 0;
 }
 
-.is-required {
+.Input.is-required {
   .Input-label:after {
     content: '*';
     display: inline-block;
@@ -89,7 +90,7 @@ $form-input-bg-color: $cu-foreground--dark !default;
   text-align: right;
 }
 
-.is-required {
+.Input.is-required {
   .Input-label--inline:after {
     display: none;
   }
@@ -158,5 +159,39 @@ $form-input-bg-color: $cu-foreground--dark !default;
       @include ss-pika;
     }
   }
+}
 
+// * 5. Errors and feedback
+.Input-feedback {
+  display: none;
+}
+.Input.is-required.is-invalid {
+  .Input-label:after {
+    color: $cu-negative;
+  }
+}
+.Input.is-required.is-valid {
+  .Input-label:after {
+    content: ' ';
+  }
+}
+.Input.is-invalid {
+  .Input-element {
+    border-color: $cu-negative;
+  }
+  .Input-feedback {
+    display: block;
+    color: $cu-negative;
+  }
+}
+.Input.is-valid {
+  .validation {
+    fill: $cu-positive;
+    position: absolute;
+    top: $su-xxsmall;
+    left: 0;
+  }
+  .Input-label {
+    padding-left: $su-medium;
+  }
 }
