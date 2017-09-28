@@ -12,19 +12,25 @@
 // around panel usage
 
 // TODO : Create embedable version of panel for demos
-// TODO : Add modifier for panel with button in header
 // TODO : revisit theming and how that relates to panel styles
 // TODO : revisit panel-footer alignment pattern
 // TODO : Refactor containers and header in classic; conflicts
 
 //------------------------------------------------------------//
 
+///////////////////////////////////////////////////////////////
 // * 1. Panel Settings
+///////////////////////////////////////////////////////////////
+
 
 $Panel-bg-color: $cu-foreground !default;
 $Panel-header-text-color: $cu-info !default;
 
+
+///////////////////////////////////////////////////////////////
 // * 2. Base Panel
+///////////////////////////////////////////////////////////////
+
 
 .Panel {
   padding: 0;
@@ -35,12 +41,16 @@ $Panel-header-text-color: $cu-info !default;
   box-sizing: border-box;
 }
 
+
+// * .Panel-body
+//
 // 1. Panel body has no padding by default. Padding is set on rows and cells,
 //    instead. Can be overriden in markup with spacing utilities as necessary.
 
 .Panel-body {
   padding: 0; // 1
 }
+
 
 // Hide overflowing panel corners by setting border radius on corner children
 
@@ -60,6 +70,18 @@ $Panel-header-text-color: $cu-info !default;
   border-bottom-right-radius: $border-radius-large;
 }
 
+
+// Override everything-selector that sets max width on -header, -footer, -row
+
+.Panel-header,
+.Panel-footer,
+.Panel-row {
+  max-width: none;
+}
+
+
+// By default, cells with direct descendent content have padding
+
 .Panel-header,
 .Panel-footer,
 .Panel-row,
@@ -67,53 +89,127 @@ $Panel-header-text-color: $cu-info !default;
   padding: $su-medium;
 }
 
+
+// * .Panel-header
+//
+// 1. Position relative to provide context for absolutely positioned button
+// 2. Use flex to make sure content is always vertically center aligned
+
 .Panel-header {
   border-bottom: $border-width-small solid $cu-divider;
+  position: relative; // 1
+  display: flex; // 2
+  align-items: center; // 2
 }
+
+
+// * .Panel-title
+//
+// 1. Define text properties
+// 2. Title should fill any extra space. Deters pseudo elements on [class=*-header]
+//    from taking up space in the row
+// 3. Override default heading properties
 
 .Panel-title {
-  color: $Panel-header-text-color;
-  font-family: $base-font-family;
-  font-size: $tu-base-fontSize;
-  font-weight: $tu-bold-fontWeight;
-  padding: 0;
-  margin: 0;
+  color: $Panel-header-text-color; // 1
+  font-family: $base-font-family; // 1
+  font-size: $tu-base-fontSize; // 1
+  font-weight: $tu-bold-fontWeight; // 1
+  flex: 1 1 0%; // 2
+  padding: 0; // 3
+  margin: 0; // 3
 }
+
+
+// * .Panel-button
+//
+// 1. Position absolutely so that it does not affect the height of .Panel-header
+// 2. Define right position; Vertical centering is controlled by parent flex properties
+
+.Panel-button {
+  position: absolute; // 1
+  right: $su-small; // 2
+}
+
+
+// * .Panel-row
+//
+// 1. Add bottom border to all but the last child
 
 .Panel-row:not(:last-child) {
-  border-bottom: $border-width-small solid $cu-divider--light;
+  border-bottom: $border-width-small solid $cu-divider--light; // 1
 }
 
-.Panel-cell--header {
-  background-color: $cu-middleground;
-  border-right: solid 1px $cu-divider--light;
+
+// * .Panel-row--withCells (Modifier)
+// * Used when .Panel-row has cell children
+//
+// 1. Display cells in a row
+// 2. Remove padding since cells have their own padding
+
+.Panel-row--withCells {
+  display: flex; // 1
+  padding: 0; // 2
 }
+
+
+// * .Panel-cell
+//
+// 1. By default make cells grow to fill the space.
+//    If there are multiple cells they will fill the space evenly, ie be equal width.
+
+.Panel-cell {
+  flex: 1 1 0%; // 1
+}
+
+
+// * .Panel-cell--header (Modifier)
+//
+// 1. Differentiate header cell from content cells
+
+.Panel-cell--header {
+  background-color: scaleColor($ts-grey, 9); // 1
+  border-right: solid 1px $cu-divider--light; // 1
+}
+
+// * .Panel-footer
+//
+// 1. TODO: Does this need to be baked in to footer?
 
 .Panel-footer {
   border-top: 1px solid $cu-divider;
-  text-align: right;
+  text-align: right; // 1
 }
 
 
-// * 3. Modifiers
+///////////////////////////////////////////////////////////////
+// * 3. Panel Modifiers
+///////////////////////////////////////////////////////////////
+
+
+// * .Panel--striped
+//
+// 1. Add zebra stripes to panel rows
 
 .Panel--striped .Panel-row:nth-child(even) {
-  background-color: $cu-middleground;
+  background-color: $cu-middleground; // 1
 }
+
 
 // .Panel--[bpMax]-stacked
 //
-// Responsive layout for 2 column tables that sets borders and border-radius
-// for children based on the max width that the table is stacked
+// Responsive layout for 2 column tables that stacks cells up to a max screen size
 //
 // eg:
 // + .Panel--xsMax-stacked
 // + .Panel--smMax-stacked
 // + .Panel--mdMax-stacked
 //
-// 1. Remove default right border and add bottom border instead
-// 2. These children are now "inside" so they don't need a border-radius
-// 3. The first and last cells are now full width, so they need
+// 1. Allow cells to wrap, since they are full width
+// 2. Make cells full-width
+// 3. Remove default right border and add bottom border instead
+// 4. These children are now "inside" so they don't need a border-radius
+// 5. The first and last cells are now full width, so they need
 //    an extra border-radius
 
 @if $responsive == true {
@@ -121,22 +217,31 @@ $Panel-header-text-color: $cu-info !default;
     @media (max-width: $value) {
       .Panel--#{$name}-stacked {
 
+        .Panel-row {
+          flex-wrap: wrap; // 1
+        }
+
+        .Panel-cell {
+          flex-basis: auto; // 2
+          width: 100%; // 2
+        }
+
         .Panel-cell--header {
-          border-right: 0; // 1
-          border-bottom: 1px solid $cu-divider--light;  // 1
+          border-right: 0; // 3
+          border-bottom: 1px solid $cu-divider--light;  // 3
         }
 
         .Panel-body:first-child .Panel-row:first-child .Panel-cell:last-child,
         .Panel-body:last-child .Panel-row:last-child .Panel-cell:first-child {
-          border-radius: 0; // 2
+          border-radius: 0; // 4
         }
 
         .Panel-body:first-child .Panel-row:first-child .Panel-cell:first-child {
-          border-top-right-radius: $border-radius-large; // 3
+          border-top-right-radius: $border-radius-large; // 5
         }
 
         .Panel-body:last-child .Panel-row:last-child .Panel-cell:last-child {
-          border-bottom-left-radius: $border-radius-large; // 3
+          border-bottom-left-radius: $border-radius-large; // 5
         }
       }
     }
