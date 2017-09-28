@@ -8,11 +8,6 @@
 // * Applies to flex container
 // * ------------------------------------------------------------ * //
 
-// * Container
-
-.u-flex {
-  display: flex !important;
-}
 
 .u-flexInline {
   display: inline-flex !important;
@@ -277,16 +272,4 @@
 .u-flexNone {
   flex: 0 0 auto !important;
   flex-basis: auto !important; // 1
-}
-
-
-// Selectively create responsive flex utilities. Add more as needed.
-@if $responsive == true {
-  @each $name, $value in $breakpoints {
-    @media (min-width: $value) {
-      .u-#{$name}-flex {
-        display: flex !important;
-      }
-    }
-  }
 }
