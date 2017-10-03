@@ -219,6 +219,7 @@ $Panel-header-text-color: $cu-info !default;
 
         .Panel-row {
           flex-wrap: wrap; // 1
+          border-bottom: 0;
         }
 
         .Panel-cell {
@@ -228,7 +229,12 @@ $Panel-header-text-color: $cu-info !default;
 
         .Panel-cell--header {
           border-right: 0; // 3
-          border-bottom: 1px solid $cu-divider--light;  // 3
+          padding-bottom: 0;
+          background-color: inherit;
+        }
+
+        .Panel-cell--header + .Panel-cell {
+          padding-top: $su-small;
         }
 
         .Panel-body:first-child .Panel-row:first-child .Panel-cell:last-child,
