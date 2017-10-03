@@ -73,7 +73,7 @@ $StepNav-spacing--small: scaleGrid(-2);
       color: $cu-primary;
       transition: color .35s ease-in-out;
     }
-    .StepNav-stepIcon:before {
+    .StepNav-stepIcon {
       border-color: $cu-primary;
       transition: border-color .35s ease-in-out;
     }
@@ -87,11 +87,17 @@ $StepNav-spacing--small: scaleGrid(-2);
   &.is-enabled .StepNav-stepLink:hover {
     .StepNav-stepIcon {
       color: $ts-white;
-      &:before {
-        box-shadow: 0 0 ($StepNav-spacing / 2) $cu-primary--dark inset;
-        border-color: $cu-divider;
-        background-color: $cu-primary;
-      }
+      box-shadow: 0 0 ($StepNav-spacing / 2) $cu-primary--dark inset;
+      border-color: $cu-divider;
+      background-color: $cu-primary;
+    }
+  }
+    &.is-enabled .StepNav-stepLink:hover {
+    svg.StepNav-stepIcon {
+      color: $ts-white;
+      box-shadow: 0 0 ($StepNav-spacing / 2) $cu-primary--dark inset;
+      border-color: $cu-divider;
+      background-color: $cu-primary;
     }
   }
 }
@@ -123,29 +129,24 @@ $StepNav-spacing--small: scaleGrid(-2);
   background: #fff;
   box-sizing: content-box;
   line-height: $StepNav-size;
-  &:before {
-    font-size: ($StepNav-size * 0.43);
     display: inline-block;
     box-sizing: border-box;
-    text-align: center;
     vertical-align: middle;
     height: $StepNav-size;
     width: $StepNav-size;
     border-radius: ($StepNav-size / 2);
     line-height: inherit;
-    padding: 0;
+    padding: ($su-small * 1.3);
     border: {
       style: solid;
       color: $cu-divider;
       width: $StepNav-spacing;
     }
-  }
 }
 
 // * 3. Modifier : Size Modifier Mixin
 
 @mixin StepNav--sizeModifier($size, $spacing) {
-
   // redefine paddedWidth based on size and spacing
   $paddedWidth: $size + ($spacing * 2);
 
@@ -171,20 +172,18 @@ $StepNav-spacing--small: scaleGrid(-2);
   }
   .StepNav-stepIcon {
     line-height: $size;
-    &:before {
-      font-size: ($size * 0.43);
-      border: {
-        width: $spacing;
-      }
-      height: $size;
-      width: $size;
-      border-radius: ($size / 2);
-      line-height: inherit;
+    font-size: ($size * 0.43);
+    border: {
+      width: $spacing;
     }
+    height: $size;
+    width: $size;
+    border-radius: ($size / 2);
+    line-height: inherit;
   }
   .is-active,
   .is-enabled a:hover {
-    .StepNav-stepIcon:before {
+    .StepNav-stepIcon {
       box-shadow: 0 0 ($spacing / 2) $cu-primary--dark inset;
     }
   }
@@ -193,7 +192,6 @@ $StepNav-spacing--small: scaleGrid(-2);
 // * 5. Modifier : Small StepNav
 
 .StepNav--small {
-  padding-bottom: 0;
 
   .StepNav-steps {
     @include StepNav--sizeModifier($StepNav-size--small, $StepNav-spacing--small)

@@ -7,31 +7,49 @@ $borders: (
   'Top': top
 );
 
+$border-style: 1px solid $cu-divider--light;
+
+.u-border {
+  border: $border-style;
+}
+
+.u-borderNone {
+  border: 0;
+}
+
 @each $name, $value in $borders {
   .u-border#{$name} {
-    border-#{$value}: 1px solid $cu-divider--light;
+    border-#{$value}: $border-style;
   }
   .u-border#{$name}None {
     border-#{$value}: 0;
   }
-  .u-borderNone {
-    border: 0;
-  }
 }
 
 @if $responsive == true {
+
   @each $bp-name, $bp-value in $breakpoints {
+
     @media (min-width: $bp-value) {
+
+      .u-#{$bp-name}-border {
+        border: $border-style;
+      }
+
+      .u-#{$bp-name}-borderNone {
+        border: 0;
+      }
+
       @each $name, $value in $borders {
+
         .u-#{$bp-name}-border#{$name} {
-          border-#{$value}: 1px solid $cu-divider--light;
+          border-#{$value}: $border-style;
         }
+        
         .u-#{$bp-name}-border#{$name}None {
           border-#{$value}: 0;
         }
-        .u-#{$bp-name}-borderNone {
-          border: 0;
-        }
+
       }
     }
   }
