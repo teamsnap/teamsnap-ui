@@ -92,14 +92,12 @@ $Panel-header-text-color: $cu-info !default;
 
 // * .Panel-header
 //
-// 1. Position relative to provide context for absolutely positioned button
-// 2. Use flex to make sure content is always vertically center aligned
+// 1. Use flex to make sure content is always vertically center aligned
 
 .Panel-header {
   border-bottom: $border-width-small solid $cu-divider;
-  position: relative; // 1
-  display: flex; // 2
-  align-items: center; // 2
+  display: flex; // 1
+  align-items: center; // 1
 }
 
 
@@ -118,17 +116,6 @@ $Panel-header-text-color: $cu-info !default;
   flex: 1 1 0%; // 2
   padding: 0; // 3
   margin: 0; // 3
-}
-
-
-// * .Panel-button
-//
-// 1. Position absolutely so that it does not affect the height of .Panel-header
-// 2. Define right position; Vertical centering is controlled by parent flex properties
-
-.Panel-button {
-  position: absolute; // 1
-  right: $su-small; // 2
 }
 
 
