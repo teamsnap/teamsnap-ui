@@ -1,0 +1,162 @@
+.Calendar-heading, .Calendar-secondary-heading {
+  height: 60px;
+}
+.Calendar-title, .Calendar-month {
+  margin-right: $su-medium;
+  display: inline-block;
+}
+.Calendar-secondary-heading {
+  padding: $su-medium;
+  border-left: 1px solid $ts-grey;
+  border-right: 1px solid $ts-grey;
+  border-top: 1px solid $ts-grey;
+}
+.Calendar-row[data-ui-component="week-heading"] li {
+  display: none;
+}
+.Calendar-row[data-ui-component="week-heading"] {
+  background: $cu-background--light;
+  margin: 0;
+  padding: $su-small 0;
+  border: 1px solid $ts-grey;
+  color: $cu-primary;
+  list-style-type: none;
+}
+.Calendar-row[data-ui-component="week"] {
+  border-right: 1px solid $ts-grey;
+  & > [class*="Calendar-cell"] {
+    height: auto;
+    padding-bottom: $su-small;
+    border-left: 1px solid $ts-grey;
+    border-bottom: 1px solid $ts-grey;
+    span {
+      display: block;
+    }
+  }
+  & > [data-ui-component="current-day"] {
+    background: $cu-primary--bg;
+    span, abbr {
+      color: $cu-primary;
+      font-weight: $tu-bold-fontWeight;
+    }
+  }
+  & > [data-ui-component="next-month"] {
+    background: $cu-background--light;
+    span, abbr {
+      opacity: 0.6;
+    }
+  }
+}
+
+// responsive/widget
+
+.Calendar-widget--exampleWrapper {
+  width: 300px;
+}
+
+.Calendar.Calendar-widget {
+  .Calendar-secondary-heading {
+    text-align: center;
+    .Button--paginate {
+      float: left;
+      &:last-child {
+        float: right;
+      }
+    }
+
+  }
+  .Calendar-row[data-ui-component="week-heading"] li {
+    display: block;
+  }
+  .Calendar-row[data-ui-component="week"] {
+    & > [class*="Calendar-cell"] {
+      height: 40px;
+      text-align: center;
+    }
+    & > [data-ui-component="next-month"] {
+    background: $ts-white;
+    span, abbr {
+      display: none;
+    }
+  }
+  }
+  .Calendar-row {
+    box-sizing: border-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-flow: row wrap;
+  }
+  .Calendar-cell {
+    -webkit-box-flex: 1;
+    flex: 1 1 0%;
+    box-sizing: inherit;
+    min-width: 0;
+    padding: $su-small + 2;
+    abbr {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .Calendar-row[data-ui-component="week-heading"] {
+    text-align: center;
+  }
+  .Calendar-row[data-ui-component="week"] > [class*="Calendar-cell"] {
+    height: 150px;
+    padding-bottom: 0;
+  }
+  .Calendar-row[data-ui-component="week-heading"] li {
+    display: block;
+  }
+  .Calendar-row {
+    box-sizing: border-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-flow: row wrap;
+  }
+  .Calendar-cell {
+    -webkit-box-flex: 1;
+    flex: 1 1 0%;
+    box-sizing: inherit;
+    min-width: 0;
+    padding: $su-medium;
+  }
+}
+
+// facebook/pagination button - maybe break this out to the buttons section? Also- need an f icon?
+
+.Button--facebook {
+  background-color: $cu-primary;
+  border-color: $cu-primary--dark;
+  color: $ts-white;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $cu-primary--dark;
+    border-color: $cu-primary--dark;
+    color: $ts-white;
+  }
+
+  &.is-active {
+    background-color: $Button--primary-bg-hover;
+  }
+
+  &.is-disabled,
+  &:disabled {
+    &,
+    &:hover,
+    &:active {
+      background-color: $cu-primary;
+      border-color: $cu-primary--dark;
+      color: $ts-white;
+    }
+  }
+}
+
+.Button--paginate {
+  font-style: $tu-bold-fontWeight;
+}
