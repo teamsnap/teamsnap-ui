@@ -1,0 +1,82 @@
+//------------------------------------------------------------//
+
+// * Dividers
+// * 1. Component Style
+// * 2. Branch Styles
+// * 3. Leaf Styles
+
+//------------------------------------------------------------//
+
+// * 1. Component Style
+
+.TreeMenu {
+  padding: 0;
+  border: $border-width-small solid $cu-divider;
+  border-radius: $border-radius-large;
+  box-sizing: border-box;
+  ul {
+    list-style-type: none;
+    text-indent: $su-medium;
+    // indenting nested lists up to five levels if needed - better way?
+    ul {
+      text-indent: $su-medium * 2;
+      ul {
+        text-indent: $su-medium * 3;
+        ul {
+          text-indent: $su-medium * 4;
+          ul {
+            text-indent: $su-medium * 5;
+          }
+        }
+      }
+    }
+  }
+  li {
+    color: $cu-info;
+    border-bottom: $border-width-small solid $cu-divider;
+    padding: $su-medium 0;
+    &:last-child {
+      border-bottom: 0 none;
+    }
+  }
+  .collapsed {
+    > ul {
+      height: auto;
+      max-height: 0;
+      overflow: hidden;
+    }
+    > .TreeMenu-arrow {
+      transform: rotate(0deg);
+      transition: transform .15s ease-out;
+    }
+  }
+  .open {
+    padding-bottom: 0;
+    > ul {
+      border-top: $border-width-small solid $ts-orange;
+      margin-top: $su-medium;
+    }
+    > .TreeMenu-arrow {
+      fill: $ts-orange;
+      transform: rotate(90deg);
+      transition: transform .15s ease-out;
+    }
+  }
+}
+
+// * 2. Branch Styles
+
+li.TreeMenu-branch {
+  border-bottom: $border-width-small solid $cu-divider;
+  padding: $su-medium 0;
+  color: $ts-blue;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+// * 3. Leaf Styles
+
+li.TreeMenu-leaf {
+  background: $cu-middleground--dark;
+}
