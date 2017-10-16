@@ -1,127 +1,141 @@
-.Calendar-heading, .Calendar-secondary-heading {
-  height: 60px;
+//------------------------------------------------------------//
+
+// * Calendar
+// * 1. Month and Week headings
+// * 2. Rows and cells
+// * 3. Widget Version
+// * 4. Responsive considerations
+
+//------------------------------------------------------------//
+
+
+// * 1. Month and Week headings
+
+.Calendar-row--monthHeading {
+  padding: $su-medium;
+  border-left: $border-width-small solid $ts-grey;
+  border-right: $border-width-small solid $ts-grey;
+  border-top: $border-width-small solid $ts-grey;
 }
 .Calendar-title, .Calendar-month {
   margin-right: $su-medium;
   display: inline-block;
 }
-.Calendar-secondary-heading {
-  padding: $su-medium;
-  border-left: 1px solid $ts-grey;
-  border-right: 1px solid $ts-grey;
-  border-top: 1px solid $ts-grey;
-}
-.Calendar-row[data-ui-component="week-heading"] li {
-  display: none;
-}
-.Calendar-row[data-ui-component="week-heading"] {
+.Calendar-row--weekHeading {
   background: $cu-background--light;
   margin: 0;
-  padding: $su-small 0;
-  border: 1px solid $ts-grey;
+  text-align: center;
+  border-top: $border-width-small solid $ts-grey;
+  border-right: $border-width-small solid $ts-grey;
   color: $cu-primary;
+  display: flex;
   list-style-type: none;
 }
-.Calendar-row[data-ui-component="week"] {
-  border-right: 1px solid $ts-grey;
-  & > [class*="Calendar-cell"] {
-    height: auto;
-    padding-bottom: $su-small;
-    border-left: 1px solid $ts-grey;
-    border-bottom: 1px solid $ts-grey;
-    span {
-      display: block;
-    }
+.Calendar-cell.Calendar-cell--dayHeading {
+  min-height: 0;
+}
+
+// * 2. Rows and cells
+.Calendar-row {
+  max-width: none;
+}
+.Calendar-row--week {
+  border-right: $border-width-small solid $ts-grey;
+  box-sizing: border-box;
+  display: flex;
+}
+.Calendar-cell {
+  min-height: 100px;
+  max-height: 200px;
+  flex: 1 1 0%;
+  box-sizing: inherit;
+  padding: $su-medium;
+  padding-bottom: $su-small;
+  border-left: $border-width-small solid $ts-grey;
+  border-bottom: $border-width-small solid $ts-grey;
+}
+.Calendar-cell--currentDay {
+  background: $cu-primary--bg;
+  p, abbr {
+    color: $cu-primary;
+    font-weight: $tu-bold-fontWeight;
   }
-  & > [data-ui-component="current-day"] {
-    background: $cu-primary--bg;
-    span, abbr {
-      color: $cu-primary;
-      font-weight: $tu-bold-fontWeight;
-    }
-  }
-  & > [data-ui-component="next-month"] {
-    background: $cu-background--light;
-    span, abbr {
-      opacity: 0.6;
-    }
+}
+.Calendar-cell--nextMonth {
+  background: $cu-background--light;
+  p, abbr {
+    opacity: 0.6;
   }
 }
 
-// responsive/widget
+// * 3. Widget Version
 
 .Calendar-widget--exampleWrapper {
   width: 300px;
 }
 
 .Calendar.Calendar-widget {
-  .Calendar-secondary-heading {
-    text-align: center;
-    .Button--paginate {
-      float: left;
-      &:last-child {
-        float: right;
-      }
-    }
-
-  }
-  .Calendar-row[data-ui-component="week-heading"] li {
-    display: block;
-  }
-  .Calendar-row[data-ui-component="week"] {
-    & > [class*="Calendar-cell"] {
-      height: 40px;
-      text-align: center;
-    }
-    & > [data-ui-component="next-month"] {
+  .Calendar-cell--nextMonth {
     background: $ts-white;
-    span, abbr {
+    p, abbr {
       display: none;
     }
-  }
   }
   .Calendar-row {
     box-sizing: border-box;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    flex-flow: row wrap;
   }
   .Calendar-cell {
-    -webkit-box-flex: 1;
     flex: 1 1 0%;
+    min-height: 0;
+    height: auto;
     box-sizing: inherit;
     min-width: 0;
-    padding: $su-small + 2;
+    text-align: center;
+    padding: $su-small 0;
+    &.Calendar-cell--dayHeading span {
+      display: none;
+    }
+    &.Calendar-cell--dayHeading[title="Monday"]:after {
+      content: 'Mo';
+    }
+    &.Calendar-cell--dayHeading[title="Tuesday"]:after {
+      content: 'Tu';
+    }
+    &.Calendar-cell--dayHeading[title="Wednesday"]:after {
+      content: 'We';
+    }
+    &.Calendar-cell--dayHeading[title="Thursday"]:after {
+      content: 'Th';
+    }
+    &.Calendar-cell--dayHeading[title="Friday"]:after {
+      content: 'Fr';
+    }
+    &.Calendar-cell--dayHeading[title="Saturday"]:after {
+      content: 'Sa';
+    }
+    &.Calendar-cell--dayHeading[title="Sunday"]:after {
+      content: 'Su';
+    }
     abbr {
       display: none;
     }
   }
 }
 
-@media only screen and (min-width: 768px) {
-  .Calendar-row[data-ui-component="week-heading"] {
-    text-align: center;
-  }
-  .Calendar-row[data-ui-component="week"] > [class*="Calendar-cell"] {
-    height: 150px;
-    padding-bottom: 0;
-  }
-  .Calendar-row[data-ui-component="week-heading"] li {
-    display: block;
-  }
+// * 4. Responsive considerations
+
+@media only screen and (max-width: $breakpoint-sm) {
   .Calendar-row {
-    box-sizing: border-box;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    flex-flow: row wrap;
+    display: block;
+    &.Calendar-row--weekHeading {
+      display: none;
+    }
+    &.Calendar-row--monthHeading {
+      background: $cu-background--light;
+    }
   }
   .Calendar-cell {
-    -webkit-box-flex: 1;
-    flex: 1 1 0%;
-    box-sizing: inherit;
-    min-width: 0;
     padding: $su-medium;
   }
 }
@@ -155,8 +169,4 @@
       color: $ts-white;
     }
   }
-}
-
-.Button--paginate {
-  font-style: $tu-bold-fontWeight;
 }
