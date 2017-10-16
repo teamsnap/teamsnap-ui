@@ -70,11 +70,7 @@
 
 // * 3. Widget Version
 
-.Calendar-widget--exampleWrapper {
-  width: 300px;
-}
-
-.Calendar.Calendar-widget {
+.Calendar--widget {
   .Calendar-cell--nextMonth {
     background: $ts-white;
     p, abbr {
@@ -85,6 +81,9 @@
     box-sizing: border-box;
     display: flex;
   }
+  .Calendar-cell--dayHeading span {
+    display: none;
+  }
   .Calendar-cell {
     flex: 1 1 0%;
     min-height: 0;
@@ -93,33 +92,30 @@
     min-width: 0;
     text-align: center;
     padding: $su-small 0;
-    &.Calendar-cell--dayHeading span {
-      display: none;
-    }
-    &.Calendar-cell--dayHeading[title="Monday"]:after {
-      content: 'Mo';
-    }
-    &.Calendar-cell--dayHeading[title="Tuesday"]:after {
-      content: 'Tu';
-    }
-    &.Calendar-cell--dayHeading[title="Wednesday"]:after {
-      content: 'We';
-    }
-    &.Calendar-cell--dayHeading[title="Thursday"]:after {
-      content: 'Th';
-    }
-    &.Calendar-cell--dayHeading[title="Friday"]:after {
-      content: 'Fr';
-    }
-    &.Calendar-cell--dayHeading[title="Saturday"]:after {
-      content: 'Sa';
-    }
-    &.Calendar-cell--dayHeading[title="Sunday"]:after {
-      content: 'Su';
-    }
     abbr {
       display: none;
     }
+  }
+  .Calendar-cell--dayHeading[title="Monday"]:after {
+    content: 'Mo';
+  }
+  .Calendar-cell--dayHeading[title="Tuesday"]:after {
+    content: 'Tu';
+  }
+  .Calendar-cell--dayHeading[title="Wednesday"]:after {
+    content: 'We';
+  }
+  .Calendar-cell--dayHeading[title="Thursday"]:after {
+    content: 'Th';
+  }
+  .Calendar-cell--dayHeading[title="Friday"]:after {
+    content: 'Fr';
+  }
+  .Calendar-cell--dayHeading[title="Saturday"]:after {
+    content: 'Sa';
+  }
+  .Calendar-cell--dayHeading[title="Sunday"]:after {
+    content: 'Su';
   }
 }
 
@@ -128,45 +124,14 @@
 @media only screen and (max-width: $breakpoint-sm) {
   .Calendar-row {
     display: block;
-    &.Calendar-row--weekHeading {
-      display: none;
-    }
-    &.Calendar-row--monthHeading {
-      background: $cu-background--light;
-    }
+  }
+  .Calendar-row--weekHeading {
+    display: none;
   }
   .Calendar-cell {
     padding: $su-medium;
   }
-}
-
-// facebook/pagination button - maybe break this out to the buttons section? Also- need an f icon?
-
-.Button--facebook {
-  background-color: $cu-primary;
-  border-color: $cu-primary--dark;
-  color: $ts-white;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: $cu-primary--dark;
-    border-color: $cu-primary--dark;
-    color: $ts-white;
-  }
-
-  &.is-active {
-    background-color: $Button--primary-bg-hover;
-  }
-
-  &.is-disabled,
-  &:disabled {
-    &,
-    &:hover,
-    &:active {
-      background-color: $cu-primary;
-      border-color: $cu-primary--dark;
-      color: $ts-white;
-    }
+  .Calendar-row--monthHeading {
+    background: $cu-background--light;
   }
 }

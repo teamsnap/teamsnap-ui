@@ -150,6 +150,46 @@ $Button--negative-border-color-hover: $cu-negative--dark;
 }
 
 /**
+ * Modifier: Button Facebook
+ */
+
+$Button--facebook-bg: $cu-primary;
+$Button--facebook-bg-hover: $cu-primary--dark;
+$Button--facebook-color: $ts-white;
+$Button--facebook-color-hover: $ts-white;
+$Button--facebook-border-color: $cu-primary--dark;
+$Button--facebook-border-color-hover: $cu-primary--dark;
+
+.Button--facebook {
+  background-color: $Button--facebook-bg;
+  border-color: $Button--facebook-border-color;
+  color: $Button--facebook-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $Button--facebook-bg-hover;
+    border-color: $Button--facebook-border-color-hover;
+    color: $Button--facebook-color-hover;
+  }
+
+  &.is-active {
+    background-color: $Button--primary-bg-hover;
+  }
+
+  &.is-disabled,
+  &:disabled {
+    &,
+    &:hover,
+    &:active {
+      background-color: $Button--facebook-bg;
+      border-color: $Button--facebook-border-color;
+      color: $Button--facebook-color;
+    }
+  }
+}
+
+/**
  * Modifier: Button Small
  */
 
