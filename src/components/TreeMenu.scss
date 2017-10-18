@@ -1,19 +1,21 @@
 //------------------------------------------------------------//
 
-// * Dividers
-// * 1. Component Style
+// * Tree Menu and Miller Column Styles
+// * 1. Tree Menu Component Styles
+// * 2. Miller Menu Component Styles
 // * 2. Branch Styles
 // * 3. Leaf Styles
 
 //------------------------------------------------------------//
 
-// * 1. Component Style
+// * 1. Tree Menu Component Style
 
 .TreeMenu {
   padding: 0;
   border: $border-width-small solid $cu-divider;
   border-radius: $border-radius-large;
   box-sizing: border-box;
+  list-style-type: none;
   ul {
     list-style-type: none;
     text-indent: $su-medium;
@@ -45,7 +47,7 @@
       max-height: 0;
       overflow: hidden;
     }
-    > .TreeMenu-arrow {
+    > .TreeMenu-arrow, > .MillerMenu-arrow {
       transform: rotate(0deg);
       transition: transform .15s ease-out;
     }
@@ -56,17 +58,90 @@
       border-top: $border-width-small solid $ts-orange;
       margin-top: $su-medium;
     }
-    > .TreeMenu-arrow {
+    > .TreeMenu-arrow, > .MillerMenu-arrow {
       fill: $ts-orange;
       transform: rotate(90deg);
       transition: transform .15s ease-out;
     }
   }
 }
+// * 1. Miller Menu Component Style
 
+.MillerMenu {
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  .MillerMenu-breadcrumb {
+    padding-left: $su-small;
+    padding-bottom: $su-small;
+    svg {
+      fill: $ts-blue;
+    }
+  }
+  .MillerMenu-level {
+    border: $border-width-small solid $cu-divider;
+    border-radius: $border-radius-large;
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 100%;
+    transition: left .15s ease-out;
+    z-index: -1;
+    &.active-level {
+      position: relative;
+      left: 0;
+      z-index: 1;
+    }
+  }
+  ul {
+    list-style-type: none;
+    text-indent: $su-medium;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+
+  }
+  .activeLevel > li {
+    display: block;
+    color: $ts-blue;
+    border-bottom: $border-width-small solid $cu-divider;
+    padding: $su-medium 0;
+    &:last-child {
+      border-bottom: 0 none;
+    }
+  }
+  .collapsed {
+    > ul {
+      height: auto;
+      max-height: 0;
+      overflow: hidden;
+    }
+    > .MillerMenu-arrow {
+      transform: rotate(0deg);
+      transition: transform .15s ease-out;
+    }
+  }
+  .open {
+    padding-bottom: 0;
+    > ul {
+      border-top: $border-width-small solid $ts-orange;
+      margin-top: $su-medium;
+    }
+    > .MillerMenu-arrow {
+      fill: $ts-orange;
+      transform: rotate(90deg);
+      transition: transform .15s ease-out;
+    }
+  }
+}
 // * 2. Branch Styles
 
-li.TreeMenu-branch {
+li.TreeMenu-branch, li.MillerMenu-branch {
   border-bottom: $border-width-small solid $cu-divider;
   padding: $su-medium 0;
   color: $ts-blue;
@@ -77,6 +152,7 @@ li.TreeMenu-branch {
 
 // * 3. Leaf Styles
 
-li.TreeMenu-leaf {
+li.TreeMenu-leaf, li.MillerMenu-leaf {
   background: $cu-middleground--dark;
+  color: $cu-info;
 }
