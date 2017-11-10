@@ -96,6 +96,13 @@ $fontSize:          13px !default;
 $lineHeight:         1.5 !default;
 $letterSpacing: -0.005em !default;
 
+$base-font-color:         $cu-info !default;
+$heading-font-color:   $cu-primary !default;
+$light-font-color: $cu-info--light !default;
+
+$link-color:                  $cu-primary--light !default;
+$link-color--hover: scaleColor($link-color, -2) !default;
+
 // * 2.a Font Families
 
 $tu-museo500-fontFamily:   'MuseoSansRounded500Regular', 'Open Sans', Arial, sans-serif !default;
@@ -103,6 +110,9 @@ $tu-museo700-fontFamily:   'MuseoSansRounded700Regular', 'Open Sans', Arial, san
 $tu-museo1000-fontFamily: 'MuseoSansRounded1000Regular', 'Open Sans', Arial, sans-serif !default;
 
 $tu-openSans-fontFamily: 'Open Sans', Helvetica, sans-serif !default;
+
+$base-font-family:    $tu-openSans-fontFamily !default;
+$heading-font-family: $tu-museo700-fontFamily !default;
 
 // * 2.b Font Weights
 
