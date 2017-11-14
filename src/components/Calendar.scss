@@ -1,137 +1,215 @@
 //------------------------------------------------------------//
-
 // * Calendar
-// * 1. Month and Week headings
-// * 2. Rows and cells
-// * 3. Widget Version
-// * 4. Responsive considerations
-
 //------------------------------------------------------------//
 
+//
+// Calendar settings
+//
 
-// * 1. Month and Week headings
+$Calendar-border: $border-width-small solid $ts-grey;
 
-.Calendar-row--monthHeading {
+.Calendar {}
+
+.Calendar-heading {
   padding: $su-medium;
-  border-left: $border-width-small solid $ts-grey;
-  border-right: $border-width-small solid $ts-grey;
-  border-top: $border-width-small solid $ts-grey;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
 }
-.Calendar-title, .Calendar-month {
-  margin-right: $su-medium;
-  display: inline-block;
+
+.Calendar-headingRight {
+  position: absolute;
+  right: $su-medium;
 }
-.Calendar-row--weekHeading {
-  background: $cu-background--light;
-  margin: 0;
+
+.Calendar-headingLeft {
+  position: absolute;
+  left: $su-medium;
+}
+
+.Calendar-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Calendar-month {
+  width: 200px;
   text-align: center;
-  border-top: $border-width-small solid $ts-grey;
-  border-right: $border-width-small solid $ts-grey;
-  color: $cu-primary;
-  display: flex;
-  list-style-type: none;
-}
-.Calendar-cell.Calendar-cell--dayHeading {
-  min-height: 0;
+  font-family: $base-font-family;
 }
 
-// * 2. Rows and cells
+.Calendar-navigateBack {}
+
+.Calendar-navigateForward {}
+
+
+
+// Calendar rows
+//
+// 1. Override Classic everything selector that sets max-width on any class containing `row`
+// 2. Display children side by side
+// 3. Add dividers between rows
+
 .Calendar-row {
-  max-width: none;
-}
-.Calendar-row--week {
-  border-right: $border-width-small solid $ts-grey;
-  box-sizing: border-box;
-  display: flex;
-}
-.Calendar-cell {
-  min-height: 100px;
-  max-height: 200px;
-  flex: 1 1 0%;
-  box-sizing: inherit;
-  padding: $su-medium;
-  padding-bottom: $su-small;
-  border-left: $border-width-small solid $ts-grey;
-  border-bottom: $border-width-small solid $ts-grey;
-}
-.Calendar-cell--currentDay {
-  background: $cu-primary--bg;
-  p, abbr {
-    color: $cu-primary;
-    font-weight: $tu-bold-fontWeight;
-  }
-}
-.Calendar-cell--nextMonth {
-  background: $cu-background--light;
-  p, abbr {
-    opacity: 0.6;
+  max-width: none; // 1
+  display: flex; // 2
+  border-bottom: $Calendar-border; // 3
+
+  &:last-child {
+    border-bottom: none; // 3
   }
 }
 
-// * 3. Widget Version
+// Column heading row (weekdays)
+
+.Calendar-row--columnHeading {
+  border-top: $Calendar-border;
+
+  .Calendar-cell {
+    text-align: center;
+    min-height: 0;
+    border-left: none;
+  }
+}
+
+// Calendar cells
+//
+// 1. Apply a min-height so that cells have some space without content
+// 2. Cells should fill a row equally
+// 3. Add a divider between cells
+
+.Calendar-cell {
+  min-height: 100px; // 1
+  flex: 1 1 0%; // 2
+  padding: $su-small;
+  border-left: $Calendar-border; // 3
+
+  &:first-child {
+    border-left: none; // 3
+  }
+}
+
+.Calendar-cell--current {
+  background: $cu-background;
+}
+
+
+// Calendar day
+//
+// Hide calendar days on default, large screen version
+
+.Calendar-day {
+  display: none;
+}
+
+
+// Calendar list items
+
+.Calendar-listItem {
+  list-style: none;
+  color: $cu-primary;
+  font-size: 11px;
+  padding-left: $su-small + $su-xsmall;
+  position: relative;
+
+  &:before {
+    content: "•";
+    font-size: 1.5em;
+    line-height: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+
+///////////////////
+// * Modifiers * //
+///////////////////
+
+// Widget
+//
+// Small version that only shows dates, no content or weekdays
 
 .Calendar--widget {
-  .Calendar-cell--nextMonth {
-    background: $ts-white;
-    p, abbr {
-      display: none;
-    }
-  }
   .Calendar-row {
-    box-sizing: border-box;
-    display: flex;
+    border: none;
   }
-  .Calendar-cell--dayHeading span {
-    display: none;
+
+  .Calendar-row--columnHeading {
+    border-bottom: $Calendar-border;
+    border-top: $Calendar-border;
   }
+
   .Calendar-cell {
-    flex: 1 1 0%;
     min-height: 0;
-    height: auto;
-    box-sizing: inherit;
-    min-width: 0;
-    text-align: center;
-    padding: $su-small 0;
-    abbr {
-      display: none;
-    }
+    border: none;
   }
-  .Calendar-cell--dayHeading[title="Monday"]:after {
-    content: 'Mo';
+
+  // Calendar date settings
+
+  $Calendar-date-size: 23px;
+  $Calendar-date-fontSize: 11px;
+  $Calendar-date-verticalSpacing: ($Calendar-date-size - $Calendar-date-fontSize) / 2;
+
+  .Calendar-date {
+    width: $Calendar-date-size; // 1
+    height: $Calendar-date-size; // 1
+    border-radius: 50%; // 1
+    text-align: center; // 1
+    font-size: $Calendar-date-fontSize; // 1
+    line-height: 1; // 1
+    padding: $Calendar-date-verticalSpacing 0; // 1
+    display: block;
+    position: relative;
+    margin: 0 auto;
   }
-  .Calendar-cell--dayHeading[title="Tuesday"]:after {
-    content: 'Tu';
+
+  .Calendar-date--hasGame {
+    background-color: $cu-primary; // 2
+    color: $cu-foreground; // 2
   }
-  .Calendar-cell--dayHeading[title="Wednesday"]:after {
-    content: 'We';
-  }
-  .Calendar-cell--dayHeading[title="Thursday"]:after {
-    content: 'Th';
-  }
-  .Calendar-cell--dayHeading[title="Friday"]:after {
-    content: 'Fr';
-  }
-  .Calendar-cell--dayHeading[title="Saturday"]:after {
-    content: 'Sa';
-  }
-  .Calendar-cell--dayHeading[title="Sunday"]:after {
-    content: 'Su';
+
+  .Calendar-date--hasEvent::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: block;
+    margin: $su-small auto 0;
+    background-color: $cu-secondary;
   }
 }
 
-// * 4. Responsive considerations
 
-@media only screen and (max-width: $breakpoint-sm) {
+// Stacked
+//
+// Option for small screens with displayed stacked vertically
+
+.Calendar--stacked {
   .Calendar-row {
     display: block;
+    border-bottom: none;
   }
-  .Calendar-row--weekHeading {
+
+  .Calendar-row--columnHeading {
     display: none;
   }
+
   .Calendar-cell {
-    padding: $su-medium;
+    border-left: none;
+    border-top: $Calendar-border;
+    min-height: 0;
   }
-  .Calendar-row--monthHeading {
-    background: $cu-background--light;
+
+  .Calendar-day,
+  .Calendar-date {
+    display: inline-block;
+  }
+
+  .Calendar-day {
+    margin-left: $su-xsmall;
   }
 }
