@@ -3,9 +3,8 @@
 //------------------------------------------------------------//
 
 // * Base Typography
-// * 1. Typography Settings
-// * 2. Content
-// * 3. Headings
+// * 1. Content
+// * 2. Headings
 
 // Notes:
 // * none
@@ -14,19 +13,7 @@
 
 //------------------------------------------------------------//
 
-// * 1. Typography Settings
-
-$base-font-family:    $tu-openSans-fontFamily !default;
-$heading-font-family: $tu-museo700-fontFamily !default;
-
-$base-font-color:         $cu-info !default;
-$heading-font-color:   $cu-primary !default;
-$light-font-color: $cu-info--light !default;
-
-$link-color:                  $cu-primary--light !default;
-$link-color--hover: scaleColor($link-color, -2) !default;
-
-// * 2. Content
+// * 1. Content
 
 body {
   color: $base-font-color;
@@ -66,7 +53,7 @@ a {
   }
 }
 
-// * 3. Headings
+// * 2. Headings
 
 h1, h2, h3 {
   font-family: $heading-font-family;
