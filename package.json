@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "a CSS component library for TeamSnap",
   "main": "index.js",
+  "sasslintConfig": "sass-lint.yml",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "sass-lint 'src/**/*.scss' -v",
