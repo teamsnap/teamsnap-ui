@@ -6,6 +6,7 @@
 // * 1. Panel Settings
 // * 2. Base Panel
 // * 3. Panel Modifiers
+// * 4. Collapsable Panel Rows
 
 // Notes:
 // * also add to TeamSnap-UI sketch doc and create some rules
@@ -127,7 +128,6 @@ $Panel-header-text-color: $cu-info !default;
   border-bottom: $border-width-small solid $cu-divider--light; // 1
 }
 
-
 // * .Panel-row--withCells (Modifier)
 // * Used when .Panel-row has cell children
 //
@@ -147,6 +147,7 @@ $Panel-header-text-color: $cu-info !default;
 
 .Panel-cell {
   flex: 1 1 0%; // 1
+  word-break: break-word;
 }
 
 
@@ -237,6 +238,72 @@ $Panel-header-text-color: $cu-info !default;
           border-bottom-left-radius: $border-radius-large; // 5
         }
       }
+    }
+  }
+}
+
+// * 4. Collapsable Panel Rows
+
+// 1. The child row makes up the bottom border instead of parent row
+// 2. Style is nested for specificity
+// 3. The Parent row needs to be targeted seperately from a static Panel row
+
+.Panel {
+  .Panel-row--parent { // 3
+    border-bottom: none; // 1
+  }
+} // 2
+
+.Panel-expandableControl{}
+
+.Panel-expandableControlIcon {
+  padding-right: 4px;
+  .Icon {
+    font-size: $tu-xsmall-fontSize;
+  }
+}
+
+.Panel-expandableControl {
+  &.is-expanded {
+    color: $cu-highlight;
+    padding-right: 4px;
+    .Icon {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.Panel-childRows {
+  background: $cu-middleground;
+  height: 0;
+  overflow: hidden;
+  &:not(:last-child) {
+    border-top: 1px solid $cu-divider--light;
+  }
+  .Panel-row {
+    border: none;
+  }
+  .Panel-cell {
+    font-size: $tu-small-fontSize;
+    color: $cu-info--light;
+    padding-top: $su-small;
+    padding-bottom: $su-small;
+  }
+  .Panel-row:first-child {
+    .Panel-cell {
+      padding-top: $su-medium;
+    }
+  }
+  .Panel-row:last-child {
+    .Panel-cell {
+      padding-bottom: $su-medium;
+    }
+  }
+  &.is-expanded {
+    height: auto;
+    border-top: 1px solid $cu-divider--light;
+    &:not(:last-child) {
+      border-bottom: 1px solid $cu-highlight;
     }
   }
 }
