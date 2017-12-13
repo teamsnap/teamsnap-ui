@@ -277,9 +277,6 @@ $Panel-header-text-color: $cu-info !default;
   background: $cu-middleground;
   height: 0;
   overflow: hidden;
-  &:not(:last-child) {
-    border-top: 1px solid $cu-divider--light;
-  }
   .Panel-row {
     border: none;
   }
@@ -302,7 +299,13 @@ $Panel-header-text-color: $cu-info !default;
   &.is-expanded {
     height: auto;
     border-top: 1px solid $cu-divider--light;
-    &:not(:last-child) {
+  }
+}
+
+.Panel-expandableRow:not(:last-child) {
+  .Panel-childRows {
+    border-top: 1px solid $cu-divider--light;
+    &.is-expanded {
       border-bottom: 1px solid $cu-highlight;
     }
   }
