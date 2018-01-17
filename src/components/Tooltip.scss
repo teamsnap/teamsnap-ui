@@ -15,7 +15,7 @@
 
 .Tooltip {
   position: relative;
-  //cursor: help;
+  cursor: pointer;
   &:after{
     content: attr(data-tooltip);
     display: none;
@@ -36,7 +36,8 @@
     text-align: left;
     color: $cu-info;
   }
-  &:hover:after {
+  &:hover:after,
+  &:focus:after {
     display: block;
   }
 }
