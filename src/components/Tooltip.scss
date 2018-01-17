@@ -1,0 +1,53 @@
+@import "../config/index.scss";
+
+//------------------------------------------------------------//
+
+// * Tooltip Utility
+// * 1. Base CSS
+// * 2. Text & Icon Modifiers
+
+// TODO: add position Modifiers
+// TODO: add js function to automatically update position
+
+//------------------------------------------------------------//
+
+// * 1. Base CSS
+
+.Tooltip {
+  position: relative;
+  //cursor: help;
+  &:after{
+    content: attr(data-tooltip);
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 9999;
+    margin-top: $su-xxsmall;
+    width: scaleGrid(25);
+    padding: $su-medium;
+    border-radius: $su-small;
+    border-top-left-radius: 0;
+    border: 1px solid $cu-divider--light;
+    background: $cu-middleground;
+    font-size: $tu-base-fontSize;
+    box-shadow: $box-shadow-small;
+    font-style: normal;
+    text-align: left;
+    color: $cu-info;
+  }
+  &:hover:after {
+    display: block;
+  }
+}
+
+// * 2. Text & Icon Modifiers
+
+.Tooltip--text,
+.Tooltip--icon {
+  color: $link-color;
+}
+
+.Tooltip--text {
+  text-decoration: underline;
+}
