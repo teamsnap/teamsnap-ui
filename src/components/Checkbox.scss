@@ -11,8 +11,9 @@
 // Notes:
 // * disabling a checkbox only needs to be done on the input
 
-// TODO : look into large modifier for default checkbox
-// TODO : look into svg icons for checkboxes
+// TODO: look into large modifier for default checkbox
+// TODO: look into svg icons for checkboxes
+// TODO: fix cursor conflict in classic
 
 //------------------------------------------------------------//
 
@@ -46,6 +47,7 @@ $Checkbox-bg-color: $cu-foreground !default;
   display: block;
   cursor: pointer;
   padding-left: $Checkbox-size + $su-xsmall;
+  min-height: $Checkbox-size;
 
   &:before {
     @include ss-pika;
@@ -80,8 +82,11 @@ $Checkbox-bg-color: $cu-foreground !default;
 }
 
 .Checkbox-input:disabled + .Checkbox-label {
-  cursor: not-allowed;
-  color: $cu-divider--light;
+  color: $cu-info--light;
+
+  &, &:before {
+    cursor: default; // not-allowed would be nice, but is conflicting with classic
+  }
 
   &:before {
     content: '🔒';
@@ -89,6 +94,12 @@ $Checkbox-bg-color: $cu-foreground !default;
     background-color: $cu-divider;
     line-height: $Checkbox-size;
     color: $Checkbox-bg-color;
+  }
+}
+
+.Checkbox-input:disabled:checked + .Checkbox-label {
+  &:before {
+    background-color: $cu-positive;
   }
 }
 
