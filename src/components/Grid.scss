@@ -62,6 +62,7 @@ $Grid-gutter: $su-medium;
 
 .Grid--withGutter {
   margin: 0 (-0.5 * $Grid-gutter);
+  width: calc(100% + #{$Grid-gutter})
 }
 
 .Grid--withGutter > .Grid-cell {

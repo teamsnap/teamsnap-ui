@@ -82,8 +82,7 @@ $Checkbox-bg-color: $cu-foreground !default;
 }
 
 .Checkbox-input:disabled + .Checkbox-label {
-  color: $cu-info--light;
-
+  
   &, &:before {
     cursor: default; // not-allowed would be nice, but is conflicting with classic
   }
