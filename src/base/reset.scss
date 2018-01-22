@@ -20,3 +20,19 @@ img {
   height:    auto;
   border:    none;
 }
+
+::-webkit-input-placeholder {
+  color: scaleColor($ts-black, 6);
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: scaleColor($ts-black, 6);
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  color: scaleColor($ts-black, 6);
+}
+
+:-ms-input-placeholder {
+   color: scaleColor($ts-black, 6);
+}
