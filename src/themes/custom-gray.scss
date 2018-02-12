@@ -1,0 +1,27 @@
+//------------------------------------------------------------//
+
+// * Custom Gray Color Settings
+// * 1. Define new color scheme
+// * 2. Load app.scss with color settings overrriden
+
+// * Notes:
+// * Based on Adobe Kuler's Monocromatic color wheel settings
+// * background, middleground, and foreground color don't change
+
+//------------------------------------------------------------//
+
+@import "../config/index";
+
+// * 1. Define new color scheme
+
+$cu-primary:   #999;
+$cu-secondary: #666;
+$cu-highlight: #222;
+$color-links:  #888;
+
+// * 2. Load app.scss with color settings overrriden
+
+@import "../fonts/index";
+@import "../base/index";
+@import "../components/index";
+@import "../utils/index";

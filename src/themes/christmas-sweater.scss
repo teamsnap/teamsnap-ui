@@ -1,0 +1,217 @@
+//--------------------------------------------------------------//
+
+// * Christmas Sweater Theme
+
+// * 1. Redefine Color Variables for Theme
+// * 2. Redefine Color Variables for Theme
+// * 3. Load app-theme with redefined variables
+// * 4. Further Theme Cleanup
+
+// Notes:
+// * Based on the same split comlimentary color scheme as default
+// * App-theme is a copy of app-team without tools loaded so
+// they aren't double loaded
+// * Since Christmas sweater breaks all the normal patterns,
+// it needs a few individual overrides that don't fit into
+// the normal component settings
+
+// TODO : after updating element variables, cleanup Theme
+// TODO : given the further cleanup, make theme seasonal
+
+//--------------------------------------------------------------//
+
+@import "../config/index";
+
+// * 1. Redefine Color Variables for Theme
+
+$ts-white:                   #fafafa;
+$ts-grey:                    #c6c6c6;
+$ts-black:                      #333;
+
+$cu-primary:                                     #b50a2a;
+$cu-primary--light:           scaleColor($cu-primary, 2);
+$cu-primary--dark:           scaleColor($cu-primary, -1);
+$cu-primary--bg:             scaleColor($cu-primary, 10);
+
+$cu-secondary:                                   #59b55e;
+$cu-secondary--light:       scaleColor($cu-secondary, 1);
+$cu-secondary--dark:       scaleColor($cu-secondary, -1);
+$cu-secondary--bg:         scaleColor($cu-secondary, 10);
+
+$cu-highlight:                                   #fafafa;
+$cu-highlight--light:       scaleColor($cu-highlight, 1);
+$cu-highlight--dark:       scaleColor($cu-highlight, -1);
+$cu-highlight--bg:         scaleColor($cu-highlight, 10);
+
+$cu-foreground:                                  #fafafa;
+$cu-foreground--light:     scaleColor($cu-foreground, 0);
+$cu-foreground--dark:      scaleColor($cu-foreground, 0);
+
+$cu-middleground:                                #f6f6f6;
+$cu-middleground--light: scaleColor($cu-middleground, 0);
+$cu-middleground--dark:  scaleColor($cu-middleground, 0);
+
+$cu-background:                                  #03784b;
+$cu-background--light:     scaleColor($cu-background, 0);
+$cu-background--dark:      scaleColor($cu-background, 0);
+
+$cu-divider:                                     #dddddd;
+$cu-divider--light:           scaleColor($cu-divider, 1);
+$cu-divider--dark:           scaleColor($cu-divider, -1);
+
+$cu-info:                                        #274e29;
+$cu-info--light:                scaleColor($cu-info, -1);
+$cu-info--dark:                  scaleColor($cu-info, 0);
+
+$cu-positive:                                    #7fc243;
+$cu-positive--light:         scaleColor($cu-positive, 1);
+$cu-positive--dark:         scaleColor($cu-positive, -1);
+$cu-positive--bg:            scaleColor($cu-positive, 4);
+
+$cu-negative:                                    #e26362;
+$cu-negative--light:         scaleColor($cu-negative, 1);
+$cu-negative--dark:         scaleColor($cu-negative, -1);
+$cu-negative--bg:            scaleColor($cu-negative, 8);
+
+$color-links:                                $cu-primary;
+
+// * 2. Redefine Element Variable Settings
+
+$button-style:                             flat;
+
+$button-color:                      $cu-primary;
+$button-border-color:                 $ts-white;
+$button-text-color:                   $ts-white;
+
+$form-input-bg-color:   $cu-middleground--light;
+$form-select-bg-color:  $cu-middleground--light;
+
+$panel-header-bg-color:        $cu-primary;
+$panel-header-text-color:             $ts-white;
+
+$panel-body-bg-color:            $cu-foreground;
+$panel-body-text-color:             $cu-info;
+
+$table-header-bg-color:        $cu-primary;
+$table-header-text-color:             $ts-white;
+
+$table-sub-header-text-color:       $cu-primary;
+
+$table-body-bg-color:            $cu-foreground;
+$table-body-text-color:             $cu-info;
+
+$feedback-text-color:               $ts-white;
+$feedback-bg-color:                 transparent;
+$feedback-border-color: $ts-white;
+
+$placeholder-figure-color:            $ts-white;
+
+// * 3. Load app-theme with redefined variables
+
+@import "../fonts/index";
+@import "../base/index";
+@import "../components/index";
+@import "../utils/index";
+
+// * 4. Further Theme Cleanup
+
+.App-Footer--container--align-right {
+  color: $ts-white;
+  [href="https://www.facebook.com/home.php?src=fftb#/pages/TeamSnap/78822513967?ref=ts"],
+  [href="https://www.twitter.com/teamsnap"],
+  [href="http://blog.teamsnap.com"],
+  [href="https://www.teamsnap.com/privacy-policy"],
+  [href="https://www.teamsnap.com/terms"],
+  .old-style--swap,
+  .new-style--swap {
+    color: $ts-grey;
+  }
+}
+
+.Roster__key,
+.Payments__key,
+.loading-text,
+.startup-message,
+[class*="__tab-title"],
+.Roster__small-panel.hrs--bg-highlight,
+.Roster__tab-title--pull-left,
+#subnav .title, #subnav .title_div,
+.Team-Home__flexbox-item {
+  color: $ts-white;
+}
+
+#manager_subnav,
+.hrs__manager-subnav,
+.hrs--bg-highlight {
+  background: $cu-primary;
+}
+
+#manager_subnav,
+.hrs__manager-subnav {
+  & > span,
+  [class*="inline-title"] {
+    color: $ts-white;
+  }
+}
+
+.key,
+.hrs__manager-subnav {
+  color: $ts-white;
+}
+
+.Main-Tabs--container {
+  li {
+    border-color: $ts-white;
+    border-left: 0;
+    border-right: 1px solid $ts-white;
+    border-bottom: 1px solid $ts-white;
+    &:first-child {
+      border-left: 1px solid $ts-white;
+    }
+    &:last-child {
+      border-right: 1px solid $ts-white;
+    }
+  }
+}
+
+.loader, .loading-indicator {
+    border-top: solid 2px $ts-grey;
+    box-shadow: 0 0 0 1px $ts-grey;
+}
+
+[data-ui="Tip Message"],
+.Roster__key,
+.Roster__row__feed-back--warning--sm-4\/5--centered,
+.Team-Home__feed-back--warning,
+.hrs__manager-tip {
+  a {
+    color: $ts-grey;
+  }
+}
+
+.hrs__tip-icon--ss-info,
+[class*="__tab-title"] i {
+  color: $ts-grey;
+}
+
+[class*="button"][class*="success"],
+[class*="button"][class*="ss-plus"],
+[class*="button"][class*="ss-check"],
+[class*="button"][class*="ss-addcalendar"],
+[class*="button"][class*="ss-uploadcloud"] {
+    border-color: $ts-white;
+}
+
+[class*="button"][class*="danger"],
+[class*="button"][class*="ss-delete"] {
+    color: $ts-white;
+}
+
+.standard_table .help_message {
+  color: $cu-info;
+  border-color: $cu-info;
+}
+
+.standard_table.cocoa tr[show="true"]:nth-child(2n + 2) td {
+    background: $cu-foreground;
+}

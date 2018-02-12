@@ -1,0 +1,27 @@
+//------------------------------------------------------------//
+
+// * Custom Pink Color Settings
+// * 1. Define new color scheme
+// * 2. Load app.scss with color settings overrriden
+
+// * Notes:
+// * Based on Adobe Kuler's Monocromatic color wheel settings
+// * background, middleground, and foreground color don't change
+
+//------------------------------------------------------------//
+
+@import "../config/index";
+
+// * 1. Define new color scheme
+
+$cu-primary:   #f2798d;
+$cu-secondary: #f2798d;
+$cu-highlight: #723943;
+$color-links:  #BF5F6F;
+
+// * 2. Load app.scss with color settings overrriden
+
+@import "../fonts/index";
+@import "../base/index";
+@import "../components/index";
+@import "../utils/index";
