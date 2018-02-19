@@ -1,0 +1,59 @@
+@import "../config/index.scss";
+
+//------------------------------------------------------------//
+
+// * Input Group
+//
+// * Add icons/symbols within inputs
+//
+//  1. Settings
+//  2. Base styles
+//  3. Modifiers
+//
+//------------------------------------------------------------//
+
+// * 1. Settings
+
+$form-input-height: $su-xlarge !default;
+
+// * 2. Base styles
+
+.InputGroup {
+  position: relative;
+}
+
+.InputGroup-icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: scaleGrid(4);
+  height: ( $form-input-height - $su-small );
+  line-height: ( $form-input-height - $su-small );
+  text-align: center;
+  z-index: 5;
+}
+
+// * 3. Modifiers for positioning icons left or right
+
+.InputGroup--leftIcon {
+  .Input {
+    padding-left: scaleGrid(5);
+  }
+
+  .InputGroup-icon {
+    left: 0;
+    border-right: $border-width-small solid $cu-divider--light;
+  }
+}
+
+.InputGroup--rightIcon {
+  .Input {
+    padding-right: scaleGrid(5);
+  }
+
+  .InputGroup-icon {
+    right: 0;
+    border-left: $border-width-small solid $cu-divider--light;
+  }
+}
