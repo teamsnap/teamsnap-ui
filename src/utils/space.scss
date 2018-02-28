@@ -25,7 +25,9 @@ $spaces: (
   'Xs': $su-xsmall,
   'Sm': $su-small,
   'Md': $su-medium,
-  'Lg': $su-large
+  'Lg': $su-large,
+  'Xl': $su-xlarge,
+  'Xxl': $su-xxlarge
 );
 
 @each $name, $value in $spaces {

@@ -21,6 +21,7 @@ $SelectBox-indicator-width: scaleGrid(4);
 .SelectBox {
   position: relative;
   display: inline-block;
+  width: 100%;
 
   &:after {
     @include ss-pika;
