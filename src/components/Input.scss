@@ -33,6 +33,8 @@ $form-input-bg-color: $cu-foreground--dark !default;
   background-color: $form-input-bg-color;
   border: $border-width-small solid $cu-divider;
   border-radius: $border-radius-medium;
+  font-family: inherit;
+  font-size: $tu-base-fontSize;
 
   &:disabled {
     background: $cu-middleground--dark;
