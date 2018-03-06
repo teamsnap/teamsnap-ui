@@ -57,7 +57,7 @@ gulp.task('watch', () => {
 });
 
 // Register frontend composite task
-gulp.task('frontend', ['clean'], done => {
+gulp.task('build', ['clean'], done => {
   gulp.start('fonts'),
   gulp.start('css-teamsnap'),
   gulp.start('css-themes')
@@ -66,10 +66,8 @@ gulp.task('frontend', ['clean'], done => {
 
 // Register default task
 // Add --dev flag for local dev (watches local files)
-gulp.task('default', ['frontend'], done => {
+gulp.task('default', ['build'], done => {
   gulp.start('serve');
-  if (env.dev) {
-    gulp.start('watch');
-  }
+  gulp.start('watch');
   done();
 });

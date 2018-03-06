@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "sass-lint 'src/**/*.scss' -v",
     "prepublish": "npm run lint",
-    "prestart": "npm install",
+    "install": "gulp build",
     "start": "gulp"
   },
   "repository": {
