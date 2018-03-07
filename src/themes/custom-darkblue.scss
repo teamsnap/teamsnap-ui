@@ -1,0 +1,27 @@
+//------------------------------------------------------------//
+
+// * Custom Dark Blue Color Settings
+// * 1. Define new color scheme
+// * 2. Load app.scss with color settings overrriden
+
+// * Notes:
+// * Based on Adobe Kuler's Monocromatic color wheel settings
+// * background, middleground, and foreground color don't change
+
+//------------------------------------------------------------//
+
+@import "../config/index";
+
+// * 1. Define new color scheme
+
+$cu-primary:   #153b5b;
+$cu-secondary: #5984A7;
+$cu-highlight: #3E5C74;
+$color-links:  #276DA7;
+
+// * 2. Load app.scss with color settings overrriden
+
+@import "../fonts/index";
+@import "../base/index";
+@import "../components/index";
+@import "../utils/index";

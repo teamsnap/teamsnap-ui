@@ -1,0 +1,87 @@
+//--------------------------------------------------------------//
+
+// * Up Beet Theme
+
+// * 1. Redefine Color Variables for Theme
+// * 2. Redefine Element Variables for Theme
+// * 3. Load app-theme with redefined variables
+
+// Notes:
+// * Based on the same split comlimentary color scheme as default
+// * App-theme is a copy of app-team without tools loaded so
+// they aren't double loaded
+
+// TODO : after updating element variables, cleanup theme
+
+//--------------------------------------------------------------//
+
+@import "../config/index";
+
+// * 1. Redefine Color Variables for Theme
+
+$ts-white:                                       #fafafa;
+$ts-grey:                                        #aaaaaa;
+$ts-black:                                       #222222;
+
+$cu-foreground:                                  #4c6289;
+$cu-foreground--light:     scaleColor($cu-foreground, 0);
+$cu-foreground--dark:      scaleColor($cu-foreground, 0);
+
+$cu-middleground:         scaleColor($cu-foreground, -1);
+$cu-middleground--light: scaleColor($cu-middleground, 0);
+$cu-middleground--dark:  scaleColor($cu-middleground, 0);
+
+$cu-background:                                  #3a4764;
+$cu-background--light:     scaleColor($cu-background, 0);
+$cu-background--dark:      scaleColor($cu-background, 0);
+
+$cu-divider:              scaleColor($cu-background, -1);
+$cu-divider--light:           scaleColor($cu-divider, 1);
+$cu-divider--dark:           scaleColor($cu-divider, -1);
+
+$cu-info:                                        #d6d6d6;
+$cu-info--light:                scaleColor($cu-info, -1);
+$cu-info--dark:                  scaleColor($cu-info, 0);
+
+$cu-positive:                                    #7fc243;
+$cu-positive--light:         scaleColor($cu-positive, 1);
+$cu-positive--dark:         scaleColor($cu-positive, -1);
+$cu-positive--bg:            scaleColor($cu-positive, 3);
+
+$cu-negative:                                    #e26362;
+$cu-negative--light:         scaleColor($cu-negative, 1);
+$cu-negative--dark:         scaleColor($cu-negative, -1);
+$cu-negative--bg:            scaleColor($cu-negative, 6);
+
+$cu-primary:                                     #e55377;
+$cu-primary--light:           scaleColor($cu-primary, 2);
+$cu-primary--dark:           scaleColor($cu-primary, -1);
+$cu-primary--bg:             scaleColor($cu-primary, 10);
+
+$cu-secondary:                                   #40b3d2;
+$cu-secondary--light:       scaleColor($cu-secondary, 1);
+$cu-secondary--dark:       scaleColor($cu-secondary, -2);
+$cu-secondary--bg:         scaleColor($cu-secondary, 10);
+
+$cu-highlight:                                   #40b3d2;
+$cu-highlight--light:       scaleColor($cu-highlight, 1);
+$cu-highlight--dark:        scaleColor($cu-highlight, 0);
+$cu-highlight--bg:         scaleColor($cu-highlight, 10);
+
+$color-links:                         $cu-primary--light;
+
+// * 2. Redefine Element Variables for Theme
+
+$button-color:            $cu-foreground--light;
+
+$feedback-bg-color:                 transparent;
+
+$form-select-bg-color:    $cu-foreground--light;
+$form-input-bg-color:     $cu-foreground--light;
+
+// * 3. Load app-theme with redefined variables
+
+@import "../fonts/index";
+@import "../base/index";
+@import "../components/index";
+@import "../utils/index";
