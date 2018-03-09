@@ -3,11 +3,11 @@
 module.exports = {
   css : {
     teamsnap : {
-      src : 'src/teamsnap-ui.scss',
+      src : 'src/css/teamsnap-ui.scss',
       dest : 'dist/css'
     },
     themes : {
-      src : 'src/themes/*.scss',
+      src : 'src/css/themes/*.scss',
       dest : 'dist/css/themes'
     }
   },
@@ -17,10 +17,10 @@ module.exports = {
   },
   watch : {
     teamsnap : [
-      'src/**/*.scss',
-      '!src/themes/*.scss',
+      'src/css/**/*.scss',
+      '!src/css/themes/*.scss',
     ],
-    scss : 'src/**/*.scss'
+    scss : 'src/css/**/*.scss'
   },
   serve : {
     options : {
