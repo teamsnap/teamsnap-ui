@@ -2,34 +2,50 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { _merge } from 'utils/helpers'
 
-// TODO: Need to figure out best way to add 'Radial' progress bar
-//  - Also need to figure out how the rotate (deg) calculation should work?
-const baseAttributes = {
-  ProgressBar: { className: 'ProgressBar' },
-  ProgressBarTitle: { className: 'ProgressBar-title' },
-  ProgressBarRange: { className: 'ProgressBar-range' },
-  ProgressBarStatus: { className: 'ProgressBar-status' }
-}
-
-// Make an easier API, with attributes that spread and overwrite the base stuff.
+/**
+ * ProgressBar
+ * 
+ * @extends PureComponent
+ * @example
+ * <ProgressBar
+ *   className={ 'InvoiceProgress' }
+ *   title={ 'Percentage Paid' }
+ *   type='positive'
+ *   size='large'
+ *   progress='20%' />
+ */
 
 class ProgressBar extends PureComponent {
-  renderTitle = (attrs) => {
-    const { title } = this.props
-    return title ? <p { ...attrs.ProgressBarTitle }>{ title }</p> : null
+  getBaseClasses = (className) => {
+    const { inline } = this.props
+    let classes = [
+      'ProgressBar'
+      ...className,
+    ]
+    if (inline) {
+      classes.push('ProgressBar--inline')
+    }
+    return classes.join(' ')
   }
+  
+  statusClasses = [
+    'positive': 'ProgressBar-status'
+    'negative': 'ProgressBar-status ProgressBar--negative'
+    'neutral': 'ProgressBar-status ProgressBar-status--neutral'
+  ]
+  
+  barSize = [
+    'small': 'ProgressBar-range ProgressBar--small'
+  ]
 
   render () {
-    const { title, width, attributes } = this.props
-
-    const customAttributes = { ProgressBarStatus: { style: { width } } }
-    const attrs = _merge(baseAttributes, customAttributes, attributes)
+    const { className, style, title, progress, type, size, type } = this.props
 
     return (
-      <div { ...attrs.ProgressBar }>
-        { this.renderTitle(attrs) }
-        <div { ...attrs.ProgressBarRange }>
-          <div { ...attrs.ProgressBarStatus } />
+      <div className={ getBaseClasses(className) } style={ style } >
+        { title && <p className='ProgressBar-title'>{ title }</p> }
+        <div className={ barSize[size] }>
+          <div className={ statusClasses[type] } style={ width: progress }></div>
         </div>
       </div>
     )
@@ -37,15 +53,19 @@ class ProgressBar extends PureComponent {
 }
 
 ProgressBar.propTypes = {
+  progress: PropTypes.string.isRequired,
   title: PropTypes.string,
-  width: PropTypes.string,
-  attributes: PropTypes.object
+  type: PropTypes.string
+  size: PropTypes.string,
+  inline: PropTypes.bool,
+  style: PropTypes.shapeOf({})
 }
 
 ProgressBar.defaultProps = {
   title: null,
-  width: '0',
-  attributes: {}
+  type: 'positive'
+  inline: false,
+  style: false,
 }
 
 export default ProgressBar
