@@ -7,24 +7,22 @@
 
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Element from 'common/Element'
 
  class Divider extends PureComponent {
   render () {
-    return <Element tag='hr' { ...this.props } />
+    const { className, style, ...otherProps } = this.props
+    return <hr className={ className} style={ style } { ...otherProps } />
   }
  }
 
 Divider.propTypes = {
   className: PropTypes.string,
-  style: PropTypes.object,
-  attributes: PropTypes.object
+  style: PropTypes.object
 }
 
 Divider.defaultProps = {
   className: 'Divider',
-  style: {},
-  attributes: {}
+  style: {}
 }
 
  export default Divider

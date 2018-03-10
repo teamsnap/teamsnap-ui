@@ -12,14 +12,6 @@
 
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { _merge } from 'utils/helpers'
-
-const baseAttributes = {
-  Loader: { className: 'Loader' },
-  LoaderIndicator: { className: 'Loader-indicator' },
-  LoaderIndicatorText: { className: 'Loader-indicatorText' },
-  LoaderMessage: { className: 'Loader-message' }
-}
 
 class Loader extends PureComponent {
   renderSpinAnimation = () => <span className='SpinAnimation' />
@@ -46,20 +38,20 @@ class Loader extends PureComponent {
   }
 
   render () {
-    const { type, text, message, attributes } = this.props
+    const { type, text, message, ...otherProps } = this.props
 
     if (!text && !message) { return this.renderAnimation(type) }
 
-    const customAttribute = type === 'jello' ? { Loader: { className: 'Loader Loader--jello' } } : {}
-    const attrs = _merge(baseAttributes, customAttribute, attributes)
+    // THOUGHTS: Jello looder gets a modifier, do we pass the appropriate string or try and 'create' the class automatically?
+    // const loaderClassName = type === 'jello' ? `${ className } Loader--jello` ? className
 
     return (
-      <div { ...attrs.Loader }>
-        <div { ...attrs.LoaderIndicator }>
+      <div className={ className } style={ style } { ...otherProps }>
+        <div className='Loader-indicator'>
           { this.renderAnimation(type) }
-          { text && <div { ...attrs.LoaderIndicatorText }>{ text }</div> }
+          { text && <div className='Loader-indicatorText'>{ text }</div> }
         </div>
-        { message && <div { ...attrs.LoaderMessage }>{ message }</div> }
+        { message && <div className='Loader-message'>{ message }</div> }
       </div>
     )
   }
@@ -69,13 +61,15 @@ Loader.propTypes = {
   type: PropTypes.oneOf(['jello', 'pulse', 'spin']).isRequired,
   text: PropTypes.string,
   message: PropTypes.string,
-  attributes: PropTypes.object
+  className: PropTypes.string,
+  style: PropTypes.object
 }
 
 Loader.defaultProps = {
   text: null,
   message: null,
-  attributes: {}
+  className: 'Loader',
+  style: {}
 }
 
 export default Loader

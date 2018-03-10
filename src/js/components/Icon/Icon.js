@@ -1,21 +1,20 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-// NOTE: If we aren't using 'webpack' across the board, this method will not work...
-// const iconLoader = (name, className) => {
-  // eslint-disable-next-line import/no-dynamic-require
-  // const svgIcon = require(`!raw-loader!../../../node_modules/@teamsnap/teamsnap-ui/src/assets/icons/${name}.svg`)
-  // return { __html: svgIcon.replace('<svg', `<svg class="${ className }"`) }
-// }
+const iconLoader = (name, className) => {
+  const svgIcon = require(`src/assets/icons/${name}.svg`)
+  return { __html: svgIcon.replace('<svg', `<svg class="${ className }"`) }
+}
 
 class Icon extends PureComponent {
   render () {
-    const { name, size, color, className, attributes } = this.props
-    const attrs = { style: { color, fontSize: size }, ...attributes }
+    const { name, size: fontSize, color, className, style, ...otherProps } = this.props
 
-    // return <i { ...attrs } dangerouslySetInnerHTML={ iconLoader(name, className) } />
     return (
-      <i { ...attrs } />
+      <i
+        style={{ color, fontSize, ...style }}
+        { ...otherProps } 
+        dangerouslySetInnerHTML={ iconLoader(name, className) } />
     )
   }
 }
@@ -25,14 +24,14 @@ Icon.propTypes = {
   size: PropTypes.string,
   color: PropTypes.string,
   className: PropTypes.string,
-  attributes: PropTypes.object
+  style: PropTypes.object
 }
 
 Icon.defaultProps = {
   size: '',
   color: '',
   className: 'Icon',
-  attributes: {}
+  style: {}
 }
 
 export default Icon

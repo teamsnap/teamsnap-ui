@@ -4,17 +4,11 @@ import Icon from '../Icon'
 
 class Tooltip extends PureComponent {
   render () {
-    const { text, icon, children, className, style, attributes } = this.props
-
-    const attrs = {
-      className,
-      style,
-      ...attributes
-    }
+    const { text, children, className, style, otherProps } = this.props
 
     return (
-      <span { ...attrs } data-tooltip={ text }>
-        { children || <Icon name={ icon } />  }
+      <span className={ className } style={ style } data-tooltip={ text } { ...otherProps }>
+        { children }
       </span>
     )
   }
@@ -22,19 +16,15 @@ class Tooltip extends PureComponent {
 
 Tooltip.propTypes = {
   text: PropTypes.string.isRequired,
-  icon: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  style: PropTypes.object,
-  attributes: PropTypes.object
+  style: PropTypes.object
 }
 
 Tooltip.defaultProps = {
-  icon: 'info',
   children: null,
-  className: 'Tooltip Tooltip--icon',
-  style: {},
-  attributes: {}
+  className: 'Tooltip',
+  style: {}
 }
 
 export default Tooltip

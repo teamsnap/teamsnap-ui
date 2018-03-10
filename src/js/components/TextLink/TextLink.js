@@ -17,17 +17,16 @@ import PropTypes from 'prop-types'
 
 class TextLink extends PureComponent {
   render () {
-    const { className, style, children, location, routerLink, ...other } = this.props
+    const { className, style, children, location, routerLink, ...otherProps } = this.props
     
     // Define anchorTag to be the passed in router 'Link' or 'a' as default.
     const AnchorTag = routerLink || 'a'
+
+    // Various React Routers use the attribute 'to' as opposed to the html anchors default 'href'
+    const linkType = { [routerLink ? 'to' : 'href']: location }
     
     return (
-      <AnchorTag 
-        className={ className }
-        style={ style }
-        { [routerLink ? 'to' : 'href']: location }
-        { ...other }>
+      <AnchorTag className={ className } style={ style } { ...linkType } { ...otherProps }>
         { children }
       </AnchorTag>
     )
@@ -39,7 +38,7 @@ TextLink.propTypes = {
   routerLink: PropTypes.func,
   location: PropTypes.string,
   className: PropTypes.string,
-  style: PropTypes.shapeOf({})
+  style: PropTypes.object
 }
 
 TextLink.defaultProps = {

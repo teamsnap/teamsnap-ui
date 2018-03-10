@@ -1,29 +1,27 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Element from 'common/Element'
 
 class Grid extends PureComponent {
   render () {
+    const { children, className, style, ...otherProps } = this.props
+
     return (
-      <Element { ...this.props }>
-        { this.props.children }
-      </Element>
+      <div className={ className} style={ style } { ...otherProps }>
+        { children }
+      </div>
     )
   }
 }
 
 Grid.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  style: PropTypes.object,
-  attributes: PropTypes.object
+  style: PropTypes.object
 }
 
 Grid.defaultProps = {
-  children: null,
   className: 'Grid', 
-  style: {},
-  attributes: {}
+  style: {}
 }
 
 export default Grid

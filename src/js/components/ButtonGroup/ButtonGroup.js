@@ -9,8 +9,7 @@
 
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Element from 'common/Element'
-import Button from 'common/Button'
+import Button from '../Button'
 
 class ButtonGroup extends PureComponent {
   renderButtons = () => {
@@ -20,10 +19,12 @@ class ButtonGroup extends PureComponent {
   }
 
   render () {
+    const { children, className, style, ...otherProps } = this.props 
+
     return (
-      <Element { ...this.props }>
-        { this.props.children || this.renderButtons() }
-      </Element>
+      <div className={ className } style={ style } { ...otherProps }>
+        { children || this.renderButtons() }
+      </div>
     )
   }
 }
@@ -32,16 +33,14 @@ ButtonGroup.propTypes = {
   children: PropTypes.node,
   buttons: PropTypes.array,
   className: PropTypes.string,
-  style: PropTypes.object,
-  attributes: PropTypes.object
+  style: PropTypes.object
 }
 
 ButtonGroup.defaultProps = {
   children: null,
   buttons: [],
   className: 'ButtonGroup',
-  style: {},
-  attributes: {}
+  style: {}
 }
 
 export default ButtonGroup

@@ -23,14 +23,10 @@ class Button extends PureComponent {
   )
 
   renderButton = () => {
-    const { children, type, className, style, ...other } = this.props
+    const { children, type, className, style, ...otherProps } = this.props
 
     return (
-      <button 
-        type={ type }
-        className={ className}
-        style={ style }
-        { ...other }>
+      <button type={ type } className={ className} style={ style } { ...otherProps }>
         { children }
       </button>
     )
@@ -48,7 +44,7 @@ Button.propTypes = {
   routerLink: PropTypes.func,
   location: PropTypes.string,
   className: PropTypes.string,
-  style: PropTypes.object,
+  style: PropTypes.object
 }
 
 Button.defaultProps = {
@@ -56,7 +52,7 @@ Button.defaultProps = {
   routerLink: null,
   location: '',
   className: 'Button',
-  style: {},
+  style: {}
 }
 
 export default Button
