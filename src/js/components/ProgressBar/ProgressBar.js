@@ -44,8 +44,8 @@ ProgressBar.propTypes = {
 
 ProgressBar.defaultProps = {
   title: null,
-  type: 'positive'
-  className: '',
+  type: 'positive',
+  className: 'ProgressBar',
   style: {}
 }
 
