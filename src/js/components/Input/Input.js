@@ -4,7 +4,7 @@ import '../Field'
 
 class Input extends PureComponent {
   render () {
-    const { name, type, children, className, style, inputProps, ...otherProps } = this.props
+    const { name, type, label, errorMessage, children, className, style, inputProps, ...otherProps } = this.props
 
     return (
       <Field name={ name } label={ label } errorMessage={ errorMessage }>
