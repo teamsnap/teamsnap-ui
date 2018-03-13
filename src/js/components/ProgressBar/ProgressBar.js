@@ -21,10 +21,10 @@ class ProgressBar extends PureComponent {
   }
 
   render () {
-    const { className, style, title, progress, type, ...other } = this.props
+    const { className, style, title, progress, type, ...otherProps } = this.props
 
     return (
-      <div className={ className } style={ style } { ...other}>
+      <div className={ className } style={ style } { ...otherProps }>
         { title && <p className='ProgressBar-title'>{ title }</p> }
         <div className='ProgressBar-range'>
           <div className={ statusClasses[type] } style={{ width: progress }}></div>
