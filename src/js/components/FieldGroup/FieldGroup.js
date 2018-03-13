@@ -14,13 +14,14 @@ class FieldGroup extends PureComponent {
   renderFieldComponent = () => {
     const { name, fieldProps } = this.props
 
-    // TODO: Should be able to clean this return structure up a bit.
-    if (field === 'input') { return <Input name={ name } { ...fieldProps } /> }
-    else if (field === 'textarea') { return <TextArea name={ name } { ...fieldProps } /> }
-    else if (field === 'checkbox') { return <Checkbox name={ name } { ...fieldProps } /> } 
-    else if (field === 'radio') { return <Radio name={ name } { ...fieldProps } /> } 
-    else if (field === 'toggle') { return <Toggle name={ name } { ...fieldProps } /> }
-    else if (field === 'select') { return <Select name={ name } { ...fieldProps } /> }
+    let FieldTag = Input
+    if (field === 'select') { FieldTag = Select }
+    else if (field === 'checkbox') { FieldTag = Checkbox }
+    else if (field === 'radio') { FieldTag = Radio }
+    else if (field === 'toggle') { FieldTag = Toggle }
+    else if (field === 'textarea') { FieldTag = TextArea }
+
+    return <FieldTag name={ name } { ...fieldProps } />
   }
 
   render () {
