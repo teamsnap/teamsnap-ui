@@ -1,30 +1,30 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import InputControl from '../InputControl'
 
-// TODO: Test the implementation with and without reduxForms.
-
-class Checkbox extends PureComponent {
+class Toggle extends PureComponent {
   render() {
-    const { name, className, style, inputProps, ...otherProps } = this.props
+    const { inputProps, ...otherProps } = this.props
 
     return (
-      <div className={className} style={style} { ...otherProps }>
-        <input className='Toggle-input' type="checkbox" name={name} { ...inputProps} />
-        <label className="Toggle-label" htmlFor={name} />
-      </div>
+      <InputControl
+        type='checkbox'
+        labelProps={{ className: 'Toggle-label' }} 
+        inputProps={{ className: 'Toggle-input', ...inputProps }} 
+        { ...otherProps } />
     )
   }
 }
 
-Checkbox.propTypes = {
+Toggle.propTypes = {
   name: PropTypes.string.isRequired,
   className: PropTypes.string,
   style: PropTypes.object
 }
 
-Checkbox.defaultProps = {
+Toggle.defaultProps = {
   className: 'Toggle',
   style: {}
 }
 
-export default Checkbox
+export default Toggle

@@ -1,18 +1,12 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import InputControl from '../InputControl'
 
 // TODO: Test the implementation with and without reduxForms.
 
 class Checkbox extends PureComponent {
   render() {
-    const { name, label, className, style, inputProps, ...otherProps } = this.props
-
-    return (
-      <div className={ className } style={ style } { ...otherProps }>
-        <input className='Checkbox-input' type="checkbox" name={name} { ...inputProps} />
-        <label className="Checkbox-label" htmlFor={name}>{label}</label>
-      </div>
-    )
+    return <InputControl type='checkbox' { ...this.props } />
   }
 }
 
