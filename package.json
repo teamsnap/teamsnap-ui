@@ -2,13 +2,14 @@
   "name": "@teamsnap/teamsnap-ui",
   "version": "1.2.1",
   "description": "a CSS component library for TeamSnap",
-  "main": "index.js",
+  "main": "dist/js/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "sass-lint 'src/css/**/*.scss' -v",
-    "prepublish": "npm run lint",
-    "install": "gulp build",
-    "start": "gulp"
+    "prepublish": "npm run lint && npm run build:js",
+    "postinstall": "gulp build && npm run build:js",
+    "start": "gulp",
+    "build:js": "babel src/js -d dist/js"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,12 @@
     "suit"
   ],
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "browser-sync": "^2.23.6",
     "del": "^3.0.0",
     "eslint": "^4.18.2",
@@ -37,6 +43,9 @@
     "gulp-if": "^2.0.2",
     "gulp-sass": "^3.1.0",
     "gulp-util": "^3.0.8",
+    "prop-types": "^15.6.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "sass-lint": "^1.10.2"
   },
   "dependencies": {
