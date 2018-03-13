@@ -4,35 +4,28 @@ import PropTypes from 'prop-types'
 // TODO: Test the implementation with and without reduxForms.
 
 class Radio extends PureComponent {
-  renderRadio = (option) => {
-    const { className, style, ...otherProps } = this.props
-    const { name, label, ...inputProps } = option
+  render() {
+    const { name, label, className, style, inputProps, ...otherProps } = this.props
 
     return (
-      <div key={ label } className={ className } style={ style } { ...otherProps }>
+      <div className={ className } style={ style } { ...otherProps }>
         <input className='Checkbox-input' type="radio" name={name} { ...inputProps} />
         <label className="Checkbox-label" htmlFor={name}>{label}</label>
       </div>
     )
   }
-
-  render() {
-    const { options } = this.props
-
-    return options.map(this.renderRadio)
-  }
 }
 
-Radio.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired
-  })).isRequired,
+Checkbox.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  inputProps: PropTypes.object,
   className: PropTypes.string,
   style: PropTypes.object
 }
 
-Radio.defaultProps = {
+Checkbox.defaultProps = {
+  inputProps: {},
   className: 'Checkbox Checkbox--radio',
   style: {}
 }
