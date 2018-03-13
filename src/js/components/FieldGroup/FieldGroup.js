@@ -4,15 +4,15 @@ import Field from '../Field'
 import FieldLabel from '../FieldLabel'
 import FieldMessage from '../FieldMessage'
 import Input from '../Input'
-import TextArea from './TextArea'
-import Checkbox from './Checkbox'
-import Radio from './Radio'
-import Toggle from './Toggle'
-import Select from './Select'
+import TextArea from '../TextArea'
+import Checkbox from '../Checkbox'
+import Radio from '../Radio'
+import Toggle from '../Toggle'
+import Select from '../Select'
 
 class FieldGroup extends PureComponent {
   renderFieldComponent = () => {
-    const { name, fieldProps } = this.props
+    const { name, field, fieldProps } = this.props
 
     let FieldTag = Input
     if (field === 'select') { FieldTag = Select }
@@ -25,6 +25,8 @@ class FieldGroup extends PureComponent {
   }
 
   render () {
+    const { isError, name, label, message } = this.props 
+
     return (
       <Field isError={ isError }>
         { label && <FieldLabel name={ name } children={ label } /> }

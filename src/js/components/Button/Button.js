@@ -23,7 +23,7 @@ class Button extends PureComponent {
   )
 
   renderButton = () => {
-    const { children, type, className, style, ...otherProps } = this.props
+    const { children, type, routerLink, location, className, style, ...otherProps } = this.props
 
     return (
       <button type={ type } className={ className} style={ style } { ...otherProps }>

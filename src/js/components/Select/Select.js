@@ -16,7 +16,7 @@ class Select extends PureComponent {
     return (
       <label className={ className } style={ style } htmlFor={ name } { ...otherProps }>
         <select className='SelectBox-options' name={ name } { ...inputProps }>
-          { options.map(renderOptions) }
+          { options.map(this.renderOptions) }
         </select>
       </label>
     )

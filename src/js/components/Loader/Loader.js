@@ -38,7 +38,7 @@ class Loader extends PureComponent {
   }
 
   render () {
-    const { type, text, message, ...otherProps } = this.props
+    const { type, text, message, className, style, ...otherProps } = this.props
 
     if (!text && !message) { return this.renderAnimation(type) }
 

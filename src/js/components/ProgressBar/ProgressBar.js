@@ -13,13 +13,13 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-class ProgressBar extends PureComponent {
-  statusClasses = {
-    'positive': 'ProgressBar-status',
-    'negative': 'ProgressBar-status ProgressBar--negative',
-    'neutral': 'ProgressBar-status ProgressBar-status--neutral'
-  }
+const statusClasses = {
+  'positive': 'ProgressBar-status',
+  'negative': 'ProgressBar-status ProgressBar--negative',
+  'neutral': 'ProgressBar-status ProgressBar-status--neutral'
+}
 
+class ProgressBar extends PureComponent {
   render () {
     const { className, style, title, progress, type, ...otherProps } = this.props
 
@@ -39,7 +39,7 @@ ProgressBar.propTypes = {
   title: PropTypes.string,
   type: PropTypes.string,
   className: PropTypes.string,
-  style: PropTypes.shapeOf({})
+  style: PropTypes.object
 }
 
 ProgressBar.defaultProps = {

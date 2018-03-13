@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Icon from '../Icon'
 
 class Tooltip extends PureComponent {
   render () {

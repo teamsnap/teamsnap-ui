@@ -4,9 +4,10 @@ import PropTypes from 'prop-types'
 
 class PanelHeader extends PureComponent {
   render () {
-    const { className, style, children, ...otherProps }
+    const { title, className, style, children, ...otherProps } = this.props 
+
     return ( 
-      <header className={ className } style={ sytle } { ...otherProps }>
+      <header className={ className } style={ style } { ...otherProps }>
         { title && <h3 className='Panel-title'>{ title }</h3> }
         { children && <div>{ children }</div> }
       </header>
@@ -23,7 +24,9 @@ PanelHeader.propTypes = {
 
 PanelHeader.defaultProps = {
   children: null,
-  className: 'Panel-header'
+  className: 'Panel-header',
   style: {},
   title: '',
 }
+
+export default PanelHeader
