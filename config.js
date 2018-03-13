@@ -15,6 +15,10 @@ module.exports = {
     src : 'src/assets/fonts/**/*',
     dest : 'dist/assets/fonts'
   },
+  icons: {
+    src: 'src/assets/icons/**/*',
+    dest: 'dist/assets/icons'
+  },
   watch : {
     teamsnap : [
       'src/css/**/*.scss',

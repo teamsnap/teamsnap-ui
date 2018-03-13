@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 const iconLoader = (name, className) => {
-  const svgIcon = require(`src/assets/icons/${name}.svg`)
+  const svgIcon = require(`../../../assets/icons/${name}.svg`)
   return { __html: svgIcon.replace('<svg', `<svg class="${ className }"`) }
 }
 

@@ -2,10 +2,18 @@
 import Button from './components/Button'
 import ButtonGroup from './components/ButtonGroup'
 import Cell from './components/Cell'
+import Checkbox from './components/Checkbox'
 import Divider from './components/Divider'
+import Field from './components/Field'
+import FieldGroup from './components/FieldGroup'
+import FieldLabel from './components/FieldLabel'
+import Fieldmessage from './components/Fieldmessage'
 import Grid from './components/Grid'
-import Icon from './components/Icon'
+// import Icon from './components/Icon' // still need fix for asset loading
+import Input from './components/Input'
+import InputControl from './components/InputControl'
 import Loader from './components/Loader'
+import PanelHeader from './components/PanelHeader'
 import ProgressBar from './components/ProgressBar'
 import TextLink from './components/TextLink'
 import Tooltip from './components/Tooltip'
@@ -15,9 +23,16 @@ module.exports = {
   ButtonGroup,
   Cell,
   Divider,
+  Field,
+  FieldGroup,
+  FieldLabel,
+  Fieldmessage,
   Grid,
-  Icon,
+  // Icon,
+  Input,
+  InputControl,
   Loader,
+  PanelHeader,
   ProgressBar,
   TextLink,
   Tooltip,

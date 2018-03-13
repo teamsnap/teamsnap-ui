@@ -36,6 +36,11 @@ gulp.task('fonts',  () => {
     .pipe(gulp.dest(config.fonts.dest))
 });
 
+gulp.task('icons', () => {
+  return gulp.src(config.icons.src)
+    .pipe(gulp.dest(config.icons.dest))
+});
+
 // Start browsersync
 gulp.task('serve',  () =>  {
   browserSync.init(config.serve.options)
@@ -59,6 +64,7 @@ gulp.task('watch', () => {
 // Register frontend composite task
 gulp.task('build', ['clean'], done => {
   gulp.start('fonts'),
+  gulp.start('icons'),
   gulp.start('css-teamsnap'),
   gulp.start('css-themes')
   done()
