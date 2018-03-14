@@ -16,17 +16,39 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import TextLink from '../TextLink'
+import { stringifyArray } from '../../utils/helpers'
+
+const buttonClasses = ({className, status, size, isActive, mods}) => {
+  return stringifyArray([
+    className,
+    status && `Button--${status}`,
+    size && `Button--${size}`,
+    isActive && "is-active",
+    mods
+  ])
+}
 
 class Button extends PureComponent {
-  renderButtonLink = () => (
-    <TextLink { ...this.props } />
-  )
-
-  renderButton = () => {
-    const { children, type, routerLink, location, className, style, ...otherProps } = this.props
+  renderButtonLink = () => {
+    const { children, routerLink, location, style, disabled, onClick } = this.props 
 
     return (
-      <button type={ type } className={ className} style={ style } { ...otherProps }>
+      <TextLink
+        className={ buttonClasses(this.props) }
+        children={ children }
+        routerLink={ routerLink }
+        location={ location }
+        style={ style }
+        disabled={ disabbled }
+        onClick={ onClick } />
+    )
+  }
+
+  renderButton = () => {
+    const { children, type, className, style, disabled, onClick } = this.props
+
+    return (
+      <button type={ type } className={ buttonClasses(this.props) } style={ style } onClick={ onClick } disabled={ disabled }>
         { children }
       </button>
     )
@@ -43,7 +65,13 @@ Button.propTypes = {
   type: PropTypes.oneOf(['button', 'submit']),
   routerLink: PropTypes.func,
   location: PropTypes.string,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
+  isActive: PropTypes.bool,
+  status: PropTypes.string,
+  size: PropTypes.string,
   className: PropTypes.string,
+  mods: PropTypes.string,
   style: PropTypes.object
 }
 
@@ -51,7 +79,13 @@ Button.defaultProps = {
   type: 'button',
   routerLink: null,
   location: '',
+  onClick: null,
+  disabled: false,
+  isActive: false,
+  status: null,
+  size: null,
   className: 'Button',
+  mods: null
   style: {}
 }
 
