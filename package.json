@@ -5,10 +5,12 @@
   "main": "dist/js/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "sass-lint 'src/css/**/*.scss' -v",
-    "prepublish": "npm run lint && npm run build:js",
-    "postinstall": "gulp build && npm run build:js",
+    "lint:css": "sass-lint 'src/css/**/*.scss' -v --no-exit",
+    "prepublish": "npm run lint:css && npm run build:js",
+    "postinstall": "npm run build:css && npm run build:js",
     "start": "gulp",
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "gulp build",
     "build:js": "babel src/js -d dist/js"
   },
   "repository": {
