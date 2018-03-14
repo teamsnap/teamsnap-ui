@@ -18,7 +18,7 @@ class PanelFooter extends PureComponent {
 PanelFooter.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  style: PropTypes.shapeOf({}),
+  style: PropTypes.object,
 }
 
 PanelFooter.defaultProps = {

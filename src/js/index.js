@@ -7,7 +7,7 @@ import Divider from './components/Divider'
 import Field from './components/Field'
 import FieldGroup from './components/FieldGroup'
 import FieldLabel from './components/FieldLabel'
-import Fieldmessage from './components/Fieldmessage'
+import FieldMessage from './components/FieldMessage'
 import Grid from './components/Grid'
 import Icon from './components/Icon'
 import Input from './components/Input'
@@ -28,7 +28,7 @@ module.exports = {
   Field,
   FieldGroup,
   FieldLabel,
-  Fieldmessage,
+  FieldMessage,
   Grid,
   Icon,
   Input,

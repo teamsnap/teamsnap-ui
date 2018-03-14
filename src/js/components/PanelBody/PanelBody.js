@@ -17,7 +17,7 @@ class PanelBody extends PureComponent {
 PanelBody.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  style: PropTypes.shapeOf({}),
+  style: PropTypes.shape({}),
 }
 
 PanelBody.defaultProps = {

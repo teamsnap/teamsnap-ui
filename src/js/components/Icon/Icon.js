@@ -10,7 +10,7 @@ class Icon extends PureComponent {
 
     return (
       <i style={{ color, fontSize }}>
-        <svg className={ className } style={ style } { ...svg.metadata } dangerouslySetInnerHTML={ svg.source } />
+        <svg className={ className } style={ style } { ...svg.metadata } dangerouslySetInnerHTML={{ __html: svg.source }} />
       </i>
     )
   }
