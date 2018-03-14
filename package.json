@@ -6,11 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:css": "sass-lint 'src/css/**/*.scss' -v --no-exit",
-    "prepublish": "npm run lint:css && npm run build:js",
-    "postinstall": "npm run build:css && npm run build:js",
-    "start": "gulp",
-    "build": "npm run build:css && npm run build:js",
-    "build:css": "gulp build",
+    "prepublish": "npm run lint:css",
+    "postinstall": "npm run build",
+    "start": "gulp --gulpfile ./scripts/gulpfile.js",
+    "build": "npm run build:css && npm run build:icons && npm run build:js",
+    "build:css": "gulp build --gulpfile ./scripts/gulpfile.js",
+    "build:icons": "NODE_ENV=production node ./scripts/buildIcons.js",
     "build:js": "babel src/js -d dist/js"
   },
   "repository": {
@@ -39,6 +40,8 @@
     "del": "^3.0.0",
     "eslint": "^4.18.2",
     "eslint-plugin-react": "^7.7.0",
+    "fs-extra": "^5.0.0",
+    "glob": "^7.1.2",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.1.0",
     "gulp-cssnano": "^2.1.2",
@@ -48,9 +51,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "sass-lint": "^1.10.2"
-  },
-  "dependencies": {
-    "lodash": "^4.17.5"
+    "sass-lint": "^1.10.2",
+    "svgo": "^1.0.5"
   }
 }

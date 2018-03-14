@@ -9,7 +9,7 @@ import FieldGroup from './components/FieldGroup'
 import FieldLabel from './components/FieldLabel'
 import Fieldmessage from './components/Fieldmessage'
 import Grid from './components/Grid'
-// import Icon from './components/Icon' // still need fix for asset loading
+import Icon from './components/Icon'
 import Input from './components/Input'
 import InputControl from './components/InputControl'
 import Loader from './components/Loader'
@@ -30,7 +30,7 @@ module.exports = {
   FieldLabel,
   Fieldmessage,
   Grid,
-  // Icon,
+  Icon,
   Input,
   InputControl,
   Loader,

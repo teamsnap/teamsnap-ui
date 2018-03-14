@@ -5,10 +5,10 @@ const sass = require('gulp-sass');
 const browserSync = require('browser-sync').create();
 const cssnano = require('gulp-cssnano');
 const autoprefixer = require('gulp-autoprefixer');
-const config = require('./config');
 const del = require('del');
 const env = require('gulp-util').env;
 const gulpif = require('gulp-if');
+const config = require('./config');
 
 // Create a function for all CSS tasks so
 // teamsnap-ui and themes can build independently
@@ -36,11 +36,6 @@ gulp.task('fonts',  () => {
     .pipe(gulp.dest(config.fonts.dest))
 });
 
-gulp.task('icons', () => {
-  return gulp.src(config.icons.src)
-    .pipe(gulp.dest(config.icons.dest))
-});
-
 // Start browsersync
 gulp.task('serve',  () =>  {
   browserSync.init(config.serve.options)
@@ -64,7 +59,6 @@ gulp.task('watch', () => {
 // Register frontend composite task
 gulp.task('build', ['clean'], done => {
   gulp.start('fonts'),
-  gulp.start('icons'),
   gulp.start('css-teamsnap'),
   gulp.start('css-themes')
   done()

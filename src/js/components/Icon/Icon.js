@@ -1,20 +1,17 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-const iconLoader = (name, className) => {
-  const svgIcon = require(`../../../assets/icons/${name}.svg`)
-  return { __html: svgIcon.replace('<svg', `<svg class="${ className }"`) }
-}
+const svgIcon = (name) => require(`../../icons/${name}`)
 
 class Icon extends PureComponent {
   render () {
-    const { name, size: fontSize, color, className, style, ...otherProps } = this.props
+    const { name, size: fontSize, color, className, style } = this.props
+    const svg = svgIcon(name)
 
     return (
-      <i
-        style={{ color, fontSize, ...style }}
-        { ...otherProps } 
-        dangerouslySetInnerHTML={ iconLoader(name, className) } />
+      <i style={{ color, fontSize }}>
+        <svg className={ className } style={ style } { ...svg.metadata } dangerouslySetInnerHTML={ svg.source } />
+      </i>
     )
   }
 }
@@ -28,8 +25,8 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
-  size: '',
-  color: '',
+  size: 'inherit',
+  color: 'inherit',
   className: 'Icon',
   style: {}
 }
