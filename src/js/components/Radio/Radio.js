@@ -12,13 +12,17 @@ Radio.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   inputProps: PropTypes.object,
+  isInline: PropTypes.bool,
   className: PropTypes.string,
+  mods: PropTypes.string,
   style: PropTypes.object
 }
 
 Radio.defaultProps = {
   inputProps: {},
+  isInline: false,
   className: 'Checkbox Checkbox--radio',
+  mods: null,
   style: {}
 }
 

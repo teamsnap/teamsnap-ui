@@ -16,16 +16,16 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import TextLink from '../TextLink'
-import { stringifyArray } from '../../utils/helpers'
+import { getClassName } from '../../utils/helpers'
 
 const buttonClasses = ({className, status, size, isActive, mods}) => {
-  return stringifyArray([
+  return getClassName(
     className,
     status && `Button--${status}`,
     size && `Button--${size}`,
     isActive && "is-active",
-    mods
-  ])
+    mods    
+  )
 }
 
 class Button extends PureComponent {

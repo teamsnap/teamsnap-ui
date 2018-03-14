@@ -10,6 +10,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Button from '../Button'
+import { getClassName } from '../../utils/helpers'
 
 class ButtonGroup extends PureComponent {
   renderButtons = () => {
@@ -19,10 +20,10 @@ class ButtonGroup extends PureComponent {
   }
 
   render () {
-    const { children, className, style, ...otherProps } = this.props 
+    const { children, className, mods, style } = this.props 
 
     return (
-      <div className={ className } style={ style } { ...otherProps }>
+      <div className={ getClassName(className, mods) } style={ style }>
         { children || this.renderButtons() }
       </div>
     )
@@ -33,6 +34,7 @@ ButtonGroup.propTypes = {
   children: PropTypes.node,
   buttons: PropTypes.array,
   className: PropTypes.string,
+  mods: PropTypes.string,
   style: PropTypes.object
 }
 
@@ -40,6 +42,7 @@ ButtonGroup.defaultProps = {
   children: null,
   buttons: [],
   className: 'ButtonGroup',
+  mods: null,
   style: {}
 }
 

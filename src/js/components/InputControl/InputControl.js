@@ -1,12 +1,19 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { getClassName } from '../../utils/helpers'
 
 class InputControl extends PureComponent {
   render() {
-    const { name, label, type, inputProps, labelProps, className, style, ...otherProps } = this.props 
+    const { name, label, type, inputProps, labelProps, className, style } = this.props 
+
+    const classes = getClassName(
+      className,
+      isInline && 'Checkbox--inline',
+      mods
+    )
 
     return (
-      <div className={ className } style={ style } { ...otherProps }>
+      <div className={ classes } style={ style }>
         <input className='Checkbox-input' type={ type } name={ name } { ...inputProps} />
         <label className="Checkbox-label" htmlFor={ name } {...labelProps }>{ label }</label>
       </div> 
@@ -20,7 +27,9 @@ InputControl.propTypes = {
   label: PropTypes.string,
   inputProps: PropTypes.object,
   labelProps: PropTypes.object,
+  isInline: PropTypes.bool,
   className: PropTypes.string,
+  mods: PropTypes.string,
   style: PropTypes.object
 }
 
@@ -29,7 +38,9 @@ InputControl.defaultProps = {
   label: null,
   inputProps: {},
   labelProps: {},
-  className: 'Checkbox',
+  isInline: false,
+  className: null,
+  mods: null,
   style: {}
 }
 

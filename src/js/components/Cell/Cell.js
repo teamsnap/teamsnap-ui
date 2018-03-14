@@ -1,12 +1,13 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { getClassName } from '../../utils/helpers'
 
 class Cell extends PureComponent {
   render () {   
-    const { children, className, style, ...otherProps } = this.props
+    const { children, className, mods, style } = this.props
 
     return (
-      <div className={ className} style={ style } { ...otherProps }>
+      <div className={ getClassName(className, mods)} style={ style }>
         { children }
       </div>
     )
@@ -16,12 +17,14 @@ class Cell extends PureComponent {
 Cell.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  mods: PropTypes.string,
   style: PropTypes.object
 }
 
 Cell.defaultProps = {
   children: null,
   className: 'Grid-cell',
+  mods: null,
   style: {}
 }
 
