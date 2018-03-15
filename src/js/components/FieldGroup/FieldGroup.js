@@ -25,13 +25,13 @@ class FieldGroup extends PureComponent {
   }
 
   render () {
-    const { isError, name, label, message } = this.props 
+    const { status, name, label, message } = this.props 
 
     return (
-      <Field isError={ isError }>
+      <Field status={ status }>
         { label && <FieldLabel name={ name } children={ label } /> }
         { this.renderFieldComponent() }
-        { message && <FieldMessage children={ message } isError={ isError } /> }
+        { message && <FieldMessage children={ message } isError={ status === 'error' } /> }
       </Field>
     )
   }
@@ -41,16 +41,16 @@ FieldGroup.propTypes = {
   name: PropTypes.string.isRequired,
   field: PropTypes.oneOf(['input', 'checkbox', 'radio', 'toggle', 'select', 'textarea']).isRequired,
   fieldProps: PropTypes.object,
+  status: PropTypes.oneOf([null, 'success', 'error']),
   label: PropTypes.string,
   message: PropTypes.string,
-  isError: PropTypes.bool
 }
 
 FieldGroup.defaultProps = {
   fieldProps: {},
+  status: null,
   label: null,
-  message: null,
-  isError: false
+  message: null
 }
 
 export default FieldGroup

@@ -1,12 +1,27 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { getClassName } from '../../utils/helpers'
 
 class Field extends PureComponent {
+  renderSuccess = () => (
+    <span className='FormGroup-validation'>
+      <Icon name='check' />
+    </span>
+  )
+
   render () {
-    const { children, isError, className, style, ...otherProps } = this.props
+    const { children, status, className, mods, style } = this.props
+
+    const fieldClasses = getClassNames(
+      className,
+      status === 'error' && 'is-notValid',
+      status === 'success' && 'is-valid',
+      mods
+    )
 
     return (
-      <div className={ isError ? `${className} is-notValid` : className } style={ style } { ...otherProps }>
+      <div className={ fieldClasses } style={ style }>
+        { status === 'success' && this.renderSuccess() }
         { children }
       </div>
     )
@@ -15,14 +30,16 @@ class Field extends PureComponent {
 
 Field.propTypes = {
   children: PropTypes.node.isRequired,
-  isError: PropTypes.bool,
+  status: PropTypes.oneOf([null, 'success', 'error']),
   className: PropTypes.string,
+  mods: PropTypes.string,
   style: PropTypes.object
 }
 
 Field.defaultProps = {
-  isError: false,
+  status: null,
   className: 'FormGroup',
+  mods: null,
   style: {}
 }
 

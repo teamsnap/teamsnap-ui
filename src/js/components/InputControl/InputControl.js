@@ -14,7 +14,7 @@ class InputControl extends PureComponent {
 
     return (
       <div className={ classes } style={ style }>
-        <input className='Checkbox-input' type={ type } name={ name } { ...inputProps} />
+        <input className='Checkbox-input' type={ type } name={ name } id={ name } { ...inputProps} />
         <label className="Checkbox-label" htmlFor={ name } {...labelProps }>{ label }</label>
       </div> 
     )

@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-
-// TODO: Test the implementation with and without reduxForms.
+import { getClassName } from '../../utils/helpers'
 
 class TextArea extends PureComponent {
   render () {
-    const { name, className, style, ...otherProps } = this.props
+    const { name, className, mods, style, ...inputProps } = this.props
+
     return (
-      <textarea name={ name } className={ className } style={ style } { ...otherProps } />
+      <textarea name={ name } id={ name } className={ getClassName(className, mods) } style={ style } { ...inputProps } />
     )
   }
 }
@@ -15,11 +15,13 @@ class TextArea extends PureComponent {
 TextArea.propTypes = {
   name: PropTypes.string.isRequired,
   className: PropTypes.string,
+  mods: PropTypes.string,
   style: PropTypes.object
 }
 
 TextArea.defaultProps = {
   className: '',
+  mods: null,
   style: {}
 }
 

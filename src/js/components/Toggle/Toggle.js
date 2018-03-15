@@ -4,14 +4,17 @@ import InputControl from '../InputControl'
 
 class Toggle extends PureComponent {
   render() {
-    const { inputProps, ...otherProps } = this.props
+    const { name, className, mods, style, inputProps } = this.props
 
     return (
       <InputControl
+        name={ name }
+        className={ className }
+        mods={ mods }
+        style={ style }
         type='checkbox'
         labelProps={{ className: 'Toggle-label' }} 
-        inputProps={{ className: 'Toggle-input', ...inputProps }} 
-        { ...otherProps } />
+        inputProps={{ className: 'Toggle-input', ...inputProps }} />
     )
   }
 }

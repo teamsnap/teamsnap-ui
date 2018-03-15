@@ -1,15 +1,15 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-
+import { getClassName } from '../../utils/helpers'
 
 class PanelHeader extends PureComponent {
   render () {
-    const { title, className, style, children, ...otherProps } = this.props 
+    const { title, className, mods, style, children } = this.props 
 
     return ( 
-      <header className={ className } style={ style } { ...otherProps }>
+      <header className={ getClassName(className, mods) } style={ style }>
         { title && <h3 className='Panel-title'>{ title }</h3> }
-        { children && <div>{ children }</div> }
+        { children }
       </header>
     )
   }
@@ -17,16 +17,18 @@ class PanelHeader extends PureComponent {
 
 PanelHeader.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string,
-  style: PropTypes.shape({}),
   title: PropTypes.string,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.shape({})
 }
 
 PanelHeader.defaultProps = {
   children: null,
-  className: 'Panel-header',
-  style: {},
   title: '',
+  className: 'Panel-header',
+  mods: null,
+  style: {}
 }
 
 export default PanelHeader

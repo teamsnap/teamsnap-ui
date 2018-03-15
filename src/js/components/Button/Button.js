@@ -18,23 +18,26 @@ import PropTypes from 'prop-types'
 import TextLink from '../TextLink'
 import { getClassName } from '../../utils/helpers'
 
-const buttonClasses = ({className, status, size, isActive, mods}) => {
-  return getClassName(
-    className,
-    status && `Button--${status}`,
-    size && `Button--${size}`,
-    isActive && "is-active",
-    mods    
-  )
-}
-
 class Button extends PureComponent {
+  getButtonClassName = () => {
+    const { className, status, size, isActive, mods } = this.props
+
+    return getClassName(
+      className,
+      status && `Button--${status}`,
+      size && `Button--${size}`,
+      isActive && "is-active",
+      mods    
+    )
+  }
+
+
   renderButtonLink = () => {
     const { children, routerLink, location, style, disabled, onClick } = this.props 
 
     return (
       <TextLink
-        className={ buttonClasses(this.props) }
+        className={ getButtonClassName() }
         children={ children }
         routerLink={ routerLink }
         location={ location }
@@ -48,9 +51,13 @@ class Button extends PureComponent {
     const { children, type, className, style, disabled, onClick } = this.props
 
     return (
-      <button type={ type } className={ buttonClasses(this.props) } style={ style } onClick={ onClick } disabled={ disabled }>
-        { children }
-      </button>
+      <button
+        type={ type } 
+        className={ getButtonClassName() } 
+        style={ style } 
+        onClick={ onClick } 
+        disabled={ disabled }
+        children={ children } />
     )
   }
 
