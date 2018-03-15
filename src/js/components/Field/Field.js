@@ -12,7 +12,7 @@ class Field extends PureComponent {
   render () {
     const { children, status, className, mods, style } = this.props
 
-    const fieldClasses = getClassNames(
+    const fieldClasses = getClassName(
       className,
       status === 'error' && 'is-notValid',
       status === 'success' && 'is-valid',

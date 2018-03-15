@@ -4,13 +4,13 @@ import { getClassName } from '../../utils/helpers'
 
 class Select extends PureComponent {
   renderOptions = option => {
-    const { label, value, disabled } = option 
+    const { label, value, disabled } = option
 
     return <option key={ value } value={ value } disabled={ disabled }>{ label }</option>
   }
 
   render () {
-    const { name, options, className, mods, style, inputProps } = this.props 
+    const { name, options, className, mods, style, inputProps } = this.props
 
     return (
       <label className={ getClassName(className,mods) } style={ style } htmlFor={ name }>

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 const svgIcon = (name) => require(`../../icons/${name}`)
 
+// TODO: Icons flash 'ginormous' on page load, before css kicks in and adjust
+
 class Icon extends PureComponent {
   render () {
     const { name, size: fontSize, color, className, style } = this.props

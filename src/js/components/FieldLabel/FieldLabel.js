@@ -15,14 +15,15 @@ class FieldLabel extends PureComponent {
 }
 
 FieldLabel.propTypes = {
-  name: PropTypes.string.isRequired,
   children: PropTypes.string.isRequired,
+  name: PropTypes.string,
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object
 }
 
 FieldLabel.defaultProps = {
+  name: null,
   className: 'FormGroup-label',
   mods: null,
   style: {}

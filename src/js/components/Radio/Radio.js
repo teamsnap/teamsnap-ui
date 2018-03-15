@@ -11,6 +11,7 @@ class Radio extends PureComponent {
 Radio.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  group: PropTypes.string.isRequired,
   inputProps: PropTypes.object,
   isInline: PropTypes.bool,
   className: PropTypes.string,
