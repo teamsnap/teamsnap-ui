@@ -6,7 +6,7 @@ import { getClassName } from '../../utils/helpers'
 
 class PanelRow extends PureComponent {
   render () {
-    const { isWithCells, isParent, className, mods, style } = this.props
+    const { children, isWithCells, isParent, className, mods, style } = this.props
 
     const panelClasses = getClassName(
       className,

@@ -13,6 +13,7 @@ import Icon from './components/Icon'
 import Input from './components/Input'
 import InputControl from './components/InputControl'
 import Loader from './components/Loader'
+import Panel from './components/Panel'
 import PanelBody from './components/PanelBody'
 import PanelCell from './components/PanelCell'
 import PanelFooter from './components/PanelFooter'
@@ -41,6 +42,7 @@ module.exports = {
   Input,
   InputControl,
   Loader,
+  Panel,
   PanelBody,
   PanelCell,
   PanelFooter,

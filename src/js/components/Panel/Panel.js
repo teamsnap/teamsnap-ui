@@ -27,7 +27,7 @@ Panel.propTypes = {
   maxSize: PropTypes.string,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object,
+  style: PropTypes.object
 }
 
 Panel.defaultProps = {
