@@ -12,22 +12,20 @@
 
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-
-const statusClasses = {
-  'positive': 'ProgressBar-status',
-  'negative': 'ProgressBar-status ProgressBar--negative',
-  'neutral': 'ProgressBar-status ProgressBar-status--neutral'
-}
+import { getClassName } from '../../utils/helpers'
 
 class ProgressBar extends PureComponent {
   render () {
-    const { className, style, title, progress, type, ...otherProps } = this.props
+    const { className, style, title, width, size, type } = this.props
+
+    const progressClasses = getClassName(className, size && `ProgressBar--${size}`, mods)
+    const statusClasses = getClassName('ProgressBar-status', `ProgressBar-status--${type}`)
 
     return (
-      <div className={ className } style={ style } { ...otherProps }>
+      <div className={ className } style={ style }>
         { title && <p className='ProgressBar-title'>{ title }</p> }
         <div className='ProgressBar-range'>
-          <div className={ statusClasses[type] } style={{ width: progress }}></div>
+          <div className={ statusClasses } style={{ width }}></div>
         </div>
       </div>
     )
@@ -35,17 +33,21 @@ class ProgressBar extends PureComponent {
 }
 
 ProgressBar.propTypes = {
-  progress: PropTypes.string.isRequired,
+  width: PropTypes.string,
   title: PropTypes.string,
+  size: PropTypes.string,
   type: PropTypes.string,
   className: PropTypes.string,
   style: PropTypes.object
 }
 
 ProgressBar.defaultProps = {
+  width: '0%',
   title: null,
+  size: null,
   type: 'positive',
   className: 'ProgressBar',
+  mods: null,
   style: {}
 }
 

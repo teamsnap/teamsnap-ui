@@ -85,7 +85,7 @@ Button.defaultProps = {
   status: null,
   size: null,
   className: 'Button',
-  mods: null
+  mods: null,
   style: {}
 }
 

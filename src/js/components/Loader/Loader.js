@@ -12,6 +12,7 @@
 
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { getClassName } from '../../utils/helpers'
 
 class Loader extends PureComponent {
   renderSpinAnimation = () => <span className='SpinAnimation' />
@@ -38,15 +39,18 @@ class Loader extends PureComponent {
   }
 
   render () {
-    const { type, text, message, className, style, ...otherProps } = this.props
+    const { type, text, message, className, style } = this.props
 
     if (!text && !message) { return this.renderAnimation(type) }
 
-    // THOUGHTS: Jello looder gets a modifier, do we pass the appropriate string or try and 'create' the class automatically?
-    // const loaderClassName = type === 'jello' ? `${ className } Loader--jello` ? className
+    const loaderClasses = getClassName(
+      className,
+      type === 'jello' && 'Loader--jello',
+      mods
+    )
 
     return (
-      <div className={ className } style={ style } { ...otherProps }>
+      <div className={ loaderClasses } style={ style }>
         <div className='Loader-indicator'>
           { this.renderAnimation(type) }
           { text && <div className='Loader-indicatorText'>{ text }</div> }
@@ -69,6 +73,7 @@ Loader.defaultProps = {
   text: null,
   message: null,
   className: 'Loader',
+  mods: null,
   style: {}
 }
 
