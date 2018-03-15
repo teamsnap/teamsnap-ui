@@ -20,7 +20,7 @@ import ProgressBar from './components/ProgressBar'
 import TextLink from './components/TextLink'
 import Tooltip from './components/Tooltip'
 
-module.exports = { 
+module.exports = {
   Button,
   ButtonGroup,
   Cell,
@@ -37,5 +37,5 @@ module.exports = {
   PanelHeader,
   ProgressBar,
   TextLink,
-  Tooltip,
+  Tooltip
 }

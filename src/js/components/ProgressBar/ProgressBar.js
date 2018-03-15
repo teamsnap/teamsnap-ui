@@ -1,6 +1,6 @@
 /**
  * ProgressBar
- * 
+ *
  * @extends PureComponent
  * @example
  * <ProgressBar
@@ -16,13 +16,13 @@ import { getClassName } from '../../utils/helpers'
 
 class ProgressBar extends PureComponent {
   render () {
-    const { className, style, title, width, size, type } = this.props
+    const { className, mods, style, title, width, size, type } = this.props
 
     const progressClasses = getClassName(className, size && `ProgressBar--${size}`, mods)
-    const statusClasses = getClassName('ProgressBar-status', `ProgressBar-status--${type}`)
+    const statusClasses = getClassName('ProgressBar-status', type && `ProgressBar-status--${type}`)
 
     return (
-      <div className={ className } style={ style }>
+      <div className={ progressClasses } style={ style }>
         { title && <p className='ProgressBar-title'>{ title }</p> }
         <div className='ProgressBar-range'>
           <div className={ statusClasses } style={{ width }}></div>
@@ -38,6 +38,7 @@ ProgressBar.propTypes = {
   size: PropTypes.string,
   type: PropTypes.string,
   className: PropTypes.string,
+  mods: PropTypes.string,
   style: PropTypes.object
 }
 

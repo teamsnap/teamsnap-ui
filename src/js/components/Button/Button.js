@@ -1,16 +1,16 @@
 /**
  * Button
  *   https://teamsnap-ui-patterns.netlify.com/patterns/components/button.html
- * 
- * A common button component that will render the appropriate styles for a button or a button-link. Check out the 
+ *
+ * A common button component that will render the appropriate styles for a button or a button-link. Check out the
  * teamsnap-ui patterns library for more styling info.
- * 
+ *
  * Example:
  *  <Button
  *    text="Click Me"
  *    handleClick={ () => console.warn('Clicky Clicky') }
  *    attributes={{ className="Button Button--primary", onFocus: () => console.warn('FOCUSED') }} />
- * 
+ *
  */
 
 import React, { PureComponent } from 'react'
@@ -20,20 +20,20 @@ import { getClassName } from '../../utils/helpers'
 
 class Button extends PureComponent {
   getButtonClassName = () => {
-    const { className, status, size, isActive, mods } = this.props
+    const { className, color, size, isActive, mods } = this.props
 
     return getClassName(
       className,
-      status && `Button--${status}`,
+      color && `Button--${color}`,
       size && `Button--${size}`,
       isActive && "is-active",
-      mods    
+      mods
     )
   }
 
 
   renderButtonLink = () => {
-    const { children, routerLink, location, style, disabled, onClick } = this.props 
+    const { children, routerLink, location, style, isDisabled, onClick } = this.props
 
     return (
       <TextLink
@@ -42,21 +42,21 @@ class Button extends PureComponent {
         routerLink={ routerLink }
         location={ location }
         style={ style }
-        disabled={ disabbled }
+        disabled={ isDisabled }
         onClick={ onClick } />
     )
   }
 
   renderButton = () => {
-    const { children, type, className, style, disabled, onClick } = this.props
+    const { children, type, style, isDisabled, onClick } = this.props
 
     return (
       <button
-        type={ type } 
-        className={ this.getButtonClassName() } 
-        style={ style } 
-        onClick={ onClick } 
-        disabled={ disabled }
+        type={ type }
+        className={ this.getButtonClassName() }
+        style={ style }
+        onClick={ onClick }
+        disabled={ isDisabled }
         children={ children } />
     )
   }
@@ -73,9 +73,9 @@ Button.propTypes = {
   routerLink: PropTypes.func,
   location: PropTypes.string,
   onClick: PropTypes.func,
-  disabled: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   isActive: PropTypes.bool,
-  status: PropTypes.string,
+  color: PropTypes.string,
   size: PropTypes.string,
   className: PropTypes.string,
   mods: PropTypes.string,
@@ -87,9 +87,9 @@ Button.defaultProps = {
   routerLink: null,
   location: '',
   onClick: null,
-  disabled: false,
+  isDisabled: false,
   isActive: false,
-  status: null,
+  color: null,
   size: null,
   className: 'Button',
   mods: null,

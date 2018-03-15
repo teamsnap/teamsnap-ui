@@ -1,13 +1,13 @@
 /**
  * Loader
- * 
+ *
  * A loader component that supports different animations such as Spin, Pulse and Jello.
- * 
+ *
  * Example:
  *  <Loader
  *    type='jello'
  *    text='loading' />
- * 
+ *
  */
 
 import React, { PureComponent } from 'react'
@@ -39,7 +39,7 @@ class Loader extends PureComponent {
   }
 
   render () {
-    const { type, text, message, className, style } = this.props
+    const { type, text, message, className, mods, style } = this.props
 
     if (!text && !message) { return this.renderAnimation(type) }
 
@@ -66,6 +66,7 @@ Loader.propTypes = {
   text: PropTypes.string,
   message: PropTypes.string,
   className: PropTypes.string,
+  mods: PropTypes.string,
   style: PropTypes.object
 }
 
