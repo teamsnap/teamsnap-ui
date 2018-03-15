@@ -6,7 +6,7 @@ class PanelCell extends PureComponent {
   renderChildrenHeader = (children) => <h4 className="Panel-title">{ children }</h4>
 
   render () {
-    const { isHeader, className, mods, style } = this.props
+    const { children, isHeader, className, mods, style } = this.props
 
     // Thoughts: The docs had to variations of a heading, can we update this or are they different use cases?
     //  * Panel-cell & Panel-cell--header
@@ -31,7 +31,7 @@ PanelCell.propTypes = {
 PanelCell.defaultProps = {
   title: null,
   isHeader: null,
-  className: 'Panel-row',
+  className: 'Panel-cell',
   mods: null,
   style: {}
 }
