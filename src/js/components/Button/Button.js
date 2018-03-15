@@ -37,7 +37,7 @@ class Button extends PureComponent {
 
     return (
       <TextLink
-        className={ getButtonClassName() }
+        className={ this.getButtonClassName() }
         children={ children }
         routerLink={ routerLink }
         location={ location }
@@ -53,7 +53,7 @@ class Button extends PureComponent {
     return (
       <button
         type={ type } 
-        className={ getButtonClassName() } 
+        className={ this.getButtonClassName() } 
         style={ style } 
         onClick={ onClick } 
         disabled={ disabled }
