@@ -2,8 +2,6 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { getClassName } from '../../utils/helpers'
 
-// TODO: Establish pattern for using PanelRow and Panel-expandableRow & Panel-childRow (these are siblings outside of PanelRow)
-
 class PanelRow extends PureComponent {
   render () {
     const { children, isWithCells, isParent, className, mods, style } = this.props

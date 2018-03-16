@@ -19,6 +19,7 @@ import PanelCell from './components/PanelCell'
 import PanelFooter from './components/PanelFooter'
 import PanelHeader from './components/PanelHeader'
 import PanelRow from './components/PanelRow'
+import PanelRowExpandable from './components/PanelRowExpandable'
 import ProgressBar from './components/ProgressBar'
 import Radio from './components/Radio'
 import Select from './components/Select'
@@ -48,6 +49,7 @@ module.exports = {
   PanelFooter,
   PanelHeader,
   PanelRow,
+  PanelRowExpandable,
   ProgressBar,
   Radio,
   Select,
