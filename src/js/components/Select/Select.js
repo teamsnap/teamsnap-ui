@@ -1,3 +1,25 @@
+/**
+ * @name Select
+ * @description
+ * A generic wrapper component for html select elements. Includes
+ * support for a label and a generic map function for options.
+ *
+ * @example
+ *  <Select
+ *    name='LineItemFeeCategory'
+ *    options={[
+ *      {
+ *        'label': 'Tournament',
+ *        'value': 'tournament'
+ *      },
+ *      {
+ *        'label': 'Other',
+ *        'value': 'other'
+ *      }
+ *    ]} />
+ *
+ */
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { getClassName } from '../../utils/helpers'

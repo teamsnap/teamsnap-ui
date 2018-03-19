@@ -1,3 +1,16 @@
+/**
+* @name Tooltip
+*
+* @description
+* An element to display an icon and help text on hover.
+*
+* @example
+*  <Tooltip
+*    type='icon'
+*    text="I'm some help text." />
+*
+*/
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { getClassName } from '../../utils/helpers'

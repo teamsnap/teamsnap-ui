@@ -1,3 +1,12 @@
+/**
+ * @name Toggle
+ * 
+ * @description
+ * A controlled input element to toggle a boolean state.
+ * @example
+ *  <Toggle
+ *    name='OfflinePayments' />
+ */
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import InputControl from '../InputControl'

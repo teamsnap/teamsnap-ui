@@ -1,3 +1,14 @@
+/**
+ * @name TextArea
+ * 
+ * @description
+ * A generic wrapper component for the native textarea html element.
+ *
+ * @example
+ *  <TextArea
+ *    name='BatchInvoiceDescription' />
+ *
+ */
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { getClassName } from '../../utils/helpers'
