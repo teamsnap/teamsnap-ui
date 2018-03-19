@@ -27,9 +27,6 @@ const svgOptimize = (globPattern, callback) => {
   const svgIcons = []
   const files = glob.sync(globPattern)
 
-  // console.log('FILES', files)
-  // console.log('GLOB PATTERN', globPattern)
-
   // Map over each files getting the path and name.
   files.map((filepath) => {
     const name = getName(filepath)
