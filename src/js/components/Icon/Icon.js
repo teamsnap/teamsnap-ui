@@ -1,9 +1,21 @@
+/**
+ * @name Icon
+ * 
+ * @description
+ *  An icon component used to render inline SVG icons in the html.  See the teamsnap patterns
+ *  library for more information https://teamsnap-ui-patterns.netlify.com/patterns/components/icon.html
+ * 
+ *  For a full list of available icons - https://teamsnap-ui-patterns.netlify.com/icons.html
+ *
+ * @example
+ *  <Icon name='location' />
+ *
+ */
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 const svgIcon = (name) => require(`../../icons/${name}`)
-
-// TODO: Icons flash 'ginormous' on page load, before css kicks in and adjust
 
 class Icon extends PureComponent {
   render () {

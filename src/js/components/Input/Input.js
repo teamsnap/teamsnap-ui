@@ -1,3 +1,17 @@
+/**
+ * @name Input
+ * 
+ * @description
+ *  A common input component that will render the appropriate styles.  This currently wraps the 'InputGroup' and 'Input'
+ *  styles together.  See the teamsnap patterns library for more inforamtion.
+ *    https://teamsnap-ui-patterns.netlify.com/patterns/components/input-group.html
+ *    https://teamsnap-ui-patterns.netlify.com/patterns/components/input
+ *
+ * @example
+ *  <Input name='example' type='email' />
+ *
+ */
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { getClassName } from '../../utils/helpers'

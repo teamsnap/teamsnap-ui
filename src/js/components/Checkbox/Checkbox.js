@@ -2,8 +2,9 @@
  * @name Checkbox
  * 
  * @description
- *  A common checkbox component that will render the appropriate styles. See the teamsnap patterns
- *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/checkbox.html
+ *  A common checkbox component that will render the appropriate styles. This calls the shared components InputControl
+ *  with all the appropriate options. See the teamsnap patterns library for more information.
+ *    https://teamsnap-ui-patterns.netlify.com/patterns/components/checkbox.html
  *
  * @example
  *  <Checkbox name='example' label='Check Me' isInline />
