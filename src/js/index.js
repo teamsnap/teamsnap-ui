@@ -4,10 +4,10 @@ import ButtonGroup from './components/ButtonGroup'
 import Cell from './components/Cell'
 import Checkbox from './components/Checkbox'
 import Divider from './components/Divider'
-import Field from './components/Field'
 import FieldGroup from './components/FieldGroup'
 import FieldLabel from './components/FieldLabel'
 import FieldMessage from './components/FieldMessage'
+import FieldWrapper from './components/FieldWrapper'
 import Grid from './components/Grid'
 import Icon from './components/Icon'
 import Input from './components/Input'
@@ -34,10 +34,10 @@ module.exports = {
   Cell,
   Checkbox,
   Divider,
-  Field,
   FieldGroup,
   FieldLabel,
   FieldMessage,
+  FieldWrapper,
   Grid,
   Icon,
   Input,

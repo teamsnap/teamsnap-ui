@@ -2,75 +2,59 @@
  * @name FieldGroup
  * 
  * @description
- *  A FieldGroup component is a helper component to group common field components together such as inputs, labels, 
- *  and messages. If you need a more custom setup, look at creating your own 'FieldGroup' See the teamsnap patterns
+ *  A field group component is a wrapper for grouping the input with label and messages.  See the teamsnap patterns
  *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/form-group.html
  *
  * @example
- *  <FieldGroup
- *    name='example' 
- *    label='Test Input' 
- *    field='input' 
- *    fieldProps={{ placeholder: 'Some placehodler text' }} />
+ *  <FieldGroup name='example' label='Check Me' isInline>
+ *    Field Child Data
+ *  </FieldGroup>
  *
  */
 
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Field from '../Field'
-import FieldLabel from '../FieldLabel'
-import FieldMessage from '../FieldMessage'
-import Input from '../Input'
-import TextArea from '../TextArea'
-import Checkbox from '../Checkbox'
-import Radio from '../Radio'
-import Toggle from '../Toggle'
-import Select from '../Select'
+import { getClassName } from '../../utils/helpers'
 
 class FieldGroup extends PureComponent {
-  renderFieldComponent = () => {
-    const { name, field, fieldProps } = this.props
-
-    const FieldTypes = {
-      select: Select,
-      checkbox: Checkbox,
-      radio: Radio,
-      toggle: Toggle,
-      textarea: TextArea
-    }
-    
-    const FieldTag = (FieldTypes[field] || Input)
-
-    return <FieldTag name={ name } { ...fieldProps } />
-  }
+  renderSuccess = () => (
+    <span className='FormGroup-validation'>
+      <Icon name='check' />
+    </span>
+  )
 
   render () {
-    const { status, name, label, message } = this.props 
+    const { children, status, className, mods, style } = this.props
+
+    const fieldClasses = getClassName(
+      className,
+      status === 'error' && 'is-notValid',
+      status === 'success' && 'is-valid',
+      mods
+    )
 
     return (
-      <Field status={ status }>
-        { label && <FieldLabel name={ name } children={ label } /> }
-        { this.renderFieldComponent() }
-        { message && <FieldMessage children={ message } isError={ status === 'error' } /> }
-      </Field>
+      <div className={ fieldClasses } style={ style }>
+        { status === 'success' && this.renderSuccess() }
+        { children }
+      </div>
     )
   }
 }
 
 FieldGroup.propTypes = {
-  name: PropTypes.string.isRequired,
-  field: PropTypes.oneOf(['input', 'checkbox', 'radio', 'toggle', 'select', 'textarea']).isRequired,
-  fieldProps: PropTypes.object,
+  children: PropTypes.node.isRequired,
   status: PropTypes.oneOf([null, 'success', 'error']),
-  label: PropTypes.string,
-  message: PropTypes.string,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object
 }
 
 FieldGroup.defaultProps = {
-  fieldProps: {},
   status: null,
-  label: null,
-  message: null
+  className: 'FieldGroup',
+  mods: null,
+  style: {}
 }
 
 export default FieldGroup

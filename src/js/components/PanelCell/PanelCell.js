@@ -3,14 +3,28 @@ import PropTypes from 'prop-types'
 import { getClassName } from '../../utils/helpers'
 
 class PanelCell extends PureComponent {
-  renderChildrenHeader = (children) => <h4 className="Panel-title">{ children }</h4>
+  renderTitle = (titleClass = '') => {
+    const { children } = this.props
+    return <h4 className={ titleClass }>{ children }</h4>
+  }
+
+  renderChildren = () => {
+    const { isHeader, children } = this.props
+    return isHeader ? this.renderTitle() : children
+  }
 
   render () {
-    const { children, isHeader, className, mods, style } = this.props
+    const { isHeader, className, mods, style } = this.props
+
+    const cellClasses = getClassName(
+      className,
+      isHeader && 'Panel-cell--header',
+      mods
+    )
 
     return (
-      <div className={ getClassName(className, mods) } style={ style }>
-        { isHeader ? this.renderChildrenHeader(children) : children }
+      <div className={ cellClasses } style={ style }>
+        { isTitle ? this.renderTitle('Panel-title') : renderChildren() }
       </div>
     )
   }
@@ -19,6 +33,7 @@ class PanelCell extends PureComponent {
 PanelCell.propTypes = {
   children: PropTypes.node.isRequired,
   isHeader: PropTypes.bool,
+  isTitle: PropTypes.bool,
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
@@ -26,7 +41,8 @@ PanelCell.propTypes = {
 
 PanelCell.defaultProps = {
   title: null,
-  isHeader: null,
+  isHeader: false,
+  isTitle: false,
   className: 'Panel-cell',
   mods: null,
   style: {}

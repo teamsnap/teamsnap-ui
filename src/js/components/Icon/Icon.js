@@ -14,34 +14,37 @@
 
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { getClassName } from '../../utils/helpers'
 
 const svgIcon = (name) => require(`../../icons/${name}`)
 
 class Icon extends PureComponent {
   render () {
-    const { name, size: fontSize, color, className, style } = this.props
+    const { name, className, mods, style } = this.props
     const svg = svgIcon(name)
 
     return (
-      <i style={{ color, fontSize }}>
-        <svg className={ className } style={ style } { ...svg.metadata } dangerouslySetInnerHTML={{ __html: svg.source }} />
-      </i>
+      <svg
+        width='24' 
+        height='24' 
+        className={ getClassName(className, mods) } 
+        style={ style } 
+        { ...svg.metadata } 
+        dangerouslySetInnerHTML={{ __html: svg.source }} />
     )
   }
 }
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
-  size: PropTypes.string,
-  color: PropTypes.string,
   className: PropTypes.string,
+  mods: PropTypes.string,
   style: PropTypes.object
 }
 
 Icon.defaultProps = {
-  size: 'inherit',
-  color: 'inherit',
   className: 'Icon',
+  mods: null,
   style: {}
 }
 

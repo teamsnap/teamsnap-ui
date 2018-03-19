@@ -13,11 +13,11 @@ class Select extends PureComponent {
     const { name, options, className, mods, style, inputProps } = this.props
 
     return (
-      <label className={ getClassName(className,mods) } style={ style } htmlFor={ name }>
+      <div className={ getClassName(className,mods) } style={ style }>
         <select className='SelectBox-options' name={ name } id={ name } { ...inputProps }>
           { options.map(this.renderOptions) }
         </select>
-      </label>
+      </div>
     )
   }
 }
