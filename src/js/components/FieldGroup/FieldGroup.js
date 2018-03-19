@@ -1,3 +1,20 @@
+/**
+ * @name FieldGroup
+ * 
+ * @description
+ *  A FieldGroup component is a helper component to group common field components together such as inputs, labels, 
+ *  and messages. If you need a more custom setup, look at creating your own 'FieldGroup' See the teamsnap patterns
+ *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/form-group.html
+ *
+ * @example
+ *  <FieldGroup
+ *    name='example' 
+ *    label='Test Input' 
+ *    field='input' 
+ *    fieldProps={{ placeholder: 'Some placehodler text' }} />
+ *
+ */
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Field from '../Field'

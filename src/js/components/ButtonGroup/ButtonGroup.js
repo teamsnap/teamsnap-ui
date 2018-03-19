@@ -1,10 +1,17 @@
 /**
- * ButtonGroup
+ * @name ButtonGroup
+ * 
+ * @description
+ *  A ButtonGroup component that that wraps multiple buttons.  You can either pass individual buttons as children
+ *  or as a set of objects in the buttons array prop.  See the teamsnap patterns library for more information 
  *  https://teamsnap-ui-patterns.netlify.com/patterns/components/button-group.html
- * 
- * A button group component that wraps multiple buttons and accepts className or style overrides. You can either pass
- * the individual buttons as children or as a set of object in the buttons array prop.
- * 
+ *
+ * @example
+ *  <ButtonGroup>
+ *    <Button color='primary'>Button One</Button>
+ *    <Button color='negative'>Button Two</Button>
+ *  </Button>
+ *
  */
 
 import React, { PureComponent } from 'react'

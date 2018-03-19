@@ -1,8 +1,13 @@
 /**
- * Divider
+ * @name Divider
  * 
- * A divider is used as a horizontal rule and spacing element to separate content.
- * 
+ * @description
+ *  A divider component is used as a horizontal rule and spacing element to separate content. See the teamsnap patterns
+ *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/divider.html
+ *
+ * @example
+ *  <Divider isThick />
+ *
  */
 
 import React, { PureComponent } from 'react'

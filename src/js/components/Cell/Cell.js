@@ -1,3 +1,17 @@
+/**
+ * @name Cell
+ * 
+ * @description
+ *  A Cell component is a child of the <Grid> component.  For more information on Grid usage see the teamsnap patterns
+ *  library. https://teamsnap-ui-patterns.netlify.com/patterns/components/grid.html
+ *
+ * @example
+ *  <Cell mods='u-size1of2'>
+ *    Grid Cell Child Data
+ *  </Cell>
+ *
+ */
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { getClassName } from '../../utils/helpers'

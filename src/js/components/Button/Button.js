@@ -1,18 +1,19 @@
 /**
- * Button
- *   https://teamsnap-ui-patterns.netlify.com/patterns/components/button.html
+ * @name Button
+ * 
+ * @description
+ *  A common button component that will render the appropriate styles for a button or link.  See the teamsnap patterns
+ *  library for more information https://teamsnap-ui-patterns.netlify.com/patterns/components/button.html
  *
- * A common button component that will render the appropriate styles for a button or a button-link. Check out the
- * teamsnap-ui patterns library for more styling info.
- *
- * Example:
+ * @example
  *  <Button
- *    children="Click Me"
  *    handleClick={ () => console.warn('Clicky Clicky') }
  *    color='primary'
  *    size='small'
- *    isActive
- *    mods='some-random-class-modifier' />
+ *    isDisabled
+ *    mods='u-spaceTopMd'>
+ *    Click Me
+ *  </Button>
  *
  */
 
@@ -33,7 +34,6 @@ class Button extends PureComponent {
       mods
     )
   }
-
 
   renderButtonLink = () => {
     const { children, routerLink, location, style, isDisabled, onClick } = this.props

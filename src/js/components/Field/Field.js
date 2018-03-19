@@ -1,3 +1,17 @@
+/**
+ * @name Field
+ * 
+ * @description
+ *  A field component is a wrapper for grouping the input with label and messages.  See the teamsnap patterns
+ *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/form-group.html
+ *
+ * @example
+ *  <Field name='example' label='Check Me' isInline>
+ *    Field Child Data
+ *  </Field>
+ *
+ */
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { getClassName } from '../../utils/helpers'

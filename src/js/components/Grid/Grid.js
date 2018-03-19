@@ -1,3 +1,17 @@
+/**
+ * @name Grid
+ * 
+ * @description
+ *  A Grid component is used for creating Flexbased grid system, they are used in conjunction with <Cell />.
+ *  For more information on Grid usage see the teamsnap patterns library. https://teamsnap-ui-patterns.netlify.com/patterns/components/grid.html
+ *
+ * @example
+ *  <Grid isWithGutter>
+ *    Grid Child Data
+ *  </Grid>
+ *
+ */
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { getClassName } from '../../utils/helpers'

@@ -1,3 +1,15 @@
+/**
+ * @name Checkbox
+ * 
+ * @description
+ *  A common checkbox component that will render the appropriate styles. See the teamsnap patterns
+ *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/checkbox.html
+ *
+ * @example
+ *  <Checkbox name='example' label='Check Me' isInline />
+ *
+ */
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import InputControl from '../InputControl'
