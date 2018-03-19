@@ -7,9 +7,12 @@
  *
  * Example:
  *  <Button
- *    text="Click Me"
+ *    children="Click Me"
  *    handleClick={ () => console.warn('Clicky Clicky') }
- *    attributes={{ className="Button Button--primary", onFocus: () => console.warn('FOCUSED') }} />
+ *    color='primary'
+ *    size='small'
+ *    isActive
+ *    mods='some-random-class-modifier' />
  *
  */
 
@@ -62,14 +65,14 @@ class Button extends PureComponent {
   }
 
   render () {
-    const { location } = this.props
-    return location ? this.renderButtonLink() : this.renderButton()
+    const { location, type } = this.props
+    return (location || type === 'link') ? this.renderButtonLink() : this.renderButton()
   }
 }
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  type: PropTypes.oneOf(['button', 'submit']),
+  type: PropTypes.oneOf(['button', 'submit', 'link']),
   routerLink: PropTypes.func,
   location: PropTypes.string,
   onClick: PropTypes.func,
