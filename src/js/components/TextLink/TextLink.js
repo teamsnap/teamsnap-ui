@@ -1,9 +1,10 @@
 /**
- * TextLink
- * 
+ * @name TextLink
+ *
+ * @description
  * A common link component that will render the appropriate styles for a link.
  * 
- * Example:
+ * @example
  *  <TextLink
  *    routerLink={ Link }
  *    location="/home"

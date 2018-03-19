@@ -1,3 +1,15 @@
+/**
+ * @name Radio
+ * 
+ * @description
+ * A generic controlled input wrapper for html radio elements.
+ *
+ * @example
+ *  <Radio
+ *    label='Shirt Size' />
+ * 
+ */
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import InputControl from '../InputControl'
