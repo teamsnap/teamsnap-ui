@@ -14,12 +14,15 @@ class FieldGroup extends PureComponent {
   renderFieldComponent = () => {
     const { name, field, fieldProps } = this.props
 
-    let FieldTag = Input
-    if (field === 'select') { FieldTag = Select }
-    else if (field === 'checkbox') { FieldTag = Checkbox }
-    else if (field === 'radio') { FieldTag = Radio }
-    else if (field === 'toggle') { FieldTag = Toggle }
-    else if (field === 'textarea') { FieldTag = TextArea }
+    const FieldTypes = {
+      select: Select,
+      checkbox: Checkbox,
+      radio: Radio,
+      toggle: Toggle,
+      textarea: TextArea
+    }
+    
+    const FieldTag = (FieldTypes[field] || Input)
 
     return <FieldTag name={ name } { ...fieldProps } />
   }
