@@ -1,3 +1,17 @@
+/**
+ * @name Panel
+ * 
+ * @description
+ *  A panel component that used to display a panel or table data.  See the teamsnap patterns
+ *  library for more information https://teamsnap-ui-patterns.netlify.com/patterns/components/panel.html
+ *
+ * @example
+ *  <Panel isStriped>
+ *    Panel Child Data
+ *  </Panel>
+ *
+ */
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { getClassName } from '../../utils/helpers'

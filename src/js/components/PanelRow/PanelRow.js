@@ -1,3 +1,17 @@
+/**
+ * @name PanelRow
+ * 
+ * @description
+ *  A panel row component is used with the Panel to wrap the rows for a Panel or table.  See the teamsnap
+ *  patterns library for more information https://teamsnap-ui-patterns.netlify.com/patterns/components/panel.html
+ *
+ * @example
+ *  <PanelRow isWithCells>
+ *    PanelRow Child Data
+ *  </PanelRow>
+ *
+ */
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { getClassName } from '../../utils/helpers'

@@ -2,12 +2,17 @@
  * @name Toggle
  * 
  * @description
- * A controlled input element to toggle a boolean state.
+ * A controlled input element to toggle a boolean state. This calls the shared components InputControl with all the 
+ * appropriate options. See the teamsnap patterns library for more information.  
+ * https://teamsnap-ui-patterns.netlify.com/patterns/components/toggle.html
+ * 
  * @example
  *  <Toggle
  *    name='OfflinePayments' />
+ * 
  */
-import React, { PureComponent } from 'react'
+
+ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import InputControl from '../InputControl'
 

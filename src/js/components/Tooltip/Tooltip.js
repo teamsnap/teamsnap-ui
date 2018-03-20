@@ -2,12 +2,13 @@
 * @name Tooltip
 *
 * @description
-* An element to display an icon and help text on hover.
+* An element to display an icon and help text on hover.  See the teamsnap patterns library for more information.
+* https://teamsnap-ui-patterns.netlify.com/patterns/components/tooltip.html
 *
 * @example
-*  <Tooltip
-*    type='icon'
-*    text="I'm some help text." />
+*  <Tooltip type='icon' text="I'm some help text.">
+*   Icon or Text to Render as Child 
+*  </Tooltip>
 *
 */
 

@@ -1,3 +1,17 @@
+/**
+ * @name PanelCell
+ * 
+ * @description
+ *  A panel cell component is used for building tables with <Panel /> and <PanelRow /> components.  See the teamsnap
+ *  patterns library for more information https://teamsnap-ui-patterns.netlify.com/patterns/components/panel.html
+ *
+ * @example
+ *  <PanelCell>
+ *    PanelCell Child Data
+ *  </PanelCell>
+ *
+ */
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { getClassName } from '../../utils/helpers'

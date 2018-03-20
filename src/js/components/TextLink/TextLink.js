@@ -2,19 +2,20 @@
  * @name TextLink
  *
  * @description
- * A common link component that will render the appropriate styles for a link.
+ * A common link component that will render the appropriate styles for a link.  Accepts a routerLink which would be the
+ * <Link /> function from a library like react-router.
  * 
  * @example
  *  <TextLink
  *    routerLink={ Link }
  *    location="/home"
- *    className="LinkTest"
  *    style={{ color: 'red'}} />
  *
  */
 
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { getClassName } from '../../utils/helpers'
 
 class TextLink extends PureComponent {
   render () {
@@ -28,7 +29,7 @@ class TextLink extends PureComponent {
     
     return (
       <AnchorTag
-        className={ className }
+        className={ getClassName(className, mods) }
         style={ style } 
         onClick={ onClick } 
         disabled={ disabled }
@@ -45,6 +46,7 @@ TextLink.propTypes = {
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
   className: PropTypes.string,
+  mods: PropTypes.string,
   style: PropTypes.object
 }
 
@@ -54,6 +56,7 @@ TextLink.defaultProps = {
   onClick: null,
   disabled: false,
   className: '',
+  mods: null,
   style: {}
 }
 

@@ -1,3 +1,21 @@
+/**
+ * @name PanelRowExpandable
+ * 
+ * @description
+ *  An expandable panel row is used to show/hide nested table data.  See the teamsnap patterns
+ *  library for more information https://teamsnap-ui-patterns.netlify.com/patterns/components/panel.html
+ *
+ *  This component accepts an array of objects as `parentColumns` and `childColumns`.  These columns will spread the
+ *  object out on the <PanelCell /> by default, unless a `renderColumn` function is passed.
+ * 
+ * @example
+ *  <PanelRowExpandable
+ *    parentColumns={[{ children: 'Homer Simpson', mods: 'u-size1of2' }, { children: 'Marge Simpson', mods: 'u-size1of2' }]}
+ *    childColumns={[{ children: 'Bart Simpson', mods: u-size1of2' }, { children: 'Lisa Simpson', mods: 'u-size1of2' }]} 
+ *    renderColumn={ column => <div style={{ outline: '1px dashed red' }} { ...column }></div> } />
+ *
+ */
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import PanelRow from '../PanelRow'

@@ -1,8 +1,10 @@
 /**
  * @name Select
+ * 
  * @description
- * A generic wrapper component for html select elements. Includes
- * support for a label and a generic map function for options.
+ *  A common select component for html select elements. Includes support for a label and a generic map function 
+ *  for options. See teamsnap patterns lib for more information. 
+ *  https://teamsnap-ui-patterns.netlify.com/patterns/components/select-box.html
  *
  * @example
  *  <Select

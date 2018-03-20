@@ -1,16 +1,16 @@
 /**
- * Loader
+ * @name Loader
+ * 
+ * @description
+ *  A loader component that supports different animations such as Spin, Pulse and Jello.  See the teamsnap patterns
+ *  library for more information https://teamsnap-ui-patterns.netlify.com/patterns/components/loader.html
  *
- * A loader component that supports different animations such as Spin, Pulse and Jello.
- *
- * Example:
- *  <Loader
- *    type='jello'
- *    text='loading' />
+ * @example
+ *  <Loader type='jello' text='loading' />
  *
  */
 
-import React, { PureComponent } from 'react'
+ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { getClassName } from '../../utils/helpers'
 

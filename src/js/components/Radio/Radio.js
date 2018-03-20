@@ -2,11 +2,16 @@
  * @name Radio
  * 
  * @description
- * A generic controlled input wrapper for html radio elements.
- *
+ *  A common radio component that will render the appropriate styles for a html radio element. This calls the shared
+ *  components InputControl with all the appropriate options. See the teamsnap patterns library for more information.
+ *    https://teamsnap-ui-patterns.netlify.com/patterns/components/checkbox.html
+ * 
  * @example
  *  <Radio
- *    label='Shirt Size' />
+ *    name='example'
+ *    label='Option One'
+ *    group='exampleOptions'
+ *    isInline />
  * 
  */
 
