@@ -4,7 +4,6 @@
   "description": "a CSS component library for TeamSnap",
   "main": "dist/js/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint:css": "sass-lint 'src/css/**/*.scss' -v -q || true",
     "prepublish": "npm run lint:css",
     "postinstall": "npm run build",
