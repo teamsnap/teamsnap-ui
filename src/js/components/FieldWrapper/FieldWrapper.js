@@ -49,9 +49,9 @@ class FieldWrapper extends PureComponent {
 
     return (
       <FieldGroup status={ status }>
-        { label && <FieldLabel name={ name } children={ label } /> }
+        { label && <FieldLabel name={ name }>{ label } </FieldLabel> }
         { this.renderFieldComponent() }
-        { message && <FieldMessage children={ message } isError={ status === 'error' } /> }
+        { message && <FieldMessage isError={ status === 'error' }>{ message }</FieldMessage> }
       </FieldGroup>
     )
   }

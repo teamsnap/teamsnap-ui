@@ -35,12 +35,14 @@ class Toggle extends PureComponent {
 
 Toggle.propTypes = {
   name: PropTypes.string.isRequired,
+  inputProps: PropTypes.object,
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object
 }
 
 Toggle.defaultProps = {
+  inputProps: {},
   className: 'Toggle',
   mods: null,
   style: {}

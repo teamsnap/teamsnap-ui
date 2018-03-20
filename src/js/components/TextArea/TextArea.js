@@ -18,7 +18,12 @@ class TextArea extends PureComponent {
     const { name, className, mods, style, ...inputProps } = this.props
 
     return (
-      <textarea name={ name } id={ name } className={ getClassName(className, mods) } style={ style } { ...inputProps } />
+      <textarea
+        name={ name } 
+        id={ name } 
+        className={ getClassName(className, mods) } 
+        style={ style }
+        { ...inputProps } />
     )
   }
 }

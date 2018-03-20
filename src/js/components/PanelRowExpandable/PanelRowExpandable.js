@@ -39,8 +39,13 @@ class PanelRowExpandable extends PureComponent {
   renderChildLink = (children) => {
     const { isExpanded } = this.state
 
+    const linkClasses = getClassName(
+      'Panel-expandableControl',
+      isExpanded && 'is-expanded'
+    )
+
     return (
-      <a onClick={ this.handleRowClick } className={ getClassName('Panel-expandableControl', isExpanded && 'is-expanded') }>
+      <a onClick={ this.handleRowClick } className={ linkClasses }>
         <span className='Panel-expandableControlIcon'>
           <Icon name='right' />
         </span>
@@ -56,9 +61,9 @@ class PanelRowExpandable extends PureComponent {
       const { children: columnChildren, ...props } = column
       const children = (includeLink && index === 0) ? this.renderChildLink(columnChildren) : columnChildren
 
-      // Thoughts: General index as key is a bad idea.  I think in this case, it might be ok? I'd be open to other ideas.
-      // This would be overriden if a 'key' was passed as part of the column data...
-      return renderColumn ? renderColumn({ children, ...props }) : <PanelCell key={ index } children={ children } { ...props } />
+      return renderColumn
+        ? renderColumn({ key: index, children, ...props })
+        : <PanelCell key={ index } { ...props }>{ children }</PanelCell>
     })
   }
 
@@ -76,7 +81,6 @@ class PanelRowExpandable extends PureComponent {
 
   render () {
     const { parentColumns, childColumns, className, mods, style } = this.props
-    const { isExpanded } = this.state
     const hasChildren = childColumns && childColumns.length > 0
 
     return (

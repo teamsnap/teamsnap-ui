@@ -1,0 +1,26 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "eol-last": [2, "always"],
+    "max-len": [
+      2,
+      {
+        "code": 120, 
+        "ignoreComments": true, 
+        "ignoreTrailingComments": true, 
+        "ignoreUrls": true, 
+        "ignoreStrings": true, 
+        "ignoreTemplateLiterals": true, 
+        "ignoreRegExpLiterals": true
+      }
+    ]
+  }
+}

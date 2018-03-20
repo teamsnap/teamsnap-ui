@@ -18,7 +18,17 @@ import { getClassName } from '../../utils/helpers'
 
 class Grid extends PureComponent {
   render () {
-    const { children, isFit, isEqualHeight, isAlignCenter, isAlignMiddle, isWithGutter, className, mods, style } = this.props
+    const {
+      children, 
+      isFit, 
+      isEqualHeight, 
+      isAlignCenter, 
+      isAlignMiddle, 
+      isWithGutter, 
+      className, 
+      mods, 
+      style 
+    } = this.props
 
     const gridClasses = getClassName(
       className,

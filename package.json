@@ -5,8 +5,10 @@
   "main": "dist/js/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:js": "eslint src/js/",
     "lint:css": "sass-lint 'src/css/**/*.scss' -v -q || true",
-    "prepublish": "npm run lint:css",
+    "lint": "npm run lint:css && npm run lint:js",
+    "prepublish": "npm run lint",
     "postinstall": "npm run build",
     "start": "gulp --gulpfile ./scripts/gulpfile.js",
     "build": "npm run build:css && npm run build:icons && npm run build:js",

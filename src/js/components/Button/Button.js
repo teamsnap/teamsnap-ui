@@ -41,12 +41,13 @@ class Button extends PureComponent {
     return (
       <TextLink
         className={ this.getButtonClassName() }
-        children={ children }
         routerLink={ routerLink }
         location={ location }
         style={ style }
         disabled={ isDisabled }
-        onClick={ onClick } />
+        onClick={ onClick }>
+        { children }
+      </TextLink>
     )
   }
 
@@ -59,8 +60,9 @@ class Button extends PureComponent {
         className={ this.getButtonClassName() }
         style={ style }
         onClick={ onClick }
-        disabled={ isDisabled }
-        children={ children } />
+        disabled={ isDisabled }>
+        { children }
+      </button>
     )
   }
 

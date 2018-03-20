@@ -23,7 +23,7 @@ class ButtonGroup extends PureComponent {
   renderButtons = () => {
     const { buttons } = this.props
 
-    return buttons.map(button => <Button { ...button } /> )
+    return buttons.map((button, index) => <Button key={ index } { ...button } /> )
   }
 
   render () {
