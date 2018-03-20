@@ -7,7 +7,7 @@
  * @example
  *  import { stringifyArray } from 'utils/helpers
  * 
- *  stringifyArray(['a', 'b', 'c'])
+ *  stringifyArray(['Simpson', 'Homer'], ', ')
  *
  */
 export const stringifyArray = (array, joinBy = ' ') => array.filter(Boolean).join(joinBy)
