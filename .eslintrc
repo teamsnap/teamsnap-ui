@@ -9,7 +9,8 @@
     "node": true
   },
   "rules": {
-    "eol-last": [2, "always"],
+    "eol-last": 2,
+    "no-multiple-empty-lines": [2, { "max": 5, "maxEOF": 0 }],
     "max-len": [
       2,
       {
