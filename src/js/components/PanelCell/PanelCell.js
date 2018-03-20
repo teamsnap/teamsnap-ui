@@ -6,7 +6,7 @@
  *  patterns library for more information https://teamsnap-ui-patterns.netlify.com/patterns/components/panel.html
  *
  * @example
- *  <PanelCell>
+ *  <PanelCell isTitle>
  *    PanelCell Child Data
  *  </PanelCell>
  *
@@ -17,18 +17,10 @@ import PropTypes from 'prop-types'
 import { getClassName } from '../../utils/helpers'
 
 class PanelCell extends PureComponent {
-  renderTitle = (titleClass = '') => {
-    const { children } = this.props
-    return <h4 className={ titleClass }>{ children }</h4>
-  }
-
-  renderChildren = () => {
-    const { isHeader, children } = this.props
-    return isHeader ? this.renderTitle() : children
-  }
+  renderTitle = () => <h4 className='Panel-title'>{ this.props.children }</h4>
 
   render () {
-    const { isHeader, className, mods, style } = this.props
+    const { children, isHeader, isTitle, className, mods, style } = this.props
 
     const cellClasses = getClassName(
       className,
@@ -38,7 +30,7 @@ class PanelCell extends PureComponent {
 
     return (
       <div className={ cellClasses } style={ style }>
-        { isTitle ? this.renderTitle('Panel-title') : renderChildren() }
+        { isTitle ? this.renderTitle() : children }
       </div>
     )
   }
