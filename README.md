@@ -1,7 +1,7 @@
 # teamsnap-ui
-TeamSnap CSS component framework.
+TeamSnaps UI framework. Built with sass and react.
 
-### To install as a node module
+### Installation
 
 Installs the @teamsnap/teamsnap-ui node module and builds the dist directory.
 
@@ -9,34 +9,29 @@ Installs the @teamsnap/teamsnap-ui node module and builds the dist directory.
 npm install
 ```
 
-### To pull down the repository and work locally
+To build the dist folder for css, js and icons 
 
-```
-git clone git@github.com:teamsnap/teamsnap-ui.git
-```
+`npm run build`
 
-+ To build dist, start up the server and watch files:
+Each item can also be build independently 
 
-`npm start` or `gulp`
+`npm run build:css`
+
+`npm run build:js`
 
 
-+ To also build themes while working locally (this takes longer, so it is not built in to the main task):
-
-```
-gulp --themes
-```
-
-+ All styles are linted using `sass-lint` and the config `sass-lint.yml` is available to customize rules as needed.
+All styles are linted using `sass-lint` and the config `.sass-lint.yml` is available to customize rules as needed.
 
 The linter is also run automatically before publishing updates to npm. For full details see [the contributing guide](CONTRIBUTING.md).
 
 To run the linter manually use:
 
 ```
-npm run lint
+npm run lint:css
 ```
 
 ### TODO:
-
-+ Update lint file and add to main gulp task
-+ Update docs with full process for working with TeamSnap-UI
++ Update docs with eslint details 
++ Update docs with full process for working locally with TeamSnap-UI
++ Update scripts to use webpack for css management and serving locally
++ Update docs to be written in storybook
