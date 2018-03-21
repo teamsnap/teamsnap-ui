@@ -1,0 +1,28 @@
+.u-colorPositive {
+  color: $cu-positive !important;
+}
+
+.u-colorNegative {
+  color: $cu-negative !important;
+}
+
+.u-colorPrimary {
+  color: $cu-primary !important;
+}
+
+.u-colorSecondary {
+  color: $cu-secondary !important;
+}
+
+.u-colorInfo {
+  color: $cu-info !important;
+}
+
+// * Link Colors (other than default)
+
+.u-linkNegative {
+  color: $cu-negative !important;
+  &:hover, &:active {
+    color: scaleColor($cu-negative, -1) !important;
+  }
+}

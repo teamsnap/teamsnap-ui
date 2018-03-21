@@ -41,3 +41,32 @@
     }
   }
 }
+
+
+/**
+ * Font size utilities
+ */
+
+.u-fontSizeXs {
+  font-size: $tu-xsmall-fontSize !important;
+}
+
+.u-fontSizeSm {
+  font-size: $tu-small-fontSize !important;
+}
+
+.u-fontSizeMd {
+  font-size: $tu-base-fontSize !important;
+}
+
+.u-fontSizeLg {
+  font-size: $tu-large-fontSize !important;
+}
+
+.u-fontSizeXl {
+  font-size: $tu-xlarge-fontSize !important;
+}
+
+.u-fontSizeXxl {
+  font-size: $tu-xxlarge-fontSize !important;
+}
