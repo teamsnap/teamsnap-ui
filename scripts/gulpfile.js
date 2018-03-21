@@ -5,10 +5,10 @@ const sass = require('gulp-sass');
 const browserSync = require('browser-sync').create();
 const cssnano = require('gulp-cssnano');
 const autoprefixer = require('gulp-autoprefixer');
-const config = require('./config');
 const del = require('del');
 const env = require('gulp-util').env;
 const gulpif = require('gulp-if');
+const config = require('./config');
 
 // Create a function for all CSS tasks so
 // teamsnap-ui and themes can build independently

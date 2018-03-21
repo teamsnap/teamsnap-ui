@@ -1,0 +1,21 @@
+//----------------------------------------------------//
+//   League Color Theme
+//----------------------------------------------------//
+
+// * 1. Load default variables, functions and tools
+
+@import "../config/index";
+
+
+// * 2. Redefine color variables for theme
+
+$cu-primary:  #13426E;
+$color-links: #3079b7;
+
+
+// * 3. Load UI styles with redefined variables
+
+@import "../fonts/index";
+@import "../base/index";
+@import "../components/index";
+@import "../utils/index";

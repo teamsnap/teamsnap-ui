@@ -6,23 +6,21 @@ options:
   # Don't merge default rules
   merge-default-rules: false
   # Set the formatter to 'html'
-  formatter: html
-  # Output file instead of logging results
-  output-file: 'linters/sass-lint.html'
+  formatter: stylish
   # Raise an error if more than 50 warnings are generated
-  max-warnings: 50
+  max-warnings: 1500
 # File Options
 files:
-  include: 'sass/**/*.s+(a|c)ss'
+  include: 'src/**/*.s+(a|c)ss'
   ignore:
-    - 'sass/vendor/**/*.*'
+    - 'src/fonts/**/*.*'
 # Rule Configuration
 rules:
-  extends-before-mixins: 2
-  extends-before-declarations: 2
-  placeholder-in-extend: 2
+  extends-before-mixins: 1
+  extends-before-declarations: 1
+  placeholder-in-extend: 1
   mixins-before-declarations:
-    - 2
+    - 1
     -
       exclude:
         - breakpoint
@@ -31,25 +29,36 @@ rules:
   no-warn: 1
   no-debug: 1
   no-ids: 2
-  no-important: 2
+  no-important: 0
+  no-duplicate-properties: 2
   hex-notation:
-    - 2
+    - 0
     -
       style: uppercase
   indentation:
-    - 2
+    - 0
     -
-      size: 2
+      size: 1
   property-sort-order:
-    - 1
+    - 0
     -
       order:
         - display
         - margin
       ignore-custom-properties: true
   variable-for-property:
-    - 2
+    - 1
     -
       properties:
         - margin
-        - content
+        - padding
+        - height
+        - color
+        - background-color
+        - font-size
+        - letter-spacing
+        - line-height
+        - font-family
+        - border-radius
+        - border-color
+        - border-width
