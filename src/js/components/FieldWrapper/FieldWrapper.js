@@ -4,7 +4,7 @@
  * @description
  *  A FieldWrapper component is a helper component to group common field components together such as inputs, labels, 
  *  and messages. If you need a more custom setup, look at creating your own 'FieldGroup' See the teamsnap patterns
- *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/form-group.html
+ *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/field-group.html
  *
  * @example
  *  <FieldWrapper

@@ -3,7 +3,7 @@
  * 
  * @description
  *  A field group component is a wrapper for grouping the input with label and messages.  See the teamsnap patterns
- *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/form-group.html
+ *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/field-group.html
  *
  * @example
  *  <FieldGroup name='example' label='Check Me' isInline>
