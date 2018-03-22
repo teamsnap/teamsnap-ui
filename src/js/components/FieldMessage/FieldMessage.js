@@ -3,7 +3,7 @@
  * 
  * @description
  *  A field message component is used to render a message or error-message. See the teamsnap patterns
- *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/form-group.html
+ *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/field-group.html
  *
  * @example
  *  <FieldMessage isError>Test Field Message Error</FieldMessage>

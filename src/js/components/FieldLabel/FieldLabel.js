@@ -3,7 +3,7 @@
  * 
  * @description
  *  A field label component is used to render the html label for a form input. See the teamsnap patterns
- *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/form-group.html
+ *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/field-group.html
  *
  * @example
  *  <FieldLabel name='example'>Test Field Label</FieldLabel>
