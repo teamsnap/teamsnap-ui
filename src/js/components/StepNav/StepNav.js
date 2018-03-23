@@ -1,3 +1,21 @@
+/**
+ * @name StepNav
+ *
+ * @description
+ *  A component to render a 'wizard' like StepNav. This uses the <TextLink /> component for the nav links.
+ *    See the Teamsnap patterns library for more information.  https://teamsnap-ui-patterns.netlify.com/patterns/components/step-nav.html
+ *
+ * @example
+ *  <StepNav
+ *    title='Test Title'
+ *    steps={[
+ *      { name: 'Step One', icon: 'home', linkProps: { onClick: (e) => { e.preventDefault(); console.warn('STEP 1 Click')}} },
+ *      { name: 'Step Two', icon: 'roster', linkProps: { location: '/some-link-href' } },
+ *      { name: 'Step Four', icon: 'messages' }
+ *    ]} />
+ *
+ */
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Icon from '../Icon'
