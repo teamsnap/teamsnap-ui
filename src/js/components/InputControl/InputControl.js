@@ -1,6 +1,6 @@
 /**
  * @name InputControl
- * 
+ *
  * @description
  *  The InputControl component is used internally to render Checkbox, Radio and Toggles.  The Checkbox, Radio and
  *  Toggle components should be used instead.  See <Radio />, <Checkbox /> or <Toggle /> for more information.
@@ -26,8 +26,8 @@ class InputControl extends PureComponent {
 
     return (
       <div className={ classes } style={ style }>
-        <input className='Checkbox-input' type={ type } name={ group || name } id={ name } { ...inputProps} />
-        <label className="Checkbox-label" htmlFor={ name } {...labelProps }>{ label }</label>
+        <input className='Checkbox-input' type={ type } name={ group || name } id={ name } { ...inputProps } />
+        <label className="Checkbox-label" htmlFor={ name } { ...labelProps }>{ label }</label>
       </div>
     )
   }

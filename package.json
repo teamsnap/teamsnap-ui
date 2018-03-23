@@ -3,6 +3,7 @@
   "version": "2.0.3",
   "description": "a CSS component library for TeamSnap",
   "main": "dist/js/index.js",
+  "sideEffects": false,
   "scripts": {
     "lint:js": "eslint src/js/ || true",
     "lint:css": "sass-lint 'src/css/**/*.scss' -v -q || true",
