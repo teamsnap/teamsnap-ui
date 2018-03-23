@@ -1,0 +1,82 @@
+$Modal-bgColor: $cu-foreground !default;
+$Modal-overlayColor: $ts-black !default;
+$Modal-borderColor: $cu-background !default;
+$Modal-borderWidth: $su-small;
+$Modal-animation: 300ms cubic-bezier(0.2, 0.8, 0.4, 1.0);
+
+// * Modal Overlay
+// *
+// * 1. Position overlay so that it covers the viewport
+// * 2. Align modal content in the center of the viewport
+
+.Modal {
+  display: none;
+  position: fixed; // 1
+  top: 0px; // 1
+  bottom: 0px; // 1
+  left: 0px; // 1
+  right: 0px; // 1
+  background-color: rgba( $Modal-overlayColor, .5 );
+  z-index: 1000;
+  justify-content: center; // 2
+  align-items: center; // 2
+}
+
+.Modal.is-open {
+  display: flex; // 2
+}
+
+.Modal.is-closing {
+  animation: overlayOut $Modal-animation forwards;
+}
+
+// * Modal content (the actual modal)
+// *
+// * 1. Make sure modal is never taller than viewport
+// * 2. Allow content to scroll if content is taller than viewport
+// * 3. Default to 100% for small screens
+// * 4. Default max width (this can be adjusted as necessary at the component level)
+
+.Modal-content {
+  max-height: 100vh; // 1
+  overflow-y: auto; // 2
+  width: 100%; // 3
+  max-width: 600px; // 4
+  background-color: $Modal-bgColor;
+  border-radius: $border-radius-large;
+  border: $Modal-borderWidth solid $Modal-borderColor;
+  padding: $su-large;
+  animation: modalIn $Modal-animation forwards;
+}
+
+.Modal-heading {
+  font-size: $tu-xlarge-fontSize;
+  color: $cu-primary;
+  font-family: $tu-museo700-fontFamily;
+  margin-bottom: $su-large;
+  text-align: center;
+}
+
+.Modal-body {}
+
+.Modal-footer {
+  margin-top: $su-xlarge;
+}
+
+@keyframes modalIn{
+  0% {
+    transform: scale(0.7);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes overlayOut{
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
