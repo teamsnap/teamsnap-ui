@@ -1,6 +1,6 @@
 {
   "name": "@teamsnap/teamsnap-ui",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "a CSS component library for TeamSnap",
   "main": "dist/js/index.js",
   "scripts": {
