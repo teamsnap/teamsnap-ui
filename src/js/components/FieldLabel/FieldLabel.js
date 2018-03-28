@@ -1,6 +1,6 @@
 /**
  * @name FieldLabel
- * 
+ *
  * @description
  *  A field label component is used to render the html label for a form input. See the teamsnap patterns
  *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/field-group.html
@@ -27,7 +27,7 @@ class FieldLabel extends PureComponent {
 }
 
 FieldLabel.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
   name: PropTypes.string,
   className: PropTypes.string,
   mods: PropTypes.string,

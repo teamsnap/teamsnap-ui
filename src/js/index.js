@@ -23,6 +23,8 @@ import PanelRowExpandable from './components/PanelRowExpandable'
 import ProgressBar from './components/ProgressBar'
 import Radio from './components/Radio'
 import Select from './components/Select'
+import StepNav from './components/StepNav'
+import SummaryList from './components/SummaryList'
 import TextArea from './components/TextArea'
 import TextLink from './components/TextLink'
 import Toggle from './components/Toggle'
@@ -53,6 +55,8 @@ module.exports = {
   ProgressBar,
   Radio,
   Select,
+  StepNav,
+  SummaryList,
   TextArea,
   TextLink,
   Toggle,
