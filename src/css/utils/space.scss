@@ -73,6 +73,8 @@ $spaces: (
   }
 }
 
+// * Responsive utilities
+
 @if $responsive == true {
   @each $bp-name, $bp-value in $breakpoints {
     @media (min-width: $bp-value) {
@@ -120,4 +122,12 @@ $spaces: (
       }
     }
   }
+}
+
+// * Negative margin Utilities
+//
+//   Add more as necessary
+
+.u-spaceNegativeRightSm {
+  margin-right: -1 * $su-small !important;
 }
