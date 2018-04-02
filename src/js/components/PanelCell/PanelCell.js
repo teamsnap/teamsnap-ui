@@ -1,6 +1,6 @@
 /**
  * @name PanelCell
- * 
+ *
  * @description
  *  A panel cell component is used for building tables with <Panel /> and <PanelRow /> components.  See the teamsnap
  *  patterns library for more information https://teamsnap-ui-patterns.netlify.com/patterns/components/panel.html
@@ -37,18 +37,18 @@ class PanelCell extends PureComponent {
 }
 
 PanelCell.propTypes = {
-  children: PropTypes.node.isRequired,
-  isHeader: PropTypes.bool,
+  children: PropTypes.node,
   isTitle: PropTypes.bool,
+  isHeader: PropTypes.bool,
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
 }
 
 PanelCell.defaultProps = {
-  title: null,
-  isHeader: false,
+  children: null,
   isTitle: false,
+  isHeader: false,
   className: 'Panel-cell',
   mods: null,
   style: {}
