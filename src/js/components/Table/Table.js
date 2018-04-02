@@ -7,17 +7,20 @@
  *
  * @example
  *  <Table
+ *    defaultSort='col2'
  *    columns=[
- *      { name: 'col1', label: 'Column One'},
- *      { name: 'col2', label: 'Column Two' }
+ *      { name: 'col1', label: 'Column One', isSortable: true },
+ *      { name: 'col2', label: 'Column Two', isSortable: true },
+ *      { name: 'col3', label: 'Column Three', render: (column, row) => <a href={`/path/to/${row.id}`}>{ row.col3 }</a> }
  *    ]
  *    rows=[
- *      { col1: 'Row 1 Column One', col2: 'Row 1 Column 2' },
- *      { col1: 'Row 2 Column One', col2: 'Row 2 Column 2' }
+ *      { id: 1, col1: 'Row 1 Column One', col2: 'Row 1 Column 2', col3: 'Row 1 Column 3' },
+ *      { id: 2, col1: 'Row 2 Column One', col2: 'Row 2 Column 2', col3: 'Row 2 Column 3' },
+ *      { id: 3, col1: 'Row 3 Column One', col2: 'Row 3 Column 2', col3: 'Row 3 Column 3' }
  *    ] />
  *
  */
- 
+
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { setUniqueId } from '../../utils/helpers'
@@ -33,7 +36,7 @@ class Table extends PureComponent {
   state = {
     items: [],
     sortByColumn: null,
-    sortByDirection: false
+    sortByReverse: false
   }
 
   componentWillMount() {
@@ -66,7 +69,7 @@ class Table extends PureComponent {
   handleSortClick = e => {
     e.preventDefault()
     const { items } = this.state
-    const sortName = e.target.getAttribute('href')
+    const sortName = e.currentTarget.getAttribute('href')
     const tableState = this.sortItems(sortName, items)
 
     this.setState({ ...tableState })
@@ -74,15 +77,21 @@ class Table extends PureComponent {
 
   renderSortLabel = label => <span className="u-colorInfo u-textNoWrap">{ label }</span>
 
-  renderSortLink = (name, label) => (
-    <TextLink location={ name } onClick={ this.handleSortClick } mods="u-flex">
-      { this.renderSortLabel(label) }
-      <div className="u-colorGrey u-fontSizeXs u-spaceLeftXs">
-        <Icon name="up" mods={ `u-block ${this.state.sortByReverse ? '' : 'u-colorHighlight'}` } />
-        <Icon name="down" mods={ `u-block ${this.state.sortByReverse ? 'u-colorHighlight' : ''}` } />
-      </div>
-    </TextLink>
-  )
+  renderSortLink = (name, label) => {
+    const { sortByColumn, sortByReverse } = this.state
+    const ascLinkClassName = (name === sortByColumn && !sortByReverse) ? 'u-colorHighlight' : ''
+    const descLinkClassName = (name === sortByColumn && sortByReverse) ? 'u-colorHighlight' : ''
+
+    return (
+      <TextLink location={ name } onClick={ this.handleSortClick } mods="u-flex">
+        { this.renderSortLabel(label) }
+        <div className="u-colorGrey u-fontSizeXs u-spaceLeftXs">
+          <Icon name="up" mods={ `u-block ${ascLinkClassName}` } />
+          <Icon name="down" mods={ `u-block ${descLinkClassName}` } />
+        </div>
+      </TextLink>
+    )
+  }
 
   renderColumnHeader = column => {
     const children = column.isSortable
@@ -136,7 +145,13 @@ Table.propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      label: PropTypes.string
+      label: PropTypes.string,
+      render: PropTypes.func,
+      isSortable: PropTypes.bool,
+      sortType: PropTypes.string,
+      sortFn: PropTypes.func,
+      mods: PropTypes.string,
+      style: PropTypes.object
     })
   ),
   rows: PropTypes.arrayOf(PropTypes.object),
@@ -148,6 +163,8 @@ Table.propTypes = {
 }
 
 Table.defaultProps = {
+  columns: [],
+  rows: [],
   defaultSort: null,
   isStriped: true,
   className: 'Panel',

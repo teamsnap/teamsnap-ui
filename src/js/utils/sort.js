@@ -1,13 +1,5 @@
 import { parseAlphaString, parseNumericString } from './helpers'
 
-// Define sortTypes for easier selection, will default in compare to 'alphaNumeric'
-const sortTypes = {
-  date: sortByDate,
-  alpha: sortByAlpha,
-  numeric: sortByNumeric,
-  alphaNumeric: sortByAlphaNumeric
-}
-
 // Sort a,b results by a parsed date
 const sortByDate = (a, b) => {
   return Date.parse(a) - Date.parse(b)
@@ -45,6 +37,14 @@ const sortByAlphaNumeric = (a, b) => {
   } else {
     return sortByAlpha(aValue, bValue)
   }
+}
+
+// Define sortTypes for easier selection, will default in compare to 'alphaNumeric'
+const sortTypes = {
+  date: sortByDate,
+  alpha: sortByAlpha,
+  numeric: sortByNumeric,
+  alphaNumeric: sortByAlphaNumeric
 }
 
 // Compare the sortBy results, sorting by the provided type if available.
