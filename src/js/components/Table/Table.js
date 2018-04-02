@@ -1,3 +1,23 @@
+/**
+ * @name Table
+ *
+ * @description
+ *  A Table component that works like a helper in composing the Panel components and various other options.
+ *    See the Teamsnap patterns library for more information.  https://teamsnap-ui-patterns.netlify.com/patterns/components/table.html
+ *
+ * @example
+ *  <Table
+ *    columns=[
+ *      { name: 'col1', label: 'Column One'},
+ *      { name: 'col2', label: 'Column Two' }
+ *    ]
+ *    rows=[
+ *      { col1: 'Row 1 Column One', col2: 'Row 1 Column 2' },
+ *      { col1: 'Row 2 Column One', col2: 'Row 2 Column 2' }
+ *    ] />
+ *
+ */
+ 
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { setUniqueId } from '../../utils/helpers'
