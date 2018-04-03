@@ -80,37 +80,42 @@ class Table extends PureComponent {
   renderSortLink = (column) => {
     const { sortByColumn, sortByReverse } = this.state
     const activeColumn = column.name === sortByColumn
-    const ascLinkClassName = activeColumn && !sortByReverse ? 'u-colorHighlight' : ''
-    const descLinkClassName = activeColumn && sortByReverse ? 'u-colorHighlight' : ''
 
-    const modClasses = getClassName(
+    const ascLinkMods = getClassName(
+      "u-block",
+      activeColumn && !sortByReverse && "u-colorHighlight"
+    );
+
+    const descLinkMods = getClassName(
+      "u-block",
+      activeColumn && sortByReverse && "u-colorHighlight"
+    );
+
+    const textLinkMods = getClassName(
       'u-flex',
       column.align === 'right' && 'u-flexJustifyEnd u-spaceNegativeRightSm',
       column.align === 'center' && 'u-flexJustifyCenter'
     )
 
     return (
-      <TextLink location={ column.name } onClick={ this.handleSortClick } mods={ modClasses }>
+      <TextLink location={ column.name } onClick={ this.handleSortClick } mods={ textLinkMods }>
         { this.renderSortLabel(column.label) }
         <div className="u-colorGrey u-fontSizeXs u-spaceLeftXs">
-          <Icon name="up" mods={ `u-block ${ascLinkClassName}` } />
-          <Icon name="down" mods={ `u-block ${descLinkClassName}` } />
+          <Icon name="up" mods={ ascLinkMods } />
+          <Icon name="down" mods={ descLinkMods } />
         </div>
       </TextLink>
     )
   }
 
-  renderColumnHeader = column => {
-    const children = column.isSortable
-      ? this.renderSortLink(column)
-      : this.renderSortLabel(column.label)
+  renderPanelCell = (children, column) => {
+    const cellMods = getClassName(
+      column.mods,
+      `u-text${capitalize(column.align || "Left")}`
+    );
 
     return (
-      <PanelCell
-        key={ column.name }
-        mods={ `${column.mods} u-text${capitalize(column.align || 'Left')}` }
-        style={ column.style }
-        isTitle>
+      <PanelCell key={ column.key } mods={ cellMods } style={ column.style } isTitle={ column.isTitle }>
         { children }
       </PanelCell>
     )
@@ -120,11 +125,15 @@ class Table extends PureComponent {
     const data = row[column.name]
     const children = column.render ? column.render(column, row) : data
 
-    return (
-      <PanelCell key={ `${row.id}-${column.name}` } mods={ `${column.mods} u-text${capitalize(column.align || 'Left')}` } style={ column.style }>
-        { children }
-      </PanelCell>
-    )
+    return this.renderPanelCell(children, { key: `${row.id}-${column.name}`, itTitle: false, ...column })
+  }
+
+  renderHeaderColumn = column => {
+    const children = column.isSortable
+      ? this.renderSortLink(column)
+      : this.renderSortLabel(column.label)
+
+    return this.renderPanelCell(children, { key: column.name, isTitle: true, ...column })
   }
 
   renderRow = row => {
@@ -137,15 +146,24 @@ class Table extends PureComponent {
     )
   }
 
-  render() {
-    const { columns, isStriped, className, mods, style } = this.props
+  renderTableColumns = () => {
+    const { columns } = this.props
+    return columns.map(this.renderHeaderColumn)
+  }
+
+  renderTableRows = () => {
     const { items } = this.state
+    return items.map(this.renderRow)
+  }
+
+  render() {
+    const { isStriped, className, mods, style } = this.props
 
     return (
       <Panel className={ className } mods={ mods } isStriped={ isStriped } style={ style }>
         <PanelBody>
-          <PanelRow isWithCells>{ columns.map(this.renderColumnHeader) }</PanelRow>
-          { items.map(this.renderRow) }
+          <PanelRow isWithCells>{ this.renderTableColumns() }</PanelRow>
+          { this.renderTableRows() }
         </PanelBody>
       </Panel>
     )
