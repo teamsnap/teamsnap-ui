@@ -23,7 +23,7 @@
 
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { setUniqueId } from '../../utils/helpers'
+import { setUniqueId, capitalize, getClassName } from '../../utils/helpers'
 import { sortBy } from '../../utils/sort'
 import Icon from '../Icon'
 import Panel from '../Panel'
@@ -77,14 +77,21 @@ class Table extends PureComponent {
 
   renderSortLabel = label => <span className="u-colorInfo u-textNoWrap">{ label }</span>
 
-  renderSortLink = (name, label) => {
+  renderSortLink = (column) => {
     const { sortByColumn, sortByReverse } = this.state
-    const ascLinkClassName = (name === sortByColumn && !sortByReverse) ? 'u-colorHighlight' : ''
-    const descLinkClassName = (name === sortByColumn && sortByReverse) ? 'u-colorHighlight' : ''
+    const activeColumn = column.name === sortByColumn
+    const ascLinkClassName = activeColumn && !sortByReverse ? 'u-colorHighlight' : ''
+    const descLinkClassName = activeColumn && sortByReverse ? 'u-colorHighlight' : ''
+
+    const modClasses = getClassName(
+      'u-flex',
+      column.align === 'right' && 'u-flexJustifyEnd u-spaceNegativeRightSm',
+      column.align === 'center' && 'u-flexJustifyCenter'
+    )
 
     return (
-      <TextLink location={ name } onClick={ this.handleSortClick } mods="u-flex">
-        { this.renderSortLabel(label) }
+      <TextLink location={ column.name } onClick={ this.handleSortClick } mods={ modClasses }>
+        { this.renderSortLabel(column.label) }
         <div className="u-colorGrey u-fontSizeXs u-spaceLeftXs">
           <Icon name="up" mods={ `u-block ${ascLinkClassName}` } />
           <Icon name="down" mods={ `u-block ${descLinkClassName}` } />
@@ -95,11 +102,15 @@ class Table extends PureComponent {
 
   renderColumnHeader = column => {
     const children = column.isSortable
-      ? this.renderSortLink(column.name, column.label)
+      ? this.renderSortLink(column)
       : this.renderSortLabel(column.label)
 
     return (
-      <PanelCell key={ column.name } mods={ column.mods } style={ column.style } isTitle>
+      <PanelCell
+        key={ column.name }
+        mods={ `${column.mods} u-text${capitalize(column.align || 'Left')}` }
+        style={ column.style }
+        isTitle>
         { children }
       </PanelCell>
     )
@@ -110,7 +121,7 @@ class Table extends PureComponent {
     const children = column.render ? column.render(column, row) : data
 
     return (
-      <PanelCell key={ `${row.id}-${column.name}` } mods={ column.mods } style={ column.style }>
+      <PanelCell key={ `${row.id}-${column.name}` } mods={ `${column.mods} u-text${capitalize(column.align || 'Left')}` } style={ column.style }>
         { children }
       </PanelCell>
     )
@@ -150,6 +161,7 @@ Table.propTypes = {
       isSortable: PropTypes.bool,
       sortType: PropTypes.string,
       sortFn: PropTypes.func,
+      align: PropTypes.oneOf(['right', 'left', 'center']),
       mods: PropTypes.string,
       style: PropTypes.object
     })

@@ -1,4 +1,21 @@
 import _uniqueId from 'lodash/uniqueId'
+import _capitalize from 'lodash/capitalize'
+
+/**
+ * @name capitalize
+ *
+ * @description
+ *  This simple method returns a string representing a uniqueID.
+ *  Currently it is a 'wrapper' around the lodash uniqueId method.
+ *  There are other utilities we can look into as well, such as `shortid`
+ *
+ * @example
+ *  import { capitalize } from 'utils/helpers
+ *
+ *  capitalize('name')
+ *
+ */
+export const capitalize = (string) => _capitalize(string)
 
 /**
  * @name generateUniqueId
