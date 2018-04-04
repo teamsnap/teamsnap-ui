@@ -77,19 +77,12 @@ class Table extends PureComponent {
 
   renderSortLabel = label => <span className="u-colorInfo u-textNoWrap">{ label }</span>
 
-  renderSortLink = (column) => {
+  renderSortLink = column => {
     const { sortByColumn, sortByReverse } = this.state
     const activeColumn = column.name === sortByColumn
 
-    const ascLinkMods = getClassName(
-      "u-block",
-      activeColumn && !sortByReverse && "u-colorHighlight"
-    );
-
-    const descLinkMods = getClassName(
-      "u-block",
-      activeColumn && sortByReverse && "u-colorHighlight"
-    );
+    const ascLinkMods = getClassName('u-block', activeColumn && !sortByReverse && 'u-colorHighlight')
+    const descLinkMods = getClassName('u-block', activeColumn && sortByReverse && 'u-colorHighlight')
 
     const textLinkMods = getClassName(
       'u-flex',
@@ -109,10 +102,7 @@ class Table extends PureComponent {
   }
 
   renderPanelCell = (children, column) => {
-    const cellMods = getClassName(
-      column.mods,
-      `u-text${capitalize(column.align || "Left")}`
-    );
+    const cellMods = getClassName(column.mods, `u-text${capitalize(column.align || 'Left')}`)
 
     return (
       <PanelCell key={ column.key } mods={ cellMods } style={ column.style } isTitle={ column.isTitle }>
@@ -129,9 +119,7 @@ class Table extends PureComponent {
   }
 
   renderHeaderColumn = column => {
-    const children = column.isSortable
-      ? this.renderSortLink(column)
-      : this.renderSortLabel(column.label)
+    const children = column.isSortable ? this.renderSortLink(column) : this.renderSortLabel(column.label)
 
     return this.renderPanelCell(children, { key: column.name, isTitle: true, ...column })
   }
