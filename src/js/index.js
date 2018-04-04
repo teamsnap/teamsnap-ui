@@ -25,6 +25,7 @@ import Radio from './components/Radio'
 import Select from './components/Select'
 import StepNav from './components/StepNav'
 import SummaryList from './components/SummaryList'
+import Table from './components/Table'
 import TextArea from './components/TextArea'
 import TextLink from './components/TextLink'
 import Toggle from './components/Toggle'
@@ -57,6 +58,7 @@ module.exports = {
   Select,
   StepNav,
   SummaryList,
+  Table,
   TextArea,
   TextLink,
   Toggle,
