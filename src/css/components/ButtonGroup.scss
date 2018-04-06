@@ -18,8 +18,11 @@ $ButtonGroup-space: -1 * $border-width-small;
 // * 1. Overlap elements and override any vertical margins.
 // * 2. Reset `border-radius` so corners line up.
 
+.ButtonGroup > .Button + .Button {
+  margin-left: $ButtonGroup-space; // 1
+}
+
 .ButtonGroup > .Button {
-  margin: 0 $ButtonGroup-space; // 1
   border-radius: 0; // 2
 }
 
