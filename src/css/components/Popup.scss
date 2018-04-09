@@ -1,0 +1,207 @@
+$Popup-offset: 10px;
+$Popup-arrow-size: 12px;
+$Popup-arrow-offset: $Popup-arrow-size / 2;
+$Popup-arrow-offsetCover: ($Popup-arrow-size / 2) + 1;
+$Popup-arrow-borderRadius: 3px;
+
+// * .Popup
+// * Wrapper for the popup elements. Display inline-block so it assumes the
+// * size of the nested triggering element.
+
+.Popup {
+  position: relative;
+  display: inline-block;
+}
+
+// * .Popup-toggle
+// * The triggering element. No styles, but exists as an identifying class.
+
+.Popup-toggle {
+}
+
+// * .Popup-container
+// * Sets the position of the popup relative to the toggle
+//
+// * 1. The bottom of the popup is positioned at the _top_ of the trigger, plus some space
+// * 2. Centers the element over the trigger
+// * 3. Positions popup above other elements on the page
+//   TODO: This might need adjusted depending on relative stacking index
+//   TODO: Create relative stacking index variables so that orders can be organized
+// * 4. Set a default width. This can be changed inline as necessary.
+// * 5. Hide until it is triggered.
+
+.Popup-container {
+  position: absolute; // 1
+  bottom: calc(100% + #{$Popup-offset}); // 1
+  left: 50%; // 2
+  transform: translateX(-50%); // 2
+  z-index: 100; // 3
+  width: 250px; // 4
+  display: none; // 5
+}
+
+.Popup-container.is-open {
+  display: block;
+}
+
+// * .Popup-arrow
+// * Arrow that points to triggering element
+//
+// * Sandwiches and centers two squares, rotated 45°, around .Popup-content
+
+.Popup-container::before,
+.Popup-container::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: $Popup-arrow-size;
+	height: $Popup-arrow-size;
+  background-color: $ts-white;
+  border-radius: $Popup-arrow-borderRadius 0 $Popup-arrow-borderRadius 0;
+  animation: popInArrow 75ms cubic-bezier(0.2, 0.8, 0.4, 1.0) forwards;
+}
+
+// * Bottom square has border and box shadow
+
+.Popup-container::before {
+  top: calc( 100% - #{$Popup-arrow-offset} );
+  border: solid $ts-grey $border-width-small;
+  box-shadow: $box-shadow-small;
+}
+
+// * Top square is white and conceals the top half of the border/shadow styles
+//   of bottom square that overlay the popup
+
+.Popup-container::after {
+  top: calc( 100% - #{$Popup-arrow-offsetCover} );
+}
+
+// * .Popup-content
+// * The popup box
+
+.Popup-content {
+  background-color: $ts-white;
+  border: solid $ts-grey $border-width-small;
+  border-radius: $border-radius-medium;
+  box-shadow: $box-shadow-small;
+  animation: popIn 75ms cubic-bezier(0.2, 0.8, 0.4, 1.0) forwards;
+}
+
+// * Overlay modifier
+//
+// * Positions popover directly on top of toggle, centered vertically and horizontally
+// * Removes arrow pointer
+
+.Popup-container--overlay {
+  bottom: 50%;
+  transform: translateX(-50%) translateY(50%);
+
+  &::before,
+  &::after {
+    display: none;
+  }
+}
+
+// * Down modifier
+//
+// * Positions popover below content
+// * Respositions arrow pointer
+
+.Popup-container--down {
+  bottom: auto;
+  top: calc(100% + #{$Popup-offset});
+  &::before {
+    top: -1 * $Popup-arrow-offset;
+  }
+  &::after {
+    top: -1 * ($Popup-arrow-offset - 1);
+  }
+}
+
+// * Left modifier
+//
+// * Aligns popover with left side of toggle
+
+.Popup-container--left {
+  left: 0;
+  transform: none;
+
+  &::before,
+  &::after {
+    left: $su-large;
+    transform: translateX(0) rotate(45deg);
+  }
+}
+
+// * Left Hanging modifier
+//
+// * Aligns popover so that it "hangs" off the left side of the toggle
+
+.Popup-container--leftHang {
+  left: -1 * $su-large;
+  transform: none;
+
+  &::before,
+  &::after {
+    left: $su-large + $su-small;
+    transform: translateX(0) rotate(45deg);
+  }
+}
+
+
+// * Right modifier
+//
+// * Aligns popover with right side of toggle
+
+.Popup-container--right {
+  left: auto;
+  right: 0;
+  transform: none;
+
+  &::before,
+  &::after {
+    left: auto;
+    right: $su-large;
+    transform: translateX(0) rotate(45deg);
+  }
+}
+
+// * Right Hanging modifier
+//
+// * Aligns popover so that it "hangs" off the right side of the toggle
+
+.Popup-container--rightHang {
+  left: auto;
+  right: -1 * $su-large;
+  transform: none;
+
+  &::before,
+  &::after {
+    left: auto;
+    right: $su-large + $su-small;
+    transform: translateX(0) rotate(45deg);
+  }
+}
+
+// * Animations
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.7, 0.7, 0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: scale3d(1.0, 1.0, 1.0);
+  }
+}
+
+@keyframes popInArrow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

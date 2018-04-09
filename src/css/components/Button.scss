@@ -1,8 +1,6 @@
 @import "../config/index.scss";
 
-/**
- * @define default Button
- */
+// * @define default Button
 
 $Button-bg: $ts-white;
 $Button-bg-hover: $cu-background;
@@ -67,9 +65,8 @@ $Button-padding: 0 scaleGrid(2);
   }
 }
 
-/**
- * Modifier: Button Primary
- */
+
+// * Modifier: Button Primary
 
 $Button--primary-bg: $cu-secondary;
 $Button--primary-bg-hover: scaleColor($Button--primary-bg, -1);
@@ -107,9 +104,8 @@ $Button--primary-border-color-hover: scaleColor($cu-secondary--dark, -1);
   }
 }
 
-/**
- * Modifier: Button Negative
- */
+
+// * Modifier: Button Negative
 
 $Button--negative-bg: $ts-white;
 $Button--negative-bg-hover: $cu-negative;
@@ -149,9 +145,8 @@ $Button--negative-border-color-hover: $cu-negative--dark;
   }
 }
 
-/**
- * Modifier: Button Small
- */
+// * Modifier: Button Small
+
 
 $Button--small-font-size: $tu-small-fontSize;
 $Button--small-height: scaleGrid(3);
@@ -166,9 +161,17 @@ $Button--small-padding: 0 $su-small;
   padding: $Button--small-padding;
 }
 
-/**
- * Modifier: Button Large
- */
+// * Modifier: Button Square small
+
+.Button--smallSquare {
+  width: $Button--small-height;
+  height: $Button--small-height;
+  line-height: $Button--small-line-height;
+  padding: 0;
+}
+
+
+// * Modifier: Button Large
 
 $Button--large-font-size: $tu-base-fontSize;
 $Button--large-height: scaleGrid(5);
@@ -180,4 +183,61 @@ $Button--large-padding: 0 scaleGrid(3);
   height: $Button--large-height;
   line-height: $Button--large-line-height;
   padding: $Button--large-padding;
+}
+
+
+// * Modifier: Yes / Maybe / No modifiers for setting status
+//
+//   --yesDefault, --noDefault, and --maybeDefault start with the default white button,
+//   and hover and active states have yes / maybe / no colors
+//
+//   --yes, --no, and --maybe always have yes / maybe / no colors
+
+
+.Button--yesDefault.is-active,
+.Button--yesDefault:hover,
+.Button--yes {
+  background-color: $cu-positive;
+  color: $ts-white;
+  border-color: scaleColor($cu-positive, -1);
+}
+
+.Button--yes {
+  &:hover, &:active, &:focus, &.is-active {
+    background-color: scaleColor($cu-positive, -1);
+    color: $ts-white;
+    border-color: scaleColor($cu-positive, -2);
+  }
+}
+
+.Button--maybeDefault.is-active,
+.Button--maybeDefault:hover,
+.Button--maybe {
+  background-color: $ts-darkblue;
+  color: $ts-white;
+  border-color: scaleColor($ts-darkblue, -1);
+}
+
+.Button--maybe {
+  &:hover, &:active, &:focus, &.is-active {
+    background-color: scaleColor($ts-darkblue, -1);
+    color: $ts-white;
+    border-color: scaleColor($ts-darkblue, -2);
+  }
+}
+
+.Button--noDefault.is-active,
+.Button--noDefault:hover,
+.Button--no {
+  background-color: $cu-negative;
+  color: $ts-white;
+  border-color: scaleColor($cu-negative, -1);
+}
+
+.Button--no {
+  &:hover, &:active, &:focus, &.is-active {
+    background-color: scaleColor($cu-negative, -1);
+    color: $ts-white;
+    border-color: scaleColor($cu-negative, -2);
+  }
 }
