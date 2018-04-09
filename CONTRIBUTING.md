@@ -18,6 +18,8 @@ Once your user is created and added to the org this guide details the steps to p
 * `git pull origin master`
 * `npm publish`
 * To update TeamSnap CSS assets on CDN, run `jarvis deploy teamsnap_ui/master` in #chatops
+* As necessary, update CSS version number in repositories that reference it:
+  - Classic (for NJW): https://github.com/teamsnap/classic/blob/master/app/views/_header_head_tag.html.erb#L33
 
 **Note**
 
