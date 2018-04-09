@@ -17,3 +17,44 @@
   top: -1px; // 1
   fill: currentColor; // 2
 }
+
+// * Modifier for loader icon
+
+$Icon--loader-offset: 130;
+$Icon--loader-duration: 1.4s;
+
+.Icon--loader {
+  animation: rotator $Icon--loader-duration linear infinite;
+  fill: none;
+  stroke: currentColor;
+
+  circle {
+    stroke-dasharray: $Icon--loader-offset;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    animation: dash $Icon--loader-duration ease-in-out infinite
+  }
+}
+
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes dash {
+ 0% {
+   stroke-dashoffset: $Icon--loader-offset;
+ }
+ 50% {
+   stroke-dashoffset: $Icon--loader-offset / 4;
+   transform: rotate(135deg);
+ }
+ 100% {
+   stroke-dashoffset: $Icon--loader-offset;
+   transform: rotate(450deg);
+ }
+}
