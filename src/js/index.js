@@ -21,6 +21,7 @@ import PanelHeader from './components/PanelHeader'
 import PanelRow from './components/PanelRow'
 import PanelRowExpandable from './components/PanelRowExpandable'
 import ProgressBar from './components/ProgressBar'
+import RadialProgress from './components/RadialProgress'
 import Radio from './components/Radio'
 import Select from './components/Select'
 import StepNav from './components/StepNav'
@@ -54,6 +55,7 @@ module.exports = {
   PanelRow,
   PanelRowExpandable,
   ProgressBar,
+  RadialProgress,
   Radio,
   Select,
   StepNav,
