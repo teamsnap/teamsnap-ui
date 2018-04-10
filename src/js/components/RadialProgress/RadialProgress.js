@@ -12,11 +12,12 @@ class RadialProgress extends PureComponent {
     if (degrees <= 180) {
       circle.first = `${degrees}deg`
       circle.second = '0deg'
+      circle.className = 'RadialProgress-circle'
     } else {
       circle.first = '180deg'
       circle.second = `${degrees}deg`
+      circle.className = 'RadialProgress-circle whole'
     }
-
 
     const radialClassName = getClassName(
       className,
@@ -27,7 +28,7 @@ class RadialProgress extends PureComponent {
 
     return (
       <div className={ radialClassName }>
-        <div className='RadialProgress-circle'>
+        <div className={ circle.className }>
           <div className='RadialProgress-status' style={{ transform: `rotate(${circle.first})` }} />
           <div className='RadialProgress-status' style={{ transform: `rotate(${circle.second})` }} />
         </div>

@@ -21,19 +21,19 @@ import { getClassName } from '../../utils/helpers'
 
 class ProgressBar extends PureComponent {
   render () {
-    const { progress, className, mods, style, color, size, direction, precise } = this.props
+    const { progress, className, mods, style, color, size, isVertical, isPrecise } = this.props
 
     const progressClasses = getClassName(
       className,
       size && `ProgressBar--${size}`,
       color && `ProgressBar--${color}`,
-      direction === 'vertical' && 'ProgressBar--vertical',
-      precise && 'ProgressBar--precise',
+      isVertical && 'ProgressBar--vertical',
+      isPrecise && 'ProgressBar--precise',
       mods
     )
 
     const progressWidth = {
-      [direction === 'vertical' ? 'height' : 'width']: `${progress}%`
+      [isVertical ? 'height' : 'width']: `${progress}%`
     }
 
     return (
@@ -48,8 +48,8 @@ ProgressBar.propTypes = {
   progress: PropTypes.number,
   size: PropTypes.string,
   color: PropTypes.string,
-  precise: PropTypes.bool,
-  direction: PropTypes.oneOf(['horizontal', 'vertical']),
+  isPrecise: PropTypes.bool,
+  isVertical: PropTypes.bool,
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object
@@ -59,8 +59,8 @@ ProgressBar.defaultProps = {
   progress: 0,
   size: null,
   color: null,
-  precise: false,
-  direction: 'horizontal',
+  isPrecise: false,
+  isVertical: false,
   className: 'ProgressBar',
   mods: null,
   style: {}
