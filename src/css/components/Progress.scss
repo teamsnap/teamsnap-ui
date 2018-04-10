@@ -129,7 +129,15 @@
 .ProgressBar--precise {
 
   .ProgressBar-status {
-    border-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &.ProgressBar--vertical {
+    .ProgressBar-status {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
   }
 
 }
