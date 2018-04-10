@@ -1,0 +1,301 @@
+@import "../config/index.scss";
+
+//------------------------------------------------------------//
+
+// * Progress Component
+// * 1. ProgressBar
+// * 1.a ProgressBar Sizes
+// * 2. Vertical ProgressBar Modifier
+// * 2.a Vertical ProgressBar Sizes
+// * 3. ProgressBar Precise Modifier
+// * 4. RadialProgress
+// * 4.a RadialProgress Sizes
+// * 5. Progress Color Modifiers
+
+// * Notes:
+// * 1: uses fontSize variable to lineup x-height with width
+
+// * TODO: update sizing to use a SASS mixin
+
+//------------------------------------------------------------//
+
+// * 1. Default Progress
+
+.ProgressBar {
+  height: $su-small;
+  background: $cu-background;
+  box-shadow: inset $box-shadow-small;
+  overflow: hidden;
+}
+
+.ProgressBar-status {
+  background: $cu-positive;
+  height: 100%;
+  width: auto; // overidden inline
+}
+
+.ProgressBar,
+.ProgressBar-status {
+  border-radius: $su-small / 2;
+}
+
+// * 1.a Default Progress Sizes
+
+.ProgressBar--xsmall {
+  height: $su-xxsmall;
+  &, .ProgressBar-status {
+    border-radius: $su-xxsmall / 2;
+  }
+}
+
+.ProgressBar--small {
+  height: $su-xsmall;
+  &, .ProgressBar-status {
+    border-radius: $su-xsmall / 2;
+  }
+}
+
+.ProgressBar--large {
+  height: $su-medium;
+  &, .ProgressBar-status {
+    border-radius: $su-medium / 2;
+  }
+}
+
+.ProgressBar--xlarge {
+  height: $su-large;
+  &, .ProgressBar-status {
+    border-radius: $su-large / 2;
+  }
+}
+
+// * 2. Vertical Progress Modifier
+
+.ProgressBar--vertical {
+  height: 100%;
+  width: $su-xlarge;
+  position: relative;
+
+  .ProgressBar-status {
+    height: auto; // overidden inline
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  &, .ProgressBar-status {
+    border-radius: $su-xxlarge / 2;
+  }
+
+}
+
+// * 2a. Vertical Progress Sizes
+
+.ProgressBar--vertical {
+
+  &.ProgressBar--xsmall {
+    width: $su-medium;
+    &, .ProgressBar-status {
+      border-radius: $su-medium / 2;
+    }
+  }
+
+  &.ProgressBar--small {
+    width: $su-large;
+    &, .ProgressBar-status {
+      border-radius: $su-large / 2;
+    }
+  }
+
+  &.ProgressBar--large {
+    width: scaleGrid(6);
+    &, .ProgressBar-status {
+      border-radius: scaleGrid(6) / 2;
+    }
+  }
+
+  &.ProgressBar--xlarge {
+    width: scaleGrid(8);
+    &, .ProgressBar-status {
+      border-radius: scaleGrid(8) / 2;
+    }
+  }
+
+}
+
+// * 3. Precise Modifier
+
+.ProgressBar--precise {
+
+  .ProgressBar-status {
+    border-radius: 0;
+  }
+
+}
+
+// * 4. RadialProgress
+
+.RadialProgress {
+  position: relative;
+  display: block;
+  background: $cu-background;
+  border-radius: 50%;
+  height: scaleGrid(10);
+  width: scaleGrid(10);
+
+  &:before,
+  &:after {
+    content: '';
+    border-radius: 50%;
+    display: block;
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  &:before {
+    width:  100%;
+    height: 100%;
+    box-shadow: $inset-box-shadow-small;
+  }
+
+  &:after {
+    width:  60%;
+    height: 60%;
+    box-shadow: $box-shadow-small;
+    background: $cu-foreground;
+  }
+
+}
+
+.RadialProgress-circle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  clip: rect(0, scaleGrid(10), scaleGrid(10), scaleGrid(10)/2 );
+
+}
+
+.RadialProgress {
+  .RadialProgress-circle.whole {
+    clip: rect(auto, auto, auto, auto);
+  }
+}
+
+.RadialProgress-status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background: transparent;
+  clip: rect(0, scaleGrid(10)/2, scaleGrid(10), 0);
+  border: {
+    width: scaleGrid(5);
+    style: solid;
+    color: $cu-positive;
+  }
+}
+
+// * 4.a RadialProgress Sizes
+
+.RadialProgress--xsmall {
+  height: scaleGrid(4);
+  width: scaleGrid(4);
+
+  .RadialProgress-circle {
+    clip: rect(0, scaleGrid(4), scaleGrid(4), scaleGrid(4)/2 );
+  }
+
+  .RadialProgress-status {
+    clip: rect(0, scaleGrid(4)/2, scaleGrid(4), 0);
+    border-width: scaleGrid(2);
+  }
+
+}
+
+.RadialProgress--small {
+  height: scaleGrid(6);
+  width: scaleGrid(6);
+
+  .RadialProgress-circle {
+    clip: rect(0, scaleGrid(6), scaleGrid(6), scaleGrid(6)/2 );
+  }
+
+  .RadialProgress-status {
+    clip: rect(0, scaleGrid(6)/2, scaleGrid(6), 0);
+    border-width: scaleGrid(3);
+  }
+
+}
+
+.RadialProgress--large {
+  height: scaleGrid(14);
+  width: scaleGrid(14);
+
+  .RadialProgress-circle {
+    clip: rect(0, scaleGrid(14), scaleGrid(14), scaleGrid(14)/2 );
+  }
+
+  .RadialProgress-status {
+    clip: rect(0, scaleGrid(14)/2, scaleGrid(14), 0);
+    border-width: scaleGrid(7);
+  }
+
+}
+
+.RadialProgress--xlarge {
+  height: scaleGrid(20);
+  width: scaleGrid(20);
+
+  .RadialProgress-circle {
+    clip: rect(0, scaleGrid(20), scaleGrid(20), scaleGrid(20)/2 );
+  }
+
+  .RadialProgress-status {
+    clip: rect(0, scaleGrid(20)/2, scaleGrid(20), 0);
+    border-width: scaleGrid(10);
+  }
+
+}
+
+
+// * 5. Progress Color Modifiers
+
+.ProgressBar--neutral {
+
+   .ProgressBar-status {
+     background: $cu-info--light;
+   }
+
+}
+
+.ProgressBar--negative {
+
+   .ProgressBar-status {
+     background: $cu-negative;
+   }
+
+}
+
+.RadialProgress--neutral {
+
+  .RadialProgress-status {
+    border-color: $cu-info--light;
+  }
+
+}
+
+.RadialProgress--negative {
+
+  .RadialProgress-status {
+    border-color: $cu-negative;
+  }
+
+}

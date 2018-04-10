@@ -29,7 +29,7 @@ body {
 
 b,
 strong {
-  font-weight: bolder;
+  font-weight: $tu-semibold-fontWeight;
 }
 
 small {
@@ -78,6 +78,7 @@ h2 {
 
 h3 {
   font-size: $tu-large-fontSize;
+  font-weight: $tu-semibold-fontWeight;
   line-height: $tu-base-lineHeight;
   letter-spacing: $tu-large-letterSpacing;
 }
