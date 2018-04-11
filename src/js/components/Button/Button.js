@@ -1,6 +1,6 @@
 /**
  * @name Button
- * 
+ *
  * @description
  *  A common button component that will render the appropriate styles for a button or link.  See the teamsnap patterns
  *  library for more information https://teamsnap-ui-patterns.netlify.com/patterns/components/button.html
@@ -19,6 +19,7 @@
 
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import Icon from '../Icon'
 import TextLink from '../TextLink'
 import { getClassName } from '../../utils/helpers'
 
@@ -35,8 +36,22 @@ class Button extends PureComponent {
     )
   }
 
+  renderIcon = (icon, mods) => icon ? <Icon name={ icon } mods={ mods } /> : null
+
+  renderChildren = () => {
+    const { label, children, icon, iconPosition } = this.props
+
+    return (
+      <span>
+        { iconPosition === 'left' &&  this.renderIcon(icon, 'u-spaceRightXs') }
+        { label || children }
+        { iconPosition === 'right' && this.renderIcon(icon, 'u-spaceLeftXs') }
+      </span>
+    )
+  }
+
   renderButtonLink = () => {
-    const { children, routerLink, location, style, isDisabled, onClick } = this.props
+    const { routerLink, location, style, isDisabled, onClick } = this.props
 
     return (
       <TextLink
@@ -46,13 +61,13 @@ class Button extends PureComponent {
         style={ style }
         disabled={ isDisabled }
         onClick={ onClick }>
-        { children }
+        { this.renderChildren() }
       </TextLink>
     )
   }
 
   renderButton = () => {
-    const { children, type, style, isDisabled, onClick } = this.props
+    const { type, style, isDisabled, onClick } = this.props
 
     return (
       <button
@@ -61,7 +76,7 @@ class Button extends PureComponent {
         style={ style }
         onClick={ onClick }
         disabled={ isDisabled }>
-        { children }
+        { this.renderChildren() }
       </button>
     )
   }
@@ -73,8 +88,11 @@ class Button extends PureComponent {
 }
 
 Button.propTypes = {
-  children: PropTypes.node.isRequired,
   type: PropTypes.oneOf(['button', 'submit', 'link']),
+  label: PropTypes.string,
+  children: PropTypes.node,
+  icon: PropTypes.string,
+  iconPosition: PropTypes.oneOf(['left', 'right']),
   routerLink: PropTypes.func,
   location: PropTypes.string,
   onClick: PropTypes.func,
@@ -89,6 +107,10 @@ Button.propTypes = {
 
 Button.defaultProps = {
   type: 'button',
+  label: null,
+  children: null,
+  icon: null,
+  iconPosition: 'left',
   routerLink: null,
   location: '',
   onClick: null,
