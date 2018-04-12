@@ -48,8 +48,10 @@ $form-input-bg-color: $cu-foreground--dark !default;
   }
 }
 
+// Hack to overrid webkit autofill styles
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
-  background-color: $form-input-bg-color;
+  -webkit-box-shadow: 0 0 0px 1000px $cu-foreground--dark inset;
+  -webkit-text-fill-color: $cu-info;
 }
