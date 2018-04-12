@@ -19,7 +19,7 @@ import { getClassName } from '../../utils/helpers'
 
 class TextLink extends PureComponent {
   render () {
-    const { children, className, mods, style, location, routerLink, onClick, disabled } = this.props
+    const { children, className, mods, style, location, routerLink, onClick, disabled, otherProps } = this.props
     
     // Define anchorTag to be the passed in router 'Link' or 'a' as default.
     const AnchorTag = routerLink || 'a'
@@ -33,7 +33,8 @@ class TextLink extends PureComponent {
         style={ style } 
         onClick={ onClick } 
         disabled={ disabled }
-        { ...linkType }>
+        { ...linkType }
+        { ...otherProps }>
         { children }
       </AnchorTag>
     )
@@ -48,7 +49,8 @@ TextLink.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 TextLink.defaultProps = {
@@ -58,7 +60,8 @@ TextLink.defaultProps = {
   disabled: false,
   className: '',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default TextLink
