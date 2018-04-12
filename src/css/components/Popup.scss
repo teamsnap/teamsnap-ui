@@ -1,6 +1,6 @@
-$Popup-bg-color: $cu-foreground;
-$Popup-text-color: $cu-info;
-$Popup-border-color: $cu-divider;
+$Popup-bg-color: $cu-foreground !default;
+$Popup-text-color: $cu-info !default;
+$Popup-border-color: $cu-divider !default;
 $Popup-offset: 10px;
 $Popup-arrow-size: 12px;
 $Popup-arrow-offset: $Popup-arrow-size / 2;
