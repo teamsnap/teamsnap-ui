@@ -100,8 +100,8 @@ $base-font-color:         $cu-info !default;
 $heading-font-color:   $cu-primary !default;
 $light-font-color: $cu-info--light !default;
 
-$link-color:                  $cu-primary--light !default;
-$link-color--hover: scaleColor($link-color, -2) !default;
+$color-links:                  $cu-primary--light !default;
+$color-links--hover: scaleColor($color-links, -2) !default;
 
 // * 2.a Font Families
 
