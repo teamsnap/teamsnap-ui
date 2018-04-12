@@ -19,7 +19,7 @@ import { getClassName } from '../../utils/helpers'
 
 class TextLink extends PureComponent {
   render () {
-    const { children, className, mods, style, location, routerLink, onClick, disabled, otherProps } = this.props
+    const { children, className, mods, style, location, routerLink, onClick, disabled, ...otherProps } = this.props
     
     // Define anchorTag to be the passed in router 'Link' or 'a' as default.
     const AnchorTag = routerLink || 'a'
