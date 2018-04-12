@@ -51,7 +51,7 @@ class Button extends PureComponent {
   }
 
   renderButtonLink = () => {
-    const { routerLink, location, style, isDisabled, onClick } = this.props
+    const { routerLink, location, style, isDisabled, onClick, dataTrackingLabel } = this.props
 
     return (
       <TextLink
@@ -60,14 +60,15 @@ class Button extends PureComponent {
         location={ location }
         style={ style }
         disabled={ isDisabled }
-        onClick={ onClick }>
+        onClick={ onClick }
+        data-tracking-label={ dataTrackingLabel }>
         { this.renderChildren() }
       </TextLink>
     )
   }
 
   renderButton = () => {
-    const { type, style, isDisabled, onClick } = this.props
+    const { type, style, isDisabled, onClick, dataTrackingLabel } = this.props
 
     return (
       <button
@@ -75,7 +76,8 @@ class Button extends PureComponent {
         className={ this.getButtonClassName() }
         style={ style }
         onClick={ onClick }
-        disabled={ isDisabled }>
+        disabled={ isDisabled }
+        data-tracking-label={ dataTrackingLabel }>
         { this.renderChildren() }
       </button>
     )
@@ -102,7 +104,8 @@ Button.propTypes = {
   size: PropTypes.string,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  dataTrackingLabel: PropTypes.string
 }
 
 Button.defaultProps = {
@@ -120,7 +123,8 @@ Button.defaultProps = {
   size: null,
   className: 'Button',
   mods: null,
-  style: {}
+  style: {},
+  dataTrackingLabel: null
 }
 
 export default Button
