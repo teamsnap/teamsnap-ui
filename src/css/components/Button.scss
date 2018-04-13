@@ -2,10 +2,16 @@
 
 // * @define default Button
 
-$Button-bg: $ts-white;
-$Button-bg-hover: $cu-background;
-$Button-color: $cu-info;
-$Button-border-color: $cu-divider;
+// Global default button colors that are themed
+$button-color:                    $cu-foreground !default;
+$button-border-color:                $cu-divider !default;
+$button-text-color:                  $cu-info !default;
+
+// Default button styles
+$Button-bg: $button-color;
+$Button-bg-hover: scaleColor($Button-bg, -1);
+$Button-color: $button-text-color;
+$Button-border-color: $button-border-color;
 $Button-border-color-hover: scaleColor($Button-border-color, -1);
 $Button-border-radius: $border-radius-medium;
 $Button-border-width: $border-width-small;
@@ -43,6 +49,7 @@ $Button-padding: 0 scaleGrid(2);
   &:focus {
     background-color: $Button-bg-hover;
     border-color: $Button-border-color-hover;
+    color: $Button-color;
     outline: none;
   }
 
@@ -50,6 +57,7 @@ $Button-padding: 0 scaleGrid(2);
     background-color: $Button-bg-hover;
     border-bottom-width: 1px;
     border-top-width: $Button-border-bottom-width;
+    color: $Button-color;
   }
 
   &.is-disabled,
@@ -60,6 +68,7 @@ $Button-padding: 0 scaleGrid(2);
       background-color: $Button-bg;
       border-color: $Button-border-color;
       cursor: not-allowed;
+      color: $Button-color;
       opacity: $Button-disabled-opacity;
     }
   }
@@ -68,12 +77,12 @@ $Button-padding: 0 scaleGrid(2);
 
 // * Modifier: Button Primary
 
-$Button--primary-bg: $cu-secondary;
+$Button--primary-bg: $cu-secondary !default;
 $Button--primary-bg-hover: scaleColor($Button--primary-bg, -1);
 $Button--primary-color: $ts-white;
 $Button--primary-color-hover: $ts-white;
-$Button--primary-border-color: $cu-secondary--dark;
-$Button--primary-border-color-hover: scaleColor($cu-secondary--dark, -1);
+$Button--primary-border-color: scaleColor($cu-secondary, -2) !default;
+$Button--primary-border-color-hover: scaleColor($Button--primary-border-color, -1);
 
 .Button--primary {
   background-color: $Button--primary-bg;
@@ -90,6 +99,7 @@ $Button--primary-border-color-hover: scaleColor($cu-secondary--dark, -1);
 
   &.is-active {
     background-color: $Button--primary-bg-hover;
+    color: $Button--primary-color-hover;
   }
 
   &.is-disabled,

@@ -40,12 +40,12 @@ small {
 }
 
 a {
-  color: $link-color;
+  color: $color-links;
   cursor: pointer;
   text-decoration: none;
   background: transparent;
   &:hover {
-    color: $link-color--hover;
+    color: $color-links--hover;
   }
   &:active,
   &:hover {

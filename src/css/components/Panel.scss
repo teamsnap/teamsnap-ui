@@ -25,6 +25,7 @@
 
 
 $Panel-bg-color: $cu-foreground !default;
+$Panel-text-color: $cu-info !default;
 $Panel-header-text-color: $cu-info !default;
 
 
@@ -36,6 +37,7 @@ $Panel-header-text-color: $cu-info !default;
 .Panel {
   padding: 0;
   background: $Panel-bg-color;
+  color: $Panel-text-color;
   margin-bottom: $su-medium;
   border: $border-width-small solid $cu-divider;
   border-radius: $border-radius-large;
@@ -156,7 +158,7 @@ $Panel-header-text-color: $cu-info !default;
 // 1. Differentiate header cell from content cells
 
 .Panel-cell--header {
-  background-color: scaleColor($ts-grey, 9); // 1
+  background-color: $cu-middleground; // 1
   border-right: solid 1px $cu-divider--light; // 1
 }
 
