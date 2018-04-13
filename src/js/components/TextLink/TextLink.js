@@ -4,7 +4,7 @@
  * @description
  * A common link component that will render the appropriate styles for a link.  Accepts a routerLink which would be the
  * <Link /> function from a library like react-router.
- * 
+ *
  * @example
  *  <TextLink
  *    routerLink={ Link }
@@ -19,21 +19,22 @@ import { getClassName } from '../../utils/helpers'
 
 class TextLink extends PureComponent {
   render () {
-    const { children, className, mods, style, location, routerLink, onClick, disabled } = this.props
-    
+    const { children, className, mods, style, location, routerLink, onClick, disabled, otherProps } = this.props
+
     // Define anchorTag to be the passed in router 'Link' or 'a' as default.
     const AnchorTag = routerLink || 'a'
 
     // Various React Routers use the attribute 'to' as opposed to the html anchors default 'href'
     const linkType = { [routerLink ? 'to' : 'href']: location }
-    
+
     return (
       <AnchorTag
         className={ getClassName(className, mods) }
-        style={ style } 
-        onClick={ onClick } 
+        style={ style }
+        onClick={ onClick }
         disabled={ disabled }
-        { ...linkType }>
+        { ...linkType }
+        { ...otherProps }>
         { children }
       </AnchorTag>
     )
@@ -48,7 +49,8 @@ TextLink.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 TextLink.defaultProps = {
@@ -58,7 +60,8 @@ TextLink.defaultProps = {
   disabled: false,
   className: '',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default TextLink
