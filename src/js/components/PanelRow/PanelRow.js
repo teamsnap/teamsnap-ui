@@ -1,6 +1,6 @@
 /**
  * @name PanelRow
- * 
+ *
  * @description
  *  A panel row component is used with the Panel to wrap the rows for a Panel or table.  See the teamsnap
  *  patterns library for more information https://teamsnap-ui-patterns.netlify.com/patterns/components/panel.html
@@ -18,7 +18,7 @@ import { getClassName } from '../../utils/helpers'
 
 class PanelRow extends PureComponent {
   render () {
-    const { children, isWithCells, isParent, className, mods, style } = this.props
+    const { children, isWithCells, isParent, className, mods, style, otherProps } = this.props
 
     const panelClasses = getClassName(
       className,
@@ -28,7 +28,7 @@ class PanelRow extends PureComponent {
     )
 
     return (
-      <div className={ panelClasses } style={ style }>
+      <div className={ panelClasses } style={ style } { ...otherProps }>
         { children }
       </div>
     )
@@ -42,6 +42,7 @@ PanelRow.propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 PanelRow.defaultProps = {
@@ -49,7 +50,8 @@ PanelRow.defaultProps = {
   isWithCells: null,
   isParent: null,
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default PanelRow

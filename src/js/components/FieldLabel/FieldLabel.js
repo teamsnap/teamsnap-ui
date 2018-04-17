@@ -16,10 +16,10 @@ import { getClassName } from '../../utils/helpers'
 
 class FieldLabel extends PureComponent {
   render () {
-    const { name, children, className, mods, style } = this.props
+    const { name, children, className, mods, style, otherProps } = this.props
 
     return (
-      <label htmlFor={ name } className={ getClassName(className, mods) } style={ style }>
+      <label htmlFor={ name } className={ getClassName(className, mods) } style={ style } { ...otherProps }>
         { children }
       </label>
     )
@@ -31,14 +31,16 @@ FieldLabel.propTypes = {
   name: PropTypes.string,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 FieldLabel.defaultProps = {
   name: null,
   className: 'FormGroup-label',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default FieldLabel

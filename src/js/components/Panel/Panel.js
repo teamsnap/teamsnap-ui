@@ -1,6 +1,6 @@
 /**
  * @name Panel
- * 
+ *
  * @description
  *  A panel component that used to display a panel or table data.  See the teamsnap patterns
  *  library for more information https://teamsnap-ui-patterns.netlify.com/patterns/components/panel.html
@@ -18,7 +18,7 @@ import { getClassName } from '../../utils/helpers'
 
 class Panel extends PureComponent {
   render () {
-    const { children, className, mods, isStriped, maxSize, style } = this.props
+    const { children, className, mods, isStriped, maxSize, style, otherProps } = this.props
 
     const panelClasses = getClassName(
       className,
@@ -28,7 +28,7 @@ class Panel extends PureComponent {
     )
 
     return (
-      <div className={ panelClasses } style={ style }>
+      <div className={ panelClasses } style={ style } { ...otherProps }>
         { children }
       </div>
     )
@@ -41,7 +41,8 @@ Panel.propTypes = {
   maxSize: PropTypes.string,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 Panel.defaultProps = {
@@ -49,7 +50,8 @@ Panel.defaultProps = {
   isStriped: false,
   maxSize: null,
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default Panel

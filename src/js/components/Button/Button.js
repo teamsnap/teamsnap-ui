@@ -51,7 +51,7 @@ class Button extends PureComponent {
   }
 
   renderButtonLink = () => {
-    const { routerLink, location, style, isDisabled, onClick, otherProps } = this.props
+    const { routerLink, location, isDisabled, onClick, style, otherProps } = this.props
 
     return (
       <TextLink
@@ -68,7 +68,7 @@ class Button extends PureComponent {
   }
 
   renderButton = () => {
-    const { type, style, isDisabled, onClick, otherProps } = this.props
+    const { type, isDisabled, onClick, style, otherProps } = this.props
 
     return (
       <button
