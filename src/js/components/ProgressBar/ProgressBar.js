@@ -21,7 +21,7 @@ import { getClassName } from '../../utils/helpers'
 
 class ProgressBar extends PureComponent {
   render () {
-    const { progress, className, mods, style, color, size, isVertical, isPrecise } = this.props
+    const { progress, color, size, isVertical, isPrecise, className, mods, style, otherProps } = this.props
 
     const progressClasses = getClassName(
       className,
@@ -37,7 +37,7 @@ class ProgressBar extends PureComponent {
     }
 
     return (
-      <div className={ progressClasses } style={ style }>
+      <div className={ progressClasses } style={ style } { ...otherProps }>
         <div className='ProgressBar-status' style={ progressWidth } />
       </div>
     )
@@ -52,7 +52,8 @@ ProgressBar.propTypes = {
   isVertical: PropTypes.bool,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 ProgressBar.defaultProps = {
@@ -63,7 +64,8 @@ ProgressBar.defaultProps = {
   isVertical: false,
   className: 'ProgressBar',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default ProgressBar

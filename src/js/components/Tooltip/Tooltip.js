@@ -7,7 +7,7 @@
 *
 * @example
 *  <Tooltip type='icon' text="I'm some help text.">
-*   Icon or Text to Render as Child 
+*   Icon or Text to Render as Child
 *  </Tooltip>
 *
 */
@@ -18,7 +18,7 @@ import { getClassName } from '../../utils/helpers'
 
 class Tooltip extends PureComponent {
   render () {
-    const { text, children, type, className, mods, style } = this.props
+    const { text, children, type, className, mods, style, otherProps } = this.props
 
     const tooltipClasses = getClassName(
       className,
@@ -27,7 +27,7 @@ class Tooltip extends PureComponent {
     )
 
     return (
-      <span className={ tooltipClasses } style={ style } data-tooltip={ text }>
+      <span data-tooltip={ text } className={ tooltipClasses } style={ style } { ...otherProps }>
         { children }
       </span>
     )
@@ -40,7 +40,8 @@ Tooltip.propTypes = {
   type: PropTypes.string,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 Tooltip.defaultProps = {
@@ -48,7 +49,8 @@ Tooltip.defaultProps = {
   type: null,
   className: 'Tooltip',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default Tooltip

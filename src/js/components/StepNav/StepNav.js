@@ -53,7 +53,7 @@ class StepNav extends PureComponent {
   }
 
   render() {
-    const { steps, title, isSmall, className, mods, style } = this.props
+    const { steps, title, isSmall, className, mods, style, otherProps } = this.props
 
     const stepNavClass = getClassName(
       className,
@@ -63,7 +63,7 @@ class StepNav extends PureComponent {
     )
 
     return (
-      <div className={ stepNavClass } style={ style }>
+      <div className={ stepNavClass } style={ style } { ...otherProps }>
         { title && this.renderTitle() }
 
         <ul className="StepNav-steps">
@@ -87,7 +87,8 @@ StepNav.propTypes = {
   isSmall: PropTypes.bool,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 StepNav.defaultProps = {
@@ -95,7 +96,8 @@ StepNav.defaultProps = {
   isSmall: false,
   className: 'StepNav',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default StepNav

@@ -18,10 +18,10 @@ import { getClassName } from '../../utils/helpers'
 
 class Cell extends PureComponent {
   render () {
-    const { children, className, mods, style } = this.props
+    const { children, className, mods, style, otherProps } = this.props
 
     return (
-      <div className={ getClassName(className, mods) } style={ style }>
+      <div className={ getClassName(className, mods) } style={ style } { ...otherProps }>
         { children }
       </div>
     )
@@ -32,14 +32,16 @@ Cell.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 Cell.defaultProps = {
   children: null,
   className: 'Grid-cell',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default Cell

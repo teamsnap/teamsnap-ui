@@ -1,6 +1,6 @@
 /**
  * @name Checkbox
- * 
+ *
  * @description
  *  A common checkbox component that will render the appropriate styles. This calls the shared components InputControl
  *  with all the appropriate options. See the teamsnap patterns library for more information.
@@ -28,7 +28,8 @@ Checkbox.propTypes = {
   isInline: PropTypes.bool,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 Checkbox.defaultProps = {
@@ -36,7 +37,8 @@ Checkbox.defaultProps = {
   isInline: false,
   className: 'Checkbox',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default Checkbox

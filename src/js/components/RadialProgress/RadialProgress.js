@@ -4,7 +4,7 @@ import { getClassName } from '../../utils/helpers'
 
 class RadialProgress extends PureComponent {
   render () {
-    const { className, mods, size, color, progress } = this.props
+    const { size, color, progress, className, mods, style, otherProps } = this.props
 
     const degrees = (360 * (progress/100))
     const circle = {}
@@ -27,7 +27,7 @@ class RadialProgress extends PureComponent {
     )
 
     return (
-      <div className={ radialClassName }>
+      <div className={ radialClassName } style={ style } { ...otherProps }>
         <div className={ circle.className }>
           <div className='RadialProgress-status' style={{ transform: `rotate(${circle.first})` }} />
           <div className='RadialProgress-status' style={{ transform: `rotate(${circle.second})` }} />
@@ -38,19 +38,23 @@ class RadialProgress extends PureComponent {
 }
 
 RadialProgress.propTypes = {
-  className: PropTypes.string,
-  mods: PropTypes.string,
+  progress: PropTypes.number,
   size: PropTypes.string,
   color: PropTypes.string,
-  progress: PropTypes.number
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 RadialProgress.defaultProps = {
-  className: 'RadialProgress',
-  mods: null,
+  progress: 0,
   size: null,
   color: null,
-  progress: 0
+  className: 'RadialProgress',
+  mods: null,
+  style: {},
+  otherProps: {}
 }
 
 export default RadialProgress

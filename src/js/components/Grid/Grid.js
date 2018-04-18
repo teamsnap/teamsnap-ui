@@ -1,6 +1,6 @@
 /**
  * @name Grid
- * 
+ *
  * @description
  *  A Grid component is used for creating Flexbased grid system, they are used in conjunction with <Cell />.
  *  For more information on Grid usage see the teamsnap patterns library. https://teamsnap-ui-patterns.netlify.com/patterns/components/grid.html
@@ -19,15 +19,16 @@ import { getClassName } from '../../utils/helpers'
 class Grid extends PureComponent {
   render () {
     const {
-      children, 
-      isFit, 
-      isEqualHeight, 
-      isAlignCenter, 
-      isAlignMiddle, 
-      isWithGutter, 
-      className, 
-      mods, 
-      style 
+      children,
+      isFit,
+      isEqualHeight,
+      isAlignCenter,
+      isAlignMiddle,
+      isWithGutter,
+      className,
+      mods,
+      style,
+      otherProps
     } = this.props
 
     const gridClasses = getClassName(
@@ -41,7 +42,7 @@ class Grid extends PureComponent {
     )
 
     return (
-      <div className={ gridClasses } style={ style }>
+      <div className={ gridClasses } style={ style } { ...otherProps }>
         { children }
       </div>
     )
@@ -57,7 +58,8 @@ Grid.propTypes = {
   isWithGutter: PropTypes.bool,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 Grid.defaultProps = {
@@ -66,9 +68,10 @@ Grid.defaultProps = {
   isAlignCenter: false,
   isAlignMiddle: false,
   isWithGutter: false,
-  className: 'Grid', 
+  className: 'Grid',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default Grid

@@ -41,7 +41,7 @@ class SummaryList extends PureComponent {
   )
 
   render () {
-    const { items, heading, subHeading, className, mods, style } = this.props
+    const { items, heading, subHeading, className, mods, style, otherProps } = this.props
 
     const hasHeading = heading || subHeading
 
@@ -52,7 +52,7 @@ class SummaryList extends PureComponent {
     )
 
     return (
-      <div className={ summaryClasses } style={ style }>
+      <div className={ summaryClasses } style={ style } { ...otherProps }>
         { hasHeading && this.renderHeading() }
 
         <ul className='SummaryList-section'>
@@ -75,7 +75,8 @@ SummaryList.propTypes = {
   subHeading: PropTypes.string,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 SummaryList.defaultProps = {
@@ -83,7 +84,8 @@ SummaryList.defaultProps = {
   subHeading: null,
   className: 'SummaryList',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default SummaryList

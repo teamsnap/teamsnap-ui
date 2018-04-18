@@ -105,7 +105,13 @@ class Table extends PureComponent {
     const cellMods = getClassName(column.mods, `u-text${capitalize(column.align || 'Left')}`)
 
     return (
-      <PanelCell key={ column.key } mods={ cellMods } style={ column.style } isTitle={ column.isTitle }>
+      <PanelCell
+        key={ column.key }
+        mods={ cellMods }
+        style={ column.style }
+        isTitle={ column.isTitle }
+        { ...column.otherProps }>
+
         { children }
       </PanelCell>
     )
@@ -145,10 +151,10 @@ class Table extends PureComponent {
   }
 
   render() {
-    const { isStriped, className, mods, style } = this.props
+    const { isStriped, className, mods, style, otherProps } = this.props
 
     return (
-      <Panel className={ className } mods={ mods } isStriped={ isStriped } style={ style }>
+      <Panel className={ className } mods={ mods } isStriped={ isStriped } style={ style } { ...otherProps }>
         <PanelBody>
           <PanelRow isWithCells>{ this.renderTableColumns() }</PanelRow>
           { this.renderTableRows() }
@@ -169,7 +175,8 @@ Table.propTypes = {
       sortFn: PropTypes.func,
       align: PropTypes.oneOf(['right', 'left', 'center']),
       mods: PropTypes.string,
-      style: PropTypes.object
+      style: PropTypes.object,
+      otherProps: PropTypes.object
     })
   ),
   rows: PropTypes.arrayOf(PropTypes.object),
@@ -177,7 +184,8 @@ Table.propTypes = {
   isStriped: PropTypes.bool,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 Table.defaultProps = {
@@ -187,7 +195,8 @@ Table.defaultProps = {
   isStriped: true,
   className: 'Panel',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default Table
