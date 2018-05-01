@@ -1,37 +1,59 @@
 .SummaryList-heading {
   color: $base-font-color;
-  font-size: $tu-large-fontSize;
+  font-size: $tu-base-fontSize;
   display: flex;
   justify-content: space-between;
   margin-bottom: $su-xsmall;
 }
 
 .SummaryList-section {
-  border-top: $border-width-large solid $ts-grey;
-  padding: $su-medium 0;
+  border-top: $border-width-medium solid $cu-divider;
+  padding: $su-small 0;
   list-style-type: none;
 }
+
 .SummaryList-item {
   display: flex;
   width: 100%;
   height: 30px;
   align-items: center;
+  &--footer {
+    margin: $su-small 0;
+    padding-top: $su-small;
+    border-top: $border-width-small solid $cu-divider;
+    font-weight: $tu-bold-fontWeight;
+  }
   span:last-child {
     display: flex;
     flex-grow: 1;
     &:before {
       content: ' ';
       flex-grow: 1;
-      margin-bottom: 4px;
-      border-bottom: $border-width-small dashed $ts-grey;
+      margin: 0 4px 4px;
+      border-bottom: $border-width-small dotted $cu-divider;
       width: 10%;
     }
   }
 }
 
-.SummaryList-footer {
-  text-align: right;
-  padding-top: $su-small;
-  border-top: $border-width-medium solid $ts-grey;
-  font-weight: $tu-semibold-fontWeight;
+.SummaryList--no-heading .SummaryList-section {
+  border-top: $border-width-small solid $cu-divider;
+  border-bottom: $border-width-small solid $cu-divider;
 }
+
+.SummaryList-footer {
+  h3 {
+    padding-top: $su-small;
+    border-top: $border-width-small solid $cu-divider;
+    display: flex;
+    justify-content: flex-end;
+    color: $cu-info--light;
+    font-family: $tu-openSans-fontFamily;
+    font-weight: $tu-bold-fontWeight;
+    span {
+      color: $ts-darkblue;
+      margin-left: $su-small;
+    }
+  }
+}
+

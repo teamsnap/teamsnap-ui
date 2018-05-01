@@ -1,6 +1,6 @@
 {
   "name": "@teamsnap/teamsnap-ui",
-  "version": "2.12.0",
+  "version": "2.13.0",
   "description": "a CSS component library for TeamSnap",
   "main": "dist/js/index.js",
   "scripts": {
@@ -51,7 +51,7 @@
     "gulp-autoprefixer": "^4.1.0",
     "gulp-cssnano": "^2.1.3",
     "gulp-if": "^2.0.2",
-    "gulp-sass": "^3.2.1",
+    "gulp-sass": "^4.0.1",
     "gulp-util": "^3.0.8",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
