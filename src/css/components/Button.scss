@@ -115,6 +115,86 @@ $Button--primary-border-color-hover: scaleColor($Button--primary-border-color, -
 }
 
 
+// * Modifier: Button Blue
+
+$Button--blue-bg: $cu-primary !default;
+$Button--blue-bg-hover: scaleColor($Button--blue-bg, -1);
+$Button--blue-color: $ts-white;
+$Button--blue-color-hover: $ts-white;
+$Button--blue-border-color: scaleColor($cu-primary, -2) !default;
+$Button--blue-border-color-hover: scaleColor($Button--blue-border-color, -1);
+
+.Button--blue {
+  background-color: $Button--blue-bg;
+  border-color: $Button--blue-border-color;
+  color: $Button--blue-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $Button--blue-bg-hover;
+    border-color: $Button--blue-border-color-hover;
+    color: $Button--blue-color-hover;
+  }
+
+  &.is-active {
+    background-color: $Button--blue-bg-hover;
+    color: $Button--blue-color-hover;
+  }
+
+  &.is-disabled,
+  &:disabled {
+    &,
+    &:hover,
+    &:active {
+      background-color: $Button--blue-bg;
+      border-color: $Button--blue-border-color;
+      color: $Button--blue-color-hover;
+    }
+  }
+}
+
+
+// * Modifier: Button Orange
+
+$Button--orange-bg: $cu-highlight !default;
+$Button--orange-bg-hover: scaleColor($Button--orange-bg, -1);
+$Button--orange-color: $ts-white;
+$Button--orange-color-hover: $ts-white;
+$Button--orange-border-color: scaleColor($cu-highlight, -2) !default;
+$Button--orange-border-color-hover: scaleColor($Button--orange-border-color, -1);
+
+.Button--orange {
+  background-color: $Button--orange-bg;
+  border-color: $Button--orange-border-color;
+  color: $Button--orange-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $Button--orange-bg-hover;
+    border-color: $Button--orange-border-color-hover;
+    color: $Button--orange-color-hover;
+  }
+
+  &.is-active {
+    background-color: $Button--orange-bg-hover;
+    color: $Button--orange-color-hover;
+  }
+
+  &.is-disabled,
+  &:disabled {
+    &,
+    &:hover,
+    &:active {
+      background-color: $Button--orange-bg;
+      border-color: $Button--orange-border-color;
+      color: $Button--orange-color-hover;
+    }
+  }
+}
+
+
 // * Modifier: Button Negative
 
 $Button--negative-bg: $ts-white;
@@ -155,8 +235,8 @@ $Button--negative-border-color-hover: $cu-negative--dark;
   }
 }
 
-// * Modifier: Button Small
 
+// * Modifier: Button Small
 
 $Button--small-font-size: $tu-small-fontSize;
 $Button--small-height: scaleGrid(3);
@@ -170,6 +250,7 @@ $Button--small-padding: 0 $su-small;
   line-height: $Button--small-line-height;
   padding: $Button--small-padding;
 }
+
 
 // * Modifier: Button Square small
 
@@ -197,13 +278,29 @@ $Button--large-padding: 0 scaleGrid(3);
 }
 
 
+// * Modifier: Button Huge
+//
+// Used on the marketing site for large CTAs
+
+$Button--huge-font-size: $tu-large-fontSize;
+$Button--huge-height: scaleGrid(10);
+$Button--huge-line-height: $Button--huge-height - 3;
+$Button--huge-padding: 0 scaleGrid(8);
+
+.Button--huge {
+  font-size: $Button--huge-font-size;
+  height: $Button--huge-height;
+  line-height: $Button--huge-line-height;
+  padding: $Button--huge-padding;
+}
+
+
 // * Modifier: Yes / Maybe / No modifiers for setting status
 //
 //   --yesDefault, --noDefault, and --maybeDefault start with the default white button,
 //   and hover and active states have yes / maybe / no colors
 //
 //   --yes, --no, and --maybe always have yes / maybe / no colors
-
 
 .Button--yesDefault.is-active,
 .Button--yesDefault:hover,
