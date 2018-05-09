@@ -117,11 +117,11 @@ $Button--primary-border-color-hover: scaleColor($Button--primary-border-color, -
 
 // * Modifier: Button Blue
 
-$Button--blue-bg: $cu-primary !default;
+$Button--blue-bg: $ts-blue !default;
 $Button--blue-bg-hover: scaleColor($Button--blue-bg, -1);
 $Button--blue-color: $ts-white;
 $Button--blue-color-hover: $ts-white;
-$Button--blue-border-color: scaleColor($cu-primary, -2) !default;
+$Button--blue-border-color: scaleColor($Button--blue-bg, -2) !default;
 $Button--blue-border-color-hover: scaleColor($Button--blue-border-color, -1);
 
 .Button--blue {
@@ -157,11 +157,11 @@ $Button--blue-border-color-hover: scaleColor($Button--blue-border-color, -1);
 
 // * Modifier: Button Orange
 
-$Button--orange-bg: $cu-highlight !default;
+$Button--orange-bg: $ts-orange !default;
 $Button--orange-bg-hover: scaleColor($Button--orange-bg, -1);
 $Button--orange-color: $ts-white;
 $Button--orange-color-hover: $ts-white;
-$Button--orange-border-color: scaleColor($cu-highlight, -2) !default;
+$Button--orange-border-color: scaleColor($Button--orange-bg, -2) !default;
 $Button--orange-border-color-hover: scaleColor($Button--orange-border-color, -1);
 
 .Button--orange {
