@@ -1,9 +1,9 @@
 /**
  * @name Select
- * 
+ *
  * @description
- *  A common select component for html select elements. Includes support for a label and a generic map function 
- *  for options. See teamsnap patterns lib for more information. 
+ *  A common select component for html select elements. Includes support for a label and a generic map function
+ *  for options. See teamsnap patterns lib for more information.
  *  https://teamsnap-ui-patterns.netlify.com/patterns/components/select-box.html
  *
  * @example
@@ -34,10 +34,10 @@ class Select extends PureComponent {
   }
 
   render () {
-    const { name, options, className, mods, style, inputProps } = this.props
+    const { name, options, inputProps, className, mods, style, otherProps } = this.props
 
     return (
-      <div className={ getClassName(className,mods) } style={ style }>
+      <div className={ getClassName(className,mods) } style={ style } { ...otherProps }>
         <select className='SelectBox-options' name={ name } id={ name } { ...inputProps }>
           { options.map(this.renderOptions) }
         </select>
@@ -56,14 +56,16 @@ Select.propTypes = {
   inputProps: PropTypes.object,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 Select.defaultProps = {
   inputProps: {},
   className: 'SelectBox',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default Select

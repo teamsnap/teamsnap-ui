@@ -1,6 +1,6 @@
 /**
  * @name Loader
- * 
+ *
  * @description
  *  A loader component that supports different animations such as Spin, Pulse and Jello.  See the teamsnap patterns
  *  library for more information https://teamsnap-ui-patterns.netlify.com/patterns/components/loader.html
@@ -39,7 +39,7 @@ class Loader extends PureComponent {
   }
 
   render () {
-    const { type, text, message, className, mods, style } = this.props
+    const { type, text, message, className, mods, style, otherProps } = this.props
 
     if (!text && !message) { return this.renderAnimation(type) }
 
@@ -50,7 +50,7 @@ class Loader extends PureComponent {
     )
 
     return (
-      <div className={ loaderClasses } style={ style }>
+      <div className={ loaderClasses } style={ style } { ...otherProps }>
         <div className='Loader-indicator'>
           { this.renderAnimation(type) }
           { text && <div className='Loader-indicatorText'>{ text }</div> }
@@ -67,7 +67,8 @@ Loader.propTypes = {
   message: PropTypes.string,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 Loader.defaultProps = {
@@ -75,7 +76,8 @@ Loader.defaultProps = {
   message: null,
   className: 'Loader',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default Loader

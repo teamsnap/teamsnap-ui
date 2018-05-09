@@ -1,6 +1,6 @@
 /**
  * @name TextArea
- * 
+ *
  * @description
  * A generic wrapper component for the native textarea html element.
  *
@@ -15,30 +15,31 @@ import { getClassName } from '../../utils/helpers'
 
 class TextArea extends PureComponent {
   render () {
-    const { name, className, mods, style, ...inputProps } = this.props
+    const { name, inputProps, className, mods, style, otherProps } = this.props
 
     return (
-      <textarea
-        name={ name } 
-        id={ name } 
-        className={ getClassName(className, mods) } 
-        style={ style }
-        { ...inputProps } />
+      <div className={ getClassName(className, mods) } style={ style } { ...otherProps }>
+        <textarea name={ name } id={ name } { ...inputProps } />
+      </div>
     )
   }
 }
 
 TextArea.propTypes = {
   name: PropTypes.string.isRequired,
+  inputProps: PropTypes.object,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 TextArea.defaultProps = {
+  inputProps: {},
   className: '',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default TextArea

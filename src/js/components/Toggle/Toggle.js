@@ -1,15 +1,15 @@
 /**
  * @name Toggle
- * 
+ *
  * @description
- * A controlled input element to toggle a boolean state. This calls the shared components InputControl with all the 
- * appropriate options. See the teamsnap patterns library for more information.  
+ * A controlled input element to toggle a boolean state. This calls the shared components InputControl with all the
+ * appropriate options. See the teamsnap patterns library for more information.
  * https://teamsnap-ui-patterns.netlify.com/patterns/components/toggle.html
- * 
+ *
  * @example
  *  <Toggle
  *    name='OfflinePayments' />
- * 
+ *
  */
 
  import React, { PureComponent } from 'react'
@@ -18,7 +18,7 @@ import InputControl from '../InputControl'
 
 class Toggle extends PureComponent {
   render() {
-    const { name, className, mods, style, inputProps } = this.props
+    const { name, inputProps, className, mods, style, otherProps } = this.props
 
     return (
       <InputControl
@@ -27,8 +27,9 @@ class Toggle extends PureComponent {
         mods={ mods }
         style={ style }
         type='checkbox'
-        labelProps={{ className: 'Toggle-label' }} 
-        inputProps={{ className: 'Toggle-input', ...inputProps }} />
+        labelProps={{ className: 'Toggle-label' }}
+        inputProps={{ className: 'Toggle-input', ...inputProps }}
+        { ...otherProps } />
     )
   }
 }
@@ -38,14 +39,16 @@ Toggle.propTypes = {
   inputProps: PropTypes.object,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 Toggle.defaultProps = {
   inputProps: {},
   className: 'Toggle',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default Toggle

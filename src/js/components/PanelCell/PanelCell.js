@@ -20,7 +20,7 @@ class PanelCell extends PureComponent {
   renderTitle = () => <h4 className='Panel-title'>{ this.props.children }</h4>
 
   render () {
-    const { children, isHeader, isTitle, className, mods, style } = this.props
+    const { children, isHeader, isTitle, className, mods, style, otherProps } = this.props
 
     const cellClasses = getClassName(
       className,
@@ -29,7 +29,7 @@ class PanelCell extends PureComponent {
     )
 
     return (
-      <div className={ cellClasses } style={ style }>
+      <div className={ cellClasses } style={ style } { ...otherProps }>
         { isTitle ? this.renderTitle() : children }
       </div>
     )
@@ -43,6 +43,7 @@ PanelCell.propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 PanelCell.defaultProps = {
@@ -51,7 +52,8 @@ PanelCell.defaultProps = {
   isHeader: false,
   className: 'Panel-cell',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default PanelCell

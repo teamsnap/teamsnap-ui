@@ -1,6 +1,6 @@
 /**
  * @name FieldGroup
- * 
+ *
  * @description
  *  A field group component is a wrapper for grouping the input with label and messages.  See the teamsnap patterns
  *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/field-group.html
@@ -25,7 +25,7 @@ class FieldGroup extends PureComponent {
   )
 
   render () {
-    const { children, status, className, mods, style } = this.props
+    const { children, status, className, mods, style, otherProps } = this.props
 
     const fieldClasses = getClassName(
       className,
@@ -35,7 +35,7 @@ class FieldGroup extends PureComponent {
     )
 
     return (
-      <div className={ fieldClasses } style={ style }>
+      <div className={ fieldClasses } style={ style } { ...otherProps }>
         { status === 'success' && this.renderSuccess() }
         { children }
       </div>
@@ -48,14 +48,16 @@ FieldGroup.propTypes = {
   status: PropTypes.oneOf([null, 'success', 'error']),
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 FieldGroup.defaultProps = {
   status: null,
   className: 'FieldGroup',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default FieldGroup

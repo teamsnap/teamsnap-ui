@@ -1,6 +1,6 @@
 /**
  * @name Input
- * 
+ *
  * @description
  *  A common input component that will render the appropriate styles.  This currently wraps the 'InputGroup' and 'Input'
  *  styles together.  See the teamsnap patterns library for more inforamtion.
@@ -18,7 +18,7 @@ import { getClassName } from '../../utils/helpers'
 
 class Input extends PureComponent {
   render () {
-    const { name, children, type, iconPosition, className, mods, style, inputProps } = this.props
+    const { name, children, type, inputProps, iconPosition, className, mods, style, otherProps } = this.props
 
     const inputClasses = getClassName(
       className,
@@ -27,7 +27,7 @@ class Input extends PureComponent {
     )
 
     return (
-      <div className={ inputClasses } style={ style }>
+      <div className={ inputClasses } style={ style } { ...otherProps }>
         <input id={ name } name={ name } type={ type } className='Input' { ...inputProps } />
         { children && <span className='InputGroup-icon'>{ children }</span> }
       </div>
@@ -43,7 +43,8 @@ Input.propTypes = {
   iconPosition: PropTypes.oneOf([null, 'left', 'right']),
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 Input.defaultProps = {
@@ -53,7 +54,8 @@ Input.defaultProps = {
   iconPosition: null,
   className: 'InputGroup',
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default Input

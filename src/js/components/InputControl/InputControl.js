@@ -16,7 +16,7 @@ import { getClassName } from '../../utils/helpers'
 
 class InputControl extends PureComponent {
   render() {
-    const { name, label, group, type, inputProps, labelProps, isInline, className, mods, style } = this.props
+    const { name, label, group, type, inputProps, labelProps, isInline, className, mods, style, otherProps } = this.props
 
     const classes = getClassName(
       className,
@@ -25,7 +25,7 @@ class InputControl extends PureComponent {
     )
 
     return (
-      <div className={ classes } style={ style }>
+      <div className={ classes } style={ style } { ...otherProps }>
         <input className='Checkbox-input' type={ type } name={ group || name } id={ name } { ...inputProps } />
         <label className="Checkbox-label" htmlFor={ name } { ...labelProps }>{ label }</label>
       </div>
@@ -43,7 +43,8 @@ InputControl.propTypes = {
   isInline: PropTypes.bool,
   className: PropTypes.string,
   mods: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  otherProps: PropTypes.object
 }
 
 InputControl.defaultProps = {
@@ -54,7 +55,8 @@ InputControl.defaultProps = {
   isInline: false,
   className: null,
   mods: null,
-  style: {}
+  style: {},
+  otherProps: {}
 }
 
 export default InputControl
