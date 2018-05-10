@@ -16,7 +16,19 @@ import { getClassName } from '../../utils/helpers'
 
 class InputControl extends PureComponent {
   render() {
-    const { name, label, group, type, inputProps, labelProps, isInline, className, mods, style, otherProps } = this.props
+    const {
+      name,
+      label,
+      group,
+      type,
+      inputProps,
+      labelProps,
+      isInline,
+      className,
+      mods,
+      style,
+      otherProps
+    } = this.props
 
     const classes = getClassName(
       className,

@@ -15,6 +15,9 @@
     "build:js": "babel src/js -d dist/js",
     "deploy": "npm run build:css"
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/teamsnap/teamsnap-ui.git"
