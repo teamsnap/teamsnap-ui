@@ -7,7 +7,7 @@
     "lint:js": "eslint src/js/ || true",
     "lint:css": "sass-lint 'src/css/**/*.scss' -v -q || true",
     "lint": "npm run lint:css && npm run lint:js",
-    "prepublish": "npm run lint && npm run build",
+    "prepublishOnly": "npm run lint && npm run build",
     "start": "node_modules/.bin/gulp --gulpfile ./scripts/gulpfile.js",
     "build": "npm run build:css && npm run build:icons && npm run build:js",
     "build:css": "node_modules/.bin/gulp build --gulpfile ./scripts/gulpfile.js",
@@ -16,7 +16,8 @@
     "deploy": "npm run build:css"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "repository": {
     "type": "git",
