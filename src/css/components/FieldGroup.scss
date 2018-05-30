@@ -50,7 +50,7 @@ $FieldGroup-font-size: $tu-base-fontSize;
 // * 3. Form Group States
 
 .FieldGroup.is-notValid {
-  .Input, .Checkbox-label:before, .SelectBox-options {
+  .Input, .Checkbox-label:before, .SelectBox-options, textarea {
     border-color: $cu-negative;
   }
 }
