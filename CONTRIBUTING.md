@@ -12,6 +12,8 @@ Once your user is created and added to the org this guide details the steps to p
 * then from your working branch
 * `npm login --scope=@teamsnap`
 * `npm version major/minor/patch -m “commit message”`
+* Update CHANGELOG.md with npm version and release notes
+* Commit CHANGELOG
 * `git push origin branch-name`
 * merge branch into master from git
 * `git checkout master`
