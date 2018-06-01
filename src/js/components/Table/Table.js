@@ -153,11 +153,15 @@ class Table extends PureComponent {
   render() {
     const { isStriped, className, mods, style, otherProps } = this.props
 
+    const tableBodyHeight = this.props.tableBodyHeight || 'auto'
+
     return (
       <Panel className={ className } mods={ mods } isStriped={ isStriped } style={ style } { ...otherProps }>
         <PanelBody>
           <PanelRow isWithCells>{ this.renderTableColumns() }</PanelRow>
-          { this.renderTableRows() }
+          <div style={{height: tableBodyHeight, overflow: 'scroll' }}>
+            { this.renderTableRows() }
+          </div>
         </PanelBody>
       </Panel>
     )
