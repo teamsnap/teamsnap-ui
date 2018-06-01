@@ -151,9 +151,7 @@ class Table extends PureComponent {
   }
 
   render() {
-    const { isStriped, className, mods, style, otherProps } = this.props
-
-    const tableBodyHeight = this.props.tableBodyHeight || 'auto'
+    const { isStriped, className, mods, style, otherProps, tableBodyHeight } = this.props
 
     return (
       <Panel className={ className } mods={ mods } isStriped={ isStriped } style={ style } { ...otherProps }>
@@ -200,7 +198,8 @@ Table.defaultProps = {
   className: 'Panel',
   mods: null,
   style: {},
-  otherProps: {}
+  otherProps: {},
+  tableBodyHeight: 'auto'
 }
 
 export default Table
