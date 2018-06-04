@@ -55,3 +55,9 @@ input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px $cu-foreground--dark inset;
   -webkit-text-fill-color: $cu-info;
 }
+
+.Input--large {
+  font-size: $tu-large-fontSize;
+  height: $su-xxlarge;
+  line-height: $su-xxlarge;
+}

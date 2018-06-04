@@ -84,3 +84,9 @@ $SelectBox-indicator-width: scaleGrid(4);
 .SelectBox-text {
   display: none;
 }
+
+.SelectBox--large .SelectBox-options {
+  font-size: $tu-large-fontSize;
+  height: $su-xxlarge;
+  line-height: $su-xxlarge;
+}
