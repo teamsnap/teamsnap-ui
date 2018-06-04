@@ -47,6 +47,14 @@ class Table extends PureComponent {
     this.setState({ ...tableState })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const { rows } = this.props
+
+    if (prevProps.rows.length !== rows.length) {
+      this.setState({items: setUniqueId(rows)})
+    }
+  }
+
   sortItems = (newSort, newItems) => {
     const { columns } = this.props
 
