@@ -201,7 +201,7 @@ Table.propTypes = {
   mods: PropTypes.string,
   style: PropTypes.object,
   otherProps: PropTypes.object,
-  maxTableHeight: PropTypes.number
+  maxTableHeight: PropTypes.string
 }
 
 Table.defaultProps = {
