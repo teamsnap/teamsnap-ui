@@ -11,7 +11,7 @@ const getSVGContent = (source) => source.slice(source.indexOf('>') + 1).slice(0,
 const createIconModule = (svgs) => svgs.map((svg) => {
   const source = getSVGContent(svg.source)
   const json = JSON.stringify({ ...svg, source })
-  
+
   return {
     filepath: `${svg.metadata.name}.js`,
     source: `module.exports = ${json}`
@@ -30,6 +30,11 @@ const buildIcons = (svgIcons) => {
   // Write JS files to build directory
   iconModules.map((module) =>
     fs.outputFile(path.join(config.icons.dest, module.filepath), module.source)
+  )
+
+  // Write JS files to src directory
+  iconModules.map((module) =>
+    fs.outputFile(path.join(config.icons.destLocal, module.filepath), module.source)
   )
 }
 
