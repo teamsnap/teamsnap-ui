@@ -47,6 +47,14 @@ class Table extends PureComponent {
     this.setState({ ...tableState })
   }
 
+  componentDidUpdate(prevProps) {
+    const { rows } = this.props
+
+    if (prevProps.rows.length !== rows.length) {
+      this.setState({ items: setUniqueId(rows) })
+    }
+  }
+
   sortItems = (newSort, newItems) => {
     const { columns } = this.props
 
@@ -151,13 +159,20 @@ class Table extends PureComponent {
   }
 
   render() {
-    const { isStriped, className, mods, style, otherProps } = this.props
+    const { isStriped, className, mods, style, otherProps, maxTableHeight } = this.props
 
     return (
       <Panel className={ className } mods={ mods } isStriped={ isStriped } style={ style } { ...otherProps }>
         <PanelBody>
           <PanelRow isWithCells>{ this.renderTableColumns() }</PanelRow>
-          { this.renderTableRows() }
+          { maxTableHeight &&
+            <div style={{ height: maxTableHeight, overflow: 'scroll' }}>
+              { this.renderTableRows() }
+            </div>
+          }
+          { !maxTableHeight &&
+            this.renderTableRows()
+          }
         </PanelBody>
       </Panel>
     )
@@ -185,7 +200,8 @@ Table.propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
-  otherProps: PropTypes.object
+  otherProps: PropTypes.object,
+  maxTableHeight: PropTypes.string
 }
 
 Table.defaultProps = {
@@ -196,7 +212,8 @@ Table.defaultProps = {
   className: 'Panel',
   mods: null,
   style: {},
-  otherProps: {}
+  otherProps: {},
+  maxTableHeight: null
 }
 
 export default Table
