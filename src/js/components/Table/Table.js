@@ -165,7 +165,14 @@ class Table extends PureComponent {
       <Panel className={ className } mods={ mods } isStriped={ isStriped } style={ style } { ...otherProps }>
         <PanelBody>
           <PanelRow isWithCells>{ this.renderTableColumns() }</PanelRow>
-          { this.renderTableRows() }
+          {otherProps.scrollTableBody &&
+            <div style={{height: otherProps.tableBodyHeight, overflow: 'scroll'}}>
+              { this.renderTableRows() }
+            </div>
+          }
+          {!otherProps.scrollTableBody &&
+            this.renderTableRows()
+          }
         </PanelBody>
       </Panel>
     )
