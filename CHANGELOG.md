@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [2.10.0] - 2018-06-06
+https://github.com/teamsnap/teamsnap-ui/pull/93
+### Fixed
+- Fix Table component state to update when props change.
+### Added
+- Add `maxTableHeight` prop to Table component.
+
+
 ## [2.9.0] - 2018-05-31
 https://github.com/teamsnap/teamsnap-ui/pull/88
 ### Changed

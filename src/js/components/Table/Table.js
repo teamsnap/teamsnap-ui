@@ -35,32 +35,38 @@ import TextLink from '../TextLink'
 class Table extends PureComponent {
   state = {
     items: [],
-    sortByColumn: null,
+    sortByColumn: '',
     sortByReverse: false
   }
 
   componentWillMount() {
     const { rows, defaultSort } = this.props
+
+    // Establish initial sortDirection by checking for '-' value
+    const sortDirection = defaultSort.charAt(0) === '-' ? true : false
+    const sortName = sortDirection ? defaultSort.substr(1) : defaultSort
+
+    this.setTableState(rows, sortName, sortDirection)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const { sortByColumn, sortByReverse }= this.state
+
+    this.setTableState(nextProps.rows, sortByColumn, sortByReverse)
+  }
+
+  setTableState = (rows, sortName, sortDirection) => {
     const items = setUniqueId(rows)
-    const tableState = defaultSort ? this.sortItems(defaultSort, items) : { items }
+
+    const tableState = sortName ? this.sortItems(items, sortName, sortDirection) : { items }
 
     this.setState({ ...tableState })
   }
 
-  sortItems = (newSort, newItems) => {
+  sortItems = (newItems, sortByColumn, sortByReverse) => {
     const { columns } = this.props
 
-    // Check if newSort has a `-`, representing reverse sorting
-    let sortByReverse = newSort.charAt(0) === '-' ? true : false
-    const sortByColumn = sortByReverse ? newSort.substr(1) : newSort
-
-    // If newSort has same name as previous sort - reverse sort direction
-    if (sortByColumn === this.state.sortByColumn) {
-      sortByReverse = !this.state.sortByReverse
-    }
-
     const { name, sortType, sortFn } = columns.find(c => c.name === sortByColumn)
-
     const items = sortBy(newItems, { name, sortType, sortFn, isReverse: sortByReverse })
 
     return { items, sortByColumn, sortByReverse }
@@ -70,7 +76,9 @@ class Table extends PureComponent {
     e.preventDefault()
     const { items } = this.state
     const sortName = e.currentTarget.getAttribute('href')
-    const tableState = this.sortItems(sortName, items)
+
+    const sortDirection = sortName === this.state.sortByColumn ? !this.state.sortByReverse : false
+    const tableState = this.sortItems(items, sortName, sortDirection)
 
     this.setState({ ...tableState })
   }
@@ -78,8 +86,8 @@ class Table extends PureComponent {
   renderSortLabel = label => <span className="u-colorInfo u-textNoWrap">{ label }</span>
 
   renderSortLink = column => {
-    const { sortByColumn, sortByReverse } = this.state
-    const activeColumn = column.name === sortByColumn
+    const { items, sortByColumn, sortByReverse } = this.state
+    const activeColumn = items.length && column.name === sortByColumn
 
     const ascLinkMods = getClassName('u-block', activeColumn && !sortByReverse && 'u-colorHighlight')
     const descLinkMods = getClassName('u-block', activeColumn && sortByReverse && 'u-colorHighlight')
@@ -151,13 +159,21 @@ class Table extends PureComponent {
   }
 
   render() {
-    const { isStriped, className, mods, style, otherProps } = this.props
+    const { isStriped, className, mods, style, otherProps, maxTableHeight } = this.props
 
     return (
       <Panel className={ className } mods={ mods } isStriped={ isStriped } style={ style } { ...otherProps }>
         <PanelBody>
           <PanelRow isWithCells>{ this.renderTableColumns() }</PanelRow>
-          { this.renderTableRows() }
+          { maxTableHeight &&
+            <div style={{ height: maxTableHeight, overflow: 'scroll' }}>
+              { this.renderTableRows() }
+            </div>
+
+          }
+          { !maxTableHeight &&
+            this.renderTableRows()
+          }
         </PanelBody>
       </Panel>
     )
@@ -185,18 +201,20 @@ Table.propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
-  otherProps: PropTypes.object
+  otherProps: PropTypes.object,
+  maxTableHeight: PropTypes.string
 }
 
 Table.defaultProps = {
   columns: [],
   rows: [],
-  defaultSort: null,
+  defaultSort: '',
   isStriped: true,
   className: 'Panel',
   mods: null,
   style: {},
-  otherProps: {}
+  otherProps: {},
+  maxTableHeight: null
 }
 
 export default Table
