@@ -265,7 +265,7 @@ $Button--small-padding: 0 $su-small;
 
 // * Modifier: Button Large
 
-$Button--large-font-size: $tu-base-fontSize;
+$Button--large-font-size: $tu-large-fontSize;
 $Button--large-height: scaleGrid(5);
 $Button--large-line-height: $Button--large-height - 3;
 $Button--large-padding: 0 scaleGrid(3);

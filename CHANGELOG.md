@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [2.11.0] - 2018-06-12
+https://github.com/teamsnap/teamsnap-ui/pull/94
+### Added
+- Add `large` modifiers for `.Input` and `.SelectBox`
+- Increase font size for `.Button--large`
+
+
 ## [2.10.0] - 2018-06-06
 https://github.com/teamsnap/teamsnap-ui/pull/93
 ### Fixed
