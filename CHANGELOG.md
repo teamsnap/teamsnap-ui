@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [2.12.0] - 2018-06-15
+https://github.com/teamsnap/teamsnap-ui/pull/95
+### Changed
+- Change font path to just `//` so they can work for http and https
+
 ## [2.11.0] - 2018-06-12
 https://github.com/teamsnap/teamsnap-ui/pull/94
 ### Added
