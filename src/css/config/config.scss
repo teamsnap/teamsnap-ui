@@ -125,6 +125,7 @@ $tu-bold-fontWeight:      700 !default;
 $tu-xsmall-fontSize:           scaleFont($fontSize, -2) !default;
 $tu-small-fontSize:            scaleFont($fontSize, -1) !default;
 $tu-base-fontSize:              scaleFont($fontSize, 0) !default;
+$tu-medium-fontSize:            scaleFont($fontSize, 1) !default;
 $tu-large-fontSize:             scaleFont($fontSize, 2) !default;
 $tu-xlarge-fontSize:            scaleFont($fontSize, 5) !default;
 $tu-xxlarge-fontSize:           scaleFont($fontSize, 6) !default;

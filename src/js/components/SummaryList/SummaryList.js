@@ -10,9 +10,9 @@
  *    heading='Example Header'
  *    items={[
  *      { description: 'Item One', value: '$75.00' },
- *      { description: 'Item Two', value: '$100.00' },
- *      { description: 'Item Total', value: '$175.00' }
- *    ]} />
+ *      { description: 'Item Two', value: '$100.00', isFooterRow: true },
+ *    ]}
+ *    footer={ {description: 'Balance', '$175.00'} }/>
  */
 
 import React, { PureComponent } from 'react'
@@ -33,15 +33,23 @@ class SummaryList extends PureComponent {
     )
   }
 
-  renderItem = (item) => (
-    <li key={ item.key || item.description } className='SummaryList-item'>
-      { this.renderColumn(item.description) }
-      { this.renderColumn(item.value) }
-    </li>
-  )
+  renderItem = (item) => {
+    const listClasses = getClassName(
+      'SummaryList-item',
+      item.isFooterRow && 'SummaryList-item--footer',
+      item.mods
+    )
+
+    return (
+      <li key={ item.key || item.description } className={ listClasses } style={ item.style }>
+        { this.renderColumn(item.description) }
+        { this.renderColumn(item.value) }
+      </li>
+    )
+  }
 
   render () {
-    const { items, heading, subHeading, className, mods, style, otherProps } = this.props
+    const { items, heading, subHeading, footer, className, mods, style, otherProps } = this.props
 
     const hasHeading = heading || subHeading
 
@@ -58,6 +66,11 @@ class SummaryList extends PureComponent {
         <ul className='SummaryList-section'>
           { items.map(this.renderItem) }
         </ul>
+        { footer && 
+          <div className='SummaryList-footer'>
+            <h3>{ footer.description }<span>{ footer.value }</span></h3>
+          </div>
+        }
       </div>
     )
   }
@@ -68,11 +81,14 @@ SummaryList.propTypes = {
     PropTypes.shape({
       description: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
-      key: PropTypes.string
+      key: PropTypes.string,
+      mods: PropTypes.string,
+      style: PropTypes.object
     })
   ).isRequired,
   heading: PropTypes.string,
   subHeading: PropTypes.string,
+  footer: PropTypes.object,
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
@@ -82,6 +98,7 @@ SummaryList.propTypes = {
 SummaryList.defaultProps = {
   heading: null,
   subHeading: null,
+  footer: null,
   className: 'SummaryList',
   mods: null,
   style: {},
