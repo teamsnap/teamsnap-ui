@@ -1,16 +1,16 @@
 /**
  * @name FieldWrapper
- * 
+ *
  * @description
- *  A FieldWrapper component is a helper component to group common field components together such as inputs, labels, 
+ *  A FieldWrapper component is a helper component to group common field components together such as inputs, labels,
  *  and messages. If you need a more custom setup, look at creating your own 'FieldGroup' See the teamsnap patterns
  *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/field-group.html
  *
  * @example
  *  <FieldWrapper
- *    name='example' 
- *    label='Test Input' 
- *    field='input' 
+ *    name='example'
+ *    label='Test Input'
+ *    field='input'
  *    fieldProps={{ placeholder: 'Some placehodler text' }} />
  *
  */
@@ -38,14 +38,14 @@ class FieldWrapper extends PureComponent {
       toggle: Toggle,
       textarea: TextArea
     }
-    
+
     const FieldTag = (FieldTypes[field] || Input)
 
     return <FieldTag name={ name } { ...fieldProps } />
   }
 
   render () {
-    const { status, name, label, message } = this.props 
+    const { status, name, label, message } = this.props
 
     return (
       <FieldGroup status={ status }>
@@ -62,7 +62,7 @@ FieldWrapper.propTypes = {
   field: PropTypes.oneOf(['input', 'checkbox', 'radio', 'toggle', 'select', 'textarea']).isRequired,
   fieldProps: PropTypes.object,
   status: PropTypes.oneOf([null, 'success', 'error']),
-  label: PropTypes.string,
+  label: PropTypes.node,
   message: PropTypes.string,
 }
 
