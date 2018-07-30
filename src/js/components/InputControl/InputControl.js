@@ -48,7 +48,7 @@ class InputControl extends PureComponent {
 InputControl.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.node,
   group: PropTypes.string,
   inputProps: PropTypes.object,
   labelProps: PropTypes.object,

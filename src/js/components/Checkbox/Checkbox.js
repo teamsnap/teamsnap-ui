@@ -23,7 +23,7 @@ class Checkbox extends PureComponent {
 
 Checkbox.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
   inputProps: PropTypes.object,
   isInline: PropTypes.bool,
   className: PropTypes.string,
