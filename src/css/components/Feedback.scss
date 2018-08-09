@@ -108,10 +108,12 @@
 .Feedback--popup {
   position: fixed;
   top: -100%;
-  width: 25%;
+  width: calc(100% - #{($su-medium * 2)});
+  max-width: scaleGrid(50);
   right: $su-medium;
   box-shadow: $box-shadow-large;
   transition: top $duration-short;
+  z-index: 9999;
   &.js-active {
     top: $su-medium;
     transition: top $duration-short;
