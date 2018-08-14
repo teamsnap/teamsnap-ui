@@ -1,0 +1,67 @@
+@import "../config/index.scss";
+
+//------------------------------------------------------------//
+
+// * Tabs
+// * 1. Base CSS
+// * 2. Javascript Controlled CSS
+
+// TODO: add small modifier
+
+//------------------------------------------------------------//
+
+// * 1. Base CSS
+
+.Tabs {}
+
+.Tabs-header {
+  border-bottom: $border-width-large solid $cu-divider;
+  padding: 0;
+  margin-bottom: $su-medium;
+}
+
+.Tabs-headerItem {
+
+  list-style: none;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  color: $cu-info--light;
+  font-family: $base-font-family;
+  font-weight: $tu-semibold-fontWeight;
+
+  &, &:last-child {
+    padding: $su-xsmall $su-large;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: $border-width-large;
+    position: absolute;
+    left: 0;
+    bottom: 0 - $border-width-large;
+    background: transparent;
+  }
+
+  &.is-active,
+  &:hover {
+    color: $cu-primary;
+  }
+
+  &.is-active:after {
+    background: $cu-primary;
+  }
+
+}
+
+// * 2. Javascript Controlled CSS
+
+.Tabs-contentItem {
+  display: none;
+}
+
+.Tabs-contentItem.is-active {
+  display: block;
+}
