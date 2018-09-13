@@ -66,7 +66,7 @@ class SummaryList extends PureComponent {
         <ul className='SummaryList-section'>
           { items.map(this.renderItem) }
         </ul>
-        { footer && 
+        { footer &&
           <div className='SummaryList-footer'>
             <h3>{ footer.description }<span>{ footer.value }</span></h3>
           </div>
@@ -79,8 +79,8 @@ class SummaryList extends PureComponent {
 SummaryList.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      description: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
+      description: PropTypes.node.isRequired,
+      value: PropTypes.node.isRequired,
       key: PropTypes.string,
       mods: PropTypes.string,
       style: PropTypes.object
