@@ -64,7 +64,7 @@ class SummaryList extends PureComponent {
       <div className={ summaryClasses } style={ style } { ...otherProps }>
         { hasHeading && this.renderHeading() }
 
-        <ul className='SummaryList-section' sectionStyle={ sectionStyle }>
+        <ul className='SummaryList-section' style={ sectionStyle }>
           { items.map(this.renderItem) }
         </ul>
 
