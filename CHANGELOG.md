@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [2.13.3] - 2018-09-13
+
+https://github.com/teamsnap/teamsnap-ui/pull/100
+
+### Changed
+
+- Change SummaryList to accept a `node` instead of just a `string`
+- Allow SummaryList to accept `hasBorder` option to remove borders
+
 ## [2.13.2] - 2018-07-30
 
 https://github.com/teamsnap/teamsnap-ui/pull/97

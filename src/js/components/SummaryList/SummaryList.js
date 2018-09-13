@@ -49,8 +49,7 @@ class SummaryList extends PureComponent {
   }
 
   render () {
-    const { items, heading, subHeading, footer, className, mods, style, otherProps } = this.props
-
+    const { items, heading, subHeading, footer, className, mods, style, hasBorder, otherProps } = this.props
     const hasHeading = heading || subHeading
 
     const summaryClasses = getClassName(
@@ -59,14 +58,17 @@ class SummaryList extends PureComponent {
       mods
     )
 
+    const sectionStyle = hasBorder ? {} : { border: 0 }
+
     return (
       <div className={ summaryClasses } style={ style } { ...otherProps }>
         { hasHeading && this.renderHeading() }
 
-        <ul className='SummaryList-section'>
+        <ul className='SummaryList-section' sectionStyle={ sectionStyle }>
           { items.map(this.renderItem) }
         </ul>
-        { footer && 
+
+        { footer &&
           <div className='SummaryList-footer'>
             <h3>{ footer.description }<span>{ footer.value }</span></h3>
           </div>
@@ -79,8 +81,8 @@ class SummaryList extends PureComponent {
 SummaryList.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      description: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
+      description: PropTypes.node.isRequired,
+      value: PropTypes.node.isRequired,
       key: PropTypes.string,
       mods: PropTypes.string,
       style: PropTypes.object
@@ -92,6 +94,7 @@ SummaryList.propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  hasBorder: PropTypes.bool,
   otherProps: PropTypes.object
 }
 
@@ -102,6 +105,7 @@ SummaryList.defaultProps = {
   className: 'SummaryList',
   mods: null,
   style: {},
+  hasBorder: true,
   otherProps: {}
 }
 
