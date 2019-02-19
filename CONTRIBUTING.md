@@ -10,14 +10,14 @@ Once your user is created and added to the org this guide details the steps to p
 
 * rebase and get  your branch ahead of master
 * then from your working branch
-* `npm login --scope=@teamsnap`
-* `npm version major/minor/patch -m “commit message”`
+* Update the package.json version number: https://docs.npmjs.com/about-semantic-versioning
 * Update CHANGELOG.md with npm version and release notes
-* Commit CHANGELOG
+* Commit Version and CHANGELOG
 * `git push origin branch-name`
 * merge branch into master from git
 * `git checkout master`
 * `git pull origin master`
+* `npm login --scope=@teamsnap`
 * `npm publish`
 * To update TeamSnap CSS assets on CDN, run `jarvis deploy teamsnap_ui/master` in #chatops
 * As necessary, update CSS version number in repositories that reference it:
