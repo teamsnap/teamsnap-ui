@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [2.13.5] - 2019-02-19
+
+https://github.com/teamsnap/teamsnap-ui/pull/102
+
+### Changed
+
+- Specifying font-size, font-weight, and white-space, to make tooltip more flexible
+
 ## [2.13.4] - 2018-09-13
 
 https://github.com/teamsnap/teamsnap-ui/pull/100
