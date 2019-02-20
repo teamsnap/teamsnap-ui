@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [2.13.6] - 2019-02-19
+
+https://github.com/teamsnap/teamsnap-ui/pull/103
+
+### Changed
+
+- got rid of duplicate CSS and bumping version with "npm version" instead of manually
+
 ## [2.13.5] - 2019-02-19
 
 https://github.com/teamsnap/teamsnap-ui/pull/102
