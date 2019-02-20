@@ -10,9 +10,9 @@ Once your user is created and added to the org this guide details the steps to p
 
 * rebase and get  your branch ahead of master
 * then from your working branch
-* Update the package.json version number: https://docs.npmjs.com/about-semantic-versioning
-* Update CHANGELOG.md with npm version and release notes
-* Commit Version and CHANGELOG
+* Update the package.json version number `npm version [major|minor|patch] -m “commit message”`
+* Update CHANGELOG.md with new npm version and release notes
+* Commit CHANGELOG
 * `git push origin branch-name`
 * merge branch into master from git
 * `git checkout master`
