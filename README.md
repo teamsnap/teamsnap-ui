@@ -44,32 +44,35 @@ To run the linters manually use:
 https://teamsnap-ui-patterns.netlify.com/
 
 ### CSS Component List
-- [ ] Button Group
 - [ ] Button
-- [ ] Checkbox
+- [ ] Button Group
+- [ ] Checkbox / Radio
 - [ ] Divider
 - [ ] Feedback
 - [ ] Field Group
-- [ ] Grid
+- [ ] Grid/Grid Cell
 - [ ] Icon
 - [ ] Input Group
-- [ ] Input
+- [ ] Input (Text Area)
 - [ ] Loader
 - [ ] Panel
 - [ ] Popup
 - [ ] Progress
 - [ ] Select Box
-- [ ] Step NAv
+- [ ] Step Nav
 - [ ] Summary List
 - [ ] Table
 - [ ] Tabs
 - [ ] Toggle
 - [ ] Tooltip
 
+### Missing CSS Component List
+- [ ] Modal (pr in progress)
+
 ### REACT COMPONENT LIST
 - [ ] Button
 - [ ] Button Group
-- [ ] Cell
+- [ ] Cell (Grid Cell)
 - [ ] Checkbox
 - [ ] Divider
 - [ ] Field Group
@@ -78,7 +81,7 @@ https://teamsnap-ui-patterns.netlify.com/
 - [ ] Field Wrapper
 - [ ] Grid
 - [ ] Icon
-- [ ] Input
+- [ ] Input / Input Group shows up if add icon
 - [ ] Input Control
 - [ ] Loader
 - [ ] Panel
@@ -90,11 +93,17 @@ https://teamsnap-ui-patterns.netlify.com/
 - [ ] Progress Bar
 - [ ] Radial Progress
 - [ ] Radio
-- [ ] Select
+- [ ] Select (Select Box)
 - [ ] Step Nav
 - [ ] Summary List
 - [ ] Table
 - [ ] Text Area
-- [ ] Text Link
+- [ ] Text Link (investigate if this is tied to react router)
 - [ ] Toggle
 - [ ] Tooltip
+
+### Missing React Component List
+- [ ] Feedback
+- [ ] Popup
+- [ ] Modal
+- [ ] Tab
