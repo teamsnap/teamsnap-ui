@@ -44,36 +44,57 @@ To run the linters manually use:
 https://teamsnap-ui-patterns.netlify.com/
 
 ### CSS Component List
+- [ ] Button Group
+- [ ] Button
+- [ ] Checkbox
+- [ ] Divider
+- [ ] Feedback
+- [ ] Field Group
+- [ ] Grid
+- [ ] Icon
+- [ ] Input Group
+- [ ] Input
+- [ ] Loader
+- [ ] Panel
+- [ ] Popup
+- [ ] Progress
+- [ ] Select Box
+- [ ] Step NAv
+- [ ] Summary List
+- [ ] Table
+- [ ] Tabs
+- [ ] Toggle
+- [ ] Tooltip
 
 ### REACT COMPONENT LIST
-[ ] Button
-[ ] Button Group
-[ ] Cell
-[ ] Checkbox
-[ ] Divider
-[ ] Field Group
-[ ] Field Label
-[ ] Field Message
-[ ] Field Wrapper
-[ ] Grid
-[ ] Icon
-[ ] Input
-[ ] Input Control
-[ ] Loader
-[ ] Panel
-[ ] Panel Body
-[ ] Panel Cell
-[ ] Panel Header
-[ ] Panel Row
-[ ] Panel Row Expandable
-[ ] Progress Bar
-[ ] Radial Progress
-[ ] Radio
-[ ] Select
-[ ] Step Nav
-[ ] Summary List
-[ ] Table
-[ ] Text Area
-[ ] Text Link
-[ ] Toggle
-[ ] Tooltip
+- [ ] Button
+- [ ] Button Group
+- [ ] Cell
+- [ ] Checkbox
+- [ ] Divider
+- [ ] Field Group
+- [ ] Field Label
+- [ ] Field Message
+- [ ] Field Wrapper
+- [ ] Grid
+- [ ] Icon
+- [ ] Input
+- [ ] Input Control
+- [ ] Loader
+- [ ] Panel
+- [ ] Panel Body
+- [ ] Panel Cell
+- [ ] Panel Header
+- [ ] Panel Row
+- [ ] Panel Row Expandable
+- [ ] Progress Bar
+- [ ] Radial Progress
+- [ ] Radio
+- [ ] Select
+- [ ] Step Nav
+- [ ] Summary List
+- [ ] Table
+- [ ] Text Area
+- [ ] Text Link
+- [ ] Toggle
+- [ ] Tooltip
