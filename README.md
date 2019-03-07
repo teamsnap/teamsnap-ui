@@ -39,3 +39,41 @@ To run the linters manually use:
 + Update docs with full process for working locally with TeamSnap-UI
 + Update scripts to use webpack for css management and serving locally
 + Update docs to be written in storybook
+
+### CSS Components
+https://teamsnap-ui-patterns.netlify.com/
+
+### CSS Component List
+
+### REACT COMPONENT LIST
+[ ] Button
+[ ] Button Group
+[ ] Cell
+[ ] Checkbox
+[ ] Divider
+[ ] Field Group
+[ ] Field Label
+[ ] Field Message
+[ ] Field Wrapper
+[ ] Grid
+[ ] Icon
+[ ] Input
+[ ] Input Control
+[ ] Loader
+[ ] Panel
+[ ] Panel Body
+[ ] Panel Cell
+[ ] Panel Header
+[ ] Panel Row
+[ ] Panel Row Expandable
+[ ] Progress Bar
+[ ] Radial Progress
+[ ] Radio
+[ ] Select
+[ ] Step Nav
+[ ] Summary List
+[ ] Table
+[ ] Text Area
+[ ] Text Link
+[ ] Toggle
+[ ] Tooltip
