@@ -68,6 +68,8 @@ https://teamsnap-ui-patterns.netlify.com/
 
 ### Missing CSS Component List
 - [ ] Modal (pr in progress)
+- [ ] Badges
+- [ ] Member Photos / Placeholders
 
 ### REACT COMPONENT LIST
 - [ ] Button
