@@ -43,66 +43,47 @@ To run the linters manually use:
 ### CSS Components
 https://teamsnap-ui-patterns.netlify.com/
 
-### CSS Component List
-- [ ] Button
-- [ ] Button Group
-- [ ] Checkbox / Radio
-- [ ] Divider
-- [ ] Feedback
-- [ ] Field Group
-- [ ] Grid/Grid Cell
-- [ ] Icon
-- [ ] Input Group
-- [ ] Input (Text Area)
-- [ ] Loader
-- [ ] Panel
-- [ ] Popup
-- [ ] Progress
-- [ ] Select Box
-- [ ] Step Nav
-- [ ] Summary List
-- [ ] Table
-- [ ] Tabs
-- [ ] Toggle
-- [ ] Tooltip
+| Finished | CSS Component | React Component                                                         |
+|----------|---------------|-------------------------------------------------------------------------|
+|          | Button        | Button                                                                  |
+|          | Button Group  | Button Group                                                            |
+|          | Checkbox      | Checkbox Radio                                                          |
+|          | Divider       | Divider                                                                 |
+|          | Feedback      |                                                                         |
+|          | Field Group   | Field Group                                                             |
+|          |               | Field Label                                                             |
+|          |               | Field Message                                                           |
+|          |               | Field Wrapper                                                           |
+|          | Grid          | Grid Cell                                                               |
+|          | Icon          | Icon                                                                    |
+|          | Input Group   | Input                                                                   |
+|          |               | Input Control                                                           |
+|          | Input         | Input Text Area                                                         |
+|          | Loader        | Loader                                                                  |
+|          | Panel         | Panel 
+|          |               | Panel Body |
+|          |               | Panel Cell  |
+|          |               | Panel Header | 
+|          |               | Panel Row |
+|          |               | Panel Row Expandable |
+|          | Popup         |                                                                         |
+|          | Progress      | Progress                                                                |
+|          | Select Box    | Select                                                                  |
+|          | Step Nav      | Step Nav                                                                |
+|          | Summary List  | Summary List                                                            |
+|          | Table         | Table                                                                   |
+|          | Tabs          |                                                                         |
+|          |               | Text Link                                                               |
+|          | Toggle        | Toggle                                                                  |
+|          | Tooltip       | Tooltip                                                                 |
+|          |               |                                                                         |
+
+
 
 ### Missing CSS Component List
 - [ ] Modal (pr in progress)
 - [ ] Badges
 - [ ] Member Photos / Placeholders
-
-### REACT COMPONENT LIST
-- [ ] Button
-- [ ] Button Group
-- [ ] Cell (Grid Cell)
-- [ ] Checkbox
-- [ ] Divider
-- [ ] Field Group
-- [ ] Field Label
-- [ ] Field Message
-- [ ] Field Wrapper
-- [ ] Grid
-- [ ] Icon
-- [ ] Input / Input Group shows up if add icon
-- [ ] Input Control
-- [ ] Loader
-- [ ] Panel
-- [ ] Panel Body
-- [ ] Panel Cell
-- [ ] Panel Header
-- [ ] Panel Row
-- [ ] Panel Row Expandable
-- [ ] Progress Bar
-- [ ] Radial Progress
-- [ ] Radio
-- [ ] Select (Select Box)
-- [ ] Step Nav
-- [ ] Summary List
-- [ ] Table
-- [ ] Text Area
-- [ ] Text Link (investigate if this is tied to react router)
-- [ ] Toggle
-- [ ] Tooltip
 
 ### Missing React Component List
 - [ ] Feedback
