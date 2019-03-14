@@ -84,6 +84,27 @@ https://teamsnap-ui-patterns.netlify.com/
 - [ ] Modal (pr in progress)
 - [ ] Badges
 - [ ] Member Photos / Placeholders
+- [ ] Breadcrumbs
+- [ ] Card (2 photo variants)
+- [ ] Type ahead
+- [ ] Counts
+- [ ] Drop area
+- [ ] Calendar
+- [ ] Primary Navigation (top and side)
+- [ ] Side Tabs Variant (manage my teams & snapboard getting started)
+- [ ] Dropdown Menu
+- [ ] Background utilities
+- [ ] Finish adding icons
+- [ ] Pagination
+- [ ] Miller menu and Tree menu (maybe)
+- [ ] Vertical step nav
+
+### Missing CSS Documentation
+- [ ] More Panel Documentation
+- [ ] Theming/Variable Documentation 
+- [ ] Spacing Documentation
+- [ ] Color documentation
+- [ ] Typography documentation 
 
 ### Missing React Component List
 - [ ] Feedback
