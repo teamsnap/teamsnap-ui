@@ -1,123 +1,163 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-// import { action } from '@storybook/addon-actions';
-// import { withInfo } from '@storybook/addon-info';
-import { withKnobs, withKnobsOptions, text, boolean, number, selectV2, select } from '@storybook/addon-knobs/react';
-import Button from './Button';
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import {
+  withKnobs,
+  text,
+  boolean,
+} from "@storybook/addon-knobs/react";
+import Button from "./Button";
 
- const stories = storiesOf('Button', module);
+const stories = storiesOf("Button", module);
 
- stories.addDecorator(withKnobs);
+stories.addDecorator(withKnobs);
 
- stories.add('Default', (() =>
-  <Button mods="u-spaceRightSm"
-    isDisabled={ boolean('isDisabled', false) }
-    isActive={ boolean('isActive', false) }>
+stories.add("Default", () => (
+  <Button
+    mods="u-spaceRightSm"
+    isDisabled={ boolean("isDisabled", false) }
+    isActive={ boolean("isActive", false) }
+  >
     Default Button
   </Button>
-))
-stories.add('Themed Colors', (() =>
+));
+
+stories.add("Themed Colors", () => (
   <div>
-    <Button mods="u-spaceRightSm" 
-      isDisabled={ boolean('isDisabled', false) }
-      isActive={ boolean('isActive', false) }
-      color="primary">
+    <Button
+      mods="u-spaceRightSm"
+      isDisabled={ boolean("isDisabled", false) }
+      isActive={ boolean("isActive", false) }
+      color="primary"
+    >
       Primary Button
     </Button>
-    <Button mods="u-spaceRightSm" 
-      isDisabled={ boolean('isDisabled', false) }
-      isActive={ boolean('isActive', false) }
-      color="negative">
+    <Button
+      mods="u-spaceRightSm"
+      isDisabled={ boolean("isDisabled", false) }
+      isActive={ boolean("isActive", false) }
+      color="negative"
+    >
       Negative Button
-    </Button>    
+    </Button>
   </div>
-))
-stories.add('TeamSnap Colors', (() =>
+));
+
+stories.add("TeamSnap Colors", () => (
   <div>
-    <Button mods="u-spaceRightSm" 
-      isDisabled={ boolean('isDisabled', false) }
-      isActive={ boolean('isActive', false) }
-      color="orange">
+    <Button
+      mods="u-spaceRightSm"
+      isDisabled={ boolean("isDisabled", false) }
+      isActive={ boolean("isActive", false) }
+      color="orange"
+    >
       Orange Button
     </Button>
-    <Button mods="u-spaceRightSm" 
-      isDisabled={ boolean('isDisabled', false) }
-      isActive={ boolean('isActive', false) }
-      color="blue">
+    <Button
+      mods="u-spaceRightSm"
+      isDisabled={ boolean("isDisabled", false) }
+      isActive={ boolean("isActive", false) }
+      color="blue"
+    >
       Blue Button
-    </Button>    
+    </Button>
   </div>
-))
-stories.add('Status Colors', (() =>
+));
+
+stories.add("Status Colors", () => (
   <div>
     <div className="u-spaceBottomMd">
-      <Button mods="u-spaceRightSm" 
-        isDisabled={ boolean('isDisabled', false) }
-        isActive={ boolean('isActive', false) }
-        color="yes">
+      <Button
+        mods="u-spaceRightSm"
+        isDisabled={ boolean("isDisabled", false) }
+        isActive={ boolean("isActive", false) }
+        color="yes"
+      >
         yes Button
       </Button>
-      <Button mods="u-spaceRightSm" 
-        isDisabled={ boolean('isDisabled', false) }
-        isActive={ boolean('isActive', false) }
-        color="maybe">
+      <Button
+        mods="u-spaceRightSm"
+        isDisabled={ boolean("isDisabled", false) }
+        isActive={ boolean("isActive", false) }
+        color="maybe"
+      >
         Maybe Button
       </Button>
-      <Button mods="u-spaceRightSm" 
-        isDisabled={ boolean('isDisabled', false) }
-        isActive={ boolean('isActive', false) }
-        color="no">
+      <Button
+        mods="u-spaceRightSm"
+        isDisabled={ boolean("isDisabled", false) }
+        isActive={ boolean("isActive", false) }
+        color="no"
+      >
         No Button
       </Button>
     </div>
     <div>
-      <Button mods="u-spaceRightSm" 
-        isDisabled={ boolean('isDisabled', false) }
-        isActive={ boolean('isActive', false) }
-        color="yesDefault">
+      <Button
+        mods="u-spaceRightSm"
+        isDisabled={ boolean("isDisabled", false) }
+        isActive={ boolean("isActive", false) }
+        color="yesDefault"
+      >
         Yes/Default Button
       </Button>
-      <Button mods="u-spaceRightSm" 
-        isDisabled={ boolean('isDisabled', false) }
-        isActive={ boolean('isActive', false) }
-        color="maybeDefault">
+      <Button
+        mods="u-spaceRightSm"
+        isDisabled={ boolean("isDisabled", false) }
+        isActive={ boolean("isActive", false) }
+        color="maybeDefault"
+      >
         Maybe/Default Button
       </Button>
-      <Button mods="u-spaceRightSm" 
-        isDisabled={ boolean('isDisabled', false) }
-        isActive={ boolean('isActive', false) }
-        color="noDefault">
+      <Button
+        mods="u-spaceRightSm"
+        isDisabled={ boolean("isDisabled", false) }
+        isActive={ boolean("isActive", false) }
+        color="noDefault"
+      >
         No/Default Button
-      </Button>      
+      </Button>
     </div>
   </div>
-))
-stories.add('Sizes', (() =>
+));
+
+stories.add("Sizes", () => (
   <div>
-    <Button mods="u-spaceRightSm" size="small">Small Button</Button>
-    <Button mods="u-spaceRightSm" size="smallSquare" icon="dismiss"></Button>
+    <Button mods="u-spaceRightSm" size="small">
+      Small Button
+    </Button>
+    <Button mods="u-spaceRightSm" size="smallSquare" icon="dismiss" />
     <Button mods="u-spaceRightSm">Default Button</Button>
-    <Button mods="u-spaceRightSm" size="large">Large Button</Button>
-    <Button mods="u-spaceRightSm" size="huge">Huge Button</Button>
+    <Button mods="u-spaceRightSm" size="large">
+      Large Button
+    </Button>
+    <Button mods="u-spaceRightSm" size="huge">
+      Huge Button
+    </Button>
   </div>
-))
+));
 
-//  const storiesWithTextKnobs = storiesOf('Button', module);
-// storiesWithTextKnobs.addDecorator(withKnobsOptions({
-//   timestamps: true // Doesn't emit events while user is typing.
-// }));
-
-
-//  storiesWithTextKnobs.add('with Icon', (() =>
-//   <div>
-//     <Button mods="u-spaceRightSm"
-//       icon={ text('Icon Left', 'home') }>
-//       Icon Left (default)
-//     </Button>
-//     <Button mods="u-spaceRightSm"
-//       icon={ text('Icon Right', 'right') }
-//       iconPosition="right">
-//       Icon Right
-//     </Button>
-//   </div>
-// ))
+storiesOf("Button", module)
+  .addDecorator(withKnobs)
+  .add(
+    "with Icon",
+    () => (
+      <div>
+        <Button mods="u-spaceRightSm" icon={ text("Icon Left", "home") }>
+          Icon Left (default)
+        </Button>
+        <Button
+          mods="u-spaceRightSm"
+          icon={ text("Icon Right", "right") }
+          iconPosition="right"
+        >
+          Icon Right
+        </Button>
+      </div>
+    ),
+    {
+      knobs: {
+        timestamps: true,
+        debounce: { wait: 2000, leading: false }
+      }
+    }
+  );

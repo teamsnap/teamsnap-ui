@@ -1,21 +1,15 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
+import React from "react";
+import { storiesOf } from "@storybook/react";
 // import { action } from '@storybook/addon-actions';
 // import { withInfo } from '@storybook/addon-info';
-// import { withKnobs, withKnobsOptions, text, boolean, number, selectV2 } from '@storybook/addon-knobs/react';
-import Icon from './Icon';
+import {
+  withKnobs,
+  text,
+} from "@storybook/addon-knobs";
+import Icon from "./Icon";
 
- const stories = storiesOf('Icon', module);
+const stories = storiesOf("Icon", module);
 
-//  stories.addDecorator(withKnobsOptions({
-//   // set debounce so you have time to type the new icon name
-//   debounce: { wait: 1000, leading: false }, // Same as lodash debounce.
-//   timestamps: true // Doesn't emit events while user is typing.
-// }));
+stories.addDecorator(withKnobs);
 
-
- stories.add('Default', (() =>
-  <Icon 
-    name={ 'home' }
-  />
-))
+stories.add("Default", () => <Icon name={ text("Icon name", "home") } />);

@@ -1,6 +1,4 @@
 import { configure, addDecorator } from '@storybook/react';
-// import { withInfo } from '@storybook/addon-info';
-// import { withKnobs } from '@storybook/addon-knobs';
 
 // Import css
 import '../src/css/teamsnap-ui.scss'
@@ -11,9 +9,5 @@ function loadStories() {
   req.keys().forEach(filename => req(filename));
 }
 
-// addDecorator(withInfo);
-// addDecorator(withKnobs);
-
-// import '../dist/css/teamsnap-ui.css';
 
 configure(loadStories, module);
