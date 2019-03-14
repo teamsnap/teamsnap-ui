@@ -17,7 +17,8 @@ module.exports = {
   },
   icons: {
     src: 'src/assets/icons/*.svg',
-    dest: 'dist/js/icons'
+    dest: 'dist/js/icons',
+    destLocal: 'src/js/icons',
   },
   watch : {
     teamsnap : [

@@ -31,6 +31,11 @@ const buildIcons = (svgIcons) => {
   iconModules.map((module) =>
     fs.outputFile(path.join(config.icons.dest, module.filepath), module.source)
   )
+
+  // Write JS files to src directory
+  iconModules.map((module) =>
+    fs.outputFile(path.join(config.icons.destLocal, module.filepath), module.source)
+  )
 }
 
 svgOptimize(config.icons.src, buildIcons)
