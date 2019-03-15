@@ -1,0 +1,51 @@
+@import "../config/index.scss";
+
+//------------------------------------------------------------//
+
+// * Card Component
+// * 1. Define Default Card
+// * 2. Circular Image Modifier
+
+// TODO : add card controls 
+// TODO : add circular image modifier
+
+//------------------------------------------------------------//
+
+// * 1. Settings
+
+.Card {
+  background-color: $cu-foreground;
+  border: 1px solid $cu-divider;
+  border-radius: $border-radius-large;
+}
+
+.Card-controls {}
+
+.Card-image {
+  border-top-right-radius: $border-radius-large;
+  border-top-left-radius: $border-radius-large;
+  border-bottom: 1px solid $cu-divider;
+  overflow: hidden;
+  max-height: scaleGrid(25);
+
+  img { 
+    vertical-align: top;
+    width: 100%;
+  }
+
+}
+
+.Card-content {
+  padding: $su-medium;
+}
+
+.Card-contentHeader {
+  padding-bottom: $su-small;
+}
+
+.Card-contentRow {
+  padding-bottom: $su-medium;
+  list-style: none;
+}
+
+// * 2. Circular Image Modifier
