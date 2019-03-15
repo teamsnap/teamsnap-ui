@@ -103,7 +103,6 @@ $Panel-header-text-color: $cu-info !default;
   align-items: center; // 1
 }
 
-
 // * .Panel-title
 //
 // 1. Define text properties
@@ -141,6 +140,12 @@ $Panel-header-text-color: $cu-info !default;
   padding: 0; // 2
 }
 
+.Panel-row--header {
+  background-color: $cu-middleground;
+  border-bottom: solid 1px $cu-divider--light; // 1
+  font-weight: $tu-semibold-fontWeight;
+}
+
 
 // * .Panel-cell
 //
@@ -160,6 +165,7 @@ $Panel-header-text-color: $cu-info !default;
 .Panel-cell--header {
   background-color: $cu-middleground; // 1
   border-right: solid 1px $cu-divider--light; // 1
+  font-weight: $tu-semibold-fontWeight;
 }
 
 // * .Panel-footer
