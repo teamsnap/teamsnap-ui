@@ -1,8 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-// import { action } from '@storybook/addon-actions';
-// import { withInfo } from '@storybook/addon-info';
-// import { withKnobs, withKnobsOptions, text, boolean, number, selectV2 } from '@storybook/addon-knobs/react';
+// import { withKnobs, text, boolean, number, selectV2 } from '@storybook/addon-knobs/react';
 import Table from './Table';
 
  const stories = storiesOf('Table', module);
