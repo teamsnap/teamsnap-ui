@@ -188,6 +188,43 @@ $Popup-arrow-borderRadius: 3px;
   }
 }
 
+// * Hover modifier
+//
+// * Allows the user to hover over a popup instead of click
+// * 1. the Popup-content:before creates a small transparent hoverable box that fills the gap between the popup trigger and container  
+// * 2. Since the content: ''; attribute is nested in the hover modifier the Popup-content:before CSS only effects content in a hover modified popup
+
+.Popup--hover {
+
+  .Popup-content:before { // 2
+    content: '';
+    position: absolute;
+    display: block;
+  }
+
+}
+
+.Popup-content:before { // 1
+  height: $su-medium;
+  width: 100%;
+  left: 0;
+  top: 100%;
+
+  .Popup-container--down & {
+    top: auto;
+    bottom: 100%;
+  }
+
+}
+
+.Popup--hover:hover {
+
+  .Popup-container {
+    display: block;
+  }
+
+}
+
 // * Animations
 
 @keyframes popIn {
