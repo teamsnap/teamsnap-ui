@@ -12,7 +12,7 @@ $responsive: true;
 @each $col in $cols {
   @for $i from 1 through ($col - 1) {
     .u-size#{$i}of#{$col} {
-      flex-basis: auto !important;
+      flex: 0 1 auto !important;
       width: $i / $col * 100% !important;
     }
   }
@@ -22,8 +22,7 @@ $responsive: true;
 
 // * Make an element shrink wrap its content.
 .u-sizeFit {
-  flex-basis: auto !important;
-  width: auto !important;
+  flex: 0 1 auto !important;
 }
 
 // * Make an element fill the remaining space.
@@ -39,7 +38,7 @@ $responsive: true;
 
 // * 100% width
 .u-sizeFull, .u-size1of1 {
-  flex-basis: auto !important;
+  flex: 0 1 auto !important;
   width: 100% !important;
 }
 
@@ -50,14 +49,14 @@ $responsive: true;
       @each $col in $cols {
         @for $i from 1 through ($col - 1) {
           .u-#{$name}-size#{$i}of#{$col} {
-            flex-basis: auto !important;
+            flex: 0 1 auto !important;
             width: $i / $col * 100% !important;
           }
         }
       }
 
       .u-#{$name}-sizeFit {
-        flex-basis: auto !important;
+        flex: 0 1 auto !important;
         width: auto !important;
       }
 
@@ -67,7 +66,7 @@ $responsive: true;
       }
 
       .u-#{$name}-sizeFull, .u-#{$name}-size1of1 {
-        flex-basis: auto !important;
+        flex: 0 1 auto !important;
         width: 100% !important;
       }
     }
