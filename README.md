@@ -81,33 +81,32 @@ https://teamsnap-ui-patterns.netlify.com/
 
 
 ### Missing CSS Component List
-- [ ] Modal (pr in progress)
-- [ ] Badges
-- [ ] Member Photos / Placeholders
-- [ ] Breadcrumbs
-- [ ] Card (2 photo variants)
-- [ ] Type ahead
-- [ ] Counts
-- [ ] Drop area
-- [ ] Calendar
-- [ ] Primary Navigation (top and side)
-- [ ] Side Tabs Variant (manage my teams & snapboard getting started)
-- [ ] Dropdown Menu
-- [ ] Background utilities
-- [ ] Finish adding icons
-- [ ] Pagination
-- [ ] Miller menu and Tree menu (maybe)
-- [ ] Vertical step nav
+- [ ] Modal (pr in progress) <a href="https://teamsnap.atlassian.net/browse/TUI-12">TUI-12</a>
+- [ ] Badges <a href="https://teamsnap.atlassian.net/browse/TUI-14">TUI-14</a>
+- [ ] Member Photos / Placeholders <a href="https://teamsnap.atlassian.net/browse/TUI-15">TUI-15</a>
+- [ ] Breadcrumbs <a href="https://teamsnap.atlassian.net/browse/TUI-16">TUI-16</a>
+- [ ] Card (2 photo variants) <a href="https://teamsnap.atlassian.net/browse/TUI-17">TUI-17</a>
+- [ ] Type ahead <a href="https://teamsnap.atlassian.net/browse/TUI-18">TUI-18</a>
+- [ ] Counts <a href="https://teamsnap.atlassian.net/browse/TUI-19">TUI-19</a>
+- [ ] Drop area <a href="https://teamsnap.atlassian.net/browse/TUI-20">TUI-20</a>
+- [ ] Calendar <a href="https://teamsnap.atlassian.net/browse/TUI-1">TUI-1</a>
+- [ ] Primary Navigation (top and side) <a href="https://teamsnap.atlassian.net/browse/TUI-21">TUI-21</a>
+- [ ] Side Tabs Variant (manage my teams & snapboard getting started) <a href="https://teamsnap.atlassian.net/browse/TUI-22">TUI-22</a>
+- [ ] Dropdown Menu <a href="https://teamsnap.atlassian.net/browse/TUI-23">TUI-23</a>
+- [ ] Background utilities <a href="https://teamsnap.atlassian.net/browse/TUI-24">TUI-24</a>
+- [ ] Finish adding icons <a href="https://teamsnap.atlassian.net/browse/TUI-25">TUI-25</a>
+- [ ] Pagination <a href="https://teamsnap.atlassian.net/browse/TUI-26">TUI-26</a>
+- [ ] Vertical step nav <a href="https://teamsnap.atlassian.net/browse/TUI-27">TUI-27</a>
 
 ### Missing CSS Documentation
-- [ ] More Panel Documentation
-- [ ] Theming/Variable Documentation 
-- [ ] Spacing Documentation
-- [ ] Color documentation
-- [ ] Typography documentation 
+- [ ] More Panel Documentation <a href="https://teamsnap.atlassian.net/browse/TUI-28">TUI-28</a>
+- [ ] Theming/Variable Documentation <a href="https://teamsnap.atlassian.net/browse/TUI-29">TUI-29</a>
+- [ ] Spacing Documentation <a href="https://teamsnap.atlassian.net/browse/TUI-30">TUI-30</a>
+- [ ] Color documentation <a href="https://teamsnap.atlassian.net/browse/TUI-32">TUI-31</a>
+- [ ] Typography documentation <a href="https://teamsnap.atlassian.net/browse/TUI-33">TUI-33</a>
 
 ### Missing React Component List
-- [ ] Feedback
-- [ ] Popup
-- [ ] Modal
-- [ ] Tab
+- [ ] Feedback <a href="https://teamsnap.atlassian.net/browse/TUI-34">TUI-34</a>
+- [ ] Popup <a href="https://teamsnap.atlassian.net/browse/TUI-33">TUI-33</a>
+- [ ] Modal <a href="https://teamsnap.atlassian.net/browse/TUI-12">TUI-12</a>
+- [ ] Tab <a href="https://teamsnap.atlassian.net/browse/TUI-35">TUI-35</a>
