@@ -1,10 +1,12 @@
 import { configure, addDecorator } from '@storybook/react';
 import { withKnobs } from "@storybook/addon-knobs";
+import { withInfo } from "@storybook/addon-info";
 
 // Import css
 import '../src/css/teamsnap-ui.scss'
 
 addDecorator(withKnobs);
+addDecorator(withInfo);
 
 // automatically import all files ending in *.stories.js
 const req = require.context('../src/js', true, /.stories.js$/);
