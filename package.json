@@ -37,12 +37,12 @@
     "suit"
   ],
   "devDependencies": {
-    "@storybook/addon-actions": "^5.0.1",
-    "@storybook/addon-info": "^5.0.1",
-    "@storybook/addon-knobs": "^5.0.1",
+    "@storybook/addon-actions": "^5.0.6",
+    "@storybook/addon-info": "^5.0.6",
+    "@storybook/addon-knobs": "^5.0.6",
     "@storybook/addon-links": "^5.0.1",
     "@storybook/addons": "^5.0.1",
-    "@storybook/react": "^5.0.1",
+    "@storybook/react": "^5.0.6",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
@@ -50,7 +50,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "browser-sync": "^2.24.4",
+    "browser-sync": "^2.26.3",
     "css-loader": "^2.1.1",
     "del": "^3.0.0",
     "eslint": "^4.19.1",
@@ -70,9 +70,9 @@
     "sass-lint": "^1.10.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "svgo": "^1.0.5"
+    "svgo": "^1.2.1"
   },
   "dependencies": {
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.11"
   }
 }
