@@ -6,7 +6,13 @@ import { withInfo } from "@storybook/addon-info";
 import '../src/css/teamsnap-ui.scss'
 
 addDecorator(withKnobs);
-addDecorator(withInfo);
+
+// Make info + component show by default
+addDecorator(
+  withInfo({
+    inline: true
+  })
+);
 
 // automatically import all files ending in *.stories.js
 const req = require.context('../src/js', true, /.stories.js$/);
