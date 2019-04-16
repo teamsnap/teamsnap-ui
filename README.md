@@ -98,6 +98,10 @@ https://teamsnap-ui-patterns.netlify.com/
 - [ ] Pagination
 - [ ] Miller menu and Tree menu (maybe)
 - [ ] Vertical step nav
+- [ ] Shadow for components
+- [ ] Dynamic Spacing
+- [ ] Blockquote
+- [ ] Triangle pseudo class for callouts/flyouts
 
 ### Missing CSS Documentation
 - [ ] More Panel Documentation
