@@ -31,6 +31,7 @@ import PanelBody from '../PanelBody'
 import PanelRow from '../PanelRow'
 import PanelCell from '../PanelCell'
 import TextLink from '../TextLink'
+import Loader from '../Loader'
 
 class Table extends PureComponent {
   state = {
@@ -153,13 +154,23 @@ class Table extends PureComponent {
     return columns.map(this.renderHeaderColumn)
   }
 
-  renderTableRows = () => {
+  renderTableRows = (placeHolder, isLoading) => {
     const { items } = this.state
-    return items.map(this.renderRow)
+    if (isLoading) {
+      return  (
+        <div className='u-padMd u-textCenter'>
+          <Loader type='spin' text='loading...' />
+        </div>
+      )
+    }
+    if (!isLoading && items.length) {
+      return items.map(this.renderRow)
+    }
+    return <div className='u-padMd u-textCenter'>{ placeHolder }</div>
   }
 
   render() {
-    const { isStriped, className, mods, style, otherProps, maxTableHeight } = this.props
+    const { isStriped, className, mods, style, otherProps, maxTableHeight, placeHolder, isLoading } = this.props 
 
     return (
       <Panel className={ className } mods={ mods } isStriped={ isStriped } style={ style } { ...otherProps }>
@@ -172,7 +183,7 @@ class Table extends PureComponent {
 
           }
           { !maxTableHeight &&
-            this.renderTableRows()
+            this.renderTableRows(placeHolder, isLoading)
           }
         </PanelBody>
       </Panel>
@@ -202,7 +213,12 @@ Table.propTypes = {
   mods: PropTypes.string,
   style: PropTypes.object,
   otherProps: PropTypes.object,
-  maxTableHeight: PropTypes.string
+  maxTableHeight: PropTypes.string,
+  isLoading: PropTypes.bool,
+  placeHolder: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func
+  ])
 }
 
 Table.defaultProps = {
@@ -214,7 +230,9 @@ Table.defaultProps = {
   mods: null,
   style: {},
   otherProps: {},
-  maxTableHeight: null
+  placeHolder: 'Nothing to see here',
+  maxTableHeight: null,
+  isLoading: false
 }
 
 export default Table
