@@ -120,6 +120,24 @@ $Panel-header-text-color: $cu-info !default;
   margin: 0; // 3
 }
 
+// * .Panel-image
+//
+// This could be updated into a more generic image component (maybe)
+
+.Panel-image {
+  border-top-right-radius: $border-radius-large;
+  border-top-left-radius: $border-radius-large;
+  border-bottom: 1px solid $cu-divider;
+  overflow: hidden;
+  max-height: scaleGrid(25);
+
+  img { 
+    vertical-align: top;
+    width: 100%;
+  }
+
+}
+
 
 // * .Panel-row
 //
