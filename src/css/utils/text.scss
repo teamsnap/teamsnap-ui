@@ -24,6 +24,11 @@
   white-space: nowrap !important;
 }
 
+.u-textEllipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 @if $responsive == true {
   @each $name, $value in $breakpoints {
     @media (min-width: $value) {
@@ -69,4 +74,32 @@
 
 .u-fontSizeXxl {
   font-size: $tu-xxlarge-fontSize !important;
+}
+
+/**
+ * Font weight utilities
+ */
+
+.u-textNormal {
+  font-weight: $tu-base-fontWeight;
+}
+
+.u-textSemiBold {
+  font-weight: $tu-semibold-fontWeight;
+}
+
+.u-textBold {
+  font-weight: $tu-bold-fontWeight;
+}
+
+/**
+ * Text Decoration utilities
+ */
+
+ .u-textUnderline {
+  text-decoration: underline;
+}
+
+.u-textLineThrough {
+  text-decoration: line-through;
 }

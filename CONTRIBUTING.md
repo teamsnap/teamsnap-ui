@@ -26,3 +26,6 @@ Once your user is created and added to the org this guide details the steps to p
 **Note**
 
 The sass-lint plugin is configured as a prepublish step so if there are linting errors you will need to resolve them before publishing.
+
+If you run into issues updating the package version number, try logging in first and trying again. The npm 
+version number must be updated via `npm version [major|minor|patch] -m “commit message”`.

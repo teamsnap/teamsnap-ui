@@ -103,7 +103,6 @@ $Panel-header-text-color: $cu-info !default;
   align-items: center; // 1
 }
 
-
 // * .Panel-title
 //
 // 1. Define text properties
@@ -119,6 +118,24 @@ $Panel-header-text-color: $cu-info !default;
   flex: 1 1 0%; // 2
   padding: 0; // 3
   margin: 0; // 3
+}
+
+// * .Panel-image
+//
+// This could be updated into a more generic image component (maybe)
+
+.Panel-image {
+  border-top-right-radius: $border-radius-large;
+  border-top-left-radius: $border-radius-large;
+  border-bottom: 1px solid $cu-divider;
+  overflow: hidden;
+  max-height: scaleGrid(25);
+
+  img { 
+    vertical-align: top;
+    width: 100%;
+  }
+
 }
 
 
@@ -141,6 +158,12 @@ $Panel-header-text-color: $cu-info !default;
   padding: 0; // 2
 }
 
+.Panel-row--header {
+  background-color: $cu-middleground;
+  border-bottom: solid 1px $cu-divider--light; // 1
+  font-weight: $tu-semibold-fontWeight;
+}
+
 
 // * .Panel-cell
 //
@@ -160,6 +183,7 @@ $Panel-header-text-color: $cu-info !default;
 .Panel-cell--header {
   background-color: $cu-middleground; // 1
   border-right: solid 1px $cu-divider--light; // 1
+  font-weight: $tu-semibold-fontWeight;
 }
 
 // * .Panel-footer
