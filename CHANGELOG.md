@@ -12,6 +12,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [2.14.0] - 2019-02-19
+
+https://github.com/teamsnap/teamsnap-ui/pull/103
+
+### Changed
+
+- `Added` story book to view our React Components
+- `Added` an empty and loading state to the React table component
+- `Added` more text and grid utilities to the CSS
+- `Added` a hover modifier to the Popup CSS
+- `Added` a row header (sub-header) and image to Panel CSS
+
 ## [2.13.6] - 2019-02-19
 
 https://github.com/teamsnap/teamsnap-ui/pull/103
