@@ -217,7 +217,9 @@ $Popup-arrow-borderRadius: 3px;
 
 }
 
-.Popup--hover:hover {
+.Popup--hover:hover,
+.Popup--hover:focus,
+.Popup--hover:focus-within {
 
   .Popup-container {
     display: block;
