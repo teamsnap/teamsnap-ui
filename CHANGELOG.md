@@ -12,9 +12,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
-## [2.14.0] - 2019-02-19
+## [2.14.1] - 2019-05-01
 
-https://github.com/teamsnap/teamsnap-ui/pull/103
+- https://github.com/teamsnap/teamsnap-ui/pull/112
+
+### Changed
+
+- `Added` focus and focus-within state to Popup--hover modifier
+- `Added` table knobs to storybook
+
+## [2.14.0] - 2019-04-29
+
+- https://github.com/teamsnap/teamsnap-ui/pull/105
+- https://github.com/teamsnap/teamsnap-ui/pull/111
+- https://github.com/teamsnap/teamsnap-ui/pull/108
 
 ### Changed
 
