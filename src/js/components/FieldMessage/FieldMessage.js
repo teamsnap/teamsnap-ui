@@ -10,24 +10,21 @@
  *
  */
 
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import { getClassName } from '../../utils/helpers'
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+import { getClassName } from "../../utils/helpers";
 
 class FieldMessage extends PureComponent {
-  render () {
-    const { children, isError, className, mods, style, otherProps } = this.props
+  render() {
+    const { children, isError, className, mods, style, otherProps } = this.props;
 
-    const messageClasses = getClassName(
-      isError ? 'FormGroup-feedback' : className,
-      mods
-    )
+    const messageClasses = getClassName(isError ? "FormGroup-feedback" : className, mods);
 
     return (
       <div className={ messageClasses } style={ style } { ...otherProps }>
         { children }
       </div>
-    )
+    );
   }
 }
 
@@ -38,15 +35,15 @@ FieldMessage.propTypes = {
   mods: PropTypes.string,
   style: PropTypes.object,
   otherProps: PropTypes.object
-}
+};
 
 FieldMessage.defaultProps = {
   children: null,
   isError: false,
-  className: 'FormGroup-message',
+  className: "FieldGroup-message",
   mods: null,
   style: {},
   otherProps: {}
-}
+};
 
-export default FieldMessage
+export default FieldMessage;
