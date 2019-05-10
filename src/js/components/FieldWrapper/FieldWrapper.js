@@ -28,6 +28,7 @@ import Toggle from '../Toggle'
 import Select from '../Select'
 
 class FieldWrapper extends PureComponent {
+
   renderFieldComponent = () => {
     const { name, field, fieldProps } = this.props
 
@@ -40,6 +41,10 @@ class FieldWrapper extends PureComponent {
     }
 
     const FieldTag = (FieldTypes[field] || Input)
+ 
+    if ((field == 'checkbox' || field == 'radio') && fieldProps.options) {
+      return fieldProps.options && fieldProps.options.map(({ label }, i) => <FieldTag name={ name } label={ label } key={ i } />)
+    }
 
     return <FieldTag name={ name } { ...fieldProps } />
   }

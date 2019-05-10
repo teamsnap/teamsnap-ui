@@ -23,8 +23,19 @@ stories.add("Select", () => {
       <FieldWrapper
         name="example"
         label="Test Input"
-        field="input"
-        fieldProps={{ placeholder: "Some placehodler text" }}
+        field="select"
+        fieldProps={{
+          options: [
+            {
+              label: "Tournament",
+              value: "tournament"
+            },
+            {
+              label: "Other",
+              value: "other"
+            }
+          ]
+        }}
       />
     </div>
   );
@@ -35,7 +46,7 @@ stories.add("Select", () => {
 stories.add("Checkbox", () => {
   return (
     <div style={{ padding: 20 + "px" }}>
-      <FieldWrapper name="example" label="Test Input" field="checkbox" fieldProps={{ label: "Check me" }} />
+      <FieldWrapper name="example" label="Test Input" field="checkbox" fieldProps={{ options: [ { label: "Check me" }, { label: "Check me" }  ] }} />
     </div>
   );
 });
@@ -43,7 +54,7 @@ stories.add("Checkbox", () => {
 stories.add("Radio", () => {
   return (
     <div style={{ padding: 20 + "px" }}>
-      <FieldWrapper name="example" label="Test Input" field="radio" fieldProps={{ label: "Video killed the radio star" }} />
+      <FieldWrapper name="example" label="Test Input" field="radio" fieldProps={{ options: [ { label: "Video killed the radio star" }, { label: "Check me" }  ] }} />
     </div>
   );
 });
