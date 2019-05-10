@@ -1,8 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import FieldMessage from "./FieldMessage";
 import FieldGroup from "../FieldGroup";
 import FieldLabel from "../FieldLabel";
-import FieldMessage from "./FieldMessage";
 import Input from "../Input";
 
 const stories = storiesOf("FieldMessage", module);
