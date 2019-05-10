@@ -22,6 +22,16 @@ const iconOptions = {
   default: "left"
 };
 
+stories.add("Default", () => {
+  const status = select("status", statusOptions);
+
+  return (
+    <div style={{ padding: 20 + "px" }}>
+      <FieldGroup name="example" label="Check Me" isInline status={ status } />
+    </div>
+  );
+});
+
 stories.add("FieldGroup with Input text child", () => {
   const status = select("status", statusOptions);
 
