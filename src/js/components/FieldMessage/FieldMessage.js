@@ -18,7 +18,7 @@ class FieldMessage extends PureComponent {
   render() {
     const { children, isError, className, mods, style, otherProps } = this.props;
 
-    const messageClasses = getClassName(isError ? "FormGroup-feedback" : className, mods);
+    const messageClasses = getClassName(isError ? "FieldGroup-message FieldGroup-message--error" : className, mods);
 
     return (
       <div className={ messageClasses } style={ style } { ...otherProps }>
