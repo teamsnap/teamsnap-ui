@@ -68,6 +68,7 @@ $cu-highlight--dark:        scaleColor($cu-highlight, 0);
 $cu-highlight--bg:         scaleColor($cu-highlight, 10);
 
 $color-links:                         $cu-primary--light;
+$color-links--hover: scaleColor($color-links, -2);
 
 // * 2. Redefine Element Variables for Theme
 
