@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [2.15.0] - 2019-05-16
+
+- https://github.com/teamsnap/teamsnap-ui/pull/116
+- https://github.com/teamsnap/teamsnap-ui/pull/118
+
+### Changed
+
+- `Added` background color utilities
+- `Added` initial styles for React datepicker component (WIP)
+
 ## [2.14.1] - 2019-05-01
 
 - https://github.com/teamsnap/teamsnap-ui/pull/112
