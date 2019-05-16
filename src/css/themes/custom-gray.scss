@@ -18,6 +18,7 @@ $cu-primary:   #999;
 $cu-secondary: #666;
 $cu-highlight: #222;
 $color-links:  #888;
+$color-links--hover: scaleColor($color-links, -2);
 
 // * 2. Load app.scss with color settings overrriden
 

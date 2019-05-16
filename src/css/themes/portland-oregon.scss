@@ -68,6 +68,7 @@ $cu-highlight--dark:       scaleColor($cu-highlight, -1);
 $cu-highlight--bg:         scaleColor($cu-highlight, 10);
 
 $color-links:                                    #417f8c;
+$color-links--hover: scaleColor($color-links, -2);
 
 // * 2. Load app-theme with redefined variables
 
