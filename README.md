@@ -76,7 +76,7 @@ https://teamsnap-ui-patterns.netlify.com/
 |          |               | Text Link                                                               |
 |          | Toggle        | Toggle                                                                  |
 |          | Tooltip       | Tooltip                                                                 |
-|          |               |                                                                         |
+|          | Pagination    | Pagination                                                              |
 
 
 
@@ -109,9 +109,12 @@ https://teamsnap-ui-patterns.netlify.com/
 - [ ] Spacing Documentation
 - [ ] Color documentation
 - [ ] Typography documentation 
+- [ ] Pagination
+
 
 ### Missing React Component List
 - [ ] Feedback
 - [ ] Popup
 - [ ] Modal
 - [ ] Tab
+- [ ] Pagination
