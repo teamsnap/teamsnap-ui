@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [2.15.1] - 2019-05-21
+
+- https://github.com/teamsnap/teamsnap-ui/pull/119
+
+### Changed
+
+- `Added` daypicker styles
+- `Added` u-linkCascade class
+
 ## [2.15.0] - 2019-05-16
 
 - https://github.com/teamsnap/teamsnap-ui/pull/116
