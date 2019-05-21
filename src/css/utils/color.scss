@@ -40,6 +40,14 @@
   }
 }
 
+// Applies link color and hover states to all child elements
+.u-linkCascade * {
+  color: $color-links !important;
+  &:hover, &:active {
+    color: $color-links--hover !important;
+  }
+}
+
 // * BG colors
 
 .u-bgPositive {
