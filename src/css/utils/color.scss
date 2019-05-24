@@ -73,3 +73,19 @@
 .u-bgLinkLight {
   background-color: scaleColor($color-links, 8) !important;
 }
+
+.u-bgForeground {
+  background-color: $cu-foreground !important;
+}
+
+.u-bgBackground {
+  background-color: $cu-background !important;
+}
+
+// * Responsive, as necessary
+
+@media (min-width: $breakpoint-xs) {
+  .u-xs-bgForeground {
+    background-color: $cu-foreground !important;
+  }
+}

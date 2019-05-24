@@ -73,6 +73,11 @@ $spaces: (
   }
 }
 
+.u-spaceSidesAuto {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
 // * Responsive utilities
 
 @if $responsive == true {
@@ -119,6 +124,11 @@ $spaces: (
         .u-#{$bp-name}-padSides#{$name} {
          padding-left: $value !important;
         }
+      }
+
+      .u-#{$bp-name}-spaceSidesAuto {
+        margin-right: auto !important;
+        margin-left: auto !important;
       }
     }
   }

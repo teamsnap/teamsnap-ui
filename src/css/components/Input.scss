@@ -30,17 +30,23 @@ $form-input-bg-color: $cu-foreground--dark !default;
   line-height: $form-input-line-height;
   padding: 0 $su-small;
   box-sizing: border-box;
-  box-shadow: $inset-box-shadow-medium;
+  box-shadow: none;
   background-color: $form-input-bg-color;
   border: $border-width-small solid $cu-divider;
   border-radius: $border-radius-medium;
   font-family: inherit;
   font-size: $tu-base-fontSize;
+  transition: all ease 0.2s;
 
   &:disabled {
     background: $cu-middleground--dark;
     color: $ts-grey;
     cursor: not-allowed;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $cu-primary;
   }
 
   &::-ms-clear {
