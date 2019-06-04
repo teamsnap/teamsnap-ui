@@ -38,7 +38,20 @@ To run the linters manually use:
 ### TODO:
 + Update docs with full process for working locally with TeamSnap-UI
 + Update scripts to use webpack for css management and serving locally
-+ Update docs to be written in storybook
+
+### Storybook
+
+React components are documented with Storybook.
+
+https://teamsnap-ui-storybook.netlify.com
+
+Netlify makes our Storybook accessible without having to run it locally. Each PR runs a test deploy with a preview, and every merge to master automatically updates the Netlify site.
+
+To run storybook locally:
+
+`npm run storybook`
+
+
 
 ### CSS Components
 https://teamsnap-ui-patterns.netlify.com/
@@ -108,7 +121,8 @@ https://teamsnap-ui-patterns.netlify.com/
 - [ ] Theming/Variable Documentation 
 - [ ] Spacing Documentation
 - [ ] Color documentation
-- [ ] Typography documentation 
+- [ ] Typography documentation
+- [ ] Better Grid documentation with sizes
 
 ### Missing React Component List
 - [ ] Feedback
