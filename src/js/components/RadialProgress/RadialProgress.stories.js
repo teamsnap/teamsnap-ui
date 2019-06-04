@@ -14,9 +14,7 @@ const sizeOptions = {
 }
 
 stories.add("Default", () => (
-  <div style={{ padding: 20 + "px" }}>
-    <RadialProgress isInline progress={33} />
-  </div>
+  <RadialProgress isInline progress={33} />
 ));
 
 stories.add(
@@ -25,7 +23,7 @@ stories.add(
     const size = select("size", sizeOptions);
 
     return (
-      <div style={{ padding: 20 + "px" }}>
+      <div>
         <h4>Neutral</h4>
         <RadialProgress isInline progress={33} color="neutral" size={size} />
         <br />

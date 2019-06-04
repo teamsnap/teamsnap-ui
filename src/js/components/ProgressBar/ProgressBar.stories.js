@@ -14,15 +14,13 @@ const sizeOptions = {
 }
 
 stories.add("Default", () => (
-  <div style={{ padding: 20 + "px" }}>
-    <ProgressBar isInline progress={33} />
-  </div>
+  <ProgressBar isInline progress={33} />
 ));
 
 stories.add("Vertical Bars", () => {
   const size = select("size", sizeOptions);
   return (
-    <div style={{ padding: 20 + "px", display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
+    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
       <ProgressBar
         progress={33}
         size={size}
@@ -64,7 +62,7 @@ stories.add(
     const size = select("size", sizeOptions);
 
     return (
-      <div style={{ padding: 20 + "px" }}>
+      <div>
         <h4>Neutral</h4>
         <ProgressBar isInline progress={33} color="neutral" size={size} />
         <br />
