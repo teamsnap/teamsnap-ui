@@ -47,7 +47,10 @@ PanelHeader.propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.shape({}),
-  headerImage: PropTypes.object,
+  headerImage: PropTypes.shape({
+    Source: PropTypes.string, 
+    PlaceHolder: PropTypes.sting
+  }),
   otherProps: PropTypes.shape({})
 }
 
