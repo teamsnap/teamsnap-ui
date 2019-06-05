@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [2.16.0] - 2019-06-05
+
+- https://github.com/teamsnap/teamsnap-ui/pull/124
+
+### Changed
+
+- `Added` panel header image to react component 
+- `Added` panel stories to storybook 
+- `Updated` Panel-image class to be a part of Panel-header
+
 ## [2.15.1] - 2019-05-21
 
 - https://github.com/teamsnap/teamsnap-ui/pull/119

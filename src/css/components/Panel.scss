@@ -96,11 +96,40 @@ $Panel-header-text-color: $cu-info !default;
 // * .Panel-header
 //
 // 1. Use flex to make sure content is always vertically center aligned
+// 2. A modifier to use with the Panel-headerImage component
 
 .Panel-header {
   border-bottom: $border-width-small solid $cu-divider;
   display: flex; // 1
   align-items: center; // 1
+}
+
+.Panel-header--withImage {
+  border-bottom: none; // 2
+  display: block; // 2
+  padding: 0; // 2
+
+  .Panel-title {
+    padding: $su-medium;
+    padding-bottom: 0;
+  }
+
+}
+
+// * .Panel-headerImage
+
+.Panel-headerImage {
+  border-top-right-radius: $border-radius-large - 1px;
+  border-top-left-radius: $border-radius-large - 1px;
+  border-bottom: 1px solid $cu-divider;
+  overflow: hidden;
+  max-height: scaleGrid(25);
+
+  img { 
+    vertical-align: top;
+    width: 100%;
+  }
+
 }
 
 // * .Panel-title
@@ -119,25 +148,6 @@ $Panel-header-text-color: $cu-info !default;
   padding: 0; // 3
   margin: 0; // 3
 }
-
-// * .Panel-image
-//
-// This could be updated into a more generic image component (maybe)
-
-.Panel-image {
-  border-top-right-radius: $border-radius-large;
-  border-top-left-radius: $border-radius-large;
-  border-bottom: 1px solid $cu-divider;
-  overflow: hidden;
-  max-height: scaleGrid(25);
-
-  img { 
-    vertical-align: top;
-    width: 100%;
-  }
-
-}
-
 
 // * .Panel-row
 //
