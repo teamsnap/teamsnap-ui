@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
-## [2.16.0] - 2019-06-05
+## [2.16.1] - 2019-06-05
 
 - https://github.com/teamsnap/teamsnap-ui/pull/124
 
