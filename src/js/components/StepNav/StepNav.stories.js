@@ -1,6 +1,5 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { text, select } from "@storybook/addon-knobs/react";
 import StepNav from "./StepNav";
 
 const stories = storiesOf("StepNav", module);
