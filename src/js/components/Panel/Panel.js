@@ -18,7 +18,7 @@ import { getClassName } from '../../utils/helpers'
 
 class Panel extends PureComponent {
   render () {
-    const { children, className, mods, isStriped, maxSize, panelImage, style, otherProps } = this.props
+    const { children, className, mods, isStriped, maxSize, style, otherProps } = this.props
 
     const panelClasses = getClassName(
       className,
@@ -29,11 +29,6 @@ class Panel extends PureComponent {
 
     return (
       <div className={ panelClasses } style={ style } { ...otherProps }>
-        {panelImage && 
-          <div className='Panel-image'>
-            <img src={panelImage.Source ? panelImage.Source : panelImage.Placeholder } />
-          </div>
-        }
         { children }
       </div>
     )
@@ -44,7 +39,6 @@ Panel.propTypes = {
   children: PropTypes.node.isRequired,
   isStriped: PropTypes.bool,
   maxSize: PropTypes.string,
-  panelImage: PropTypes.object,
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
@@ -55,7 +49,6 @@ Panel.defaultProps = {
   className: 'Panel',
   isStriped: false,
   maxSize: null,
-  panelImage: null,
   mods: null,
   style: {},
   otherProps: {}
