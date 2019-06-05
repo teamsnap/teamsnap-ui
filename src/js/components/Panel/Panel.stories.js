@@ -32,23 +32,23 @@ const stories = storiesOf('Panel', module);
 
 stories.add('Defaults', (() =>
   <Panel>
-  <PanelHeader title='Panel with Header, Body, Rows, Cells, and Footer' />
-  <PanelBody>
-    <PanelRow>
-      <PanelCell>
+    <PanelHeader title='Panel with Header, Body, Rows, Cells, and Footer' />
+    <PanelBody>
+      <PanelRow>
+        <PanelCell>
+          Panel Cell Content
+        </PanelCell>
+        <PanelCell>
         Panel Cell Content
-      </PanelCell>
-      <PanelCell>
-      Panel Cell Content
-      </PanelCell>
-    </PanelRow>
-    <PanelRow>
-      Second Panel Row Content
-    </PanelRow>
-  </PanelBody>
-  <PanelFooter>
-    Panel Footer Content
-  </PanelFooter>
+        </PanelCell>
+      </PanelRow>
+      <PanelRow>
+        Second Panel Row Content
+      </PanelRow>
+    </PanelBody>
+    <PanelFooter>
+      Panel Footer Content
+    </PanelFooter>
   </Panel>
 ))
 
