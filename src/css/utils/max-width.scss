@@ -1,0 +1,15 @@
+$maxWidthbreakpoints: (
+  'Xs':  $breakpoint-xs,
+  'Sm':  $breakpoint-sm,
+  'Md':  $breakpoint-md,
+  'Lg': $breakpoint-lg
+);
+
+
+@if $responsive == true {
+  @each $name, $value in $maxWidthbreakpoints {
+    .u-maxWidth#{$name} {
+      max-width: #{$value} !important;
+    }
+  }
+}

@@ -45,11 +45,38 @@ $border-style: 1px solid $cu-divider--light;
         .u-#{$bp-name}-border#{$name} {
           border-#{$value}: $border-style;
         }
-        
+
         .u-#{$bp-name}-border#{$name}None {
           border-#{$value}: 0;
         }
 
+      }
+    }
+  }
+}
+
+// Border Radius
+
+$border-radius: (
+  'None': 0,
+  'Sm': $border-radius-small,  // 2px
+  'Md': $border-radius-medium, // 4px
+  'Lg': $border-radius-large   // 8px
+);
+
+@each $name, $value in $border-radius {
+  .u-borderRadius#{$name} {
+    border-radius: $value !important;
+  }
+}
+
+@if $responsive == true {
+  @each $bp-name, $bp-value in $breakpoints {
+    @media (min-width: $bp-value) {
+      @each $name, $value in $border-radius {
+        .u-#{$bp-name}-borderRadius#{$name} {
+          border-radius: $value !important;
+        }
       }
     }
   }
