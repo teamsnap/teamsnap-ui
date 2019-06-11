@@ -67,3 +67,44 @@ input:-webkit-autofill:focus {
   height: $su-xxlarge;
   line-height: $su-xxlarge;
 }
+
+$Input--showHideWidth: scaleGrid(7); // 56px
+
+.Input--showHide {
+  padding-right: $Input--showHideWidth;
+  // Set padding to width of show/hide control
+  // so native field controls are not covered
+  // (such as Safari's password manager tool)
+}
+
+.Input-showHideButton {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: $Input--showHideWidth;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  color: $cu-info--light;
+  border-radius: 0 $border-radius-medium $border-radius-medium 0;
+  font-size: $tu-base-fontSize;
+  font-weight: normal;
+  font-family: inherit;
+  line-height: 1;
+  padding: $su-small;
+  transition: all ease 200ms;
+  cursor: pointer;
+}
+
+.Input-showHideButton:hover {
+  background-color: transparent;
+  color: $cu-info;
+}
+
+.Input-showHideButton:focus {
+  outline: none;
+  border: solid 1px $cu-primary;
+  background-color: transparent;
+  color: $cu-info;
+}
