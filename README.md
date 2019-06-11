@@ -129,3 +129,4 @@ https://teamsnap-ui-patterns.netlify.com/
 - [ ] Popup
 - [ ] Modal
 - [ ] Tab
+- [ ] Input Show Hide

@@ -12,6 +12,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [2.17.1] - 2019-06-11
+
+- https://github.com/teamsnap/teamsnap-ui/pull/120
+
+### Changed
+
+- `Added` assorted CSS utilites (see PR)
+- `Updated` CSS/design for Checkbox, Input and SelectBox
+- `Updated` StepNav to add xs modifier and support for numbers
+
+
 ## [2.16.1] - 2019-06-05
 
 - https://github.com/teamsnap/teamsnap-ui/pull/124
