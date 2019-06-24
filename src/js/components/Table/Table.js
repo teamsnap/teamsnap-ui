@@ -95,7 +95,7 @@ class Table extends PureComponent {
   };
 
   renderSortLabel = label => (
-    <span className="u-colorInfo u-textNoWrap">{label}</span>
+    <span className="u-colorInfo u-textNoWrap">{ label }</span>
   );
 
   renderSortLink = column => {
@@ -119,14 +119,14 @@ class Table extends PureComponent {
 
     return (
       <TextLink
-        location={column.name}
-        onClick={this.handleSortClick}
-        mods={textLinkMods}
+        location={ column.name }
+        onClick={ this.handleSortClick }
+        mods={ textLinkMods }
       >
-        {this.renderSortLabel(column.label)}
+        { this.renderSortLabel(column.label) }
         <div className="u-colorGrey u-fontSizeXs u-spaceLeftXs">
-          <Icon name="up" mods={ascLinkMods} />
-          <Icon name="down" mods={descLinkMods} />
+          <Icon name="up" mods={ ascLinkMods } />
+          <Icon name="down" mods={ descLinkMods } />
         </div>
       </TextLink>
     );
@@ -137,16 +137,16 @@ class Table extends PureComponent {
       column.mods,
       `u-text${capitalize(column.align || "Left")}`
     );
-    debugger;
+    
     return (
       <PanelCell
-        key={column.key}
-        mods={cellMods}
-        style={column.style}
-        isTitle={column.isTitle}
-        {...column.otherProps}
+        key={ column.key }
+        mods={ cellMods }
+        style={ column.style }
+        isTitle={ column.isTitle }
+        { ...column.otherProps }
       >
-        {children}
+        { children }
       </PanelCell>
     );
   };
@@ -178,8 +178,8 @@ class Table extends PureComponent {
     const { columns } = this.props;
 
     return (
-      <PanelRow key={row.id} isWithCells>
-        {columns.map(column => this.renderColumn(column, row))}
+      <PanelRow key={ row.id } isWithCells>
+        { columns.map(column => this.renderColumn(column, row)) }
       </PanelRow>
     );
   };
@@ -201,7 +201,7 @@ class Table extends PureComponent {
     if (!isLoading && items.length) {
       return items.map(this.renderRow);
     }
-    return <div className="u-padMd u-textCenter">{placeHolder}</div>;
+    return <div className="u-padMd u-textCenter">{ placeHolder }</div>;
   };
 
   render() {
@@ -218,20 +218,20 @@ class Table extends PureComponent {
 
     return (
       <Panel
-        className={className}
-        mods={mods}
-        isStriped={isStriped}
-        style={style}
-        {...otherProps}
+        className={ className }
+        mods={ mods }
+        isStriped={ isStriped }
+        style={ style }
+        { ...otherProps }
       >
         <PanelBody>
-          <PanelRow isWithCells>{this.renderTableColumns()}</PanelRow>
-          {maxTableHeight && (
+          <PanelRow isWithCells>{ this.renderTableColumns() }</PanelRow>
+          { maxTableHeight && (
             <div style={{ height: maxTableHeight, overflow: "scroll" }}>
-              {this.renderTableRows()}
+              { this.renderTableRows() }
             </div>
-          )}
-          {!maxTableHeight && this.renderTableRows(placeHolder, isLoading)}
+          ) }
+          { !maxTableHeight && this.renderTableRows(placeHolder, isLoading) }
         </PanelBody>
       </Panel>
     );

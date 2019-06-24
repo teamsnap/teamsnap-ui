@@ -50,8 +50,8 @@ const defaultDataSet = smallDataSet;
 
 stories.add("Default", () => (
   <Table
-    columns={columns}
-    rows={select("Data Sets", dataOptions, defaultDataSet)}
-    isLoading={boolean("isLoading", false)}
+    columns={ columns }
+    rows={ select("Data Sets", dataOptions, defaultDataSet) }
+    isLoading={ boolean("isLoading", false) }
   />
 ));

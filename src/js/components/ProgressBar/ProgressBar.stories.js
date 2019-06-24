@@ -14,7 +14,7 @@ const sizeOptions = {
 }
 
 stories.add("Default", () => (
-  <ProgressBar isInline progress={33} />
+  <ProgressBar isInline progress={ 33 } />
 ));
 
 stories.add("Vertical Bars", () => {
@@ -22,28 +22,28 @@ stories.add("Vertical Bars", () => {
   return (
     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
       <ProgressBar
-        progress={33}
-        size={size}
+        progress={ 33 }
+        size={ size }
         style={{ height: 100 + "px" }}
-        isVertical={true}
+        isVertical={ true }
       />
       <ProgressBar
-        progress={33}
-        size={size}
+        progress={ 33 }
+        size={ size }
         style={{ height: 150 + "px" }}
-        isVertical={true}
+        isVertical={ true }
       />
       <ProgressBar
-        progress={33}
-        size={size}
+        progress={ 33 }
+        size={ size }
         style={{ height: 200 + "px" }}
-        isVertical={true}
+        isVertical={ true }
       />
       <ProgressBar
-        progress={33}
-        size={size}
+        progress={ 33 }
+        size={ size }
         style={{ height: 250 + "px" }}
-        isVertical={true}
+        isVertical={ true }
       />
     </div>
   );
@@ -64,13 +64,13 @@ stories.add(
     return (
       <div>
         <h4>Neutral</h4>
-        <ProgressBar isInline progress={33} color="neutral" size={size} />
+        <ProgressBar isInline progress={ 33 } color="neutral" size={ size } />
         <br />
         <h4>Negative</h4>
-        <ProgressBar isInline progress={66} color="negative" size={size} />
+        <ProgressBar isInline progress={ 66 } color="negative" size={ size } />
         <br />
         <h4>Default Color</h4>
-        <ProgressBar isInline progress={100} size={size} />
+        <ProgressBar isInline progress={ 100 } size={ size } />
         <br />
       </div>
     );
