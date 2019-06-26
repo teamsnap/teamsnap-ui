@@ -24,7 +24,7 @@ class PanelHeader extends PureComponent {
       return (
         <header className={ getClassName(className,'Panel-header--withImage', mods) } style={ style } { ...otherProps }>
           <div className='Panel-headerImage'>
-            <img src={headerImage.Source ? headerImage.Source : headerImage.Placeholder } />
+            <img src={ headerImage.Source ? headerImage.Source : headerImage.Placeholder } />
           </div>
           { title && <h3 className='Panel-title'>{ title }</h3> }
           { children }
