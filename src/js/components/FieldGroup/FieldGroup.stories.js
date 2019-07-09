@@ -1,8 +1,9 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { select } from "@storybook/addon-knobs/react";
+import { select, text } from "@storybook/addon-knobs/react";
 import FieldGroup from "./FieldGroup";
 import FieldLabel from "../FieldLabel";
+import FieldMessage from "../FieldMessage";
 import Input from "../Input";
 import Select from "../Select";
 import Checkbox from "../Checkbox";
@@ -22,24 +23,21 @@ const iconOptions = {
   default: "left"
 };
 
-stories.add("Default", () => {
-  const status = select("status", statusOptions);
-
-  return <FieldGroup name="example" label="Check Me" isInline status={ status } />;
-});
-
 stories.add("FieldGroup with Input text child", () => {
+  const errorMessage = text("Error Message", "There was an error");
   const status = select("status", statusOptions);
 
   return (
     <FieldGroup name="example" label="Check Me" isInline status={ status }>
       <FieldLabel name="example">Text Input</FieldLabel>
       <Input name="storybook" type="text" />
+      { status === "error" ? <FieldMessage isError>{ errorMessage }</FieldMessage> : null }
     </FieldGroup>
   );
 });
 
 stories.add("FieldGroup with Select child", () => {
+  const errorMessage = text("Error Message", "There was an error");
   const status = select("status", statusOptions);
 
   return (
@@ -58,11 +56,13 @@ stories.add("FieldGroup with Select child", () => {
           }
         ] }
       />
+      { status === "error" ? <FieldMessage isError>{ errorMessage }</FieldMessage> : null }
     </FieldGroup>
   );
 });
 
 stories.add("FieldGroup with Input text and Icon children", () => {
+  const errorMessage = text("Error Message", "There was an error");
   const status = select("status", statusOptions);
   const iconPosition = select("iconPosition", iconOptions);
 
@@ -72,11 +72,13 @@ stories.add("FieldGroup with Input text and Icon children", () => {
       <Input name="storybook" type="text" iconPosition={ iconPosition || "left" }>
         <Icon name="location" />
       </Input>
+      { status === "error" ? <FieldMessage isError>{ errorMessage }</FieldMessage> : null }
     </FieldGroup>
   );
 });
 
 stories.add("FieldGroup with Checkbox children", () => {
+  const errorMessage = text("Error Message", "There was an error");
   const status = select("status", statusOptions);
 
   return (
@@ -84,6 +86,7 @@ stories.add("FieldGroup with Checkbox children", () => {
       <FieldLabel name="example">Select all that apply:</FieldLabel>
       <Checkbox name="example" label="Check Me" isInline />
       <Checkbox name="example2" label="Check Me 2" isInline />
+      { status === "error" ? <FieldMessage isError>{ errorMessage }</FieldMessage> : null }
     </FieldGroup>
   );
 });
