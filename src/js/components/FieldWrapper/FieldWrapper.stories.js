@@ -13,14 +13,12 @@ const statusOptions = {
 
 stories.add("Default", () => {
   return (
-    <div style={{ padding: 20 + "px" }}>
-      <FieldWrapper
-        name="example"
-        label="Test Input"
-        field="input"
-        fieldProps={{ placeholder: "Some placehodler text" }}
-      />
-    </div>
+    <FieldWrapper
+      name="example"
+      label="Test Input"
+      field="input"
+      fieldProps={{ placeholder: "Some placehodler text" }}
+    />
   );
 });
 
@@ -29,27 +27,25 @@ stories.add("Select", () => {
   const status = select("status", statusOptions);
 
   return (
-    <div style={{ padding: 20 + "px" }}>
-      <FieldWrapper
-        name="example"
-        label="Test Input"
-        field="select"
-        status={ status }
-        message={ status === "error" ? errorMessage : null }
-        fieldProps={{
-          options: [
-            {
-              label: "Tournament",
-              value: "tournament"
-            },
-            {
-              label: "Other",
-              value: "other"
-            }
-          ]
-        }}
-      />
-    </div>
+    <FieldWrapper
+      name="example"
+      label="Test Input"
+      field="select"
+      status={ status }
+      message={ status === "error" ? errorMessage : null }
+      fieldProps={{
+        options: [
+          {
+            label: "Tournament",
+            value: "tournament"
+          },
+          {
+            label: "Other",
+            value: "other"
+          }
+        ]
+      }}
+    />
   );
 });
 
@@ -60,16 +56,14 @@ stories.add("Checkbox", () => {
   const status = select("status", statusOptions);
 
   return (
-    <div style={{ padding: 20 + "px" }}>
-      <FieldWrapper
-        name="example"
-        label="Test Input"
-        field="checkbox"
-        status={ status }
-        message={ status === "error" ? errorMessage : null }
-        fieldProps={{ options: [{ label: "Check me" }, { label: "Check me" }] }}
-      />
-    </div>
+    <FieldWrapper
+      name="example"
+      label="Test Input"
+      field="checkbox"
+      status={ status }
+      message={ status === "error" ? errorMessage : null }
+      fieldProps={{ options: [{ label: "Check me" }, { label: "Check me" }] }}
+    />
   );
 });
 
@@ -78,16 +72,14 @@ stories.add("Radio", () => {
   const status = select("status", statusOptions);
 
   return (
-    <div style={{ padding: 20 + "px" }}>
-      <FieldWrapper
-        name="example"
-        label="Test Input"
-        field="radio"
-        status={ status }
-        message={ status === "error" ? errorMessage : null }
-        fieldProps={{ options: [{ label: "Video killed the radio star" }, { label: "Check me" }] }}
-      />
-    </div>
+    <FieldWrapper
+      name="example"
+      label="Test Input"
+      field="radio"
+      status={ status }
+      message={ status === "error" ? errorMessage : null }
+      fieldProps={{ options: [{ label: "Video killed the radio star" }, { label: "Check me" }] }}
+    />
   );
 });
 
@@ -96,15 +88,13 @@ stories.add("Toggle", () => {
   const status = select("status", statusOptions);
 
   return (
-    <div style={{ padding: 20 + "px" }}>
-      <FieldWrapper
-        name="example"
-        label="Test Input"
-        field="toggle"
-        status={ status }
-        message={ status === "error" ? errorMessage : null }
-      />
-    </div>
+    <FieldWrapper
+      name="example"
+      label="Test Input"
+      field="toggle"
+      status={ status }
+      message={ status === "error" ? errorMessage : null }
+    />
   );
 });
 
@@ -113,15 +103,13 @@ stories.add("Textarea", () => {
   const status = select("status", statusOptions);
 
   return (
-    <div style={{ padding: 20 + "px" }}>
-      <FieldWrapper
-        name="example"
-        label="Test Input"
-        field="textarea"
-        status={ status }
-        message={ status === "error" ? errorMessage : null }
-        fieldProps={{ placeholder: "Some placehodler text" }}
-      />
-    </div>
+    <FieldWrapper
+      name="example"
+      label="Test Input"
+      field="textarea"
+      status={ status }
+      message={ status === "error" ? errorMessage : null }
+      fieldProps={{ placeholder: "Some placehodler text" }}
+    />
   );
 });

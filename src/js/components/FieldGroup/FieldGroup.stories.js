@@ -25,23 +25,17 @@ const iconOptions = {
 stories.add("Default", () => {
   const status = select("status", statusOptions);
 
-  return (
-    <div style={{ padding: 20 + "px" }}>
-      <FieldGroup name="example" label="Check Me" isInline status={ status } />
-    </div>
-  );
+  return <FieldGroup name="example" label="Check Me" isInline status={ status } />;
 });
 
 stories.add("FieldGroup with Input text child", () => {
   const status = select("status", statusOptions);
 
   return (
-    <div style={{ padding: 20 + "px" }}>
-      <FieldGroup name="example" label="Check Me" isInline status={ status }>
-        <FieldLabel name="example">Text Input</FieldLabel>
-        <Input name="storybook" type="text" />
-      </FieldGroup>
-    </div>
+    <FieldGroup name="example" label="Check Me" isInline status={ status }>
+      <FieldLabel name="example">Text Input</FieldLabel>
+      <Input name="storybook" type="text" />
+    </FieldGroup>
   );
 });
 
@@ -49,24 +43,22 @@ stories.add("FieldGroup with Select child", () => {
   const status = select("status", statusOptions);
 
   return (
-    <div style={{ padding: 20 + "px" }}>
-      <FieldGroup name="example" label="Check Me" isInline status={ status }>
-        <FieldLabel name="example">Select Box</FieldLabel>
-        <Select
-          name="LineItemFeeCategory"
-          options={ [
-            {
-              label: "Tournament",
-              value: "tournament"
-            },
-            {
-              label: "Other",
-              value: "other"
-            }
-          ] }
-        />
-      </FieldGroup>
-    </div>
+    <FieldGroup name="example" label="Check Me" isInline status={ status }>
+      <FieldLabel name="example">Select Box</FieldLabel>
+      <Select
+        name="LineItemFeeCategory"
+        options={ [
+          {
+            label: "Tournament",
+            value: "tournament"
+          },
+          {
+            label: "Other",
+            value: "other"
+          }
+        ] }
+      />
+    </FieldGroup>
   );
 });
 
@@ -75,14 +67,12 @@ stories.add("FieldGroup with Input text and Icon children", () => {
   const iconPosition = select("iconPosition", iconOptions);
 
   return (
-    <div style={{ padding: 20 + "px" }}>
-      <FieldGroup name="example" label="Check Me" status={ status }>
-        <FieldLabel name="example">Location Input</FieldLabel>
-        <Input name="storybook" type="text" iconPosition={ iconPosition || "left" }>
-          <Icon name="location" />
-        </Input>
-      </FieldGroup>
-    </div>
+    <FieldGroup name="example" label="Check Me" status={ status }>
+      <FieldLabel name="example">Location Input</FieldLabel>
+      <Input name="storybook" type="text" iconPosition={ iconPosition || "left" }>
+        <Icon name="location" />
+      </Input>
+    </FieldGroup>
   );
 });
 
@@ -90,12 +80,10 @@ stories.add("FieldGroup with Checkbox children", () => {
   const status = select("status", statusOptions);
 
   return (
-    <div style={{ padding: 20 + "px" }}>
-      <FieldGroup name="example" label="Check Me" status={ status }>
-        <FieldLabel name="example">Select all that apply:</FieldLabel>
-        <Checkbox name="example" label="Check Me" isInline />
-        <Checkbox name="example2" label="Check Me 2" isInline />
-      </FieldGroup>
-    </div>
+    <FieldGroup name="example" label="Check Me" status={ status }>
+      <FieldLabel name="example">Select all that apply:</FieldLabel>
+      <Checkbox name="example" label="Check Me" isInline />
+      <Checkbox name="example2" label="Check Me 2" isInline />
+    </FieldGroup>
   );
 });
