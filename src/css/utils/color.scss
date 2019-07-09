@@ -26,6 +26,10 @@
   color: $cu-highlight !important;
 }
 
+.u-colorForeground {
+  color: $cu-foreground !important;
+}
+
 
 // * Link Colors (other than default)
 
@@ -33,5 +37,55 @@
   color: $cu-negative !important;
   &:hover, &:active {
     color: scaleColor($cu-negative, -1) !important;
+  }
+}
+
+// Applies link color and hover states to all child elements
+.u-linkCascade * {
+  color: $color-links !important;
+  &:hover, &:active {
+    color: $color-links--hover !important;
+  }
+}
+
+// * BG colors
+
+.u-bgPositive {
+  background-color: $cu-positive !important;
+}
+
+.u-bgNegative {
+  background-color: $cu-negative !important;
+}
+
+.u-bgPrimary {
+  background-color: $cu-primary !important;
+}
+
+.u-bgSecondary {
+  background-color: $cu-secondary !important;
+}
+
+.u-bgHighlight {
+  background-color: $cu-highlight !important;
+}
+
+.u-bgLinkLight {
+  background-color: scaleColor($color-links, 8) !important;
+}
+
+.u-bgForeground {
+  background-color: $cu-foreground !important;
+}
+
+.u-bgBackground {
+  background-color: $cu-background !important;
+}
+
+// * Responsive, as necessary
+
+@media (min-width: $breakpoint-xs) {
+  .u-xs-bgForeground {
+    background-color: $cu-foreground !important;
   }
 }

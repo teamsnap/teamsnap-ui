@@ -7,115 +7,199 @@
 // * 2. Default Checkbox
 // * 3. Radio Checkbox
 // * 4. Inline Checkbox
+// * 5. Pill Checkbox
+// * 6. Large Checkbox
+// * 7. Color Primary Checkbox
 
 // Notes:
 // * disabling a checkbox only needs to be done on the input
-
-// TODO: look into large modifier for default checkbox
-// TODO: look into svg icons for checkboxes
-// TODO: fix cursor conflict in classic
 
 //------------------------------------------------------------//
 
 // * 1. Checkbox Settings
 
-$Checkbox-size: scaleGrid(2) !default;
-$Checkbox-icon-size: scaleFont($fontSize, -3) !default;
+$Checkbox-size: $su-medium;
+$Checkbox-radioPadding: 3px;
+
+$Checkbox-size--large: 22px; // Allows pill version to be 40px (same as large button and input)
+$Checkbox-radioPadding--large: $su-xsmall;
+
+$Checkbox-color: $cu-positive !default;
 $Checkbox-bg-color: $cu-foreground !default;
+
+@mixin Checkbox--defineSize($size, $radioPadding) {
+  .Checkbox-input {
+    height: $size;
+    width: $size;
+  }
+
+  .Checkbox-label {
+    padding-left: $size + $su-small;
+    min-height: $size;
+    line-height: $size;
+
+    &:before {
+      height: $size;
+      width: $size;
+    }
+  }
+
+  &.Checkbox--pill {
+    .Checkbox-label {
+      padding-left: $size + $su-medium;
+
+      &:before {
+        top: 50%;
+        margin-top: ($size / 2) * -1;
+        // Centers radio in Pill if text wraps
+      }
+    }
+  }
+
+  &.Checkbox--radio {
+    .Checkbox-label:before {
+      box-shadow: inset 0 0 0 $size #fff;
+      // Transitions to narrow inner radius of checked radio
+    }
+
+    .Checkbox-input:checked:not(:disabled) + .Checkbox-label:before {
+      box-shadow: inset 0 0 0 $radioPadding #fff;
+      // Creates inner radius for radio button
+    }
+  }
+}
+
+@mixin Checkbox--defineColor($color) {
+  // Active state
+  .Checkbox-input:checked + .Checkbox-label:before {
+    background-color: $color;
+  }
+
+  // Hover and focus states
+  .Checkbox-input:not(:disabled) {
+    & + .Checkbox-label:hover:before,
+    & + .Checkbox-label:focus:before,
+    &:hover + .Checkbox-label:before,
+    &:focus + .Checkbox-label:before {
+      border-color: $color;
+    }
+  }
+
+  // Disabled state
+  .Checkbox-input:disabled:checked + .Checkbox-label {
+    &:before {
+      background-color: $color;
+    }
+  }
+
+  // Radio
+  &.Checkbox--radio {
+    .Checkbox-input:checked:not(:disabled) + .Checkbox-label:before {
+      border-color: $color;
+    }
+  }
+
+  // Pill
+  &.Checkbox--pill {
+    .Checkbox-label {
+      &:hover, &:focus {
+        border-color: $color;
+      }
+    }
+    .Checkbox-input:checked + .Checkbox-label {
+      border-color: $color;
+      background-color: scaleColor($color, 9.5);
+    }
+  }
+}
 
 // * 2. Default Checkbox
 
 .Checkbox {
+  @include Checkbox--defineSize($Checkbox-size, $Checkbox-radioPadding);
+  @include Checkbox--defineColor($Checkbox-color);
+
   position: relative;
   padding-bottom: $su-medium;
 }
 
 .Checkbox-input {
   opacity: 0;
-  height: $Checkbox-size;
-  width: $Checkbox-size;
   cursor: pointer;
   z-index: 5;
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
+  margin: 0;
 }
 
 .Checkbox-label {
   position: relative;
   display: block;
   cursor: pointer;
-  padding-left: $Checkbox-size + $su-xsmall;
-  min-height: $Checkbox-size;
 
   &:before {
-    @include ss-pika;
     content: '';
     display: block;
     cursor: pointer;
-    color: $ts-white;
-    text-align: center;
-    font-size: $Checkbox-icon-size;
-    height: $Checkbox-size;
-    width: $Checkbox-size;
-    line-height: $Checkbox-size + 1; // ss-pika checkmark sits up high
     background-color: $Checkbox-bg-color;
-    box-shadow: $inset-box-shadow-small;
     border: $border-width-small solid $cu-divider;
     border-radius: $border-radius-small;
-    margin: auto;
+    margin: 0;
     position: absolute;
     left: 0;
     top:  0;
     bottom: 0;
+    transition: all ease 0.2s;
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
   }
 }
 
-.Checkbox-input:checked {
-  & + .Checkbox-label:before {
-    content: '✓';
-    background-color: $cu-positive;
-    box-shadow: none;
+// Active state
+.Checkbox-input:checked + .Checkbox-label:before {
+  background-image: url("data:image/svg+xml; utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 960 960'%3E%3Cpath fill='white' d='M915 178.9c8 6.7 12.3 15.5 13 26.5s-2.3 21.2-9 30.5c-252.7 360.7-389.3 555.3-410 584-21.3 28.7-48.8 43.2-82.5 43.5S365 849.2 343 819.9l-278-391c-6.7-9.3-9.7-19.7-9-31s5-20.3 13-27c34-29.3 72-55.7 114-79 8.7-4.7 18.3-5.3 29-2s19.3 9.7 26 19l188 264 321-456c6.7-9.3 15.2-15.5 25.5-18.5s20.2-2.2 29.5 2.5c44 24 81.7 50 113 78z'%3E%3C/path%3E%3C/svg%3E");
+  // SVG check icon
+  border: none;
+}
+
+// Disabled state
+.Checkbox-input:disabled,
+.Checkbox-input:disabled + .Checkbox-label {
+  &, &:before {
+    cursor: not-allowed;
+  }
+
+  &:before {
+    background-image: url("data:image/svg+xml; utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 960 960'%3E%3Cpath fill='white' d='M829,500.82V843.87A58.74,58.74,0,0,1,813.63,884a69.15,69.15,0,0,1-37.18,22.31A1302.73,1302.73,0,0,1,480,940q-154.67,0-299.43-33.71A63.46,63.46,0,0,1,131,843.87V503.8a76.16,76.16,0,0,1,17.85-49.57q17.85-21.81,43.63-21.81h33.71V273.77q0-114,69.9-183.92T480,20q114,0,183.92,69.9t69.9,183.92V432.41h30.74q25.78,0,45.11,20.82T829,500.82ZM384.82,432.41H575.18V273.77q0-95.18-95.18-95.18t-95.18,95.18Z'%3E%3C/path%3E%3C/svg%3E");
+    // SVG lock icon
+    background-color: $cu-divider;
     border: none;
   }
 }
 
-.Checkbox-input:disabled + .Checkbox-label {
-  
-  &, &:before {
-    cursor: default; // not-allowed would be nice, but is conflicting with classic
-  }
-
-  &:before {
-    content: '🔒';
-    box-shadow: none;
-    background-color: $cu-divider;
-    line-height: $Checkbox-size;
-    color: $Checkbox-bg-color;
-  }
-}
-
-.Checkbox-input:disabled:checked + .Checkbox-label {
-  &:before {
-    background-color: $cu-positive;
-  }
-}
-
-.Checkbox-input,
-.Checkbox-input:checked {
-  &:focus + .Checkbox-label:before {
-    box-shadow: 0px 0px 2px 2px highlight;
-  }
-}
 
 // * 3. Radio Checkbox
 
 .Checkbox--radio {
   .Checkbox-label:before {
-    border-radius: ( $Checkbox-size / 2 );
+    border-radius: 50%; // Make it a circle
+    background-image: none;
+  }
+
+  .Checkbox-input:checked:not(:disabled) + .Checkbox-label:before {
+    border-style: solid;
+    border-width: $border-width-small; // Add a border to define the radius
+    background-image: none; // Remove check icon
+  }
+
+  .Checkbox-input:disabled + .Checkbox-label:before {
+    box-shadow: none; // Remove inner radius
   }
 }
+
 
 // * 4. Inline Checkbox
 
@@ -131,5 +215,32 @@ $Checkbox-bg-color: $cu-foreground !default;
       left: $su-small;
     }
   }
+}
 
+// * 5. Pill checkbox button
+
+.Checkbox--pill {
+  .Checkbox-label {
+    border: solid $border-width-small $cu-divider;
+    border-radius: $su-xlarge;
+    padding: $su-small;
+    transition: all ease 0.2s;
+
+    &:before {
+      left: $su-small;
+    }
+  }
+}
+
+// * 6. Large Checkbox
+
+.Checkbox--large {
+  @include Checkbox--defineSize($Checkbox-size--large, $Checkbox-radioPadding--large);
+}
+
+
+// * 7. Color Primary
+
+.Checkbox--colorPrimary {
+  @include Checkbox--defineColor($cu-primary);
 }

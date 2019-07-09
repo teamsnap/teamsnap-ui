@@ -164,6 +164,7 @@ $breakpoint-sm: 768px;
 $breakpoint-md: 992px;
 $breakpoint-lg: 1200px;
 
+$breakpoint-xxs-max: $breakpoint-xs - 1px;
 $breakpoint-xs-max: $breakpoint-sm - 1px;
 $breakpoint-sm-max: $breakpoint-md - 1px;
 $breakpoint-md-max: $breakpoint-lg - 1px;
@@ -176,6 +177,7 @@ $breakpoints: (
 );
 
 $max-breakpoints: (
+  'xxsMax':  $breakpoint-xxs-max,
   'xsMax':  $breakpoint-xs-max,
   'smMax':  $breakpoint-sm-max,
   'mdMax':  $breakpoint-md-max

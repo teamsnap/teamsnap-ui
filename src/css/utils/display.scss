@@ -12,6 +12,7 @@
   display: none !important;
 }
 
+
 // Completely remove from the flow but leave available to screen readers.
 
 .u-hiddenVisually {
@@ -35,6 +36,10 @@
 .u-inlineBlock {
   display: inline-block !important;
   max-width: 100%; // 1
+}
+
+.u-overflowHidden {
+  overflow: hidden !important;
 }
 
 @if $responsive == true {
@@ -69,6 +74,10 @@
       .u-#{$name}-inlineBlock {
         display: inline-block !important;
         max-width: 100%;
+      }
+
+      .u-#{$name}-overflowHidden {
+        overflow: hidden !important;
       }
     }
   }

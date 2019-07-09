@@ -1,0 +1,28 @@
+@import "../config/index.scss";
+
+// * WIP - Daypicker
+// * This is a stop-gap for styling themed calendars
+// * until we import a calendar component into TS-UI
+// * Applies to react DayPicker
+
+
+.DayPicker-Day:not(.DayPicker-Day--outside) {
+  &:hover {
+    background-color: adjust-color($cu-info--light, $alpha: -0.8);
+  }
+  &.DayPicker-Day--event {
+    border-color: scaleColor($cu-primary, 4);
+  }
+  &.DayPicker-Day--game {
+    background: $cu-primary;
+    color: $cu-foreground;
+  }
+}
+
+legend.game:before {
+  background-color: $cu-primary;
+}
+
+legend.event:before {
+  border-color: scaleColor($cu-primary, 4);
+}

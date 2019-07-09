@@ -12,6 +12,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [2.17.1] - 2019-06-11
+
+- https://github.com/teamsnap/teamsnap-ui/pull/120
+
+### Changed
+
+- `Added` assorted CSS utilites (see PR)
+- `Updated` CSS/design for Checkbox, Input and SelectBox
+- `Updated` StepNav to add xs modifier and support for numbers
+
+
+## [2.16.1] - 2019-06-05
+
+- https://github.com/teamsnap/teamsnap-ui/pull/124
+
+### Changed
+
+- `Added` panel header image to react component 
+- `Added` panel stories to storybook 
+- `Updated` Panel-image class to be a part of Panel-header
+
+## [2.15.1] - 2019-05-21
+
+- https://github.com/teamsnap/teamsnap-ui/pull/119
+
+### Changed
+
+- `Added` daypicker styles
+- `Added` u-linkCascade class
+
+## [2.15.0] - 2019-05-16
+
+- https://github.com/teamsnap/teamsnap-ui/pull/116
+- https://github.com/teamsnap/teamsnap-ui/pull/118
+
+### Changed
+
+- `Added` background color utilities
+- `Added` initial styles for React datepicker component (WIP)
+
 ## [2.14.1] - 2019-05-01
 
 - https://github.com/teamsnap/teamsnap-ui/pull/112

@@ -14,38 +14,36 @@ const sizeOptions = {
 }
 
 stories.add("Default", () => (
-  <div style={{ padding: 20 + "px" }}>
-    <ProgressBar isInline progress={33} />
-  </div>
+  <ProgressBar isInline progress={ 33 } />
 ));
 
 stories.add("Vertical Bars", () => {
   const size = select("size", sizeOptions);
   return (
-    <div style={{ padding: 20 + "px", display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
+    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
       <ProgressBar
-        progress={33}
-        size={size}
+        progress={ 33 }
+        size={ size }
         style={{ height: 100 + "px" }}
-        isVertical={true}
+        isVertical={ true }
       />
       <ProgressBar
-        progress={33}
-        size={size}
+        progress={ 33 }
+        size={ size }
         style={{ height: 150 + "px" }}
-        isVertical={true}
+        isVertical={ true }
       />
       <ProgressBar
-        progress={33}
-        size={size}
+        progress={ 33 }
+        size={ size }
         style={{ height: 200 + "px" }}
-        isVertical={true}
+        isVertical={ true }
       />
       <ProgressBar
-        progress={33}
-        size={size}
+        progress={ 33 }
+        size={ size }
         style={{ height: 250 + "px" }}
-        isVertical={true}
+        isVertical={ true }
       />
     </div>
   );
@@ -64,15 +62,15 @@ stories.add(
     const size = select("size", sizeOptions);
 
     return (
-      <div style={{ padding: 20 + "px" }}>
+      <div>
         <h4>Neutral</h4>
-        <ProgressBar isInline progress={33} color="neutral" size={size} />
+        <ProgressBar isInline progress={ 33 } color="neutral" size={ size } />
         <br />
         <h4>Negative</h4>
-        <ProgressBar isInline progress={66} color="negative" size={size} />
+        <ProgressBar isInline progress={ 66 } color="negative" size={ size } />
         <br />
         <h4>Default Color</h4>
-        <ProgressBar isInline progress={100} size={size} />
+        <ProgressBar isInline progress={ 100 } size={ size } />
         <br />
       </div>
     );

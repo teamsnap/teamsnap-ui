@@ -18,14 +18,26 @@ import { getClassName } from '../../utils/helpers'
 
 class PanelHeader extends PureComponent {
   render () {
-    const { title, children, className, mods, style, otherProps } = this.props
+    const { title, children, className, mods, style, headerImage, otherProps } = this.props
 
+    if (headerImage) {
+      return (
+        <header className={ getClassName(className,'Panel-header--withImage', mods) } style={ style } { ...otherProps }>
+          <div className='Panel-headerImage'>
+            <img src={ headerImage.Source ? headerImage.Source : headerImage.Placeholder } />
+          </div>
+          { title && <h3 className='Panel-title'>{ title }</h3> }
+          { children }
+        </header>
+      )
+    } 
     return (
       <header className={ getClassName(className, mods) } style={ style } { ...otherProps }>
         { title && <h3 className='Panel-title'>{ title }</h3> }
         { children }
       </header>
     )
+
   }
 }
 
@@ -35,6 +47,10 @@ PanelHeader.propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.shape({}),
+  headerImage: PropTypes.shape({
+    Source: PropTypes.string, 
+    PlaceHolder: PropTypes.sting
+  }),
   otherProps: PropTypes.shape({})
 }
 
@@ -44,6 +60,7 @@ PanelHeader.defaultProps = {
   className: 'Panel-header',
   mods: null,
   style: {},
+  headerImage: null,
   otherProps: {}
 }
 
