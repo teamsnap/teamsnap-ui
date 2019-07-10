@@ -56,29 +56,29 @@ To run storybook locally:
 ### CSS Components
 https://teamsnap-ui-patterns.netlify.com/
 
-| Finished | CSS Component | React Component                                                         |
-|----------|---------------|-------------------------------------------------------------------------|
-|          | Button        | Button                                                                  |
-|          | Button Group  | Button Group                                                            |
-|          | Checkbox      | Checkbox Radio                                                          |
-|          | Divider       | Divider                                                                 |
-|          | Feedback      |                                                                         |
-|          | Field Group   | Field Group                                                             |
-|          |               | Field Label                                                             |
-|          |               | Field Message                                                           |
-|          |               | Field Wrapper                                                           |
-|          | Grid          | Grid Cell                                                               |
-|          | Icon          | Icon                                                                    |
-|          | Input Group   | Input                                                                   |
-|          |               | Input Control                                                           |
-|          | Input         | Input Text Area                                                         |
-|          | Loader        | Loader                                                                  |
-|          | Panel         | Panel 
-|          |               | Panel Body |
-|          |               | Panel Cell  |
-|          |               | Panel Header | 
-|          |               | Panel Row |
-|          |               | Panel Row Expandable |
+| Finished | CSS Component | React Component  | Storybook                                            |
+|----------|---------------|------------------|------------------------------------------------------|
+|          | Button        | Button           |                                                      |
+|          | Button Group  | Button Group     |                                                      |
+|          | Checkbox      | Checkbox Radio   |                                                      |
+|          | Divider       | Divider          |                                                      |
+|          | Feedback      |                  |                                                      |
+|          | Field Group   | Field Group      |                                                      |
+|          |               | Field Label      |                                                      | 
+|          |               | Field Message    |                                                      |
+|          |               | Field Wrapper    |                                                      |
+|          | Grid          | Grid Cell        |                                                      |
+|          | Icon          | Icon             |                                                      |
+|          | Input Group   | Input            |                                                      |
+|          |               | Input Control    |                                                      |
+|          | Input         | Input Text Area  |                                                      |
+|          | Loader        | Loader           |                                                      |
+|          | Panel         | Panel            |       |
+|          |               | Panel Body       |       |
+|          |               | Panel Cell       |       |
+|          |               | Panel Header     |       |
+|          |               | Panel Row        |       |
+|          |               | Panel Row Expandable |   |
 |          | Popup         |                                                                         |
 |          | Progress      | Progress                                                                |
 |          | Select Box    | Select                                                                  |
