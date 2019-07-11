@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean, select } from "@storybook/addon-knobs/react";
 import Table from "./Table";
@@ -50,8 +50,8 @@ const defaultDataSet = smallDataSet;
 
 stories.add("Default", () => (
   <Table
-    columns={ columns }
-    rows={ select("Data Sets", dataOptions, defaultDataSet) }
-    isLoading={ boolean("isLoading", false) }
+    columns={columns}
+    rows={select("Data Sets", dataOptions, defaultDataSet)}
+    isLoading={boolean("isLoading", false)}
   />
 ));
