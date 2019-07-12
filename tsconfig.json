@@ -3,7 +3,7 @@
     "outDir": "./dist",
     "target": "es6",
     "declaration": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "esModuleInterop": true,
     "module": "es6",
     "lib": ["es5", "es6", "es7", "es2017", "dom", "dom.iterable"],
@@ -11,7 +11,7 @@
     "allowJs": false,
     "moduleResolution": "node",
     "rootDir": "src",
-    "baseUrl": "src"
+    "baseUrl": "src",
     // "forceConsistentCasingInFileNames": true,
     // "noImplicitReturns": true,
     // "noImplicitThis": true,
@@ -19,13 +19,14 @@
     // "strictNullChecks": true,
     // "suppressImplicitAnyIndexErrors": true,
     // "noUnusedLocals": true,
-    // "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": false
     // "experimentalDecorators": true
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules", "dist", "scripts"],
   "awesomeTypescriptLoaderOptions": {
-    "useBabel": true,
-    "babelCore": "@babel/core" // needed for Babel v7
+    // "useBabel": true,
+    // "babelCore": "@babel/core", // needed for Babel v7
+    "transpileOnly": true
   }
 }
