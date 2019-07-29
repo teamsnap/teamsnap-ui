@@ -15,7 +15,7 @@
     "build:js": "tsc",
     "deploy": "npm run build:css",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook --quiet"
   },
   "files": [
     "dist",
