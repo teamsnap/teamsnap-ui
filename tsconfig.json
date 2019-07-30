@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "target": "es6",
+    "target": "es5",
     "declaration": true,
     "jsx": "preserve",
     "esModuleInterop": true,
-    "module": "es6",
+    "module": "CommonJS",
     "lib": ["es5", "es6", "es7", "es2017", "dom", "dom.iterable"],
     "sourceMap": true,
     "allowJs": false,
