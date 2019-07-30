@@ -11,7 +11,10 @@ module.exports = ({ config, mode }) => {
     test: /\.(ts|tsx)$/,
     use: [
       {
-        loader: require.resolve("babel-loader")
+        loader: require.resolve("babel-loader"),
+        options: {
+          presets: [["react-app", { flow: false, typescript: true }]]
+        }
         // presets are inherited from .babelrc
       }
     ]
