@@ -10,19 +10,19 @@
  *
  */
 
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import { getClassName } from '../../utils/helpers'
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+import { getClassName } from "../../utils/helpers";
 
 class FieldLabel extends PureComponent {
-  render () {
-    const { name, children, className, mods, style, otherProps } = this.props
+  render() {
+    const { name, children, className, mods, style, otherProps } = this.props;
 
     return (
       <label htmlFor={ name } className={ getClassName(className, mods) } style={ style } { ...otherProps }>
         { children }
       </label>
-    )
+    );
   }
 }
 
@@ -33,14 +33,14 @@ FieldLabel.propTypes = {
   mods: PropTypes.string,
   style: PropTypes.object,
   otherProps: PropTypes.object
-}
+};
 
 FieldLabel.defaultProps = {
   name: null,
-  className: 'FormGroup-label',
+  className: "FieldGroup-label",
   mods: null,
   style: {},
   otherProps: {}
-}
+};
 
-export default FieldLabel
+export default FieldLabel;
