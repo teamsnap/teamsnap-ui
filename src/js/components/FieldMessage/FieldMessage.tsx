@@ -27,7 +27,7 @@ class FieldMessage extends React.PureComponent<any, any> {
   static defaultProps = {
     children: null,
     isError: false,
-    className: "FormGroup-message",
+    className: "FieldGroup-message",
     mods: null,
     style: {},
     otherProps: {}
@@ -44,7 +44,7 @@ class FieldMessage extends React.PureComponent<any, any> {
     } = this.props;
 
     const messageClasses = getClassName(
-      isError ? "FormGroup-feedback" : className,
+      isError ? "FieldGroup-message FieldGroup-message--error" : className,
       mods
     );
 

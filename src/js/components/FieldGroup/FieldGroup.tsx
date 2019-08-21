@@ -36,7 +36,7 @@ class FieldGroup extends React.PureComponent<any, any> {
   };
 
   renderSuccess = () => (
-    <span className="FormGroup-validation">
+    <span className="FieldGroup-validation">
       <Icon name="check" />
     </span>
   );

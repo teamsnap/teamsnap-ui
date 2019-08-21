@@ -26,7 +26,7 @@ class FieldLabel extends React.PureComponent<any, any> {
 
   static defaultProps = {
     name: null,
-    className: "FormGroup-label",
+    className: "FieldGroup-label",
     mods: null,
     style: {},
     otherProps: {}

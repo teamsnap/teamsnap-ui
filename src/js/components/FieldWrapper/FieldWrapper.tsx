@@ -64,6 +64,15 @@ class FieldWrapper extends React.PureComponent<any, any> {
 
     const FieldTag = FieldTypes[field] || Input;
 
+    if ((field == "checkbox" || field == "radio") && fieldProps.options) {
+      return (
+        fieldProps.options &&
+        fieldProps.options.map(({ label }, i) => (
+          <FieldTag name={name} label={label} key={i} />
+        ))
+      );
+    }
+
     return <FieldTag name={name} {...fieldProps} />;
   };
 
