@@ -12,52 +12,52 @@
  *
  */
 
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import Icon from '../Icon'
-import { getClassName } from '../../utils/helpers'
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+import Icon from "../Icon";
+import { getClassName } from "../../utils/helpers";
 
 class FieldGroup extends PureComponent {
   renderSuccess = () => (
-    <span className='FormGroup-validation'>
-      <Icon name='check' />
+    <span className="FieldGroup-validation">
+      <Icon name="check" />
     </span>
-  )
+  );
 
-  render () {
-    const { children, status, className, mods, style, otherProps } = this.props
+  render() {
+    const { children, status, className, mods, style, otherProps } = this.props;
 
     const fieldClasses = getClassName(
       className,
-      status === 'error' && 'is-notValid',
-      status === 'success' && 'is-valid',
+      status === "error" && "is-notValid",
+      status === "success" && "is-valid",
       mods
-    )
+    );
 
     return (
       <div className={ fieldClasses } style={ style } { ...otherProps }>
-        { status === 'success' && this.renderSuccess() }
+        { status === "success" && this.renderSuccess() }
         { children }
       </div>
-    )
+    );
   }
 }
 
 FieldGroup.propTypes = {
   children: PropTypes.node.isRequired,
-  status: PropTypes.oneOf([null, 'success', 'error']),
+  status: PropTypes.oneOf([null, "success", "error"]),
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
   otherProps: PropTypes.object
-}
+};
 
 FieldGroup.defaultProps = {
   status: null,
-  className: 'FieldGroup',
+  className: "FieldGroup",
   mods: null,
   style: {},
   otherProps: {}
-}
+};
 
-export default FieldGroup
+export default FieldGroup;

@@ -15,21 +15,21 @@
  *
  */
 
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import FieldGroup from '../FieldGroup'
-import FieldLabel from '../FieldLabel'
-import FieldMessage from '../FieldMessage'
-import Input from '../Input'
-import TextArea from '../TextArea'
-import Checkbox from '../Checkbox'
-import Radio from '../Radio'
-import Toggle from '../Toggle'
-import Select from '../Select'
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+import FieldGroup from "../FieldGroup";
+import FieldLabel from "../FieldLabel";
+import FieldMessage from "../FieldMessage";
+import Input from "../Input";
+import TextArea from "../TextArea";
+import Checkbox from "../Checkbox";
+import Radio from "../Radio";
+import Toggle from "../Toggle";
+import Select from "../Select";
 
 class FieldWrapper extends PureComponent {
   renderFieldComponent = () => {
-    const { name, field, fieldProps } = this.props
+    const { name, field, fieldProps } = this.props;
 
     const FieldTypes = {
       select: Select,
@@ -37,40 +37,46 @@ class FieldWrapper extends PureComponent {
       radio: Radio,
       toggle: Toggle,
       textarea: TextArea
+    };
+
+    const FieldTag = FieldTypes[field] || Input;
+
+    if ((field == "checkbox" || field == "radio") && fieldProps.options) {
+      return (
+        fieldProps.options && fieldProps.options.map(({ label }, i) => <FieldTag name={ name } label={ label } key={ i } />)
+      );
     }
 
-    const FieldTag = (FieldTypes[field] || Input)
+    return <FieldTag name={ name } { ...fieldProps } />;
+  };
 
-    return <FieldTag name={ name } { ...fieldProps } />
-  }
-
-  render () {
-    const { status, name, label, message } = this.props
+  render() {
+    const { status, name, label, message } = this.props;
 
     return (
       <FieldGroup status={ status }>
         { label && <FieldLabel name={ name }>{ label } </FieldLabel> }
         { this.renderFieldComponent() }
-        { message && <FieldMessage isError={ status === 'error' }>{ message }</FieldMessage> }
+        { message && <FieldMessage isError={ status === "error" }>{ message }</FieldMessage> }
       </FieldGroup>
-    )
+    );
   }
 }
 
 FieldWrapper.propTypes = {
   name: PropTypes.string.isRequired,
-  field: PropTypes.oneOf(['input', 'checkbox', 'radio', 'toggle', 'select', 'textarea']).isRequired,
+  field: PropTypes.oneOf(["input", "checkbox", "radio", "toggle", "select", "textarea"]).isRequired,
   fieldProps: PropTypes.object,
-  status: PropTypes.oneOf([null, 'success', 'error']),
+  status: PropTypes.oneOf([null, "success", "error"]),
   label: PropTypes.node,
-  message: PropTypes.string,
-}
+  message: PropTypes.string
+};
 
 FieldWrapper.defaultProps = {
   fieldProps: {},
   status: null,
   label: null,
   message: null
-}
+};
 
-export default FieldWrapper
+export default FieldWrapper;

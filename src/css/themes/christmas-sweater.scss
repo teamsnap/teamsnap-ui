@@ -74,6 +74,7 @@ $cu-negative--dark:         scaleColor($cu-negative, -1);
 $cu-negative--bg:            scaleColor($cu-negative, 8);
 
 $color-links:                                $cu-primary;
+$color-links--hover: scaleColor($color-links, -2);
 
 // * 2. Redefine Element Variable Settings
 

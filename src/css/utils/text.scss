@@ -24,27 +24,13 @@
   white-space: nowrap !important;
 }
 
+/**
+ * Text ellipsis
+ */
+
 .u-textEllipsis {
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-@if $responsive == true {
-  @each $name, $value in $breakpoints {
-    @media (min-width: $value) {
-      .u-#{$name}-textCenter {
-        text-align: center !important;
-      }
-
-      .u-#{$name}-textLeft {
-        text-align: left !important;
-      }
-
-      .u-#{$name}-textRight {
-        text-align: right !important;
-      }
-    }
-  }
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
 }
 
 
@@ -52,28 +38,19 @@
  * Font size utilities
  */
 
-.u-fontSizeXs {
-  font-size: $tu-xsmall-fontSize !important;
-}
+$fontSizes: (
+  'Xs': $tu-xsmall-fontSize,
+  'Sm': $tu-small-fontSize,
+  'Md': $tu-base-fontSize,
+  'Lg': $tu-large-fontSize,
+  'Xl': $tu-xlarge-fontSize,
+  'Xxl': $tu-xxlarge-fontSize
+);
 
-.u-fontSizeSm {
-  font-size: $tu-small-fontSize !important;
-}
-
-.u-fontSizeMd {
-  font-size: $tu-base-fontSize !important;
-}
-
-.u-fontSizeLg {
-  font-size: $tu-large-fontSize !important;
-}
-
-.u-fontSizeXl {
-  font-size: $tu-xlarge-fontSize !important;
-}
-
-.u-fontSizeXxl {
-  font-size: $tu-xxlarge-fontSize !important;
+@each $name, $value in $fontSizes {
+ .u-fontSize#{$name} {
+   font-size: #{$value} !important;
+ }
 }
 
 /**
@@ -81,25 +58,87 @@
  */
 
 .u-textNormal {
-  font-weight: $tu-base-fontWeight;
+  font-weight: $tu-base-fontWeight !important;
 }
 
 .u-textSemiBold {
-  font-weight: $tu-semibold-fontWeight;
+  font-weight: $tu-semibold-fontWeight !important;
 }
 
 .u-textBold {
-  font-weight: $tu-bold-fontWeight;
+  font-weight: $tu-bold-fontWeight !important;
 }
 
 /**
  * Text Decoration utilities
  */
 
- .u-textUnderline {
-  text-decoration: underline;
+.u-textUnderline {
+  text-decoration: underline !important;
 }
 
 .u-textLineThrough {
-  text-decoration: line-through;
+  text-decoration: line-through !important;
+}
+
+.u-textDecorationNone {
+  text-decoration: none !important;
+}
+
+@if $responsive == true {
+  @each $bp-name, $bp-value in $breakpoints {
+    @media (min-width: $bp-value) {
+
+      @each $name, $value in $fontSizes {
+       .u-#{$bp-name}-fontSize#{$name} {
+         font-size: #{$value} !important;
+       }
+      }
+
+      .u-#{$bp-name}-textCenter {
+        text-align: center !important;
+      }
+
+      .u-#{$bp-name}-textLeft {
+        text-align: left !important;
+      }
+
+      .u-#{$bp-name}-textRight {
+        text-align: right !important;
+      }
+
+      .u-#{$bp-name}-textUnderline {
+        text-decoration: underline !important;
+      }
+
+      .u-#{$bp-name}-textLineThrough {
+        text-decoration: line-through !important;
+      }
+
+      .u-#{$bp-name}-textDecorationNone {
+        text-decoration: none !important;
+      }
+
+      .u-#{$bp-name}-textNoWrap {
+        white-space: nowrap !important;
+      }
+
+      .u-#{$bp-name}-textEllipsis {
+        text-overflow: ellipsis !important;
+        overflow: hidden !important;
+      }
+
+      .u-#{$bp-name}-textNormal {
+        font-weight: $tu-base-fontWeight !important;
+      }
+
+      .u-#{$bp-name}-textSemiBold {
+        font-weight: $tu-semibold-fontWeight !important;
+      }
+
+      .u-#{$bp-name}-textBold {
+        font-weight: $tu-bold-fontWeight !important;
+      }
+    }
+  }
 }

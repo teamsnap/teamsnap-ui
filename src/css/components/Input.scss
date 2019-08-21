@@ -30,17 +30,23 @@ $form-input-bg-color: $cu-foreground--dark !default;
   line-height: $form-input-line-height;
   padding: 0 $su-small;
   box-sizing: border-box;
-  box-shadow: $inset-box-shadow-medium;
+  box-shadow: none;
   background-color: $form-input-bg-color;
   border: $border-width-small solid $cu-divider;
   border-radius: $border-radius-medium;
   font-family: inherit;
   font-size: $tu-base-fontSize;
+  transition: all ease 0.2s;
 
   &:disabled {
     background: $cu-middleground--dark;
     color: $ts-grey;
     cursor: not-allowed;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $cu-primary;
   }
 
   &::-ms-clear {
@@ -60,4 +66,45 @@ input:-webkit-autofill:focus {
   font-size: $tu-large-fontSize;
   height: $su-xxlarge;
   line-height: $su-xxlarge;
+}
+
+$Input--showHideWidth: scaleGrid(7); // 56px
+
+.Input--showHide {
+  padding-right: $Input--showHideWidth;
+  // Set padding to width of show/hide control
+  // so native field controls are not covered
+  // (such as Safari's password manager tool)
+}
+
+.Input-showHideButton {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: $Input--showHideWidth;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  color: $cu-info--light;
+  border-radius: 0 $border-radius-medium $border-radius-medium 0;
+  font-size: $tu-base-fontSize;
+  font-weight: normal;
+  font-family: inherit;
+  line-height: 1;
+  padding: $su-small;
+  transition: all ease 200ms;
+  cursor: pointer;
+}
+
+.Input-showHideButton:hover {
+  background-color: transparent;
+  color: $cu-info;
+}
+
+.Input-showHideButton:focus {
+  outline: none;
+  border: solid 1px $cu-primary;
+  background-color: transparent;
+  color: $cu-info;
 }

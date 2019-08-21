@@ -11,7 +11,6 @@
 // * 1. Select Box Settings
 
 $SelectBox-bg-color: $cu-foreground--dark !default;
-$SelectBox-bg-color--hover: scaleColor($cu-foreground--dark, -1) !default;
 $SelectBox-text-color: $cu-info !default;
 $SelectBox-height: $su-xlarge !default;
 $SelectBox-indicator-width: scaleGrid(4);
@@ -63,14 +62,10 @@ $SelectBox-indicator-width: scaleGrid(4);
     display: none;
   }
 
-  // Apply the IE and Edge native focus style
-  &:focus::-ms-value {
-    background: highlight;
-    color: white;
-  }
-
-  &:hover:not(:disabled):not(.is-disabled) {
-    background: $SelectBox-bg-color--hover;
+  // Focus state
+  &:focus {
+    border-color: $cu-primary;
+    outline: none;
   }
 
   &:disabled,
