@@ -89,8 +89,7 @@ https://teamsnap-ui-patterns.netlify.com/
 |          |               | Text Link        |                                                      |
 |          | Toggle        | Toggle           |                                                      |
 |          | Tooltip       | Tooltip          |                                                      |
-|          |               |                                                                         |
-
+|          | Pagination    | Pagination                                                              |
 
 
 ### Missing CSS Component List
@@ -123,6 +122,7 @@ https://teamsnap-ui-patterns.netlify.com/
 - [ ] Color documentation
 - [ ] Typography documentation
 - [ ] Better Grid documentation with sizes
+- [ ] Pagination
 
 ### Missing React Component List
 - [ ] Feedback
@@ -130,3 +130,4 @@ https://teamsnap-ui-patterns.netlify.com/
 - [ ] Modal
 - [ ] Tab
 - [ ] Input Show Hide
+- [ ] Pagination
