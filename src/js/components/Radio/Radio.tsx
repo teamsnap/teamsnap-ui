@@ -17,7 +17,7 @@
 
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import InputControl from "../InputControl";
+import { InputControl } from "../InputControl";
 
 class Radio extends React.PureComponent<any, any> {
   static propTypes = {

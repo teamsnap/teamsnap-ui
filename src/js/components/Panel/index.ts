@@ -1,2 +1,2 @@
-import Panel from './Panel'
-export default Panel
+import Panel from "./Panel";
+export { Panel };

@@ -18,9 +18,9 @@
 
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import PanelRow from "../PanelRow";
-import PanelCell from "../PanelCell";
-import Icon from "../Icon";
+import { PanelRow } from "../PanelRow";
+import { PanelCell } from "../PanelCell";
+import { Icon } from "../Icon";
 import { getClassName } from "../../utils/helpers";
 
 class PanelRowExpandable extends React.PureComponent<any, any> {

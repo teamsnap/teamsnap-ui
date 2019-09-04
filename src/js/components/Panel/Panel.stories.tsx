@@ -2,11 +2,11 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean, select } from "@storybook/addon-knobs/react";
 import Panel from "./Panel";
-import PanelHeader from "../PanelHeader";
-import PanelBody from "../PanelBody";
-import PanelFooter from "../PanelFooter";
-import PanelRow from "../PanelRow";
-import PanelCell from "../PanelCell";
+import { PanelHeader } from "../PanelHeader";
+import { PanelBody } from "../PanelBody";
+import { PanelFooter } from "../PanelFooter";
+import { PanelRow } from "../PanelRow";
+import { PanelCell } from "../PanelCell";
 
 const stories = storiesOf("Panel", module);
 

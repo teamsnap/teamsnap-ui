@@ -1,2 +1,2 @@
-import PanelBody from './PanelBody'
-export default PanelBody
+import PanelBody from "./PanelBody";
+export { PanelBody };

@@ -1,2 +1,2 @@
-import FieldMessage from './FieldMessage'
-export default FieldMessage
+import FieldMessage from "./FieldMessage";
+export { FieldMessage };

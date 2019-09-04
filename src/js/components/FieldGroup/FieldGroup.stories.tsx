@@ -2,12 +2,12 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { select, text } from "@storybook/addon-knobs/react";
 import FieldGroup from "./FieldGroup";
-import FieldLabel from "../FieldLabel";
-import FieldMessage from "../FieldMessage";
-import Input from "../Input";
-import Select from "../Select";
-import Checkbox from "../Checkbox";
-import Icon from "../Icon";
+import { FieldLabel } from "../FieldLabel";
+import { FieldMessage } from "../FieldMessage";
+import { Input } from "../Input";
+import { Select } from "../Select";
+import { Checkbox } from "../Checkbox";
+import { Icon } from "../Icon";
 
 const stories = storiesOf("FieldGroup", module);
 

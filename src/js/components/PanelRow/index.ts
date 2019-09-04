@@ -1,2 +1,2 @@
-import PanelRow from './PanelRow'
-export default PanelRow
+import PanelRow from "./PanelRow";
+export { PanelRow };

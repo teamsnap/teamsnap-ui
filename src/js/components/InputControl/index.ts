@@ -1,2 +1,2 @@
-import InputControl from './InputControl'
-export default InputControl
+import InputControl from "./InputControl";
+export { InputControl };

@@ -1,2 +1,2 @@
-import RadialProgress from './RadialProgress'
-export default RadialProgress
+import RadialProgress from "./RadialProgress";
+export { RadialProgress };

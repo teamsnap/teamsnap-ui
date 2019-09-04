@@ -19,8 +19,8 @@
 
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import Icon from "../Icon";
-import TextLink from "../TextLink";
+import { Icon } from "../Icon";
+import { TextLink } from "../TextLink";
 import { getClassName } from "../../utils/helpers";
 
 class Button extends React.PureComponent<any, any> {
