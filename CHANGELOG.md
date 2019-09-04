@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.0.1] - 2019-09-04
+
+- `Changed` export pattern for TypeScript
+- `Fixed` issues where typescript definitions were being ejected
+
 ## [3.0.0] - 2019-09-04
 
 - `Added` support for TypeScript
