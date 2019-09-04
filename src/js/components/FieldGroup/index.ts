@@ -1,2 +1,2 @@
-import FieldGroup from './FieldGroup'
-export default FieldGroup
+import FieldGroup from "./FieldGroup";
+export { FieldGroup };

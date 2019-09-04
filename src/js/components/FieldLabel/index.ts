@@ -1,2 +1,2 @@
-import FieldLabel from './FieldLabel'
-export default FieldLabel
+import FieldLabel from "./FieldLabel";
+export { FieldLabel };

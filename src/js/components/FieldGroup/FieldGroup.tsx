@@ -14,7 +14,7 @@
 
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import Icon from "../Icon";
+import { Icon } from "../Icon";
 import { getClassName } from "../../utils/helpers";
 
 class FieldGroup extends React.PureComponent<any, any> {

@@ -16,7 +16,7 @@
 
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import Button from "../Button";
+import { Button } from "../Button";
 import { getClassName } from "../../utils/helpers";
 
 class ButtonGroup extends React.PureComponent<any, any> {

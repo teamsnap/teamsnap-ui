@@ -1,2 +1,2 @@
-import TextLink from './TextLink'
-export default TextLink
+import TextLink from "./TextLink";
+export { TextLink };

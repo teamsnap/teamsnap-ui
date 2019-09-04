@@ -1,2 +1,2 @@
-import PanelFooter from './PanelFooter'
-export default PanelFooter
+import PanelFooter from "./PanelFooter";
+export { PanelFooter };

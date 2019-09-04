@@ -25,13 +25,13 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { setUniqueId, capitalize, getClassName } from "../../utils/helpers";
 import { sortBy } from "../../utils/sort";
-import Icon from "../Icon";
-import Panel from "../Panel";
-import PanelBody from "../PanelBody";
-import PanelRow from "../PanelRow";
-import PanelCell from "../PanelCell";
-import TextLink from "../TextLink";
-import Loader from "../Loader";
+import { Icon } from "../Icon";
+import { Panel } from "../Panel";
+import { PanelBody } from "../PanelBody";
+import { PanelRow } from "../PanelRow";
+import { PanelCell } from "../PanelCell";
+import { TextLink } from "../TextLink";
+import { Loader } from "../Loader";
 
 class Table extends React.PureComponent<any, any> {
   static defaultProps = {

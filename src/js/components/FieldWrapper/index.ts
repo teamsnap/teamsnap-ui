@@ -1,2 +1,2 @@
-import FieldWrapper from './FieldWrapper'
-export default FieldWrapper
+import FieldWrapper from "./FieldWrapper";
+export { FieldWrapper };

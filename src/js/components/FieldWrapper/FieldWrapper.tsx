@@ -17,15 +17,15 @@
 
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import FieldGroup from "../FieldGroup";
-import FieldLabel from "../FieldLabel";
-import FieldMessage from "../FieldMessage";
-import Input from "../Input";
-import TextArea from "../TextArea";
-import Checkbox from "../Checkbox";
-import Radio from "../Radio";
-import Toggle from "../Toggle";
-import Select from "../Select";
+import { FieldGroup } from "../FieldGroup";
+import { FieldLabel } from "../FieldLabel";
+import { FieldMessage } from "../FieldMessage";
+import { Input } from "../Input";
+import { TextArea } from "../TextArea";
+import { Checkbox } from "../Checkbox";
+import { Radio } from "../Radio";
+import { Toggle } from "../Toggle";
+import { Select } from "../Select";
 
 class FieldWrapper extends React.PureComponent<any, any> {
   static propTypes = {
