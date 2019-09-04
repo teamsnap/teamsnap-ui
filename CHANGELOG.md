@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.0.0] - 2019-09-04
+
+- `Added` support for TypeScript
+- `Security` fixes for downstream dependencies.
+
 ## [2.17.1] - 2019-06-11
 
 - https://github.com/teamsnap/teamsnap-ui/pull/120
@@ -22,15 +27,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Updated` CSS/design for Checkbox, Input and SelectBox
 - `Updated` StepNav to add xs modifier and support for numbers
 
-
 ## [2.16.1] - 2019-06-05
 
 - https://github.com/teamsnap/teamsnap-ui/pull/124
 
 ### Changed
 
-- `Added` panel header image to react component 
-- `Added` panel stories to storybook 
+- `Added` panel header image to react component
+- `Added` panel stories to storybook
 - `Updated` Panel-image class to be a part of Panel-header
 
 ## [2.15.1] - 2019-05-21
