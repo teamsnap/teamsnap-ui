@@ -1,0 +1,22 @@
+//------------------------------------------------------------//
+
+// * League Settings
+
+// * 1. Load functions, mixins, & default variables
+// * 2. Redefine Color, Element, & Font Variables for Theme
+
+// * Notes:
+// * Based on the default settings with minor color changes
+// * background, middleground, and foreground color don't change
+// * This will likely be expanded on moving forward
+
+//------------------------------------------------------------//
+
+// * 1. Load functions, mixins, & default variables
+
+@import "../config/index";
+
+// * 2. Redefine Color, Element, & Font Variables for Theme
+
+$cu-primary:  #13426E;
+$color-links: #3079b7;

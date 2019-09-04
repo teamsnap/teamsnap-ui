@@ -1,0 +1,24 @@
+//------------------------------------------------------------//
+
+// * Custom Light Blue Color Settings
+
+// * 1. Load functions, mixins, & default variables
+// * 2. Redefine Color, Element, & Font Variables for Theme
+
+// * Notes:
+// * Based on Adobe Kuler's Monocromatic color wheel settings
+// * background, middleground, and foreground color don't change
+
+//------------------------------------------------------------//
+
+// * 1. Load functions, mixins, & default variables
+
+@import "../config/index";
+
+// * 2. Redefine Color, Element, & Font Variables for Theme
+
+$cu-primary:   #80aaff;
+$cu-secondary: #80aaff;
+$cu-highlight: #40557F;
+$color-links:  #6688CC;
+$color-links--hover: scaleColor($color-links, -2);

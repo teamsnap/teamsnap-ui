@@ -2,9 +2,21 @@
 
 // * Christmas Sweater Theme
 
-// * this theme is no longer supported with the other and
-// and should be considered for removal until the element
-// overrides may be accomplished through variable settings
+// * 1. Redefine Color Variables for Theme
+// * 2. Redefine Color Variables for Theme
+// * 3. Load app-theme with redefined variables
+// * 4. Further Theme Cleanup
+
+// Notes:
+// * Based on the same split comlimentary color scheme as default
+// * App-theme is a copy of app-team without tools loaded so
+// they aren't double loaded
+// * Since Christmas sweater breaks all the normal patterns,
+// it needs a few individual overrides that don't fit into
+// the normal component settings
+
+// TODO : after updating element variables, cleanup Theme
+// TODO : given the further cleanup, make theme seasonal
 
 //--------------------------------------------------------------//
 

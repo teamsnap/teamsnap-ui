@@ -1,26 +1,21 @@
 //------------------------------------------------------------//
 
 // * Custom Red Color Settings
-// * 1. Define new color scheme
-// * 2. Load app.scss with color settings overrriden
 
-// * Notes:
-// * Based on Adobe Kuler's Monocromatic color wheel settings
-// * background, middleground, and foreground color don't change
+// * 1. Load theme config
+// * 2. Load app css with new theme settings
+
+// Notes:
+// * Theme config is abstracted from the compiled theme file
+// so the config can be imported seperatly from the css
 
 //------------------------------------------------------------//
 
+// * 1. Load theme config
+
 @import "../config/index";
 
-// * 1. Define new color scheme
-
-$cu-primary:   #cc0000;
-$cu-secondary: #cc0000;
-$cu-highlight: #990000;
-$color-links:  #4C0000;
-$color-links--hover: scaleColor($color-links, -2);
-
-// * 2. Load app.scss with color settings overrriden
+// * 2. Load app css with new theme settings
 
 @import "../fonts/index";
 @import "../base/index";
