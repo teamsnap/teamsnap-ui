@@ -2,7 +2,7 @@ $maxWidthbreakpoints: (
   'Xs':  $breakpoint-xs,
   'Sm':  $breakpoint-sm,
   'Md':  $breakpoint-md,
-  'Lg': $breakpoint-lg
+  'Lg': $breakpoint-lg,
 );
 
 
@@ -11,5 +11,8 @@ $maxWidthbreakpoints: (
     .u-maxWidth#{$name} {
       max-width: #{$value} !important;
     }
+  }
+  .u-maxWidthXl {
+    max-width: $site-container !important;
   }
 }
