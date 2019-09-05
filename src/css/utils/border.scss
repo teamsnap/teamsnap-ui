@@ -84,7 +84,7 @@ $border-radius: (
 
 // Border Color
 
-$border-radius: (
+$border-color: (
   'Default': $cu-divider,
   'Light': $cu-divider--light,
   'Primary': $cu-primary,
@@ -93,7 +93,7 @@ $border-radius: (
   'Negative' : $cu-negative
 );
 
-@each $name, $value in $border-radius {
+@each $name, $value in $border-color {
   .u-borderColor#{$name} {
     border-color: $value !important;
   }
