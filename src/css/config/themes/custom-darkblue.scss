@@ -1,0 +1,24 @@
+//------------------------------------------------------------//
+
+// * Custom Dark Blue Color Settings
+
+// * 1. Load functions, mixins, & default variables
+// * 2. Redefine Color, Element, & Font Variables for Theme
+
+// * Notes:
+// * Based on Adobe Kuler's Monocromatic color wheel settings
+// * background, middleground, and foreground color don't change
+
+//------------------------------------------------------------//
+
+// * 1. Load functions, mixins, & default variables
+
+@import "../config/index";
+
+// * 2. Redefine Color, Element, & Font Variables for Theme
+
+$cu-primary:   #153b5b;
+$cu-secondary: #5984A7;
+$cu-highlight: #3E5C74;
+$color-links:  #276DA7;
+$color-links--hover: scaleColor($color-links, -2);

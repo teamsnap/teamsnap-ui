@@ -1,26 +1,21 @@
 //------------------------------------------------------------//
 
 // * Custom Leaf Green Color Settings
-// * 1. Define new color scheme
-// * 2. Load app.scss with color settings overrriden
 
-// * Notes:
-// * Based on Adobe Kuler's Monocromatic color wheel settings
-// * background, middleground, and foreground color don't change
+// * 1. Load theme config
+// * 2. Load app css with new theme settings
+
+// Notes:
+// * Theme config is abstracted from the compiled theme file
+// so the config can be imported seperatly from the css
 
 //------------------------------------------------------------//
 
+// * 1. Load theme config
+
 @import "../config/index";
 
-// * 1. Define new color scheme
-
-$cu-primary:   #4d801a;
-$cu-secondary: #70954B;
-$cu-highlight: #2E4D10;
-$color-links:  #70954B;
-$color-links--hover: scaleColor($color-links, -2);
-
-// * 2. Load app.scss with color settings overrriden
+// * 2. Load app css with new theme settings
 
 @import "../fonts/index";
 @import "../base/index";

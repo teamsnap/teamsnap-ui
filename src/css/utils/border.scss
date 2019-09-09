@@ -81,3 +81,20 @@ $border-radius: (
     }
   }
 }
+
+// Border Color
+
+$border-color: (
+  'Default': $cu-divider,
+  'Light': $cu-divider--light,
+  'Primary': $cu-primary,
+  'Highlight': $cu-highlight,
+  'Positive' : $cu-positive,
+  'Negative' : $cu-negative
+);
+
+@each $name, $value in $border-color {
+  .u-borderColor#{$name} {
+    border-color: $value !important;
+  }
+}

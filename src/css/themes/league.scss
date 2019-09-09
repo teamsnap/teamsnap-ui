@@ -1,19 +1,21 @@
-//----------------------------------------------------//
-//   League Color Theme
-//----------------------------------------------------//
+//------------------------------------------------------------//
 
-// * 1. Load default variables, functions and tools
+// * League Color Theme
+
+// * 1. Load theme config
+// * 2. Load app css with new theme settings
+
+// Notes:
+// * Theme config is abstracted from the compiled theme file
+// so the config can be imported seperatly from the css
+
+//------------------------------------------------------------//
+
+// * 1. Load theme config
 
 @import "../config/index";
 
-
-// * 2. Redefine color variables for theme
-
-$cu-primary:  #13426E;
-$color-links: #3079b7;
-
-
-// * 3. Load UI styles with redefined variables
+// * 2. Load app css with new theme settings
 
 @import "../fonts/index";
 @import "../base/index";

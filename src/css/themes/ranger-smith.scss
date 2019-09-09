@@ -2,75 +2,20 @@
 
 // * Ranger Smith Theme
 
-// * 1. Redefine Color Variables for Theme
-// * 2. Load app-theme with redefined variables
+// * 1. Load theme config
+// * 2. Load app css with new theme settings
 
 // Notes:
-// * Based on the same split comlimentary color scheme as default
-// * App-theme is a copy of app-team without tools loaded so
-// they aren't double loaded
-
-// TODO : after updating element variables, cleanup theme
+// * Theme config is abstracted from the compiled theme file
+// so the config can be imported seperatly from the css
 
 //--------------------------------------------------------------//
 
+// * 1. Load theme config
+
 @import "../config/index";
 
-// * 1. Redefine Color Variables for Theme
-
-$ts-white:                   #ffffff;
-$ts-grey:                       #999;
-$ts-black:                      #333;
-
-$cu-foreground:                                  #ffffff;
-$cu-foreground--light:     scaleColor($cu-foreground, 0);
-$cu-foreground--dark:      scaleColor($cu-foreground, 0);
-
-$cu-middleground:                                #fdfcfa;
-$cu-middleground--light: scaleColor($cu-middleground, 0);
-$cu-middleground--dark:  scaleColor($cu-middleground, 0);
-
-$cu-background:                                  #f8f7f4;
-$cu-background--light:     scaleColor($cu-background, 0);
-$cu-background--dark:      scaleColor($cu-background, 0);
-
-$cu-divider:                                     #d7dbd7;
-$cu-divider--light:           scaleColor($cu-divider, 1);
-$cu-divider--dark:           scaleColor($cu-divider, -1);
-
-$cu-info:                                        #4c5635;
-$cu-info--light:                scaleColor($cu-info, -1);
-$cu-info--dark:                  scaleColor($cu-info, 0);
-
-$cu-positive:                                    #7fc243;
-$cu-positive--light:         scaleColor($cu-positive, 1);
-$cu-positive--dark:         scaleColor($cu-positive, -1);
-$cu-positive--bg:            scaleColor($cu-positive, 3);
-
-$cu-negative:                                    #e26362;
-$cu-negative--light:         scaleColor($cu-negative, 1);
-$cu-negative--dark:         scaleColor($cu-negative, -1);
-$cu-negative--bg:            scaleColor($cu-negative, 8);
-
-$cu-primary:                                     #60880b;
-$cu-primary--light:           scaleColor($cu-primary, 2);
-$cu-primary--dark:           scaleColor($cu-primary, -1);
-$cu-primary--bg:             scaleColor($cu-primary, 10);
-
-$cu-secondary:                                   #eca111;
-$cu-secondary--light:       scaleColor($cu-secondary, 1);
-$cu-secondary--dark:       scaleColor($cu-secondary, -1);
-$cu-secondary--bg:         scaleColor($cu-secondary, 10);
-
-$cu-highlight:                                   #eca111;
-$cu-highlight--light:       scaleColor($cu-highlight, 1);
-$cu-highlight--dark:       scaleColor($cu-highlight, -1);
-$cu-highlight--bg:         scaleColor($cu-highlight, 10);
-
-$color-links:                                    #6b9a07;
-$color-links--hover: scaleColor($color-links, -2);
-
-// * 2. Load app-theme with redefined variables
+// * 2. Load app css with new theme settings
 
 @import "../fonts/index";
 @import "../base/index";

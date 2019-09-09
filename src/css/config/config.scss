@@ -45,9 +45,9 @@ $cu-foreground:                          $ts-white !default;
 $cu-foreground--light:                   $ts-white !default;
 $cu-foreground--dark:                    $ts-white !default;
 
-$cu-middleground:         scaleColor($ts-grey, 10) !default;
-$cu-middleground--light:  scaleColor($ts-grey, 10) !default;
-$cu-middleground--dark:   scaleColor($ts-grey, 10) !default;
+$cu-middleground:          scaleColor($ts-grey, 9) !default;
+$cu-middleground--light:   scaleColor($ts-grey, 9) !default;
+$cu-middleground--dark:    scaleColor($ts-grey, 9) !default;
 
 $cu-background:            scaleColor($ts-grey, 8) !default;
 $cu-background--light:     scaleColor($ts-grey, 8) !default;
@@ -183,6 +183,7 @@ $max-breakpoints: (
   'mdMax':  $breakpoint-md-max
 );
 
+$site-container: 1300px;
 
 // * 5. Borders
 

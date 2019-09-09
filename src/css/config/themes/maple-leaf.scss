@@ -1,0 +1,25 @@
+//------------------------------------------------------------//
+
+// * Custom Maple Leaf Color Settings
+
+// * 1. Load functions, mixins, & default variables
+// * 2. Redefine Color, Element, & Font Variables for Theme
+
+// * Notes:
+// * This is a custom theme built for Hockey Canada
+// * This will be the default theme for their teams
+
+//------------------------------------------------------------//
+
+// * 1. Load functions, mixins, & default variables
+
+@import "../config/index";
+
+// * 2. Redefine Color, Element, & Font Variables for Theme
+
+$cu-primary:         #C61C22;
+$cu-primary--dark:   #990000;
+$cu-secondary:       #C61C22;
+$cu-highlight:       #383838;
+$color-links:        #990000;
+$color-links--hover: scaleColor($color-links, -2);
