@@ -19,6 +19,7 @@ export * from "./components/PanelFooter";
 export * from "./components/PanelHeader";
 export * from "./components/PanelRow";
 export * from "./components/PanelRowExpandable";
+export * from "./components/Popup";
 export * from "./components/ProgressBar";
 export * from "./components/RadialProgress";
 export * from "./components/Radio";
