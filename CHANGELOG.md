@@ -12,7 +12,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.1.0] - 2019-09-09
+
+- https://github.com/teamsnap/teamsnap-ui/pull/154
+- https://github.com/teamsnap/teamsnap-ui/pull/155
+
+### Changed
+
+- `Added` CSS & HTML for modals
+- `Security` Refactored theme variables for direct import
+- `Added` Utilities more for colors and borders 
+
 ## [3.0.0] - 2019-09-04
+
+- https://github.com/teamsnap/teamsnap-ui/pull/130
+
+### Changed
 
 - `Added` support for TypeScript
 - `Security` fixes for downstream dependencies.
