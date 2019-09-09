@@ -69,13 +69,20 @@ export default class PopUpAction extends React.Component<Props, State> {
               {this.props.actions.map(action => {
                 return (
                   <div key={action.text}>
-                    <p
+                    <button
+                      tabIndex={0}
                       className="u-padEndsSm u-padSidesMd"
-                      style={{ cursor: "pointer" }}
+                      style={{
+                        cursor: "pointer",
+                        appearance: "none",
+                        border: "none",
+                        width: "100%",
+                        textAlign: "left"
+                      }}
                       onClick={action.callback}
                     >
                       {action.text}
-                    </p>
+                    </button>
                     <hr className="Divider u-spaceEndsNone" />
                   </div>
                 );
