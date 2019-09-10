@@ -76,6 +76,7 @@ export default class PopUpAction extends React.Component<Props, State> {
                         cursor: "pointer",
                         appearance: "none",
                         border: "none",
+                        background: "none",
                         width: "100%",
                         textAlign: "left"
                       }}
