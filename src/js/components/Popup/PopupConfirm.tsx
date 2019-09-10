@@ -8,7 +8,6 @@ interface Props {
   buttonText: string | React.ReactElement;
   popUpText: string | React.ReactElement;
   popupStyle?: React.CSSProperties;
-  direction?: "down" | "right" | "left" | "rightHang" | "leftHang" | "overlay";
   onAccept: () => void;
   onCancel?: () => void;
 }
@@ -53,10 +52,7 @@ export default class Popup extends React.Component<Props, State> {
         </button>
         <div
           className={
-            "Popup-container " +
-            (this.props.direction
-              ? ` Popup-container--${this.props.direction}`
-              : "") +
+            "Popup-container Popup-container--overlay" +
             (this.state.isPopupOpen ? " is-open" : "")
           }
           style={this.props.popupStyle}

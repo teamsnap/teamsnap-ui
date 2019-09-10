@@ -1,17 +1,19 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { select } from "@storybook/addon-knobs/react";
-import PopupAction from "./PopupAction";
+import PopupAction, { Action } from "./PopupAction";
 import PopupConfirm from "./PopupConfirm";
 
 const stories = storiesOf("Popup", module);
 
-const actions = [
+const actions: Array<Action> = [
   {
     text: "Log to console",
     callback: () => {
       console.log("Logging to console");
-    }
+    },
+    requiresConfirmation: true,
+    confirmationText: "Do you really want to write to the console?"
   },
   {
     text: "JavaScript Alert",
@@ -21,31 +23,18 @@ const actions = [
   }
 ];
 
-const directionOptions = [
-  "default",
-  "down",
-  "right",
-  "left",
-  "rightHang",
-  "leftHang",
-  "overlay"
-];
 stories.add("PopupActions", () => {
-  const dir = select("direction", directionOptions);
-  const direction = dir === "default" ? null : dir;
   return (
     <PopupAction
       text="..."
       actions={actions}
-      direction={direction}
+      direction={["down", "left"]}
       popupStyle={{ width: "150px" }}
     />
   );
 });
 
 stories.add("PopupConfirm", () => {
-  const dir = select("direction", directionOptions);
-  const direction = dir === "default" ? null : dir;
   const popupText = (
     <h4>Do you really want to hurt me? Do you really want to make me cry?</h4>
   );
@@ -61,7 +50,6 @@ stories.add("PopupConfirm", () => {
       onCancel={onCancel}
       buttonText="Perform the Culture Club!"
       popUpText={popupText}
-      direction={direction}
     />
   );
 });
