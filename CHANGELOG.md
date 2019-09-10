@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.2.0] - 2019-09-10
+
+- https://github.com/teamsnap/teamsnap-ui/pull/162
+
+### Changed
+- `Added` Components for Popup buttons
+
 ## [3.1.0] - 2019-09-09
 
 - https://github.com/teamsnap/teamsnap-ui/pull/154
