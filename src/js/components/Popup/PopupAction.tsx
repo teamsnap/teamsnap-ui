@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PopupConfirm } from ".";
 
 interface State {
   isPopupOpen: boolean;
