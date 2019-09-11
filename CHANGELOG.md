@@ -12,11 +12,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.2.1] - 2019-90-11
+
+- https://github.com/teamsnap/teamsnap-ui/pull/164
+
+### Changed
+
+- `Changed` Popupactions to support react elements as well as strings for body content.
+- `Changed` Popupactions to support required confirmation from users
+
 ## [3.2.0] - 2019-09-10
 
 - https://github.com/teamsnap/teamsnap-ui/pull/162
 
 ### Changed
+
 - `Added` Components for Popup buttons
 
 ## [3.1.0] - 2019-09-09
@@ -28,7 +38,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `Added` CSS & HTML for modals
 - `Security` Refactored theme variables for direct import
-- `Added` Utilities more for colors and borders 
+- `Added` Utilities more for colors and borders
 
 ## [3.0.0] - 2019-09-04
 
