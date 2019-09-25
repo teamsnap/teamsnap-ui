@@ -1,4 +1,5 @@
 # teamsnap-ui
+
 TeamSnaps UI framework. Built with sass and react.
 
 ### Installation
@@ -9,16 +10,15 @@ Installs the @teamsnap/teamsnap-ui node module and builds the dist directory.
 npm install
 ```
 
-To build the dist folder for css, js and icons 
+To build the dist folder for css, js and icons
 
 `npm run build`
 
-Each item can also be build independently 
+Each item can also be build independently
 
 `npm run build:css`
 
 `npm run build:js`
-
 
 All styles are linted using `sass-lint` and the config `.sass-lint.yml` is available to customize rules as needed.
 
@@ -34,10 +34,10 @@ To run the linters manually use:
 
 `npm run lint:js`
 
-
 ### TODO:
-+ Update docs with full process for working locally with TeamSnap-UI
-+ Update scripts to use webpack for css management and serving locally
+
+- Update docs with full process for working locally with TeamSnap-UI
+- Update scripts to use webpack for css management and serving locally
 
 ### Storybook
 
@@ -51,48 +51,47 @@ To run storybook locally:
 
 `npm run storybook`
 
-
-
 ### CSS Components
+
 https://teamsnap-ui-patterns.netlify.com/
 
-| Finished | CSS Component | React Component  | Storybook                                            |
-|----------|---------------|------------------|------------------------------------------------------|
-| x        | Button        | Button           | x                                                    |
-| x        | Button Group  | Button Group     | x                                                    |
-| x         | Checkbox      | Checkbox Radio  | x                                                    |
-|          | Divider       | Divider          | x                                                    |
-|          | Feedback      |                  |                                                      |
-|          | Field Group   | Field Group      |                                                      |
-|          |               | Field Label      |                                                      | 
-|          |               | Field Message    |                                                      |
-|          |               | Field Wrapper    |                                                      |
-|          | Grid          | Grid Cell        |                                                      |
-| x        | Icon          | Icon             | x                                                    |
-|          | Input Group   | Input            |                                                      |
-|          |               | Input Control    |                                                      |
-|          | Input         | Input Text Area  |                                                      |
-|          | Loader        | Loader           |                                                      |
-| x        | Panel         | Panel            | x                                                    |
-|          |               | Panel Body       | x                                                    |
-|          |               | Panel Cell       | x                                                    |
-|          |               | Panel Header     | x                                                    |
-|          |               | Panel Row        |                                                      |
-|          |               | Panel Row Expandable |                                                  |
-|          | Popup         |                  |                                                      |
-| x        | Progress      | Progress         | x                                                    |
-|          | Select Box    | Select           | x                                                    |
-|          | Step Nav      | Step Nav         | x                                                    |
-|          | Summary List  | Summary List     |                                                      |
-|          | Table         | Table            | x                                                    |
-|          | Tabs          |                  |                                                      |
-|          |               | Text Link        |                                                      |
-|          | Toggle        | Toggle           |                                                      |
-|          | Tooltip       | Tooltip          |                                                      |
-|          | Pagination    | Pagination                                                              |
-
+| Finished | CSS Component | React Component      | Storybook |
+| -------- | ------------- | -------------------- | --------- |
+| x        | Button        | Button               | x         |
+| x        | Button Group  | Button Group         | x         |
+| x        | Checkbox      | Checkbox Radio       | x         |
+|          | Divider       | Divider              | x         |
+|          | Feedback      |                      |           |
+|          | Field Group   | Field Group          |           |
+|          |               | Field Label          |           |
+|          |               | Field Message        |           |
+|          |               | Field Wrapper        |           |
+|          | Grid          | Grid Cell            |           |
+| x        | Icon          | Icon                 | x         |
+|          | Input Group   | Input                |           |
+|          |               | Input Control        |           |
+|          | Input         | Input Text Area      |           |
+|          | Loader        | Loader               |           |
+| x        | Panel         | Panel                | x         |
+|          |               | Panel Body           | x         |
+|          |               | Panel Cell           | x         |
+|          |               | Panel Header         | x         |
+|          |               | Panel Row            |           |
+|          |               | Panel Row Expandable |           |
+|          | Popup         |                      |           |
+| x        | Progress      | Progress             | x         |
+|          | Select Box    | Select               | x         |
+|          | Step Nav      | Step Nav             | x         |
+|          | Summary List  | Summary List         |           |
+|          | Table         | Table                | x         |
+|          | Tabs          |                      |           |
+|          |               | Text Link            |           |
+|          | Toggle        | Toggle               | x         |
+|          | Tooltip       | Tooltip              |           |
+|          | Pagination    | Pagination           |
 
 ### Missing CSS Component List
+
 - [ ] Modal (pr in progress)
 - [ ] Badges
 - [ ] Member Photos / Placeholders
@@ -116,8 +115,9 @@ https://teamsnap-ui-patterns.netlify.com/
 - [ ] Triangle pseudo class for callouts/flyouts
 
 ### Missing CSS Documentation
+
 - [ ] More Panel Documentation
-- [ ] Theming/Variable Documentation 
+- [ ] Theming/Variable Documentation
 - [ ] Spacing Documentation
 - [ ] Color documentation
 - [ ] Typography documentation
@@ -125,6 +125,7 @@ https://teamsnap-ui-patterns.netlify.com/
 - [ ] Pagination
 
 ### Missing React Component List
+
 - [ ] Feedback
 - [ ] Popup
 - [ ] Modal
