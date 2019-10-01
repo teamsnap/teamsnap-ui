@@ -110,6 +110,9 @@ $Checkbox-bg-color: $cu-foreground !default;
       border-color: $color;
       background-color: scaleColor($color, 9.5);
     }
+    input[type=checkbox] + .Checkbox-label {
+      border-radius: $su-small;
+    }
   }
 }
 
