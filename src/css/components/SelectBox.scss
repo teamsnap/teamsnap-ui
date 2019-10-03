@@ -81,10 +81,6 @@ $SelectBox-border-color--disabled: $form-input-border-color--disabled !default;
     outline: none;
   }
 
-  &:invalid {
-    color: red !important;
-  }
-
   // Disabled State
   &:disabled,
   &.is-disabled {
