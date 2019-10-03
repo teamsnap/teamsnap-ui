@@ -88,7 +88,7 @@ $cu-highlight--bg:   scaleColor($cu-highlight, 10) !default;
 
 // * 1.a Spot Colors (link, facebook, twitter, etc.)
 
-$color-facebook:                           #3B5998 !default;
+$color-facebook: #3B5998 !default;
 
 // * 2. Typography
 
@@ -151,7 +151,7 @@ $su-xxxsmall:   scaleGrid(-3) !default; // 1px
 $su-xxsmall:    scaleGrid(-2) !default; // 2px
 $su-xsmall:     scaleGrid(-1) !default; // 4px
 $su-small:       scaleGrid(1) !default; // 8px
-$su-medium:     scaleGrid(2) !default; // 16px
+$su-medium:      scaleGrid(2) !default; // 16px
 $su-large:       scaleGrid(3) !default; // 24px
 $su-xlarge:      scaleGrid(4) !default; // 32px
 $su-xxlarge:     scaleGrid(5) !default; // 40px
@@ -159,28 +159,28 @@ $su-xxlarge:     scaleGrid(5) !default; // 40px
 // * 4. Responsive
 
 $responsive: false !default;
-$breakpoint-xs: 480px;
-$breakpoint-sm: 768px;
-$breakpoint-md: 992px;
+$breakpoint-xs:  480px;
+$breakpoint-sm:  768px;
+$breakpoint-md:  992px;
 $breakpoint-lg: 1200px;
 
 $breakpoint-xxs-max: $breakpoint-xs - 1px;
-$breakpoint-xs-max: $breakpoint-sm - 1px;
-$breakpoint-sm-max: $breakpoint-md - 1px;
-$breakpoint-md-max: $breakpoint-lg - 1px;
+$breakpoint-xs-max:  $breakpoint-sm - 1px;
+$breakpoint-sm-max:  $breakpoint-md - 1px;
+$breakpoint-md-max:  $breakpoint-lg - 1px;
 
 $breakpoints: (
   'xs':  $breakpoint-xs,
   'sm':  $breakpoint-sm,
   'md':  $breakpoint-md,
-  'lg': $breakpoint-lg
+  'lg':  $breakpoint-lg
 );
 
 $max-breakpoints: (
-  'xxsMax':  $breakpoint-xxs-max,
-  'xsMax':  $breakpoint-xs-max,
-  'smMax':  $breakpoint-sm-max,
-  'mdMax':  $breakpoint-md-max
+  'xxsMax': $breakpoint-xxs-max,
+  'xsMax':   $breakpoint-xs-max,
+  'smMax':   $breakpoint-sm-max,
+  'mdMax':   $breakpoint-md-max
 );
 
 $site-container: 1300px;
@@ -208,3 +208,16 @@ $box-shadow-large:  0 0  scaleGrid(1) rgba($cu-info, 0.35) !default;
 $inset-box-shadow-small:  1px 1px 1px rgba($cu-info, 0.15) inset !default;
 $inset-box-shadow-medium: 1px 1px 2px rgba($cu-info, 0.15) inset !default;
 $inset-box-shadow-large:  1px 1px 3px rgba($cu-info, 0.15) inset !default;
+
+// * 8. Form Inputs
+
+$form-input-height:                           $su-xlarge !default;
+$form-input-line-height:                  $su-xlarge - 2 !default;
+
+$form-input-bg-color:                     $cu-foreground !default;
+$form-input-text-color:                         $cu-info !default;
+$form-input-border-color:                    $cu-divider !default;
+
+$form-input-bg-color--disabled:         $cu-middleground !default;
+$form-input-text-color--disabled:        $cu-info--light !default;
+$form-input-border-color--disabled:   $cu-divider--light !default;

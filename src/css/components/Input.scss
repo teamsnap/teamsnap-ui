@@ -15,15 +15,13 @@
 
 // * 1. Input Settings
 
-$form-input-height: $su-xlarge !default;
-$form-input-line-height: $su-xlarge - 2 !default;
-$form-input-bg-color: $cu-foreground--dark !default;
+// form inputs use global variables in the main config
 
 // * 2. Base Input
 
 .Input {
   cursor: text;
-  color: $cu-info;
+  color: $form-input-border-color;
   display: block;
   width: 100%;
   height: $form-input-height;
@@ -32,15 +30,16 @@ $form-input-bg-color: $cu-foreground--dark !default;
   box-sizing: border-box;
   box-shadow: none;
   background-color: $form-input-bg-color;
-  border: $border-width-small solid $cu-divider;
+  border: $border-width-small solid $form-input-border-color;
   border-radius: $border-radius-medium;
   font-family: inherit;
   font-size: $tu-base-fontSize;
   transition: all ease 0.2s;
 
   &:disabled {
-    background: $cu-middleground--dark;
-    color: $ts-grey;
+    background: $form-input-bg-color--disabled;
+    color: $form-input-text-color--disabled;
+    border-color: $form-input-border-color--disabled;
     cursor: not-allowed;
   }
 

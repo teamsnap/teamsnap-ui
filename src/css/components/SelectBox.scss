@@ -6,14 +6,22 @@
 // * 1. Select Box Settings
 // * 2. Select Box
 
+// TODO: update the dropdown icon to SVG
+
 //------------------------------------------------------------//
 
 // * 1. Select Box Settings
 
-$SelectBox-bg-color: $cu-foreground--dark !default;
-$SelectBox-text-color: $cu-info !default;
-$SelectBox-height: $su-xlarge !default;
-$SelectBox-indicator-width: scaleGrid(4);
+$SelectBox-height: $form-input-height !default;
+$SelectBox-indicator-width: $form-input-height;
+
+$SelectBox-bg-color: $form-input-bg-color !default;
+$SelectBox-text-color: $form-input-text-color !default;
+$SelectBox-border-color: $form-input-border-color !default;
+
+$SelectBox-bg-color--disabled: $form-input-bg-color--disabled !default;
+$SelectBox-text-color--disabled: $form-input-text-color--disabled !default;
+$SelectBox-border-color--disabled: $form-input-border-color--disabled !default;
 
 // * 2. Select Box
 
@@ -31,7 +39,7 @@ $SelectBox-indicator-width: scaleGrid(4);
     right: 0;
     margin: auto;
     width: $SelectBox-indicator-width;
-    color: scaleColor($cu-info, 6);
+    color: $cu-info--light;
     font-size: $tu-xsmall-fontSize;
     height: ( $SelectBox-height - $su-small );
     line-height: ( $SelectBox-height - $su-xsmall );
@@ -39,6 +47,11 @@ $SelectBox-indicator-width: scaleGrid(4);
     border-left: $border-width-small solid $cu-divider--light;
     pointer-events: none;
   }
+
+  &.is-disabled:after {
+    color: $SelectBox-border-color--disabled;
+  }
+
 }
 
 .SelectBox-options {
@@ -68,11 +81,19 @@ $SelectBox-indicator-width: scaleGrid(4);
     outline: none;
   }
 
+  &:invalid {
+    color: red !important;
+  }
+
+  // Disabled State
   &:disabled,
   &.is-disabled {
-    color: $cu-divider--light;
+    background-color: $SelectBox-bg-color--disabled;
+    color: $SelectBox-text-color--disabled;
+    border-color: $SelectBox-border-color--disabled;
     cursor: not-allowed;
   }
+
 }
 
 // * Deprecated - No longer have a JS dependency
