@@ -83,40 +83,35 @@ class Table extends React.PureComponent<any, State> {
 
   constructor(props) {
     super(props);
-    const { rows, defaultSort } = this.props;
+    const { defaultSort } = this.props;
 
     // Establish initial sortDirection by checking for '-' value
     const sortDirection = defaultSort.charAt(0) === "-" ? true : false;
     const sortName = sortDirection ? defaultSort.substr(1) : defaultSort;
 
-    const state = this.getTableState(rows, sortName, sortDirection);
+    const state = Table.getTableState(props, sortName, sortDirection);
     this.state = { ...state };
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { sortByColumn, sortByReverse } = this.state;
+  static getDerivedStateFromProps(props, state) {
+    const { sortByColumn, sortByReverse } = state;
 
-    this.setTableState(nextProps.rows, sortByColumn, sortByReverse);
+    return Table.getTableState(props, sortByColumn, sortByReverse);
   }
 
-  private getTableState(rows, sortName, sortDirection) {
+  private static getTableState(props, sortName, sortDirection) {
+    const { rows } = props;
     const items = setUniqueId(rows);
 
     const tableState = sortName
-      ? this.sortItems(items, sortName, sortDirection)
+      ? Table.sortItems(props, items, sortName, sortDirection)
       : { items };
 
     return tableState;
   }
 
-  setTableState = (rows, sortName, sortDirection) => {
-    const tableState = this.getTableState(rows, sortName, sortDirection);
-
-    this.setState({ ...tableState });
-  };
-
-  sortItems = (newItems, sortByColumn, sortByReverse) => {
-    const { columns } = this.props;
+  static sortItems = (props, newItems, sortByColumn, sortByReverse) => {
+    const { columns } = props;
 
     const { name, sortType, sortFn } = columns.find(
       c => c.name === sortByColumn
@@ -138,7 +133,12 @@ class Table extends React.PureComponent<any, State> {
 
     const sortDirection =
       sortName === this.state.sortByColumn ? !this.state.sortByReverse : false;
-    const tableState = this.sortItems(items, sortName, sortDirection);
+    const tableState = Table.sortItems(
+      this.props,
+      items,
+      sortName,
+      sortDirection
+    );
 
     this.setState({ ...tableState });
   };
