@@ -33,7 +33,13 @@ import { PanelCell } from "../PanelCell";
 import { TextLink } from "../TextLink";
 import { Loader } from "../Loader";
 
-class Table extends React.PureComponent<any, any> {
+interface State {
+  items: any[];
+  sortByColumn?: any;
+  sortByReverse?: any;
+}
+
+class Table extends React.PureComponent<any, State> {
   static defaultProps = {
     columns: [],
     rows: [],
@@ -75,20 +81,16 @@ class Table extends React.PureComponent<any, any> {
     placeHolder: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
   };
 
-  state = {
-    items: [],
-    sortByColumn: "",
-    sortByReverse: false
-  };
-
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     const { rows, defaultSort } = this.props;
 
     // Establish initial sortDirection by checking for '-' value
     const sortDirection = defaultSort.charAt(0) === "-" ? true : false;
     const sortName = sortDirection ? defaultSort.substr(1) : defaultSort;
 
-    this.setTableState(rows, sortName, sortDirection);
+    const state = this.getTableState(rows, sortName, sortDirection);
+    this.state = { ...state };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -97,12 +99,18 @@ class Table extends React.PureComponent<any, any> {
     this.setTableState(nextProps.rows, sortByColumn, sortByReverse);
   }
 
-  setTableState = (rows, sortName, sortDirection) => {
+  private getTableState(rows, sortName, sortDirection) {
     const items = setUniqueId(rows);
 
     const tableState = sortName
       ? this.sortItems(items, sortName, sortDirection)
       : { items };
+
+    return tableState;
+  }
+
+  setTableState = (rows, sortName, sortDirection) => {
+    const tableState = this.getTableState(rows, sortName, sortDirection);
 
     this.setState({ ...tableState });
   };
