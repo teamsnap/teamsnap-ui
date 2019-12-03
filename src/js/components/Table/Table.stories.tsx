@@ -6,7 +6,7 @@ import Table from "./Table";
 const stories = storiesOf("Table", module);
 
 const columns = [
-  { name: "col1", label: "Column One", isSortable: true },
+  { name: "col1", label: <div>Column One (in a div)</div>, isSortable: true },
   { name: "col2", label: "Column Two", isSortable: true },
   { name: "col3", label: "Column Three" }
 ];
