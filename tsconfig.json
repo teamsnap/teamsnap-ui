@@ -6,16 +6,29 @@
     "jsx": "react",
     "esModuleInterop": true,
     "module": "CommonJS",
-    "lib": ["es5", "es6", "es7", "es2017", "dom", "dom.iterable"],
+    "lib": [
+      "es5",
+      "es6",
+      "es7",
+      "es2017",
+      "dom",
+      "dom.iterable"
+    ],
     "sourceMap": false,
     "allowJs": false,
     "moduleResolution": "node",
     "rootDir": "src",
     "baseUrl": "src",
-    "allowSyntheticDefaultImports": false
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["./src/**/*"],
-  "exclude": ["node_modules", "dist", "scripts"],
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "scripts"
+  ],
   "awesomeTypescriptLoaderOptions": {
     "transpileOnly": true
   }
