@@ -12,7 +12,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
-## [3.2.1] - 2019-90-11
+## [3.2.2] - 2019-12-04
+- https://github.com/teamsnap/teamsnap-ui/pull/204
+
+### Changed
+
+- `Changed` Table Component's Prop Types so that the Column object's label field properly supports JSX.
+
+## [3.2.1] - 2019-09-11
 
 - https://github.com/teamsnap/teamsnap-ui/pull/164
 

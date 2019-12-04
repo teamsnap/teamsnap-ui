@@ -58,7 +58,7 @@ class Table extends React.PureComponent<any, State> {
     columns: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
-        label: PropTypes.string,
+        label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
         render: PropTypes.func,
         isSortable: PropTypes.bool,
         sortType: PropTypes.string,
