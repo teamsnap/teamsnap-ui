@@ -14,60 +14,54 @@ const config = require('./config');
 // teamsnap-ui and themes can build independently
 function buildCSS(config) {
   return gulp.src(config.src)
-  .pipe(sass())
-  .pipe(autoprefixer('last 2 versions'))
-  .pipe(cssnano())
-  .pipe(gulp.dest(config.dest))
+    .pipe(sass())
+    .pipe(autoprefixer('last 2 versions'))
+    .pipe(cssnano())
+    .pipe(gulp.dest(config.dest))
 }
 
 // Build teamsnap-ui CSS
-gulp.task('css-teamsnap', () => {
+gulp.task('css-teamsnap', (done) => {
   buildCSS(config.css.teamsnap);
+  done();
 });
 
 // Build themes
-gulp.task('css-themes', () => {
+gulp.task('css-themes', (done) => {
   buildCSS(config.css.themes);
+  done();
 });
 
 // Copy fonts
-gulp.task('fonts',  () => {
+gulp.task('fonts', () => {
   return gulp.src(config.fonts.src)
     .pipe(gulp.dest(config.fonts.dest))
 });
 
 // Start browsersync
-gulp.task('serve',  () =>  {
+gulp.task('serve', () => {
   browserSync.init(config.serve.options)
 });
 
 // Delete the dist directory and all its contents
-gulp.task('clean', () => {
-  return del.sync('dist');
+gulp.task('clean', (done) => {
+  del.sync('dist');
+  done();
 })
 
 // Watch for SCSS changes, then build CSS and update browser
 // Add --themes flag to also build theme CSS
 gulp.task('watch', () => {
   if (env.themes) {
-    gulp.watch(config.watch.scss, ['css-teamsnap', 'css-themes']);
+    gulp.watch(config.watch.scss, gulp.series('css-teamsnap', 'css-themes'));
   } else {
-    gulp.watch(config.watch.teamsnap, ['css-teamsnap']);
+    gulp.watch(config.watch.teamsnap, gulp.series('css-teamsnap'));
   }
 });
 
 // Register frontend composite task
-gulp.task('build', ['clean'], done => {
-  gulp.start('fonts'),
-  gulp.start('css-teamsnap'),
-  gulp.start('css-themes')
-  done()
-});
+gulp.task('build', gulp.series('clean', 'fonts', 'css-teamsnap', 'css-themes'));
 
 // Register default task
 // Add --dev flag for local dev (watches local files)
-gulp.task('default', ['build'], done => {
-  gulp.start('serve');
-  gulp.start('watch');
-  done();
-});
+gulp.task('default', gulp.series('build', 'serve', 'watch'));
