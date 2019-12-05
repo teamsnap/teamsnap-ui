@@ -23,7 +23,7 @@ import { Icon } from "../Icon";
 import { TextLink } from "../TextLink";
 import { getClassName } from "../../utils/helpers";
 
-class Button extends React.PureComponent<any, any> {
+class Button extends React.PureComponent<PropTypes.InferProps<typeof Button.propTypes>, any> {
   static propTypes = {
     type: PropTypes.oneOf(["button", "submit", "link"]),
     label: PropTypes.string,
@@ -92,7 +92,6 @@ class Button extends React.PureComponent<any, any> {
     const {
       routerLink,
       location,
-      isDisabled,
       onClick,
       style,
       otherProps
@@ -104,7 +103,6 @@ class Button extends React.PureComponent<any, any> {
         routerLink={routerLink}
         location={location}
         style={style}
-        disabled={isDisabled}
         onClick={onClick}
         {...otherProps}
       >
@@ -118,7 +116,7 @@ class Button extends React.PureComponent<any, any> {
 
     return (
       <button
-        type={type}
+        type={(type as "button" | "reset")}
         className={this.getButtonClassName()}
         style={style}
         onClick={onClick}

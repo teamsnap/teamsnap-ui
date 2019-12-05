@@ -16,7 +16,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { InputControl } from "../InputControl";
 
-class Toggle extends React.PureComponent<any, any> {
+class Toggle extends React.PureComponent<PropTypes.InferProps<typeof Toggle.propTypes>, any> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     inputProps: PropTypes.object,

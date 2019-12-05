@@ -39,7 +39,7 @@ interface State {
   sortByReverse?: any;
 }
 
-class Table extends React.PureComponent<any, State> {
+class Table extends React.PureComponent<PropTypes.InferProps<typeof Table.propTypes>, State> {
   static defaultProps = {
     columns: [],
     rows: [],

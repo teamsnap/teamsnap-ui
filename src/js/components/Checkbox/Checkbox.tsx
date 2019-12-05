@@ -15,7 +15,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { InputControl } from "../InputControl";
 
-class Checkbox extends React.PureComponent<any, any> {
+class Checkbox extends React.PureComponent<PropTypes.InferProps<typeof Checkbox.propTypes>, any> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.node.isRequired,

@@ -5,8 +5,8 @@ import _capitalize from 'lodash/capitalize'
  * @name capitalize
  *
  * @description
- *  This simple method returns a string representing a uniqueID.
- *  Currently it is a 'wrapper' around the lodash uniqueId method.
+ *  This simple method returns a capitalized version of the provided string.
+ *  Currently it is a 'wrapper' around the lodash _capitalize method.
  *  There are other utilities we can look into as well, such as `shortid`
  *
  * @example
@@ -15,7 +15,7 @@ import _capitalize from 'lodash/capitalize'
  *  capitalize('name')
  *
  */
-export const capitalize = (string) => _capitalize(string)
+export const capitalize: (string: string) => string = (string) => _capitalize(string)
 
 /**
  * @name generateUniqueId
@@ -31,7 +31,7 @@ export const capitalize = (string) => _capitalize(string)
  *  generateUniqueId()
  *
  */
-export const generateUniqueId = (prefix='') => _uniqueId(prefix)
+export const generateUniqueId = (prefix = '') => _uniqueId(prefix)
 
 /**
  * @name setUniqueId
@@ -46,7 +46,7 @@ export const generateUniqueId = (prefix='') => _uniqueId(prefix)
  *  setUniqueId([{name: 'item one'}], 'uuid')
  *
  */
- export const setUniqueId = (items, property='id') => {
+export const setUniqueId = (items, property = 'id') => {
   let updatedItems = null
 
   // Assume if first row has an id, they all do and just return items

@@ -16,7 +16,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-class PanelCell extends React.PureComponent<any, any> {
+class PanelCell extends React.PureComponent<PropTypes.InferProps<typeof PanelCell.propTypes>, any> {
   static propTypes = {
     children: PropTypes.node,
     isTitle: PropTypes.bool,
@@ -24,7 +24,7 @@ class PanelCell extends React.PureComponent<any, any> {
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {

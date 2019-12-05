@@ -19,7 +19,7 @@ import * as PropTypes from "prop-types";
 import { Button } from "../Button";
 import { getClassName } from "../../utils/helpers";
 
-class ButtonGroup extends React.PureComponent<any, any> {
+class ButtonGroup extends React.PureComponent<PropTypes.InferProps<typeof ButtonGroup.propTypes>, any> {
   static propTypes = {
     children: PropTypes.node,
     buttons: PropTypes.array,

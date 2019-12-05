@@ -16,7 +16,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-class Cell extends React.PureComponent<any, any> {
+class Cell extends React.PureComponent<PropTypes.InferProps<typeof Cell.propTypes>, any> {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,

@@ -13,7 +13,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-class TextArea extends React.PureComponent<any, any> {
+class TextArea extends React.PureComponent<PropTypes.InferProps<typeof TextArea.propTypes>, any> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     inputProps: PropTypes.object,

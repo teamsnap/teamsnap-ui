@@ -14,21 +14,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-// TODO: Can we just use this instead of PropTypes?
-// A: Not until we export the type definitions as well.
-// If a consumer is not using typescript, they'll lose the type-assist if we just use the interface and not
-// the prop-types library. Need to investigate this so we dont have to maintain this list twice.
-interface Props {
-  type: "jello" | "pulse" | "spin";
-  text?: string;
-  message?: string;
-  className?: string;
-  mods?: string;
-  style?: any;
-  otherProps?: any;
-}
-
-class Loader extends React.PureComponent<Props, any> {
+class Loader extends React.PureComponent<PropTypes.InferProps<typeof Loader.propTypes>, any> {
   static propTypes = {
     type: PropTypes.oneOf(["jello", "pulse", "spin"]).isRequired,
     text: PropTypes.string,

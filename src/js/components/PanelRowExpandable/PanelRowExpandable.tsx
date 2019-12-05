@@ -23,7 +23,7 @@ import { PanelCell } from "../PanelCell";
 import { Icon } from "../Icon";
 import { getClassName } from "../../utils/helpers";
 
-class PanelRowExpandable extends React.PureComponent<any, any> {
+class PanelRowExpandable extends React.PureComponent<PropTypes.InferProps<typeof PanelRowExpandable.propTypes>, any> {
   static propTypes = {
     parentColumns: PropTypes.arrayOf(PropTypes.object).isRequired,
     childColumns: PropTypes.arrayOf(PropTypes.object),
@@ -86,10 +86,10 @@ class PanelRowExpandable extends React.PureComponent<any, any> {
       return renderColumn ? (
         renderColumn({ key: index, children, ...props })
       ) : (
-        <PanelCell key={index} {...props}>
-          {children}
-        </PanelCell>
-      );
+          <PanelCell key={index} {...props}>
+            {children}
+          </PanelCell>
+        );
     });
   };
 

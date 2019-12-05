@@ -14,7 +14,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-class FieldMessage extends React.PureComponent<any, any> {
+class FieldMessage extends React.PureComponent<PropTypes.InferProps<typeof FieldMessage.propTypes>, any> {
   static propTypes = {
     children: PropTypes.string,
     isError: PropTypes.bool,

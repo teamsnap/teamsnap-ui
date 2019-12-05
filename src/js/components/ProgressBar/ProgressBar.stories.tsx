@@ -13,7 +13,7 @@ const sizeOptions = {
   xlarge: "xlarge"
 };
 
-stories.add("Default", () => <ProgressBar isInline progress={33} />);
+stories.add("Default", () => <ProgressBar progress={33} />);
 
 stories.add(
   "Vertical Bars",
@@ -70,13 +70,13 @@ stories.add(
     return (
       <div>
         <h4>Neutral</h4>
-        <ProgressBar isInline progress={33} color="neutral" size={size} />
+        <ProgressBar progress={33} color="neutral" size={size} />
         <br />
         <h4>Negative</h4>
-        <ProgressBar isInline progress={66} color="negative" size={size} />
+        <ProgressBar progress={66} color="negative" size={size} />
         <br />
         <h4>Default Color</h4>
-        <ProgressBar isInline progress={100} size={size} />
+        <ProgressBar progress={100} size={size} />
         <br />
       </div>
     );

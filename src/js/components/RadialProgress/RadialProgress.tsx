@@ -9,7 +9,7 @@ interface Circle {
   className?: string;
 }
 
-class RadialProgress extends React.PureComponent<any, any> {
+class RadialProgress extends React.PureComponent<PropTypes.InferProps<typeof RadialProgress.propTypes>, any> {
   static propTypes = {
     progress: PropTypes.number,
     size: PropTypes.string,

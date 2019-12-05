@@ -16,7 +16,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-class PanelHeader extends React.PureComponent<any, any> {
+class PanelHeader extends React.PureComponent<PropTypes.InferProps<typeof PanelHeader.propTypes>, any> {
   static propTypes = {
     children: PropTypes.node,
     title: PropTypes.string,
@@ -25,7 +25,7 @@ class PanelHeader extends React.PureComponent<any, any> {
     style: PropTypes.shape({}),
     headerImage: PropTypes.shape({
       Source: PropTypes.string,
-      PlaceHolder: PropTypes.string
+      Placeholder: PropTypes.string
     }),
     otherProps: PropTypes.shape({})
   };

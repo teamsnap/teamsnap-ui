@@ -7,7 +7,6 @@
  *
  * @example
  * <ProgressBar
- *   isInline
  *   title='Percentage Paid'
  *   type='negative'
  *   size='small'
@@ -19,7 +18,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-class ProgressBar extends React.PureComponent<any, any> {
+class ProgressBar extends React.PureComponent<PropTypes.InferProps<typeof ProgressBar.propTypes>, any> {
   static propTypes = {
     progress: PropTypes.number,
     size: PropTypes.string,
