@@ -17,7 +17,7 @@ import * as PropTypes from "prop-types";
 import { Icon } from "../Icon";
 import { getClassName } from "../../utils/helpers";
 
-class FieldGroup extends React.PureComponent<any, any> {
+class FieldGroup extends React.PureComponent<PropTypes.InferProps<typeof FieldGroup.propTypes>, any> {
   static propTypes = {
     children: PropTypes.node.isRequired,
     status: PropTypes.oneOf([null, "success", "error"]),

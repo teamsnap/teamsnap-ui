@@ -22,7 +22,7 @@ import { Icon } from "../Icon";
 import { TextLink } from "../TextLink";
 import { getClassName } from "../../utils/helpers";
 
-class StepNav extends React.PureComponent<any, any> {
+class StepNav extends React.PureComponent<PropTypes.InferProps<typeof StepNav.propTypes>, any> {
   static propTypes = {
     steps: PropTypes.arrayOf(
       PropTypes.shape({
@@ -59,7 +59,8 @@ class StepNav extends React.PureComponent<any, any> {
     );
   };
 
-  renderStep = ({ name, icon, isActive, linkProps }) => {
+  renderStep = (step) => {
+    const { name, icon, isActive, linkProps } = step;
     const stepClasses = getClassName(
       "StepNav-step",
       linkProps && "is-enabled",

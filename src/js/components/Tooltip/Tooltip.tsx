@@ -16,7 +16,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-class Tooltip extends React.PureComponent<any, any> {
+class Tooltip extends React.PureComponent<PropTypes.InferProps<typeof Tooltip.propTypes>, any> {
   static propTypes = {
     text: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,

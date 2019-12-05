@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.3.0] - 2019-12-05
+- https://github.com/teamsnap/teamsnap-ui/pull/208
+- https://github.com/teamsnap/teamsnap-ui/pull/206
+
+### Fixed
+- `Fixed` A bug that prevented theme configs for loading properly.
+
+### Added
+- `Added` Support for TypeScript props via `PropTypes.InferProps`
+
 ## [3.2.2] - 2019-12-04
 - https://github.com/teamsnap/teamsnap-ui/pull/204
 

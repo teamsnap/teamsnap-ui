@@ -1,19 +1,21 @@
 import * as React from "react";
+import * as PropTypes from "prop-types";
+
 
 interface State {
   isPopupOpen: boolean;
 }
 
-interface Props {
-  buttonText: string | React.ReactElement;
-  popUpText: string | React.ReactElement;
-  popupStyle?: React.CSSProperties;
-  onAccept: () => void;
-  onCancel?: () => void;
-}
+export default class Popup extends React.Component<PropTypes.InferProps<typeof Popup.propTypes>, State> {
+  static propTypes = {
+    buttonText: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
+    popUpText: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+    popupStyle: PropTypes.object,
+    onAccept: PropTypes.func.isRequired,
+    onCancel: PropTypes.func,
+  };
 
-export default class Popup extends React.Component<Props, State> {
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
     this.state = {
       isPopupOpen: false

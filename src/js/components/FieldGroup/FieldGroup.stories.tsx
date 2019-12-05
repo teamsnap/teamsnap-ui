@@ -28,7 +28,7 @@ stories.add("FieldGroup with Input text child", () => {
   const status = select("status", statusOptions);
 
   return (
-    <FieldGroup name="example" label="Check Me" isInline status={status}>
+    <FieldGroup status={status}>
       <FieldLabel name="example">Text Input</FieldLabel>
       <Input name="storybook" type="text" />
       {status === "error" ? (
@@ -43,7 +43,7 @@ stories.add("FieldGroup with Select child", () => {
   const status = select("status", statusOptions);
 
   return (
-    <FieldGroup name="example" label="Check Me" isInline status={status}>
+    <FieldGroup status={status}>
       <FieldLabel name="example">Select Box</FieldLabel>
       <Select
         name="LineItemFeeCategory"
@@ -71,7 +71,7 @@ stories.add("FieldGroup with Input text and Icon children", () => {
   const iconPosition = select("iconPosition", iconOptions);
 
   return (
-    <FieldGroup name="example" label="Check Me" status={status}>
+    <FieldGroup status={status}>
       <FieldLabel name="example">Location Input</FieldLabel>
       <Input name="storybook" type="text" iconPosition={iconPosition || "left"}>
         <Icon name="location" />
@@ -88,7 +88,7 @@ stories.add("FieldGroup with Checkbox children", () => {
   const status = select("status", statusOptions);
 
   return (
-    <FieldGroup name="example" label="Check Me" status={status}>
+    <FieldGroup status={status}>
       <FieldLabel name="example">Select all that apply:</FieldLabel>
       <Checkbox name="example" label="Check Me" isInline />
       <Checkbox name="example2" label="Check Me 2" isInline />

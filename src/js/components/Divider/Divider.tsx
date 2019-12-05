@@ -14,17 +14,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-interface Props {
-  isIndented: boolean;
-  isSpaced: boolean;
-  isThick: boolean;
-  className: string;
-  mods: string;
-  style: any;
-  otherProps: any;
-}
-
-class Divider extends React.PureComponent<Props, any> {
+class Divider extends React.PureComponent<PropTypes.InferProps<typeof Divider.propTypes>, any> {
   static propTypes = {
     isIndented: PropTypes.bool,
     isSpaced: PropTypes.bool,

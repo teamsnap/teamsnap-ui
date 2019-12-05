@@ -16,7 +16,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-class Input extends React.PureComponent<any, any> {
+class Input extends React.PureComponent<PropTypes.InferProps<typeof Input.propTypes>, any> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string,

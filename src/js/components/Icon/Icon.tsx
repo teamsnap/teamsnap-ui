@@ -18,15 +18,7 @@ import { getClassName } from "../../utils/helpers";
 
 const svgIcon = name => require(`../../icons/${name}`);
 
-interface Props {
-  name: string;
-  className?: string;
-  mods?: string;
-  style?: any;
-  otherProps?: any;
-}
-
-class Icon extends React.PureComponent<Props, any> {
+class Icon extends React.PureComponent<PropTypes.InferProps<typeof Icon.propTypes>, any> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     className: PropTypes.string,

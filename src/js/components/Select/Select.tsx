@@ -26,7 +26,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-class Select extends React.PureComponent<any, any> {
+class Select extends React.PureComponent<PropTypes.InferProps<typeof Select.propTypes>, any> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     options: PropTypes.arrayOf(
@@ -40,7 +40,8 @@ class Select extends React.PureComponent<any, any> {
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
+    disabled: PropTypes.bool
   };
 
   static defaultProps = {
@@ -69,7 +70,8 @@ class Select extends React.PureComponent<any, any> {
       className,
       mods,
       style,
-      otherProps
+      otherProps,
+      disabled
     } = this.props;
 
     return (
@@ -82,6 +84,7 @@ class Select extends React.PureComponent<any, any> {
           className="SelectBox-options"
           name={name}
           id={name}
+          disabled={disabled}
           {...inputProps}
         >
           {options.map(this.renderOptions)}

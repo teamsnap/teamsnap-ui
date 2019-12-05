@@ -19,7 +19,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-class SummaryList extends React.PureComponent<any, any> {
+class SummaryList extends React.PureComponent<PropTypes.InferProps<typeof SummaryList.propTypes>, any> {
   static propTypes = {
     items: PropTypes.arrayOf(
       PropTypes.shape({
@@ -32,7 +32,10 @@ class SummaryList extends React.PureComponent<any, any> {
     ).isRequired,
     heading: PropTypes.string,
     subHeading: PropTypes.string,
-    footer: PropTypes.object,
+    footer: PropTypes.shape({
+      description: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+    }),
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,

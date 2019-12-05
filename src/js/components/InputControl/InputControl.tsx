@@ -14,21 +14,8 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-interface Props {
-  name?: string;
-  type: string;
-  label?: React.ReactNode;
-  group?: string;
-  inputProps?: React.Props<any>;
-  labelProps?: React.Props<any>;
-  isInline?: boolean;
-  className?: string;
-  mods?: string;
-  style?: any;
-  otherProps?: any;
-}
 
-class InputControl extends React.PureComponent<Props, any> {
+class InputControl extends React.PureComponent<PropTypes.InferProps<typeof InputControl.propTypes>, any> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,

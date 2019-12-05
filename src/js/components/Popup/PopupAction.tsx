@@ -1,38 +1,32 @@
 import * as React from "react";
+import * as PropTypes from "prop-types";
+
 
 interface State {
   isPopupOpen: boolean;
   isConfirmOpen: boolean;
-  selectedAction: Action;
+  selectedAction: any;
 }
 
-export interface Action {
-  text: string;
-  callback: () => void;
-  requiresConfirmation?: boolean;
-  confirmationText?: string | React.ReactElement;
-}
+export default class PopUpAction extends React.Component<PropTypes.InferProps<typeof PopUpAction.propTypes>, State> {
+  static propTypes = {
+    text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    actions: PropTypes.arrayOf(PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      callback: PropTypes.func.isRequired,
+      requiresConfirmation: PropTypes.bool,
+      confirmationText: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    })),
+    popupStyle: PropTypes.object,
+    direction: PropTypes.arrayOf(PropTypes.oneOf(["down", "right", "left", "rightHang", "leftHang", "overlay"])),
+  };
 
-interface Props {
-  text: string | React.ReactElement;
-  actions: Array<Action>;
-  popupStyle?: React.CSSProperties;
-  direction?: (
-    | "down"
-    | "right"
-    | "left"
-    | "rightHang"
-    | "leftHang"
-    | "overlay")[];
-}
-
-export default class PopUpAction extends React.Component<Props, State> {
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
     this.state = {
       isPopupOpen: false,
       isConfirmOpen: false,
-      selectedAction: {} as Action
+      selectedAction: {}
     };
   }
 
@@ -58,7 +52,7 @@ export default class PopUpAction extends React.Component<Props, State> {
     });
   }
 
-  handleActionClick(action: Action) {
+  handleActionClick(action) {
     if (action.requiresConfirmation) {
       this.setState({
         ...this.state,
@@ -120,7 +114,7 @@ export default class PopUpAction extends React.Component<Props, State> {
             className={
               "Popup-container Popup-container--overlay" +
               (this.state.selectedAction.requiresConfirmation &&
-              this.state.isConfirmOpen
+                this.state.isConfirmOpen
                 ? " is-open"
                 : "")
             }
@@ -136,7 +130,7 @@ export default class PopUpAction extends React.Component<Props, State> {
                     this.setState({
                       ...this.state,
                       isConfirmOpen: false,
-                      selectedAction: {} as Action
+                      selectedAction: {}
                     })
                   }
                   className="u-spaceRightSm Button Button--negative"

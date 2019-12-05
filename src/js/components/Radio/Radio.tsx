@@ -19,7 +19,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { InputControl } from "../InputControl";
 
-class Radio extends React.PureComponent<any, any> {
+class Radio extends React.PureComponent<PropTypes.InferProps<typeof Radio.propTypes>, any> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.node.isRequired,

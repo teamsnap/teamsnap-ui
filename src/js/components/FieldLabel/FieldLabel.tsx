@@ -14,7 +14,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-class FieldLabel extends React.PureComponent<any, any> {
+class FieldLabel extends React.PureComponent<PropTypes.InferProps<typeof FieldLabel.propTypes>, any> {
   static propTypes = {
     children: PropTypes.node.isRequired,
     name: PropTypes.string,

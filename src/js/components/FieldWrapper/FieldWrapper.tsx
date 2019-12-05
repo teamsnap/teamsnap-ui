@@ -27,7 +27,7 @@ import { Radio } from "../Radio";
 import { Toggle } from "../Toggle";
 import { Select } from "../Select";
 
-class FieldWrapper extends React.PureComponent<any, any> {
+class FieldWrapper extends React.PureComponent<PropTypes.InferProps<typeof FieldWrapper.propTypes>, any> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     field: PropTypes.oneOf([
@@ -38,7 +38,7 @@ class FieldWrapper extends React.PureComponent<any, any> {
       "select",
       "textarea"
     ]).isRequired,
-    fieldProps: PropTypes.object,
+    fieldProps: PropTypes.any,
     status: PropTypes.oneOf([null, "success", "error"]),
     label: PropTypes.node,
     message: PropTypes.string

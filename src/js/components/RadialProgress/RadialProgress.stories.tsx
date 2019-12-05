@@ -13,7 +13,7 @@ const sizeOptions = {
   xlarge: "xlarge"
 };
 
-stories.add("Default", () => <RadialProgress isInline progress={33} />);
+stories.add("Default", () => <RadialProgress progress={33} />);
 
 stories.add(
   "Progress Colors",
@@ -23,13 +23,13 @@ stories.add(
     return (
       <div>
         <h4>Neutral</h4>
-        <RadialProgress isInline progress={33} color="neutral" size={size} />
+        <RadialProgress progress={33} color="neutral" size={size} />
         <br />
         <h4>Negative</h4>
-        <RadialProgress isInline progress={66} color="negative" size={size} />
+        <RadialProgress progress={66} color="negative" size={size} />
         <br />
         <h4>Default Color</h4>
-        <RadialProgress isInline progress={100} size={size} />
+        <RadialProgress progress={100} size={size} />
         <br />
       </div>
     );

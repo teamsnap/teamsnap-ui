@@ -17,13 +17,12 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-class TextLink extends React.PureComponent<any, any> {
+class TextLink extends React.PureComponent<PropTypes.InferProps<typeof TextLink.propTypes>, any> {
   static propTypes = {
     children: PropTypes.node.isRequired,
     routerLink: PropTypes.func,
     location: PropTypes.string,
     onClick: PropTypes.func,
-    disabled: PropTypes.bool,
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
@@ -34,7 +33,6 @@ class TextLink extends React.PureComponent<any, any> {
     routerLink: null,
     location: "",
     onClick: null,
-    disabled: false,
     className: "",
     mods: null,
     style: {},
@@ -47,7 +45,6 @@ class TextLink extends React.PureComponent<any, any> {
       location,
       routerLink,
       onClick,
-      disabled,
       className,
       mods,
       style,
@@ -65,7 +62,6 @@ class TextLink extends React.PureComponent<any, any> {
         className={getClassName(className, mods)}
         style={style}
         onClick={onClick}
-        disabled={disabled}
         {...linkType}
         {...otherProps}
       >
