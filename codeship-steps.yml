@@ -1,0 +1,6 @@
+
+- type: parallel
+steps:
+  - name: build
+    service: teamsnap-ui
+    command: npm run build
