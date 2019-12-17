@@ -19,29 +19,35 @@ export default class Popup extends React.Component<
     onCancel: PropTypes.func
   };
 
+  popupRef: PropTypes.InferType<PropTypes.ReactElementLike>;
+
   constructor(props) {
     super(props);
     this.state = {
       isPopupOpen: false
     };
-  }
-
-  componentDidMount() {
-    document.body.addEventListener("click", this.handleBodyClick.bind(this));
-  }
-
-  componentWillUnmount() {
-    document.body.removeEventListener("click", this.handleBodyClick.bind(this));
+    this.popupRef = React.createRef();
   }
 
   handleBodyClick() {
-    this.setState({
-      isPopupOpen: false
-    });
+    if (this.popupRef && this.popupRef.current)
+      this.setState({
+        isPopupOpen: false
+      });
   }
 
   togglePopup() {
-    let isPopupOpen = this.state.isPopupOpen;
+    const { isPopupOpen } = this.state;
+
+    if (!isPopupOpen) {
+      document.body.addEventListener("click", this.handleBodyClick.bind(this));
+    } else {
+      document.body.removeEventListener(
+        "click",
+        this.handleBodyClick.bind(this)
+      );
+    }
+
     this.setState({
       isPopupOpen: !isPopupOpen
     });
@@ -49,7 +55,7 @@ export default class Popup extends React.Component<
 
   render() {
     return (
-      <div className="Popup">
+      <div className="Popup" ref={this.popupRef}>
         <button
           className="Button Button--small"
           onClick={this.togglePopup.bind(this)}
