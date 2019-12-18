@@ -1,43 +1,53 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 
-
 interface State {
   isPopupOpen: boolean;
 }
 
-export default class Popup extends React.Component<PropTypes.InferProps<typeof Popup.propTypes>, State> {
+export default class Popup extends React.Component<
+  PropTypes.InferProps<typeof Popup.propTypes>,
+  State
+> {
   static propTypes = {
-    buttonText: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
-    popUpText: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+    buttonText: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+      .isRequired,
+    popUpText: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+      .isRequired,
     popupStyle: PropTypes.object,
     onAccept: PropTypes.func.isRequired,
-    onCancel: PropTypes.func,
+    onCancel: PropTypes.func
   };
+
+  popupRef: PropTypes.InferType<PropTypes.ReactElementLike>;
 
   constructor(props) {
     super(props);
     this.state = {
       isPopupOpen: false
     };
-  }
-
-  componentDidMount() {
-    document.body.addEventListener("click", this.handleBodyClick.bind(this));
-  }
-
-  componentWillUnmount() {
-    document.body.removeEventListener("click", this.handleBodyClick.bind(this));
+    this.popupRef = React.createRef();
   }
 
   handleBodyClick() {
-    this.setState({
-      isPopupOpen: false
-    });
+    if (this.popupRef && this.popupRef.current)
+      this.setState({
+        isPopupOpen: false
+      });
   }
 
   togglePopup() {
-    let isPopupOpen = this.state.isPopupOpen;
+    const { isPopupOpen } = this.state;
+
+    if (!isPopupOpen) {
+      document.body.addEventListener("click", this.handleBodyClick.bind(this));
+    } else {
+      document.body.removeEventListener(
+        "click",
+        this.handleBodyClick.bind(this)
+      );
+    }
+
     this.setState({
       isPopupOpen: !isPopupOpen
     });
@@ -45,7 +55,7 @@ export default class Popup extends React.Component<PropTypes.InferProps<typeof P
 
   render() {
     return (
-      <div className="Popup">
+      <div className="Popup" ref={this.popupRef}>
         <button
           className="Button Button--small"
           onClick={this.togglePopup.bind(this)}
