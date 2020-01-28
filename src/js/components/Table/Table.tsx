@@ -39,7 +39,10 @@ interface State {
   sortByReverse?: any;
 }
 
-class Table extends React.PureComponent<PropTypes.InferProps<typeof Table.propTypes>, State> {
+class Table extends React.PureComponent<
+  PropTypes.InferProps<typeof Table.propTypes>,
+  State
+> {
   static defaultProps = {
     columns: [],
     rows: [],
@@ -99,7 +102,11 @@ class Table extends React.PureComponent<PropTypes.InferProps<typeof Table.propTy
     return Table.getTableState(props, sortByColumn, sortByReverse);
   }
 
-  private static getTableState(props, sortName, sortDirection) {
+  private static getTableState(
+    props: PropTypes.InferProps<typeof Table.propTypes>,
+    sortName: string,
+    sortDirection: boolean
+  ) {
     const { rows } = props;
     const items = setUniqueId(rows);
 
@@ -110,18 +117,25 @@ class Table extends React.PureComponent<PropTypes.InferProps<typeof Table.propTy
     return tableState;
   }
 
-  static sortItems = (props, newItems, sortByColumn, sortByReverse) => {
+  static sortItems = (
+    props: PropTypes.InferProps<typeof Table.propTypes>,
+    newItems: any[],
+    sortByColumn: string,
+    sortByReverse: boolean
+  ) => {
     const { columns } = props;
 
-    const { name, sortType, sortFn } = columns.find(
-      c => c.name === sortByColumn
-    );
-    const items = sortBy(newItems, {
-      name,
-      sortType,
-      sortFn,
-      isReverse: sortByReverse
-    });
+    const sortColumn = columns.find(c => c.name === sortByColumn);
+    let items = newItems;
+    if (sortColumn) {
+      const { name, sortType, sortFn } = sortColumn;
+      items = sortBy(newItems, {
+        name,
+        sortType,
+        sortFn,
+        isReverse: sortByReverse
+      });
+    }
 
     return { items, sortByColumn, sortByReverse };
   };

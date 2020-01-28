@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.3.1] - 2020-01-28
+- https://github.com/teamsnap/teamsnap-ui/pull/257
+
+### Fixed
+- `Fixed` Providing nonexistent default sort columns caused table component to fail to render (and throw exceptions)
+
 ## [3.3.0] - 2019-12-05
 - https://github.com/teamsnap/teamsnap-ui/pull/208
 - https://github.com/teamsnap/teamsnap-ui/pull/206
