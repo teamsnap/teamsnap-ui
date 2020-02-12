@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.3.2] - 2020-02-12
+- https://github.com/teamsnap/teamsnap-ui/pull/261
+- https://github.com/teamsnap/teamsnap-ui/pull/260
+
+### Fixed
+- Updated gulp config to stop CSS Nano from altering z-index values in the compile
+
+### Added
+- New icons
+
 ## [3.3.1] - 2020-01-28
 - https://github.com/teamsnap/teamsnap-ui/pull/257
 
