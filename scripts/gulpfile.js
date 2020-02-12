@@ -16,7 +16,7 @@ function buildCSS(config) {
   return gulp.src(config.src)
     .pipe(sass())
     .pipe(autoprefixer('last 2 versions'))
-    .pipe(cssnano())
+    .pipe(cssnano({zindex: false}))
     .pipe(gulp.dest(config.dest))
 }
 
