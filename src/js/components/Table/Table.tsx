@@ -74,6 +74,7 @@ class Table extends React.PureComponent<
     ),
     rows: PropTypes.arrayOf(PropTypes.object),
     defaultSort: PropTypes.string,
+    externalSortingFunction: PropTypes.func,
     isStriped: PropTypes.bool,
     className: PropTypes.string,
     mods: PropTypes.string,
@@ -147,6 +148,13 @@ class Table extends React.PureComponent<
 
     const sortDirection =
       sortName === this.state.sortByColumn ? !this.state.sortByReverse : false;
+
+    // If an function is provided here, we let the parent component figure out the sorting
+    // This is valuable when we sort beyond the data thats currently in the table
+    // IE: We keep data on the server and want to sort against that or are supporting pagination.
+    if (this.props.externalSortingFunction != null) {
+      this.props.externalSortingFunction(sortName, sortDirection);
+    }
     const tableState = Table.sortItems(
       this.props,
       items,

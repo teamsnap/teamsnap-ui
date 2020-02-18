@@ -9,7 +9,8 @@ interface Props {
   loadData: (
     page: number,
     itemsPerPage: number,
-    sortBy?: string
+    sortBy?: string,
+    sortAsc?: boolean
   ) => Promise<any[]>;
   columns: {
     name: string;
@@ -37,15 +38,22 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
     [currentPage, setCurrentPage]
   ] = usePagination(defaultItemsPerPage || 10, defaultPage || 1);
   const [dataSet, setDataSet] = React.useState([]);
+  const [sortName, setSortName] = React.useState("");
+  const [sortAscending, setSortAscending] = React.useState(false);
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const data = await loadData(currentPage, itemsPerPage);
+      const data = await loadData(
+        currentPage,
+        itemsPerPage,
+        sortName,
+        sortAscending
+      );
       setDataSet(data);
     };
 
     fetchData();
-  }, [itemsPerPage, currentPage]);
+  }, [itemsPerPage, currentPage, sortName, sortAscending]);
 
   const rows = dataSet.map(mapDataToRow);
 
@@ -75,7 +83,14 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
         </div>
       </div>
       <div className="Grid-cell u-spaceTopSm">
-        <Table columns={columns} rows={rows} />
+        <Table
+          columns={columns}
+          rows={rows}
+          externalSortingFunction={(name, ascending) => {
+            setSortName(name);
+            setSortAscending(ascending);
+          }}
+        />
       </div>
     </div>
   );
