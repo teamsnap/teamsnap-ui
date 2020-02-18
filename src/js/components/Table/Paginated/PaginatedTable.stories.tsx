@@ -3,6 +3,9 @@ import { storiesOf } from "@storybook/react";
 import PaginatedTable from "./PaginatedTable";
 
 const stories = storiesOf("PaginatedTable", module);
+/**
+ * Columns to configure the table against.
+ */
 const columns = [
   { name: "name", label: "Member Name", isSortable: true },
   { name: "gender", label: "Gender", isSortable: true },
@@ -10,6 +13,9 @@ const columns = [
   { name: "programs", label: "Active Programs", isSortable: true }
 ];
 
+/**
+ * This mock promise data will likely be replaced with an HTTP request in real world applications.
+ */
 const data = Promise.resolve<any[]>([
   {
     name: "Brad",
@@ -75,10 +81,24 @@ const data = Promise.resolve<any[]>([
   }
 ]);
 
-function loadData(page, itemsPerPage, sortBy) {
+/**
+ * This function is where all of your server calls should occur. Commonly likely just make a
+ * server call and return the list of items. However, this is also a good place where you can
+ * inspect the request and determine how many items the server has for this search.
+ * @param page  - the table's current page
+ * @param itemsPerPage - the table's current number of items per page
+ * @param sortBy - the key that the table is sorting by
+ * @param isAscending boolean - true if ascending, false if not.
+ */
+function loadData(page, itemsPerPage, sortBy, isAscending) {
   return data.then(items => [items[page - 1]]);
 }
 
+/**
+ * this function is defined to map a single data item into a single row item.
+ * It is passed in to the paginated table below.
+ * @param item the data item to be mapped to row data
+ */
 function mapData(item) {
   return {
     id: item.name,
