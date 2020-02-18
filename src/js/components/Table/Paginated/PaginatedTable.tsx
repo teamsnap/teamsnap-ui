@@ -2,6 +2,8 @@ import * as React from "react";
 import { Table } from "../../Table";
 import { usePagination } from "./helpers";
 import PaginationButtons from "./PaginationButtons";
+import PaginationCurrentSubsetDisplay from "./PaginationCurrentSubsetDisplay";
+import PaginationSelect from "./PaginationSelect";
 
 interface Props {
   loadData: (
@@ -50,18 +52,26 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   return (
     <div className="Grid">
       <div className="Grid Grid-cell Grid--fit Grid--withGutter">
-        <div
-          className="Grid-cell"
-          style={{ display: "flex", justifyContent: "end" }}
-        >
-          <p className="u-pad">
-            <PaginationButtons
-              totalItems={totalItems}
+        <div className="Grid-cell u-sizeFit u-flex u-flexJustifyEnd">
+          <div className="u-spaceAuto u-spaceRightSm">
+            <PaginationCurrentSubsetDisplay
               itemsPerPage={itemsPerPage}
               currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
+              totalItems={totalItems}
             />
-          </p>
+          </div>
+          <PaginationButtons
+            totalItems={totalItems}
+            itemsPerPage={itemsPerPage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+          <div className="u-spaceLeftSm">
+            <PaginationSelect
+              options={[10, 25, 50]}
+              setItemsPerPage={setItemsPerPage}
+            />
+          </div>
         </div>
       </div>
       <div className="Grid-cell u-spaceTopSm">

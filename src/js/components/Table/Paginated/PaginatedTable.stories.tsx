@@ -32,15 +32,51 @@ const data = Promise.resolve<any[]>([
       { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
       { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" }
     ]
+  },
+  {
+    name: "Fred",
+    gender: "m",
+    age: 56,
+    position: "Coach",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" }
+    ]
+  },
+  {
+    name: "Bobby",
+    gender: "m",
+    age: 56,
+    position: "Coach",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" }
+    ]
+  },
+  {
+    name: "Christie",
+    gender: "f",
+    age: 56,
+    position: "Coach",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" }
+    ]
+  },
+  {
+    name: "Jenna",
+    gender: "f",
+    age: 56,
+    position: "Coach",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" }
+    ]
   }
 ]);
 
 function loadData(page, itemsPerPage, sortBy) {
-  if (page == 1) {
-    return data.then(items => [items[0]]);
-  } else {
-    return data.then(items => [items[1]]);
-  }
+  return data.then(items => [items[page - 1]]);
 }
 
 function mapData(item) {
@@ -64,6 +100,6 @@ stories.add("Default", () => (
     mapDataToRow={mapData}
     loadData={loadData}
     defaultItemsPerPage={1}
-    totalItems={2} // you'll likely need to calculate this in your component by inspecting the http response.
+    totalItems={6} // you'll likely need to calculate this in your component by inspecting the http response.
   />
 ));

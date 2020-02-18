@@ -21,61 +21,65 @@
 //
 
 $spaces: (
-  'None': 0,
-  'Xs': $su-xsmall,
-  'Sm': $su-small,
-  'Md': $su-medium,
-  'Lg': $su-large,
-  'Xl': $su-xlarge,
-  'Xxl': $su-xxlarge
+  "None": 0,
+  "Xs": $su-xsmall,
+  "Sm": $su-small,
+  "Md": $su-medium,
+  "Lg": $su-large,
+  "Xl": $su-xlarge,
+  "Xxl": $su-xxlarge
 );
 
 @each $name, $value in $spaces {
   .u-space#{$name},
   .u-spaceTop#{$name},
   .u-spaceEnds#{$name} {
-   margin-top: $value !important;
+    margin-top: $value !important;
   }
   .u-space#{$name},
   .u-spaceBottom#{$name},
   .u-spaceEnds#{$name} {
-   margin-bottom: $value !important;
+    margin-bottom: $value !important;
   }
   .u-space#{$name},
   .u-spaceRight#{$name},
   .u-spaceSides#{$name} {
-   margin-right: $value !important;
+    margin-right: $value !important;
   }
   .u-space#{$name},
   .u-spaceLeft#{$name},
   .u-spaceSides#{$name} {
-   margin-left: $value !important;
+    margin-left: $value !important;
   }
   .u-pad#{$name},
   .u-padTop#{$name},
   .u-padEnds#{$name} {
-   padding-top: $value !important;
+    padding-top: $value !important;
   }
   .u-pad#{$name},
   .u-padBottom#{$name},
   .u-padEnds#{$name} {
-   padding-bottom: $value !important;
+    padding-bottom: $value !important;
   }
   .u-pad#{$name},
   .u-padRight#{$name},
   .u-padSides#{$name} {
-   padding-right: $value !important;
+    padding-right: $value !important;
   }
   .u-pad#{$name},
   .u-padLeft#{$name},
   .u-padSides#{$name} {
-   padding-left: $value !important;
+    padding-left: $value !important;
   }
 }
 
 .u-spaceSidesAuto {
   margin-right: auto !important;
   margin-left: auto !important;
+}
+
+.u-spaceAuto {
+  margin: auto;
 }
 
 // * Responsive utilities
@@ -87,42 +91,42 @@ $spaces: (
         .u-#{$bp-name}-space#{$name},
         .u-#{$bp-name}-spaceTop#{$name},
         .u-#{$bp-name}-spaceEnds#{$name} {
-         margin-top: $value !important;
+          margin-top: $value !important;
         }
         .u-#{$bp-name}-space#{$name},
         .u-#{$bp-name}-spaceBottom#{$name},
         .u-#{$bp-name}-spaceEnds#{$name} {
-         margin-bottom: $value !important;
+          margin-bottom: $value !important;
         }
         .u-#{$bp-name}-space#{$name},
         .u-#{$bp-name}-spaceRight#{$name},
         .u-#{$bp-name}-spaceSides#{$name} {
-         margin-right: $value !important;
+          margin-right: $value !important;
         }
         .u-#{$bp-name}-space#{$name},
         .u-#{$bp-name}-spaceLeft#{$name},
         .u-#{$bp-name}-spaceSides#{$name} {
-         margin-left: $value !important;
+          margin-left: $value !important;
         }
         .u-#{$bp-name}-pad#{$name},
         .u-#{$bp-name}-padTop#{$name},
         .u-#{$bp-name}-padEnds#{$name} {
-         padding-top: $value !important;
+          padding-top: $value !important;
         }
         .u-#{$bp-name}-pad#{$name},
         .u-#{$bp-name}-padBottom#{$name},
         .u-#{$bp-name}-padEnds#{$name} {
-         padding-bottom: $value !important;
+          padding-bottom: $value !important;
         }
         .u-#{$bp-name}-pad#{$name},
         .u-#{$bp-name}-padRight#{$name},
         .u-#{$bp-name}-padSides#{$name} {
-         padding-right: $value !important;
+          padding-right: $value !important;
         }
         .u-#{$bp-name}-pad#{$name},
         .u-#{$bp-name}-padLeft#{$name},
         .u-#{$bp-name}-padSides#{$name} {
-         padding-left: $value !important;
+          padding-left: $value !important;
         }
       }
 
