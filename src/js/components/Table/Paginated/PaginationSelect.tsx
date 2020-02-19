@@ -7,7 +7,7 @@ const propTypes = {
   setItemsPerPage: PropTypes.func.isRequired
 };
 
-const PaginationButtons: React.FunctionComponent<PropTypes.InferProps<
+const PaginationSelect: React.FunctionComponent<PropTypes.InferProps<
   typeof propTypes
 >> = ({ setItemsPerPage, options }) => {
   const selectOptions = options.map(num => ({
@@ -28,6 +28,6 @@ const PaginationButtons: React.FunctionComponent<PropTypes.InferProps<
   );
 };
 
-PaginationButtons.propTypes = propTypes;
+PaginationSelect.propTypes = propTypes;
 
-export default PaginationButtons;
+export default PaginationSelect;
