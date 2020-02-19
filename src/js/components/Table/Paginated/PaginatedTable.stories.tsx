@@ -78,6 +78,16 @@ const data = Promise.resolve<any[]>([
       { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
       { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" }
     ]
+  },
+  {
+    name: "Stacy",
+    gender: "f",
+    age: 56,
+    position: "Coach",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" }
+    ]
   }
 ]);
 
@@ -120,6 +130,6 @@ stories.add("Default", () => (
     mapDataToRow={mapData}
     loadData={loadData}
     defaultItemsPerPage={1}
-    totalItems={6} // you'll likely need to calculate this in your component by inspecting the http response.
+    totalItems={7} // you'll likely need to calculate this in your component by inspecting the http response.
   />
 ));
