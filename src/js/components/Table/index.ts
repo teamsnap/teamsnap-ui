@@ -1,2 +1,3 @@
 import Table from "./Table";
-export { Table };
+import { PaginatedTable } from "./Paginated";
+export { Table, PaginatedTable };
