@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.4.1] - 2020-02-20
+- https://github.com/teamsnap/teamsnap-ui/pull/265
+
+### Fixed
+- `Fixed` the function definition for paginated table's mapDataToRow callback
+
 ## [3.4.0] - 2020-02-20
 - https://github.com/teamsnap/teamsnap-ui/pull/263
 
