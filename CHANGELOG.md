@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.4.0] - 2020-02-20
+- https://github.com/teamsnap/teamsnap-ui/pull/263
+
+### Added
+- `Added` a component for an opinionated pagination-based table
+
 ## [3.3.2] - 2020-02-12
 - https://github.com/teamsnap/teamsnap-ui/pull/261
 - https://github.com/teamsnap/teamsnap-ui/pull/260
