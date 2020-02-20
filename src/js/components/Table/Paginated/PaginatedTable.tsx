@@ -19,7 +19,7 @@ interface Props {
     align?: string;
     mods?: string;
   }[];
-  mapDataToRow: (item: any) => { id: any };
+  mapDataToRow: (item: any, index: number) => { id: any };
   defaultPage?: number;
   defaultItemsPerPage?: number;
   totalItems: number;
