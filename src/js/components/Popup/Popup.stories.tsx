@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { select } from "@storybook/addon-knobs/react";
 import PopupAction from "./PopupAction";
 import PopupConfirm from "./PopupConfirm";
+import PopUpWrapper from "./PopupWrapper";
 
 const stories = storiesOf("Popup", module);
 
@@ -51,5 +52,17 @@ stories.add("PopupConfirm", () => {
       buttonText="Perform the Culture Club!"
       popUpText={popupText}
     />
+  );
+});
+
+stories.add("PopUpWrapper", () => {
+  return (
+    <PopUpWrapper
+      actions={actions}
+      direction={["down", "left"]}
+      popupStyle={{ width: "150px" }}
+    >
+      <h1>Pill 1!</h1>
+    </PopUpWrapper>
   );
 });
