@@ -14,6 +14,8 @@
     "build:css": "node_modules/.bin/gulp build --gulpfile ./scripts/gulpfile.js",
     "build:icons": "NODE_ENV=production babel-node ./scripts/buildIcons.js",
     "build:js": "tsc",
+    "format:js": "prettier --parser typescript --write src/js/**/*.{ts,tsx}",
+    "format:check": "prettier --parser typescript --check src/js/**/*.{ts,tsx}",
     "deploy": "npm run build:css",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook --quiet"
@@ -72,6 +74,7 @@
     "gulp-sass": "^4.0.1",
     "gulp-util": "^3.0.8",
     "node-sass": "^4.12.0",
+    "prettier": "^1.19.1",
     "prop-types": "^15.6.1",
     "react": "^16.9.0",
     "react-docgen-typescript-loader": "^3.1.0",
