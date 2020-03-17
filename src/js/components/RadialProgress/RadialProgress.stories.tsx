@@ -28,6 +28,9 @@ stories.add(
         <h4>Negative</h4>
         <RadialProgress progress={66} color="negative" size={size} />
         <br />
+        <h4>Highlight</h4>
+        <RadialProgress progress={66} color="highlight" size={size} />
+        <br />
         <h4>Default Color</h4>
         <RadialProgress progress={100} size={size} />
         <br />
