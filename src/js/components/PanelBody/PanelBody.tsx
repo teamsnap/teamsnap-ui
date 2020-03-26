@@ -16,11 +16,15 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-class PanelBody extends React.PureComponent<PropTypes.InferProps<typeof PanelBody.propTypes>, any> {
+class PanelBody extends React.PureComponent<
+  PropTypes.InferProps<typeof PanelBody.propTypes>,
+  any
+> {
   static propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
     mods: PropTypes.string,
+    role: PropTypes.string,
     style: PropTypes.shape({}),
     otherProps: PropTypes.shape({})
   };
@@ -33,11 +37,12 @@ class PanelBody extends React.PureComponent<PropTypes.InferProps<typeof PanelBod
   };
 
   render() {
-    const { children, className, mods, style, otherProps } = this.props;
+    const { children, className, mods, role, style, otherProps } = this.props;
 
     return (
       <div
         className={getClassName(className, mods)}
+        role={role}
         style={style}
         {...otherProps}
       >

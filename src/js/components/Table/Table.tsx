@@ -203,7 +203,7 @@ class Table extends React.PureComponent<
     );
   };
 
-  renderPanelCell = (children, column) => {
+  renderPanelCell = (role, children, column) => {
     const cellMods = getClassName(
       column.mods,
       `u-text${capitalize(column.align || "Left")}`
@@ -213,6 +213,7 @@ class Table extends React.PureComponent<
       <PanelCell
         key={column.key}
         mods={cellMods}
+        role={role}
         style={column.style}
         isTitle={column.isTitle}
         {...column.otherProps}
@@ -226,7 +227,7 @@ class Table extends React.PureComponent<
     const data = row[column.name];
     const children = column.render ? column.render(column, row) : data;
 
-    return this.renderPanelCell(children, {
+    return this.renderPanelCell("cell", children, {
       key: `${row.id}-${column.name}`,
       itTitle: false,
       ...column
@@ -238,7 +239,7 @@ class Table extends React.PureComponent<
       ? this.renderSortLink(column)
       : this.renderSortLabel(column.label);
 
-    return this.renderPanelCell(children, {
+    return this.renderPanelCell("columnheader", children, {
       key: column.name,
       isTitle: true,
       ...column
@@ -295,7 +296,7 @@ class Table extends React.PureComponent<
         style={style}
         {...otherProps}
       >
-        <PanelBody>
+        <PanelBody role="table">
           <PanelRow isWithCells>{this.renderTableColumns()}</PanelRow>
           {maxTableHeight && (
             <div style={{ height: maxTableHeight, overflow: "scroll" }}>

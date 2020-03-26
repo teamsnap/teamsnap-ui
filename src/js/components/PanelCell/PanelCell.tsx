@@ -16,15 +16,19 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
 
-class PanelCell extends React.PureComponent<PropTypes.InferProps<typeof PanelCell.propTypes>, any> {
+class PanelCell extends React.PureComponent<
+  PropTypes.InferProps<typeof PanelCell.propTypes>,
+  any
+> {
   static propTypes = {
     children: PropTypes.node,
     isTitle: PropTypes.bool,
     isHeader: PropTypes.bool,
     className: PropTypes.string,
     mods: PropTypes.string,
+    role: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object,
+    otherProps: PropTypes.object
   };
 
   static defaultProps = {
@@ -33,6 +37,7 @@ class PanelCell extends React.PureComponent<PropTypes.InferProps<typeof PanelCel
     isHeader: false,
     className: "Panel-cell",
     mods: null,
+    role: "cell",
     style: {},
     otherProps: {}
   };
@@ -45,6 +50,7 @@ class PanelCell extends React.PureComponent<PropTypes.InferProps<typeof PanelCel
       isTitle,
       className,
       mods,
+      role,
       style,
       otherProps
     } = this.props;
@@ -56,7 +62,7 @@ class PanelCell extends React.PureComponent<PropTypes.InferProps<typeof PanelCel
     );
 
     return (
-      <div className={cellClasses} style={style} {...otherProps}>
+      <div className={cellClasses} role={role} style={style} {...otherProps}>
         {isTitle ? this.renderTitle() : children}
       </div>
     );
