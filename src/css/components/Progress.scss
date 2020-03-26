@@ -292,6 +292,14 @@
 
 }
 
+.ProgressBar--highlight {
+
+  .ProgressBar-status {
+    background: $cu-highlight;
+  }
+
+}
+
 .RadialProgress--neutral {
 
   .RadialProgress-status {
@@ -304,6 +312,14 @@
 
   .RadialProgress-status {
     border-color: $cu-negative;
+  }
+
+}
+
+.RadialProgress--highlight {
+
+  .RadialProgress-status {
+    border-color: $cu-highlight;
   }
 
 }

@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.15.0] - 2020-03-17
+- https://github.com/teamsnap/teamsnap-ui/pull/269
+- `Added` orange as a color for the progress bar
+
 ## [3.4.1] - 2020-02-20
 - https://github.com/teamsnap/teamsnap-ui/pull/265
 
