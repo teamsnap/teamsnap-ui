@@ -54,7 +54,7 @@ class Table extends React.PureComponent<
     otherProps: {},
     placeHolder: "Nothing to see here",
     maxTableHeight: null,
-    isLoading: false
+    isLoading: false,
   };
 
   static propTypes = {
@@ -69,7 +69,7 @@ class Table extends React.PureComponent<
         align: PropTypes.oneOf(["right", "left", "center"]),
         mods: PropTypes.string,
         style: PropTypes.object,
-        otherProps: PropTypes.object
+        otherProps: PropTypes.object,
       })
     ),
     rows: PropTypes.arrayOf(PropTypes.object),
@@ -82,7 +82,7 @@ class Table extends React.PureComponent<
     otherProps: PropTypes.object,
     maxTableHeight: PropTypes.string,
     isLoading: PropTypes.bool,
-    placeHolder: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+    placeHolder: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   };
 
   constructor(props) {
@@ -126,7 +126,7 @@ class Table extends React.PureComponent<
   ) => {
     const { columns } = props;
 
-    const sortColumn = columns.find(c => c.name === sortByColumn);
+    const sortColumn = columns.find((c) => c.name === sortByColumn);
     let items = newItems;
     if (sortColumn) {
       const { name, sortType, sortFn } = sortColumn;
@@ -134,14 +134,14 @@ class Table extends React.PureComponent<
         name,
         sortType,
         sortFn,
-        isReverse: sortByReverse
+        isReverse: sortByReverse,
       });
     }
 
     return { items, sortByColumn, sortByReverse };
   };
 
-  handleSortClick = e => {
+  handleSortClick = (e) => {
     e.preventDefault();
     const { items } = this.state;
     const sortName = e.currentTarget.getAttribute("href");
@@ -154,22 +154,25 @@ class Table extends React.PureComponent<
     // IE: We keep data on the server and want to sort against that or are supporting pagination.
     if (this.props.externalSortingFunction != null) {
       this.props.externalSortingFunction(sortName, sortDirection);
-    }
-    const tableState = Table.sortItems(
-      this.props,
-      items,
-      sortName,
-      sortDirection
-    );
+      const state = Table.getTableState(this.props, sortName, sortDirection);
+      this.setState(state);
+    } else {
+      const tableState = Table.sortItems(
+        this.props,
+        items,
+        sortName,
+        sortDirection
+      );
 
-    this.setState({ ...tableState });
+      this.setState({ ...tableState });
+    }
   };
 
-  renderSortLabel = label => (
+  renderSortLabel = (label) => (
     <span className="u-colorInfo u-textNoWrap">{label}</span>
   );
 
-  renderSortLink = column => {
+  renderSortLink = (column) => {
     const { items, sortByColumn, sortByReverse } = this.state;
     const activeColumn = items.length && column.name === sortByColumn;
 
@@ -230,11 +233,11 @@ class Table extends React.PureComponent<
     return this.renderPanelCell("cell", children, {
       key: `${row.id}-${column.name}`,
       itTitle: false,
-      ...column
+      ...column,
     });
   };
 
-  renderHeaderColumn = column => {
+  renderHeaderColumn = (column) => {
     const children = column.isSortable
       ? this.renderSortLink(column)
       : this.renderSortLabel(column.label);
@@ -242,16 +245,16 @@ class Table extends React.PureComponent<
     return this.renderPanelCell("columnheader", children, {
       key: column.name,
       isTitle: true,
-      ...column
+      ...column,
     });
   };
 
-  renderRow = row => {
+  renderRow = (row) => {
     const { columns } = this.props;
 
     return (
       <PanelRow key={row.id} isWithCells>
-        {columns.map(column => this.renderColumn(column, row))}
+        {columns.map((column) => this.renderColumn(column, row))}
       </PanelRow>
     );
   };
@@ -285,7 +288,7 @@ class Table extends React.PureComponent<
       otherProps,
       maxTableHeight,
       placeHolder,
-      isLoading
+      isLoading,
     } = this.props;
 
     return (
