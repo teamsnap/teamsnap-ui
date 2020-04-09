@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.6.1] - 2020-04-09
+- https://github.com/teamsnap/teamsnap-ui/pull/271
+- `Fixed` bug where table would still try to sort even if external sort was provided
+
 ## [3.6.0] - 2020-03-26
 - https://github.com/teamsnap/teamsnap-ui/pull/267
 - `Added` aria roles for table
