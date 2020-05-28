@@ -99,6 +99,17 @@
   }
 }
 
+.Feedback--disabled {
+  border-color: scaleColor($color: $ts-grey, 4);
+  .Feedback-icon {
+    background: scaleColor($color: $ts-grey, 4);
+    color: $cu-primary;
+  }
+  .Feedback-dismiss {
+    color: $cu-highlight--dark;
+  }
+}
+
 // * 3. Type Modifiers
 
 .Feedback--dismissible {
