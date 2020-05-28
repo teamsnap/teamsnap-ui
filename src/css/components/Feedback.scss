@@ -100,9 +100,9 @@
 }
 
 .Feedback--disabled {
-  border-color: scaleColor($color: $ts-grey, 4);
+  border-color: scaleColor($ts-grey, 4);
   .Feedback-icon {
-    background: scaleColor($color: $ts-grey, 4);
+    background: scaleColor($ts-grey, 4);
     color: $cu-primary;
   }
   .Feedback-dismiss {
