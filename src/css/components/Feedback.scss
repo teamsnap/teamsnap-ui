@@ -106,7 +106,7 @@
     color: $cu-primary;
   }
   .Feedback-dismiss {
-    color: $cu-highlight--dark;
+    color: scaleColor($ts-grey, 4);
   }
 }
 
