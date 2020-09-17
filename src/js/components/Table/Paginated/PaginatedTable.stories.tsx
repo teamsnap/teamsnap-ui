@@ -136,7 +136,7 @@ stories.add("Default", () => (
     columns={columns}
     mapDataToRow={mapData}
     loadData={loadData}
-    defaultItemsPerPage={3}
+    defaultItemsPerPage={2}
     totalItems={7} // you'll likely need to calculate this in your component by inspecting the http response.
   />
 ));
