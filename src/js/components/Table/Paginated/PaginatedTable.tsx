@@ -31,15 +31,26 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   mapDataToRow,
   defaultPage,
   defaultItemsPerPage,
-  totalItems
+  totalItems,
 }) => {
   const [
     [itemsPerPage, setItemsPerPage],
-    [currentPage, setCurrentPage]
+    [currentPage, setCurrentPage],
   ] = usePagination(defaultItemsPerPage || 10, defaultPage || 1);
   const [dataSet, setDataSet] = React.useState([]);
   const [sortName, setSortName] = React.useState("");
   const [sortAscending, setSortAscending] = React.useState(false);
+
+  const defaultPageSizeOptions = [10, 25, 50];
+  const customOptions =
+    defaultPageSizeOptions.indexOf(defaultItemsPerPage) < 0
+      ? [defaultItemsPerPage]
+      : [];
+  const pageSizeOptions = defaultPageSizeOptions
+    .concat(customOptions)
+    .sort((a, b) => {
+      return a - b;
+    });
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -76,7 +87,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
           />
           <div className="u-spaceLeftSm">
             <PaginationSelect
-              options={[10, 25, 50]}
+              options={pageSizeOptions}
               setItemsPerPage={setItemsPerPage}
             />
           </div>

@@ -101,7 +101,15 @@ const data = Promise.resolve<any[]>([
  * @param isAscending boolean - true if ascending, false if not.
  */
 function loadData(page, itemsPerPage, sortBy, isAscending) {
-  return data.then(items => [items[page - 1]]);
+  const startIndex = (itemsPerPage * page) - itemsPerPage
+
+  return data.then(items => {
+
+    const endIndex = Math.min(items.length, startIndex + itemsPerPage)
+    console.log(items)
+    console.log(startIndex, endIndex, items.slice(startIndex, endIndex))
+    return items.slice(startIndex, endIndex);
+  })
 }
 
 /**
@@ -129,7 +137,7 @@ stories.add("Default", () => (
     columns={columns}
     mapDataToRow={mapData}
     loadData={loadData}
-    defaultItemsPerPage={1}
+    defaultItemsPerPage={3}
     totalItems={7} // you'll likely need to calculate this in your component by inspecting the http response.
   />
 ));
