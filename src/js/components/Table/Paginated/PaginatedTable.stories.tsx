@@ -10,7 +10,7 @@ const columns = [
   { name: "name", label: "Member Name", isSortable: true },
   { name: "gender", label: "Gender", isSortable: true },
   { name: "age", label: "Age", isSortable: true },
-  { name: "programs", label: "Active Programs", isSortable: true }
+  { name: "programs", label: "Active Programs", isSortable: true },
 ];
 
 /**
@@ -26,8 +26,8 @@ const data = Promise.resolve<any[]>([
       { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
       { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
       { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" }
-    ]
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
   },
   {
     name: "Dustin",
@@ -36,8 +36,8 @@ const data = Promise.resolve<any[]>([
     position: "Coach",
     activePrograms: [
       { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" }
-    ]
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
   },
   {
     name: "Fred",
@@ -46,8 +46,8 @@ const data = Promise.resolve<any[]>([
     position: "Coach",
     activePrograms: [
       { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" }
-    ]
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
   },
   {
     name: "Bobby",
@@ -56,8 +56,8 @@ const data = Promise.resolve<any[]>([
     position: "Coach",
     activePrograms: [
       { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" }
-    ]
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
   },
   {
     name: "Christie",
@@ -66,8 +66,8 @@ const data = Promise.resolve<any[]>([
     position: "Coach",
     activePrograms: [
       { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" }
-    ]
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
   },
   {
     name: "Jenna",
@@ -76,8 +76,8 @@ const data = Promise.resolve<any[]>([
     position: "Coach",
     activePrograms: [
       { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" }
-    ]
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
   },
   {
     name: "Stacy",
@@ -86,9 +86,9 @@ const data = Promise.resolve<any[]>([
     position: "Coach",
     activePrograms: [
       { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" }
-    ]
-  }
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
 ]);
 
 /**
@@ -101,7 +101,12 @@ const data = Promise.resolve<any[]>([
  * @param isAscending boolean - true if ascending, false if not.
  */
 function loadData(page, itemsPerPage, sortBy, isAscending) {
-  return data.then(items => [items[page - 1]]);
+  const startIndex = itemsPerPage * page - itemsPerPage;
+
+  return data.then((items) => {
+    const endIndex = Math.min(items.length, startIndex + itemsPerPage);
+    return items.slice(startIndex, endIndex);
+  });
 }
 
 /**
@@ -120,7 +125,9 @@ function mapData(item) {
     ),
     gender: item.gender,
     age: `${item.age}`,
-    programs: item.activePrograms.map((p, idx) => <div key={idx}>{p.name}</div>)
+    programs: item.activePrograms.map((p, idx) => (
+      <div key={idx}>{p.name}</div>
+    )),
   };
 }
 
@@ -129,7 +136,7 @@ stories.add("Default", () => (
     columns={columns}
     mapDataToRow={mapData}
     loadData={loadData}
-    defaultItemsPerPage={1}
+    defaultItemsPerPage={2}
     totalItems={7} // you'll likely need to calculate this in your component by inspecting the http response.
   />
 ));

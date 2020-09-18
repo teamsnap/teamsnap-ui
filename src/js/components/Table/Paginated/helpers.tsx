@@ -4,7 +4,7 @@ export const getLastPageIndex = (
   totalItems: number,
   itemsPerPage: number
 ): number => {
-  const index = totalItems / itemsPerPage;
+  const index = Math.ceil(totalItems / itemsPerPage);
   return Math.max(1, index);
 };
 
