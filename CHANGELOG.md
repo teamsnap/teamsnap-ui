@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.6.2] - 2020-09-18
+- https://github.com/teamsnap/teamsnap-ui/pull/282
+- `Fixed` bug where paginated table would get error if number of items not divisible by row count
+- `Fixed` bug where paginated table row selection did not contain the default page size as an option
+
 ## [3.6.1] - 2020-04-09
 - https://github.com/teamsnap/teamsnap-ui/pull/271
 - `Fixed` bug where table would still try to sort even if external sort was provided
