@@ -41,7 +41,7 @@ const PaginationButtons: React.FunctionComponent<PropTypes.InferProps<
         1
       </Button>
       {buttonLength > MAX_MIDDLE_BUTTONS && currentPage > MAX_MIDDLE_BUTTONS ? (
-        <Button className="Button" type="button">
+        <Button className="Button" type="button" isDisabled={true}>
           ...
         </Button>
       ) : null}
@@ -62,7 +62,7 @@ const PaginationButtons: React.FunctionComponent<PropTypes.InferProps<
       })}
       {buttonLength > MAX_MIDDLE_BUTTONS &&
       currentPage + MAX_MIDDLE_BUTTONS <= totalItems ? (
-        <Button className="Button" type="button">
+        <Button className="Button" type="button" isDisabled={true}>
           ...
         </Button>
       ) : null}
