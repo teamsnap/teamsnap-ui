@@ -44,6 +44,11 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   const [sortAscending, setSortAscending] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
+  const setNewItemsPerPage = (newItemsPerPage) => {
+    setItemsPerPage(newItemsPerPage);
+    setCurrentPage(1);
+  }
+
   const defaultPageSizeOptions = [10, 25, 50];
   const customOptions =
     defaultPageSizeOptions.indexOf(defaultItemsPerPage) < 0
@@ -72,7 +77,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   }, [itemsPerPage, currentPage, sortName, sortAscending]);
 
   const rows = dataSet.map(mapDataToRow);
-  console.log("render", isLoading);
+
   return (
     <div className="Grid">
       <div className="Grid Grid-cell Grid--fit Grid--withGutter">
@@ -94,7 +99,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
             <div className="u-spaceLeftSm">
               <PaginationSelect
                 options={pageSizeOptions}
-                setItemsPerPage={setItemsPerPage}
+                setItemsPerPage={setNewItemsPerPage}
                 itemsPerPage={itemsPerPage}
               />
             </div>

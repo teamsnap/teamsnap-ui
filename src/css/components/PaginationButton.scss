@@ -1,0 +1,16 @@
+.PaginateItem {
+  background: #ffffff;
+}
+
+.PaginateItemIsActive {
+  background: #e6e6e6;
+  border-top-width: 2px;
+  border-bottom-width: 1px;
+  pointer-events: none;
+}
+
+.PaginateItemIsDisabled {
+  pointer-events: none;
+  color: #7a7a7a;
+  background: #f7f7f7;
+}

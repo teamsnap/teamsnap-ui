@@ -119,6 +119,76 @@ const data = [
       { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
     ],
   },
+  {
+    name: "Brenda",
+    gender: "f",
+    age: 13,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+  {
+    name: "Nathan",
+    gender: "m",
+    age: 12,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+  {
+    name: "Jimmy",
+    gender: "m",
+    age: 13,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+  {
+    name: "Lester",
+    gender: "m",
+    age: 14,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+  {
+    name: "Justine",
+    gender: "F",
+    age: 13,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+  {
+    name: "Cassie",
+    gender: "f",
+    age: 14,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+  {
+    name: "Jessica",
+    gender: "f",
+    age: 12,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
 ];
 
 /**
@@ -168,7 +238,7 @@ stories.add("Default", () => (
     columns={columns}
     mapDataToRow={mapData}
     loadData={loadData}
-    defaultItemsPerPage={1}
+    defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
   />
 ));

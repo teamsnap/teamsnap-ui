@@ -9,7 +9,7 @@ const propTypes = {
   itemsPerPage: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   setCurrentPage: PropTypes.func.isRequired,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 const PaginationButtons: React.FunctionComponent<PropTypes.InferProps<
@@ -17,71 +17,92 @@ const PaginationButtons: React.FunctionComponent<PropTypes.InferProps<
 >> = ({ totalItems, itemsPerPage, currentPage, setCurrentPage, style }) => {
   const lastPageIndex = getLastPageIndex(totalItems, itemsPerPage);
   const buttonLength = totalItems >= 0 ? lastPageIndex : 0;
-  const MAX_MIDDLE_BUTTONS = 3;
+  const MAX_MIDDLE_BUTTONS = 5;
+  const defaultStartOfMiddleButtons =
+    currentPage - (Math.round(MAX_MIDDLE_BUTTONS / 2) - 1);
+  const startOfMiddleButtons = Math.max(
+    2,
+    Math.min(defaultStartOfMiddleButtons, buttonLength - MAX_MIDDLE_BUTTONS)
+  );
   const buttonMapper = Array(
     buttonLength > MAX_MIDDLE_BUTTONS ? MAX_MIDDLE_BUTTONS : buttonLength
-  ).fill(currentPage - 1);
+  ).fill(startOfMiddleButtons);
+
+  const renderPaginateButton = (
+    key,
+    text,
+    isCurrentPage,
+    isDisabled,
+    pageForClick
+  ) => {
+    let linkClassName = "PaginateItem";
+    let onclick = !isDisabled ? () => setCurrentPage(pageForClick) : null;
+
+    if (isCurrentPage) {
+      linkClassName = "PaginateItemIsActive";
+    } else if (isDisabled) {
+      linkClassName = "PaginateItemIsDisabled";
+    }
+
+    return (
+      <Button
+        key={key}
+        className={`Button ${linkClassName}`}
+        onClick={onclick}
+        type="button"
+      >
+        {text}
+      </Button>
+    );
+  };
+
+  if (buttonLength < 2) return null;
 
   return (
     <ButtonGroup className="ButtonGroup" style={style}>
-      <Button
-        className="Button"
-        isDisabled={currentPage === 1}
-        onClick={() => setCurrentPage(currentPage - 1)}
-        type="button"
-      >
-        Previous
-      </Button>
-      <Button
-        className="Button"
-        isDisabled={1 === currentPage}
-        onClick={() => setCurrentPage(1)}
-        type="button"
-      >
-        1
-      </Button>
-      {buttonLength > MAX_MIDDLE_BUTTONS && currentPage > MAX_MIDDLE_BUTTONS ? (
-        <Button className="Button" type="button" isDisabled={true}>
-          ...
-        </Button>
-      ) : null}
+      {renderPaginateButton(
+        "P",
+        "Previous",
+        false,
+        currentPage === 1,
+        currentPage - 1
+      )}
+      {renderPaginateButton(1, "1", currentPage === 1, currentPage === 1, 1)}
       {buttonMapper.map((page, index) => {
         if (page + index <= 1) return null;
         if (page + index >= buttonLength) return null;
-        return (
-          <Button
-            key={index}
-            className="Button"
-            isDisabled={index + page === currentPage}
-            onClick={() => setCurrentPage(page + index)}
-            type="button"
-          >
-            {index + page}
-          </Button>
+        if (index === 0 && page + index > 2) {
+          return renderPaginateButton("EF", "...", false, true, 0);
+        }
+        if (
+          index === buttonMapper.length - 1 &&
+          page + index < buttonLength - 1
+        ) {
+          return renderPaginateButton("EL", "...", false, true, 0);
+        }
+
+        return renderPaginateButton(
+          index + page,
+          index + page,
+          index + page === currentPage,
+          index + page === currentPage,
+          page + index
         );
       })}
-      {buttonLength > MAX_MIDDLE_BUTTONS &&
-      currentPage + MAX_MIDDLE_BUTTONS <= totalItems ? (
-        <Button className="Button" type="button" isDisabled={true}>
-          ...
-        </Button>
-      ) : null}
-      <Button
-        className="Button"
-        isDisabled={buttonLength === currentPage}
-        onClick={() => setCurrentPage(buttonLength)}
-        type="button"
-      >
-        {buttonLength}
-      </Button>
-      <Button
-        className="Button"
-        isDisabled={currentPage === lastPageIndex || lastPageIndex === 0}
-        onClick={() => setCurrentPage(currentPage + 1)}
-        type="button"
-      >
-        Next
-      </Button>
+      {renderPaginateButton(
+        buttonLength,
+        buttonLength,
+        currentPage === buttonLength,
+        currentPage === buttonLength,
+        buttonLength
+      )}
+      {renderPaginateButton(
+        "N",
+        "Next",
+        false,
+        currentPage === lastPageIndex || lastPageIndex === 0,
+        currentPage + 1
+      )}
     </ButtonGroup>
   );
 };
