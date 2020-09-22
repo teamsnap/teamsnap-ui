@@ -4,15 +4,16 @@ import * as React from "react";
 
 const propTypes = {
   options: PropTypes.arrayOf(PropTypes.number).isRequired,
-  setItemsPerPage: PropTypes.func.isRequired
+  setItemsPerPage: PropTypes.func.isRequired,
+  itemsPerPage: PropTypes.number,
 };
 
 const PaginationSelect: React.FunctionComponent<PropTypes.InferProps<
   typeof propTypes
->> = ({ setItemsPerPage, options }) => {
-  const selectOptions = options.map(num => ({
+>> = ({ setItemsPerPage, options, itemsPerPage }) => {
+  const selectOptions = options.map((num) => ({
     label: `${num} Rows`,
-    value: "" + num
+    value: "" + num,
   }));
   return (
     <Select
@@ -20,9 +21,10 @@ const PaginationSelect: React.FunctionComponent<PropTypes.InferProps<
       style={{ width: "inherit" }} // override this style
       options={selectOptions}
       inputProps={{
-        onChange: event => {
+        onChange: (event) => {
           setItemsPerPage(+event.target.value);
-        }
+        },
+        value: itemsPerPage,
       }}
     />
   );

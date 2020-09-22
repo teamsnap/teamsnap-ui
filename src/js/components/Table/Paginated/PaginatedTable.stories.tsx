@@ -16,7 +16,7 @@ const columns = [
 /**
  * This mock promise data will likely be replaced with an HTTP request in real world applications.
  */
-const data = Promise.resolve<any[]>([
+const data = [
   {
     name: "Brad",
     gender: "m",
@@ -89,7 +89,107 @@ const data = Promise.resolve<any[]>([
       { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
     ],
   },
-]);
+  {
+    name: "Joey",
+    gender: "m",
+    age: 12,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+  {
+    name: "William",
+    gender: "m",
+    age: 13,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+  {
+    name: "Sharron",
+    gender: "f",
+    age: 14,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+  {
+    name: "Brenda",
+    gender: "f",
+    age: 13,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+  {
+    name: "Nathan",
+    gender: "m",
+    age: 12,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+  {
+    name: "Jimmy",
+    gender: "m",
+    age: 13,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+  {
+    name: "Lester",
+    gender: "m",
+    age: 14,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+  {
+    name: "Justine",
+    gender: "F",
+    age: 13,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+  {
+    name: "Cassie",
+    gender: "f",
+    age: 14,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+  {
+    name: "Jessica",
+    gender: "f",
+    age: 12,
+    position: "Player",
+    activePrograms: [
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+    ],
+  },
+];
 
 /**
  * This function is where all of your server calls should occur. Commonly likely just make a
@@ -103,7 +203,9 @@ const data = Promise.resolve<any[]>([
 function loadData(page, itemsPerPage, sortBy, isAscending) {
   const startIndex = itemsPerPage * page - itemsPerPage;
 
-  return data.then((items) => {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(data), 500)
+  }).then((items:any[]) => {
     const endIndex = Math.min(items.length, startIndex + itemsPerPage);
     return items.slice(startIndex, endIndex);
   });
@@ -137,6 +239,6 @@ stories.add("Default", () => (
     mapDataToRow={mapData}
     loadData={loadData}
     defaultItemsPerPage={2}
-    totalItems={7} // you'll likely need to calculate this in your component by inspecting the http response.
+    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
   />
 ));

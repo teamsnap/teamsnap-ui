@@ -23,6 +23,7 @@ interface Props {
   defaultPage?: number;
   defaultItemsPerPage?: number;
   totalItems: number;
+  hideRowsSelect?: boolean;
 }
 
 const PaginatedTable: React.FunctionComponent<Props> = ({
@@ -32,6 +33,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   defaultPage,
   defaultItemsPerPage,
   totalItems,
+  hideRowsSelect,
 }) => {
   const [
     [itemsPerPage, setItemsPerPage],
@@ -40,6 +42,12 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   const [dataSet, setDataSet] = React.useState([]);
   const [sortName, setSortName] = React.useState("");
   const [sortAscending, setSortAscending] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const setNewItemsPerPage = (newItemsPerPage) => {
+    setItemsPerPage(newItemsPerPage);
+    setCurrentPage(1);
+  }
 
   const defaultPageSizeOptions = [10, 25, 50];
   const customOptions =
@@ -61,8 +69,10 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
         sortAscending
       );
       setDataSet(data);
+      setIsLoading(false);
     };
 
+    setIsLoading(true);
     fetchData();
   }, [itemsPerPage, currentPage, sortName, sortAscending]);
 
@@ -85,12 +95,15 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
           />
-          <div className="u-spaceLeftSm">
-            <PaginationSelect
-              options={pageSizeOptions}
-              setItemsPerPage={setItemsPerPage}
-            />
-          </div>
+          {!hideRowsSelect ? (
+            <div className="u-spaceLeftSm">
+              <PaginationSelect
+                options={pageSizeOptions}
+                setItemsPerPage={setNewItemsPerPage}
+                itemsPerPage={itemsPerPage}
+              />
+            </div>
+          ) : null}
         </div>
       </div>
       <div className="Grid-cell u-spaceTopSm">
@@ -101,6 +114,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
             setSortName(name);
             setSortAscending(ascending);
           }}
+          isLoading={isLoading}
         />
       </div>
     </div>
