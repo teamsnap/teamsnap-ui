@@ -198,9 +198,9 @@ const data = [
  * @param page  - the table's current page
  * @param itemsPerPage - the table's current number of items per page
  * @param sortBy - the key that the table is sorting by
- * @param isAscending boolean - true if ascending, false if not.
+ * @param sortAsc boolean - true if ascending, false if not.
  */
-function loadData(page, itemsPerPage, sortBy, isAscending) {
+function loadData({page, itemsPerPage, sortBy, sortAsc}) {
   const startIndex = itemsPerPage * page - itemsPerPage;
 
   return new Promise((resolve) => {
