@@ -68,7 +68,7 @@ class FieldWrapper extends React.PureComponent<PropTypes.InferProps<typeof Field
       return (
         fieldProps.options &&
         fieldProps.options.map(({ label }, i) => (
-          <FieldTag name={name} label={label} key={i} />
+          <FieldTag name={name} label={label} key={i} {...fieldProps} />
         ))
       );
     }

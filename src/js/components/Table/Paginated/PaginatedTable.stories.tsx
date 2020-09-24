@@ -7,10 +7,10 @@ const stories = storiesOf("PaginatedTable", module);
  * Columns to configure the table against.
  */
 const columns = [
-  { name: "name", label: "Member Name", isSortable: true },
-  { name: "gender", label: "Gender", isSortable: true },
-  { name: "age", label: "Age", isSortable: true },
-  { name: "programs", label: "Active Programs", isSortable: true },
+  { name: "name", label: "Member Name", isSortable: true, mods: "u-size1of2" },
+  { name: "gender", label: "Gender", isSortable: true, mods: "u-size1of2"},
+  { name: "age", label: "Age", isSortable: true, mods: "u-size1of2" },
+  { name: "programs", label: "Active Programs", isSortable: true, mods: "u-size1of2" },
 ];
 
 /**
@@ -236,6 +236,18 @@ function mapData(item) {
 stories.add("Default", () => (
   <PaginatedTable
     columns={columns}
+    mapDataToRow={mapData}
+    loadData={loadData}
+    defaultItemsPerPage={2}
+    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
+  />
+));
+
+
+stories.add("Selectable Rows", () => (
+  <PaginatedTable
+    columns={columns}
+    rowsAreSelectable={true}
     mapDataToRow={mapData}
     loadData={loadData}
     defaultItemsPerPage={2}

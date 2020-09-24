@@ -4,17 +4,21 @@ import { usePagination } from "./helpers";
 import PaginationButtons from "./PaginationButtons";
 import PaginationCurrentSubsetDisplay from "./PaginationCurrentSubsetDisplay";
 import PaginationSelect from "./PaginationSelect";
+import { Checkbox } from "../../Checkbox";
 
+interface LoadDataObject {
+  page: number,
+  itemsPerPage: number,
+  sortBy?: string,
+  sortAsc?: boolean
+}
 interface Props {
   loadData: (
-    page: number,
-    itemsPerPage: number,
-    sortBy?: string,
-    sortAsc?: boolean
+    requestedPayload: LoadDataObject
   ) => Promise<any[]>;
   columns: {
     name: string;
-    label: string;
+    label: string | React.ReactElement;
     isSortable?: boolean;
     align?: string;
     mods?: string;
@@ -24,6 +28,7 @@ interface Props {
   defaultItemsPerPage?: number;
   totalItems: number;
   hideRowsSelect?: boolean;
+  rowsAreSelectable?: boolean;
 }
 
 const PaginatedTable: React.FunctionComponent<Props> = ({
@@ -34,6 +39,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   defaultItemsPerPage,
   totalItems,
   hideRowsSelect,
+  rowsAreSelectable = false,
 }) => {
   const [
     [itemsPerPage, setItemsPerPage],
@@ -43,6 +49,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   const [sortName, setSortName] = React.useState("");
   const [sortAscending, setSortAscending] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [selected, setSelected] = React.useState([]);
 
   const setNewItemsPerPage = (newItemsPerPage) => {
     setItemsPerPage(newItemsPerPage);
@@ -63,10 +70,12 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   React.useEffect(() => {
     const fetchData = async () => {
       const data = await loadData(
-        currentPage,
-        itemsPerPage,
-        sortName,
-        sortAscending
+        {
+          page: currentPage,
+          itemsPerPage,
+          sortBy: sortName,
+          sortAsc: sortAscending
+        }
       );
       setDataSet(data);
       setIsLoading(false);
@@ -76,7 +85,34 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
     fetchData();
   }, [itemsPerPage, currentPage, sortName, sortAscending]);
 
-  const rows = dataSet.map(mapDataToRow);
+  let rows = dataSet.map(mapDataToRow);
+
+  let cols = columns;
+  if (rowsAreSelectable) {
+    cols = [{name: "selected", label: <div>
+      <Checkbox inputProps={{checked: selected.length != 0 && selected.length == rows.length, onClick: () => {
+        // if these aren't selected, we need to select them.
+        if (selected.length < rows.length) {
+          setSelected(rows);
+        } else {
+          // empty it out
+          setSelected([]);
+        }
+      }}}/>
+    </div>, mods: "u-size1of12"}, ...cols];
+
+      // use IDs as keys to determine uniqueness
+    const selectedids = selected.map(e => e.id);
+    rows = rows.map((ele) => Object.assign({}, ele, {selected: <div>
+      <Checkbox inputProps={{checked: selectedids.includes(ele.id), onClick: () => {
+        if (selectedids.includes(ele.id)) {
+          setSelected(selected.filter(e => e.id != ele.id));
+        } else {
+          setSelected([...selected, ele]);
+        }
+      }}}/>
+    </div>}));
+  }
 
   return (
     <div className="Grid">
@@ -108,7 +144,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
       </div>
       <div className="Grid-cell u-spaceTopSm">
         <Table
-          columns={columns}
+          columns={cols}
           rows={rows}
           externalSortingFunction={(name, ascending) => {
             setSortName(name);
