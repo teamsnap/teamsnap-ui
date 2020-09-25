@@ -12,13 +12,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.7.0] - 2020-09-25
+- https://github.coom/teamsnap/teamsnap-ui/pull/284
+- `Added` support for selectable rows in paginated table
+- `Added` support for bulk actions against selected rows in paginated table
+- `Changed` load data callback type definition for paginated table
+
 ## [3.6.3] - 2020-09-22
 - https://github.com/teamsnap/teamsnap-ui/pull/283
 - `Fixed` bug where paginated table would not set rows selection to defaulted page size value
 - `Fixed` bug where chaning paginated table row selection would not reset to page 1
 - `Added` new styling for paginated table paging buttons
 - `Added` loading indicator for paginated table
-- `Added` flag to controll whether to show the number of rows selection
+- `Added` flag to control whether to show the number of rows selection
 
 ## [3.6.2] - 2020-09-18
 - https://github.com/teamsnap/teamsnap-ui/pull/282
