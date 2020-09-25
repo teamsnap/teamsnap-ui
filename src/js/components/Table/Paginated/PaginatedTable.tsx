@@ -5,12 +5,19 @@ import PaginationButtons from "./PaginationButtons";
 import PaginationCurrentSubsetDisplay from "./PaginationCurrentSubsetDisplay";
 import PaginationSelect from "./PaginationSelect";
 import { Checkbox } from "../../Checkbox";
+import { Select } from "../../Select";
 
 interface LoadDataObject {
   page: number,
   itemsPerPage: number,
   sortBy?: string,
   sortAsc?: boolean
+}
+
+interface BulkAction {
+  label: string;
+  onSelected: (selected: any) => void;
+  disabled?: boolean;
 }
 interface Props {
   loadData: (
@@ -29,6 +36,7 @@ interface Props {
   totalItems: number;
   hideRowsSelect?: boolean;
   rowsAreSelectable?: boolean;
+  bulkActions?: BulkAction[];
 }
 
 const PaginatedTable: React.FunctionComponent<Props> = ({
@@ -40,6 +48,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   totalItems,
   hideRowsSelect,
   rowsAreSelectable = false,
+  bulkActions
 }) => {
   const [
     [itemsPerPage, setItemsPerPage],
@@ -90,7 +99,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   let cols = columns;
   if (rowsAreSelectable) {
     cols = [{name: "selected", label: <div>
-      <Checkbox inputProps={{checked: selected.length != 0 && selected.length == rows.length, onClick: () => {
+      <Checkbox name="select-all" inputProps={{checked: selected.length != 0 && selected.length == rows.length, onClick: () => {
         // if these aren't selected, we need to select them.
         if (selected.length < rows.length) {
           setSelected(rows);
@@ -104,7 +113,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
       // use IDs as keys to determine uniqueness
     const selectedids = selected.map(e => e.id);
     rows = rows.map((ele) => Object.assign({}, ele, {selected: <div>
-      <Checkbox inputProps={{checked: selectedids.includes(ele.id), onClick: () => {
+      <Checkbox name={`select-${ele.id}`} inputProps={{checked: selectedids.includes(ele.id), onClick: () => {
         if (selectedids.includes(ele.id)) {
           setSelected(selected.filter(e => e.id != ele.id));
         } else {
@@ -114,9 +123,32 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
     </div>}));
   }
 
+  // collisions overwrite
+  const bulkActionFuncsByLabel = bulkActions?.reduce((acc, action: BulkAction) => {
+    acc[action.label] = action.onSelected;
+    return acc;
+  }, {});
+
   return (
     <div className="Grid">
       <div className="Grid Grid-cell Grid--fit Grid--withGutter">
+        {bulkActions?.length > 0 ?
+          <div className="Grid-cell u-flex u-flexJustifyStart">
+            <Select inputProps={{
+              onChange: (event) => {
+                const fn = bulkActionFuncsByLabel[event.target.value];
+                if (fn) {
+                  fn(selected);
+                }
+              }
+            }}
+            name="bulkActions"
+            options={bulkActions.map((e) => ({
+              label: e.label,
+              value: e.label,
+              disabled: e.disabled || false,
+            }))} />
+          </div> : null}
         <div className="Grid-cell u-sizeFit u-flex u-flexJustifyEnd">
           <div className="u-spaceAuto u-spaceRightSm">
             <PaginationCurrentSubsetDisplay

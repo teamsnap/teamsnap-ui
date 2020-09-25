@@ -248,6 +248,20 @@ stories.add("Selectable Rows", () => (
   <PaginatedTable
     columns={columns}
     rowsAreSelectable={true}
+    bulkActions={[
+      {
+        label: 'Log Selected',
+        onSelected: (selected) => {
+          console.log(selected);
+        }
+      },
+      {
+        label: 'Alert Selected IDs',
+        onSelected: (selected) => {
+          console.log(alert(selected.map(e => e.id).join(",")));
+        }
+      },
+    ]}
     mapDataToRow={mapData}
     loadData={loadData}
     defaultItemsPerPage={2}
