@@ -135,6 +135,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
         {bulkActions?.length > 0 ?
           <div className="Grid-cell u-flex u-flexJustifyStart">
             <Select inputProps={{
+              value: "",
               onChange: (event) => {
                 const fn = bulkActionFuncsByLabel[event.target.value];
                 if (fn) {
@@ -143,11 +144,14 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
               }
             }}
             name="bulkActions"
-            options={bulkActions.map((e) => ({
-              label: e.label,
-              value: e.label,
-              disabled: e.disabled || false,
-            }))} />
+            options={[
+              {label: selected.length > 0 ? `${selected.length} selected` : "Bulk actions", value: null},
+              ...bulkActions.map((e) => ({
+                label: e.label,
+                value: e.label,
+                disabled: e.disabled || false,
+              }))
+            ]} />
           </div> : null}
         <div className="Grid-cell u-sizeFit u-flex u-flexJustifyEnd">
           <div className="u-spaceAuto u-spaceRightSm">
