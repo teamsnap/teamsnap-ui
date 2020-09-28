@@ -46,7 +46,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@storybook/addon-actions": "^5.1.11",
-    "@storybook/addon-info": "^5.1.11",
+    "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-knobs": "^5.1.11",
     "@storybook/addon-links": "^5.1.11",
     "@storybook/addons": "^5.1.11",
@@ -58,7 +58,7 @@
     "babel-eslint": "^8.2.3",
     "babel-loader": "^8.0.0",
     "babel-preset-react-app": "^9.0.0",
-    "browser-sync": "^2.26.7",
+    "browser-sync": "^2.26.12",
     "css-loader": "^2.1.1",
     "del": "^3.0.0",
     "eslint": "^4.19.1",
@@ -71,7 +71,7 @@
     "gulp-if": "^2.0.2",
     "gulp-sass": "^4.0.1",
     "gulp-util": "^3.0.8",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "prop-types": "^15.6.1",
     "react": "^16.9.0",
     "react-docgen-typescript-loader": "^3.1.0",
@@ -87,6 +87,6 @@
     "@babel/node": "^7.5.5",
     "@babel/runtime": "^7.5.5",
     "core-js": "^3.1.4",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.20"
   }
 }
