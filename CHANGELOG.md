@@ -12,8 +12,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.7.1] - 2020-09-28
+- https://github.com/teamsnap/teamsnap-ui/pull/287
+- `Fixed` an issue where you couldnt reselect the same paginated table bulk action
+
 ## [3.7.0] - 2020-09-25
-- https://github.coom/teamsnap/teamsnap-ui/pull/284
+- https://github.com/teamsnap/teamsnap-ui/pull/284
 - `Added` support for selectable rows in paginated table
 - `Added` support for bulk actions against selected rows in paginated table
 - `Changed` load data callback type definition for paginated table
