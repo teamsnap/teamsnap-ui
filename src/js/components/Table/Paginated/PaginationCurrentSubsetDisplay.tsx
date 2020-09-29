@@ -10,6 +10,10 @@ const propTypes = {
 const PaginationCurrentSubsetDisplay: React.FunctionComponent<PropTypes.InferProps<
   typeof propTypes
 >> = ({ totalItems, itemsPerPage, currentPage }) => {
+  if (totalItems < 1) {
+    return null;
+  }
+
   return (
     <>
       {(currentPage - 1) * itemsPerPage + 1} -{" "}

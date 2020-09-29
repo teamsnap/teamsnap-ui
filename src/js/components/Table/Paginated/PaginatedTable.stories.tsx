@@ -1,6 +1,8 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import PaginatedTable from "./PaginatedTable";
+import BasicSearch from "./BasicSearch";
+import { text } from "@storybook/addon-knobs/react";
 
 const stories = storiesOf("PaginatedTable", module);
 /**
@@ -8,9 +10,14 @@ const stories = storiesOf("PaginatedTable", module);
  */
 const columns = [
   { name: "name", label: "Member Name", isSortable: true, mods: "u-size1of2" },
-  { name: "gender", label: "Gender", isSortable: true, mods: "u-size1of2"},
+  { name: "gender", label: "Gender", isSortable: true, mods: "u-size1of2" },
   { name: "age", label: "Age", isSortable: true, mods: "u-size1of2" },
-  { name: "programs", label: "Active Programs", isSortable: true, mods: "u-size1of2" },
+  {
+    name: "programs",
+    label: "Active Programs",
+    isSortable: true,
+    mods: "u-size1of2",
+  },
 ];
 
 /**
@@ -200,12 +207,39 @@ const data = [
  * @param sortBy - the key that the table is sorting by
  * @param sortAsc boolean - true if ascending, false if not.
  */
-function loadData({page, itemsPerPage, sortBy, sortAsc}) {
+function loadData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
   const startIndex = itemsPerPage * page - itemsPerPage;
 
   return new Promise((resolve) => {
-    setTimeout(() => resolve(data), 500)
-  }).then((items:any[]) => {
+    setTimeout(() => resolve(data), 500);
+  }).then((items: any[]) => {
+    console.log("filter load", filter)
+    const endIndex = Math.min(items.length, startIndex + itemsPerPage);
+    return items.slice(startIndex, endIndex);
+  });
+}
+
+/**
+ * This function is where all of your server calls should occur. Commonly likely just make a
+ * server call and return the list of items. However, this is also a good place where you can
+ * inspect the request and determine how many items the server has for this search.
+ * @param page  - the table's current page
+ * @param itemsPerPage - the table's current number of items per page
+ * @param sortBy - the key that the table is sorting by
+ * @param sortAsc boolean - true if ascending, false if not.
+ * @param filter objec - extra info to provide custom search.
+ */
+function loadSearchData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
+  const startIndex = itemsPerPage * page - itemsPerPage;
+
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(data), 500);
+  }).then((items: any[]) => {
+    items = items
+      .filter((item) => item.gender == filter.gender || filter.gender == "")
+      .filter(
+        (item) => item.name.search(new RegExp(filter.searchTerm, "i")) > -1
+      );
     const endIndex = Math.min(items.length, startIndex + itemsPerPage);
     return items.slice(startIndex, endIndex);
   });
@@ -243,28 +277,40 @@ stories.add("Default", () => (
   />
 ));
 
-
 stories.add("Selectable Rows", () => (
   <PaginatedTable
     columns={columns}
     rowsAreSelectable={true}
     bulkActions={[
       {
-        label: 'Log Selected',
+        label: "Log Selected",
         onSelected: (selected) => {
           console.log(selected);
-        }
+        },
       },
       {
-        label: 'Alert Selected IDs',
+        label: "Alert Selected IDs",
         onSelected: (selected) => {
-          console.log(alert(selected.map(e => e.id).join(",")));
-        }
+          console.log(alert(selected.map((e) => e.id).join(",")));
+        },
       },
     ]}
     mapDataToRow={mapData}
     loadData={loadData}
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
+  />
+));
+
+stories.add("Basic Search", () => (
+  <PaginatedTable
+    columns={columns}
+    mapDataToRow={mapData}
+    loadData={loadSearchData}
+    defaultItemsPerPage={2}
+    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
+    customFilter={{ gender: text("Gender Filter", "") }}
+    includeBasicSearch={true}
+    searchPlaceholder="Search members by name"
   />
 ));

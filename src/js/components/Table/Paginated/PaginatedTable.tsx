@@ -6,12 +6,14 @@ import PaginationCurrentSubsetDisplay from "./PaginationCurrentSubsetDisplay";
 import PaginationSelect from "./PaginationSelect";
 import { Checkbox } from "../../Checkbox";
 import { Select } from "../../Select";
+import BasicSearch from "./BasicSearch";
 
 interface LoadDataObject {
-  page: number,
-  itemsPerPage: number,
-  sortBy?: string,
-  sortAsc?: boolean
+  page: number;
+  itemsPerPage: number;
+  sortBy?: string;
+  sortAsc?: boolean;
+  filter?: object;
 }
 
 interface BulkAction {
@@ -20,9 +22,7 @@ interface BulkAction {
   disabled?: boolean;
 }
 interface Props {
-  loadData: (
-    requestedPayload: LoadDataObject
-  ) => Promise<any[]>;
+  loadData: (requestedPayload: LoadDataObject) => Promise<any[]>;
   columns: {
     name: string;
     label: string | React.ReactElement;
@@ -37,6 +37,10 @@ interface Props {
   hideRowsSelect?: boolean;
   rowsAreSelectable?: boolean;
   bulkActions?: BulkAction[];
+  customFilter?: object;
+  customSearchFilter?: any;
+  includeBasicSearch?: boolean;
+  searchPlaceholder?: string;
 }
 
 const PaginatedTable: React.FunctionComponent<Props> = ({
@@ -48,7 +52,11 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   totalItems,
   hideRowsSelect,
   rowsAreSelectable = false,
-  bulkActions
+  bulkActions,
+  customFilter = null,
+  customSearchFilter,
+  includeBasicSearch,
+  searchPlaceholder,
 }) => {
   const [
     [itemsPerPage, setItemsPerPage],
@@ -59,11 +67,12 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   const [sortAscending, setSortAscending] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [selected, setSelected] = React.useState([]);
+  const [searchTerm, setSearchTerm] = React.useState("");
 
   const setNewItemsPerPage = (newItemsPerPage) => {
     setItemsPerPage(newItemsPerPage);
     setCurrentPage(1);
-  }
+  };
 
   const defaultPageSizeOptions = [10, 25, 50];
   const customOptions =
@@ -78,61 +87,109 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const data = await loadData(
-        {
-          page: currentPage,
-          itemsPerPage,
-          sortBy: sortName,
-          sortAsc: sortAscending
-        }
-      );
+      const data = await loadData({
+        page: currentPage,
+        itemsPerPage,
+        sortBy: sortName,
+        sortAsc: sortAscending,
+        filter:
+          includeBasicSearch || customFilter
+            ? { searchTerm: searchTerm, ...customFilter }
+            : null,
+      });
       setDataSet(data);
       setIsLoading(false);
     };
 
     setIsLoading(true);
     fetchData();
-  }, [itemsPerPage, currentPage, sortName, sortAscending]);
+  }, [
+    itemsPerPage,
+    currentPage,
+    sortName,
+    sortAscending,
+    searchTerm,
+    customFilter,
+  ]);
 
   let rows = dataSet.map(mapDataToRow);
 
   let cols = columns;
   if (rowsAreSelectable) {
-    cols = [{name: "selected", label: <div>
-      <Checkbox name="select-all" inputProps={{checked: selected.length != 0 && selected.length == rows.length, onClick: () => {
-        // if these aren't selected, we need to select them.
-        if (selected.length < rows.length) {
-          setSelected(rows);
-        } else {
-          // empty it out
-          setSelected([]);
-        }
-      }}}/>
-    </div>, mods: "u-size1of12"}, ...cols];
+    cols = [
+      {
+        name: "selected",
+        label: (
+          <div>
+            <Checkbox
+              name="select-all"
+              inputProps={{
+                checked: selected.length != 0 && selected.length == rows.length,
+                onClick: () => {
+                  // if these aren't selected, we need to select them.
+                  if (selected.length < rows.length) {
+                    setSelected(rows);
+                  } else {
+                    // empty it out
+                    setSelected([]);
+                  }
+                },
+              }}
+            />
+          </div>
+        ),
+        mods: "u-size1of12",
+      },
+      ...cols,
+    ];
 
-      // use IDs as keys to determine uniqueness
-    const selectedids = selected.map(e => e.id);
-    rows = rows.map((ele) => Object.assign({}, ele, {selected: <div>
-      <Checkbox name={`select-${ele.id}`} inputProps={{checked: selectedids.includes(ele.id), onClick: () => {
-        if (selectedids.includes(ele.id)) {
-          setSelected(selected.filter(e => e.id != ele.id));
-        } else {
-          setSelected([...selected, ele]);
-        }
-      }}}/>
-    </div>}));
+    // use IDs as keys to determine uniqueness
+    const selectedids = selected.map((e) => e.id);
+    rows = rows.map((ele) =>
+      Object.assign({}, ele, {
+        selected: (
+          <div>
+            <Checkbox
+              name={`select-${ele.id}`}
+              inputProps={{
+                checked: selectedids.includes(ele.id),
+                onClick: () => {
+                  if (selectedids.includes(ele.id)) {
+                    setSelected(selected.filter((e) => e.id != ele.id));
+                  } else {
+                    setSelected([...selected, ele]);
+                  }
+                },
+              }}
+            />
+          </div>
+        ),
+      })
+    );
   }
 
   // collisions overwrite
-  const bulkActionFuncsByLabel = bulkActions?.reduce((acc, action: BulkAction) => {
-    acc[action.label] = action.onSelected;
-    return acc;
-  }, {});
+  const bulkActionFuncsByLabel = bulkActions?.reduce(
+    (acc, action: BulkAction) => {
+      acc[action.label] = action.onSelected;
+      return acc;
+    },
+    {}
+  );
+
+  function updateSearchFilter({ searchTerm }) {
+    setCurrentPage(1);
+    setSearchTerm(searchTerm);
+  }
+
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [customFilter]);
 
   return (
     <div className="Grid">
       <div className="Grid Grid-cell Grid--fit Grid--withGutter">
-        {bulkActions?.length > 0 ?
+        {bulkActions?.length > 0 ? (
           <div className="Grid-cell u-flex u-flexJustifyStart">
             <Select inputProps={{
               value: "",
@@ -152,7 +209,20 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
                 disabled: e.disabled || false,
               }))
             ]} />
-          </div> : null}
+          </div>
+        ) : null}
+        {customSearchFilter || includeBasicSearch ? (
+          <div className="Grid-cell u-sizeFit u-flex u-flexJustifyStart">
+            {customSearchFilter ? (
+              customSearchFilter
+            ) : (
+              <BasicSearch
+                searchPlaceholder={searchPlaceholder}
+                searchFunction={updateSearchFilter}
+              />
+            )}
+          </div>
+        ) : null}
         <div className="Grid-cell u-sizeFit u-flex u-flexJustifyEnd">
           <div className="u-spaceAuto u-spaceRightSm">
             <PaginationCurrentSubsetDisplay
