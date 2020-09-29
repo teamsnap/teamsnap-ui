@@ -14,10 +14,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.8.0] - 2020-09-30
 - https://github.com/teamsnap/teamsnap-ui/pull/290
-- `Added` support for search on paginated table
-- `Added` support for specifying extra filter data for searching
-- `Added` support for specifying custom search component
-- `Fixed` Don't display page counts when no records returned
+- `Added` support for search for paginated table
+- `Added` support for specifying extra filter data for searching paginated table
+- `Added` support for specifying custom search component for paginated table
+- `Fixed` removed display of page counts when no records returned for paginated table
 
 ## [3.7.1] - 2020-09-28
 - https://github.com/teamsnap/teamsnap-ui/pull/287
