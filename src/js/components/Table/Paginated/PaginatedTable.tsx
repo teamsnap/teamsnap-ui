@@ -202,7 +202,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
             }}
             name="bulkActions"
             options={[
-              {label: selected.length > 0 ? `${selected.length} selected` : "Bulk actions", value: null},
+              {label: selected.length > 0 ? `${selected.length} selected` : "Actions", value: null},
               ...bulkActions.map((e) => ({
                 label: e.label,
                 value: e.label,
