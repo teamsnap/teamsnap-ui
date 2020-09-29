@@ -13,31 +13,33 @@ const BasicSearchFilter: React.FunctionComponent<Props> = ({
   const [searchValue, setSearchValue] = React.useState("");
   const [lastSearchValue, setLastSearchValue] = React.useState("");
 
-  function updateSearchField(e) {
-    const searchTerm = e.target.value;
+  const updateSearchField = React.useCallback(
+    (e) => setSearchValue(e.target.value),
+    []
+  );
 
-    setSearchValue(searchTerm);
-  }
-
-  function handleSearch(searchValue) {
+  const handleSearch = React.useCallback((searchValue) => {
     searchFunction({ searchTerm: searchValue });
     setLastSearchValue(searchValue);
-  }
+  }, []);
 
-  function handleSearchKeyPress(e) {
-    if (e.key === "Enter") {
-      searchAction();
-    }
-  }
-
-  function searchAction() {
+  const searchAction = React.useCallback(() => {
     handleSearch(searchValue);
-  }
+  }, [searchValue]);
 
-  function clearAction() {
+  const clearAction = React.useCallback(() => {
     setSearchValue("");
     handleSearch("");
-  }
+  }, []);
+
+  const handleSearchKeyPress = React.useCallback(
+    (e) => {
+      if (e.key === "Enter") {
+        searchAction();
+      }
+    },
+    [searchValue]
+  );
 
   const showClear = lastSearchValue == searchValue && searchValue != "";
 
@@ -50,7 +52,7 @@ const BasicSearchFilter: React.FunctionComponent<Props> = ({
         placeholder={searchPlaceholder}
         onChange={updateSearchField}
         onKeyPress={handleSearchKeyPress}
-        style={{ minWidth: 250}}
+        style={{ minWidth: 250 }}
       />
       <button
         className="InputGroup-icon"
