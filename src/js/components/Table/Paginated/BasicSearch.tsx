@@ -50,6 +50,7 @@ const BasicSearchFilter: React.FunctionComponent<Props> = ({
         placeholder={searchPlaceholder}
         onChange={updateSearchField}
         onKeyPress={handleSearchKeyPress}
+        style={{ minWidth: 250}}
       />
       <button
         className="InputGroup-icon"
