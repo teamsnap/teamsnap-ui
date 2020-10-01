@@ -44,7 +44,7 @@ const BasicSearchFilter: React.FunctionComponent<Props> = ({
   const showClear = lastSearchValue == searchValue && searchValue != "";
 
   return (
-    <div className="InputGroup InputGroup--rightIcon InputGroup--iconButton">
+    <div className="InputGroup InputGroup--rightIcon InputGroup--iconButton" style={{width: "100%"}}>
       <input
         value={searchValue}
         name="searchField"
@@ -52,7 +52,7 @@ const BasicSearchFilter: React.FunctionComponent<Props> = ({
         placeholder={searchPlaceholder}
         onChange={updateSearchField}
         onKeyPress={handleSearchKeyPress}
-        style={{ minWidth: 250 }}
+        style={{ minWidth: 250}}
       />
       <button
         className="InputGroup-icon"

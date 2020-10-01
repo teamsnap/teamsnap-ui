@@ -59,7 +59,7 @@ const PaginationButtons: React.FunctionComponent<PropTypes.InferProps<
   if (buttonLength < 2) return null;
 
   return (
-    <ButtonGroup className="ButtonGroup" style={style}>
+    <ButtonGroup className="ButtonGroup" style={Object.assign({}, style, {overflow: "scroll"})}>
       {renderPaginateButton(
         "P",
         "Previous",

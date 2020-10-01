@@ -297,6 +297,8 @@ stories.add("Selectable Rows", () => (
     ]}
     mapDataToRow={mapData}
     loadData={loadData}
+    includeBasicSearch={true}
+    searchPlaceholder="Search members by name"
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
   />
