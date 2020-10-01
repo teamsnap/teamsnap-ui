@@ -190,7 +190,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
     <div className="Grid">
       <div className="Grid Grid-cell Grid--fit Grid--withGutter">
         {bulkActions?.length > 0 ? (
-          <div className="Grid-cell u-flex u-flexJustifyStart">
+          <div className="Grid-cell u-spaceTopSm u-md-spaceTopNone u-flex u-size1of1 u-md-size1of12 u-flexJustifyStart">
             <Select inputProps={{
               value: "",
               onChange: (event) => {
@@ -211,19 +211,19 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
             ]} />
           </div>
         ) : null}
+        <div className="Grid-cell u-spaceTopSm u-md-spaceTopNone u-size1of1 u-md-size1of4 u-flex u-flexJustifyStart">
         {customSearchFilter || includeBasicSearch ? (
-          <div className="Grid-cell u-sizeFit u-flex u-flexJustifyStart">
-            {customSearchFilter ? (
+            customSearchFilter ? (
               customSearchFilter
             ) : (
               <BasicSearch
                 searchPlaceholder={searchPlaceholder}
                 searchFunction={updateSearchFilter}
               />
-            )}
-          </div>
+            )
         ) : null}
-        <div className="Grid-cell u-sizeFit u-flex u-flexJustifyEnd">
+        </div>
+        <div className="Grid-cell u-spaceTopSm u-md-spaceTopNone u-size1of1 u-md-size2of4 u-flex u-flexJustifyEnd">
           <div className="u-spaceAuto u-spaceRightSm">
             <PaginationCurrentSubsetDisplay
               itemsPerPage={itemsPerPage}
