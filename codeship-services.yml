@@ -1,7 +1,0 @@
-version: "3"
-services:
-  teamsnap-ui:
-    build:
-      context: .
-      dockerfile: docker/codeship.dockerfile
-    cached: true
