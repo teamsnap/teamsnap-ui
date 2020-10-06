@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.8.3] - 2020-10-16
+- https://github.com/teamsnap/teamsnap-ui/pull/321
+- `Added` Add new pika icons
+
 ## [3.8.2] - 2020-10-13
 - https://github.com/teamsnap/teamsnap-ui/pull/323
 - `Added` better support for change states for Radios and Checkboxes
