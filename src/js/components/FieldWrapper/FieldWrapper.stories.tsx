@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { storiesOf } from "@storybook/react";
+import { action } from '@storybook/addon-actions';
 import { select, text } from "@storybook/addon-knobs/react";
 import FieldWrapper from "./FieldWrapper";
 
@@ -63,7 +64,12 @@ stories.add("Checkbox", () => {
       field="checkbox"
       status={status}
       message={status === "error" ? errorMessage : null}
-      fieldProps={{ options: [{ label: "Check me" }, { label: "Check me" }] }}
+      fieldProps={{
+        inputProps: {
+          onChange: action('checkbox value changed'),
+        },
+        options: [{ label: "Check me A", name: "A", value: "A" }, { label: "Check me B", name: "B", value: "B" }]
+      }}
     />
   );
 });
@@ -80,9 +86,12 @@ stories.add("Radio", () => {
       status={status}
       message={status === "error" ? errorMessage : null}
       fieldProps={{
+        inputProps: {
+          onChange: action('radio value changed'),
+        },
         options: [
-          { label: "Video killed the radio star" },
-          { label: "Check me" }
+          { label: "Video killed the radio star", value: "A" },
+          { label: "Check me", value: "B" }
         ]
       }}
     />
