@@ -67,8 +67,16 @@ class FieldWrapper extends React.PureComponent<PropTypes.InferProps<typeof Field
     if ((field == "checkbox" || field == "radio") && fieldProps.options) {
       return (
         fieldProps.options &&
-        fieldProps.options.map(({ label }, i) => (
-          <FieldTag name={name} label={label} key={i} {...fieldProps} />
+        fieldProps.options.map(({ label, value, ...optionProps }, i) => (
+          <FieldTag
+            key={i}
+            {...fieldProps}
+            group={name}
+            name={`${name}${i}`}
+            label={label}
+            {...optionProps}
+            inputProps={{...fieldProps.inputProps, ...optionProps.inputProps, value: value ?? label}}
+          />
         ))
       );
     }
