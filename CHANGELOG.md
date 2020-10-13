@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.8.2] - 2020-10-13
+- https://github.com/teamsnap/teamsnap-ui/pull/323
+- `Added` better support for change states for Radios and Checkboxes
+
 ## [3.8.1] - 2020-10-01
 - https://github.com/teamsnap/teamsnap-ui/pull/313
 - `Changed` Paginated Table styles to better support mobile
