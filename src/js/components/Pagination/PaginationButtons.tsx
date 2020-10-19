@@ -1,6 +1,6 @@
-import { Button } from "../../Button";
-import { ButtonGroup } from "../../ButtonGroup";
-import { getLastPageIndex } from "./helpers";
+import { Button } from "../Button";
+import { ButtonGroup } from "../ButtonGroup";
+import { getLastPageIndex } from "../Table/Paginated/helpers";
 import * as PropTypes from "prop-types";
 import * as React from "react";
 

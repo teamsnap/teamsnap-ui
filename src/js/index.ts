@@ -12,6 +12,7 @@ export * from "./components/Icon";
 export * from "./components/Input";
 export * from "./components/InputControl";
 export * from "./components/Loader";
+export * from "./components/Pagination";
 export * from "./components/Panel";
 export * from "./components/PanelBody";
 export * from "./components/PanelCell";
