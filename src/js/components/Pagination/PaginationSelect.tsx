@@ -1,4 +1,4 @@
-import { Select } from "../../Select";
+import { Select } from "../Select";
 import * as PropTypes from "prop-types";
 import * as React from "react";
 

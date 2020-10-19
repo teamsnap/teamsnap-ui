@@ -1,9 +1,7 @@
 import * as React from "react";
 import { Table } from "../../Table";
 import { usePagination } from "./helpers";
-import PaginationButtons from "./PaginationButtons";
-import PaginationCurrentSubsetDisplay from "./PaginationCurrentSubsetDisplay";
-import PaginationSelect from "./PaginationSelect";
+import {PaginationCurrentSubsetDisplay, PaginationSelect, PaginationButtons} from "../../Pagination";
 import { Checkbox } from "../../Checkbox";
 import { Select } from "../../Select";
 import BasicSearch from "./BasicSearch";
