@@ -1,3 +1,4 @@
+export * from "./components/Avatar";
 export * from "./components/Button";
 export * from "./components/ButtonGroup";
 export * from "./components/Cell";
@@ -28,6 +29,7 @@ export * from "./components/Select";
 export * from "./components/StepNav";
 export * from "./components/SummaryList";
 export * from "./components/Table";
+export * from "./components/Tabs";
 export * from "./components/TextArea";
 export * from "./components/TextLink";
 export * from "./components/Toggle";

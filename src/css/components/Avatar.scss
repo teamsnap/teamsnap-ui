@@ -1,0 +1,25 @@
+@import "../config/index.scss";
+
+// We're working with images, not margins so we scale this up
+$sizes: (
+  "xs": $su-xsmall * 5,
+  "sm": $su-small * 5,
+  "md": $su-medium * 5,
+  "lg": $su-large * 5,
+  "xl": $su-xlarge * 5,
+  "xxl": $su-xxlarge * 5
+);
+
+.Avatar {
+
+  img {
+    border-radius: 50%;
+  }
+
+  @each $name, $value in $sizes {
+    &--#{$name} {
+      width: $value;
+      height: $value;
+    }
+  }
+}

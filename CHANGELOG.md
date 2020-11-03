@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.9.0] - 2020-11-03
+- https://github.com/teamsnap/teamsnap-ui/pull/332
+- `Added` Avatar component
+- `Added` Tabs component
+
 ## [3.8.4] - 2020-10-19
 - https://github.com/teamsnap/teamsnap-ui/pull/332
 - `Changed` Pagination Control import structure to be publicly accessible
