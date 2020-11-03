@@ -1,5 +1,5 @@
 /**
- * @name Avatar
+ * @name Tabs
  *
  * @description
  *  Used to show tabs and dynamic content to be displayed while a given tab is active
