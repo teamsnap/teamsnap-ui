@@ -2,7 +2,7 @@
  * @name Avatar
  *
  * @description
- *  A simple component used to display an avatar for a user or organization.
+ *  Used to show tabs and dynamic content to be displayed while a given tab is active
  *
  * @example
  * <Tabs
