@@ -1,6 +1,5 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { text, select } from "@storybook/addon-knobs/react";
 import Tabs from "./Tabs";
 
 const stories = storiesOf("Tabs", module);
