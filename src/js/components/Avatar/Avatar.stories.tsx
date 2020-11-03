@@ -6,12 +6,12 @@ import Avatar from "./Avatar";
 const stories = storiesOf("Avatar", module);
 
 const optionsList = {
-  "Xs": "Xs",
-  "Sm": "Sm",
-  "Md": "Md",
-  "Lg": "Lg",
-  "Xl": "Xl",
-  "Xxl": "Xxl"
+  "xs": "xs",
+  "sm": "sm",
+  "md": "md",
+  "lg": "lg",
+  "xl": "xl",
+  "xxl": "xxl"
 }
 
 stories.add("Default", () => (

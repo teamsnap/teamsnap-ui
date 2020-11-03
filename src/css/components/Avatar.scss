@@ -2,23 +2,24 @@
 
 // We're working with images, not margins so we scale this up
 $sizes: (
-  "Xs": $su-xsmall * 5,
-  "Sm": $su-small * 5,
-  "Md": $su-medium * 5,
-  "Lg": $su-large * 5,
-  "Xl": $su-xlarge * 5,
-  "Xxl": $su-xxlarge * 5
+  "xs": $su-xsmall * 5,
+  "sm": $su-small * 5,
+  "md": $su-medium * 5,
+  "lg": $su-large * 5,
+  "xl": $su-xlarge * 5,
+  "xxl": $su-xxlarge * 5
 );
 
 .Avatar {
+
+  img {
+    border-radius: 50%;
+  }
+
   @each $name, $value in $sizes {
-    &-#{$name} {
+    &--#{$name} {
       width: $value;
       height: $value;
-
-      img {
-        border-radius: ($value / 2);
-      }
     }
   }
 }

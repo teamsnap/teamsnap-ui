@@ -17,12 +17,12 @@ import * as React from "react";
 
 interface Props {
   src: string;
-  size: "Xs" | "Sm" | "Md" | "Lg" | "Xl" | "Xxl";
+  size: "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
   mods: string;
 }
 
 const Avatar: React.FunctionComponent<Props> = ({src, size, mods}) => (
-  <div className={`Avatar Avatar-${size} ${mods}`}>
+  <div className={`Avatar Avatar--${size} ${mods}`}>
     <img src={src} />
   </div>
 )
