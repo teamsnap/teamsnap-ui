@@ -13,7 +13,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Security`
 
 ## [3.9.0] - 2020-11-03
-- https://github.com/teamsnap/teamsnap-ui/pull/332
+- https://github.com/teamsnap/teamsnap-ui/pull/365
+- `Changed` Avatar component - Mods no longer a required prop
+- `Changed` Avatar component - Image should now fill the parent even if smaller than the parent.
+- `Changed` Tabs component - Mods no longer a required propr
+
+## [3.9.0] - 2020-11-03
+- https://github.com/teamsnap/teamsnap-ui/pull/359
 - `Added` Avatar component
 - `Added` Tabs component
 
