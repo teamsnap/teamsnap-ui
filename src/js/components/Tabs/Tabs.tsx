@@ -29,7 +29,7 @@ interface Tab {
 }
 
 interface Props {
-  mods: string;
+  mods?: string;
   tabs: Tab[];
 }
 
@@ -37,7 +37,7 @@ const Tabs: React.FunctionComponent<Props> = ({ mods, tabs }) => {
   const [activeTabIndex, setActiveTabIndex] = React.useState(0);
 
   return (
-    <div className={`Tabs ${mods}`}>
+    <div className={`Tabs ${!!mods ? mods : ""}`}>
       <ul className="Tabs-header">
         {tabs.map((tab, index) => (
           <li
