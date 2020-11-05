@@ -12,7 +12,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
-## [3.9.0] - 2020-11-03
+## [3.9.2] - 2020-11-04
+- https://github.com/teamsnap/teamsnap-ui/pull/366
+- `Fixed` Popup component - popup would not "stick" when trigger was clicked.
+- `Security` Bumped a dependency on object-path to resolve a known vulnerability in that dependency.
+
+## [3.9.1] - 2020-11-03
 - https://github.com/teamsnap/teamsnap-ui/pull/365
 - `Changed` Avatar component - Mods no longer a required prop
 - `Changed` Avatar component - Image should now fill the parent even if smaller than the parent.

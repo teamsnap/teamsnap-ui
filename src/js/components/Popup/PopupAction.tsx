@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 
-
 interface State {
   isPopupOpen: boolean;
   isConfirmOpen: boolean;
@@ -78,7 +77,7 @@ export default class PopUpAction extends React.Component<PropTypes.InferProps<ty
             {this.props.text}
           </button>
           <div
-            className={"Popup-container " + dirString}
+            className={`Popup-container ${dirString} ${this.state.isPopupOpen ? "is-open" : ""}`}
             style={this.props.popupStyle}
           >
             <div className="Popup-content">
