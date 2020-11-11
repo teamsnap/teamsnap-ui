@@ -88,6 +88,7 @@
     "@babel/node": "^7.5.5",
     "@babel/runtime": "^7.5.5",
     "core-js": "^3.1.4",
+    "gulp-rename": "^2.0.0",
     "lodash": "^4.17.15"
   }
 }

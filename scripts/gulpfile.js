@@ -2,33 +2,32 @@
 
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const rename = require('gulp-rename');
 const browserSync = require('browser-sync').create();
 const cssnano = require('gulp-cssnano');
 const autoprefixer = require('gulp-autoprefixer');
 const del = require('del');
 const env = require('gulp-util').env;
-const gulpif = require('gulp-if');
 const config = require('./config');
-
-// Create a function for all CSS tasks so
-// teamsnap-ui and themes can build independently
-function buildCSS(config) {
-  return gulp.src(config.src)
-    .pipe(sass())
-    .pipe(autoprefixer('last 2 versions'))
-    .pipe(cssnano({zindex: false}))
-    .pipe(gulp.dest(config.dest))
-}
 
 // Build teamsnap-ui CSS
 gulp.task('css-teamsnap', (done) => {
-  buildCSS(config.css.teamsnap);
+  gulp.src(config.css.teamsnap.src)
+    .pipe(sass())
+    .pipe(autoprefixer('last 2 versions'))
+    .pipe(cssnano({ zindex: false }))
+    .pipe(rename("teamsnap-ui.v4.css"))
+    .pipe(gulp.dest(config.css.teamsnap.dest));
   done();
 });
 
 // Build themes
 gulp.task('css-themes', (done) => {
-  buildCSS(config.css.themes);
+  gulp.src(config.css.themes.src)
+    .pipe(sass())
+    .pipe(autoprefixer('last 2 versions'))
+    .pipe(cssnano({ zindex: false }))
+    .pipe(gulp.dest(config.css.themes.dest));
   done();
 });
 
