@@ -9,10 +9,9 @@ $blues: (
   8: #093170,
   9: #06214A,
   10: #031025,
-  "default": #0F52BA
 );
 
-@function blue($shade: "default") {
+@function blue($shade: 6) {
   @return map-get($map: $blues, $key: $shade);
 }
 
@@ -27,10 +26,9 @@ $reds: (
   8: #7A0000,
   9: #520000,
   10: #290000,
-  "default": #CC0000
 );
 
-@function red($shade: "default") {
+@function red($shade: 6) {
   @return map-get($map: $reds, $key: $shade);
 }
 
@@ -45,9 +43,8 @@ $grays: (
   8: #536878,
   9: #1D2B35,
   10: #000000,
-  "default": #98A4AE
 );
-@function gray($shade: "default") {
+@function gray($shade: 6) {
   @return map-get($map: $grays, $key: $shade);
 }
 
@@ -62,9 +59,8 @@ $oranges: (
   8: #993600,
   9: #662400,
   10: #331200,
-  "default": #FF5A00
 );
-@function orange($shade: "default") {
+@function orange($shade: 6) {
   @return map-get($map: $oranges, $key: $shade);
 }
 
@@ -79,8 +75,7 @@ $greens: (
   8: #13743C,
   9: #0C4D28,
   10: #093A1E,
-  "default": #1FC164
 );
-@function green($shade: "default") {
+@function green($shade: 6) {
   @return map-get($map: $greens, $key: $shade);
 }
