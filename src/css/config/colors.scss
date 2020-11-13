@@ -1,0 +1,86 @@
+$blues: (
+  1: #F4F9FF,
+  2: #D2E4FF,
+  3: #6DA6FF,
+  4: #2776F0,
+  5: #1364DE,
+  6: #0F52BA,
+  7: #0C4295,
+  8: #093170,
+  9: #06214A,
+  10: #031025,
+  "default": #0F52BA
+);
+
+@function blue($shade: "default") {
+  @return map-get($map: $blues, $key: $shade);
+}
+
+$reds: (
+  1: #FFF0F0,
+  2: #F5CCCC,
+  3: #EB9999,
+  4: #E06666,
+  5: #D63333,
+  6: #CC0000,
+  7: #A30000,
+  8: #7A0000,
+  9: #520000,
+  10: #290000,
+  "default": #CC0000
+);
+
+@function red($shade: "default") {
+  @return map-get($map: $reds, $key: $shade);
+}
+
+$grays: (
+  1: #FBFBFB,
+  2: #F6F8FB,
+  3: #EEF0F2,
+  4: #DCE1E7,
+  5: #CBD0D6,
+  6: #98A4AE,
+  7: #758693,
+  8: #536878,
+  9: #1D2B35,
+  10: #000000,
+  "default": #98A4AE
+);
+@function gray($shade: "default") {
+  @return map-get($map: $grays, $key: $shade);
+}
+
+$oranges: (
+  1: #FFEFE6,
+  2: #FFDECC,
+  3: #FFBD99,
+  4: #FF9C66,
+  5: #FF7B33,
+  6: #FF5A00,
+  7: #CC4800,
+  8: #993600,
+  9: #662400,
+  10: #331200,
+  "default": #FF5A00
+);
+@function orange($shade: "default") {
+  @return map-get($map: $oranges, $key: $shade);
+}
+
+$greens: (
+  1: #F3FFF8,
+  2: #D2F3E0,
+  3: #A5E6C1,
+  4: #79DAA2,
+  5: #4CCD83,
+  6: #1FC164,
+  7: #199A50,
+  8: #13743C,
+  9: #0C4D28,
+  10: #093A1E,
+  "default": #1FC164
+);
+@function green($shade: "default") {
+  @return map-get($map: $greens, $key: $shade);
+}

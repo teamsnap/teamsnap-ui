@@ -3,9 +3,9 @@
 // * @define default Button
 
 // Global default button colors that are themed
-$button-color:                    $cu-foreground !default;
-$button-border-color:                $cu-divider !default;
-$button-text-color:                  $cu-info !default;
+$button-color:                       white !default;
+$button-border-color:                gray(5) !default;
+$button-text-color:                  gray(9) !default;
 
 // Default button styles
 $Button-bg: $button-color;
@@ -15,7 +15,6 @@ $Button-border-color: $button-border-color;
 $Button-border-color-hover: scaleColor($Button-border-color, -1);
 $Button-border-radius: $border-radius-medium;
 $Button-border-width: $border-width-small;
-$Button-border-bottom-width: $border-width-medium;
 $Button-disabled-opacity: 0.4;
 $Button-font-family: $tu-openSans-fontFamily;
 $Button-font-size: $tu-base-fontSize;
@@ -27,7 +26,6 @@ $Button-padding: 0 scaleGrid(2);
 .Button {
   background-color: $Button-bg;
   border: $Button-border-color solid $Button-border-width;
-  border-bottom-width: $Button-border-bottom-width;
   border-radius: $Button-border-radius;
   color: $Button-color;
   cursor: pointer;
@@ -45,19 +43,15 @@ $Button-padding: 0 scaleGrid(2);
   white-space: nowrap;
 
   &:hover,
-  &:active,
   &:focus {
-    background-color: $Button-bg-hover;
-    border-color: $Button-border-color-hover;
-    color: $Button-color;
+    border-color: blue(5);
+    color: blue(5);
     outline: none;
   }
 
-  &.is-active {
-    background-color: $Button-bg-hover;
-    border-bottom-width: 1px;
-    border-top-width: $Button-border-bottom-width;
-    color: $Button-color;
+  &:active, &.is-active {
+    border-color: blue(7);
+    color: blue(7);
   }
 
   &.is-disabled,
@@ -65,176 +59,42 @@ $Button-padding: 0 scaleGrid(2);
     &,
     &:hover,
     &:active {
-      background-color: $Button-bg;
-      border-color: $Button-border-color;
+      background-color: gray(2);
+      border-color: gray(5);
       cursor: not-allowed;
-      color: $Button-color;
-      opacity: $Button-disabled-opacity;
+      color: gray(5);
     }
   }
 }
 
+$permutations: (
+  "primary" blue(6) blue(5) blue(7),
+  "blue" blue(6) blue(5) blue(7),
+  "negative" red(6) red(5) red(7),
+  "orange" orange(6) orange(5) orange(7),
+  "green" green(6) green(5) green(7)
+);
 
-// * Modifier: Button Primary
+@each $name, $primary, $hover, $active in $permutations {
+  .Button--#{$name} {
+    background-color: $primary;
+    border-color: $primary;
+    color: $ts-white;
 
-$Button--primary-bg: $cu-secondary !default;
-$Button--primary-bg-hover: scaleColor($Button--primary-bg, -1);
-$Button--primary-color: $ts-white;
-$Button--primary-color-hover: $ts-white;
-$Button--primary-border-color: scaleColor($cu-secondary, -2) !default;
-$Button--primary-border-color-hover: scaleColor($Button--primary-border-color, -1);
-
-.Button--primary {
-  background-color: $Button--primary-bg;
-  border-color: $Button--primary-border-color;
-  color: $Button--primary-color;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: $Button--primary-bg-hover;
-    border-color: $Button--primary-border-color-hover;
-    color: $Button--primary-color-hover;
-  }
-
-  &.is-active {
-    background-color: $Button--primary-bg-hover;
-    color: $Button--primary-color-hover;
-  }
-
-  &.is-disabled,
-  &:disabled {
-    &,
     &:hover,
-    &:active {
-      background-color: $Button--primary-bg;
-      border-color: $Button--primary-border-color;
-      color: $Button--primary-color-hover;
+    &:focus {
+      background-color: $hover;
+      border-color: $hover;
+      color: $ts-white;
+    }
+
+    &:active, &.is-active {
+      border-color: $active;
+      background-color: $active;
+      color: $ts-white;
     }
   }
 }
-
-
-// * Modifier: Button Blue
-
-$Button--blue-bg: $ts-blue !default;
-$Button--blue-bg-hover: scaleColor($Button--blue-bg, -1);
-$Button--blue-color: $ts-white;
-$Button--blue-color-hover: $ts-white;
-$Button--blue-border-color: scaleColor($Button--blue-bg, -2) !default;
-$Button--blue-border-color-hover: scaleColor($Button--blue-border-color, -1);
-
-.Button--blue {
-  background-color: $Button--blue-bg;
-  border-color: $Button--blue-border-color;
-  color: $Button--blue-color;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: $Button--blue-bg-hover;
-    border-color: $Button--blue-border-color-hover;
-    color: $Button--blue-color-hover;
-  }
-
-  &.is-active {
-    background-color: $Button--blue-bg-hover;
-    color: $Button--blue-color-hover;
-  }
-
-  &.is-disabled,
-  &:disabled {
-    &,
-    &:hover,
-    &:active {
-      background-color: $Button--blue-bg;
-      border-color: $Button--blue-border-color;
-      color: $Button--blue-color-hover;
-    }
-  }
-}
-
-
-// * Modifier: Button Orange
-
-$Button--orange-bg: $ts-orange !default;
-$Button--orange-bg-hover: scaleColor($Button--orange-bg, -1);
-$Button--orange-color: $ts-white;
-$Button--orange-color-hover: $ts-white;
-$Button--orange-border-color: scaleColor($Button--orange-bg, -2) !default;
-$Button--orange-border-color-hover: scaleColor($Button--orange-border-color, -1);
-
-.Button--orange {
-  background-color: $Button--orange-bg;
-  border-color: $Button--orange-border-color;
-  color: $Button--orange-color;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: $Button--orange-bg-hover;
-    border-color: $Button--orange-border-color-hover;
-    color: $Button--orange-color-hover;
-  }
-
-  &.is-active {
-    background-color: $Button--orange-bg-hover;
-    color: $Button--orange-color-hover;
-  }
-
-  &.is-disabled,
-  &:disabled {
-    &,
-    &:hover,
-    &:active {
-      background-color: $Button--orange-bg;
-      border-color: $Button--orange-border-color;
-      color: $Button--orange-color-hover;
-    }
-  }
-}
-
-
-// * Modifier: Button Negative
-
-$Button--negative-bg: $ts-white;
-$Button--negative-bg-hover: $cu-negative;
-$Button--negative-color: $cu-negative;
-$Button--negative-color-hover: $ts-white;
-$Button--negative-border-color: $cu-divider;
-$Button--negative-border-color-hover: $cu-negative--dark;
-
-.Button--negative {
-  background-color: $Button--negative-bg;
-  border-color: $Button--negative-border-color;
-  color: $Button--negative-color;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: $Button--negative-bg-hover;
-    border-color: $Button--negative-border-color-hover;
-    color: $Button--negative-color-hover;
-  }
-
-  &.is-active {
-    background-color: $Button--negative-bg-hover;
-    border-color: $Button--negative-border-color-hover;
-    color: $Button--negative-color-hover;
-  }
-
-  &.is-disabled,
-  &:disabled {
-    &,
-    &:hover,
-    &:active {
-      background-color: $Button--negative-bg;
-      border-color: $Button--negative-border-color;
-      color: $Button--negative-color;
-    }
-  }
-}
-
 
 // * Modifier: Button Small
 
