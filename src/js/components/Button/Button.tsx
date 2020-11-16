@@ -36,7 +36,7 @@ class Button extends React.PureComponent<PropTypes.InferProps<typeof Button.prop
     isDisabled: PropTypes.bool,
     isActive: PropTypes.bool,
     color: PropTypes.string,
-    size: PropTypes.string,
+    size: PropTypes.oneOf(["small", "large", "huge"]),
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
