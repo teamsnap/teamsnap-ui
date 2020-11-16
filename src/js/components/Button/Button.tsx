@@ -79,11 +79,16 @@ class Button extends React.PureComponent<PropTypes.InferProps<typeof Button.prop
   renderChildren = () => {
     const { label, children, icon, iconPosition } = this.props;
 
+    let modifier = null;
+    const hasChildren = label != null || children != null;
+    if (iconPosition === "left" && hasChildren) modifier = "u-spaceRightXs";
+    if (iconPosition === "right" && hasChildren) modifier = "u-spaceLeftXs";
+
     return (
       <span>
-        {iconPosition === "left" && this.renderIcon(icon, "u-spaceRightXs")}
+        {iconPosition === "left" && this.renderIcon(icon, modifier)}
         {label || children}
-        {iconPosition === "right" && this.renderIcon(icon, "u-spaceLeftXs")}
+        {iconPosition === "right" && this.renderIcon(icon, modifier)}
       </span>
     );
   };

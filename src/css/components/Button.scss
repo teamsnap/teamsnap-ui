@@ -21,7 +21,7 @@ $Button-font-size: $tu-base-fontSize;
 $Button-font-weight: $tu-semibold-fontWeight;
 $Button-height: scaleGrid(4);
 $Button-line-height: $Button-height - 3;
-$Button-padding: 0 scaleGrid(2);
+$Button-padding: 0 scaleGrid(1);
 
 .Button {
   background-color: $Button-bg;
@@ -36,6 +36,7 @@ $Button-padding: 0 scaleGrid(2);
   height: $Button-height;
   line-height: $Button-line-height;
   margin: 0;
+  min-width: $Button-height;
   padding: $Button-padding;
   text-decoration: none;
   transition: all $duration-short ease-in-out;
@@ -101,7 +102,7 @@ $permutations: (
 $Button--small-font-size: $tu-small-fontSize;
 $Button--small-height: scaleGrid(3);
 $Button--small-line-height: $Button--small-height - 3;
-$Button--small-padding: 0 $su-small;
+$Button--small-padding: 0 $su-xsmall;
 
 
 .Button--small {
@@ -109,32 +110,22 @@ $Button--small-padding: 0 $su-small;
   height: $Button--small-height;
   line-height: $Button--small-line-height;
   padding: $Button--small-padding;
+  min-width: $Button--small-height;
 }
-
-
-// * Modifier: Button Square small
-
-.Button--smallSquare {
-  width: $Button--small-height;
-  height: $Button--small-height;
-  line-height: $Button--small-line-height;
-  padding: 0;
-  border-bottom-width: 1px;
-}
-
 
 // * Modifier: Button Large
 
 $Button--large-font-size: $tu-large-fontSize;
 $Button--large-height: scaleGrid(5);
 $Button--large-line-height: $Button--large-height - 3;
-$Button--large-padding: 0 scaleGrid(3);
+$Button--large-padding: 0 scaleGrid(1);
 
 .Button--large {
   font-size: $Button--large-font-size;
   height: $Button--large-height;
   line-height: $Button--large-line-height;
   padding: $Button--large-padding;
+  min-width: $Button--large-height;
 }
 
 
@@ -145,67 +136,12 @@ $Button--large-padding: 0 scaleGrid(3);
 $Button--huge-font-size: $tu-large-fontSize;
 $Button--huge-height: scaleGrid(10);
 $Button--huge-line-height: $Button--huge-height - 3;
-$Button--huge-padding: 0 scaleGrid(8);
+$Button--huge-padding: 0 scaleGrid(2);
 
 .Button--huge {
   font-size: $Button--huge-font-size;
   height: $Button--huge-height;
   line-height: $Button--huge-line-height;
   padding: $Button--huge-padding;
-}
-
-
-// * Modifier: Yes / Maybe / No modifiers for setting status
-//
-//   --yesDefault, --noDefault, and --maybeDefault start with the default white button,
-//   and hover and active states have yes / maybe / no colors
-//
-//   --yes, --no, and --maybe always have yes / maybe / no colors
-
-.Button--yesDefault.is-active,
-.Button--yesDefault:hover,
-.Button--yes {
-  background-color: $cu-positive;
-  color: $ts-white;
-  border-color: scaleColor($cu-positive, -1);
-}
-
-.Button--yes {
-  &:hover, &:active, &:focus, &.is-active {
-    background-color: scaleColor($cu-positive, -1);
-    color: $ts-white;
-    border-color: scaleColor($cu-positive, -2);
-  }
-}
-
-.Button--maybeDefault.is-active,
-.Button--maybeDefault:hover,
-.Button--maybe {
-  background-color: $ts-darkblue;
-  color: $ts-white;
-  border-color: scaleColor($ts-darkblue, -1);
-}
-
-.Button--maybe {
-  &:hover, &:active, &:focus, &.is-active {
-    background-color: scaleColor($ts-darkblue, -1);
-    color: $ts-white;
-    border-color: scaleColor($ts-darkblue, -2);
-  }
-}
-
-.Button--noDefault.is-active,
-.Button--noDefault:hover,
-.Button--no {
-  background-color: $cu-negative;
-  color: $ts-white;
-  border-color: scaleColor($cu-negative, -1);
-}
-
-.Button--no {
-  &:hover, &:active, &:focus, &.is-active {
-    background-color: scaleColor($cu-negative, -1);
-    color: $ts-white;
-    border-color: scaleColor($cu-negative, -2);
-  }
+  min-width: $Button--huge-height;
 }
