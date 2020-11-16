@@ -55,9 +55,6 @@ const Button: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = 
   style,
   otherProps,
 }) => {
-  const renderIcon = (icon, mods) =>
-    icon ? <Icon name={icon} mods={mods} /> : null;
-
   const cname = getClassName(
     className,
     color && `Button--${color}`,
@@ -70,6 +67,7 @@ const Button: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = 
   const hasChildren = label != null || children != null;
   if (iconPosition === "left" && hasChildren) modifier = "u-spaceRightXs";
   if (iconPosition === "right" && hasChildren) modifier = "u-spaceLeftXs";
+  const maybeIcon = icon ? <Icon name={icon} mods={modifier} /> : null
 
   return (
     <button
@@ -81,9 +79,9 @@ const Button: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = 
       {...otherProps}
     >
       <span>
-        {iconPosition === "left" && renderIcon(icon, modifier)}
+        {iconPosition === "left" && maybeIcon}
         {label || children}
-        {iconPosition === "right" && renderIcon(icon, modifier)}
+        {iconPosition === "right" && maybeIcon}
       </span>
     </button>
   );
