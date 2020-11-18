@@ -35,6 +35,73 @@ $ts-darkorange:                            #f75b02 !default;
 $ts-green:                                 #7fc243 !default;
 $ts-red:                                   #e26362 !default;
 
+/// V4 colors
+$colors-primaries: (
+  1: #F4F9FF,
+  2: #D2E4FF,
+  3: #6DA6FF,
+  4: #2776F0,
+  5: #1364DE,
+  6: #0F52BA,
+  7: #0C4295,
+  8: #093170,
+  9: #06214A,
+  10: #031025,
+) !default;
+
+$colors-negatives: (
+  1: #FFF0F0,
+  2: #F5CCCC,
+  3: #EB9999,
+  4: #E06666,
+  5: #D63333,
+  6: #CC0000,
+  7: #A30000,
+  8: #7A0000,
+  9: #520000,
+  10: #290000,
+) !default;
+
+$colors-neutrals: (
+  1: #FBFBFB,
+  2: #F6F8FB,
+  3: #EEF0F2,
+  4: #DCE1E7,
+  5: #CBD0D6,
+  6: #98A4AE,
+  7: #758693,
+  8: #536878,
+  9: #1D2B35,
+  10: #000000,
+) !default;
+
+$colors-warning: (
+  1: #FFEFE6,
+  2: #FFDECC,
+  3: #FFBD99,
+  4: #FF9C66,
+  5: #FF7B33,
+  6: #FF5A00,
+  7: #CC4800,
+  8: #993600,
+  9: #662400,
+  10: #331200,
+) !default;
+
+$colors-success: (
+  1: #F3FFF8,
+  2: #D2F3E0,
+  3: #A5E6C1,
+  4: #79DAA2,
+  5: #4CCD83,
+  6: #1FC164,
+  7: #199A50,
+  8: #13743C,
+  9: #0C4D28,
+  10: #093A1E,
+) !default;
+
+
 $ts-black:                                 #222222 !default;
 $ts-grey:                                  #d6d6d6 !default;
 $ts-white:                                 #ffffff !default;

@@ -22,3 +22,15 @@ $cu-secondary: #2D9595;
 $cu-highlight: #004D4D;
 $color-links:  #3DCCCC;
 $color-links--hover: scaleColor($color-links, -2);
+$colors-primaries: (
+  1: #F4F9FF,
+  2: #D2E4FF,
+  3: #6DA6FF,
+  4: #2776F0,
+  5: scaleColor(#008080, -10%),
+  6: #008080,
+  7: scaleColor(#008080, 10%),
+  8: #093170,
+  9: #06214A,
+  10: #031025,
+);

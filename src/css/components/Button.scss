@@ -4,15 +4,13 @@
 
 // Global default button colors that are themed
 $button-color:                       white !default;
-$button-border-color:                gray(5) !default;
-$button-text-color:                  gray(9) !default;
+$button-border-color:                color-neutral(5) !default;
+$button-text-color:                  color-neutral(9) !default;
 
 // Default button styles
 $Button-bg: $button-color;
-$Button-bg-hover: scaleColor($Button-bg, -1);
 $Button-color: $button-text-color;
 $Button-border-color: $button-border-color;
-$Button-border-color-hover: scaleColor($Button-border-color, -1);
 $Button-border-radius: $border-radius-medium;
 $Button-border-width: $border-width-small;
 $Button-disabled-opacity: 0.4;
@@ -22,6 +20,8 @@ $Button-font-weight: $tu-semibold-fontWeight;
 $Button-height: scaleGrid(4);
 $Button-line-height: $Button-height - 3;
 $Button-padding: 0 scaleGrid(1);
+$Button-hover-color: color-primary(5);
+$Button-active-color: color-primary(7);
 
 .Button {
   background-color: $Button-bg;
@@ -45,14 +45,14 @@ $Button-padding: 0 scaleGrid(1);
 
   &:hover,
   &:focus {
-    border-color: blue(5);
-    color: blue(5);
+    border-color: $Button-hover-color;
+    color: $Button-hover-color;
     outline: none;
   }
 
   &:active, &.is-active {
-    border-color: blue(7);
-    color: blue(7);
+    border-color: $Button-active-color;
+    color: $Button-active-color;
   }
 
   &.is-disabled,
@@ -60,26 +60,25 @@ $Button-padding: 0 scaleGrid(1);
     &,
     &:hover,
     &:active {
-      background-color: gray(2);
-      border-color: gray(5);
+      background-color: color-neutral(2);
+      border-color: color-neutral(5);
       cursor: not-allowed;
-      color: gray(5);
+      color: color-neutral(5);
     }
   }
 }
 
 $permutations: (
-  "primary" blue(6) blue(5) blue(7),
-  "blue" blue(6) blue(5) blue(7),
-  "negative" red(6) red(5) red(7),
-  "orange" orange(6) orange(5) orange(7),
-  "green" green(6) green(5) green(7)
+  "primary" color-primary(6) color-primary(5) color-primary(7),
+  "negative" color-negative(6) color-negative(5) color-negative(7),
+  "warning" color-warning(6) color-warning(5) color-warning(7),
+  "success" color-success(6) color-success(5) color-success(7)
 );
 
-@each $name, $primary, $hover, $active in $permutations {
+@each $name, $color, $hover, $active in $permutations {
   .Button--#{$name} {
-    background-color: $primary;
-    border-color: $primary;
+    background-color: $color;
+    border-color: $color;
     color: $ts-white;
 
     &:hover,

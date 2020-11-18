@@ -118,6 +118,29 @@
 
 }
 
+// V4 color functions
+
+@function color-primary($shade: 6) {
+  @return map-get($map: $colors-primaries, $key: $shade);
+}
+
+@function color-negative($shade: 6) {
+  @return map-get($map: $colors-negatives, $key: $shade);
+}
+
+@function color-neutral($shade: 6) {
+  @return map-get($map: $colors-neutrals, $key: $shade);
+}
+
+@function color-warning($shade: 6) {
+  @return map-get($map: $colors-warning, $key: $shade);
+}
+
+@function color-success($shade: 6) {
+  @return map-get($map: $colors-success, $key: $shade);
+}
+
+
 // * 4. Grid Scaling Function
 
 @function scaleGrid($step) {
