@@ -126,21 +126,3 @@ $Button--large-padding: 0 scaleGrid(2);
   padding: $Button--large-padding;
   min-width: $Button--large-height;
 }
-
-
-// * Modifier: Button Huge
-//
-// Used on the marketing site for large CTAs
-
-$Button--huge-font-size: $tu-large-fontSize;
-$Button--huge-height: scaleGrid(10);
-$Button--huge-line-height: $Button--huge-height - 3;
-$Button--huge-padding: 0 scaleGrid(2);
-
-.Button--huge {
-  font-size: $Button--huge-font-size;
-  height: $Button--huge-height;
-  line-height: $Button--huge-line-height;
-  padding: $Button--huge-padding;
-  min-width: $Button--huge-height;
-}

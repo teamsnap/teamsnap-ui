@@ -32,7 +32,7 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   isActive: PropTypes.bool,
   color: PropTypes.string,
-  size: PropTypes.oneOf(["small", "large", "huge"]),
+  size: PropTypes.oneOf(["small", "large"]),
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,

@@ -49,14 +49,11 @@ stories.add("Sizes", () => (
     <Button mods="u-spaceRightSm" size="large">
       Large Button
     </Button>
-    <Button mods="u-spaceRightSm" size="huge">
-      Huge Button
-    </Button>
     <h3 style={{marginTop: "20px", paddingTop: "20px", borderTop: "1px solid black"}}>
       Buttons can scale with custom widths.
     </h3>
-    <Button style={{width: "100%"}} mods="u-spaceRightSm" size="huge">
-      This is a `huge` button with width of 100%
+    <Button style={{width: "100%"}} mods="u-spaceRightSm" size="large">
+      This is a `large` button with width of 100%
     </Button>
   </div>
 ));
