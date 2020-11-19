@@ -40,32 +40,6 @@ stories.add("Themed Colors", () => {
   );
 });
 
-stories.add("TeamSnap Colors", () => {
-  const isDisabled = boolean("isDisabled", false);
-  const isActive = boolean("isActive", false);
-
-  return (
-    <div>
-      <Button
-        mods="u-spaceRightSm"
-        isDisabled={isDisabled}
-        isActive={isActive}
-        color="orange"
-      >
-        Orange Button
-      </Button>
-      <Button
-        mods="u-spaceRightSm"
-        isDisabled={isDisabled}
-        isActive={isActive}
-        color="blue"
-      >
-        Blue Button
-      </Button>
-    </div>
-  );
-});
-
 stories.add("Sizes", () => (
   <div>
     <Button mods="u-spaceRightSm" size="small">
