@@ -40,106 +40,20 @@ stories.add("Themed Colors", () => {
   );
 });
 
-stories.add("TeamSnap Colors", () => {
-  const isDisabled = boolean("isDisabled", false);
-  const isActive = boolean("isActive", false);
-
-  return (
-    <div>
-      <Button
-        mods="u-spaceRightSm"
-        isDisabled={isDisabled}
-        isActive={isActive}
-        color="orange"
-      >
-        Orange Button
-      </Button>
-      <Button
-        mods="u-spaceRightSm"
-        isDisabled={isDisabled}
-        isActive={isActive}
-        color="blue"
-      >
-        Blue Button
-      </Button>
-    </div>
-  );
-});
-
-stories.add("Status Colors", () => {
-  const isDisabled = boolean("isDisabled", false);
-  const isActive = boolean("isActive", false);
-
-  return (
-    <div>
-      <div className="u-spaceBottomMd">
-        <Button
-          mods="u-spaceRightSm"
-          isDisabled={isDisabled}
-          isActive={isActive}
-          color="yes"
-        >
-          yes Button
-        </Button>
-        <Button
-          mods="u-spaceRightSm"
-          isDisabled={isDisabled}
-          isActive={isActive}
-          color="maybe"
-        >
-          Maybe Button
-        </Button>
-        <Button
-          mods="u-spaceRightSm"
-          isDisabled={isDisabled}
-          isActive={isActive}
-          color="no"
-        >
-          No Button
-        </Button>
-      </div>
-      <div>
-        <Button
-          mods="u-spaceRightSm"
-          isDisabled={isDisabled}
-          isActive={isActive}
-          color="yesDefault"
-        >
-          Yes/Default Button
-        </Button>
-        <Button
-          mods="u-spaceRightSm"
-          isDisabled={isDisabled}
-          isActive={isActive}
-          color="maybeDefault"
-        >
-          Maybe/Default Button
-        </Button>
-        <Button
-          mods="u-spaceRightSm"
-          isDisabled={isDisabled}
-          isActive={isActive}
-          color="noDefault"
-        >
-          No/Default Button
-        </Button>
-      </div>
-    </div>
-  );
-});
-
 stories.add("Sizes", () => (
   <div>
     <Button mods="u-spaceRightSm" size="small">
       Small Button
     </Button>
-    <Button mods="u-spaceRightSm" size="smallSquare" icon="dismiss" />
     <Button mods="u-spaceRightSm">Default Button</Button>
     <Button mods="u-spaceRightSm" size="large">
       Large Button
     </Button>
-    <Button mods="u-spaceRightSm" size="huge">
-      Huge Button
+    <h3 style={{marginTop: "20px", paddingTop: "20px", borderTop: "1px solid black"}}>
+      Buttons can scale with custom widths.
+    </h3>
+    <Button style={{width: "100%"}} mods="u-spaceRightSm" size="large">
+      This is a `large` button with width of 100%
     </Button>
   </div>
 ));
@@ -148,15 +62,28 @@ storiesOf("Button", module).add(
   "with Icon",
   () => (
     <div>
-      <Button mods="u-spaceRightSm" icon={text("Icon Left", "home")}>
+      <Button size="small" isDisabled={boolean("Disabled", false)} mods="u-spaceRightSm" icon={text("Icon Left", "home")}>
+      </Button>
+      <Button isDisabled={boolean("Disabled", false)} mods="u-spaceRightSm" icon={text("Icon Left", "home")}>
         Icon Left (default)
       </Button>
       <Button
+        color="primary"
         mods="u-spaceRightSm"
         icon={text("Icon Right", "right")}
         iconPosition="right"
+        isDisabled={boolean("Disabled", false)}
       >
-        Icon Right
+        Primary w/ Icon Right
+      </Button>
+      <Button
+        size="large"
+        color="primary"
+        mods="u-spaceRightSm"
+        icon={text("Icon Right", "right")}
+        iconPosition="right"
+        isDisabled={boolean("Disabled", false)}
+      >
       </Button>
     </div>
   ),
