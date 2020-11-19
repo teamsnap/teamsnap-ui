@@ -36,7 +36,7 @@ $ts-green:                                 #7fc243 !default;
 $ts-red:                                   #e26362 !default;
 
 /// V4 colors
-$colors-primaries: (
+$colors-primary: (
   1: #F4F9FF,
   2: #D2E4FF,
   3: #6DA6FF,
@@ -49,7 +49,7 @@ $colors-primaries: (
   10: #031025,
 ) !default;
 
-$colors-negatives: (
+$colors-negative: (
   1: #FFF0F0,
   2: #F5CCCC,
   3: #EB9999,
@@ -62,7 +62,7 @@ $colors-negatives: (
   10: #290000,
 ) !default;
 
-$colors-neutrals: (
+$colors-neutral: (
   1: #FBFBFB,
   2: #F6F8FB,
   3: #EEF0F2,

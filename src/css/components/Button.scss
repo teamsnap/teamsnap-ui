@@ -19,7 +19,7 @@ $Button-font-size: $tu-base-fontSize;
 $Button-font-weight: $tu-semibold-fontWeight;
 $Button-height: scaleGrid(4);
 $Button-line-height: $Button-height - 3;
-$Button-padding: 0 scaleGrid(1);
+$Button-padding: 0 scaleGrid(2);
 $Button-hover-color: color-primary(5);
 $Button-active-color: color-primary(7);
 
@@ -79,19 +79,19 @@ $permutations: (
   .Button--#{$name} {
     background-color: $color;
     border-color: $color;
-    color: $ts-white;
+    color: color-neutral(1);
 
     &:hover,
     &:focus {
       background-color: $hover;
       border-color: $hover;
-      color: $ts-white;
+      color: color-neutral(1);
     }
 
     &:active, &.is-active {
       border-color: $active;
       background-color: $active;
-      color: $ts-white;
+      color: color-neutral(1);
     }
   }
 }
@@ -101,7 +101,7 @@ $permutations: (
 $Button--small-font-size: $tu-small-fontSize;
 $Button--small-height: scaleGrid(3);
 $Button--small-line-height: $Button--small-height - 3;
-$Button--small-padding: 0 $su-xsmall;
+$Button--small-padding: 0 scaleGrid(1);
 
 
 .Button--small {
@@ -117,7 +117,7 @@ $Button--small-padding: 0 $su-xsmall;
 $Button--large-font-size: $tu-large-fontSize;
 $Button--large-height: scaleGrid(5);
 $Button--large-line-height: $Button--large-height - 3;
-$Button--large-padding: 0 scaleGrid(1);
+$Button--large-padding: 0 scaleGrid(2);
 
 .Button--large {
   font-size: $Button--large-font-size;

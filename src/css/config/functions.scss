@@ -121,15 +121,15 @@
 // V4 color functions
 
 @function color-primary($shade: 6) {
-  @return map-get($map: $colors-primaries, $key: $shade);
+  @return map-get($map: $colors-primary, $key: $shade);
 }
 
 @function color-negative($shade: 6) {
-  @return map-get($map: $colors-negatives, $key: $shade);
+  @return map-get($map: $colors-negative, $key: $shade);
 }
 
 @function color-neutral($shade: 6) {
-  @return map-get($map: $colors-neutrals, $key: $shade);
+  @return map-get($map: $colors-neutral, $key: $shade);
 }
 
 @function color-warning($shade: 6) {
