@@ -14,7 +14,7 @@
     "build:css": "node_modules/.bin/gulp build --gulpfile ./scripts/gulpfile.js",
     "build:icons": "NODE_ENV=production babel-node ./scripts/buildIcons.js",
     "build:js": "tsc",
-    "deploy": "npm run build:css && npm run build-storybook",
+    "deploy": "npm run build-storybook && npm run build:css",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook --quiet -o ./dist"
   },
