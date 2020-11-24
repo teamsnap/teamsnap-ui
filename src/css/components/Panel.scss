@@ -37,9 +37,9 @@ $Panel-header-text-color: $cu-info !default;
 .Panel {
   padding: 0;
   background: $Panel-bg-color;
-  color: $Panel-text-color;
+  color: color-neutral(9);
   margin-bottom: $su-medium;
-  border: $border-width-small solid $cu-divider;
+  border: $border-width-small solid color-neutral(5);
   border-radius: $border-radius-large;
   box-sizing: border-box;
 }
@@ -73,6 +73,50 @@ $Panel-header-text-color: $cu-info !default;
   border-bottom-right-radius: $border-radius-large;
 }
 
+.Panel-body:last-child .Panel-row:last-child {
+  border-bottom-left-radius: $border-radius-large;
+  border-bottom-right-radius: $border-radius-large;
+}
+
+
+// Table Specific Stylings
+.Panel-body[role="table"] .Panel-row[role="row"] {
+  border-bottom: 0.5px solid $cu-divider;
+  border-top: 0.5px solid $cu-divider;
+}
+
+.Panel-body[role="table"] .Panel-row[role="row"]:not(:first-child):hover {
+  border-bottom: 1px solid color-primary(4);
+  border-top: 1px solid color-primary(4);
+  background: color-primary(1) !important;
+}
+
+.Panel-body[role="table"] .Panel-row[role="row"]:first-child {
+  box-shadow: 0px 4px 7px -5px #B3B3B3;
+  position: relative;
+  border-top: 0;
+}
+
+.Panel-body[role="table"] .Panel-row[role="row"]:last-child {
+  border-bottom: 0;
+}
+
+
+.Panel-body[role="table"] .Panel-row[role="row"] .Panel-cell {
+  font-size: $tu-large-fontSize; // TODO: Variable
+}
+
+.Panel-body[role="table"] .Panel-row[role="row"]:first-child .Panel-cell:hover {
+  background: color-primary(1) !important;
+}
+
+.Panel-body[role="table"] .Panel-row[role="row"]:first-child .Panel-cell {
+  padding: 0;
+
+  .Panel-title > a, .Panel-title >span {
+    padding: 16px;
+  }
+}
 
 // Override everything-selector that sets max width on -header, -footer, -row
 
@@ -119,13 +163,13 @@ $Panel-header-text-color: $cu-info !default;
 // * .Panel-headerImage
 
 .Panel-headerImage {
-  border-top-right-radius: $border-radius-large - 1px;
-  border-top-left-radius: $border-radius-large - 1px;
+  border-top-right-radius: $border-radius-medium - 1px;
+  border-top-left-radius: $border-radius-medium - 1px;
   border-bottom: 1px solid $cu-divider;
   overflow: hidden;
   max-height: scaleGrid(25);
 
-  img { 
+  img {
     vertical-align: top;
     width: 100%;
   }
@@ -142,8 +186,8 @@ $Panel-header-text-color: $cu-info !default;
 .Panel-title {
   color: $Panel-header-text-color; // 1
   font-family: $base-font-family; // 1
-  font-size: $tu-base-fontSize; // 1
-  font-weight: $tu-bold-fontWeight; // 1
+  font-size: $tu-medium-fontSize; // 1
+  font-weight: $tu-semibold-fontWeight; // 1
   flex: 1 1 0%; // 2
   padding: 0; // 3
   margin: 0; // 3

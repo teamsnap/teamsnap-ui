@@ -47,7 +47,6 @@ class Table extends React.PureComponent<
     columns: [],
     rows: [],
     defaultSort: "",
-    isStriped: true,
     className: "Panel",
     mods: null,
     style: {},
@@ -75,7 +74,6 @@ class Table extends React.PureComponent<
     rows: PropTypes.arrayOf(PropTypes.object),
     defaultSort: PropTypes.string,
     externalSortingFunction: PropTypes.func,
-    isStriped: PropTypes.bool,
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
@@ -169,7 +167,7 @@ class Table extends React.PureComponent<
   };
 
   renderSortLabel = (label) => (
-    <span className="u-colorInfo u-textNoWrap">{label}</span>
+    <span className="u-colorInfo u-textNoWrap u-flex u-flexAlignItemsCenter">{label}</span>
   );
 
   renderSortLink = (column) => {
@@ -177,16 +175,15 @@ class Table extends React.PureComponent<
     const activeColumn = items.length && column.name === sortByColumn;
 
     const ascLinkMods = getClassName(
-      "u-block",
       activeColumn && !sortByReverse && "u-colorHighlight"
     );
     const descLinkMods = getClassName(
-      "u-block",
       activeColumn && sortByReverse && "u-colorHighlight"
     );
 
     const textLinkMods = getClassName(
       "u-flex",
+      "u-flexAlignItemsCenter",
       column.align === "right" && "u-flexJustifyEnd u-spaceNegativeRightSm",
       column.align === "center" && "u-flexJustifyCenter"
     );
@@ -198,9 +195,9 @@ class Table extends React.PureComponent<
         mods={textLinkMods}
       >
         {this.renderSortLabel(column.label)}
-        <div className="u-colorGrey u-fontSizeXs u-spaceLeftXs">
-          <Icon name="up" mods={ascLinkMods} />
-          <Icon name="down" mods={descLinkMods} />
+        <div className="u-colorNeutral5 u-fontSizeXs u-spaceLeftXs">
+          {sortByReverse ? <Icon name="up" mods={ascLinkMods} /> :
+          <Icon name="down" mods={descLinkMods} /> }
         </div>
       </TextLink>
     );
@@ -281,7 +278,6 @@ class Table extends React.PureComponent<
 
   render() {
     const {
-      isStriped,
       className,
       mods,
       style,
@@ -295,7 +291,6 @@ class Table extends React.PureComponent<
       <Panel
         className={className}
         mods={mods}
-        isStriped={isStriped}
         style={style}
         {...otherProps}
       >

@@ -49,9 +49,23 @@ const dataOptions = {
 const defaultDataSet = smallDataSet;
 
 stories.add("Default", () => (
-  <Table
-    columns={columns}
-    rows={select("Data Sets", dataOptions, defaultDataSet)}
-    isLoading={boolean("isLoading", false)}
-  />
+  <>
+    <Table
+      columns={columns}
+      rows={select("Data Sets", dataOptions, defaultDataSet)}
+      isLoading={boolean("isLoading", false)}
+    />
+    <Table
+    style={{width: "800px"}}
+      isStriped={false}
+      columns={[
+        { name: "col1", label: "Name", isSortable: true },
+        { name: "col2", label: "Role", isSortable: true },
+        { name: "col3", label: "Contact", isSortable: true },
+        { name: "col4", label: "Invitation", isSortable: true}
+      ]}
+      rows={select("Data Sets", dataOptions, defaultDataSet)}
+      isLoading={boolean("isLoading", false)}
+    />
+  </>
 ));
