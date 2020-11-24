@@ -103,7 +103,7 @@ $Panel-header-text-color: $cu-info !default;
 
 
 .Panel-body[role="table"] .Panel-row[role="row"] .Panel-cell {
-  font-size: $tu-large-fontSize; // TODO: Variable
+  font-size: $tu-large-fontSize;
 }
 
 .Panel-body[role="table"] .Panel-row[role="row"]:first-child .Panel-cell:hover {
