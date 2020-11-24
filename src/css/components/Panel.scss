@@ -110,9 +110,8 @@ $Panel-header-text-color: $cu-info !default;
   background: color-primary(1) !important;
 }
 
-.Panel-body[role="table"] .Panel-row[role="row"]:first-child .Panel-cell {
+.Panel-body[role="table"] .Panel-row[role="row"]:first-child .Panel-cell[role="columnheader"] {
   padding: 0;
-
   .Panel-title > a, .Panel-title >span {
     padding: 16px;
   }
