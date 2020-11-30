@@ -91,7 +91,7 @@ $Panel-header-text-color: $cu-info !default;
   background: color-primary(1) !important;
 }
 
-.Panel-body[role="table"] .Panel-row[role="row"]:first-child {
+.Panel-body[role="table"] > .Panel-row[role="row"]:first-child {
   box-shadow: 0px 4px 7px -5px #B3B3B3;
   position: relative;
   border-top: 0;
