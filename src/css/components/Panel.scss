@@ -80,41 +80,68 @@ $Panel-header-text-color: $cu-info !default;
 
 
 // Table Specific Stylings
-.Panel-body[role="table"] .Panel-row[role="row"] {
-  border-bottom: 0.5px solid color-neutral(5);
-  border-top: 0.5px solid color-neutral(5);
+
+.Panel-body[role="table"] {
+  & > .Panel-row[role="row"]:first-child {
+    box-shadow: 0px 4px 7px -5px color-neutral(5);
+    position: relative;
+
+    // Override body row hover styles
+    &:hover {
+      background: transparent !important;
+      border-color: color-neutral(5) !important;
+
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  .Panel-row[role="row"]:hover {
+    background: color-primary(1) !important;
+    border-color: color-primary(6) !important;
+    position: relative;
+    cursor: pointer;
+
+    // Adds blue border to top without messing up
+    // all the sibling table border styles
+    &:before {
+      content: '';
+      display: block;
+      width: 100%;
+      position: absolute;
+      top: -1px;
+      height: 1px;
+      background-color: color-primary(6);
+    }
+  }
+
 }
 
-.Panel-body[role="table"] .Panel-row[role="row"]:not(:first-child):hover {
-  border-bottom: 1px solid color-primary(4);
-  border-top: 1px solid color-primary(4);
-  background: color-primary(1) !important;
+// Column header styles
+.Panel-cell[role="columnheader"] {
+  padding: 0;
+
+  .Panel-title > a, .Panel-title > span {
+    padding: 16px;
+  }
+
+  &:hover {
+    background: color-primary(1);
+    cursor: pointer;
+  }
 }
 
-.Panel-body[role="table"] > .Panel-row[role="row"]:first-child {
-  box-shadow: 0px 4px 7px -5px #B3B3B3;
-  position: relative;
-  border-top: 0;
-}
+// Basic style updates
 
-.Panel-body[role="table"] .Panel-row[role="row"]:last-child {
-  border-bottom: 0;
+// Update the row border color to override panel border color
+// Can this just be updated in Panel?
+.Panel-row[role="row"] {
+  border-color: color-neutral(5) !important;
 }
-
 
 .Panel-body[role="table"] .Panel-row[role="row"] .Panel-cell {
   font-size: $tu-large-fontSize;
-}
-
-.Panel-body[role="table"] .Panel-row[role="row"]:first-child .Panel-cell:hover {
-  background: color-primary(1) !important;
-}
-
-.Panel-body[role="table"] .Panel-row[role="row"]:first-child .Panel-cell[role="columnheader"] {
-  padding: 0;
-  .Panel-title > a, .Panel-title >span {
-    padding: 16px;
-  }
 }
 
 // Override everything-selector that sets max width on -header, -footer, -row
