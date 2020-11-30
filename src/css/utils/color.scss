@@ -1,3 +1,14 @@
+$permutations: "Primary", "Negative", "Warning", "Success", "Neutral";
+$maxIndex: 999;
+
+@each $fn in $permutations {
+  @for $i from 1 through 9 {
+    .u-color#{$fn}#{$i} {
+      color: call(get-function(to-lower-case(str-insert("color-", $fn, $maxIndex))), $i) !important;
+    }
+  }
+}
+
 .u-colorPositive {
   color: $cu-positive !important;
 }

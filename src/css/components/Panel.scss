@@ -37,9 +37,9 @@ $Panel-header-text-color: $cu-info !default;
 .Panel {
   padding: 0;
   background: $Panel-bg-color;
-  color: $Panel-text-color;
+  color: color-neutral(9);
   margin-bottom: $su-medium;
-  border: $border-width-small solid $cu-divider;
+  border: $border-width-small solid color-neutral(5);
   border-radius: $border-radius-large;
   box-sizing: border-box;
 }
@@ -73,6 +73,76 @@ $Panel-header-text-color: $cu-info !default;
   border-bottom-right-radius: $border-radius-large;
 }
 
+.Panel-body:last-child .Panel-row:last-child {
+  border-bottom-left-radius: $border-radius-large;
+  border-bottom-right-radius: $border-radius-large;
+}
+
+
+// Table Specific Stylings
+
+.Panel-body[role="table"] {
+  & > .Panel-row[role="row"]:first-child {
+    box-shadow: 0px 4px 7px -5px color-neutral(5);
+    position: relative;
+
+    // Override body row hover styles
+    &:hover {
+      background: transparent !important;
+      border-color: color-neutral(5) !important;
+
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  .Panel-row[role="row"]:hover {
+    background: color-primary(1) !important;
+    border-color: color-primary(6) !important;
+    position: relative;
+    cursor: pointer;
+
+    // Adds blue border to top without messing up
+    // all the sibling table border styles
+    &:before {
+      content: '';
+      display: block;
+      width: 100%;
+      position: absolute;
+      top: -1px;
+      height: 1px;
+      background-color: color-primary(6);
+    }
+  }
+
+}
+
+// Column header styles
+.Panel-cell[role="columnheader"] {
+  padding: 0;
+
+  .Panel-title > a, .Panel-title > span {
+    padding: 16px;
+  }
+
+  &:hover {
+    background: color-primary(1);
+    cursor: pointer;
+  }
+}
+
+// Basic style updates
+
+// Update the row border color to override panel border color
+// Can this just be updated in Panel?
+.Panel-row[role="row"] {
+  border-color: color-neutral(5) !important;
+}
+
+.Panel-body[role="table"] .Panel-row[role="row"] .Panel-cell {
+  font-size: $tu-large-fontSize;
+}
 
 // Override everything-selector that sets max width on -header, -footer, -row
 
@@ -119,13 +189,13 @@ $Panel-header-text-color: $cu-info !default;
 // * .Panel-headerImage
 
 .Panel-headerImage {
-  border-top-right-radius: $border-radius-large - 1px;
-  border-top-left-radius: $border-radius-large - 1px;
+  border-top-right-radius: $border-radius-medium - 1px;
+  border-top-left-radius: $border-radius-medium - 1px;
   border-bottom: 1px solid $cu-divider;
   overflow: hidden;
   max-height: scaleGrid(25);
 
-  img { 
+  img {
     vertical-align: top;
     width: 100%;
   }
@@ -142,8 +212,8 @@ $Panel-header-text-color: $cu-info !default;
 .Panel-title {
   color: $Panel-header-text-color; // 1
   font-family: $base-font-family; // 1
-  font-size: $tu-base-fontSize; // 1
-  font-weight: $tu-bold-fontWeight; // 1
+  font-size: $tu-medium-fontSize; // 1
+  font-weight: $tu-semibold-fontWeight; // 1
   flex: 1 1 0%; // 2
   padding: 0; // 3
   margin: 0; // 3

@@ -23,8 +23,8 @@
 
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import { setUniqueId, capitalize, getClassName } from "../../utils/helpers";
-import { sortBy } from "../../utils/sort";
+import { capitalize, getClassName } from "../../utils/helpers";
+import { sortBy as sortByFn } from "../../utils/sort";
 import { Icon } from "../Icon";
 import { Panel } from "../Panel";
 import { PanelBody } from "../PanelBody";
@@ -33,180 +33,105 @@ import { PanelCell } from "../PanelCell";
 import { TextLink } from "../TextLink";
 import { Loader } from "../Loader";
 
-interface State {
-  items: any[];
-  sortByColumn?: any;
-  sortByReverse?: any;
-}
+const propTypes = {
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+      render: PropTypes.func,
+      isSortable: PropTypes.bool,
+      sortType: PropTypes.string,
+      sortFn: PropTypes.func,
+      align: PropTypes.oneOf(["right", "left", "center"]),
+      mods: PropTypes.string,
+      style: PropTypes.object,
+      otherProps: PropTypes.object,
+    })
+  ),
+  rows: PropTypes.arrayOf(PropTypes.object),
+  defaultSort: PropTypes.string,
+  externalSortingFunction: PropTypes.func,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+  maxTableHeight: PropTypes.string,
+  isLoading: PropTypes.bool,
+  placeHolder: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+};
 
-class Table extends React.PureComponent<
-  PropTypes.InferProps<typeof Table.propTypes>,
-  State
-> {
-  static defaultProps = {
-    columns: [],
-    rows: [],
-    defaultSort: "",
-    isStriped: true,
-    className: "Panel",
-    mods: null,
-    style: {},
-    otherProps: {},
-    placeHolder: "Nothing to see here",
-    maxTableHeight: null,
-    isLoading: false,
-  };
+const Table: React.FunctionComponent<
+  PropTypes.InferProps<typeof propTypes>
+> = ({
+  className,
+  mods,
+  style,
+  otherProps,
+  maxTableHeight,
+  placeHolder,
+  isLoading,
+  columns,
+  externalSortingFunction,
+  defaultSort,
+  rows,
+}) => {
+  const [items, setItems] = React.useState([]);
+  const [sortBy, setSortBy] = React.useState<string>(null);
+  const [sortOrder, setSortOrder] = React.useState<boolean>(null); // TODO: rename?
 
-  static propTypes = {
-    columns: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-        render: PropTypes.func,
-        isSortable: PropTypes.bool,
-        sortType: PropTypes.string,
-        sortFn: PropTypes.func,
-        align: PropTypes.oneOf(["right", "left", "center"]),
-        mods: PropTypes.string,
-        style: PropTypes.object,
-        otherProps: PropTypes.object,
-      })
-    ),
-    rows: PropTypes.arrayOf(PropTypes.object),
-    defaultSort: PropTypes.string,
-    externalSortingFunction: PropTypes.func,
-    isStriped: PropTypes.bool,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-    maxTableHeight: PropTypes.string,
-    isLoading: PropTypes.bool,
-    placeHolder: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  };
-
-  constructor(props) {
-    super(props);
-    const { defaultSort } = this.props;
-
-    // Establish initial sortDirection by checking for '-' value
+  React.useEffect(() => {
     const sortDirection = defaultSort.charAt(0) === "-" ? true : false;
     const sortName = sortDirection ? defaultSort.substr(1) : defaultSort;
 
-    const state = Table.getTableState(props, sortName, sortDirection);
-    this.state = { ...state };
-  }
+    setSortOrder(sortDirection);
+    setSortBy(sortName);
+    setItems(rows);
+  }, [defaultSort, rows, columns]);
 
-  static getDerivedStateFromProps(props, state) {
-    const { sortByColumn, sortByReverse } = state;
+  const sortItems = React.useCallback(
+    (
+      columns: any[],
+      newItems: any[],
+      sortByColumn: string,
+      sortByReverse: boolean
+    ) => {
+      const sortColumn = columns.find((c) => c.name === sortByColumn);
+      let items = newItems;
+      if (sortColumn) {
+        const { name, sortType, sortFn } = sortColumn;
+        items = sortByFn(newItems, {
+          name,
+          sortType,
+          sortFn,
+          isReverse: sortByReverse,
+        });
+      }
 
-    return Table.getTableState(props, sortByColumn, sortByReverse);
-  }
+      return { items, sortByColumn, sortByReverse };
+    },
+    []
+  );
 
-  private static getTableState(
-    props: PropTypes.InferProps<typeof Table.propTypes>,
-    sortName: string,
-    sortDirection: boolean
-  ) {
-    const { rows } = props;
-    const items = setUniqueId(rows);
-
-    const tableState = sortName
-      ? Table.sortItems(props, items, sortName, sortDirection)
-      : { items };
-
-    return tableState;
-  }
-
-  static sortItems = (
-    props: PropTypes.InferProps<typeof Table.propTypes>,
-    newItems: any[],
-    sortByColumn: string,
-    sortByReverse: boolean
-  ) => {
-    const { columns } = props;
-
-    const sortColumn = columns.find((c) => c.name === sortByColumn);
-    let items = newItems;
-    if (sortColumn) {
-      const { name, sortType, sortFn } = sortColumn;
-      items = sortBy(newItems, {
-        name,
-        sortType,
-        sortFn,
-        isReverse: sortByReverse,
-      });
-    }
-
-    return { items, sortByColumn, sortByReverse };
-  };
-
-  handleSortClick = (e) => {
+  const handleSortClick = (e) => {
     e.preventDefault();
-    const { items } = this.state;
     const sortName = e.currentTarget.getAttribute("href");
-
-    const sortDirection =
-      sortName === this.state.sortByColumn ? !this.state.sortByReverse : false;
+    const sortDirection = sortName === sortBy ? !sortOrder : false;
 
     // If an function is provided here, we let the parent component figure out the sorting
     // This is valuable when we sort beyond the data thats currently in the table
     // IE: We keep data on the server and want to sort against that or are supporting pagination.
-    if (this.props.externalSortingFunction != null) {
-      this.props.externalSortingFunction(sortName, sortDirection);
-      const state = Table.getTableState(this.props, sortName, sortDirection);
-      this.setState(state);
+    if (externalSortingFunction != null) {
+      externalSortingFunction(sortName, sortDirection);
     } else {
-      const tableState = Table.sortItems(
-        this.props,
-        items,
-        sortName,
-        sortDirection
-      );
+      const tableState = sortItems(columns, items, sortName, sortDirection);
 
-      this.setState({ ...tableState });
+      setItems(tableState.items);
+      setSortBy(tableState.sortByColumn);
+      setSortOrder(tableState.sortByReverse);
     }
   };
 
-  renderSortLabel = (label) => (
-    <span className="u-colorInfo u-textNoWrap">{label}</span>
-  );
-
-  renderSortLink = (column) => {
-    const { items, sortByColumn, sortByReverse } = this.state;
-    const activeColumn = items.length && column.name === sortByColumn;
-
-    const ascLinkMods = getClassName(
-      "u-block",
-      activeColumn && !sortByReverse && "u-colorHighlight"
-    );
-    const descLinkMods = getClassName(
-      "u-block",
-      activeColumn && sortByReverse && "u-colorHighlight"
-    );
-
-    const textLinkMods = getClassName(
-      "u-flex",
-      column.align === "right" && "u-flexJustifyEnd u-spaceNegativeRightSm",
-      column.align === "center" && "u-flexJustifyCenter"
-    );
-
-    return (
-      <TextLink
-        location={column.name}
-        onClick={this.handleSortClick}
-        mods={textLinkMods}
-      >
-        {this.renderSortLabel(column.label)}
-        <div className="u-colorGrey u-fontSizeXs u-spaceLeftXs">
-          <Icon name="up" mods={ascLinkMods} />
-          <Icon name="down" mods={descLinkMods} />
-        </div>
-      </TextLink>
-    );
-  };
-
-  renderPanelCell = (role, children, column) => {
+  const renderPanelCell = (role, children, column) => {
     const cellMods = getClassName(
       column.mods,
       `u-text${capitalize(column.align || "Left")}`
@@ -226,91 +151,97 @@ class Table extends React.PureComponent<
     );
   };
 
-  renderColumn = (column, row) => {
+  const renderColumn = (column, row) => {
     const data = row[column.name];
     const children = column.render ? column.render(column, row) : data;
 
-    return this.renderPanelCell("cell", children, {
+    return renderPanelCell("cell", children, {
       key: `${row.id}-${column.name}`,
       itTitle: false,
       ...column,
     });
   };
 
-  renderHeaderColumn = (column) => {
-    const children = column.isSortable
-      ? this.renderSortLink(column)
-      : this.renderSortLabel(column.label);
+  const columnsJsx = columns.map((column) => {
+    const activeColumn = items.length && column.name === sortBy;
 
-    return this.renderPanelCell("columnheader", children, {
+    const textLinkMods = getClassName(
+      "u-flex",
+      "u-flexAlignItemsCenter",
+      column.align === "right" && "u-flexJustifyEnd u-spaceNegativeRightSm",
+      column.align === "center" && "u-flexJustifyCenter"
+    );
+
+    const children = column.isSortable ? (
+      <TextLink
+        location={column.name}
+        onClick={handleSortClick}
+        mods={textLinkMods}
+      >
+        <span className="u-colorInfo u-textNoWrap u-flex u-flexAlignItemsCenter">
+          {column.label}
+        </span>
+        <div className="u-colorNeutral5 u-fontSizeXs u-spaceLeftXs">
+          <Icon
+            name={activeColumn ? (sortOrder ? "up" : "down") : "down"}
+            mods={activeColumn && `u-colorHighlight`}
+          />
+        </div>
+      </TextLink>
+    ) : (
+      <span className="u-colorInfo u-textNoWrap u-flex u-flexAlignItemsCenter">
+        {column.label}
+      </span>
+    );
+
+    return renderPanelCell("columnheader", children, {
       key: column.name,
       isTitle: true,
       ...column,
     });
-  };
+  });
 
-  renderRow = (row) => {
-    const { columns } = this.props;
+  const withMaxTableHeight = { height: maxTableHeight, overflow: "scroll" };
 
-    return (
-      <PanelRow key={row.id} isWithCells>
-        {columns.map((column) => this.renderColumn(column, row))}
-      </PanelRow>
-    );
-  };
+  return (
+    <Panel className={className} mods={mods} style={style} {...otherProps}>
+      <PanelBody role="table">
+        <PanelRow isWithCells>{columnsJsx}</PanelRow>
+        {isLoading ? (
+          <div className="u-padMd u-textCenter">
+            <Loader type="spin" text="loading..." />
+          </div>
+        ) : (
+          <>
+            {!items.length ? (
+              <div className="u-padMd u-textCenter">{placeHolder}</div>
+            ) : (
+              <div style={maxTableHeight ? withMaxTableHeight : null}>
+                {items.map((row) => (
+                  <PanelRow key={row.id} isWithCells>
+                    {columns.map((column) => renderColumn(column, row))}
+                  </PanelRow>
+                ))}
+              </div>
+            )}
+          </>
+        )}
+      </PanelBody>
+    </Panel>
+  );
+};
 
-  renderTableColumns = () => {
-    const { columns } = this.props;
-    return columns.map(this.renderHeaderColumn);
-  };
-
-  renderTableRows = (placeHolder, isLoading) => {
-    const { items } = this.state;
-    if (isLoading) {
-      return (
-        <div className="u-padMd u-textCenter">
-          <Loader type="spin" text="loading..." />
-        </div>
-      );
-    }
-    if (!isLoading && items.length) {
-      return items.map(this.renderRow);
-    }
-    return <div className="u-padMd u-textCenter">{placeHolder}</div>;
-  };
-
-  render() {
-    const {
-      isStriped,
-      className,
-      mods,
-      style,
-      otherProps,
-      maxTableHeight,
-      placeHolder,
-      isLoading,
-    } = this.props;
-
-    return (
-      <Panel
-        className={className}
-        mods={mods}
-        isStriped={isStriped}
-        style={style}
-        {...otherProps}
-      >
-        <PanelBody role="table">
-          <PanelRow isWithCells>{this.renderTableColumns()}</PanelRow>
-          {maxTableHeight && (
-            <div style={{ height: maxTableHeight, overflow: "scroll" }}>
-              {this.renderTableRows(placeHolder, isLoading)}
-            </div>
-          )}
-          {!maxTableHeight && this.renderTableRows(placeHolder, isLoading)}
-        </PanelBody>
-      </Panel>
-    );
-  }
-}
+Table.defaultProps = {
+  columns: [],
+  rows: [],
+  defaultSort: "",
+  className: "Panel",
+  mods: null,
+  style: {},
+  otherProps: {},
+  placeHolder: "Nothing to see here",
+  maxTableHeight: null,
+  isLoading: false,
+};
 
 export default Table;

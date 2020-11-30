@@ -12,35 +12,35 @@ const stories = storiesOf("Panel", module);
 
 const noImage = {
   Source: null,
-  Placeholder: "http://via.placeholder.com/640x360"
+  Placeholder: "http://via.placeholder.com/640x360",
 };
 const billMurrayImage = {
   Source: "https://www.fillmurray.com/640/360",
-  Placeholder: "http://via.placeholder.com/640x360"
+  Placeholder: "http://via.placeholder.com/640x360",
 };
 const catImage = {
   Source: "https://loremflickr.com/800/300",
-  Placeholder: "http://via.placeholder.com/300x300"
+  Placeholder: "http://via.placeholder.com/300x300",
 };
 const randomImage = {
   Source: "http://lorempixel.com/300/300",
-  Placeholder: "http://via.placeholder.com/300x300"
+  Placeholder: "http://via.placeholder.com/300x300",
 };
 const animalImage = {
   Source: "http://placeimg.com/500/200/animals",
-  Placeholder: "http://via.placeholder.com/500x200"
+  Placeholder: "http://via.placeholder.com/500x200",
 };
 const brownBearImage = {
   Source: "https://placebear.com/1000/750",
-  Placeholder: "http://via.placeholder.com/1000x750"
+  Placeholder: "http://via.placeholder.com/1000x750",
 };
 const beardImage = {
   Source: "https://placebeard.it/100x150",
-  Placeholder: "http://via.placeholder.com/100x150"
+  Placeholder: "http://via.placeholder.com/100x150",
 };
 const architectureImage = {
   Source: "http://placeimg.com/300/800/architecture",
-  Placeholder: "http://via.placeholder.com/300x800"
+  Placeholder: "http://via.placeholder.com/300x800",
 };
 
 const imageOptions = {
@@ -51,21 +51,44 @@ const imageOptions = {
   "Animal (500x200)": animalImage,
   "Brown Bear (1000x750)": brownBearImage,
   "Beards (100x150)": beardImage,
-  "Architecture (300x800)": architectureImage
+  "Architecture (300x800)": architectureImage,
 };
 
 stories.add("Defaults", () => (
-  <Panel>
-    <PanelHeader title="Panel with Header, Body, Rows, Cells, and Footer" />
-    <PanelBody>
-      <PanelRow>
-        <PanelCell>Panel Cell Content</PanelCell>
-        <PanelCell>Panel Cell Content</PanelCell>
-      </PanelRow>
-      <PanelRow>Second Panel Row Content</PanelRow>
-    </PanelBody>
-    <PanelFooter>Panel Footer Content</PanelFooter>
-  </Panel>
+  <>
+    <h2>Panel with Set Width</h2>
+    <Panel style={{width: "50%"}}>
+      <PanelHeader title="Panel Header" />
+      <PanelBody>
+        <PanelRow>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+          imperdiet mauris vitae enim sollicitudin mattis. Integer sapien ex,
+          congue et dictum vitae, porta vitae felis. Suspendisse tortor odio,
+          elementum id gravida non, malesuada vel nisl.
+          <br/> <br/>
+          Ut nec ex magna. Sed at
+          ipsum eu nulla rhoncus faucibus ut vel erat. Integer vitae porta erat,
+          eu convallis lorem. Vestibulum ante ipsum primis in faucibus orci
+          luctus et ultrices posuere cubilia Curae; Sed efficitur at eros sed
+          lobortis. Phasellus metus dolor, suscipit id consectetur vel, auctor
+          in lacus. Mauris consequat ut enim id tempor. Morbi nec egestas elit.
+        </PanelRow>
+      </PanelBody>
+    </Panel>
+    <hr/>
+    <h2>Panels are fluid by default</h2>
+    <Panel>
+      <PanelHeader title="Panel with Header, Body, Rows, Cells, and Footer" />
+      <PanelBody>
+        <PanelRow>
+          <PanelCell>Panel Cell Content</PanelCell>
+          <PanelCell>Panel Cell Content</PanelCell>
+        </PanelRow>
+        <PanelRow>Second Panel Row Content</PanelRow>
+      </PanelBody>
+      <PanelFooter>Panel Footer Content</PanelFooter>
+    </Panel>
+  </>
 ));
 
 stories.add("Full Panel", () => (

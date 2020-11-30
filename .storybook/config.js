@@ -4,7 +4,7 @@ import { withInfo } from "@storybook/addon-info";
 
 // Import css
 import "../src/css/teamsnap-ui.scss";
-// import "../src/css/themes/custom-aquablue.scss";
+//import "../src/css/themes/custom-aquablue.scss";
 import "./storybook.scss";
 
 addDecorator(withKnobs);
