@@ -10,13 +10,30 @@ export default class Popup extends React.Component<
   State
 > {
   static propTypes = {
-    buttonText: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
-      .isRequired,
+    popUpMods: PropTypes.string,
     popUpText: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
       .isRequired,
+    direction: PropTypes.arrayOf(PropTypes.oneOf(["down", "right", "left", "rightHang", "leftHang", "overlay"])),
     popupStyle: PropTypes.object,
+    buttonText: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element])
+      .isRequired,
+    buttonMods: PropTypes.string,
+    confirmButtonText: PropTypes.string,
+    confirmButtonMods: PropTypes.string,
+    cancelButtonText: PropTypes.string,
+    cancelButtonMods: PropTypes.string,
     onAccept: PropTypes.func.isRequired,
     onCancel: PropTypes.func
+  };
+
+  static defaultProps = {
+    direction: ["overlay"],
+    popUpMods: "",
+    buttonMods: "Button--small",
+    confirmButtonText: "Confirm",
+    confirmButtonMods: "Button--primary",
+    cancelButtonText: "Cancel",
+    cancelButtonMods: "Button--negative",
   };
 
   popupRef: PropTypes.InferType<PropTypes.ReactElementLike>;
@@ -54,19 +71,20 @@ export default class Popup extends React.Component<
   }
 
   render() {
+    const dirString = this.props.direction.reduce((acc, cur) => {
+      return acc + ` Popup-container--${cur}`;
+    }, "");
+
     return (
-      <div className="Popup" ref={this.popupRef}>
+      <div className={`Popup ${this.props.popUpMods}`} ref={this.popupRef}>
         <button
-          className="Button Button--small"
+          className={`Button ${this.props.buttonMods}`}
           onClick={this.togglePopup.bind(this)}
         >
           {this.props.buttonText}
         </button>
         <div
-          className={
-            "Popup-container Popup-container--overlay" +
-            (this.state.isPopupOpen ? " is-open" : "")
-          }
+          className={`Popup-container ${dirString} ${this.state.isPopupOpen ? "is-open" : ""}`}
           style={this.props.popupStyle}
         >
           <div className="Popup-content u-padMd">
@@ -74,15 +92,15 @@ export default class Popup extends React.Component<
             <div className="u-textCenter u-spaceTopMd">
               <button
                 onClick={this.props.onCancel}
-                className="u-spaceRightSm Button Button--negative"
+                className={`u-spaceRightSm Button ${this.props.cancelButtonMods}`}
               >
-                Cancel
+                {this.props.cancelButtonText}
               </button>
               <button
                 onClick={this.props.onAccept}
-                className="Button Button--primary"
+                className={`Button ${this.props.confirmButtonMods}`}
               >
-                Confirm
+                {this.props.confirmButtonText}
               </button>
             </div>
           </div>
