@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { boolean, select, text } from "@storybook/addon-knobs/react";
+import { text } from "@storybook/addon-knobs/react";
 import Nav from "./Nav";
 const stories = storiesOf("Nav", module);
 
@@ -21,11 +21,9 @@ stories.add("Default", () => (
         },
       ]}
     >
-      <a href="https://www.teamsnap.com">
-        <Nav.Item icon="tracking">
-          TeamSnap Home
-        </Nav.Item>
-      </a>
+      <Nav.Item icon="tracking" link="https://www.teamsnap.com" linkProps={{target: "_blank"}}>
+        TeamSnap Home
+      </Nav.Item>
       <Nav.Item icon="money" isActive>
         Show me the money
       </Nav.Item>
@@ -58,11 +56,9 @@ stories.add("Without Header", () => (
       style={{ backgroundColor: "#FFEFA5", minHeight: "800px" }}
     >
       <Nav mods="u-size2of12">
-        <a href="https://www.teamsnap.com">
-          <Nav.Item icon="tracking">
+        <Nav.Item icon="tracking" link="https://www.teamsnap.com" linkProps={{target: "_blank"}}>
             TeamSnap Home
           </Nav.Item>
-        </a>
         <Nav.Item icon="money">
           Show me the money
         </Nav.Item>

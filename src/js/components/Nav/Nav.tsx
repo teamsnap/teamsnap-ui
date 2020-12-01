@@ -16,11 +16,17 @@ import { getClassName } from "../../utils/helpers";
 import { Avatar } from "../Avatar";
 
 const navPropTypes = {
+  // React component children
   children: PropTypes.node,
+  // Custom classnames to add
   className: PropTypes.string,
+  // TeamSnap UI modifiers to add to class name
   mods: PropTypes.string,
+  // Custom React Styles to add to the nav
   style: PropTypes.object,
+  // Any extraneous props
   otherProps: PropTypes.object,
+  // a list of items to be displayed in the header component
   headerItems: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -30,10 +36,18 @@ const navPropTypes = {
 };
 
 const itemPropTypes = {
+  // String that matches a teamsnap-ui icon name
   icon: PropTypes.string,
+  // Teamsnap UI modifiers passed to the icon component
   iconModifiers: PropTypes.string,
+  // bool wether this item should be marked as active or not, multiple can be marked.
   isActive: PropTypes.bool,
+  // function to handle an item being clicked.
   onClick: PropTypes.func,
+  // *external* link, creates an anchor tag under the hood. Use onClick and router state for SPA transitions
+  link: PropTypes.string,
+  // any props to pass to the generated anchor tag (target, for example)
+  linkProps: PropTypes.any
 };
 
 type NavType = React.FunctionComponent<
@@ -43,12 +57,15 @@ type ItemType = React.FunctionComponent<
   PropTypes.InferProps<typeof itemPropTypes>
 >;
 
-const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick }) => {
+const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, link, linkProps }) => {
   const maybeIcon = icon ? <Icon name={icon} mods={`u-spaceRightXs ${iconModifiers}`} /> : null;
+  const Wrapper = link ? ({children}) => <a href={link} {...linkProps}>{children}</a> : ({children}) => <>{children}</>
   return (
-    <li className={`${isActive ? `is-active ` : ``}nav-item`} onClick={onClick || (() => {})}>
-      {maybeIcon} <span className="nav-item-title">{children}</span>
-    </li>
+    <Wrapper>
+      <li className={`${isActive ? `is-active ` : ``}nav-item`} onClick={onClick || (() => {})}>
+        {maybeIcon} <span className="nav-item-title">{children}</span>
+      </li>
+    </Wrapper>
   );
 };
 
