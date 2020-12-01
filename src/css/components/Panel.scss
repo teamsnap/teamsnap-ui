@@ -39,7 +39,7 @@ $Panel-header-text-color: $cu-info !default;
   background: $Panel-bg-color;
   color: color-neutral(9);
   margin-bottom: $su-medium;
-  border: $border-width-small solid color-neutral(5);
+  border: $border-width-small solid color-neutral(4);
   border-radius: $border-radius-large;
   box-sizing: border-box;
 }
@@ -89,7 +89,7 @@ $Panel-header-text-color: $cu-info !default;
     // Override body row hover styles
     &:hover {
       background: transparent !important;
-      border-color: color-neutral(5) !important;
+      border-color: color-neutral(4) !important;
 
       &:before {
         display: none;
@@ -97,14 +97,11 @@ $Panel-header-text-color: $cu-info !default;
     }
   }
 
-  .Panel-row[role="row"]:hover {
-    background: color-primary(1) !important;
-    border-color: color-primary(6) !important;
-    position: relative;
-    cursor: pointer;
+  .Panel-row[role="row"] {
+    transition: all ease 300ms;
 
-    // Adds blue border to top without messing up
-    // all the sibling table border styles
+    // Adds blue border to top for hover style
+    // without messing up all the sibling table border styles
     &:before {
       content: '';
       display: block;
@@ -113,21 +110,34 @@ $Panel-header-text-color: $cu-info !default;
       top: -1px;
       height: 1px;
       background-color: color-primary(6);
+      opacity: 0;
+      transition: opacity ease 300ms;
+    }
+
+    &:hover {
+      background-color: color-neutral(2) !important;
+      border-color: color-primary(6) !important;
+      position: relative;
+      cursor: pointer;
+
+      &:before {
+        opacity: 1
+      }
     }
   }
-
 }
 
 // Column header styles
 .Panel-cell[role="columnheader"] {
   padding: 0;
+  transition: background-color ease 300ms;
 
   .Panel-title > a, .Panel-title > span {
     padding: 16px;
   }
 
   &:hover {
-    background: color-primary(1);
+    background-color: color-neutral(2);
     cursor: pointer;
   }
 }
@@ -137,7 +147,7 @@ $Panel-header-text-color: $cu-info !default;
 // Update the row border color to override panel border color
 // Can this just be updated in Panel?
 .Panel-row[role="row"] {
-  border-color: color-neutral(5) !important;
+  border-color: color-neutral(4) !important;
 }
 
 .Panel-body[role="table"] .Panel-row[role="row"] .Panel-cell {
