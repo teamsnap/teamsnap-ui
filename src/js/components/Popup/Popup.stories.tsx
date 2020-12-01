@@ -40,7 +40,7 @@ stories.add("PopupConfirm", () => {
     <h4>Do you really want to hurt me? Do you really want to make me cry?</h4>
   );
   const negativePopUpText = (
-    <div class="u-textCenter">
+    <div className="u-textCenter">
       <h3>Delete this Row?</h3>
       <p>This action cannot be undone.</p>
     </div>
