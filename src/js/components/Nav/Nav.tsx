@@ -1,19 +1,12 @@
 /**
- * @name Button
+ * @name Nav
  *
  * @description
- *  A common button component that will render the appropriate styles for a button or link.  See the teamsnap patterns
- *  library for more information https://teamsnap-ui-patterns.netlify.com/patterns/components/button.html
+ *  A component for rendering a vertical, usually left-aligned, navigation.
+ *  This component offers a collapsable width.
+ *  Additionally,
  *
- * @example
- *  <Button
- *    handleClick={ () => console.warn('Clicky Clicky') }
- *    color='primary'
- *    size='small'
- *    isDisabled
- *    mods='u-spaceTopMd'>
- *    Click Me
- *  </Button>
+ * Please see the Storybook example for how we recommend using the Nav component.
  *
  */
 
@@ -47,7 +40,7 @@ const Item: ItemType = ({
 }) => {
   const maybeIcon = icon ? <Icon name={icon} mods={iconModifiers} /> : null
   return (
-    <li className={isActive ? `is-active` : ``}>
+    <li className={`${isActive ? `is-active ` : ``}nav-item`}>
       {maybeIcon} <span className="nav-item-title">{children}</span>
     </li>
   )
@@ -74,7 +67,18 @@ const Nav: NavType & { Item: ItemType } = ({
       style={style}
       {...otherProps}
     >
-      <div>
+      <div className="nav-header u-textSemiBold u-flex">
+        <div className={`${!isCollapsed ? "u-size1of8" : ""} nav-header-icon u-flex u-flexAlignItemsCenter u-flexJustifyCenter`}>
+          <Icon name="home" />
+        </div>
+        <div className="u-sizeFill nav-item-title u-spaceLeftSm">
+          <span className="nav-item-title u-textEllipsis">Boulder Sports</span>
+        </div>
+        <div className="u-size1of8 u-flex u-flexAlignItemsCenter u-flexJustifyCenter nav-item-title">
+          <Icon style={{fontSize: "14px"}} name="down" />
+        </div>
+      </div>
+      <div className="u-sizeFill">
         {children}
       </div>
       <div className="nav-collapse" onClick={() => setCollapsed(!isCollapsed)}>

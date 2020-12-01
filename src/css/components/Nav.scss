@@ -4,6 +4,10 @@
   display: flex;
   flex-direction: column;
 
+  a, .nav-item {
+    color: color-neutral(9);
+  }
+
   .Icon {
     height: 1.2em;
     width: 1.2em;
@@ -12,7 +16,11 @@
   &.is-collapsed {
     max-width: 64px;
     .nav-item-title {
-      display: none;
+      display: none !important;
+    }
+
+    .nav-header {
+      padding: 16px;
     }
 
     .nav-collapse {
@@ -20,6 +28,12 @@
         transform: rotate(180deg);
       }
     }
+  }
+
+  .nav-header {
+    border-bottom: 1px solid color-neutral(5);
+    padding: 16px;
+    font-size: 1.4rem;
   }
 
   .nav-collapse {
