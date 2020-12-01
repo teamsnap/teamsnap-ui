@@ -22,14 +22,14 @@ stories.add("Default", () => (
       ]}
     >
       <a href="https://www.teamsnap.com">
-        <Nav.Item key="row1" icon="tracking">
+        <Nav.Item icon="tracking">
           TeamSnap Home
         </Nav.Item>
       </a>
-      <Nav.Item key="row2" icon="money" isActive>
+      <Nav.Item icon="money" isActive>
         Show me the money
       </Nav.Item>
-      <Nav.Item key="row3" icon="messages" onClick={() => alert("Fire Custom On Click")}>
+      <Nav.Item icon="messages" onClick={() => alert("Fire Custom On Click")}>
         Custom On Click
       </Nav.Item>
     </Nav>
@@ -59,14 +59,14 @@ stories.add("Without Header", () => (
     >
       <Nav mods="u-size2of12">
         <a href="https://www.teamsnap.com">
-          <Nav.Item key="row1" icon="tracking">
+          <Nav.Item icon="tracking">
             TeamSnap Home
           </Nav.Item>
         </a>
-        <Nav.Item key="row2" icon="money">
+        <Nav.Item icon="money">
           Show me the money
         </Nav.Item>
-        <Nav.Item key="row3" icon="messages" isActive>
+        <Nav.Item icon="messages" isActive>
           Txt me, maybe?
         </Nav.Item>
       </Nav>
