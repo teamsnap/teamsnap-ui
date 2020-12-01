@@ -15,7 +15,7 @@
 .Tabs {}
 
 .Tabs-header {
-  border-bottom: $border-width-large solid $cu-divider;
+  border-bottom: $border-width-large solid color-neutral(3);
   padding: 0;
   margin-bottom: $su-medium;
 }
@@ -26,7 +26,7 @@
   display: inline-block;
   position: relative;
   cursor: pointer;
-  color: $cu-info--light;
+  color: color-primary(6);
   font-family: $base-font-family;
   font-weight: $tu-semibold-fontWeight;
 
@@ -47,11 +47,11 @@
 
   &.is-active,
   &:hover {
-    color: $cu-primary;
+    color: color-primary(5);
   }
 
   &.is-active:after {
-    background: $cu-primary;
+    background: color-primary(6);
   }
 
 }

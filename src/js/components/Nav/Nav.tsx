@@ -33,6 +33,7 @@ const itemPropTypes = {
   icon: PropTypes.string,
   iconModifiers: PropTypes.string,
   isActive: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 type NavType = React.FunctionComponent<
@@ -42,10 +43,10 @@ type ItemType = React.FunctionComponent<
   PropTypes.InferProps<typeof itemPropTypes>
 >;
 
-const Item: ItemType = ({ children, icon, iconModifiers, isActive }) => {
+const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick }) => {
   const maybeIcon = icon ? <Icon name={icon} mods={`u-spaceRightXs ${iconModifiers}`} /> : null;
   return (
-    <li className={`${isActive ? `is-active ` : ``}nav-item`}>
+    <li className={`${isActive ? `is-active ` : ``}nav-item`} onClick={onClick || (() => {})}>
       {maybeIcon} <span className="nav-item-title">{children}</span>
     </li>
   );
