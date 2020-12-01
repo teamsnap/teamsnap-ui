@@ -5,8 +5,12 @@
  *  A component for rendering a vertical, usually left-aligned, navigation.
  *  This component offers a collapsable width.
  *
- * Please see the Storybook example for how we recommend using the Nav component.
+ * Please see the Storybook example for a more robust way of how we recommend using the Nav component.
  *
+ * <Nav>
+ *  <Nav.Item onClick={() => alert("Home clicked!")}>Home</Nav.Item>
+ *  <Nav.Item link="https://www.teamsnap.com" linkProps={{target: "_blank"}}>External Link</Nav.Item>
+ * </Nav>
  */
 
 import * as React from "react";
