@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { boolean, select } from "@storybook/addon-knobs/react";
+import { boolean, select, text } from "@storybook/addon-knobs/react";
 import Nav from "./Nav";
 const stories = storiesOf("Nav", module);
 
@@ -9,7 +9,18 @@ stories.add("Default", () => (
     className="u-flex"
     style={{ backgroundColor: "#FFEFA5", minHeight: "800px" }}
   >
-    <Nav mods="u-size2of12">
+    <Nav
+      mods="u-size2of12"
+      headerItems={[
+        {
+          title: text("Team Name", "Boulder Sport"),
+          image: text(
+            "Image Source",
+            "https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png"
+          ),
+        },
+      ]}
+    >
       <a href="https://www.teamsnap.com">
         <Nav.Item key="row1" icon="tracking">
           TeamSnap Home
