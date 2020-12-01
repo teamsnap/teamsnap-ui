@@ -47,7 +47,6 @@ stories.add("Default", () => (
 
 stories.add("Without Header", () => (
   <>
-    {" "}
     <h4>
       Removing the header items from the Nav allows us to have a more generic,
       left-aligned collapsible bar. Possible use cases could involve a
