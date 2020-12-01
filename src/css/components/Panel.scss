@@ -39,7 +39,7 @@ $Panel-header-text-color: $cu-info !default;
   background: $Panel-bg-color;
   color: color-neutral(9);
   margin-bottom: $su-medium;
-  border: $border-width-small solid color-neutral(5);
+  border: $border-width-small solid color-neutral(4);
   border-radius: $border-radius-large;
   box-sizing: border-box;
 }
@@ -89,7 +89,7 @@ $Panel-header-text-color: $cu-info !default;
     // Override body row hover styles
     &:hover {
       background: transparent !important;
-      border-color: color-neutral(5) !important;
+      border-color: color-neutral(4) !important;
 
       &:before {
         display: none;
@@ -115,7 +115,7 @@ $Panel-header-text-color: $cu-info !default;
     }
 
     &:hover {
-      background-color: color-primary(1) !important;
+      background-color: color-neutral(2) !important;
       border-color: color-primary(6) !important;
       position: relative;
       cursor: pointer;
@@ -137,7 +137,7 @@ $Panel-header-text-color: $cu-info !default;
   }
 
   &:hover {
-    background-color: color-primary(1);
+    background-color: color-neutral(2);
     cursor: pointer;
   }
 }
@@ -147,7 +147,7 @@ $Panel-header-text-color: $cu-info !default;
 // Update the row border color to override panel border color
 // Can this just be updated in Panel?
 .Panel-row[role="row"] {
-  border-color: color-neutral(5) !important;
+  border-color: color-neutral(4) !important;
 }
 
 .Panel-body[role="table"] .Panel-row[role="row"] .Panel-cell {
