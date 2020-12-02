@@ -17,7 +17,7 @@ import * as React from "react";
 
 interface Props {
   src: string;
-  size: "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
+  size: "xs" | "sm" | "md" | "lg" | "xl" | "xxl" | "fill";
   mods?: string;
 }
 

@@ -1,0 +1,86 @@
+
+.Nav {
+  background-color: color-neutral(1);
+  display: flex;
+  flex-direction: column;
+  min-width: scaleGrid(24);
+
+  .Nav-item {
+    color: color-neutral(9);
+  }
+
+  .Icon {
+    height: 1.2em;
+    width: 1.2em;
+  }
+
+  &.is-collapsed {
+    max-width: scaleGrid(8);
+    min-width: scaleGrid(8);
+    .Nav-itemTitle {
+      display: none !important;
+    }
+
+    .Nav-header {
+      margin: 0 auto;
+      padding: scaleGrid(2);
+    }
+
+    .Nav-footer {
+      .Icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.Nav-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid color-neutral(5);
+  padding: scaleGrid(2);
+  font-size: 1.4rem;
+}
+
+.Nav-body {
+  flex: 1 1 0% !important;
+  flex-basis: 0% !important;
+}
+
+.Nav-headerIcon {
+  width: scaleGrid(3);
+  display: block;
+}
+
+.Nav-footer {
+  border-top: 1px solid color-neutral(5);
+  cursor: pointer;
+  padding: (scaleGrid(3) / 2) scaleGrid(3);
+  .Icon {
+    transition: transform 0.2s ease-in-out;
+  }
+}
+
+.Nav-item {
+  background-color: color-neutral(1);
+  border-radius: 5px;
+  cursor: pointer;
+  list-style: none;
+  margin: (scaleGrid(3) / 2);
+  min-height: 42px;
+  padding: (scaleGrid(3) / 2);
+  user-select: none;
+
+  &:hover {
+    background-color: color-neutral(3);
+  }
+
+  &:active {
+    background-color: color-neutral(4);
+  }
+
+  &.is-active {
+    background-color: color-primary(6);
+    color:color-neutral(1);
+  }
+}

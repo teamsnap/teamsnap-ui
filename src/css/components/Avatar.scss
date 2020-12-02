@@ -24,4 +24,9 @@ $sizes: (
       height: $value;
     }
   }
+
+  &--fill {
+    display: flex;
+    width: 100%;
+  }
 }
