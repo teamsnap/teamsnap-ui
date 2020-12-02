@@ -1,6 +1,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { select } from "@storybook/addon-knobs/react";
+import { Icon } from "../Icon";
 import PopupAction from "./PopupAction";
 import PopupConfirm from "./PopupConfirm";
 
@@ -29,7 +30,7 @@ stories.add("PopupActions", () => {
       text="..."
       actions={actions}
       direction={["down", "left"]}
-      popupStyle={{ width: "150px" }}
+      popupStyle={{ width: "150px", left: "-16px" }}
     />
   );
 });
@@ -38,6 +39,12 @@ stories.add("PopupConfirm", () => {
   const popupText = (
     <h4>Do you really want to hurt me? Do you really want to make me cry?</h4>
   );
+  const negativePopUpText = (
+    <div className="u-textCenter">
+      <h3>Delete this Row?</h3>
+      <p>This action cannot be undone.</p>
+    </div>
+  );
   const onAccept = () => {
     alert("You said yes!");
   };
@@ -45,11 +52,39 @@ stories.add("PopupConfirm", () => {
     alert("Good. I dont want to hurt or cry.");
   };
   return (
-    <PopupConfirm
-      onAccept={onAccept}
-      onCancel={onCancel}
-      buttonText="Perform the Culture Club!"
-      popUpText={popupText}
-    />
+    <>
+      <PopupConfirm
+        direction={["down", "left"]}
+        popupStyle={{ left: "-16px", width: "270px" }}
+        onAccept={onAccept}
+        onCancel={onCancel}
+        buttonText={<Icon name="trash" style={{ color: '#e26362' }} />}
+        cancelButtonText="Cancel"
+        cancelButtonMods=""
+        confirmButtonText="Delete"
+        confirmButtonMods="Button--no"
+        popUpText={negativePopUpText}
+        popUpMods="Popup--hover"
+      />
+      <PopupConfirm
+        popUpMods="u-spaceSidesMd"
+        direction={["down"]}
+        onAccept={onAccept}
+        onCancel={onCancel}
+        buttonText={"Negative Button, Down"}
+        buttonMods="Button--negative"
+        cancelButtonText="Cancel"
+        cancelButtonMods=""
+        confirmButtonText="Confirm"
+        confirmButtonMods="Button--no"
+        popUpText={negativePopUpText}
+      />
+      <PopupConfirm
+        onAccept={onAccept}
+        onCancel={onCancel}
+        buttonText={"Default"}
+        popUpText={popupText}
+      />
+    </>
   );
 });
