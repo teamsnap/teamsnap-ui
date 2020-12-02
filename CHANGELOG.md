@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.10.0] - 2020-11-04
+- https://github.com/teamsnap/teamsnap-ui/pull/366
+- `Added` more options to Popup component to make it more customizable.
+
 ## [3.9.2] - 2020-11-04
 - https://github.com/teamsnap/teamsnap-ui/pull/366
 - `Fixed` Popup component - popup would not "stick" when trigger was clicked.
