@@ -32,6 +32,8 @@
 }
 
 .Nav-header {
+  display: flex;
+  align-items: center;
   border-bottom: 1px solid color-neutral(5);
   padding: 16px;
   font-size: 1.4rem;

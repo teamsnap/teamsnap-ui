@@ -89,14 +89,17 @@ const Nav: NavType & { Item: ItemType } = ({
     mods
   );
 
+  const navHeaderIconClass = getClassName(
+    "Nav-header-icon",
+    !isCollapsed && "u-size1of8"
+  );
+
   return (
     <nav className={cname} style={style} {...otherProps}>
       {headerItems && headerItems.length ? (
-        <div className="Nav-header u-textSemiBold u-flex u-flexAlignItemsCenter">
+        <div className="Nav-header u-textSemiBold">
           <div
-            className={`${
-              !isCollapsed ? "u-size1of8" : ""
-            } Nav-header-icon`}
+            className={navHeaderIconClass}
           >
             <Avatar
               src={headerItems[0].image}
@@ -109,7 +112,7 @@ const Nav: NavType & { Item: ItemType } = ({
             </span>
           </div>
           <div className="u-size1of8 Nav-item-title">
-            <Icon style={{ fontSize: "14px" }} name="down" />
+            <Icon mods="u-fontSizeMd" name="down" />
           </div>
         </div>
       ) : null}
