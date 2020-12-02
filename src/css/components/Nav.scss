@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
 
-  a, .nav-item {
+  a, .Nav-item {
     color: color-neutral(9);
   }
 
@@ -15,57 +15,57 @@
 
   &.is-collapsed {
     max-width: 64px;
-    .nav-item-title {
+    .Nav-item-title {
       display: none !important;
     }
 
-    .nav-header {
+    .Nav-header {
       padding: 16px;
     }
 
-    .nav-collapse {
+    .Nav-collapse {
       .Icon {
         transform: rotate(180deg);
       }
     }
   }
+}
 
-  .nav-header {
-    border-bottom: 1px solid color-neutral(5);
-    padding: 16px;
-    font-size: 1.4rem;
+.Nav-header {
+  border-bottom: 1px solid color-neutral(5);
+  padding: 16px;
+  font-size: 1.4rem;
+}
+
+.Nav-collapse {
+  border-top: 1px solid color-neutral(5);
+  cursor: pointer;
+  padding: 12px 24px;
+  .Icon {
+    transition: transform 0.2s ease-in-out;
+  }
+}
+
+.Nav-item {
+  background-color: color-neutral(1);
+  border-radius: 5px;
+  cursor: pointer;
+  height: 42px;
+  list-style: none;
+  margin: 12px;
+  padding: 12px;
+  user-select: none;
+
+  &:hover {
+    background-color: color-neutral(3);
   }
 
-  .nav-collapse {
-    border-top: 1px solid color-neutral(5);
-    cursor: pointer;
-    padding: 12px 24px;
-    .Icon {
-      transition: transform 0.2s ease-in-out;
-    }
+  &:active {
+    background-color: color-neutral(4);
   }
 
-  li {
-    background-color: color-neutral(1);
-    border-radius: 5px;
-    cursor: pointer;
-    height: 40px;
-    list-style: none;
-    margin: 12px;
-    padding: 12px;
-    user-select: none;
-
-    &:hover {
-      background-color: color-neutral(3);
-    }
-
-    &:active {
-      background-color: color-neutral(4);
-    }
-
-    &.is-active {
-      background-color: color-primary(6);
-      color:color-neutral(1);
-    }
+  &.is-active {
+    background-color: color-primary(6);
+    color:color-neutral(1);
   }
 }

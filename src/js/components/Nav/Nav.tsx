@@ -66,8 +66,8 @@ const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, link
   const Wrapper = link ? ({children}) => <a href={link} {...linkProps}>{children}</a> : ({children}) => <>{children}</>
   return (
     <Wrapper>
-      <li className={`${isActive ? `is-active ` : ``}nav-item`} onClick={onClick || (() => {})}>
-        {maybeIcon} <span className="nav-item-title">{children}</span>
+      <li className={`${isActive ? `is-active ` : ``}Nav-item`} onClick={onClick || (() => {})}>
+        {maybeIcon} <span className="Nav-item-title">{children}</span>
       </li>
     </Wrapper>
   );
@@ -92,31 +92,31 @@ const Nav: NavType & { Item: ItemType } = ({
   return (
     <nav className={cname} style={style} {...otherProps}>
       {headerItems && headerItems.length ? (
-        <div className="nav-header u-textSemiBold u-flex">
+        <div className="Nav-header u-textSemiBold u-flex">
           <div
             className={`${
               !isCollapsed ? "u-size1of8" : ""
-            } nav-header-icon u-flex u-flexAlignItemsCenter u-flexJustifyCenter`}
+            } Nav-header-icon u-flex u-flexAlignItemsCenter u-flexJustifyCenter`}
           >
             <Avatar
               src={headerItems[0].image}
               size="fill"
             />
           </div>
-          <div className="u-sizeFill nav-item-title u-flex u-flexAlignItemsCenter u-spaceLeftSm">
-            <span className="nav-item-title u-textEllipsis">
+          <div className="u-sizeFill Nav-item-title u-flex u-flexAlignItemsCenter u-spaceLeftSm">
+            <span className="Nav-item-title u-textEllipsis">
               {headerItems[0].title}
             </span>
           </div>
-          <div className="u-size1of8 u-flex u-flexAlignItemsCenter u-flexJustifyCenter nav-item-title">
+          <div className="u-size1of8 u-flex u-flexAlignItemsCenter u-flexJustifyCenter Nav-item-title">
             <Icon style={{ fontSize: "14px" }} name="down" />
           </div>
         </div>
       ) : null}
       <div className="u-sizeFill">{children}</div>
-      <div className="nav-collapse" onClick={() => setCollapsed(!isCollapsed)}>
+      <div className="Nav-collapse" onClick={() => setCollapsed(!isCollapsed)}>
         <Icon name="left" />{" "}
-        <span className="nav-item-title">Collapse Menu</span>
+        <span className="Nav-item-title">Collapse Menu</span>
       </div>
     </nav>
   );
