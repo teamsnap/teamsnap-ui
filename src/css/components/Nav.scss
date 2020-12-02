@@ -16,11 +16,13 @@
 
   &.is-collapsed {
     max-width: scaleGrid(8);
+    min-width: scaleGrid(8);
     .Nav-itemTitle {
       display: none !important;
     }
 
     .Nav-header {
+      margin: 0 auto;
       padding: scaleGrid(2);
     }
 
@@ -43,6 +45,11 @@
 .Nav-body {
   flex: 1 1 0% !important;
   flex-basis: 0% !important;
+}
+
+.Nav-headerIcon {
+  width: scaleGrid(3);
+  display: block;
 }
 
 .Nav-footer {

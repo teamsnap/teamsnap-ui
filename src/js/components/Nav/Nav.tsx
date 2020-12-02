@@ -90,8 +90,7 @@ const Nav: NavType & { Item: ItemType } = ({
   );
 
   const navHeaderIconClass = getClassName(
-    "Nav-header-icon",
-    !isCollapsed && "u-size1of8"
+    "Nav-headerIcon",
   );
 
   return (
@@ -102,7 +101,6 @@ const Nav: NavType & { Item: ItemType } = ({
             className={navHeaderIconClass}
           >
             <Avatar
-              mods="Nav-headerIcon"
               src={headerItems[0].image}
               size="fill"
             />
