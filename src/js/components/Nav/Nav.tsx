@@ -67,7 +67,7 @@ const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, link
   return (
     <Wrapper>
       <li className={`${isActive ? `is-active ` : ``}Nav-item`} onClick={onClick || (() => {})}>
-        {maybeIcon} <span className="Nav-item-title">{children}</span>
+        {maybeIcon} <span className="Nav-itemTitle">{children}</span>
       </li>
     </Wrapper>
   );
@@ -102,24 +102,25 @@ const Nav: NavType & { Item: ItemType } = ({
             className={navHeaderIconClass}
           >
             <Avatar
+              mods="Nav-headerIcon"
               src={headerItems[0].image}
               size="fill"
             />
           </div>
-          <div className="u-sizeFill Nav-item-title u-spaceLeftSm">
-            <span className="Nav-item-title u-textEllipsis">
+          <div className="u-sizeFill Nav-itemTitle u-spaceLeftSm">
+            <span className="Nav-itemTitle u-textEllipsis">
               {headerItems[0].title}
             </span>
           </div>
-          <div className="u-size1of8 Nav-item-title">
+          <div className="u-size1of8 Nav-itemTitle">
             <Icon mods="u-fontSizeMd" name="down" />
           </div>
         </div>
       ) : null}
-      <div className="Nav-body u-sizeFill">{children}</div>
+      <div className="Nav-body">{children}</div>
       <div className="Nav-footer" onClick={() => setCollapsed(!isCollapsed)}>
         <Icon name="left" />{" "}
-        <span className="Nav-item-title">Collapse Menu</span>
+        <span className="Nav-itemTitle">Collapse Menu</span>
       </div>
     </nav>
   );

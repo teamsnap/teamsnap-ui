@@ -3,8 +3,9 @@
   background-color: color-neutral(1);
   display: flex;
   flex-direction: column;
+  min-width: scaleGrid(24);
 
-  a, .Nav-item {
+  .Nav-item {
     color: color-neutral(9);
   }
 
@@ -14,13 +15,13 @@
   }
 
   &.is-collapsed {
-    max-width: 64px;
-    .Nav-item-title {
+    max-width: scaleGrid(8);
+    .Nav-itemTitle {
       display: none !important;
     }
 
     .Nav-header {
-      padding: 16px;
+      padding: scaleGrid(2);
     }
 
     .Nav-footer {
@@ -35,14 +36,19 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid color-neutral(5);
-  padding: 16px;
+  padding: scaleGrid(2);
   font-size: 1.4rem;
+}
+
+.Nav-body {
+  flex: 1 1 0% !important;
+  flex-basis: 0% !important;
 }
 
 .Nav-footer {
   border-top: 1px solid color-neutral(5);
   cursor: pointer;
-  padding: 12px 24px;
+  padding: (scaleGrid(3) / 2) scaleGrid(3);
   .Icon {
     transition: transform 0.2s ease-in-out;
   }
@@ -52,10 +58,10 @@
   background-color: color-neutral(1);
   border-radius: 5px;
   cursor: pointer;
-  height: 42px;
   list-style: none;
-  margin: 12px;
-  padding: 12px;
+  margin: (scaleGrid(3) / 2);
+  min-height: 42px;
+  padding: (scaleGrid(3) / 2);
   user-select: none;
 
   &:hover {
