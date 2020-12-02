@@ -92,29 +92,29 @@ const Nav: NavType & { Item: ItemType } = ({
   return (
     <nav className={cname} style={style} {...otherProps}>
       {headerItems && headerItems.length ? (
-        <div className="Nav-header u-textSemiBold u-flex">
+        <div className="Nav-header u-textSemiBold u-flex u-flexAlignItemsCenter">
           <div
             className={`${
               !isCollapsed ? "u-size1of8" : ""
-            } Nav-header-icon u-flex u-flexAlignItemsCenter u-flexJustifyCenter`}
+            } Nav-header-icon`}
           >
             <Avatar
               src={headerItems[0].image}
               size="fill"
             />
           </div>
-          <div className="u-sizeFill Nav-item-title u-flex u-flexAlignItemsCenter u-spaceLeftSm">
+          <div className="u-sizeFill Nav-item-title u-spaceLeftSm">
             <span className="Nav-item-title u-textEllipsis">
               {headerItems[0].title}
             </span>
           </div>
-          <div className="u-size1of8 u-flex u-flexAlignItemsCenter u-flexJustifyCenter Nav-item-title">
+          <div className="u-size1of8 Nav-item-title">
             <Icon style={{ fontSize: "14px" }} name="down" />
           </div>
         </div>
       ) : null}
-      <div className="u-sizeFill">{children}</div>
-      <div className="Nav-collapse" onClick={() => setCollapsed(!isCollapsed)}>
+      <div className="Nav-body u-sizeFill">{children}</div>
+      <div className="Nav-footer" onClick={() => setCollapsed(!isCollapsed)}>
         <Icon name="left" />{" "}
         <span className="Nav-item-title">Collapse Menu</span>
       </div>
