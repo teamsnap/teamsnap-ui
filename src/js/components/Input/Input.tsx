@@ -18,44 +18,52 @@ import { getClassName } from "../../utils/helpers";
 
 class Input extends React.PureComponent<PropTypes.InferProps<typeof Input.propTypes>, any> {
   static propTypes = {
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string,
     children: PropTypes.node,
-    inputProps: PropTypes.object,
-    iconPosition: PropTypes.oneOf([null, "left", "right"]),
     className: PropTypes.string,
+    iconPosition: PropTypes.oneOf([null, "left", "right"]),
+    leftIcon: PropTypes.node,
+    rightIcon: PropTypes.node,
+    inputProps: PropTypes.object,
     mods: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    otherProps: PropTypes.object,
+    placeholder: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    type: PropTypes.string,
   };
 
   static defaultProps = {
-    type: "text",
     children: null,
-    inputProps: {},
-    iconPosition: null,
     className: "InputGroup",
+    iconPosition: null,
+    inputProps: {},
     mods: null,
+    otherProps: {},
+    placeholder: "",
     style: {},
-    otherProps: {}
+    type: "text",
   };
 
   render() {
     const {
-      name,
       children,
-      type,
-      inputProps,
-      iconPosition,
       className,
+      iconPosition,
+      inputProps,
+      leftIcon,
       mods,
+      name,
+      otherProps,
+      placeholder,
+      rightIcon,
       style,
-      otherProps
+      type,
     } = this.props;
 
     const inputClasses = getClassName(
       className,
-      children && iconPosition && `InputGroup--${iconPosition}Icon`,
+      leftIcon && `InputGroup--leftIcon`,
+      rightIcon && `InputGroup--rightIcon`,
       mods
     );
 
@@ -65,10 +73,11 @@ class Input extends React.PureComponent<PropTypes.InferProps<typeof Input.propTy
           id={name}
           name={name}
           type={type}
+          placeholder={placeholder}
           className="Input"
           {...inputProps}
         />
-        {children && <span className="InputGroup-icon">{children}</span>}
+        {leftIcon && <span className="InputGroup-icon">{leftIcon}</span>}
       </div>
     );
   }

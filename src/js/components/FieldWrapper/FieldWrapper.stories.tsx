@@ -19,7 +19,7 @@ stories.add("Default", () => {
       name="example"
       label="Test Input"
       field="input"
-      fieldProps={{ placeholder: "Some placehodler text" }}
+      fieldProps={{ placeholder: "Some placeholder text" }}
     />
   );
 });

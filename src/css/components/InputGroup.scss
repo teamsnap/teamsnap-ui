@@ -50,7 +50,6 @@ $form-input-height: $su-xlarge !default;
 
   .InputGroup-icon {
     left: 0;
-    border-right: $border-width-small solid $cu-divider--light;
   }
 }
 
@@ -61,6 +60,5 @@ $form-input-height: $su-xlarge !default;
 
   .InputGroup-icon {
     right: 0;
-    border-left: $border-width-small solid $cu-divider--light;
   }
 }
