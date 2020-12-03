@@ -9,16 +9,21 @@ $maxIndex: 999;
   }
 }
 
+// TODO: rename to .u-colorSuccess?
 .u-colorPositive {
-  color: $cu-positive !important;
+  color: color-success(5) !important;
 }
 
 .u-colorNegative {
-  color: $cu-negative !important;
+  color: color-negative(5) !important;
 }
 
 .u-colorPrimary {
-  color: $cu-primary !important;
+  color: color-primary(5) !important;
+}
+
+.u-colorWarning {
+  color: color-warning(5) !important;
 }
 
 .u-colorSecondary {
@@ -30,7 +35,7 @@ $maxIndex: 999;
 }
 
 .u-colorGrey {
-  color: $cu-info--light !important;
+  color: color-neutral(5) !important;
 }
 
 .u-colorHighlight {

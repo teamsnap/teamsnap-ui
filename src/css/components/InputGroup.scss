@@ -28,6 +28,7 @@ $form-input-height: $su-xlarge !default;
   bottom: 0;
   margin: auto;
   width: scaleGrid(4);
+  color: color-neutral(6);
   height: ( $form-input-height - $su-small );
   line-height: ( $form-input-height - $su-small );
   text-align: center;
@@ -45,20 +46,40 @@ $form-input-height: $su-xlarge !default;
 
 .InputGroup--leftIcon {
   .Input {
-    padding-left: scaleGrid(5);
+    padding-left: scaleGrid(4);
   }
 
-  .InputGroup-icon {
+  .icon-Left {
     left: 0;
   }
 }
 
 .InputGroup--rightIcon {
   .Input {
-    padding-right: scaleGrid(5);
+    padding-right: scaleGrid(4);
   }
 
-  .InputGroup-icon {
+  &.InputGroup--auxIcon {
+    .Input {
+      padding-right: scaleGrid(8);
+    }
+
+    .icon-Right {
+      right: scaleGrid(3);
+    }
+  }
+
+  .icon-Right {
+    right: 0;
+  }
+}
+
+.InputGroup--auxIcon {
+  .Input {
+    padding-right: scaleGrid(4);
+  }
+
+  .icon-Aux {
     right: 0;
   }
 }

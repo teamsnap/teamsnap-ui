@@ -44,9 +44,13 @@ $form-input-bg-color: $cu-foreground--dark !default;
     cursor: not-allowed;
   }
 
+  &:focus, &:hover {
+    border-color: color-primary(5);
+  }
+
   &:focus {
     outline: none;
-    border-color: $cu-primary;
+    box-shadow: 0px 0px 15px -5px color-primary(3);
   }
 
   &::-ms-clear {
@@ -54,7 +58,7 @@ $form-input-bg-color: $cu-foreground--dark !default;
   }
 }
 
-// Hack to overrid webkit autofill styles
+// Hack to override webkit autofill styles
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
@@ -66,6 +70,12 @@ input:-webkit-autofill:focus {
   font-size: $tu-large-fontSize;
   height: $su-xxlarge;
   line-height: $su-xxlarge;
+}
+
+.Input--small {
+  font-size: $tu-base-fontSize;
+  height: $su-large;
+  line-height: $su-large;
 }
 
 $Input--showHideWidth: scaleGrid(7); // 56px

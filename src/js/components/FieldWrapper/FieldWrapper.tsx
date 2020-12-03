@@ -26,6 +26,7 @@ import { Checkbox } from "../Checkbox";
 import { Radio } from "../Radio";
 import { Toggle } from "../Toggle";
 import { Select } from "../Select";
+import { Status } from "../../types";
 
 class FieldWrapper extends React.PureComponent<PropTypes.InferProps<typeof FieldWrapper.propTypes>, any> {
   static propTypes = {
@@ -39,7 +40,7 @@ class FieldWrapper extends React.PureComponent<PropTypes.InferProps<typeof Field
       "textarea"
     ]).isRequired,
     fieldProps: PropTypes.any,
-    status: PropTypes.oneOf([null, "success", "error"]),
+    status: Status.PropType,
     label: PropTypes.node,
     message: PropTypes.string
   };
@@ -92,7 +93,7 @@ class FieldWrapper extends React.PureComponent<PropTypes.InferProps<typeof Field
         {label && <FieldLabel name={name}>{label} </FieldLabel>}
         {this.renderFieldComponent()}
         {message && (
-          <FieldMessage isError={status === "error"}>{message}</FieldMessage>
+          <FieldMessage status={status}>{message}</FieldMessage>
         )}
       </FieldGroup>
     );

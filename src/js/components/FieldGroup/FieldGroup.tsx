@@ -16,6 +16,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { Icon } from "../Icon";
 import { getClassName } from "../../utils/helpers";
+import { Status, Statuses } from "../../types";
 
 class FieldGroup extends React.PureComponent<PropTypes.InferProps<typeof FieldGroup.propTypes>, any> {
   static propTypes = {
@@ -35,25 +36,19 @@ class FieldGroup extends React.PureComponent<PropTypes.InferProps<typeof FieldGr
     otherProps: {}
   };
 
-  renderSuccess = () => (
-    <span className="FieldGroup-validation">
-      <Icon name="check" />
-    </span>
-  );
-
   render() {
     const { children, status, className, mods, style, otherProps } = this.props;
 
     const fieldClasses = getClassName(
       className,
-      status === "error" && "is-notValid",
-      status === "success" && "is-valid",
+      status === Statuses.ERROR && "is-notValid",
+      status === Statuses.SUCCESS && "is-valid",
+      status === Statuses.WARNING && "is-warning",
       mods
     );
 
     return (
       <div className={fieldClasses} style={style} {...otherProps}>
-        {status === "success" && this.renderSuccess()}
         {children}
       </div>
     );

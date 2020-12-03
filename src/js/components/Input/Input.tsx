@@ -15,72 +15,93 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
+import { Icon } from "../Icon";
+import { Size, Status } from "../../types";
 
-class Input extends React.PureComponent<PropTypes.InferProps<typeof Input.propTypes>, any> {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-    iconPosition: PropTypes.oneOf([null, "left", "right"]),
-    leftIcon: PropTypes.node,
-    rightIcon: PropTypes.node,
-    inputProps: PropTypes.object,
-    mods: PropTypes.string,
-    name: PropTypes.string.isRequired,
-    otherProps: PropTypes.object,
-    placeholder: PropTypes.string,
-    style: PropTypes.object,
-    type: PropTypes.string,
-  };
+const statusToColor = {
+  "warning": "u-colorWarning",
+  "error": "u-colorNegative",
+  "success": "u-colorPositive",
+};
 
-  static defaultProps = {
-    children: null,
-    className: "InputGroup",
-    iconPosition: null,
-    inputProps: {},
-    mods: null,
-    otherProps: {},
-    placeholder: "",
-    style: {},
-    type: "text",
-  };
+const propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  size: Size.PropType,
+  leftIcon: PropTypes.node,
+  rightIcon: PropTypes.node,
+  inputProps: PropTypes.object,
+  mods: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  otherProps: PropTypes.object,
+  placeholder: PropTypes.string,
+  style: PropTypes.object,
+  type: PropTypes.string,
+  showStatus: PropTypes.bool,
+  showClear: PropTypes.bool,
+  onClearClicked: PropTypes.func,
+  status: Status.PropType,
+};
 
-  render() {
-    const {
-      children,
-      className,
-      iconPosition,
-      inputProps,
-      leftIcon,
-      mods,
-      name,
-      otherProps,
-      placeholder,
-      rightIcon,
-      style,
-      type,
-    } = this.props;
+type InputType = React.FunctionComponent<PropTypes.InferProps<typeof propTypes>>;
 
-    const inputClasses = getClassName(
-      className,
-      leftIcon && `InputGroup--leftIcon`,
-      rightIcon && `InputGroup--rightIcon`,
-      mods
-    );
+const Input: InputType = ({
+  className,
+  inputProps,
+  leftIcon,
+  mods,
+  name,
+  otherProps,
+  placeholder,
+  rightIcon,
+  style,
+  type,
+  size,
+  showStatus,
+  showClear,
+  onClearClicked,
+  status,
+}) => {
+  const inputClasses = getClassName(
+    className,
+    leftIcon && `InputGroup--leftIcon`,
+    rightIcon && `InputGroup--rightIcon`,
+    (showStatus || showClear) && "InputGroup--auxIcon",
+    'u-flex',
+    mods
+  );
 
-    return (
-      <div className={inputClasses} style={style} {...otherProps}>
+  return (
+    <div className={inputClasses} style={style} {...otherProps}>
+      {leftIcon && <div className="icon-Left InputGroup-icon">{leftIcon}</div>}
+      <div className="u-sizeFill">
         <input
           id={name}
           name={name}
           type={type}
           placeholder={placeholder}
-          className="Input"
+          className={`Input ${size ? `Input--${size}` : null}`}
           {...inputProps}
         />
-        {leftIcon && <span className="InputGroup-icon">{leftIcon}</span>}
       </div>
-    );
-  }
+      {rightIcon && <div className="icon-Right InputGroup-icon">{rightIcon}</div>}
+      {(showStatus || showClear) && <div className="icon-Aux InputGroup-icon">
+        {showStatus && !showClear && <span className={statusToColor[status]}><Icon name="info"/></span>}
+        {showClear && <span className={statusToColor[status]} onClick={onClearClicked}><Icon name="info" /></span>}
+        </div>}
+    </div>
+  );
 }
+
+Input.defaultProps = {
+  children: null,
+  className: "InputGroup",
+  inputProps: {},
+  mods: null,
+  otherProps: {},
+  placeholder: "",
+  style: {},
+  type: "text",
+};
 
 export default Input;
