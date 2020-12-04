@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { select, text } from "@storybook/addon-knobs/react";
+import { select, text, boolean } from "@storybook/addon-knobs/react";
 import Field from "./Field";
 import { Icon } from "../Icon";
 import { Sizes } from "../../types";
@@ -20,23 +20,19 @@ const sizeOptions = {
   default: null,
 };
 
-const iconOptions = {
-  left: "left",
-  right: "right",
-  default: "left",
-};
-
 stories.add("Default", () => {
   const status = select("status", statusOptions);
   const placeholder = text("Placeholder", "Input Placeholder");
   const size = select("size", sizeOptions);
+  const disabled = boolean('Disabled', false);
 
   return (
     <Field
-      status={status}
+      isDisabled={disabled}
       name="Sample"
       placeholder={placeholder}
       size={size}
+      status={status}
     />
   );
 });
@@ -46,14 +42,16 @@ stories.add("With Labels", () => {
   const placeholder = text("Placeholder", "Input Placeholder");
   const size = select("size", sizeOptions);
   const label = text("Label", "First Name");
+  const disabled = boolean('Disabled', false);
 
   return (
     <Field
-      status={status}
-      name="Sample"
+      isDisabled={disabled}
       label={label}
+      name="Sample"
       placeholder={placeholder}
       size={size}
+      status={status}
     />
   );
 });
@@ -65,6 +63,7 @@ stories.add("Captions", () => {
     "Captions",
     "This is the primary email address that we will use to contact you."
   );
+  const disabled = boolean('Disabled', false);
 
   return (
     <>
@@ -74,12 +73,13 @@ stories.add("Captions", () => {
       </h4>
       <br />
       <Field
-        status={status}
-        name="Sample"
         caption={caption}
-        placeholder={placeholder}
+        isDisabled={disabled}
         label="Primary Email Address"
         leftIcon={<Icon name="home" />}
+        name="Sample"
+        placeholder={placeholder}
+        status={status}
       />
     </>
   );
@@ -88,6 +88,7 @@ stories.add("Captions", () => {
 stories.add("Sizes", () => {
   const status = select("status", statusOptions);
   const placeholder = text("Placeholder", "Input Placeholder");
+  const disabled = boolean('Disabled', false);
 
   return (
     <>
@@ -97,30 +98,33 @@ stories.add("Sizes", () => {
       </h4>
       <br />
       <Field
-        status={status}
+        caption="This input is small"
+        isDisabled={disabled}
+        label="Sizes.SMALL or 'small'"
+        leftIcon={<Icon name="home" />}
         name="Sample"
         placeholder={placeholder}
         size={Sizes.SMALL}
-        label="Sizes.SMALL or 'small'"
-        leftIcon={<Icon name="home" />}
-        caption="This input is small"
+        status={status}
       />
       <Field
-        status={status}
-        name="Sample2"
-        placeholder={placeholder}
+        caption="This input is default"
+        isDisabled={disabled}
         label="No size provided (default/medium)"
         leftIcon={<Icon name="home" />}
-        caption="This input is default"
+        name="Sample2"
+        placeholder={placeholder}
+        status={status}
       />
       <Field
-        status={status}
+        caption="This input is large"
+        isDisabled={disabled}
+        label="Sizes.LARGE or 'large'"
+        leftIcon={<Icon name="home" />}
         name="Sample3"
         placeholder={placeholder}
         size={Sizes.LARGE}
-        label="Sizes.LARGE or 'large'"
-        leftIcon={<Icon name="home" />}
-        caption="This input is large"
+        status={status}
       />
     </>
   );
@@ -130,17 +134,19 @@ stories.add("Field with Icons", () => {
   const status = select("status", statusOptions);
   const placeholder = text("Placeholder", "Input Placeholder");
   const size = select("size", sizeOptions);
+  const disabled = boolean('Disabled', false);
 
   return (
     <Field
-      status={status}
-      name="Sample"
-      placeholder={placeholder}
-      size={size}
+      caption="This input is..."
+      isDisabled={disabled}
       label="This is a sample input"
       leftIcon={<Icon name="home" />}
+      name="Sample"
+      placeholder={placeholder}
       rightIcon={<Icon name="search" />}
-      caption="This input is..."
+      size={size}
+      status={status}
     />
   );
 });
@@ -149,18 +155,20 @@ stories.add("Status Icons", () => {
   const status = select("status", statusOptions);
   const placeholder = text("Placeholder", "Input Placeholder");
   const size = select("size", sizeOptions);
+  const disabled = boolean('Disabled', false);
 
   return (
     <Field
-      status={status}
-      name="Sample"
-      placeholder={placeholder}
-      size={size}
+      caption="This input is..."
+      isDisabled={disabled}
       label="This is a sample input"
       leftIcon={<Icon name="home" />}
+      name="Sample"
+      placeholder={placeholder}
       rightIcon={<Icon name="search" />}
       showStatus
-      caption="This input is..."
+      size={size}
+      status={status}
     />
   );
 });
@@ -169,6 +177,7 @@ stories.add("Clear Icon", () => {
   const status = select("status", statusOptions);
   const placeholder = text("Placeholder", "Input Placeholder");
   const size = select("size", sizeOptions);
+  const disabled = boolean('Disabled', false);
 
   const [value, setValue] = React.useState("");
   return (
@@ -179,19 +188,20 @@ stories.add("Clear Icon", () => {
     </h4>
     <br/>
     <Field
+      caption="This input clears when the right-most icon is clicked."
       inputProps={{ value: value, onChange: (e) => setValue(e.target.value) }}
-      status={status}
-      name="Sample"
-      placeholder={placeholder}
-      size={size}
+      isDisabled={disabled}
       label="Clearable Input"
       leftIcon={<Icon name="home" />}
+      name="Sample"
+      placeholder={placeholder}
       rightIcon={<Icon name="search" />}
       showClear
+      size={size}
+      status={status}
       onClearClicked={() => {
         setValue("");
       }}
-      caption="This input clears when the right-most icon is clicked."
     />
     </>
   );

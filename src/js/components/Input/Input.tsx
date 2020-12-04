@@ -41,6 +41,7 @@ const propTypes = {
   showClear: PropTypes.bool,
   onClearClicked: PropTypes.func,
   status: Status.PropType,
+  isDisabled: PropTypes.bool,
 };
 
 type InputType = React.FunctionComponent<PropTypes.InferProps<typeof propTypes>>;
@@ -61,6 +62,7 @@ const Input: InputType = ({
   showClear,
   onClearClicked,
   status,
+  isDisabled
 }) => {
   const inputClasses = getClassName(
     className,
@@ -76,6 +78,7 @@ const Input: InputType = ({
       {leftIcon && <div className="icon-Left InputGroup-icon">{leftIcon}</div>}
       <div className="u-sizeFill">
         <input
+          disabled={isDisabled}
           id={name}
           name={name}
           type={type}

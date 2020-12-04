@@ -14,8 +14,6 @@
 
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import { Icon } from "../Icon";
-import { getClassName } from "../../utils/helpers";
 import { FieldGroup } from "../FieldGroup";
 import { FieldLabel } from "../FieldLabel";
 import { FieldMessage } from "../FieldMessage";
@@ -38,6 +36,7 @@ const fieldPropTypes = {
   showStatus: PropTypes.bool,
   showClear: PropTypes.bool,
   onClearClicked: PropTypes.func,
+  isDisabled: PropTypes.bool,
 };
 
 type FieldType = React.FunctionComponent<
@@ -59,6 +58,7 @@ const Field: FieldType = ({
   showStatus,
   showClear,
   onClearClicked,
+  isDisabled,
   ...otherProps
 }) => {
   return (
@@ -77,6 +77,7 @@ const Field: FieldType = ({
         showStatus={showStatus}
         showClear={showClear}
         onClearClicked={onClearClicked}
+        isDisabled={isDisabled}
         {...otherProps}
       />
       {caption && <FieldMessage status={status}>{caption}</FieldMessage>}
