@@ -90,7 +90,7 @@ const Input: InputType = ({
       {rightIcon && <div className="icon-Right InputGroup-icon">{rightIcon}</div>}
       {(showStatus || showClear) && <div className="icon-Aux InputGroup-icon">
         {showStatus && !showClear && <span className={statusToColor[status]}><Icon name="info"/></span>}
-        {showClear && <span className={statusToColor[status]} onClick={onClearClicked}><Icon name="info" /></span>}
+        {showClear && <span className={statusToColor[status]} onClick={onClearClicked}><Icon name="dismiss" /></span>}
         </div>}
     </div>
   );
