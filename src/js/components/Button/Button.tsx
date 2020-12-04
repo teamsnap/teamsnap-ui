@@ -21,6 +21,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { Icon } from "../Icon";
 import { getClassName } from "../../utils/helpers";
+import { Size } from "../../types";
 
 const propTypes = {
   type: PropTypes.oneOf(["button", "submit", "link"]),
@@ -32,7 +33,7 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   isActive: PropTypes.bool,
   color: PropTypes.string,
-  size: PropTypes.oneOf(["small", "large"]),
+  size: Size.PropType,
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
