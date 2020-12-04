@@ -62,7 +62,7 @@ const Field: FieldType = ({
   ...otherProps
 }) => {
   return (
-    <FieldGroup status={status}>
+    <FieldGroup status={status} isDisabled={isDisabled}>
       {label && <FieldLabel name={name}>{label}</FieldLabel>}
       <Input
         mods={size ? `Input--${size}` : null}

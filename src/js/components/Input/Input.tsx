@@ -83,7 +83,7 @@ const Input: InputType = ({
           name={name}
           type={type}
           placeholder={placeholder}
-          className={`Input ${size ? `Input--${size}` : null}`}
+          className={`Input ${size && `Input--${size}`} ${isDisabled && `Input--isDisabled`}`}
           {...inputProps}
         />
       </div>

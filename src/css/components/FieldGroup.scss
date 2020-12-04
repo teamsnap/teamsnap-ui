@@ -63,6 +63,16 @@ $FieldGroup-font-size: $tu-base-fontSize;
   }
 }
 
+.FieldGroup.is-disabled {
+  .Input, .Checkbox-label:before, .SelectBox-options, textarea, .Checkbox--pill .Checkbox-label {
+    border-color: unset !important;
+  }
+
+  .Input:focus {
+    box-shadow: none !important;
+  }
+}
+
 .FieldGroup.is-warning {
   .Input, .Checkbox-label:before, .SelectBox-options, textarea, .Checkbox--pill .Checkbox-label {
     border-color: color-warning(5);
