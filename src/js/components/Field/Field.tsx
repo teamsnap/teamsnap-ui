@@ -131,6 +131,8 @@ const Field: FieldType = ({
   );
 };
 
+Field.propTypes = fieldPropTypes;
+
 Field.CheckboxStates = CheckboxStates;
 
 Field.defaultProps = {};
