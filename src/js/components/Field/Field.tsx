@@ -108,7 +108,6 @@ const Field: FieldType = ({
             } = formFieldProps as any;
             return (
               <Input
-                mods={size ? `Input--${size}` : null}
                 size={size}
                 placeholder={placeholder}
                 name={name}
