@@ -1,5 +1,6 @@
+import CheckboxState, { CheckboxStates } from "./checkboxState";
 import Routable from "./routable";
 import Size, { Sizes } from "./size";
 import Status, { Statuses } from "./status";
 
-export { Routable, Size, Sizes, Status, Statuses };
+export { CheckboxState, CheckboxStates, Routable, Size, Sizes, Status, Statuses };

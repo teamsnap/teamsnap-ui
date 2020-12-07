@@ -13,21 +13,24 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
+import { CheckboxStates } from "../../types";
 
-
-class InputControl extends React.PureComponent<PropTypes.InferProps<typeof InputControl.propTypes>, any> {
+class InputControl extends React.PureComponent<
+  PropTypes.InferProps<typeof InputControl.propTypes>,
+  any
+> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     label: PropTypes.node,
     group: PropTypes.string,
-    inputProps: PropTypes.object,
+    inputProps: PropTypes.any,
     labelProps: PropTypes.object,
     isInline: PropTypes.bool,
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
@@ -39,7 +42,7 @@ class InputControl extends React.PureComponent<PropTypes.InferProps<typeof Input
     className: null,
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {
@@ -54,7 +57,7 @@ class InputControl extends React.PureComponent<PropTypes.InferProps<typeof Input
       className,
       mods,
       style,
-      otherProps
+      otherProps,
     } = this.props;
 
     const classes = getClassName(
@@ -62,6 +65,14 @@ class InputControl extends React.PureComponent<PropTypes.InferProps<typeof Input
       isInline && "Checkbox--inline",
       mods
     );
+
+    let value = false;
+
+    if (inputProps.checked === CheckboxStates.INDETERMINATE) {
+      value = true;
+    } else {
+      value = inputProps.checked === "true";
+    }
 
     return (
       <div className={classes} style={style} {...otherProps}>
@@ -71,6 +82,7 @@ class InputControl extends React.PureComponent<PropTypes.InferProps<typeof Input
           name={group || name}
           id={name}
           {...inputProps}
+          checked={value} // has to come after spreading input props to support indeterminate
         />
         <label className="Checkbox-label" htmlFor={name} {...labelProps}>
           {label}

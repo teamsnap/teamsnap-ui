@@ -75,8 +75,7 @@ const Input: InputType = ({
 
   return (
     <div className={inputClasses} style={style} {...otherProps}>
-      {leftIcon && <div className="icon-Left InputGroup-icon">{leftIcon}</div>}
-      <div className="u-sizeFill">
+      {leftIcon && <div className="InputGroup-icon--left InputGroup-icon">{leftIcon}</div>}
         <input
           disabled={isDisabled}
           id={name}
@@ -86,11 +85,10 @@ const Input: InputType = ({
           className={`Input ${size && `Input--${size}`} ${isDisabled && `Input--isDisabled`}`}
           {...inputProps}
         />
-      </div>
-      {rightIcon && <div className="icon-Right InputGroup-icon">{rightIcon}</div>}
-      {(showStatus || showClear) && <div className="icon-Aux InputGroup-icon">
+      {rightIcon && <div className="InputGroup-icon--right InputGroup-icon">{rightIcon}</div>}
+      {(showStatus || showClear) && <div className="InputGroup-icon--aux InputGroup-icon">
         {showStatus && !showClear && <span className={statusToColor[status]}><Icon name="info"/></span>}
-        {showClear && <span className={statusToColor[status]} onClick={onClearClicked}><Icon name="dismiss" /></span>}
+        {showClear && <span className={`${statusToColor[status]} InputGroup-icon--clear`} onClick={onClearClicked}><Icon name="dismiss" /></span>}
         </div>}
     </div>
   );

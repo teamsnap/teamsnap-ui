@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { select, text, boolean } from "@storybook/addon-knobs/react";
 import Field from "./Field";
 import { Icon } from "../Icon";
-import { Sizes } from "../../types";
+import { Sizes, CheckboxStates } from "../../types";
 
 const stories = storiesOf("Field", module);
 
@@ -30,8 +30,10 @@ stories.add("Default", () => {
     <Field
       isDisabled={disabled}
       name="Sample"
-      placeholder={placeholder}
-      size={size}
+      formFieldProps={{
+        placeholder: placeholder,
+        size: size,
+      }}
       status={status}
     />
   );
@@ -49,8 +51,10 @@ stories.add("With Labels", () => {
       isDisabled={disabled}
       label={label}
       name="Sample"
-      placeholder={placeholder}
-      size={size}
+      formFieldProps={{
+        placeholder: placeholder,
+        size: size
+      }}
       status={status}
     />
   );
@@ -76,9 +80,11 @@ stories.add("Captions", () => {
         caption={caption}
         isDisabled={disabled}
         label="Primary Email Address"
-        leftIcon={<Icon name="home" />}
+        formFieldProps={{
+          leftIcon: <Icon name="home" />,
+          placeholder: placeholder
+        }}
         name="Sample"
-        placeholder={placeholder}
         status={status}
       />
     </>
@@ -101,29 +107,35 @@ stories.add("Sizes", () => {
         caption="This input is small"
         isDisabled={disabled}
         label="Sizes.SMALL or 'small'"
-        leftIcon={<Icon name="home" />}
+        formFieldProps={{
+          leftIcon: <Icon name="home" />,
+          placeholder: placeholder,
+          size: Sizes.SMALL
+        }}
         name="Sample"
-        placeholder={placeholder}
-        size={Sizes.SMALL}
         status={status}
       />
       <Field
         caption="This input is default"
         isDisabled={disabled}
         label="No size provided (default/medium)"
-        leftIcon={<Icon name="home" />}
+        formFieldProps={{
+          leftIcon: <Icon name="home" />,
+          placeholder: placeholder,
+        }}
         name="Sample2"
-        placeholder={placeholder}
         status={status}
       />
       <Field
         caption="This input is large"
         isDisabled={disabled}
         label="Sizes.LARGE or 'large'"
-        leftIcon={<Icon name="home" />}
+        formFieldProps={{
+          leftIcon: <Icon name="home" />,
+          placeholder: placeholder,
+          size: Sizes.LARGE
+        }}
         name="Sample3"
-        placeholder={placeholder}
-        size={Sizes.LARGE}
         status={status}
       />
     </>
@@ -141,11 +153,12 @@ stories.add("Field with Icons", () => {
       caption="This input is..."
       isDisabled={disabled}
       label="This is a sample input"
-      leftIcon={<Icon name="home" />}
+      formFieldProps={{
+        rightIcon: <Icon name="search" />,
+        placeholder: placeholder,
+        size: size
+      }}
       name="Sample"
-      placeholder={placeholder}
-      rightIcon={<Icon name="search" />}
-      size={size}
       status={status}
     />
   );
@@ -162,12 +175,14 @@ stories.add("Status Icons", () => {
       caption="This input is..."
       isDisabled={disabled}
       label="This is a sample input"
-      leftIcon={<Icon name="home" />}
+      formFieldProps={{
+        leftIcon: <Icon name="home" />,
+        rightIcon: <Icon name="search" />,
+        placeholder: placeholder,
+        showStatus: true,
+        size: size,
+      }}
       name="Sample"
-      placeholder={placeholder}
-      rightIcon={<Icon name="search" />}
-      showStatus
-      size={size}
       status={status}
     />
   );
@@ -192,17 +207,92 @@ stories.add("Clear Icon", () => {
       inputProps={{ value: value, onChange: (e) => setValue(e.target.value) }}
       isDisabled={disabled}
       label="Clearable Input"
-      leftIcon={<Icon name="home" />}
-      name="Sample"
-      placeholder={placeholder}
-      rightIcon={<Icon name="search" />}
-      showClear
-      size={size}
-      status={status}
-      onClearClicked={() => {
-        setValue("");
+      formFieldProps={{
+        leftIcon: <Icon name="home" />,
+        rightIcon: <Icon name="search" />,
+        placeholder: placeholder,
+        size: size,
+        showClear: true,
+        onClearClicked: () => {
+          setValue("");
+        }
       }}
+      name="Sample"
+      status={status}
     />
+    </>
+  );
+});
+
+
+stories.add("Checkbox", () => {
+  const status = select("status", statusOptions);
+  const disabled = boolean('Disabled', false);
+
+  const [value, setValue] = React.useState(false);
+  return (
+    <>
+      <br/>
+      <Field
+        caption="By accepting the terms of service, you agree to be a friendly human!"
+        isDisabled={disabled}
+        type="checkbox"
+        label="Accept Terms of Service"
+        formFieldProps={{
+          text: "Click me!",
+          checked: value,
+          onClick: () => {
+            setValue(!value);
+          },
+        }}
+        name="Sample"
+        status={status}
+      />
+    </>
+  );
+});
+
+stories.add("Indeterminate Checkbox", () => {
+  const status = select("status", statusOptions);
+  const disabled = boolean('Disabled', false);
+
+  const [state, setState] = React.useState(CheckboxStates.FALSE);
+
+  return (
+    <>
+      <h4>
+        Checkboxes can have an indeterminate status. It's up to you to determine how this is managed
+        and what can cause an indeterminate status. This example catches false to true transitions and sets indeterminate instead.
+        This often can feel more complicated than it actually is. Please refer to the storybook source code for an example on
+        how to emulate this functionality.
+      </h4>
+      <br/>
+      <Field
+        caption="By accepting the terms of service, you agree to be a friendly human!"
+        isDisabled={disabled}
+        label="Accept Terms of Service"
+        name="Sample"
+        status={status}
+        type={"checkbox"}
+        formFieldProps={{
+          text: "Click me!",
+          checked: state,
+          onClick: () => {
+            // TINY little state machine to help model the transitions here.
+            switch(state) {
+              case CheckboxStates.FALSE:
+                setState(CheckboxStates.INDETERMINATE);
+                break;
+              case CheckboxStates.INDETERMINATE:
+                setState(CheckboxStates.TRUE);
+                break;
+              case CheckboxStates.TRUE:
+                setState(CheckboxStates.FALSE);
+                break;
+            }
+          },
+        }}
+      />
     </>
   );
 });
