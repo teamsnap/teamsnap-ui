@@ -17,8 +17,11 @@ $FieldGroup-font-size: $tu-base-fontSize;
 // * 2. Form Group Base Styles
 
 .FieldGroup {
-  margin-bottom: $su-medium;
   position: relative;
+}
+
+.FieldGroup--inline {
+  display: inline-block;
 }
 
 .FieldGroup-label {

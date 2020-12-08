@@ -252,6 +252,44 @@ stories.add("Checkbox", () => {
   );
 });
 
+stories.add("Multiple Checkboxes", () => {
+  const [dogs, setDogs] = React.useState(false);
+  const [cats, setCats] = React.useState(false);
+  return (
+    <>
+      <h4>This example omits the label and caption on the field components, instead opting to work with those manually.</h4>
+      <br/>
+      <Field.Label>Cats/Dogs/Both?</Field.Label>
+      <Field
+        isInline
+        style={{marginRight: "12px"}}
+        type="checkbox"
+        formFieldProps={{
+          text: "Cats",
+          checked: cats,
+          onClick: () => {
+            setCats(!cats);
+          },
+        }}
+        name="Cats"
+      />
+      <Field
+        isInline
+        type="checkbox"
+        formFieldProps={{
+          text: "Dogs",
+          checked: dogs,
+          onClick: () => {
+            setDogs(!dogs);
+          },
+        }}
+        name="Dogs"
+      />
+      <Field.Caption>This determines if you'll see cat gifs, dog gifs, or both.</Field.Caption>
+    </>
+  )
+});
+
 stories.add("Indeterminate Checkbox", () => {
   const status = select("status", statusOptions);
   const disabled = boolean('Disabled', false);

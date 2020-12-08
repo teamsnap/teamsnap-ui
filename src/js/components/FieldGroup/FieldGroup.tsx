@@ -27,6 +27,7 @@ class FieldGroup extends React.PureComponent<PropTypes.InferProps<typeof FieldGr
     style: PropTypes.object,
     otherProps: PropTypes.object,
     isDisabled: PropTypes.bool,
+    isInline: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -38,7 +39,7 @@ class FieldGroup extends React.PureComponent<PropTypes.InferProps<typeof FieldGr
   };
 
   render() {
-    const { children, status, className, mods, style, otherProps, isDisabled } = this.props;
+    const { children, status, className, mods, style, otherProps, isDisabled, isInline } = this.props;
 
     const fieldClasses = getClassName(
       className,
@@ -46,6 +47,7 @@ class FieldGroup extends React.PureComponent<PropTypes.InferProps<typeof FieldGr
       status === Statuses.SUCCESS && "is-valid",
       status === Statuses.WARNING && "is-warning",
       isDisabled && "is-disabled",
+      isInline && "FieldGroup--inline",
       mods
     );
 
