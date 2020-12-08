@@ -57,7 +57,6 @@ stories.add("Default", () => (
     />
     <Table
     style={{width: "800px"}}
-      isStriped={false}
       columns={[
         { name: "col1", label: "Name", isSortable: true },
         { name: "col2", label: "Role", isSortable: true },

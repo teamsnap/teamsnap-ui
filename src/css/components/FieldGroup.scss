@@ -17,8 +17,11 @@ $FieldGroup-font-size: $tu-base-fontSize;
 // * 2. Form Group Base Styles
 
 .FieldGroup {
-  margin-bottom: $su-medium;
   position: relative;
+}
+
+.FieldGroup--inline {
+  display: inline-block;
 }
 
 .FieldGroup-label {
@@ -36,7 +39,11 @@ $FieldGroup-font-size: $tu-base-fontSize;
 }
 
 .FieldGroup-message--error {
-  color: $cu-negative;
+  color: color-negative(5);
+}
+
+.FieldGroup-message--warning {
+  color: color-warning(5);
 }
 
 .FieldGroup-validation {
@@ -51,16 +58,30 @@ $FieldGroup-font-size: $tu-base-fontSize;
 
 .FieldGroup.is-notValid {
   .Input, .Checkbox-label:before, .SelectBox-options, textarea, .Checkbox--pill .Checkbox-label {
-    border-color: $cu-negative;
+    border-color: color-negative(5);
+  }
+
+  .Input:focus {
+    box-shadow: 0px 0px 15px -5px color-negative(3);
   }
 }
 
-.FieldGroup.is-valid {
-  .FieldGroup-validation {
-    display: block;
+.FieldGroup.is-disabled {
+  .Input, .Checkbox-label:before, .SelectBox-options, textarea, .Checkbox--pill .Checkbox-label {
+    border-color: unset !important;
   }
 
-  .FieldGroup-label {
-    padding-left: $su-medium;
+  .Input:focus {
+    box-shadow: none !important;
+  }
+}
+
+.FieldGroup.is-warning {
+  .Input, .Checkbox-label:before, .SelectBox-options, textarea, .Checkbox--pill .Checkbox-label {
+    border-color: color-warning(5);
+  }
+
+  .Input:focus {
+    box-shadow: 0px 0px 15px -5px color-warning(3);
   }
 }

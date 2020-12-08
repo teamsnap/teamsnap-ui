@@ -8,19 +8,14 @@ import { Input } from "../Input";
 import { Select } from "../Select";
 import { Checkbox } from "../Checkbox";
 import { Icon } from "../Icon";
+import { Statuses } from "../../types";
 
-const stories = storiesOf("FieldGroup", module);
+const stories = storiesOf("FieldGroup [deprecated]", module);
 
 const statusOptions = {
   success: "success",
   error: "error",
   default: null
-};
-
-const iconOptions = {
-  left: "left",
-  right: "right",
-  default: "left"
 };
 
 stories.add("FieldGroup with Input text child", () => {
@@ -32,7 +27,7 @@ stories.add("FieldGroup with Input text child", () => {
       <FieldLabel name="example">Text Input</FieldLabel>
       <Input name="storybook" type="text" />
       {status === "error" ? (
-        <FieldMessage isError>{errorMessage}</FieldMessage>
+        <FieldMessage status={Statuses.ERROR}>{errorMessage}</FieldMessage>
       ) : null}
     </FieldGroup>
   );
@@ -58,8 +53,8 @@ stories.add("FieldGroup with Select child", () => {
           }
         ]}
       />
-      {status === "error" ? (
-        <FieldMessage isError>{errorMessage}</FieldMessage>
+      {status === Statuses.ERROR ? (
+        <FieldMessage status={Statuses.ERROR}>{errorMessage}</FieldMessage>
       ) : null}
     </FieldGroup>
   );
@@ -68,16 +63,13 @@ stories.add("FieldGroup with Select child", () => {
 stories.add("FieldGroup with Input text and Icon children", () => {
   const errorMessage = text("Error Message", "There was an error");
   const status = select("status", statusOptions);
-  const iconPosition = select("iconPosition", iconOptions);
 
   return (
     <FieldGroup status={status}>
       <FieldLabel name="example">Location Input</FieldLabel>
-      <Input name="storybook" type="text" iconPosition={iconPosition || "left"}>
-        <Icon name="location" />
-      </Input>
-      {status === "error" ? (
-        <FieldMessage isError>{errorMessage}</FieldMessage>
+      <Input name="storybook" type="text" leftIcon={<Icon name="location" />} />
+      {status === Statuses.ERROR ? (
+        <FieldMessage status={Statuses.ERROR}>{errorMessage}</FieldMessage>
       ) : null}
     </FieldGroup>
   );
@@ -93,7 +85,7 @@ stories.add("FieldGroup with Checkbox children", () => {
       <Checkbox name="example" label="Check Me" isInline />
       <Checkbox name="example2" label="Check Me 2" isInline />
       {status === "error" ? (
-        <FieldMessage isError>{errorMessage}</FieldMessage>
+        <FieldMessage status={Statuses.ERROR}>{errorMessage}</FieldMessage>
       ) : null}
     </FieldGroup>
   );

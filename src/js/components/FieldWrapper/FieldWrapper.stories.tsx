@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { select, text } from "@storybook/addon-knobs/react";
 import FieldWrapper from "./FieldWrapper";
 
-const stories = storiesOf("FieldWrapper", module);
+const stories = storiesOf("FieldWrapper [deprecated]", module);
 
 const statusOptions = {
   success: "success",
@@ -19,7 +19,7 @@ stories.add("Default", () => {
       name="example"
       label="Test Input"
       field="input"
-      fieldProps={{ placeholder: "Some placehodler text" }}
+      fieldProps={{ placeholder: "Some placeholder text" }}
     />
   );
 });

@@ -24,7 +24,7 @@ $Checkbox-radioPadding: 3px;
 $Checkbox-size--large: 22px; // Allows pill version to be 40px (same as large button and input)
 $Checkbox-radioPadding--large: $su-xsmall;
 
-$Checkbox-color: $cu-positive !default;
+$Checkbox-color: color-primary(5) !default;
 $Checkbox-bg-color: $cu-foreground !default;
 
 @mixin Checkbox--defineSize($size, $radioPadding) {
@@ -148,7 +148,7 @@ $Checkbox-bg-color: $cu-foreground !default;
     cursor: pointer;
     background-color: $Checkbox-bg-color;
     border: $border-width-small solid $cu-divider;
-    border-radius: $border-radius-small;
+    border-radius: $border-radius-medium;
     margin: 0;
     position: absolute;
     left: 0;
@@ -161,11 +161,24 @@ $Checkbox-bg-color: $cu-foreground !default;
   }
 }
 
+.Checkbox .Checkbox-input:disabled + .Checkbox-label::before {
+  background-color: color-neutral(4) !important;
+}
 // Active state
 .Checkbox-input:checked + .Checkbox-label:before {
   background-image: url("data:image/svg+xml; utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 960 960'%3E%3Cpath fill='white' d='M915 178.9c8 6.7 12.3 15.5 13 26.5s-2.3 21.2-9 30.5c-252.7 360.7-389.3 555.3-410 584-21.3 28.7-48.8 43.2-82.5 43.5S365 849.2 343 819.9l-278-391c-6.7-9.3-9.7-19.7-9-31s5-20.3 13-27c34-29.3 72-55.7 114-79 8.7-4.7 18.3-5.3 29-2s19.3 9.7 26 19l188 264 321-456c6.7-9.3 15.2-15.5 25.5-18.5s20.2-2.2 29.5 2.5c44 24 81.7 50 113 78z'%3E%3C/path%3E%3C/svg%3E");
   // SVG check icon
   border: none;
+  transition: none
+}
+
+// Indeterminate state
+.Checkbox--indeterminate .Checkbox-input:checked + .Checkbox-label:before {
+  background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='2' y='2' width='4' height='4' rx='1' fill='%230F52BA' stroke='%230F52BA'/%3E%3C/svg%3E%0A");
+  background-color: color-neutral(1);
+  border: solid $border-width-small $cu-divider;
+  background-size: 100%;
+  transition: none;
 }
 
 // Disabled state
@@ -176,8 +189,6 @@ $Checkbox-bg-color: $cu-foreground !default;
   }
 
   &:before {
-    background-image: url("data:image/svg+xml; utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 960 960'%3E%3Cpath fill='white' d='M829,500.82V843.87A58.74,58.74,0,0,1,813.63,884a69.15,69.15,0,0,1-37.18,22.31A1302.73,1302.73,0,0,1,480,940q-154.67,0-299.43-33.71A63.46,63.46,0,0,1,131,843.87V503.8a76.16,76.16,0,0,1,17.85-49.57q17.85-21.81,43.63-21.81h33.71V273.77q0-114,69.9-183.92T480,20q114,0,183.92,69.9t69.9,183.92V432.41h30.74q25.78,0,45.11,20.82T829,500.82ZM384.82,432.41H575.18V273.77q0-95.18-95.18-95.18t-95.18,95.18Z'%3E%3C/path%3E%3C/svg%3E");
-    // SVG lock icon
     background-color: $cu-divider;
     border: none;
   }

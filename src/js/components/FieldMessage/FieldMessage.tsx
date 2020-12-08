@@ -6,13 +6,14 @@
  *  library for more information. https://teamsnap-ui-patterns.netlify.com/patterns/components/field-group.html
  *
  * @example
- *  <FieldMessage isError>Test Field Message Error</FieldMessage>
+ *  <FieldMessage status={Status.ERROR}>Test Field Message Error</FieldMessage>
  *
  */
 
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import { getClassName } from "../../utils/helpers";
+import { Status, Statuses } from "../../types";
 
 class FieldMessage extends React.PureComponent<PropTypes.InferProps<typeof FieldMessage.propTypes>, any> {
   static propTypes = {
@@ -21,12 +22,12 @@ class FieldMessage extends React.PureComponent<PropTypes.InferProps<typeof Field
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
+    status: Status.PropType,
   };
 
   static defaultProps = {
     children: null,
-    isError: false,
     className: "FieldGroup-message",
     mods: null,
     style: {},
@@ -36,15 +37,19 @@ class FieldMessage extends React.PureComponent<PropTypes.InferProps<typeof Field
   render() {
     const {
       children,
-      isError,
       className,
       mods,
       style,
-      otherProps
+      otherProps,
+      status
     } = this.props;
 
     const messageClasses = getClassName(
-      isError ? "FieldGroup-message FieldGroup-message--error" : className,
+      "FieldGroup-message",
+      status == Statuses.ERROR && "FieldGroup-message--error",
+      status == Statuses.SUCCESS && "FieldGroup-message--success",
+      status == Statuses.WARNING && "FieldGroup-message--warning",
+      className,
       mods
     );
 

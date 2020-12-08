@@ -14,31 +14,40 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import { InputControl } from "../InputControl";
+import { CheckboxStates } from "../../types";
 
-class Checkbox extends React.PureComponent<PropTypes.InferProps<typeof Checkbox.propTypes>, any> {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    label: PropTypes.node.isRequired,
-    inputProps: PropTypes.object,
-    isInline: PropTypes.bool,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object
-  };
+const propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
+  inputProps: PropTypes.any,
+  isInline: PropTypes.bool,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+};
 
-  static defaultProps = {
-    inputProps: {},
-    isInline: false,
-    className: "Checkbox",
-    mods: null,
-    style: {},
-    otherProps: {}
-  };
+type CheckboxType = React.FunctionComponent<
+  PropTypes.InferProps<typeof propTypes>
+>;
+const Checkbox: CheckboxType = (props) => {
+  const { mods, inputProps } = props;
 
-  render() {
-    return <InputControl type="checkbox" {...this.props} />;
-  }
-}
+  let modClasses = `${mods}${
+    inputProps.checked === CheckboxStates.INDETERMINATE
+      ? " Checkbox--indeterminate"
+      : ""
+  }`;
+  return <InputControl type="checkbox" {...props} mods={modClasses} />;
+};
+
+Checkbox.defaultProps = {
+  inputProps: {},
+  isInline: false,
+  className: "Checkbox",
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default Checkbox;
