@@ -66,12 +66,17 @@ class InputControl extends React.PureComponent<
       mods
     );
 
+    // booleans can skip the extra checking here
+    // handle checkboxstates as a valid input
     let value = false;
-
-    if (inputProps.checked === CheckboxStates.INDETERMINATE) {
-      value = true;
+    if (typeof inputProps.checked === "boolean") {
+      value = inputProps.checked;
     } else {
-      value = inputProps.checked === "true";
+      if (inputProps.checked === CheckboxStates.INDETERMINATE) {
+        value = true;
+      } else {
+        value = inputProps.checked === "true";
+      }
     }
 
     return (
