@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.10.1] - 2021-12-08
+- https://github.com/teamsnap/teamsnap-ui/pull/429
+- `Updated` React to 17
+- `Fixed` event delegation in Popup components for breaking React 17 changes
+
 ## [3.10.0] - 2020-11-04
 - https://github.com/teamsnap/teamsnap-ui/pull/366
 - `Added` more options to Popup component to make it more customizable.
