@@ -30,7 +30,7 @@ export default class PopUpAction extends React.Component<PropTypes.InferProps<ty
   }
 
   componentDidMount() {
-    document.body.addEventListener("click", this.handleBodyClick.bind(this));
+    document.body.addEventListener("click", this.handleBodyClick.bind(this), { capture: true });
   }
 
   componentWillUnmount() {

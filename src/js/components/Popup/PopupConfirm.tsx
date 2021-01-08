@@ -57,7 +57,7 @@ export default class Popup extends React.Component<
     const { isPopupOpen } = this.state;
 
     if (!isPopupOpen) {
-      document.body.addEventListener("click", this.handleBodyClick.bind(this));
+      document.body.addEventListener("click", this.handleBodyClick.bind(this), { capture: true });
     } else {
       document.body.removeEventListener(
         "click",
