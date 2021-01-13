@@ -71,7 +71,7 @@
     "gulp-if": "^2.0.2",
     "gulp-sass": "^4.0.1",
     "gulp-util": "^3.0.8",
-    "node-sass": "^4.12.0",
+    "node-sass": "^5.0.0",
     "object-path": ">=0.11.5",
     "prop-types": "^15.6.1",
     "react": "^17.0.0",
