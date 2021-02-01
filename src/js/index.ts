@@ -35,5 +35,6 @@ export * from "./components/Tabs";
 export * from "./components/TextArea";
 export * from "./components/TextLink";
 export * from "./components/Toggle";
+export * from "./components/Toolbar";
 export * from "./components/Tooltip";
 export * from "./types";
