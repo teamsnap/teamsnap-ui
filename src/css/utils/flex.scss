@@ -73,6 +73,10 @@
   justify-content: space-around !important;
 }
 
+.u-flexJustifyEvenly {
+  justify-content: space-evenly !important;
+}
+
 
 // * Align items in the cross axis of the current line of the flex container
 // * Similar to `justify-content` but in the perpendicular direction
