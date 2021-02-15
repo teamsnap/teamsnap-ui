@@ -62,7 +62,7 @@ type ItemType = React.FunctionComponent<
 >;
 
 const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, link, linkProps }) => {
-  const maybeIcon = icon ? <Icon name={icon} mods={`u-spaceRightXs ${iconModifiers}`} /> : null;
+  const maybeIcon = icon ? <Icon name={icon} mods={`${iconModifiers}`} /> : null;
   const Wrapper = link ? ({children}) => <a href={link} {...linkProps}>{children}</a> : ({children}) => <>{children}</>
   return (
     <Wrapper>
@@ -106,11 +106,11 @@ const Nav: NavType & { Item: ItemType } = ({
             />
           </div>
           <div className="u-sizeFill Nav-itemTitle u-spaceLeftSm">
-            <span className="Nav-itemTitle u-textEllipsis">
+            <span className="Nav-itemTitle">
               {headerItems[0].title}
             </span>
           </div>
-          <div className="u-size1of8 Nav-itemTitle">
+          <div className="u-size1of8 Nav-itemTitle u-textRight">
             <Icon mods="u-fontSizeMd" name="down" />
           </div>
         </div>
