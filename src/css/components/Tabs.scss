@@ -15,7 +15,7 @@
 .Tabs {}
 
 .Tabs-header {
-  border-bottom: $border-width-large solid color-neutral(3);
+  border-bottom: $border-width-small solid color-neutral(5);
   padding: 0;
   margin-bottom: $su-medium;
 }
@@ -38,10 +38,10 @@
     content: '';
     display: block;
     width: 100%;
-    height: $border-width-large;
+    height: $border-width-medium;
     position: absolute;
     left: 0;
-    bottom: 0 - $border-width-large;
+    bottom: $border-width-large - $border-width-large;
     background: transparent;
   }
 
