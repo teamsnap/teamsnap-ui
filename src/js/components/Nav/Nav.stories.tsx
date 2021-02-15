@@ -13,7 +13,7 @@ stories.add("Default", () => (
       mods="u-size2of12"
       headerItems={[
         {
-          title: text("Team Name", "Boulder Sport"),
+          title: text("Team Name", "Boulder Youth Soccer"),
           image: text(
             "Image Source",
             "https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png"
@@ -21,14 +21,20 @@ stories.add("Default", () => (
         },
       ]}
     >
-      <Nav.Item icon="tracking" link="https://www.teamsnap.com" linkProps={{target: "_blank"}}>
-        TeamSnap Home
+      <Nav.Item icon="dashboard" isActive link="https://www.teamsnap.com" linkProps={{target: "_blank"}}>
+        Dashboard
       </Nav.Item>
-      <Nav.Item icon="money" isActive>
-        Show me the money
+      <Nav.Item icon="medal" onClick={() => alert("Fire Custom On Click")}>
+        Programs
       </Nav.Item>
-      <Nav.Item icon="messages" onClick={() => alert("Fire Custom On Click")}>
-        Custom On Click
+      <Nav.Item icon="user">
+        Members
+      </Nav.Item>
+      <Nav.Item icon="star">
+        Staff
+      </Nav.Item>
+      <Nav.Item icon="settings">
+        Settings
       </Nav.Item>
     </Nav>
     <main className="u-sizeFill u-flex u-flexAlignItemsCenter u-flexJustifyCenter">

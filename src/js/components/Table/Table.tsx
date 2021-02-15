@@ -184,7 +184,7 @@ const Table: React.FunctionComponent<
         <div className="u-colorNeutral5 u-fontSizeXs u-spaceLeftXs">
           <Icon
             name={activeColumn ? (sortOrder ? "up" : "down") : "down"}
-            mods={activeColumn && `u-colorHighlight`}
+            mods={activeColumn && `u-colorPrimary`}
           />
         </div>
       </TextLink>

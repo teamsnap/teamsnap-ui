@@ -44,8 +44,8 @@ $colors-primary: (
   5: #1364DE,
   6: #0F52BA,
   7: #0C4295,
-  8: #093170,
-  9: #06214A,
+  8: #162A42,
+  9: #091A2E,
   10: #031025,
 ) !default;
 
@@ -178,8 +178,10 @@ $tu-museo1000-fontFamily: 'MuseoSansRounded1000Regular', 'Open Sans', Arial, san
 
 $tu-openSans-fontFamily: 'Open Sans', Helvetica, sans-serif !default;
 
-$base-font-family:    $tu-openSans-fontFamily !default;
-$heading-font-family: $tu-museo700-fontFamily !default;
+$tu-lato-fontFamily: 'Lato', 'Open Sans', Helvetica, sans-serif !default;
+
+$base-font-family:    $tu-lato-fontFamily !default;
+$heading-font-family: $tu-lato-fontFamily !default;
 
 // * 2.b Font Weights
 
