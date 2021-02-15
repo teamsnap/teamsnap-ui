@@ -62,9 +62,9 @@ storiesOf("Button", module).add(
   "with Icon",
   () => (
     <div>
-      <Button size="small" isDisabled={boolean("Disabled", false)} mods="u-spaceRightSm" icon={text("Icon Left", "home")}>
+      <Button size="small" isDisabled={boolean("Disabled", false)} mods="u-spaceRightSm" icon={text("Icon Small", "home")}>
       </Button>
-      <Button isDisabled={boolean("Disabled", false)} mods="u-spaceRightSm" icon={text("Icon Left", "home")}>
+      <Button isDisabled={boolean("Disabled", false)} mods="u-spaceRightSm" icon={text("Icon Left", "plus")}>
         Icon Left (default)
       </Button>
       <Button
