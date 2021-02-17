@@ -21,10 +21,10 @@ stories.add("Default", () => (
         },
       ]}
     >
-      <Nav.Item icon="dashboard" isActive link="https://www.teamsnap.com" linkProps={{target: "_blank"}}>
+      <Nav.Item icon="dashboard" isActive wrapItem={ ({ children }) => <a href="https://go.teamsnap.com" target="_blank" rel="noreferrer">{ children }</a> }>
         Dashboard
       </Nav.Item>
-      <Nav.Item icon="medal" onClick={() => alert("Fire Custom On Click")}>
+      <Nav.Item icon="medal" onClick={ () => alert("Fire Custom On Click") }>
         Programs
       </Nav.Item>
       <Nav.Item icon="user">
@@ -62,7 +62,7 @@ stories.add("Without Header", () => (
       style={{ backgroundColor: "#FFEFA5", minHeight: "800px" }}
     >
       <Nav mods="u-size2of12">
-        <Nav.Item icon="tracking" link="https://www.teamsnap.com" linkProps={{target: "_blank"}}>
+        <Nav.Item icon="tracking" wrapItem={ ({ children }) => <a href="https://www.teamsnap.com" target="_blank" rel="noreferrer">{ children }</a> }>
             TeamSnap Home
           </Nav.Item>
         <Nav.Item icon="money">

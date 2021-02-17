@@ -18,6 +18,7 @@ import * as PropTypes from "prop-types";
 import { Icon } from "../Icon";
 import { getClassName } from "../../utils/helpers";
 import { Avatar } from "../Avatar";
+import { wrap } from "module";
 
 const navPropTypes = {
   // React component children
@@ -40,6 +41,8 @@ const navPropTypes = {
 };
 
 const itemPropTypes = {
+  // Any additional classes to include
+  mods: PropTypes.string,
   // String that matches a teamsnap-ui icon name
   icon: PropTypes.string,
   // Teamsnap UI modifiers passed to the icon component
@@ -48,10 +51,8 @@ const itemPropTypes = {
   isActive: PropTypes.bool,
   // function to handle an item being clicked.
   onClick: PropTypes.func,
-  // *external* link, creates an anchor tag under the hood. Use onClick and router state for SPA transitions
-  link: PropTypes.string,
-  // any props to pass to the generated anchor tag (target, for example)
-  linkProps: PropTypes.any
+  // a function for wrapping each item. Commonly used with links or react router.
+  wrapItem: PropTypes.func,
 };
 
 type NavType = React.FunctionComponent<
@@ -61,13 +62,13 @@ type ItemType = React.FunctionComponent<
   PropTypes.InferProps<typeof itemPropTypes>
 >;
 
-const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, link, linkProps }) => {
-  const maybeIcon = icon ? <Icon name={icon} mods={`${iconModifiers}`} /> : null;
-  const Wrapper = link ? ({children}) => <a href={link} {...linkProps}>{children}</a> : ({children}) => <>{children}</>
+const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, wrapItem }) => {
+  const maybeIcon = icon ? <Icon name={ icon } mods={ `${iconModifiers}` } /> : null;
+  const Wrapper = wrapItem ? wrapItem : ({ children }) => <>{ children }</>
   return (
     <Wrapper>
-      <li className={`${isActive ? `is-active ` : ``}Nav-item`} onClick={onClick || (() => {})}>
-        {maybeIcon} <span className="Nav-itemTitle">{children}</span>
+      <li className={ `${isActive ? `is-active ` : ``}Nav-item` } onClick={ onClick || (() => {}) }>
+        { maybeIcon } <span className="Nav-itemTitle">{ children }</span>
       </li>
     </Wrapper>
   );
