@@ -18,7 +18,6 @@ import * as PropTypes from "prop-types";
 import { Icon } from "../Icon";
 import { getClassName } from "../../utils/helpers";
 import { Avatar } from "../Avatar";
-import { wrap } from "module";
 
 const navPropTypes = {
   // React component children
