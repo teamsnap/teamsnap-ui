@@ -37,11 +37,15 @@ export default class PopUpAction extends React.Component<PropTypes.InferProps<ty
     document.body.removeEventListener("click", this.handleBodyClick.bind(this));
   }
 
-  handleBodyClick() {
-    this.setState({
-      isPopupOpen: false,
-      isConfirmOpen: false
-    });
+  handleBodyClick(e: any) {
+    const isTargetingPopup = e.target.closest('.Popup-content') != null;
+
+      if (!isTargetingPopup) {
+        this.setState({
+          isPopupOpen: false,
+          isConfirmOpen: false
+      });
+    }
   }
 
   togglePopup() {
