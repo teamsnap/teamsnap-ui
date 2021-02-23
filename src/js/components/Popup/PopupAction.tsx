@@ -76,21 +76,21 @@ export default class PopUpAction extends React.Component<PropTypes.InferProps<ty
         <div className="Popup Popup--hover">
           <button
             className="Button Button--small"
-            onClick={this.togglePopup.bind(this)}
+            onClick={ this.togglePopup.bind(this) }
           >
-            {this.props.text}
+            { this.props.text }
           </button>
           <div
-            className={`Popup-container ${dirString} ${this.state.isPopupOpen ? "is-open" : ""}`}
-            style={this.props.popupStyle}
+            className={ `Popup-container ${dirString} ${this.state.isPopupOpen ? "is-open" : ""}` }
+            style={ this.props.popupStyle }
           >
             <div className="Popup-content">
               <div className="u-textLeft">
-                {this.props.actions.map(action => {
+                { this.props.actions.map(action => {
                   return (
-                    <div key={action.text}>
+                    <div key={ action.text }>
                       <button
-                        tabIndex={0}
+                        tabIndex={ 0 }
                         className="u-padEndsSm u-padSidesMd"
                         style={{
                           cursor: "pointer",
@@ -100,14 +100,14 @@ export default class PopUpAction extends React.Component<PropTypes.InferProps<ty
                           width: "100%",
                           textAlign: "left"
                         }}
-                        onClick={this.handleActionClick.bind(this, action)}
+                        onClick={ this.handleActionClick.bind(this, action) }
                       >
-                        {action.text}
+                        { action.text }
                       </button>
                       <hr className="Divider u-spaceEndsNone" />
                     </div>
                   );
-                })}
+                }) }
               </div>
             </div>
           </div>
@@ -125,11 +125,11 @@ export default class PopUpAction extends React.Component<PropTypes.InferProps<ty
             <div className="Popup-content u-padMd">
               <h3 className="u-spaceBottomSm u-textCenter">Are you sure?</h3>
               <p className="u-textLeft">
-                {this.state.selectedAction.confirmationText}
+                { this.state.selectedAction.confirmationText }
               </p>
               <div className="u-textCenter u-spaceTopMd">
                 <button
-                  onClick={() =>
+                  onClick={ () =>
                     this.setState({
                       ...this.state,
                       isConfirmOpen: false,
@@ -141,7 +141,14 @@ export default class PopUpAction extends React.Component<PropTypes.InferProps<ty
                   Cancel
                 </button>
                 <button
-                  onClick={this.state.selectedAction.callback}
+                  onClick={ (...args) => {
+                    this.state.selectedAction.callback(args);
+                    this.setState({
+                      ...this.state,
+                      isConfirmOpen: false,
+                      selectedAction: {}
+                    });
+                  } }
                   className="Button Button--primary"
                 >
                   Confirm
