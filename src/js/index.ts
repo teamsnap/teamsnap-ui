@@ -28,6 +28,7 @@ export * from "./components/ProgressBar";
 export * from "./components/RadialProgress";
 export * from "./components/Radio";
 export * from "./components/Select";
+export * from "./components/Skittles";
 export * from "./components/StepNav";
 export * from "./components/SummaryList";
 export * from "./components/Table";
