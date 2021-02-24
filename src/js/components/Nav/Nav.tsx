@@ -18,6 +18,7 @@ import * as PropTypes from "prop-types";
 import { Icon } from "../Icon";
 import { getClassName } from "../../utils/helpers";
 import { Avatar } from "../Avatar";
+import { Skittles } from "../Skittles";
 
 const navPropTypes = {
   // React component children
@@ -30,12 +31,40 @@ const navPropTypes = {
   style: PropTypes.object,
   // Any extraneous props
   otherProps: PropTypes.object,
+  headerItem: PropTypes.shape({
+    title: PropTypes.string,
+    image: PropTypes.string,
+    useBadge: PropTypes.bool,
+  }),
   // a list of items to be displayed in the header component
-  headerItems: PropTypes.arrayOf(
+  flyoutSections: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      image: PropTypes.string,
-    })
+      heading: PropTypes.string.isRequired,
+      tree: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        image: PropTypes.string,
+        // If an image is not provided and useBadge is, we will try to generate a badge based off the title
+        useBadge: PropTypes.bool,
+        // a function for wrapping each item. Commonly used with links or react router.
+        wrapItem: PropTypes.func,
+        tree: PropTypes.shape({
+          title: PropTypes.string.isRequired,
+          image: PropTypes.string,
+          // If an image is not provided and useBadge is, we will try to generate a badge based off the title
+          useBadge: PropTypes.bool,
+          // a function for wrapping each item. Commonly used with links or react router.
+          wrapItem: PropTypes.func,
+          tree: PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            image: PropTypes.string,
+            // If an image is not provided and useBadge is, we will try to generate a badge based off the title
+            useBadge: PropTypes.bool,
+            // a function for wrapping each item. Commonly used with links or react router.
+            wrapItem: PropTypes.func,
+          })
+        })
+      })
+    }),
   ),
 };
 
@@ -73,17 +102,59 @@ const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, wrap
   );
 };
 
+Item.propTypes = itemPropTypes;
+
+const FlyOutNode = ({item}) => {
+  const [isExpanded, setIsExpanded] = React.useState(false);
+  const Wrapper = item.wrapItem ? item.wrapItem : ({ children }) => <>{ children }</>
+  return <div className="u-padSm">
+    <Wrapper>
+      <div className="u-flex">
+      { item.tree && <div className="u-size1of8 Nav-itemTitle u-textRight" onClick={ () => setIsExpanded(!isExpanded) }>
+          <Icon mods="u-fontSizeMd" name="down" />
+      </div> }
+      <div className="u-fill">
+        { !item.image && item.useBadge && <Skittles text={item.title} mods="u-spaceRightXs" /> }
+        { item.title }
+        </div>
+      </div>
+    </Wrapper>
+    { isExpanded && item.tree ? <div>{ item.tree.reduce(reducer, []) }</div> : null }
+  </div>
+}
+
+/**
+ * This function is pulled out and named so that it can be used by both FlyOutNode and generateFlyoutContents
+ * @param acc an array
+ * @param cur a flyout item
+ */
+const reducer = (acc: [], cur) => {
+  return [...acc, <FlyOutNode key={cur.title} item={cur} />]
+};
+
+const generateFlyoutContents = (flyoutSections: any) => {
+  return flyoutSections.map((section, idx) => {
+    return <section className="u-padSm u-borderTop" key={ idx }>
+      <div className="Nav-sectionHeading u-colorNeutral7 u-textUppercase u-fontSizeSm">{ section.heading }</div>
+      <div>{ section.tree.reduce(reducer, []) }</div>
+    </section>
+  });
+}
+
 const Nav: NavType & { Item: ItemType } = ({
   className,
   mods,
   children,
   style,
   otherProps,
-  headerItems,
+  headerItem,
+  flyoutSections
 }) => {
   const [isCollapsed, setCollapsed] = React.useState(false);
+  const [isFlyoutActive, setIsFlyoutActive] = React.useState(false);
   const cname = getClassName(
     "Nav",
+    isFlyoutActive && "is-flyout",
     isCollapsed && "is-collapsed",
     className,
     mods
@@ -94,30 +165,30 @@ const Nav: NavType & { Item: ItemType } = ({
   );
 
   return (
-    <nav className={cname} style={style} {...otherProps}>
-      {headerItems && headerItems.length ? (
+    <nav className={ cname } style={ style } { ...otherProps }>
+      { headerItem ? (
         <div className="Nav-header u-textSemiBold">
           <div
-            className={navHeaderIconClass}
+            className={ navHeaderIconClass }
           >
             <Avatar
-              src={headerItems[0].image}
+              src={ headerItem.image }
               size="fill"
             />
           </div>
           <div className="u-sizeFill Nav-itemTitle u-spaceLeftSm">
             <span className="Nav-itemTitle">
-              {headerItems[0].title}
+              { headerItem.title }
             </span>
           </div>
-          <div className="u-size1of8 Nav-itemTitle u-textRight">
+          { flyoutSections && <div className="u-size1of8 Nav-itemTitle u-textRight" onClick={ () => setIsFlyoutActive(!isFlyoutActive) }>
             <Icon mods="u-fontSizeMd" name="down" />
-          </div>
+          </div> }
         </div>
-      ) : null}
-      <div className="Nav-body">{children}</div>
-      <div className="Nav-footer" onClick={() => setCollapsed(!isCollapsed)}>
-        <Icon name="left" />{" "}
+      ) : null }
+      <div className="Nav-body">{ isFlyoutActive ? generateFlyoutContents(flyoutSections) : children }</div>
+      <div className="Nav-footer" onClick={ () => setCollapsed(!isCollapsed) }>
+        <Icon name="left" />{ " " }
         <span className="Nav-itemTitle">Collapse Menu</span>
       </div>
     </nav>

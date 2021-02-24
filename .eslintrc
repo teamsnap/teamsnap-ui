@@ -6,17 +6,8 @@
     "node": true
   },
   "rules": {
-    "object-curly-spacing": [2, "always"],
-    "react/jsx-curly-spacing": [
-      2,
-      "always",
-      {
-        "children": true,
-        "spacing": {
-          "objectLiterals": "never"
-        }
-      }
-    ],
+    "object-curly-spacing": 0,
+    "react/jsx-curly-spacing": 0,
     "eol-last": 2,
     "no-multiple-empty-lines": [2, { "max": 5, "maxEOF": 0 }],
     "max-len": [

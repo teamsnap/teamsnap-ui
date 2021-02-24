@@ -20,6 +20,26 @@ $maxIndex: 999;
   .u-colorNeutral#{$i} {
     color: color-neutral($i) !important;
   }
+
+  .u-bgPrimary#{$i} {
+    background-color: color-primary($i) !important;
+  }
+
+  .u-bgNegative#{$i} {
+    background-color: color-negative($i) !important;
+  }
+
+  .u-bgWarning#{$i} {
+    background-color: color-warning($i) !important;
+  }
+
+  .u-bgSuccess#{$i} {
+    background-color: color-success($i) !important;
+  }
+
+  .u-bgNeutral#{$i} {
+    background-color: color-neutral($i) !important;
+  }
 }
 
 // TODO: rename to .u-colorSuccess?

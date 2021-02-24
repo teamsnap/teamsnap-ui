@@ -7,6 +7,15 @@
   min-width: scaleGrid(24);
   max-width: scaleGrid(27);
 
+  &.is-flyout {
+    background-color: white;
+    color: black;
+
+    a {
+      color: black;
+    }
+  }
+
   .Nav-item {
     color: color-primary(1);
     white-space: nowrap;
@@ -44,6 +53,16 @@
   }
 }
 
+.is-flyout {
+  .Nav-header {
+    color: black;
+
+    .Icon {
+      transform: rotate(-180deg);
+    }
+  }
+}
+
 .Nav-header {
   display: flex;
   align-items: center;
@@ -57,6 +76,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .Icon {
+    transition: transform ease 300ms;
   }
 }
 
