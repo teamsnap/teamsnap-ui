@@ -21,13 +21,13 @@ stories.add("Ideal toolbar placement", () => {
         }}
       >
         <Nav
-          headerItems={ [
+          headerItem={
             {
               image:
                 "https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png",
               title: "sample",
-            },
-          ] }
+            }
+          }
           mods="u-size2of12"
         >
           <Nav.Item icon="divisions">Programs</Nav.Item>
@@ -55,13 +55,13 @@ stories.add("With Search", () => {
         }}
       >
         <Nav
-          headerItems={ [
+          headerItem={
             {
               image:
                 "https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png",
               title: "sample",
-            },
-          ] }
+            }
+          }
           mods="u-size2of12"
         >
           <Nav.Item icon="divisions">Programs</Nav.Item>
