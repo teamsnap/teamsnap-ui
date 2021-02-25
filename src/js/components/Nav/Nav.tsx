@@ -123,7 +123,6 @@ const FlyOutNode = ({ item }) => {
     : ({ children }) => <>{children}</>;
   return (
     <div className={`u-padSm Nav-node`}>
-      <Wrapper>
         <div className="u-flex" onClick={() => setIsExpanded(!isExpanded)}>
           {item.tree && (
             <div
@@ -132,14 +131,15 @@ const FlyOutNode = ({ item }) => {
               <Icon mods="u-fontSizeMd" name="down" />
             </div>
           )}
+          <Wrapper>
           <div className="u-fill">
             {!item.image && item.useBadge && (
               <Skittles text={item.title} mods="u-spaceRightXs" />
             )}
             {item.title}
           </div>
+          </Wrapper>
         </div>
-      </Wrapper>
       {isExpanded && item.tree && item.tree.length > 0 ? (
         <div>{item.tree.reduce(reducer, [])}</div>
       ) : null}
