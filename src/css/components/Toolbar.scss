@@ -4,3 +4,10 @@
   border-bottom: 1px solid color-neutral(4);
   padding: scaleGrid(2);
 }
+
+.Toolbar-flyout {
+  border: 1px solid color-neutral(5);
+  background-color: color-neutral(1);
+  border-radius: $border-radius-medium;
+  top: 40px;
+}
