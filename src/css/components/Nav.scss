@@ -10,9 +10,20 @@
   &.is-flyout {
     background-color: white;
     color: black;
+    box-shadow: 4px 1px 10px #00000050;
 
     a {
       color: black;
+    }
+  }
+
+  .Nav-node {
+    cursor: pointer;
+  }
+
+  .Node-expanded {
+    & > .Icon {
+      transform: rotate(180deg);
     }
   }
 
@@ -25,6 +36,7 @@
     height: 1em;
     width: 1em;
     margin-right: scaleGrid(1);
+    transition: transform ease 300ms;
   }
 
   &.is-collapsed {

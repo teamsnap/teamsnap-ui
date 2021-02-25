@@ -122,13 +122,12 @@ const FlyOutNode = ({ item }) => {
     ? item.wrapItem
     : ({ children }) => <>{children}</>;
   return (
-    <div className="u-padSm">
+    <div className={`u-padSm Nav-node`}>
       <Wrapper>
-        <div className="u-flex">
+        <div className="u-flex" onClick={() => setIsExpanded(!isExpanded)}>
           {item.tree && (
             <div
-              className="u-size1of8 Nav-itemTitle u-textRight"
-              onClick={() => setIsExpanded(!isExpanded)}
+              className={`u-size1of8 Nav-itemTitle u-textRight ${isExpanded ? "Node-expanded": ""}`}
             >
               <Icon mods="u-fontSizeMd" name="down" />
             </div>
