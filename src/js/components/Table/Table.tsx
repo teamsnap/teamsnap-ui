@@ -141,10 +141,8 @@ class Table extends React.PureComponent<
     return { items, sortByColumn, sortByReverse };
   };
 
-  handleSortClick = (e) => {
-    e.preventDefault();
+  handleSortClick = (sortName) => {
     const { items } = this.state;
-    const sortName = e.currentTarget.getAttribute("href");
 
     const sortDirection =
       sortName === this.state.sortByColumn ? !this.state.sortByReverse : false;
@@ -192,17 +190,20 @@ class Table extends React.PureComponent<
     );
 
     return (
-      <TextLink
-        location={column.name}
-        onClick={this.handleSortClick}
-        mods={textLinkMods}
+      <span
+        role="button"
+        style={{cursor: "pointer"}}
+        onClick={() => {
+          this.handleSortClick(column.name);
+        }}
+        className={textLinkMods}
       >
         {this.renderSortLabel(column.label)}
         <div className="u-colorGrey u-fontSizeXs u-spaceLeftXs">
           <Icon name="up" mods={ascLinkMods} />
           <Icon name="down" mods={descLinkMods} />
         </div>
-      </TextLink>
+      </span>
     );
   };
 

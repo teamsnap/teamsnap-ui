@@ -12,7 +12,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
-## [3.10.1] - 2021-12-08
+## [3.10.2] - 2021-02-26
+- https://github.com/teamsnap/teamsnap-ui/pull/504/files
+- `Updated` Table headers to be spans instead of anchors
+
+## [3.10.1] - 2020-12-08
 - https://github.com/teamsnap/teamsnap-ui/pull/429
 - `Updated` React to 17
 - `Fixed` event delegation in Popup components for breaking React 17 changes
