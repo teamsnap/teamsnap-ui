@@ -77,7 +77,7 @@ const Toolbar: React.FunctionComponent<
             {showHelp && (
               <Icon
                 className="Icon u-spaceRightLg"
-                name="info"
+                name="help"
                 style={{
                   border: "1px solid black",
                   borderRadius: "12px",
