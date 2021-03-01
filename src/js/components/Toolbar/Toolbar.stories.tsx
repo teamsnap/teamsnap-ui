@@ -1,5 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
+import { boolean } from "@storybook/addon-knobs";
 import Toolbar from "./Toolbar";
 import { Nav } from "../Nav";
 
@@ -7,7 +8,24 @@ const stories = storiesOf("Toolbar", module);
 
 stories.add("Default", () => (
   <>
-    <Toolbar />
+    <Toolbar
+      showAccount={boolean("Show Account", true)}
+      showSearch={boolean("Show Search", true)}
+      showAdmin={boolean("Show Admin", true)}
+      showHelp={boolean("Show Help", true)} />
+  </>
+));
+
+stories.add("With Flyouts", () => (
+  <>
+    <Toolbar
+      showAccount={boolean("Show Account", true)}
+      showSearch={boolean("Show Search", true)}
+      showAdmin={boolean("Show Admin", true)}
+      showHelp={boolean("Show Help", true)}
+      helpBody={<p>Help</p>}
+      adminBody={<p>Admin</p>}
+      accountBody={<p>Account</p>} />
   </>
 ));
 
