@@ -21,14 +21,12 @@
 }
 
 .Tabs-headerItem {
-
   list-style: none;
   display: inline-block;
   position: relative;
   cursor: pointer;
-  color: color-primary(6);
+  color: color-neutral(9);
   font-family: $base-font-family;
-  font-weight: $tu-semibold-fontWeight;
 
   &, &:last-child {
     padding: $su-xsmall $su-large;
@@ -45,7 +43,11 @@
     background: transparent;
   }
 
-  &.is-active,
+  &.is-active {
+    color: color-primary(5);
+    font-weight: $tu-semibold-fontWeight;
+  }
+
   &:hover {
     color: color-primary(5);
   }
