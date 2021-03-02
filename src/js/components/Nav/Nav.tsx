@@ -131,6 +131,11 @@ const FlyOutNode = ({ item }) => {
               <Icon mods="u-fontSizeMd" name="down" />
             </div>
           )}
+          {/* This is weird, but a solutio to help manage the required spacing to make things align */}
+          {/* We can probably come up with a better solution here. */}
+          {!item.tree && (
+            <Icon mods="u-fontSizeMd" style={{visibility: "hidden"}} name="down" />
+          )}
           <Wrapper>
           <div className="u-fill">
             {!item.image && item.useBadge && (
