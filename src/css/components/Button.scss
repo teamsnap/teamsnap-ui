@@ -3,7 +3,7 @@
 // * @define default Button
 
 // Global default button colors that are themed
-$button-color:                       color-neutral(1) !default;
+$button-color:                       $ts-white !default;
 $button-border-color:                color-neutral(5) !default;
 $button-text-color:                  color-neutral(9) !default;
 
@@ -70,7 +70,6 @@ $Button-active-color: color-primary(7);
 
 $permutations: (
   "primary" color-primary(6) color-primary(5) color-primary(7),
-  "negative" color-negative(6) color-negative(5) color-negative(7),
   "warning" color-warning(6) color-warning(5) color-warning(7),
   "success" color-success(6) color-success(5) color-success(7)
 );

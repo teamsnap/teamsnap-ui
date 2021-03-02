@@ -256,8 +256,8 @@ $site-container: 1300px;
 
 // * 5. Borders
 
-$border-radius-small:  scaleGrid(-2) !default; // 2px
-$border-radius-medium: scaleGrid(-1) !default; // 4px
+$border-radius-small:   scaleGrid(-2) !default; // 2px
+$border-radius-medium:  5px !default;          // 4px
 $border-radius-large:   scaleGrid(1) !default; // 8px
 
 $border-width-small:   scaleGrid(-3) !default; // 1px

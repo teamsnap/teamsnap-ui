@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   min-width: scaleGrid(24);
-  max-width: scaleGrid(27);
+  max-width: scaleGrid(25);
 
   &.is-flyout {
     background-color: white;
@@ -28,7 +28,7 @@
   }
 
   .Nav-item {
-    color: color-primary(1);
+    color: color-neutral(5);
     white-space: nowrap;
   }
 
@@ -53,6 +53,7 @@
     }
 
     .Nav-header {
+      height: 57px;
       margin: 0 auto;
       padding: scaleGrid(2);
     }
@@ -121,12 +122,13 @@
   border-radius: 5px;
   cursor: pointer;
   list-style: none;
-  margin: scaleGrid(2) scaleGrid(1);
-  padding: scaleGrid(1);
+  margin: scaleGrid(3) 12px;
+  padding: 6px 12px;
   user-select: none;
 
   &:hover {
     background-color: color-primary(8);
+    color: color-primary(1);
     transition: all ease 200ms;
   }
 
@@ -137,5 +139,6 @@
   &.is-active {
     background-color: color-primary(6);
     color:color-neutral(1);
+    font-weight: bold;
   }
 }
