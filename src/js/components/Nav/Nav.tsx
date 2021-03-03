@@ -122,29 +122,35 @@ const FlyOutNode = ({ item }) => {
     ? item.wrapItem
     : ({ children }) => <>{children}</>;
   return (
-    <div className={`u-padSm Nav-node`}>
-        <div className="u-flex" onClick={() => setIsExpanded(!isExpanded)}>
-          {item.tree && (
-            <div
-              className={`u-size1of8 Nav-itemTitle u-textRight ${isExpanded ? "Node-expanded": ""}`}
-            >
-              <Icon mods="u-fontSizeMd" name="down" />
-            </div>
-          )}
-          {/* This is weird, but a solutio to help manage the required spacing to make things align */}
-          {/* We can probably come up with a better solution here. */}
-          {!item.tree && (
-            <Icon mods="u-fontSizeMd" style={{visibility: "hidden"}} name="down" />
-          )}
-          <Wrapper>
+    <div className={`Nav-node`}>
+      <div className="u-flex" onClick={() => setIsExpanded(!isExpanded)}>
+        {item.tree && (
+          <div
+            className={`u-size1of8 Nav-itemTitle u-textRight ${
+              isExpanded ? "Node-expanded" : ""
+            }`}
+          >
+            <Icon mods="u-fontSizeMd" name="caret-down" />
+          </div>
+        )}
+        {/* This is weird, but a solution to help manage the required spacing to make things align */}
+        {/* We can probably come up with a better solution here. */}
+        {!item.tree && (
+          <Icon
+            mods="u-fontSizeMd"
+            style={{ visibility: "hidden" }}
+            name="caret-down"
+          />
+        )}
+        <Wrapper>
           <div className="u-fill">
             {!item.image && item.useBadge && (
               <Skittles text={item.title} mods="u-spaceRightXs" />
             )}
             {item.title}
           </div>
-          </Wrapper>
-        </div>
+        </Wrapper>
+      </div>
       {isExpanded && item.tree && item.tree.length > 0 ? (
         <div>{item.tree.reduce(reducer, [])}</div>
       ) : null}
@@ -164,8 +170,8 @@ const reducer = (acc: [], cur) => {
 const generateFlyoutContents = (flyoutSections: any) => {
   return flyoutSections.map((section, idx) => {
     return (
-      <section className="u-padSm u-borderTop" key={idx}>
-        <div className="Nav-sectionHeading u-colorNeutral7 u-textUppercase u-fontSizeSm">
+      <section className="u-borderTop" key={idx}>
+        <div className="Nav-sectionHeading u-colorNeutral7 u-textUppercase u-textBold u-fontSizeXs">
           {section.heading}
         </div>
         <div>{section.tree.reduce(reducer, [])}</div>
