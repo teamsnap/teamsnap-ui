@@ -90,5 +90,8 @@
     "core-js": "^3.1.4",
     "gulp-rename": "^2.0.0",
     "lodash": "^4.17.15"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0"
   }
 }
