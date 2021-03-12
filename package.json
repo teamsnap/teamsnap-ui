@@ -89,5 +89,8 @@
     "@babel/runtime": "^7.5.5",
     "core-js": "^3.1.4",
     "lodash": "^4.17.15"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0"
   }
 }
