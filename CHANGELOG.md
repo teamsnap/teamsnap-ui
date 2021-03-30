@@ -13,11 +13,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Security`
 
 ## [3.10.3] - 2021-03-30
-- 
-
-## [3.10.2] - 2021-02-26
 - https://github.com/teamsnap/teamsnap-ui/pull/538
 - `Updated` Allow paginated table to take in custom filter objects
+
+## [3.10.2] - 2021-02-26
+- https://github.com/teamsnap/teamsnap-ui/pull/504/files
+- `Updated` Table headers to be spans instead of anchors
 
 ## [3.10.1] - 2020-12-08
 - https://github.com/teamsnap/teamsnap-ui/pull/429
