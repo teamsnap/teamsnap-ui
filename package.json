@@ -47,7 +47,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@storybook/addon-actions": "^5.1.11",
     "@storybook/addon-info": "^5.1.11",
-    "@storybook/addon-knobs": "^5.1.11",
+    "@storybook/addon-knobs": "^6.2.0",
     "@storybook/addon-links": "^5.1.11",
     "@storybook/addons": "^5.1.11",
     "@storybook/react": "^5.1.9",
@@ -74,10 +74,10 @@
     "node-sass": "^4.12.0",
     "object-path": ">=0.11.5",
     "prop-types": "^15.6.1",
-    "react": "^17.0.0",
+    "react": "^17.0.1",
     "react-docgen-typescript-loader": "^3.1.0",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
-    "react-dom": "^17.0.0",
+    "react-dom": "^17.0.1",
     "sass-lint": "^1.13.1",
     "sass-loader": "^7.3.1",
     "style-loader": "^0.23.1",
@@ -91,6 +91,6 @@
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "react": "^17.0.0"
+    "react": "^17.0.1"
   }
 }
