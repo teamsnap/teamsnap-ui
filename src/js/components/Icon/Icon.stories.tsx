@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { text, select } from "@storybook/addon-knobs/react";
+import { select } from "@storybook/addon-knobs/react";
 import Icon from "./Icon";
 
 const stories = storiesOf("Icon", module);
@@ -81,7 +81,8 @@ const iconNames = {
   "page-layout": "page-layout",
   lock: "lock",
   location: "location",
-  loader: "loader"
+  loader: "loader",
+  stopwatch: "stopwatch"
 };
 
 const iconSizes = {
