@@ -81,7 +81,8 @@ const iconNames = {
   "page-layout": "page-layout",
   lock: "lock",
   location: "location",
-  loader: "loader"
+  loader: "loader",
+  stopwatch: "stopwatch"
 };
 
 const iconSizes = {
