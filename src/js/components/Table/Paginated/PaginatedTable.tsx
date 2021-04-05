@@ -5,7 +5,7 @@ import { PaginationCurrentSubsetDisplay, PaginationSelect, PaginationButtons } f
 import { Checkbox } from "../../Checkbox";
 import { Select } from "../../Select";
 import BasicSearch from "./BasicSearch";
-import { Placement } from "../../../utils/placement";
+import { Placement } from "../../../types/placement";
 
 interface LoadDataObject {
   page: number;
