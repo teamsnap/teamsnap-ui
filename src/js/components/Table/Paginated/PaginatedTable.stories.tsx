@@ -2,6 +2,7 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import PaginatedTable from "./PaginatedTable";
 import BasicSearch from "./BasicSearch";
+import { Placement } from "../../../types/placement";
 import { text } from "@storybook/addon-knobs/react";
 
 const stories = storiesOf("PaginatedTable", module);
@@ -274,6 +275,7 @@ stories.add("Default", () => (
     loadData={loadData}
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
+    paginationPlacement={ Placement.Bottom }
   />
 ));
 
