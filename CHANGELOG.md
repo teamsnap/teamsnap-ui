@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.10.4] - 2021-04-05
+- https://github.com/teamsnap/teamsnap-ui/pull/557
+- `Added` Allow paginated table to choose pagination placement via prop
+
 ## [3.10.3] - 2021-03-30
 - https://github.com/teamsnap/teamsnap-ui/pull/538
 - `Updated` Allow paginated table to take in custom filter objects
