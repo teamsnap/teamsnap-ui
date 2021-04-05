@@ -1,10 +1,11 @@
 import * as React from "react";
 import { Table } from "../../Table";
 import { usePagination } from "./helpers";
-import {PaginationCurrentSubsetDisplay, PaginationSelect, PaginationButtons} from "../../Pagination";
+import { PaginationCurrentSubsetDisplay, PaginationSelect, PaginationButtons } from "../../Pagination";
 import { Checkbox } from "../../Checkbox";
 import { Select } from "../../Select";
 import BasicSearch from "./BasicSearch";
+import { Placement } from "../../../utils/placement";
 
 interface LoadDataObject {
   page: number;
@@ -39,6 +40,7 @@ interface Props {
   customSearchFilter?: any;
   includeBasicSearch?: boolean;
   searchPlaceholder?: string;
+  paginationPlacement?: Placement;
 }
 
 const PaginatedTable: React.FunctionComponent<Props> = ({
@@ -55,6 +57,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   customSearchFilter,
   includeBasicSearch,
   searchPlaceholder,
+  paginationPlacement,
 }) => {
   const [
     [itemsPerPage, setItemsPerPage],
@@ -148,7 +151,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
         selected: (
           <div>
             <Checkbox
-              name={`select-${ele.id}`}
+              name={ `select-${ele.id}` }
               inputProps={{
                 checked: selectedids.includes(ele.id),
                 onClick: () => {
@@ -184,11 +187,39 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
     setCurrentPage(1);
   }, [customFilter]);
 
+  const paginationItems = (
+  <div className={ `Grid-cell u-spaceTopSm u-flex u-flexJustifyEnd ${paginationPlacement == Placement.Bottom ? "u-sizeFill u-sizeFull" : "u-sizeFit"}` }>
+    <div className="u-spaceAuto u-spaceRightSm">
+      <PaginationCurrentSubsetDisplay
+        itemsPerPage={ itemsPerPage }
+        currentPage={ currentPage }
+        totalItems={ totalItems }
+      />
+    </div>
+    <PaginationButtons
+      totalItems={ totalItems }
+      itemsPerPage={ itemsPerPage }
+      currentPage={ currentPage }
+      setCurrentPage={ setCurrentPage }
+      mods={ paginationPlacement == Placement.Bottom ? "u-flexJustifyCenter u-flexGrow1" : "" }
+    />
+    { !hideRowsSelect ? (
+      <div className="u-spaceLeftSm">
+        <PaginationSelect
+          options={ pageSizeOptions }
+          setItemsPerPage={ setNewItemsPerPage }
+          itemsPerPage={ itemsPerPage }
+        />
+      </div>
+    ) : null }
+  </div>
+  );
+
   return (
     <div className="Grid">
       <div className="Grid Grid-cell">
-        {bulkActions?.length > 0 ? (
-          <div className="Grid-cell u-spaceTopSm u-md-spaceTopNone u-flex u-size1of1 u-md-size1of12 u-flexJustifyStart">
+        { bulkActions?.length > 0 ? (
+          <div className="Grid-cell u-spaceTopSm u-spaceRightXs u-flex u-size1of1 u-md-size1of12 u-flexJustifyStart">
             <Select inputProps={{
               value: "",
               onChange: (event) => {
@@ -199,64 +230,42 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
               }
             }}
             name="bulkActions"
-            options={[
-              {label: selected.length > 0 ? `${selected.length} selected` : "Actions", value: null},
+            options={ [
+              { label: selected.length > 0 ? `${selected.length} selected` : "Actions", value: null },
               ...bulkActions.map((e) => ({
                 label: e.label,
                 value: e.label,
                 disabled: e.disabled || false,
               }))
-            ]} />
+            ] } />
           </div>
-        ) : null}
+        ) : null }
         <div className="Grid-cell u-sizeFill u-spaceTopSm u-md-size1of4">
-        {customSearchFilter || includeBasicSearch ? (
+        { customSearchFilter || includeBasicSearch ? (
             customSearchFilter ? (
               customSearchFilter
             ) : (
               <BasicSearch
-                searchPlaceholder={searchPlaceholder}
-                searchFunction={updateSearchFilter}
+                searchPlaceholder={ searchPlaceholder }
+                searchFunction={ updateSearchFilter }
               />
             )
-        ) : null}
+        ) : null }
         </div>
-        <div className="Grid-cell u-sizeFit u-spaceTopSm u-sizeFit u-md-size2of4 u-flex u-flexJustifyEnd">
-          <div className="u-spaceAuto u-spaceRightSm">
-            <PaginationCurrentSubsetDisplay
-              itemsPerPage={itemsPerPage}
-              currentPage={currentPage}
-              totalItems={totalItems}
-            />
-          </div>
-          <PaginationButtons
-            totalItems={totalItems}
-            itemsPerPage={itemsPerPage}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
-          {!hideRowsSelect ? (
-            <div className="u-spaceLeftSm">
-              <PaginationSelect
-                options={pageSizeOptions}
-                setItemsPerPage={setNewItemsPerPage}
-                itemsPerPage={itemsPerPage}
-              />
-            </div>
-          ) : null}
-        </div>
+        { paginationPlacement != Placement.Bottom && paginationItems }
       </div>
       <div className="Grid-cell u-spaceTopSm">
         <Table
-          columns={cols}
-          rows={rows}
-          externalSortingFunction={(name, ascending) => {
+          columns={ cols }
+          rows={ rows }
+          externalSortingFunction={ (name, ascending) => {
             setSortName(name);
             setSortAscending(ascending);
-          }}
-          isLoading={isLoading}
+          } }
+          isLoading={ isLoading }
         />
       </div>
+      { paginationPlacement == Placement.Bottom && paginationItems }
     </div>
   );
 };
