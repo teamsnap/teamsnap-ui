@@ -1,6 +1,6 @@
 {
   "name": "@teamsnap/teamsnap-ui",
-  "version": "3.10.3",
+  "version": "3.10.4",
   "description": "a CSS component library for TeamSnap",
   "main": "dist/js/index.js",
   "types": "dist/js/index.d.ts",
@@ -50,7 +50,7 @@
     "@storybook/addon-knobs": "^5.1.11",
     "@storybook/addon-links": "^5.1.11",
     "@storybook/addons": "^5.1.11",
-    "@storybook/react": "^5.1.9",
+    "@storybook/react": "^6.2.3",
     "@types/node": "^12.6.2",
     "@types/react": "^16.8.23",
     "@types/storybook__react": "^4.0.2",
