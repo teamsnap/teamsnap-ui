@@ -3,6 +3,7 @@ import { Table } from "../../Table";
 import { usePagination } from "./helpers";
 import { PaginationCurrentSubsetDisplay, PaginationSelect, PaginationButtons } from "../../Pagination";
 import { Checkbox } from "../../Checkbox";
+import { CheckboxStates } from "../../../types";
 import { Select } from "../../Select";
 import BasicSearch from "./BasicSearch";
 import { Placement } from "../../../types/placement";
@@ -115,6 +116,16 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
 
   let rows = dataSet.map(mapDataToRow);
 
+  let checkboxState = CheckboxStates.FALSE
+  if (selected.length != 0 && selected.length != rows.length) {
+    // some but not all rows are checked
+    checkboxState = CheckboxStates.INDETERMINATE;
+  }
+  if (selected.length != 0 && selected.length == rows.length) {
+    // all rows are checked
+    checkboxState = CheckboxStates.TRUE;
+  }
+
   let cols = columns;
   if (rowsAreSelectable) {
     cols = [
@@ -125,14 +136,14 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
             <Checkbox
               name="select-all"
               inputProps={{
-                checked: selected.length != 0 && selected.length == rows.length,
+                checked: checkboxState,
                 onClick: () => {
-                  // if these aren't selected, we need to select them.
-                  if (selected.length < rows.length) {
-                    setSelected(rows);
-                  } else {
-                    // empty it out
+                  // if there is at least one row checked, clear all
+                  if (checkboxState != CheckboxStates.FALSE) {
                     setSelected([]);
+                  } else {
+                    // select all rows if none are checked
+                    setSelected(rows);
                   }
                 },
               }}
