@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.10.5] - 2021-04-06
+- https://github.com/teamsnap/teamsnap-ui/pull/564
+- `Added` Allow paginated table to export placement options type
+
 ## [3.10.4] - 2021-04-05
 - https://github.com/teamsnap/teamsnap-ui/pull/557
 - `Added` Allow paginated table to choose pagination placement via prop
