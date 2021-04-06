@@ -43,7 +43,7 @@ interface Props {
   paginationPlacement?: Placement;
 }
 
-const PaginatedTable: React.FunctionComponent<Props> = ({
+const PaginatedTable: React.FunctionComponent<Props> & { PaginationPlacement: typeof Placement } = ({
   loadData,
   columns,
   mapDataToRow,
@@ -269,5 +269,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
     </div>
   );
 };
+
+PaginatedTable.PaginationPlacement = Placement;
 
 export default PaginatedTable;
