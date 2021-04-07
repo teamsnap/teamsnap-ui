@@ -116,7 +116,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
 
   let rows = dataSet.map(mapDataToRow);
 
-  let checkboxState = CheckboxStates.FALSE
+  let checkboxState = CheckboxStates.FALSE;
   if (selected.length != 0 && selected.length != rows.length) {
     // some but not all rows are checked
     checkboxState = CheckboxStates.INDETERMINATE;
