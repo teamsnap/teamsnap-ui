@@ -188,8 +188,8 @@ const PaginatedTable: React.FunctionComponent<Props> & { PaginationPlacement: ty
   }, [customFilter]);
 
   const paginationItems = (
-  <div className={ `Grid-cell u-spaceTopSm u-flex u-flexJustifyEnd ${paginationPlacement == Placement.Bottom ? "u-sizeFill u-sizeFull" : "u-sizeFit"}` }>
-    <div className="u-spaceAuto u-spaceRightSm">
+  <div className={ `Grid-cell u-spaceTopSm u-flex u-flexAlignItemsCenter ${paginationPlacement == Placement.Bottom ? " u-flexJustifyCenter u-sizeFill u-sizeFull" : " u-flexJustifyEnd u-sizeFit"}` }>
+    <div className="u-spaceRightSm">
       <PaginationCurrentSubsetDisplay
         itemsPerPage={ itemsPerPage }
         currentPage={ currentPage }
@@ -201,7 +201,6 @@ const PaginatedTable: React.FunctionComponent<Props> & { PaginationPlacement: ty
       itemsPerPage={ itemsPerPage }
       currentPage={ currentPage }
       setCurrentPage={ setCurrentPage }
-      mods={ paginationPlacement == Placement.Bottom ? "u-flexJustifyCenter u-flexGrow1" : "" }
     />
     { !hideRowsSelect ? (
       <div className="u-spaceLeftSm">
