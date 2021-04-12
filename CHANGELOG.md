@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Security`
 
 ## [3.10.5] - 2021-04-06
+- https://github.com/teamsnap/teamsnap-ui/pull/581
+- `Updated` Center paginated table elements as a group
+
+## [3.10.5] - 2021-04-06
 - https://github.com/teamsnap/teamsnap-ui/pull/564
 - `Added` Allow paginated table to export placement options type
 
