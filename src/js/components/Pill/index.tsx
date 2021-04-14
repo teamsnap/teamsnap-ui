@@ -1,3 +1,7 @@
 import Pill from './Pill';
+import { CheckboxPill } from './CheckboxPill'
 
-export { Pill };
+export {
+  Pill,
+  CheckboxPill
+};

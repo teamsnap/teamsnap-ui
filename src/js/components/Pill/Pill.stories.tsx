@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import Pill from './Pill';
+import { Pill, CheckboxPill } from './'
 
 const stories = storiesOf('Pill', module);
 
@@ -14,4 +14,8 @@ stories.add('Centered Content', () => (
   <Pill align="center">
     <p>Centered Content</p>
   </Pill>
+));
+
+stories.add('Checkbok Pill', () => (
+  <CheckboxPill />
 ));

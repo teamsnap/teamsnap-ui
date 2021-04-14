@@ -3,13 +3,15 @@ import { getClassName } from '../../utils/helpers';
 
 type Props = {
   align?: string;
+  active?: boolean;
   children: React.ReactNode;
 };
 
-const Pill: FunctionComponent<Props> = ({ align, children }: Props) => {
+const Pill: FunctionComponent<Props> = ({ align, active, children }: Props) => {
   const classes = getClassName(
     'Pill',
-    align ? `Pill__content--${align}` : ''
+    align ? `Pill__content--${align}` : '',
+    active ? 'Pill--active' : ''
   )
 
   return (
