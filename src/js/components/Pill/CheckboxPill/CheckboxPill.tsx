@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Grid } from '../../Grid';
+import { Cell } from '../../Cell';
 import { Pill } from '../';
 import { Field } from '../../Field';
 
@@ -10,8 +12,8 @@ const CheckboxPill = () => {
   }
 
   return (
-    <div className='Grid Grid--withGutter'>
-      <div className='Grid-cell u-size1of3'>
+    <Grid>
+      <Cell>
         <Pill
           align='center'
           active={checked}
@@ -27,8 +29,8 @@ const CheckboxPill = () => {
             type="checkbox"
           />
         </Pill>
-      </div>
-    </div>
+      </Cell>
+    </Grid>
   )
 };
 
