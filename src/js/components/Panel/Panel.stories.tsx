@@ -7,6 +7,7 @@ import { PanelBody } from "../PanelBody";
 import { PanelFooter } from "../PanelFooter";
 import { PanelRow } from "../PanelRow";
 import { PanelCell } from "../PanelCell";
+import { PanelList } from '../PanelList'
 
 const stories = storiesOf("Panel", module);
 
@@ -53,6 +54,10 @@ const imageOptions = {
   "Beards (100x150)": beardImage,
   "Architecture (300x800)": architectureImage,
 };
+
+stories.add("Panel List", () => (
+  <PanelList />
+));
 
 stories.add("Defaults", () => (
   <>

@@ -182,6 +182,26 @@ $Panel-header-text-color: $cu-info !default;
   border-bottom: $border-width-small solid $cu-divider;
   display: flex; // 1
   align-items: center; // 1
+
+  &--list {
+    border-top: $border-width-small solid color-neutral(4);
+
+    &:first-child {
+      border-top-width: 0;
+    }
+
+    & ~ .Panel-body > .Panel-row {
+      background-color: color-neutral(1);
+
+      &--active {
+        border: $border-width-small solid color-primary(6) !important;
+
+        & + .Panel-row--active {
+          border-top-width: 0 !important;
+        }
+      }
+    }
+  }
 }
 
 .Panel-header--withImage {
