@@ -52,6 +52,10 @@ $Panel-header-text-color: $cu-info !default;
 
 .Panel-body {
   padding: 0; // 1
+
+  &--closed {
+    display: none !important;
+  }
 }
 
 
@@ -190,7 +194,7 @@ $Panel-header-text-color: $cu-info !default;
       border-top-width: 0;
     }
 
-    & ~ .Panel-body > .Panel-row {
+    & ~ .Panel-body-wrapper > .Panel-body > .Panel-row {
       background-color: color-neutral(1);
 
       &--active {
@@ -389,8 +393,6 @@ $Panel-header-text-color: $cu-info !default;
     border-bottom: none; // 1
   }
 } // 2
-
-.Panel-expandableControl{}
 
 .Panel-expandableControlIcon {
   padding-right: 4px;

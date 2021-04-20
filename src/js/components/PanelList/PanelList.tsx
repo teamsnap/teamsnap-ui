@@ -1,11 +1,11 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { createRef, FunctionComponent, useState } from 'react';
 import { Panel } from '../Panel';
 import { PanelHeader } from '../PanelHeader';
 import { PanelBody } from '../PanelBody';
 import { PanelRow } from '../PanelRow';
-import { Icon } from '../Icon';
 import { Tag } from '../Tag';
 import { Field } from '../Field';
+import { ListToggle } from '../ListToggle';
 
 type Props = {
 
@@ -35,7 +35,15 @@ const PanelList:FunctionComponent<Props> = () => {
     ]
   }]
 
-  const onDivisionClick = division => {
+  // Dynamically create refs outside of the mapping below for performance reasons
+  const bodyRefs = React.useRef([]);
+  bodyRefs.current = programData.map((_, i) => bodyRefs.current[i] ?? createRef());
+
+  const onToggle = (expanded: boolean, idx: number) => {
+    bodyRefs.current[idx].current.classList.toggle('Panel-body--closed');
+  }
+
+  const onDivisionClick = (division: string) => {
     const newActiveList = [
       ...activeDivisions,
       division
@@ -44,7 +52,7 @@ const PanelList:FunctionComponent<Props> = () => {
     setActiveDivisions(newActiveList);
   }
 
-  const buildDivisionList = (productName, divisions)  => {
+  const buildDivisionList = (productName: string, divisions: string[])  => {
     return divisions.map((division, idx) => {
       const uniqueId = `${productName}-${division}-${idx}`;
       const mods = activeDivisions.includes(uniqueId) ?
@@ -71,7 +79,7 @@ const PanelList:FunctionComponent<Props> = () => {
   }
 
   const buildProgramList = () => {
-    return programData.map(program => {
+    return programData.map((program, idx) => {
       const {
         productName,
         seasonName,
@@ -82,7 +90,7 @@ const PanelList:FunctionComponent<Props> = () => {
         <>
           <PanelHeader key={ productName } mods='Panel-header--list u-flexJustifyBetween u-padTopLg'>
             <div>
-              <Icon name='down' />
+              <ListToggle onClick={ expanded => onToggle(expanded, idx) } />
               <strong className='u-padSidesSm'>{ productName }</strong>
               <Tag text={ seasonName } />
             </div>
@@ -101,9 +109,14 @@ const PanelList:FunctionComponent<Props> = () => {
             </div>
           </PanelHeader>
 
-          <PanelBody>
-            { buildDivisionList(productName, divisions) }
-          </PanelBody>
+          <div
+            ref={bodyRefs.current[idx]}
+            className="Panel-body-wrapper"
+          >
+            <PanelBody>
+              { buildDivisionList(productName, divisions) }
+            </PanelBody>
+          </div>
         </>
       );
     })
