@@ -6,6 +6,7 @@ import { PanelRow } from '../PanelRow';
 import { Tag } from '../Tag';
 import { Field } from '../Field';
 import { ListToggle } from '../ListToggle';
+import { clearLine } from 'readline';
 
 type Props = {};
 
@@ -39,49 +40,48 @@ const PanelList:FunctionComponent<Props> = () => {
   bodyRefs.current = programData.map((_, i) => bodyRefs.current[i] ?? createRef());
 
   const toggleAllRows = (productName: string, idx: number) => {
-    const productChildElements = getChildren(idx);
-    const divisions = [...productChildElements].map((division, index) => {
-      return `${productName}-${division.innerText}-${index}`
-    });
+    let rowData= [];
 
-    setActiveRows([
-      ...activeRows,
-      ...divisions
-    ]);
-
-    setHeaderStatus({
-      ...headerStatus,
-      [productName]: {
-        'activeCount': divisions.length,
-        'status': null
+    if (productName in headerStatus && headerStatus[productName]['activeCount'] > 0) {
+      const { status } = headerStatus[productName];
+      if (status === 'true') {
+        rowData = []
       }
-    });
+
+      setHeaderStatus({});
+    } else {
+      const productChildElements = getChildren(idx);
+      const divisions = [...productChildElements].map((division, index) => {
+        return `${productName}-${division.innerText}-${index}`
+      });
+
+      rowData = [
+        ...activeRows,
+        ...divisions
+      ];
+
+      setHeaderStatus({
+        ...headerStatus,
+        [productName]: {
+          'activeCount': divisions.length,
+          'status': 'true'
+        }
+      });
+    }
+
+    setActiveRows(rowData);
   }
 
   const getChildren = (idx: number) => bodyRefs.current[idx].current &&
     bodyRefs.current[idx].current.children[0].childNodes;
 
-  const getHeaderStatus = (productName: string, idx: number) => {
-    const programChildren = getChildren(idx);
-
-    if (headerStatus[productName]) {
-      if (headerStatus[productName]['activeCount'] === programChildren.length) {
-        return 'true';
-      }
-
-      if (headerStatus[productName]['activeCount'] > 0 &&
-        headerStatus[productName]['activeCount'] < programChildren.length) {
-        return 'indeterminate';
-      }
-    }
-
-    return 'false';
-  }
-
-  const onDivisionClick = (productName: string, division: string) => {
+  const onRowClick = (productName: string, division: string, parentIdx: number) => {
     let newActiveList = [];
     let activeCount = 0;
+    let newStatus = 'false';
+    const children = getChildren(parentIdx);
 
+    // Row already exists, unselect it
     if (activeRows.includes(division)) {
       newActiveList = activeRows.filter(item => item != division);
 
@@ -89,8 +89,17 @@ const PanelList:FunctionComponent<Props> = () => {
         headerStatus[productName]['activeCount'] - 1 :
         headerStatus[productName]['activeCount'];
 
-    } else {
+      if (activeCount > 0 && activeCount < children.length) {
+        newStatus = 'indeterminate';
+      }
+    } else { // Row doesn't exists, select it
       activeCount = headerStatus[productName] ? headerStatus[productName]['activeCount'] + 1 : 1;
+
+      if (activeCount === children.length) {
+        newStatus = 'true';
+      } else {
+        newStatus = 'indeterminate';
+      }
 
       newActiveList = [
         ...activeRows,
@@ -102,7 +111,7 @@ const PanelList:FunctionComponent<Props> = () => {
       ...headerStatus,
       [productName]: {
         'activeCount': activeCount,
-        'status': null
+        'status': newStatus
       }
     };
 
@@ -110,7 +119,7 @@ const PanelList:FunctionComponent<Props> = () => {
     setActiveRows(newActiveList);
   }
 
-  const buildRows = (productName: string, divisions: string[])  => {
+  const buildRows = (productName: string, divisions: string[], parentIdx: number)  => {
     return divisions.map((division, idx) => {
       const uniqueId = `${productName}-${division}-${idx}`;
       const mods = activeRows.includes(uniqueId) ?
@@ -127,7 +136,7 @@ const PanelList:FunctionComponent<Props> = () => {
             type='checkbox'
             formFieldProps={{
               checked: activeRows.includes(uniqueId),
-              onClick: () => { onDivisionClick(productName, uniqueId) }
+              onClick: () => { onRowClick(productName, uniqueId, parentIdx) }
             }}
           />
         </PanelRow>
@@ -163,7 +172,7 @@ const PanelList:FunctionComponent<Props> = () => {
                 name='Sample'
                 type='checkbox'
                 formFieldProps={{
-                  checked: getHeaderStatus(productName, idx),
+                  checked: headerStatus[productName] && headerStatus[productName]['status'],
                   onClick: () => toggleAllRows(productName, idx)
                 }}
               />
@@ -175,7 +184,7 @@ const PanelList:FunctionComponent<Props> = () => {
             className="Panel-body-wrapper"
           >
             <PanelBody key={ seasonName }>
-              { buildRows(productName, divisions) }
+              { buildRows(productName, divisions, idx) }
             </PanelBody>
           </div>
         </>
