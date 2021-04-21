@@ -6,7 +6,6 @@ import { PanelRow } from '../PanelRow';
 import { Tag } from '../Tag';
 import { Field } from '../Field';
 import { ListToggle } from '../ListToggle';
-import { clearLine } from 'readline';
 
 type Props = {};
 
@@ -44,13 +43,19 @@ const PanelList:FunctionComponent<Props> = () => {
 
     if (productName in headerStatus && headerStatus[productName]['activeCount'] > 0) {
       const { status } = headerStatus[productName];
-      if (status === 'true') {
-        rowData = []
-      }
 
-      setHeaderStatus({});
+      // Remove rows which are associated with the header's naming convention
+      rowData = activeRows.filter(row => !row.includes(productName))
+
+      // Remove or filter out the header we do not want to keep
+      const newObject = Object.keys(headerStatus)
+        .filter(item => item != productName)
+        .reduce((res, key) => (res[key] = headerStatus[key], res), {});
+
+      setHeaderStatus(newObject);
     } else {
       const productChildElements = getChildren(idx);
+
       const divisions = [...productChildElements].map((division, index) => {
         return `${productName}-${division.innerText}-${index}`
       });
