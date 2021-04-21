@@ -208,6 +208,15 @@ $Panel-header-text-color: $cu-info !default;
   }
 }
 
+.Panel-body-wrapper:not(:last-child) {
+  .Panel-body {
+    .Panel-row--active:last-child {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
+
 .Panel-header--withImage {
   border-bottom: none; // 2
   display: block; // 2

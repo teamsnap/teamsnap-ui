@@ -18,7 +18,7 @@ const ListToggle: FunctionComponent<Props> = ({ onClick }: Props) => {
       onClick={ () => toggleState() }
       className='u-borderNone u-padNone u-colorInfo'
     >
-      { expanded === true ? <Icon name='down' /> : <Icon name='right' /> }
+      { expanded === true ? <Icon name='right' /> : <Icon name='down' /> }
     </a>
   );
 };
