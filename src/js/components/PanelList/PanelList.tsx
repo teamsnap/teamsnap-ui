@@ -38,19 +38,39 @@ const PanelList:FunctionComponent<Props> = () => {
   const bodyRefs = React.useRef([]);
   bodyRefs.current = programData.map((_, i) => bodyRefs.current[i] ?? createRef());
 
-  const getChildrenCount = (idx: number) => bodyRefs.current[idx].current &&
-    bodyRefs.current[idx].current.children[0].childNodes.length;
+  const toggleAllDivisions = (productName: string, idx: number) => {
+    const productChildElements = getChildren(idx);
+    const divisions = [...productChildElements].map((division, index) => {
+      return `${productName}-${division.innerText}-${index}`
+    });
+
+    setActiveDivisions([
+      ...activeDivisions,
+      ...divisions
+    ]);
+
+    setProductStatus({
+      ...productStatus,
+      [productName]: {
+        'activeCount': divisions.length,
+        'status': null
+      }
+    });
+  }
+
+  const getChildren = (idx: number) => bodyRefs.current[idx].current &&
+    bodyRefs.current[idx].current.children[0].childNodes;
 
   const getProgramStatus = (productName: string, idx: number) => {
-    const programChildCount = getChildrenCount(idx);
+    const programChildren = getChildren(idx);
 
     if (productStatus[productName]) {
-      if (productStatus[productName]['activeCount'] === programChildCount) {
+      if (productStatus[productName]['activeCount'] === programChildren.length) {
         return 'true';
       }
 
       if (productStatus[productName]['activeCount'] > 0 &&
-        productStatus[productName]['activeCount'] < programChildCount) {
+        productStatus[productName]['activeCount'] < programChildren.length) {
         return 'indeterminate';
       }
     }
@@ -144,7 +164,7 @@ const PanelList:FunctionComponent<Props> = () => {
                 type='checkbox'
                 formFieldProps={{
                   checked: getProgramStatus(productName, idx),
-                  onClick: () => {}
+                  onClick: () => toggleAllDivisions(productName, idx)
                 }}
               />
             </div>
@@ -162,8 +182,6 @@ const PanelList:FunctionComponent<Props> = () => {
       );
     })
   }
-
-  console.table(productStatus);
 
   return (
     <Panel>
