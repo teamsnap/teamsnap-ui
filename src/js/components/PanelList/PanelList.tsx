@@ -10,8 +10,8 @@ import { ListToggle } from '../ListToggle';
 type Props = {};
 
 const PanelList:FunctionComponent<Props> = () => {
-  const [activeDivisions, setActiveDivisions] = useState([]);
-  const [productStatus, setProductStatus] = useState({});
+  const [activeRows, setActiveRows] = useState([]);
+  const [headerStatus, setHeaderStatus] = useState({});
 
   const programData = [{
     "productName": "Competitive",
@@ -38,19 +38,19 @@ const PanelList:FunctionComponent<Props> = () => {
   const bodyRefs = React.useRef([]);
   bodyRefs.current = programData.map((_, i) => bodyRefs.current[i] ?? createRef());
 
-  const toggleAllDivisions = (productName: string, idx: number) => {
+  const toggleAllRows = (productName: string, idx: number) => {
     const productChildElements = getChildren(idx);
     const divisions = [...productChildElements].map((division, index) => {
       return `${productName}-${division.innerText}-${index}`
     });
 
-    setActiveDivisions([
-      ...activeDivisions,
+    setActiveRows([
+      ...activeRows,
       ...divisions
     ]);
 
-    setProductStatus({
-      ...productStatus,
+    setHeaderStatus({
+      ...headerStatus,
       [productName]: {
         'activeCount': divisions.length,
         'status': null
@@ -61,16 +61,16 @@ const PanelList:FunctionComponent<Props> = () => {
   const getChildren = (idx: number) => bodyRefs.current[idx].current &&
     bodyRefs.current[idx].current.children[0].childNodes;
 
-  const getProgramStatus = (productName: string, idx: number) => {
+  const getHeaderStatus = (productName: string, idx: number) => {
     const programChildren = getChildren(idx);
 
-    if (productStatus[productName]) {
-      if (productStatus[productName]['activeCount'] === programChildren.length) {
+    if (headerStatus[productName]) {
+      if (headerStatus[productName]['activeCount'] === programChildren.length) {
         return 'true';
       }
 
-      if (productStatus[productName]['activeCount'] > 0 &&
-        productStatus[productName]['activeCount'] < programChildren.length) {
+      if (headerStatus[productName]['activeCount'] > 0 &&
+        headerStatus[productName]['activeCount'] < programChildren.length) {
         return 'indeterminate';
       }
     }
@@ -82,38 +82,38 @@ const PanelList:FunctionComponent<Props> = () => {
     let newActiveList = [];
     let activeCount = 0;
 
-    if (activeDivisions.includes(division)) {
-      newActiveList = activeDivisions.filter(item => item != division);
+    if (activeRows.includes(division)) {
+      newActiveList = activeRows.filter(item => item != division);
 
-      activeCount = productStatus[productName] ?
-        productStatus[productName]['activeCount'] - 1 :
-        productStatus[productName]['activeCount'];
+      activeCount = headerStatus[productName] ?
+        headerStatus[productName]['activeCount'] - 1 :
+        headerStatus[productName]['activeCount'];
 
     } else {
-      activeCount = productStatus[productName] ? productStatus[productName]['activeCount'] + 1 : 1;
+      activeCount = headerStatus[productName] ? headerStatus[productName]['activeCount'] + 1 : 1;
 
       newActiveList = [
-        ...activeDivisions,
+        ...activeRows,
         division
       ];
     }
 
     const programActiveStatus = {
-      ...productStatus,
+      ...headerStatus,
       [productName]: {
         'activeCount': activeCount,
         'status': null
       }
     };
 
-    setProductStatus(programActiveStatus);
-    setActiveDivisions(newActiveList);
+    setHeaderStatus(programActiveStatus);
+    setActiveRows(newActiveList);
   }
 
-  const buildDivisionList = (productName: string, divisions: string[])  => {
+  const buildRows = (productName: string, divisions: string[])  => {
     return divisions.map((division, idx) => {
       const uniqueId = `${productName}-${division}-${idx}`;
-      const mods = activeDivisions.includes(uniqueId) ?
+      const mods = activeRows.includes(uniqueId) ?
         'u-flex u-flexRow u-flexJustifyBetween Panel-row--active' :
         'u-flex u-flexRow u-flexJustifyBetween';
 
@@ -126,7 +126,7 @@ const PanelList:FunctionComponent<Props> = () => {
             name='Sample'
             type='checkbox'
             formFieldProps={{
-              checked: activeDivisions.includes(uniqueId),
+              checked: activeRows.includes(uniqueId),
               onClick: () => { onDivisionClick(productName, uniqueId) }
             }}
           />
@@ -135,7 +135,7 @@ const PanelList:FunctionComponent<Props> = () => {
     });
   }
 
-  const buildProgramList = () => {
+  const buildList = () => {
     return programData.map((program, idx) => {
       const {
         productName,
@@ -163,8 +163,8 @@ const PanelList:FunctionComponent<Props> = () => {
                 name='Sample'
                 type='checkbox'
                 formFieldProps={{
-                  checked: getProgramStatus(productName, idx),
-                  onClick: () => toggleAllDivisions(productName, idx)
+                  checked: getHeaderStatus(productName, idx),
+                  onClick: () => toggleAllRows(productName, idx)
                 }}
               />
             </div>
@@ -175,7 +175,7 @@ const PanelList:FunctionComponent<Props> = () => {
             className="Panel-body-wrapper"
           >
             <PanelBody key={ seasonName }>
-              { buildDivisionList(productName, divisions) }
+              { buildRows(productName, divisions) }
             </PanelBody>
           </div>
         </>
@@ -185,7 +185,7 @@ const PanelList:FunctionComponent<Props> = () => {
 
   return (
     <Panel>
-      { buildProgramList() }
+      { buildList() }
     </Panel>
   );
 }
