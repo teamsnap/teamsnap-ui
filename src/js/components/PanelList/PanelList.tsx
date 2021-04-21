@@ -39,15 +39,17 @@ const PanelList:FunctionComponent<Props> = () => {
   const bodyRefs = React.useRef([]);
   bodyRefs.current = programData.map((_, i) => bodyRefs.current[i] ?? createRef());
 
-  const onToggle = (expanded: boolean, idx: number) => {
-    bodyRefs.current[idx].current.classList.toggle('Panel-body--closed');
-  }
-
   const onDivisionClick = (division: string) => {
-    const newActiveList = [
-      ...activeDivisions,
-      division
-    ];
+    let newActiveList = [];
+
+    if (activeDivisions.includes(division)) {
+      newActiveList = activeDivisions.filter(item => item != division);
+    } else {
+      newActiveList = [
+        ...activeDivisions,
+        division
+      ];
+    }
 
     setActiveDivisions(newActiveList);
   }
@@ -90,7 +92,7 @@ const PanelList:FunctionComponent<Props> = () => {
         <>
           <PanelHeader key={ productName } mods='Panel-header--list u-flexJustifyBetween u-padTopLg'>
             <div>
-              <ListToggle onClick={ expanded => onToggle(expanded, idx) } />
+              <ListToggle onClick={ () => bodyRefs.current[idx].current.classList.toggle('Panel-body--closed') } />
               <strong className='u-padSidesSm'>{ productName }</strong>
               <Tag text={ seasonName } />
             </div>
