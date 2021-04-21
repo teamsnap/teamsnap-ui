@@ -7,12 +7,11 @@ import { Tag } from '../Tag';
 import { Field } from '../Field';
 import { ListToggle } from '../ListToggle';
 
-type Props = {
-
-};
+type Props = {};
 
 const PanelList:FunctionComponent<Props> = () => {
   const [activeDivisions, setActiveDivisions] = useState([]);
+  const [productStatus, setProductStatus] = useState({});
 
   const programData = [{
     "productName": "Competitive",
@@ -39,18 +38,55 @@ const PanelList:FunctionComponent<Props> = () => {
   const bodyRefs = React.useRef([]);
   bodyRefs.current = programData.map((_, i) => bodyRefs.current[i] ?? createRef());
 
-  const onDivisionClick = (division: string) => {
+  const getChildrenCount = (idx: number) => bodyRefs.current[idx].current &&
+    bodyRefs.current[idx].current.children[0].childNodes.length;
+
+  const getProgramStatus = (productName: string, idx: number) => {
+    const programChildCount = getChildrenCount(idx);
+
+    if (productStatus[productName]) {
+      if (productStatus[productName]['activeCount'] === programChildCount) {
+        return 'true';
+      }
+
+      if (productStatus[productName]['activeCount'] > 0 &&
+        productStatus[productName]['activeCount'] < programChildCount) {
+        return 'indeterminate';
+      }
+    }
+
+    return 'false';
+  }
+
+  const onDivisionClick = (productName: string, division: string) => {
     let newActiveList = [];
+    let activeCount = 0;
 
     if (activeDivisions.includes(division)) {
       newActiveList = activeDivisions.filter(item => item != division);
+
+      activeCount = productStatus[productName] ?
+        productStatus[productName]['activeCount'] - 1 :
+        productStatus[productName]['activeCount'];
+
     } else {
+      activeCount = productStatus[productName] ? productStatus[productName]['activeCount'] + 1 : 1;
+
       newActiveList = [
         ...activeDivisions,
         division
       ];
     }
 
+    const programActiveStatus = {
+      ...productStatus,
+      [productName]: {
+        'activeCount': activeCount,
+        'status': null
+      }
+    };
+
+    setProductStatus(programActiveStatus);
     setActiveDivisions(newActiveList);
   }
 
@@ -68,11 +104,10 @@ const PanelList:FunctionComponent<Props> = () => {
           <Field
             isDisabled={false}
             name='Sample'
-            status={status}
             type='checkbox'
             formFieldProps={{
               checked: activeDivisions.includes(uniqueId),
-              onClick: () => { onDivisionClick(uniqueId) }
+              onClick: () => { onDivisionClick(productName, uniqueId) }
             }}
           />
         </PanelRow>
@@ -92,7 +127,12 @@ const PanelList:FunctionComponent<Props> = () => {
         <>
           <PanelHeader key={ productName } mods='Panel-header--list u-flexJustifyBetween u-padTopLg'>
             <div>
-              <ListToggle onClick={ () => bodyRefs.current[idx].current.classList.toggle('Panel-body--closed') } />
+              <ListToggle
+                onClick={() => {
+                  bodyRefs.current[idx].current.classList &&
+                  bodyRefs.current[idx].current.classList.toggle('Panel-body--closed');
+                }}
+              />
               <strong className='u-padSidesSm'>{ productName }</strong>
               <Tag text={ seasonName } />
             </div>
@@ -101,11 +141,10 @@ const PanelList:FunctionComponent<Props> = () => {
               <Field
                 isDisabled={false}
                 name='Sample'
-                status={status}
                 type='checkbox'
                 formFieldProps={{
-                  checked: 'indeterminate',
-                  onClick: () => { }
+                  checked: getProgramStatus(productName, idx),
+                  onClick: () => {}
                 }}
               />
             </div>
@@ -115,7 +154,7 @@ const PanelList:FunctionComponent<Props> = () => {
             ref={bodyRefs.current[idx]}
             className="Panel-body-wrapper"
           >
-            <PanelBody>
+            <PanelBody key={ seasonName }>
               { buildDivisionList(productName, divisions) }
             </PanelBody>
           </div>
@@ -123,6 +162,8 @@ const PanelList:FunctionComponent<Props> = () => {
       );
     })
   }
+
+  console.table(productStatus);
 
   return (
     <Panel>
