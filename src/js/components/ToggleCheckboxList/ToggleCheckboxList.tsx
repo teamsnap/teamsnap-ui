@@ -9,7 +9,7 @@ import { ListToggle } from '../ListToggle';
 
 type Props = {};
 
-const PanelList:FunctionComponent<Props> = () => {
+const ToggleCheckboxList:FunctionComponent<Props> = () => {
   const [activeRows, setActiveRows] = useState([]);
   const [headerStatus, setHeaderStatus] = useState({});
 
@@ -204,4 +204,4 @@ const PanelList:FunctionComponent<Props> = () => {
   );
 }
 
-export default PanelList;
+export default ToggleCheckboxList;
