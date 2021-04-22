@@ -5,9 +5,9 @@ import { ToggleCheckboxList } from '../ToggleCheckboxList'
 const stories = storiesOf("ToggleCheckboxList", module);
 
 const data = [{
-  "productName": "Competitive",
-  "seasonName": "2021 Fall Season",
-  "divisions": [
+  "heading": "Competitive",
+  "subheading": "2021 Fall Season",
+  "rows": [
     "Unassigned",
     "BoysU14",
     "BoysU12",
@@ -15,9 +15,9 @@ const data = [{
     "GirlsU12"
   ]
 }, {
-  "productName": "Recreational",
-  "seasonName": "2021 Fall Season",
-  "divisions": [
+  "heading": "Recreational",
+  "subheading": "2021 Fall Season",
+  "rows": [
     "BoysU14",
     "BoysU12",
     "GirlsU14",
