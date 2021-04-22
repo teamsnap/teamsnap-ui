@@ -1,4 +1,5 @@
 import React, { createRef, FunctionComponent, useState } from 'react';
+import { CheckboxStates } from '../../types';
 import { Panel } from '../Panel';
 import { PanelHeader } from '../PanelHeader';
 import { PanelBody } from '../PanelBody';
@@ -7,36 +8,17 @@ import { Tag } from '../Tag';
 import { Field } from '../Field';
 import { ListToggle } from '../ListToggle';
 
-type Props = {};
+type Props = {
+  list: object[]
+};
 
-const ToggleCheckboxList:FunctionComponent<Props> = () => {
+const ToggleCheckboxList:FunctionComponent<Props> = ({ list }: Props) => {
   const [activeRows, setActiveRows] = useState([]);
   const [headerStatus, setHeaderStatus] = useState({});
 
-  const programData = [{
-    "productName": "Competitive",
-    "seasonName": "2021 Fall Season",
-    "divisions": [
-      "Unassigned",
-      "BoysU14",
-      "BoysU12",
-      "GirlsU14",
-      "GirlsU12"
-    ]
-  }, {
-    "productName": "Recreational",
-    "seasonName": "2021 Fall Season",
-    "divisions": [
-      "BoysU14",
-      "BoysU12",
-      "GirlsU14",
-      "GirlsU12"
-    ]
-  }]
-
   // Dynamically create refs outside of the mapping below for performance reasons
   const bodyRefs = React.useRef([]);
-  bodyRefs.current = programData.map((_, i) => bodyRefs.current[i] ?? createRef());
+  bodyRefs.current = list.map((_, i) => bodyRefs.current[i] ?? createRef());
 
   const toggleAllRows = (productName: string, idx: number) => {
     let rowData= [];
@@ -69,7 +51,7 @@ const ToggleCheckboxList:FunctionComponent<Props> = () => {
         ...headerStatus,
         [productName]: {
           'activeCount': divisions.length,
-          'status': 'true'
+          'status': CheckboxStates.TRUE
         }
       });
     }
@@ -83,7 +65,7 @@ const ToggleCheckboxList:FunctionComponent<Props> = () => {
   const onRowClick = (productName: string, division: string, parentIdx: number) => {
     let newActiveList = [];
     let activeCount = 0;
-    let newStatus = 'false';
+    let newStatus = CheckboxStates.FALSE;
     const children = getChildren(parentIdx);
 
     // Row already exists, unselect it
@@ -95,15 +77,15 @@ const ToggleCheckboxList:FunctionComponent<Props> = () => {
         headerStatus[productName]['activeCount'];
 
       if (activeCount > 0 && activeCount < children.length) {
-        newStatus = 'indeterminate';
+        newStatus = CheckboxStates.INDETERMINATE;
       }
     } else { // Row doesn't exists, select it
       activeCount = headerStatus[productName] ? headerStatus[productName]['activeCount'] + 1 : 1;
 
       if (activeCount === children.length) {
-        newStatus = 'true';
+        newStatus = CheckboxStates.TRUE;
       } else {
-        newStatus = 'indeterminate';
+        newStatus = CheckboxStates.INDETERMINATE;
       }
 
       newActiveList = [
@@ -136,7 +118,7 @@ const ToggleCheckboxList:FunctionComponent<Props> = () => {
           <p className="u-padLeftLg">{ division }</p>
 
           <Field
-            isDisabled={false}
+            isDisabled={ false }
             name='Sample'
             type='checkbox'
             formFieldProps={{
@@ -150,7 +132,7 @@ const ToggleCheckboxList:FunctionComponent<Props> = () => {
   }
 
   const buildList = () => {
-    return programData.map((program, idx) => {
+    return list.map((program, idx) => {
       const {
         productName,
         seasonName,
@@ -173,7 +155,7 @@ const ToggleCheckboxList:FunctionComponent<Props> = () => {
 
             <div>
               <Field
-                isDisabled={false}
+                isDisabled={ false }
                 name='Sample'
                 type='checkbox'
                 formFieldProps={{
