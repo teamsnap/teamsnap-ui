@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { select } from "@storybook/addon-knobs/react";
+import { boolean, select } from "@storybook/addon-knobs/react";
 import Panel from "./Panel";
 import { PanelHeader } from "../PanelHeader";
 import { PanelBody } from "../PanelBody";
