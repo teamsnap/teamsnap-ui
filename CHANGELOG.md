@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.9.4] - 2021-04-26
+- https://github.com/teamsnap/teamsnap-ui/pull/589
+- `Added` Pill/AttachmentPill component
+- `Added` Pill/CheckboxPill component
+
 ## [3.9.3] - 2021-04-22
 - https://github.com/teamsnap/teamsnap-ui/pull/593
 - `Added` Tag component

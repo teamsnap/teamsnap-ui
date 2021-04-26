@@ -107,7 +107,7 @@ stories.add("Full Panel", () => (
           Brian Doyle-Murray, Joel Murray, and John Murray. He and most of his
           siblings worked as caddies, which paid his tuition to Loyola Academy,
           a Jesuit school. He played sports and did some acting while in that
-          school, but in his words, mostly "screwed off." He enrolled at Regis
+          school, but in his words, mostly &quot;screwed off.&quot; He enrolled at Regis
           College in Denver to study pre-med but dropped out after being
           arrested for marijuana possession. He then joined the National Lampoon
           Radio Hour with fellow members Dan Aykroyd, Gilda Radner, and John
