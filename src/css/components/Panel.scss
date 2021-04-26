@@ -52,6 +52,10 @@ $Panel-header-text-color: $cu-info !default;
 
 .Panel-body {
   padding: 0; // 1
+
+  &--closed {
+    display: none !important;
+  }
 }
 
 
@@ -182,6 +186,35 @@ $Panel-header-text-color: $cu-info !default;
   border-bottom: $border-width-small solid $cu-divider;
   display: flex; // 1
   align-items: center; // 1
+
+  &--list {
+    border-top: $border-width-small solid color-neutral(4);
+
+    &:first-child {
+      border-top-width: 0;
+    }
+
+    & ~ .Panel-body-wrapper > .Panel-body > .Panel-row {
+      background-color: color-neutral(1);
+
+      &--active {
+        border: $border-width-small solid color-primary(6) !important;
+
+        & + .Panel-row--active {
+          border-top-width: 0 !important;
+        }
+      }
+    }
+  }
+}
+
+.Panel-body-wrapper:not(:last-child) {
+  .Panel-body {
+    .Panel-row--active:last-child {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
 }
 
 .Panel-header--withImage {
@@ -369,8 +402,6 @@ $Panel-header-text-color: $cu-info !default;
     border-bottom: none; // 1
   }
 } // 2
-
-.Panel-expandableControl{}
 
 .Panel-expandableControlIcon {
   padding-right: 4px;
