@@ -1,0 +1,21 @@
+$paddingY: $su-small + 2px;
+
+.Pill {
+  display: flex;
+  padding: $paddingY $su-medium;
+  border: 1.5px solid color-neutral(5);
+  border-radius: $border-radius-medium;
+
+  &--active {
+    border-color: color-primary(5);
+    background-color: color-neutral(2)
+  }
+
+  &__content--center {
+    justify-content: center;
+  }
+
+  &__content--ends {
+    justify-content: space-between;
+  }
+}
