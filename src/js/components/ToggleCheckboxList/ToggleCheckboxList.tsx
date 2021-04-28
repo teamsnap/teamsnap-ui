@@ -1,4 +1,4 @@
-import React, { createRef, FunctionComponent, useState } from 'react';
+import * as React from 'react';
 import { CheckboxStates } from '../../types';
 import { Panel } from '../Panel';
 import { PanelHeader } from '../PanelHeader';
@@ -18,13 +18,13 @@ type Props = {
   list: Program[]
 };
 
-const ToggleCheckboxList:FunctionComponent<Props> = ({ list }: Props) => {
-  const [activeRows, setActiveRows] = useState([]);
-  const [headerStatus, setHeaderStatus] = useState({});
+const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => {
+  const [activeRows, setActiveRows] = React.useState([]);
+  const [headerStatus, setHeaderStatus] = React.useState({});
 
   // Dynamically create refs outside of the mapping below for performance reasons
   const bodyRefs = React.useRef([]);
-  bodyRefs.current = list.map((_, i) => bodyRefs.current[i] ?? createRef());
+  bodyRefs.current = list.map((_, i) => bodyRefs.current[i] ?? React.createRef());
 
   const toggleAllRows = (heading: string, idx: number) => {
     let rowData= [];
