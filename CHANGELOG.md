@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
-## [3.9.5] - 2021-04-26
+## [3.9.5] - 2021-04-28
 - https://github.com/teamsnap/teamsnap-ui/pull/606
 - `Fixed` Forgot to export ListToggle, Pill, Tag, ToggleCheckboxList
 
