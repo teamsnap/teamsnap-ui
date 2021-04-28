@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import * as React from 'react';
 import { getClassName } from '../../utils/helpers';
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const Pill: FunctionComponent<Props> = ({ align, active, children }: Props) => {
+const Pill: React.FunctionComponent<Props> = ({ align, active, children }: Props) => {
   const classes = getClassName(
     'Pill',
     align ? `Pill__content--${align}` : '',

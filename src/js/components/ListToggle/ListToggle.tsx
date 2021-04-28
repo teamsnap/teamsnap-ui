@@ -1,12 +1,12 @@
-import React, { FunctionComponent, useState } from 'react';
+import * as React from 'react';
 import { Icon } from '../Icon';
 
 type Props = {
   onClick: (expanded: boolean) => void;
 }
 
-const ListToggle: FunctionComponent<Props> = ({ onClick }: Props) => {
-  const [expanded, setExpanded] = useState(false);
+const ListToggle: React.FunctionComponent<Props> = ({ onClick }: Props) => {
+  const [expanded, setExpanded] = React.useState(false);
 
   const toggleState = () => {
     setExpanded(!expanded);
