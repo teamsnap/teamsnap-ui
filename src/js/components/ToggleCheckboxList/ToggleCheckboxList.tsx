@@ -146,8 +146,8 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => 
       } = program;
 
       return (
-        <>
-          <PanelHeader key={ heading } mods='Panel-header--list u-flexJustifyBetween u-padTopLg'>
+        <React.Fragment key={heading}>
+          <PanelHeader mods='Panel-header--list u-flexJustifyBetween u-padTopLg'>
             <div>
               <ListToggle
                 onClick={() => {
@@ -173,14 +173,14 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => 
           </PanelHeader>
 
           <div
-            ref={bodyRefs.current[idx]}
+            ref={ bodyRefs.current[idx] }
             className="Panel-body-wrapper"
           >
-            <PanelBody key={ subheading }>
+            <PanelBody>
               { buildRows(heading, rows, idx) }
             </PanelBody>
           </div>
-        </>
+        </React.Fragment>
       );
     })
   }
