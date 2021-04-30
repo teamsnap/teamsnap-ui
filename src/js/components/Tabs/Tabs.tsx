@@ -6,14 +6,14 @@
  *
  * @example
  * <Tabs
- *   mods="u-spaceRightSm"
+ *   mods='u-spaceRightSm'
  *   tabs={[
  *     {
- *       heading: "Tab 1",
+ *       heading: 'Tab 1',
  *       content: <h1>Hello from Tab 1!</h1>
  *     },
  *     {
- *       heading: "Tab 2",
+ *       heading: 'Tab 2',
  *       content: <h1>Hello from Tab 2!</h1>
  *     }
  *   ]}
@@ -21,7 +21,7 @@
  *
  */
 
-import * as React from "react";
+import * as React from 'react';
 
 interface Tab {
   heading: React.ReactNode;
@@ -33,31 +33,34 @@ interface Props {
   tabs: Tab[];
 }
 
-const Tabs: React.FunctionComponent<Props> = ({ mods, tabs }) => {
+const Tabs: React.FunctionComponent<Props> = ({ mods, tabs }: Props) => {
   const [activeTabIndex, setActiveTabIndex] = React.useState(0);
+  const boolMods = !!mods;
 
   return (
-    <div className={`Tabs ${!!mods ? mods : ""}`}>
-      <ul className="Tabs-header">
+    <div className={`Tabs ${boolMods ? mods : ''}`}>
+      <ul className='Tabs-header'>
         {tabs.map((tab, index) => (
           <li
+            key={`Tabs-headerItem-${index}`}
             onClick={() => setActiveTabIndex(index)}
             className={`Tabs-headerItem ${
-              index === activeTabIndex ? "is-active" : ""
+              index === activeTabIndex ? 'is-active' : ''
             }`}
           >
-            {tab.heading}
+            { tab.heading }
           </li>
         ))}
       </ul>
-      <div className="Tabs-content">
+      <div className='Tabs-content'>
         {tabs.map((tab, index) => (
           <div
+            key={`Tabs-contentItem-${index}`}
             className={`Tabs-contentItem ${
-              index === activeTabIndex ? "is-active" : ""
+              index === activeTabIndex ? 'is-active' : ''
             }`}
           >
-            {tab.content}
+            { tab.content }
           </div>
         ))}
       </div>
