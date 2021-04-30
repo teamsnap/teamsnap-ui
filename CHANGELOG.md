@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.9.7] - 2021-04-29
+- https://github.com/teamsnap/teamsnap-ui/pull/610
+- `Fixed` unique key prop errors for Tabs & ToggleCheckboxList components
+
 ## [3.9.6] - 2021-04-28
 - https://github.com/teamsnap/teamsnap-ui/pull/607
 - `Fixed` using `import * as React from 'react'` syntax
