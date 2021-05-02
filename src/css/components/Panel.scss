@@ -199,6 +199,7 @@ $Panel-header-text-color: $cu-info !default;
 
       &--active {
         border: $border-width-small solid color-primary(6) !important;
+        background-color: #f6f6fb;
 
         & + .Panel-row--active {
           border-top-width: 0 !important;
