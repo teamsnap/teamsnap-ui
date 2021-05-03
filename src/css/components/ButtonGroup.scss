@@ -25,7 +25,8 @@ $ButtonGroup-space: -1 * $border-width-small;
 .ButtonGroup > .Button {
   border-radius: 0; // 2
   &:hover, &:active, &:focus, &.is-active {
-    z-index: 999; //fix issues with overlapping buttons not showing full borders
+    position: relative;
+    z-index: 1; //fix issues with overlapping buttons not showing full borders
   }
 }
 
