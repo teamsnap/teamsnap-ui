@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+## [3.9.8] - 2021-05-02
+- https://github.com/teamsnap/teamsnap-ui/pull/614
+- `Fixed` active background color for ToggleCheckboxList component
+
 ## [3.9.7] - 2021-04-29
 - https://github.com/teamsnap/teamsnap-ui/pull/610
 - `Fixed` unique key prop errors for Tabs & ToggleCheckboxList components
