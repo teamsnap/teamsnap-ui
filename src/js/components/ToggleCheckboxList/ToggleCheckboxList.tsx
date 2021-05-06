@@ -26,6 +26,30 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => 
   const bodyRefs = React.useRef([]);
   bodyRefs.current = list.map((_, i) => bodyRefs.current[i] ?? React.createRef());
 
+  const selectAllRows = () => {
+    let headers;
+
+    const divisions = list.map(row => {
+      const { heading, rows } = row;
+
+      headers = {
+        ...headers,
+        [heading]: {
+          status: true
+        }
+      }
+
+      return rows.map((division, idx) => `${heading}-${division}-${idx}`)
+    })
+    .reduce((curr, next) => [...curr, ...next], []);
+
+    setActiveRows(divisions);
+    setHeaderStatus({
+      ...headerStatus,
+      ...headers
+    });
+  }
+
   const toggleAllRows = (heading: string, idx: number) => {
     let rowData= [];
 

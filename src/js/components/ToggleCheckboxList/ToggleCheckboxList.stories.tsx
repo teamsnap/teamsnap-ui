@@ -23,6 +23,15 @@ const data = [{
     "GirlsU14",
     "GirlsU12"
   ]
+  }, {
+  "heading": "International",
+  "subheading": "2021 Spring Season",
+  "rows": [
+    "BoysU14",
+    "BoysU12",
+    "GirlsU14",
+    "GirlsU12"
+  ]
 }]
 
 stories.add("Default", () => (
