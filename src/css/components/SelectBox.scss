@@ -23,7 +23,6 @@ $SelectBox-indicator-width: scaleGrid(4);
   width: 100%;
 
   &:after {
-    @include ss-pika;
     content: '▾';
     position: absolute;
     top: 0;
@@ -32,9 +31,9 @@ $SelectBox-indicator-width: scaleGrid(4);
     margin: auto;
     width: $SelectBox-indicator-width;
     color: scaleColor($cu-info, 6);
-    font-size: $tu-xsmall-fontSize;
+    font-size: $tu-medium-fontSize;
     height: ( $SelectBox-height - $su-small );
-    line-height: ( $SelectBox-height - $su-xsmall );
+    line-height: ( $SelectBox-height - $su-small );
     text-align: center;
     border-left: $border-width-small solid $cu-divider--light;
     pointer-events: none;
