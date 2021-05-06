@@ -11,9 +11,9 @@ const getSVGContent = (source) => source.slice(source.indexOf('>') + 1).slice(0,
 const createIconModule = (svgs) => svgs.map((svg) => {
   const source = getSVGContent(svg.source)
   const json = JSON.stringify({ ...svg, source })
-  
+
   return {
-    filepath: `${svg.metadata.name}.js`,
+    filepath: `${svg.metadata.name}.ts`,
     source: `module.exports = ${json}`
   }
 })

@@ -18,7 +18,7 @@ $Button-font-family: $base-font-family;
 $Button-font-size: $tu-base-fontSize;
 $Button-font-weight: $tu-semibold-fontWeight;
 $Button-height: scaleGrid(4);
-$Button-line-height: $Button-height - 3;
+$Button-line-height: $Button-height - 2;
 $Button-padding: 0 scaleGrid(2);
 $Button-hover-color: color-primary(5);
 $Button-active-color: color-primary(7);
