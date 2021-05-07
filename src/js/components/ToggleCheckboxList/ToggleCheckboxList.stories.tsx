@@ -34,9 +34,18 @@ const data = [{
   ]
 }]
 
-stories.add("Default", () => (
-  <ToggleCheckboxList
-    label="Recipients"
-    list={ data }
-  />
-));
+stories.add("Default", () => {
+  const [activeRows, setActiveRows] = React.useState([]);
+  const [headerStatus, setHeaderStatus] = React.useState({});
+
+  return (
+    <ToggleCheckboxList
+      label="Recipients"
+      list={ data }
+      activeRows={ activeRows }
+      headerStatus={ headerStatus }
+      setActiveRows={ setActiveRows }
+      setHeaderStatus={ setHeaderStatus }
+    />
+  )
+});
