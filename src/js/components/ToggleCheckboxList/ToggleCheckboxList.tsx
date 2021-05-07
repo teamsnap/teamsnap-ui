@@ -18,12 +18,20 @@ interface ExpandableList {
 type Props = {
   list: ExpandableList[];
   label: string;
+  activeRows: string[];
+  headerStatus: object;
+  setActiveRows: React.Dispatch<React.SetStateAction<{}>>;
+  setHeaderStatus: React.Dispatch<React.SetStateAction<{}>>;
 };
 
-const ToggleCheckboxList: React.FunctionComponent<Props> = ({ label, list }: Props) => {
-  const [activeRows, setActiveRows] = React.useState([]);
-  const [headerStatus, setHeaderStatus] = React.useState({});
-
+const ToggleCheckboxList: React.FunctionComponent<Props> = ({
+  label,
+  list,
+  activeRows,
+  headerStatus,
+  setActiveRows,
+  setHeaderStatus
+}: Props) => {
   // Dynamically create refs outside of the mapping below for performance reasons
   const bodyRefs = React.useRef([]);
   bodyRefs.current = list.map((_, i) => bodyRefs.current[i] ?? React.createRef());
