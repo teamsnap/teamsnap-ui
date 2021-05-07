@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Button } from '../Button';
 import { CheckboxStates } from '../../types';
 import { Panel } from '../Panel';
 import { PanelHeader } from '../PanelHeader';
@@ -35,6 +36,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => 
       headers = {
         ...headers,
         [heading]: {
+          activeCount: rows.length,
           status: true
         }
       }
@@ -54,8 +56,6 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => 
     let rowData= [];
 
     if (heading in headerStatus && headerStatus[heading]['activeCount'] > 0) {
-      const { status } = headerStatus[heading];
-
       // Remove rows which are associated with the header's naming convention
       rowData = activeRows.filter(row => !row.includes(heading))
 
@@ -80,8 +80,8 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => 
       setHeaderStatus({
         ...headerStatus,
         [heading]: {
-          'activeCount': rows.length,
-          'status': CheckboxStates.TRUE
+          activeCount: rows.length,
+          status: CheckboxStates.TRUE
         }
       });
     }
@@ -127,8 +127,8 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => 
     const programActiveStatus = {
       ...headerStatus,
       [heading]: {
-        'activeCount': activeCount,
-        'status': newStatus
+        activeCount: activeCount,
+        status: newStatus
       }
     };
 
@@ -210,9 +210,21 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => 
   }
 
   return (
-    <Panel>
-      { buildList() }
-    </Panel>
+    <>
+      <div className="Grid-cell u-flex u-flexJustifyBetween u-spaceEndsLg u-flexAlignItemsCenter">
+        <h4>Recipients</h4>
+        <Button
+          label="Select All"
+          onClick={ () => selectAllRows() }
+        />
+      </div>
+
+      <div className="Grid-cell">
+        <Panel>
+          {buildList()}
+        </Panel>
+      </div>
+    </>
   );
 }
 
