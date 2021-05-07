@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Button } from '../Button';
 import { CheckboxStates } from '../../types';
 import { Panel } from '../Panel';
 import { PanelHeader } from '../PanelHeader';
@@ -8,17 +9,18 @@ import { Tag } from '../Tag';
 import { Field } from '../Field';
 import { ListToggle } from '../ListToggle';
 
-interface Program {
+interface ExpandableList {
   heading: string;
   subheading: string;
   rows: string[];
 }
 
 type Props = {
-  list: Program[]
+  list: ExpandableList[];
+  label: string;
 };
 
-const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => {
+const ToggleCheckboxList: React.FunctionComponent<Props> = ({ label, list }: Props) => {
   const [activeRows, setActiveRows] = React.useState([]);
   const [headerStatus, setHeaderStatus] = React.useState({});
 
@@ -26,12 +28,35 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => 
   const bodyRefs = React.useRef([]);
   bodyRefs.current = list.map((_, i) => bodyRefs.current[i] ?? React.createRef());
 
+  const selectAllRows = () => {
+    let headers;
+
+    const divisions = list.map(row => {
+      const { heading, rows } = row;
+
+      headers = {
+        ...headers,
+        [heading]: {
+          activeCount: rows.length,
+          status: true
+        }
+      }
+
+      return rows.map((division, idx) => `${heading}-${division}-${idx}`)
+    })
+    .reduce((curr, next) => [...curr, ...next], []);
+
+    setActiveRows(divisions);
+    setHeaderStatus({
+      ...headerStatus,
+      ...headers
+    });
+  }
+
   const toggleAllRows = (heading: string, idx: number) => {
     let rowData= [];
 
     if (heading in headerStatus && headerStatus[heading]['activeCount'] > 0) {
-      const { status } = headerStatus[heading];
-
       // Remove rows which are associated with the header's naming convention
       rowData = activeRows.filter(row => !row.includes(heading))
 
@@ -56,8 +81,8 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => 
       setHeaderStatus({
         ...headerStatus,
         [heading]: {
-          'activeCount': rows.length,
-          'status': CheckboxStates.TRUE
+          activeCount: rows.length,
+          status: CheckboxStates.TRUE
         }
       });
     }
@@ -100,15 +125,15 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => 
       ];
     }
 
-    const programActiveStatus = {
+    const itemActiveStatus = {
       ...headerStatus,
       [heading]: {
-        'activeCount': activeCount,
-        'status': newStatus
+        activeCount: activeCount,
+        status: newStatus
       }
     };
 
-    setHeaderStatus(programActiveStatus);
+    setHeaderStatus(itemActiveStatus);
     setActiveRows(newActiveList);
   }
 
@@ -138,12 +163,12 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => 
   }
 
   const buildList = () => {
-    return list.map((program, idx) => {
+    return list.map((item, idx) => {
       const {
         heading,
         subheading,
         rows
-      } = program;
+      } = item;
 
       return (
         <React.Fragment key={heading}>
@@ -186,9 +211,22 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => 
   }
 
   return (
-    <Panel>
-      { buildList() }
-    </Panel>
+    <>
+      <div className="Grid-cell u-flex u-flexJustifyBetween u-spaceEndsLg u-flexAlignItemsCenter">
+        <h4>{ label }</h4>
+        <Button
+          label="Select All"
+          mods="u-padSidesLg"
+          onClick={ () => selectAllRows() }
+        />
+      </div>
+
+      <div className="Grid-cell">
+        <Panel>
+          {buildList()}
+        </Panel>
+      </div>
+    </>
   );
 }
 
