@@ -36,6 +36,7 @@ const data = [{
 
 stories.add("Default", () => (
   <ToggleCheckboxList
+    label="Recipients"
     list={ data }
   />
 ));

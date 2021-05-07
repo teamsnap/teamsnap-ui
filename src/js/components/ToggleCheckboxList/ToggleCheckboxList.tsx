@@ -16,10 +16,11 @@ interface Program {
 }
 
 type Props = {
-  list: Program[]
+  list: Program[];
+  label: string;
 };
 
-const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => {
+const ToggleCheckboxList: React.FunctionComponent<Props> = ({ label, list }: Props) => {
   const [activeRows, setActiveRows] = React.useState([]);
   const [headerStatus, setHeaderStatus] = React.useState({});
 
@@ -212,9 +213,10 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ list }: Props) => 
   return (
     <>
       <div className="Grid-cell u-flex u-flexJustifyBetween u-spaceEndsLg u-flexAlignItemsCenter">
-        <h4>Recipients</h4>
+        <h4>{ label }</h4>
         <Button
           label="Select All"
+          mods="u-padSidesLg"
           onClick={ () => selectAllRows() }
         />
       </div>
