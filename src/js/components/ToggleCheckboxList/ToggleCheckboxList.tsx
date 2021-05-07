@@ -9,14 +9,14 @@ import { Tag } from '../Tag';
 import { Field } from '../Field';
 import { ListToggle } from '../ListToggle';
 
-interface Program {
+interface ExpandableList {
   heading: string;
   subheading: string;
   rows: string[];
 }
 
 type Props = {
-  list: Program[];
+  list: ExpandableList[];
   label: string;
 };
 
@@ -125,7 +125,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ label, list }: Pro
       ];
     }
 
-    const programActiveStatus = {
+    const itemActiveStatus = {
       ...headerStatus,
       [heading]: {
         activeCount: activeCount,
@@ -133,7 +133,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ label, list }: Pro
       }
     };
 
-    setHeaderStatus(programActiveStatus);
+    setHeaderStatus(itemActiveStatus);
     setActiveRows(newActiveList);
   }
 
@@ -163,12 +163,12 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({ label, list }: Pro
   }
 
   const buildList = () => {
-    return list.map((program, idx) => {
+    return list.map((item, idx) => {
       const {
         heading,
         subheading,
         rows
-      } = program;
+      } = item;
 
       return (
         <React.Fragment key={heading}>
