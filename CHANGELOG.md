@@ -12,10 +12,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
-## [3.9.9] - 2021-05-07
-- https://github.com/teamsnap/teamsnap-ui/pull/625
-- `Fixed` Lifting state for ToggleCheckboxList component
-
 ## [3.9.8] - 2021-05-02
 - https://github.com/teamsnap/teamsnap-ui/pull/614
 - `Fixed` active background color for ToggleCheckboxList component
