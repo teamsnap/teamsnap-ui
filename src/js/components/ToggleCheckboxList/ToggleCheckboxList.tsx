@@ -50,7 +50,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
         }
       }
 
-      return rows.map((division, idx) => `${heading}-${division}-${idx}`)
+      return rows.map(division => `${heading}-${division}`)
     })
     .reduce((curr, next) => [...curr, ...next], []);
 
@@ -77,9 +77,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
     } else {
       const productChildElements = getChildren(idx);
 
-      const rows = [...productChildElements].map((division, index) => {
-        return `${heading}-${division.innerText}-${index}`
-      });
+      const rows = [...productChildElements].map(division => `${heading}-${division.innerText}`);
 
       rowData = [
         ...activeRows,
@@ -146,8 +144,8 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
   }
 
   const buildRows = (heading: string, rows: string[], parentIdx: number)  => {
-    return rows.map((division, idx) => {
-      const uniqueId = `${heading}-${division}-${idx}`;
+    return rows.map(division => {
+      const uniqueId = `${heading}-${division}`;
       const mods = activeRows.includes(uniqueId) ?
         'u-flex u-flexRow u-flexJustifyBetween Panel-row--active' :
         'u-flex u-flexRow u-flexJustifyBetween';

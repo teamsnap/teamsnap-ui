@@ -9,28 +9,28 @@ const data = [{
   "subheading": "2021 Fall Season",
   "rows": [
     "Unassigned",
-    "BoysU14",
-    "BoysU12",
-    "GirlsU14",
-    "GirlsU12"
+    "BoysU14-1",
+    "BoysU12-2",
+    "GirlsU14-3",
+    "GirlsU12-4"
   ]
 }, {
   "heading": "Recreational",
   "subheading": "2021 Fall Season",
   "rows": [
-    "BoysU14",
-    "BoysU12",
-    "GirlsU14",
-    "GirlsU12"
+    "BoysU14-5",
+    "BoysU12-6",
+    "GirlsU14-7",
+    "GirlsU12-8"
   ]
   }, {
   "heading": "International",
   "subheading": "2021 Spring Season",
   "rows": [
-    "BoysU14",
-    "BoysU12",
-    "GirlsU14",
-    "GirlsU12"
+    "BoysU14-9",
+    "BoysU12-10",
+    "GirlsU14-11",
+    "GirlsU12-12"
   ]
 }]
 
