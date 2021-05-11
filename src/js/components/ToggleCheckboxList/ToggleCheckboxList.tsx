@@ -228,9 +228,13 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
       </div>
 
       <div className="Grid-cell">
-        <Panel>
-          {buildList()}
-        </Panel>
+        {
+          list.length === 0 ?
+            <p className="u-flex u-flexJustifyCenter u-padEndsMd">You have no recipients</p> :
+            <Panel>
+              {buildList()}
+            </Panel>
+        }
       </div>
     </>
   );
