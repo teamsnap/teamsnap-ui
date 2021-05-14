@@ -228,6 +228,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
       </div>
 
       <div className="Grid-cell">
+<<<<<<< HEAD
         {
           list.length === 0 ?
             <p className="u-flex u-flexJustifyCenter u-padEndsMd">You have no recipients</p> :
@@ -235,6 +236,11 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
               {buildList()}
             </Panel>
         }
+=======
+        <Panel>
+          {buildList()}
+        </Panel>
+>>>>>>> update-toggle-checkbox-list-to-add-select-all
       </div>
     </>
   );
