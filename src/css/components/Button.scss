@@ -35,14 +35,13 @@ $Button-padding: 0 scaleGrid(2);
   font-family: $Button-font-family;
   font-size: $Button-font-size;
   font-weight: $Button-font-weight;
-  height: $Button-height;
+  min-height: $Button-height;
   line-height: $Button-line-height;
   margin: 0;
   padding: $Button-padding;
   text-decoration: none;
   transition: all $duration-short ease-in-out;
   vertical-align: middle;
-  white-space: nowrap;
 
   &:hover,
   &:active,
