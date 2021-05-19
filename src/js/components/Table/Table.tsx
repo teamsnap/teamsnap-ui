@@ -133,8 +133,8 @@ const Table: React.FunctionComponent<
 
   const renderPanelCell = (role, children, column) => {
     const cellMods = getClassName(
-      column.mods,
-      `u-text${capitalize(column.align || "Left")}`
+      `u-text${capitalize(column.align || "Left")}`,
+      column.mods
     );
 
     return (
@@ -189,7 +189,7 @@ const Table: React.FunctionComponent<
         </div>
       </TextLink>
     ) : (
-      <span className="u-colorInfo u-textNoWrap u-flex u-flexAlignItemsCenter">
+      <span className={`u-colorInfo u-textNoWrap u-flex u-flexAlignItemsCenter ${textLinkMods}`}>
         {column.label}
       </span>
     );

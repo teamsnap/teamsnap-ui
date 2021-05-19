@@ -15,6 +15,7 @@ export * from "./components/Input";
 export * from "./components/InputControl";
 export * from "./components/ListToggle";
 export * from "./components/Loader";
+export * from "./components/LoaderModal";
 export * from "./components/Nav";
 export * from "./components/Pagination";
 export * from "./components/Panel";
