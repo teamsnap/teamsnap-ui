@@ -1,29 +1,18 @@
 import * as React from 'react';
-import { Loader } from '../Loader';
 import { Button } from '../Button';
-
-export enum ModalLoadingType {
-  JELLO = 'jello',
-  PULSE = 'pulse',
-  SPIN = 'spin'
-}
 
 interface Props {
   heading: string;
-  loadingType: ModalLoadingType;
-  loadingText?: string;
-  message?: string;
   show: boolean;
   handleClose: any;
+  children: React.ReactNode;
 }
 
-const LoaderModal: React.FC<Props> = ({
+const Modal: React.FC<Props> = ({
   heading,
-  loadingType,
-  loadingText,
-  message,
   show,
-  handleClose
+  handleClose,
+  children
 }: Props) => {
   return (
     <div className={`Modal ${show ? 'Modal--open' : 'Modal--closed'}`} data-modal='modal-one'>
@@ -33,11 +22,7 @@ const LoaderModal: React.FC<Props> = ({
         </div>
 
         <div className='Modal__body'>
-          <Loader
-            type={ ModalLoadingType[loadingType] }
-            text={loadingText}
-            message={message}
-          />
+          { children }
 
           <div className='Modal__footer'>
             <Button
@@ -53,4 +38,4 @@ const LoaderModal: React.FC<Props> = ({
   )
 }
 
-export default LoaderModal;
+export default Modal;

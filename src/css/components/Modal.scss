@@ -1,169 +1,40 @@
-// * Modal Style
-// *
-// * 1. Other options 'Panel'. The $Modal-style setting may be
-// set in a theme config to change the style modals on a per
-// project basis.
-// *
-// * ex: $Modal-style: 'Panel';
-
-$Modal-style: 'Standard' !default; // 1
-$Modal-bgColor: $cu-foreground !default;
-$Modal-overlayColor: $ts-black !default;
-$Modal-borderStyle: $su-small solid $cu-background !default;
-$Modal-animation: 300ms cubic-bezier(0.2, 0.8, 0.4, 1.0);
-
-$Modal-borderStyle--panel: $border-width-small solid $cu-divider !default;
-
-// * Modal Overlay
-// *
-// * 1. Position overlay so that it covers the viewport
-// * 2. Align modal content in the center of the viewport
-
 .Modal {
-  display: none;
-  position: fixed; // 1
-  top: 0px; // 1
-  bottom: 0px; // 1
-  left: 0px; // 1
-  right: 0px; // 1
-  background-color: rgba( $Modal-overlayColor, .5 );
-  z-index: 1000;
-  justify-content: center; // 2
-  align-items: center; // 2
-
-  &.is-open,
-  &.is-active {
-    display: flex; // 2
-  }
-
-  &.is-closing {
-    animation: overlayOut $Modal-animation forwards;
-  }
-
-}
-
-// * Modal content (the actual modal)
-// *
-// * 1. Make sure modal is never taller than viewport
-// * 2. Allow content to scroll if content is taller than viewport
-// * 3. Default to 100% for small screens
-// * 4. Default max width (this can be adjusted as necessary at the component level)
-
-.Modal-content {
-  max-height: 100vh; // 1
-  overflow-y: auto; // 2
-  width: 100%; // 3
-  max-width: 600px; // 4
-  background-color: $Modal-bgColor;
-  border-radius: $border-radius-large;
-  animation: modalIn $Modal-animation forwards;
-  box-shadow: $box-shadow-large;
-  border: $Modal-borderStyle;
-
-  @if $Modal-style == 'Panel' {
-    border: $Modal-borderStyle--panel;
-
-  } @else {
-    padding: $su-large;
-
-  }
-
-}
-
-.Modal-header {  
-
-  @if $Modal-style == 'Panel' {
-    padding: $su-medium;
-    border-bottom: $Modal-borderStyle--panel;
-
-  } @else {
-    text-align: center;
-    padding-bottom: $su-large;
-
-  }
-
-}
-
-.Modal-iconDismiss {
-  box-sizing: content-box;
-  color: $cu-divider;
-  position: absolute;
-  padding: $su-small;
-  height: $su-medium;
-  width: $su-medium;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-
-  &:hover {
-    color: scaleColor($cu-divider, -2);
-  }
-  
-}
-
-.Modal-title {
-  padding: 0;
-  margin: 0;
-
-  @if $Modal-style == 'Panel' {
-    font-size: $tu-large-fontSize;
-    color: $cu-info;
-    font-family: $base-font-family;
-    font-weight: $tu-bold-fontWeight;
-
-  } @else {
-    font-size: $tu-xlarge-fontSize;
-    color: $cu-primary;
-    font-family: $tu-museo700-fontFamily;
-
-  }
-
-}
-
-.Modal-body {
-
-  @if $Modal-style == 'Panel' {
-    padding: $su-medium;
-
-  }
-
-}
-
-.Modal-footer {
-
-  @if $Modal-style == 'Panel' {
-    border-top: $Modal-borderStyle--panel;
-    padding: $su-medium;
-    text-align: right;
-
-  } @else {
-    margin-top: $su-xlarge;
-    text-align: center;
-
-  }
-  
-}
-
-.Modal-bgDismiss {
-  height: 100%;
+  position: fixed;
   width: 100%;
-  position: absolute;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  z-index: 1050;
 }
 
-@keyframes modalIn{
-  0% {
-    transform: scale(0.7);
-  }
-  100% {
-    transform: scale(1);
-  }
+.Modal__content {
+  position: fixed;
+  background: white;
+  width: 50%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 10px;
 }
 
-@keyframes overlayOut{
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+.Modal--open {
+  display: block;
+}
+
+.Modal--closed {
+  display: none;
+}
+
+.Modal__body {
+  padding: 1em;
+}
+
+.Modal__footer {
+  text-align: center;
+}
+
+.Modal__header {
+  text-align: center;
 }
