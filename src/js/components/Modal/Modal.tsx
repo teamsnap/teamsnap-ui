@@ -16,15 +16,15 @@ const Modal: React.FC<Props> = ({
 }: Props) => {
   return (
     <div className={`Modal ${show ? 'Modal--open' : 'Modal--closed'}`} data-modal='modal-one'>
-      <div className='Modal__content'>
-        <div className='Modal__header'>
+      <div className='Modal-content'>
+        <div className='Modal-header'>
           <h2 style={{ marginTop: '20px' }}>{heading}</h2>
         </div>
 
-        <div className='Modal__body'>
+        <div className='Modal-body'>
           { children }
 
-          <div className='Modal__footer'>
+          <div className='Modal-footer'>
             <Button
               label='Cancel'
               color='negative'

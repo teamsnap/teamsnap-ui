@@ -8,7 +8,7 @@
   z-index: 1050;
 }
 
-.Modal__content {
+.Modal-content {
   position: fixed;
   background: white;
   width: 50%;
@@ -27,14 +27,14 @@
   display: none;
 }
 
-.Modal__body {
+.Modal-body {
   padding: 1em;
 }
 
-.Modal__footer {
+.Modal-footer {
   text-align: center;
 }
 
-.Modal__header {
+.Modal-header {
   text-align: center;
 }
