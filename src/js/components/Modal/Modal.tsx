@@ -15,7 +15,7 @@ const Modal: React.FC<Props> = ({
   children
 }: Props) => {
   return (
-    <div className={`Modal ${show ? 'Modal--open' : 'Modal--closed'}`} data-modal='modal-one'>
+    <div className={`Modal ${show ? 'Modal--open' : 'Modal--closed'}`}>
       <div className='Modal-content'>
         <div className='Modal-header'>
           <h2 style={{ marginTop: '20px' }}>{heading}</h2>
