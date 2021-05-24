@@ -188,6 +188,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
                 onClick={() => {
                   bodyRefs.current[idx].current.classList &&
                   bodyRefs.current[idx].current.classList.toggle('Panel-body--closed');
+                  bodyRefs.current[idx].current.classList.toggle('Panel-body--open');
                 }}
               />
               <strong className='u-padSidesSm'>{ heading }</strong>
@@ -209,7 +210,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
 
           <div
             ref={ bodyRefs.current[idx] }
-            className="Panel-body-wrapper"
+            className="Panel-body-wrapper Panel-body--closed"
           >
             <PanelBody>
               { buildRows(heading, rows, idx) }
