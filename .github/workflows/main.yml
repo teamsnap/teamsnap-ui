@@ -35,7 +35,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: NPM Install
         run: npm install
-      
+
+      - name: NPM Audit
+        run: npm audit --audit-level=high
+
       - name: NPM build
         run: npm run build
 #       - run: npm test -- Eventually.
