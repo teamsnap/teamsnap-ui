@@ -50,6 +50,29 @@ stories.add('Default', () => {
   )
 });
 
+stories.add('Error State', () => {
+  const [activeRows, setActiveRows] = React.useState([]);
+  const [headerStatus, setHeaderStatus] = React.useState({});
+
+  /* We need to spend some time on what the mods attribute should be able to update */
+  return (
+    <>
+      <ToggleCheckboxList
+        className='error'
+        label='Recipients'
+        list={data}
+        activeRows={activeRows}
+        headerStatus={headerStatus}
+        setActiveRows={setActiveRows}
+        setHeaderStatus={setHeaderStatus}
+      />
+      <div style={{ color: '#e26362', marginLeft: '2px', marginTop: '-5px' }}>
+        You must select a division for the message.
+      </div>
+    </>
+  )
+});
+
 stories.add('Empty', () => {
   const [activeRows, setActiveRows] = React.useState([]);
   const [headerStatus, setHeaderStatus] = React.useState({});
