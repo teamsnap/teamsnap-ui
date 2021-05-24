@@ -4,14 +4,18 @@ import { Button } from '../Button';
 interface Props {
   heading: string;
   show: boolean;
-  handleClose: any;
+  handleCTA: any;
+  actionable?: boolean;
+  ctaLabel?: string;
   children: React.ReactNode;
 }
 
 const Modal: React.FC<Props> = ({
   heading,
   show,
-  handleClose,
+  handleCTA,
+  actionable,
+  ctaLabel,
   children
 }: Props) => {
   return (
@@ -24,14 +28,16 @@ const Modal: React.FC<Props> = ({
         <div className='Modal-body'>
           { children }
 
-          <div className='Modal-footer'>
-            <Button
-              label='Cancel'
-              color='negative'
-              onClick={handleClose}
-              icon='dismiss'
-            />
-          </div>
+          { actionable &&
+            <div className='Modal-footer'>
+              <Button
+                label={ ctaLabel || 'Close' }
+                color='negative'
+                onClick={ handleCTA }
+                icon='dismiss'
+              />
+            </div>
+          }
         </div>
       </div>
     </div>
