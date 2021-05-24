@@ -16,6 +16,8 @@ interface ExpandableList {
 }
 
 type Props = {
+  className?: string;
+  mods?: string;
   list: ExpandableList[];
   label: string;
   activeRows: string[];
@@ -25,6 +27,8 @@ type Props = {
 };
 
 const ToggleCheckboxList: React.FunctionComponent<Props> = ({
+  className,
+  mods,
   label,
   list,
   activeRows,
@@ -146,12 +150,12 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
   const buildRows = (heading: string, rows: string[], parentIdx: number)  => {
     return rows.map(division => {
       const uniqueId = `${heading}-${division}`;
-      const mods = activeRows.includes(uniqueId) ?
-        'u-flex u-flexRow u-flexJustifyBetween Panel-row--active' :
-        'u-flex u-flexRow u-flexJustifyBetween';
+      const classes = activeRows.includes(uniqueId) ?
+        `u-flex u-flexRow u-flexJustifyBetween Panel-row--active ${mods}` :
+        `u-flex u-flexRow u-flexJustifyBetween ${mods}`;
 
       return (
-        <PanelRow key={ uniqueId } mods={ mods }>
+        <PanelRow key={ uniqueId } mods={ classes }>
           <p className="u-padLeftLg">{ division }</p>
 
           <Field
@@ -177,13 +181,14 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
       } = item;
 
       return (
-        <React.Fragment key={heading}>
-          <PanelHeader mods='Panel-header--list u-flexJustifyBetween u-padTopLg'>
+        <React.Fragment key={ heading }>
+          <PanelHeader mods={ `Panel-header--list u-flexJustifyBetween u-padTopLg ${mods}` }>
             <div>
               <ListToggle
                 onClick={() => {
                   bodyRefs.current[idx].current.classList &&
                   bodyRefs.current[idx].current.classList.toggle('Panel-body--closed');
+                  bodyRefs.current[idx].current.classList.toggle('Panel-body--open');
                 }}
               />
               <strong className='u-padSidesSm'>{ heading }</strong>
@@ -205,7 +210,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
 
           <div
             ref={ bodyRefs.current[idx] }
-            className="Panel-body-wrapper"
+            className="Panel-body-wrapper Panel-body--closed"
           >
             <PanelBody>
               { buildRows(heading, rows, idx) }
@@ -231,7 +236,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
         {
           list.length === 0 ?
             <p className="u-flex u-flexJustifyCenter u-padEndsMd">You have no recipients</p> :
-            <Panel>
+            <Panel mods={ className }>
               {buildList()}
             </Panel>
         }

@@ -19,7 +19,60 @@ stories.add('Default', () => {
       <Modal
         heading='Sending'
         show={ sending }
-        handleClose={() => setSending(false)}
+        handleCTA={() => setSending(false)}
+      >
+        <Loader
+          type='spin'
+          text='Sending'
+          message='Some really long message here'
+        />
+      </Modal>
+    </>
+  )
+});
+
+stories.add('With default CTA', () => {
+  const [sending, setSending] = React.useState(false);
+
+  return (
+    <>
+      <Button
+        label='Test Modal'
+        onClick={() => setSending(true)}
+      />
+
+      <Modal
+        heading='Sending'
+        show={ sending }
+        actionable
+        handleCTA={() => setSending(false)}
+      >
+        <Loader
+          type='spin'
+          text='Sending'
+          message='Some really long message here'
+        />
+      </Modal>
+    </>
+  )
+});
+
+stories.add('With custom CTA', () => {
+  const [sending, setSending] = React.useState(false);
+
+  return (
+    <>
+      <Button
+        label='Test Modal'
+        onClick={() => setSending(true)}
+      />
+
+      <Modal
+        heading='Sending'
+        show={sending}
+        actionable
+        ctaLabel='Custom Action'
+        handleCTA={() => setSending(false)}
       >
         <Loader
           type='spin'
