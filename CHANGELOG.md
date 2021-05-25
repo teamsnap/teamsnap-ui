@@ -12,7 +12,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
-## [3.10.5] - 2021-04-06
+## [3.10.7] - 2021-05-25
+- https://github.com/teamsnap/teamsnap-ui/pull/644
+- `Fixed` Updated to patch CVE-2021-27515, CVE-2021-23337, CVE-2020-7733, and CVE-2021-27292
+
+## [3.10.6] - 2021-04-06
 - https://github.com/teamsnap/teamsnap-ui/pull/581
 - `Updated` Center paginated table elements as a group
 
