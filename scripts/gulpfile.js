@@ -3,7 +3,6 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const browserSync = require('browser-sync').create();
-const cssnano = require('gulp-cssnano');
 const autoprefixer = require('gulp-autoprefixer');
 const del = require('del');
 const env = require('gulp-util').env;
@@ -16,7 +15,6 @@ function buildCSS(config) {
   return gulp.src(config.src)
     .pipe(sass())
     .pipe(autoprefixer('last 2 versions'))
-    .pipe(cssnano({zindex: false}))
     .pipe(gulp.dest(config.dest))
 }
 
