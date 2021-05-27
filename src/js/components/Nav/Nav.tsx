@@ -204,7 +204,10 @@ const Nav: NavType & { Item: ItemType } = ({
   return (
     <nav className={cname} style={style} {...otherProps}>
       {headerItem ? (
-        <div className="Nav-header u-textSemiBold">
+        <div
+          className="Nav-header u-textSemiBold"
+          onClick={() => setIsFlyoutActive(!isFlyoutActive)}
+        >
           <div className={navHeaderIconClass}>
             <Avatar src={headerItem.image} size="fill" />
           </div>
@@ -212,10 +215,7 @@ const Nav: NavType & { Item: ItemType } = ({
             <span className="Nav-itemTitle">{headerItem.title}</span>
           </div>
           {flyoutSections && (
-            <div
-              className="u-size1of8 Nav-itemTitle u-textRight"
-              onClick={() => setIsFlyoutActive(!isFlyoutActive)}
-            >
+            <div className="u-size1of8 Nav-itemTitle u-textRight">
               <Icon mods="u-fontSizeMd" name="down" />
             </div>
           )}
