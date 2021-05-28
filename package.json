@@ -67,6 +67,7 @@
     "glob": "^7.1.4",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.1.0",
+    "gulp-clean-css": "^4.3.0",
     "gulp-if": "^2.0.2",
     "gulp-sass": "^4.0.1",
     "gulp-util": "^3.0.8",
