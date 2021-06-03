@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
+=======
+## [3.10.8] - 2021-06-03
+- https://github.com/teamsnap/teamsnap-ui/pull/341
+- `Changed` font paths to teamsnap-ui CDN.
+
 ## [3.10.7] - 2021-05-25
 - https://github.com/teamsnap/teamsnap-ui/pull/644
 - `Fixed` Updated to patch CVE-2021-27515, CVE-2021-23337, CVE-2020-7733, and CVE-2021-27292
