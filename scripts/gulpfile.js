@@ -3,12 +3,12 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const browserSync = require('browser-sync').create();
-const cssnano = require('gulp-cssnano');
 const autoprefixer = require('gulp-autoprefixer');
 const del = require('del');
 const env = require('gulp-util').env;
 const gulpif = require('gulp-if');
 const config = require('./config');
+const cleanCSS = require('gulp-clean-css');
 
 // Create a function for all CSS tasks so
 // teamsnap-ui and themes can build independently
@@ -16,7 +16,7 @@ function buildCSS(config) {
   return gulp.src(config.src)
     .pipe(sass())
     .pipe(autoprefixer('last 2 versions'))
-    .pipe(cssnano({zindex: false}))
+    .pipe(cleanCSS({level: 2}))
     .pipe(gulp.dest(config.dest))
 }
 
