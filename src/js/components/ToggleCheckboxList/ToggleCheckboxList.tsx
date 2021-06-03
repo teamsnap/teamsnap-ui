@@ -8,6 +8,7 @@ import { PanelRow } from '../PanelRow';
 import { Tag } from '../Tag';
 import { Field } from '../Field';
 import { ListToggle } from '../ListToggle';
+import { getClassName } from '../../utils/helpers';
 
 interface ExpandableList {
   heading: string;
@@ -180,9 +181,22 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
         rows
       } = item;
 
+      let selected;
+
+      if (headerStatus[heading]) {
+        selected = headerStatus[heading]['activeCount'] == getChildren(idx).length ? 'Panel-header--active' : '';
+      }
+
+      const classes = getClassName(
+        'Panel-header--list u-flexJustifyBetween u-padTopLg',
+        mods,
+        selected
+      );
+
+
       return (
         <React.Fragment key={ heading }>
-          <PanelHeader mods={ `Panel-header--list u-flexJustifyBetween u-padTopLg ${mods}` }>
+          <PanelHeader mods={ classes }>
             <div>
               <ListToggle
                 onClick={() => {
