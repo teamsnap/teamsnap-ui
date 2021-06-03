@@ -36,9 +36,10 @@ jobs:
       - name: NPM Install
         run: npm install
 
+      - name: NPM build
+        run: npm run build
+
       - name: NPM Audit
         run: npm audit --audit-level=high
 
-      - name: NPM build
-        run: npm run build
 #       - run: npm test -- Eventually.
