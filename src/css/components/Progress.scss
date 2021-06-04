@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "../config/index.scss";
 
 //------------------------------------------------------------//
@@ -36,7 +38,7 @@
 
 .ProgressBar,
 .ProgressBar-status {
-  border-radius: $su-small / 2;
+  border-radius: math.div($su-small, 2);
 }
 
 // * 1.a Default Progress Sizes
@@ -44,28 +46,28 @@
 .ProgressBar--xsmall {
   height: $su-xxsmall;
   &, .ProgressBar-status {
-    border-radius: $su-xxsmall / 2;
+    border-radius: math.div($su-xxsmall, 2);
   }
 }
 
 .ProgressBar--small {
   height: $su-xsmall;
   &, .ProgressBar-status {
-    border-radius: $su-xsmall / 2;
+    border-radius: math.div($su-xsmall, 2);
   }
 }
 
 .ProgressBar--large {
   height: $su-medium;
   &, .ProgressBar-status {
-    border-radius: $su-medium / 2;
+    border-radius: math.div($su-medium, 2);
   }
 }
 
 .ProgressBar--xlarge {
   height: $su-large;
   &, .ProgressBar-status {
-    border-radius: $su-large / 2;
+    border-radius: math.div($su-large, 2);
   }
 }
 
@@ -85,7 +87,7 @@
   }
 
   &, .ProgressBar-status {
-    border-radius: $su-xxlarge / 2;
+    border-radius: math.div($su-xxlarge, 2);
   }
 
 }
@@ -97,28 +99,28 @@
   &.ProgressBar--xsmall {
     width: $su-medium;
     &, .ProgressBar-status {
-      border-radius: $su-medium / 2;
+      border-radius: math.div($su-medium, 2);
     }
   }
 
   &.ProgressBar--small {
     width: $su-large;
     &, .ProgressBar-status {
-      border-radius: $su-large / 2;
+      border-radius: math.div($su-large, 2);
     }
   }
 
   &.ProgressBar--large {
     width: scaleGrid(6);
     &, .ProgressBar-status {
-      border-radius: scaleGrid(6) / 2;
+      border-radius: math.div(scaleGrid(6), 2);
     }
   }
 
   &.ProgressBar--xlarge {
     width: scaleGrid(8);
     &, .ProgressBar-status {
-      border-radius: scaleGrid(8) / 2;
+      border-radius: math.div(scaleGrid(8), 2);
     }
   }
 
@@ -187,7 +189,7 @@
   top: 0;
   height: 100%;
   width: 100%;
-  clip: rect(0, scaleGrid(10), scaleGrid(10), scaleGrid(10)/2 );
+  clip: rect(0, scaleGrid(10), scaleGrid(10), math.div(scaleGrid(10), 2) );
 
 }
 
@@ -203,7 +205,7 @@
   left: 0;
   border-radius: 50%;
   background: transparent;
-  clip: rect(0, scaleGrid(10)/2, scaleGrid(10), 0);
+  clip: rect(0, math.div(scaleGrid(10), 2), scaleGrid(10), 0);
   border: {
     width: scaleGrid(5);
     style: solid;
@@ -218,11 +220,11 @@
   width: scaleGrid(4);
 
   .RadialProgress-circle {
-    clip: rect(0, scaleGrid(4), scaleGrid(4), scaleGrid(4)/2 );
+    clip: rect(0, scaleGrid(4), scaleGrid(4), math.div(scaleGrid(4), 2) );
   }
 
   .RadialProgress-status {
-    clip: rect(0, scaleGrid(4)/2, scaleGrid(4), 0);
+    clip: rect(0, math.div(scaleGrid(4), 2), scaleGrid(4), 0);
     border-width: scaleGrid(2);
   }
 
@@ -233,11 +235,11 @@
   width: scaleGrid(6);
 
   .RadialProgress-circle {
-    clip: rect(0, scaleGrid(6), scaleGrid(6), scaleGrid(6)/2 );
+    clip: rect(0, scaleGrid(6), scaleGrid(6), math.div(scaleGrid(6), 2) );
   }
 
   .RadialProgress-status {
-    clip: rect(0, scaleGrid(6)/2, scaleGrid(6), 0);
+    clip: rect(0, math.div(scaleGrid(6), 2), scaleGrid(6), 0);
     border-width: scaleGrid(3);
   }
 
@@ -248,11 +250,11 @@
   width: scaleGrid(14);
 
   .RadialProgress-circle {
-    clip: rect(0, scaleGrid(14), scaleGrid(14), scaleGrid(14)/2 );
+    clip: rect(0, scaleGrid(14), scaleGrid(14), math.div(scaleGrid(14), 2) );
   }
 
   .RadialProgress-status {
-    clip: rect(0, scaleGrid(14)/2, scaleGrid(14), 0);
+    clip: rect(0, math.div(scaleGrid(14), 2), scaleGrid(14), 0);
     border-width: scaleGrid(7);
   }
 
@@ -263,11 +265,11 @@
   width: scaleGrid(20);
 
   .RadialProgress-circle {
-    clip: rect(0, scaleGrid(20), scaleGrid(20), scaleGrid(20)/2 );
+    clip: rect(0, scaleGrid(20), scaleGrid(20), math.div(scaleGrid(20), 2) );
   }
 
   .RadialProgress-status {
-    clip: rect(0, scaleGrid(20)/2, scaleGrid(20), 0);
+    clip: rect(0, math.div(scaleGrid(20), 2), scaleGrid(20), 0);
     border-width: scaleGrid(10);
   }
 

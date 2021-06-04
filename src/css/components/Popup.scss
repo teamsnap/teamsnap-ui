@@ -1,10 +1,12 @@
+@use "sass:math";
+
 $Popup-bg-color: $cu-foreground !default;
 $Popup-text-color: $cu-info !default;
 $Popup-border-color: $cu-divider !default;
 $Popup-offset: 10px;
 $Popup-arrow-size: 12px;
-$Popup-arrow-offset: $Popup-arrow-size / 2;
-$Popup-arrow-offsetCover: ($Popup-arrow-size / 2) + 1;
+$Popup-arrow-offset: math.div($Popup-arrow-size, 2);
+$Popup-arrow-offsetCover: math.div($Popup-arrow-size, 2) + 1;
 $Popup-arrow-borderRadius: 3px;
 
 // * .Popup

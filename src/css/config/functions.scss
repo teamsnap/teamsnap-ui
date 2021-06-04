@@ -1,3 +1,5 @@
+@use "sass:math";
+
 //------------------------------------------------------------//
 
 // * TeamSnap-UI Functions
@@ -17,12 +19,12 @@
 // * 1. Basic Math Helper Functions
 
 @function quarter($number) {
-  $number: round($number / 4);
+  $number: round(math.div($number, 4));
   @return $number
 }
 
 @function halve($number) {
-  $number: round($number / 2);
+  $number: round(math.div($number, 2));
   @return $number
 }
 
@@ -67,7 +69,7 @@
   @else if ($step < 0) {
     $step: convertNegative($step);
     @for $i from 1 through $step {
-      $property: $property / $ratio;
+      $property: math.div($property, $ratio);
     }
   }
 
@@ -139,7 +141,7 @@
 
     // halves base unit based on negative step values
     @for $i from 1 through $step {
-      $spacing: $spacing / 2;
+      $spacing: math.div($spacing, 2);
     }
   }
 

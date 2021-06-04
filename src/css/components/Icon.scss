@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "../config/index.scss";
 
 // * Icon component
@@ -50,7 +52,7 @@ $Icon--loader-duration: 1.4s;
    stroke-dashoffset: $Icon--loader-offset;
  }
  50% {
-   stroke-dashoffset: $Icon--loader-offset / 4;
+   stroke-dashoffset: math.div($Icon--loader-offset, 4);
    transform: rotate(135deg);
  }
  100% {
