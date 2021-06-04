@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Security`
 
 =======
+## [3.10.10] - 2021-06-04
+- https://github.com/teamsnap/teamsnap-ui/pull/669
+- `Added` version control to npm and node
+
 ## [3.10.9] - 2021-06-03
 - https://github.com/teamsnap/teamsnap-ui/pull/665
 - `Changed` style compilation to use `sass` and fixed soon to be deprecated scss syntax. Also upgraded `gulp-sass` and `sass-loader`

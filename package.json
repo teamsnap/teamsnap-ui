@@ -1,6 +1,6 @@
 {
   "name": "@teamsnap/teamsnap-ui",
-  "version": "3.10.9",
+  "version": "3.10.10",
   "description": "a CSS component library for TeamSnap",
   "main": "dist/js/index.js",
   "types": "dist/js/index.d.ts",
@@ -37,6 +37,10 @@
     "sass",
     "suit"
   ],
+  "engines": {
+    "node": ">=14.7.0",
+    "npm": ">=6.14.13"
+  },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
     "@babel/core": "^7.5.4",

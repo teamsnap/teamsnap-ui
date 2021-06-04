@@ -21,9 +21,14 @@ Once your user is created and added to the org this guide details the steps to p
 * `git pull origin master`
 * `npm login --scope=@teamsnap`
 * `npm publish`
-* To update TeamSnap CSS assets on CDN, run `jarvis deploy teamsnap_ui/master` in #chatops
-* As necessary, update CSS version number in repositories that reference it:
-  - Classic (for NJW): https://github.com/teamsnap/classic/blob/master/app/views/_header_head_tag.html.erb#L33
+
+#### Netlify deploy
+Merging to master triggers a Netlify deploy where static assets will be available if not using npm to serve the package.
+
+CSS URL: https://teamsnap-ui.teamsnap.com/css/teamsnap-ui.css
+Themes: https://teamsnap-ui.teamsnap.com/css/themes/{theme_name}
+Example: https://teamsnap-ui.teamsnap.com/css/themes/league.css
+
 
 **Note**
 
