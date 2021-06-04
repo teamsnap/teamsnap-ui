@@ -8,6 +8,10 @@ TeamSnaps UI framework. Built with sass and react.
 Installs the @teamsnap/teamsnap-ui node module and builds the dist directory.
 
 ```
+nvm use
+# make sure you are on node 14.7.0
+npm install -g npm@6.14.13
+# npm -v
 npm install
 ```
 
