@@ -41,32 +41,45 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
   const bodyRefs = React.useRef([]);
   bodyRefs.current = list.map((_, i) => bodyRefs.current[i] ?? React.createRef());
 
-  const selectAllRows = () => {
-    let headers;
-
-    const divisions = list.map(row => {
-      const { heading, rows } = row;
-
-      headers = {
-        ...headers,
-        [heading]: {
-          activeCount: rows.length,
-          status: true
-        }
-      }
-
-      return rows.map(division => `${heading}-${division}`)
-    })
-    .reduce((curr, next) => [...curr, ...next], []);
-
-    setActiveRows(divisions);
-    setHeaderStatus({
-      ...headerStatus,
-      ...headers
-    });
+  const getFullChildCount = (list: any) => {
+    return list.reduce((acc, curr) => acc + curr.rows.length, 0);
   }
 
-  const toggleAllRows = (heading: string, idx: number) => {
+  const toggleAllRows = () => {
+    let headers;
+    let divisions: string[];
+    let currHeaderStatus;
+
+    if (activeRows.length === 0 || activeRows.length > 0 && activeRows.length < getFullChildCount(list)) {
+      divisions = list.map(row => {
+        const { heading, rows } = row;
+
+        headers = {
+          ...headers,
+          [heading]: {
+            activeCount: rows.length,
+            status: true
+          }
+        }
+
+        currHeaderStatus = {
+          ...headerStatus,
+          ...headers
+        }
+
+        return rows.map(division => `${heading}-${division}`)
+      })
+      .reduce((curr, next) => [...curr, ...next], []);
+    } else {
+      divisions = [];
+      currHeaderStatus = {};
+    }
+
+    setActiveRows(divisions);
+    setHeaderStatus(currHeaderStatus);
+  }
+
+  const toggleSubheadingRows = (heading: string, idx: number) => {
     let rowData= [];
 
     if (heading in headerStatus && headerStatus[heading]['activeCount'] > 0) {
@@ -157,7 +170,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
 
       return (
         <PanelRow key={ uniqueId } mods={ classes }>
-          <p className="u-padLeftLg">{ division }</p>
+          <p className='u-padLeftLg'>{ division }</p>
 
           <Field
             isDisabled={ false }
@@ -216,7 +229,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
                 type='checkbox'
                 formFieldProps={{
                   checked: headerStatus[heading] && headerStatus[heading]['status'],
-                  onClick: () => toggleAllRows(heading, idx)
+                  onClick: () => toggleSubheadingRows(heading, idx)
                 }}
               />
             </div>
@@ -224,7 +237,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
 
           <div
             ref={ bodyRefs.current[idx] }
-            className="Panel-body-wrapper Panel-body--closed"
+            className='Panel-body-wrapper Panel-body--closed'
           >
             <PanelBody>
               { buildRows(heading, rows, idx) }
@@ -235,21 +248,24 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
     })
   }
 
+  const buttonLabel = activeRows.length === getFullChildCount(list) ? 'Deselect All' : 'Select All';
+
   return (
     <>
-      <div className="Grid-cell u-flex u-flexJustifyBetween u-spaceEndsLg u-flexAlignItemsCenter">
+      <div className='Grid-cell u-flex u-flexJustifyBetween u-spaceEndsLg u-flexAlignItemsCenter'>
         <h4>{ label }</h4>
         <Button
-          label="Select All"
-          mods="u-padSidesLg"
-          onClick={ () => selectAllRows() }
+          label={ buttonLabel }
+          mods='u-padSidesLg'
+          isActive={ activeRows.length === getFullChildCount(list) }
+          onClick={ () => toggleAllRows() }
         />
       </div>
 
-      <div className="Grid-cell">
+      <div className='Grid-cell'>
         {
           list.length === 0 ?
-            <p className="u-flex u-flexJustifyCenter u-padEndsMd">You have no recipients</p> :
+            <p className='u-flex u-flexJustifyCenter u-padEndsMd'>You have no recipients</p> :
             <Panel mods={ className }>
               {buildList()}
             </Panel>
