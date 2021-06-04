@@ -161,7 +161,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
 
           <Field
             isDisabled={ false }
-            name='Sample'
+            name={ uniqueId }
             type='checkbox'
             formFieldProps={{
               checked: activeRows.includes(uniqueId),
@@ -212,7 +212,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
             <div>
               <Field
                 isDisabled={ false }
-                name='Sample'
+                name={ heading }
                 type='checkbox'
                 formFieldProps={{
                   checked: headerStatus[heading] && headerStatus[heading]['status'],
