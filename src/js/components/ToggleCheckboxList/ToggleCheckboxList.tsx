@@ -25,6 +25,7 @@ type Props = {
   headerStatus: object;
   setActiveRows: React.Dispatch<React.SetStateAction<{}>>;
   setHeaderStatus: React.Dispatch<React.SetStateAction<{}>>;
+  sortOrder?: string;
 };
 
 const ToggleCheckboxList: React.FunctionComponent<Props> = ({
@@ -35,11 +36,30 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
   activeRows,
   headerStatus,
   setActiveRows,
-  setHeaderStatus
+  setHeaderStatus,
+  sortOrder = 'asc'
 }: Props) => {
   // Dynamically create refs outside of the mapping below for performance reasons
   const bodyRefs = React.useRef([]);
   bodyRefs.current = list.map((_, i) => bodyRefs.current[i] ?? React.createRef());
+
+  const sort = (list: ExpandableList[]) => {
+    if (sortOrder === 'asc') {
+      // Sort headers
+      list.sort((prev: ExpandableList, curr: ExpandableList) => prev.heading[0] > curr.heading[0] ? 1 : 0);
+      // Sort sub-rows
+      list.map(row => row.rows.sort((a, b) => a[0] > b[0] ? 1 : 0));
+    }
+
+    if(sortOrder === 'desc') {
+      // Sort headers
+      list.sort((prev: ExpandableList, curr: ExpandableList) => prev.heading[0] < curr.heading[0] ? 1 : 0);
+      // Sort sub-rows
+      list.map(row => row.rows.sort((a, b) => a[0] < b[0] ? 1 : 0));
+    }
+  }
+
+  sort(list);
 
   const getFullChildCount = (list: any) => {
     return list.reduce((acc, curr) => acc + curr.rows.length, 0);
@@ -52,11 +72,12 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
 
     if (activeRows.length === 0 || activeRows.length > 0 && activeRows.length < getFullChildCount(list)) {
       divisions = list.map(row => {
-        const { heading, rows } = row;
+        const { heading, subheading, rows } = row;
+        const headerName = `${heading}-${subheading}`;
 
         headers = {
           ...headers,
-          [heading]: {
+          [headerName]: {
             activeCount: rows.length,
             status: true
           }
@@ -67,7 +88,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
           ...headers
         }
 
-        return rows.map(division => `${heading}-${division}`)
+        return rows.map(division => `${heading}-${subheading}-${division}`)
       })
       .reduce((curr, next) => [...curr, ...next], []);
     } else {
@@ -79,23 +100,24 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
     setHeaderStatus(currHeaderStatus);
   }
 
-  const toggleSubheadingRows = (heading: string, idx: number) => {
-    let rowData= [];
+  const toggleSubheadingRows = (heading: string, subheading: string, idx: number) => {
+    let rowData = [];
+    const headerName = `${heading}-${subheading}`;
 
-    if (heading in headerStatus && headerStatus[heading]['activeCount'] > 0) {
+    if (headerName in headerStatus && headerStatus[headerName]['activeCount'] >= 0) {
       // Remove rows which are associated with the header's naming convention
-      rowData = activeRows.filter(row => !row.includes(heading))
+      rowData = activeRows.filter(row => !row.includes(headerName))
 
       // Remove or filter out the header we do not want to keep
       const newObject = Object.keys(headerStatus)
-        .filter(item => item != heading)
+        .filter(item => item != headerName)
         .reduce((res, key) => (res[key] = headerStatus[key], res), {});
 
       setHeaderStatus(newObject);
     } else {
       const productChildElements = getChildren(idx);
 
-      const rows = [...productChildElements].map(division => `${heading}-${division.innerText}`);
+      const rows = [...productChildElements].map(division => `${headerName}-${division.innerText}`);
 
       rowData = [
         ...activeRows,
@@ -104,7 +126,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
 
       setHeaderStatus({
         ...headerStatus,
-        [heading]: {
+        [headerName]: {
           activeCount: rows.length,
           status: CheckboxStates.TRUE
         }
@@ -117,25 +139,26 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
   const getChildren = (idx: number) => bodyRefs.current[idx].current &&
     bodyRefs.current[idx].current.children[0].childNodes;
 
-  const onRowClick = (heading: string, division: string, parentIdx: number) => {
+  const onRowClick = (heading: string, subheading:string, division: string, parentIdx: number) => {
     let newActiveList = [];
     let activeCount = 0;
     let newStatus = CheckboxStates.FALSE;
     const children = getChildren(parentIdx);
+    const headerName = `${heading}-${subheading}`;
 
     // Row already exists, unselect it
     if (activeRows.includes(division)) {
       newActiveList = activeRows.filter(item => item != division);
 
-      activeCount = headerStatus[heading] ?
-        headerStatus[heading]['activeCount'] - 1 :
-        headerStatus[heading]['activeCount'];
+      activeCount = headerStatus[headerName] ?
+        headerStatus[headerName]['activeCount'] - 1 :
+        headerStatus[headerName]['activeCount'];
 
       if (activeCount > 0 && activeCount < children.length) {
         newStatus = CheckboxStates.INDETERMINATE;
       }
     } else { // Row doesn't exists, select it
-      activeCount = headerStatus[heading] ? headerStatus[heading]['activeCount'] + 1 : 1;
+      activeCount = headerStatus[headerName] ? headerStatus[headerName]['activeCount'] + 1 : 1;
 
       if (activeCount === children.length) {
         newStatus = CheckboxStates.TRUE;
@@ -151,7 +174,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
 
     const itemActiveStatus = {
       ...headerStatus,
-      [heading]: {
+      [headerName]: {
         activeCount: activeCount,
         status: newStatus
       }
@@ -161,9 +184,9 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
     setActiveRows(newActiveList);
   }
 
-  const buildRows = (heading: string, rows: string[], parentIdx: number)  => {
+  const buildRows = (heading: string, subheading: string, rows: string[], parentIdx: number)  => {
     return rows.map(division => {
-      const uniqueId = `${heading}-${division}`;
+      const uniqueId = `${heading}-${subheading}-${division}`;
       const classes = activeRows.includes(uniqueId) ?
         `u-flex u-flexRow u-flexJustifyBetween Panel-row--active ${mods}` :
         `u-flex u-flexRow u-flexJustifyBetween ${mods}`;
@@ -178,7 +201,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
             type='checkbox'
             formFieldProps={{
               checked: activeRows.includes(uniqueId),
-              onClick: () => { onRowClick(heading, uniqueId, parentIdx) }
+              onClick: () => { onRowClick(heading, subheading, uniqueId, parentIdx) }
             }}
           />
         </PanelRow>
@@ -195,9 +218,10 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
       } = item;
 
       let selected;
+      const headerName = `${heading}-${subheading}`;
 
-      if (headerStatus[heading]) {
-        selected = headerStatus[heading]['activeCount'] == getChildren(idx).length ? 'Panel-header--active' : '';
+      if (headerStatus[headerName]) {
+        selected = headerStatus[headerName]['activeCount'] == getChildren(idx).length ? 'Panel-header--active' : '';
       }
 
       const classes = getClassName(
@@ -206,18 +230,19 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
         selected
       );
 
-
       return (
-        <React.Fragment key={ heading }>
+        <React.Fragment key={ `${headerName}` }>
           <PanelHeader mods={ classes }>
             <div>
-              <ListToggle
-                onClick={() => {
-                  bodyRefs.current[idx].current.classList &&
-                  bodyRefs.current[idx].current.classList.toggle('Panel-body--closed');
-                  bodyRefs.current[idx].current.classList.toggle('Panel-body--open');
-                }}
-              />
+              { rows && rows.length > 0 &&
+                <ListToggle
+                  onClick={() => {
+                    bodyRefs.current[idx].current.classList &&
+                    bodyRefs.current[idx].current.classList.toggle('Panel-body--closed');
+                    bodyRefs.current[idx].current.classList.toggle('Panel-body--open');
+                  }}
+                />
+              }
               <strong className='u-padSidesSm'>{ heading }</strong>
               <Tag text={ subheading } />
             </div>
@@ -225,11 +250,11 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
             <div>
               <Field
                 isDisabled={ false }
-                name={ heading }
+                name={ headerName }
                 type='checkbox'
                 formFieldProps={{
-                  checked: headerStatus[heading] && headerStatus[heading]['status'],
-                  onClick: () => toggleSubheadingRows(heading, idx)
+                  checked: headerStatus[headerName] && headerStatus[headerName]['status'],
+                  onClick: () => toggleSubheadingRows(heading, subheading, idx)
                 }}
               />
             </div>
@@ -240,7 +265,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
             className='Panel-body-wrapper Panel-body--closed'
           >
             <PanelBody>
-              { buildRows(heading, rows, idx) }
+              { buildRows(heading, subheading, rows, idx) }
             </PanelBody>
           </div>
         </React.Fragment>
@@ -248,7 +273,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
     })
   }
 
-  const buttonLabel = activeRows.length === getFullChildCount(list) ? 'Deselect All' : 'Select All';
+  const buttonLabel = activeRows.length === getFullChildCount(list) ? 'Clear All' : 'Select All';
 
   return (
     <>
