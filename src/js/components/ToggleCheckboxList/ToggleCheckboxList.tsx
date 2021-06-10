@@ -9,6 +9,7 @@ import { Tag } from '../Tag';
 import { Field } from '../Field';
 import { ListToggle } from '../ListToggle';
 import { getClassName } from '../../utils/helpers';
+import { sortBy } from '../../utils/sort';
 
 interface ExpandableList {
   heading: string;
@@ -44,19 +45,17 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
   bodyRefs.current = list.map((_, i) => bodyRefs.current[i] ?? React.createRef());
 
   const sort = (list: ExpandableList[]) => {
-    if (sortOrder === 'asc') {
-      // Sort headers
-      list.sort((prev: ExpandableList, curr: ExpandableList) => prev.heading[0] > curr.heading[0] ? 1 : 0);
-      // Sort sub-rows
-      list.map(row => row.rows.sort((a, b) => a[0] > b[0] ? 1 : 0));
-    }
+    let order:boolean = false;
 
     if(sortOrder === 'desc') {
-      // Sort headers
-      list.sort((prev: ExpandableList, curr: ExpandableList) => prev.heading[0] < curr.heading[0] ? 1 : 0);
-      // Sort sub-rows
-      list.map(row => row.rows.sort((a, b) => a[0] < b[0] ? 1 : 0));
+      order = true;
     }
+
+    sortBy(list, { name: 'subheading', sortType: 'alpha', isReverse: order });
+    sortBy(list, { name: 'heading', sortType: 'alpha', isReverse: order });
+
+    // Sort sub-rows
+    list.map(row => row.rows.sort((a, b) => a[0] > b[0] ? 1 : 0));
   }
 
   sort(list);
