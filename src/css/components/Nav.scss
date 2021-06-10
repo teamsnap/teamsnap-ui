@@ -12,6 +12,16 @@
     color: black;
     box-shadow: 4px 1px 10px #00000050;
 
+    .Nav-header {
+      border-bottom: 1px solid color-neutral(2);
+
+      &:hover {
+        cursor: pointer;
+        background-color: color-neutral(2);
+        transition: all ease 200ms
+      }
+    }
+
     a {
       color: black;
     }
@@ -104,6 +114,12 @@
   color: color-neutral(1);
   font-size: 1rem;
   max-height: 65px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: color-primary(8);
+    transition: all ease 200ms;
+  }
 
   .Nav-itemTitle {
     white-space: nowrap;

@@ -4,35 +4,56 @@ import { ToggleCheckboxList } from '../ToggleCheckboxList'
 
 const stories = storiesOf('ToggleCheckboxList', module);
 
-const data = [{
-  'heading': 'Competitive',
-  'subheading': '2021 Fall Season',
-  'rows': [
-    'Unassigned',
-    'BoysU14-1',
-    'BoysU12-2',
-    'GirlsU14-3',
-    'GirlsU12-4'
-  ]
-}, {
-  'heading': 'Recreational',
-  'subheading': '2021 Fall Season',
-  'rows': [
-    'BoysU14-5',
-    'BoysU12-6',
-    'GirlsU14-7',
-    'GirlsU12-8'
-  ]
+const data = [
+  {
+    'heading': 'Competitive',
+    'subheading': '2021 Fall Season',
+    'rows': [
+      'Unassigned',
+      'BoysU14',
+      'BoysU12',
+      'GirlsU14',
+      'GirlsU12'
+    ]
   }, {
-  'heading': 'International',
-  'subheading': '2021 Spring Season',
-  'rows': [
-    'BoysU14-9',
-    'BoysU12-10',
-    'GirlsU14-11',
-    'GirlsU12-12'
-  ]
-}]
+    'heading': 'Recreational',
+    'subheading': '2021 Fall Season',
+    'rows': [
+      'BoysU14',
+      'BoysU12',
+      'GirlsU14',
+      'GirlsU12'
+    ]
+    }, {
+    'heading': 'International',
+    'subheading': '2021 Spring Season',
+    'rows': [
+      'BoysU14',
+      'BoysU12',
+      'GirlsU14',
+      'GirlsU12'
+    ]
+  }, {
+    "heading": "Alpha Season",
+    "subheading": "2021 Fall Season",
+    "rows": [
+      "PGirlsU14",
+      "DBoysU14",
+      "LBoysU12"
+    ]
+  }, {
+    "heading": "Beta Season",
+    "subheading": "2021 Summer Season",
+    "rows": [
+      "BBoysU12",
+      "AGirlsU12"
+    ]
+  }, {
+    "heading": "Micron Program 2",
+    "subheading": "2021 Summer Season",
+    "rows": []
+  }
+];
 
 stories.add('Default', () => {
   const [activeRows, setActiveRows] = React.useState([]);
@@ -47,6 +68,29 @@ stories.add('Default', () => {
       setActiveRows={ setActiveRows }
       setHeaderStatus={ setHeaderStatus }
     />
+  )
+});
+
+stories.add('Error State', () => {
+  const [activeRows, setActiveRows] = React.useState([]);
+  const [headerStatus, setHeaderStatus] = React.useState({});
+
+  /* We need to spend some time on what the mods attribute should be able to update */
+  return (
+    <>
+      <ToggleCheckboxList
+        className='error'
+        label='Recipients'
+        list={data}
+        activeRows={activeRows}
+        headerStatus={headerStatus}
+        setActiveRows={setActiveRows}
+        setHeaderStatus={setHeaderStatus}
+      />
+      <div style={{ color: '#e26362', marginLeft: '2px', marginTop: '-5px' }}>
+        You must select a division for the message.
+      </div>
+    </>
   )
 });
 
