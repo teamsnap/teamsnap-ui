@@ -8,6 +8,7 @@ const data = [
   {
     'heading': 'Competitive',
     'subheading': '2021 Fall Season',
+    'isArchived': true,
     'rows': [
       'Unassigned',
       'BoysU14',
@@ -18,6 +19,7 @@ const data = [
   }, {
     'heading': 'Recreational',
     'subheading': '2021 Fall Season',
+    'isArchived': false,
     'rows': [
       'BoysU14',
       'BoysU12',
@@ -27,6 +29,7 @@ const data = [
     }, {
     'heading': 'International',
     'subheading': '2021 Spring Season',
+    'isArchived': false,
     'rows': [
       'BoysU14',
       'BoysU12',
@@ -36,6 +39,7 @@ const data = [
   }, {
     "heading": "Alpha Season",
     "subheading": "2021 Fall Season",
+    'isArchived': true,
     "rows": [
       "PGirlsU14",
       "DBoysU14",
@@ -44,6 +48,7 @@ const data = [
   }, {
     "heading": "Beta Season",
     "subheading": "2021 Summer Season",
+    'isArchived': false,
     "rows": [
       "BBoysU12",
       "AGirlsU12"
@@ -51,6 +56,7 @@ const data = [
   }, {
     "heading": "Micron Program 2",
     "subheading": "2021 Summer Season",
+    'isArchived': false,
     "rows": []
   }
 ];

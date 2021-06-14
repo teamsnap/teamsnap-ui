@@ -15,6 +15,7 @@ interface ExpandableList {
   heading: string;
   subheading: string;
   rows: string[];
+  isArchived: boolean;
 }
 
 type Props = {
@@ -213,7 +214,8 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
       const {
         heading,
         subheading,
-        rows
+        rows,
+        isArchived
       } = item;
 
       let selected;
@@ -244,6 +246,14 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
               }
               <strong className='u-padSidesSm'>{ heading }</strong>
               <Tag text={ subheading } />
+
+              { isArchived &&
+                  <Tag
+                    icon='archive'
+                    text='Archived'
+                    mods='u-spaceLeftSm'
+                  />
+              }
             </div>
 
             <div>
