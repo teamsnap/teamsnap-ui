@@ -5,17 +5,15 @@ import { Panel } from '../Panel';
 import { PanelHeader } from '../PanelHeader';
 import { PanelBody } from '../PanelBody';
 import { PanelRow } from '../PanelRow';
-import { Tag } from '../Tag';
 import { Field } from '../Field';
 import { ListToggle } from '../ListToggle';
 import { getClassName } from '../../utils/helpers';
-import { sortBy } from '../../utils/sort';
 
 interface ExpandableList {
   heading: string;
   subheading: string;
+  tags: React.ReactNode[];
   rows: string[];
-  isArchived: boolean;
 }
 
 type Props = {
@@ -27,7 +25,6 @@ type Props = {
   headerStatus: object;
   setActiveRows: React.Dispatch<React.SetStateAction<{}>>;
   setHeaderStatus: React.Dispatch<React.SetStateAction<{}>>;
-  sortOrder?: string;
 };
 
 const ToggleCheckboxList: React.FunctionComponent<Props> = ({
@@ -38,28 +35,11 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
   activeRows,
   headerStatus,
   setActiveRows,
-  setHeaderStatus,
-  sortOrder = 'asc'
+  setHeaderStatus
 }: Props) => {
   // Dynamically create refs outside of the mapping below for performance reasons
   const bodyRefs = React.useRef([]);
   bodyRefs.current = list.map((_, i) => bodyRefs.current[i] ?? React.createRef());
-
-  const sort = (list: ExpandableList[]) => {
-    let order:boolean = false;
-
-    if(sortOrder === 'desc') {
-      order = true;
-    }
-
-    sortBy(list, { name: 'subheading', sortType: 'alpha', isReverse: order });
-    sortBy(list, { name: 'heading', sortType: 'alpha', isReverse: order });
-
-    // Sort sub-rows
-    list.map(row => row.rows.sort((a, b) => a[0] > b[0] ? 1 : 0));
-  }
-
-  sort(list);
 
   const getFullChildCount = (list: any) => {
     return list.reduce((acc, curr) => acc + curr.rows.length, 0);
@@ -214,8 +194,8 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
       const {
         heading,
         subheading,
-        rows,
-        isArchived
+        tags,
+        rows
       } = item;
 
       let selected;
@@ -245,15 +225,8 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
                 />
               }
               <strong className='u-padSidesSm'>{ heading }</strong>
-              <Tag text={ subheading } />
 
-              { isArchived &&
-                  <Tag
-                    icon='archive'
-                    text='Archived'
-                    mods='u-spaceLeftSm'
-                  />
-              }
+              { tags.map(c => c) }
             </div>
 
             <div>
