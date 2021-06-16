@@ -35,7 +35,6 @@ $SelectBox-indicator-width: scaleGrid(4);
     height: ( $SelectBox-height - $su-small );
     line-height: ( $SelectBox-height - $su-small );
     text-align: center;
-    border-left: $border-width-small solid $cu-divider--light;
     pointer-events: none;
   }
 }
