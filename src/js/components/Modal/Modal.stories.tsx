@@ -17,7 +17,7 @@ stories.add('Default', () => {
       />
 
       <Modal
-        heading={<div className="u-textCenter">Sending</div>}
+        heading={<div className='u-textCenter'>Sending</div>}
         show={sending}
         closeFn={() => setSending(false)}
       >
@@ -48,7 +48,7 @@ stories.add('Closing triggered by async action', () => {
       />
 
       <Modal
-        heading={<div className="u-textCenter">Self closing modal</div>}
+        heading={<div className='u-textCenter'>Self closing modal</div>}
         show={sending}
       >
         <Loader
@@ -103,11 +103,11 @@ stories.add('With descriptors', () => {
         style={{ width: '80vw' }}
       >
         <div>
-          <div className="u-border u-padSidesLg u-padEndsMd u-spaceBottomMd u-borderRadiusMd">
+          <div className='u-border u-padSidesLg u-padEndsMd u-spaceBottomMd u-borderRadiusMd'>
             <h3>Organization Admin</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. </p>
           </div>
-          <div className="u-border u-padSidesLg u-padEndsMd u-borderRadiusMd">
+          <div className='u-border u-padSidesLg u-padEndsMd u-borderRadiusMd'>
             <h3>Program Admin</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. </p>
           </div>
@@ -128,7 +128,7 @@ stories.add('With default CTA', () => {
       />
 
       <Modal
-        heading={<div className="u-textCenter">Sending</div>}
+        heading={<div className='u-textCenter'>Sending</div>}
         show={sending}
         closeFn={() => setSending(false)}
       >
@@ -161,7 +161,7 @@ stories.add('With custom CTA', () => {
       />
 
       <Modal
-        heading={<div className="u-textCenter">Sending</div>}
+        heading={<div className='u-textCenter'>Sending</div>}
         show={sending}
         showClose
         closeFn={() => setSending(false)}

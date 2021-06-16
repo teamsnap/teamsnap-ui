@@ -41,12 +41,12 @@ const Modal: React.FC<Props> = ({
     <div className={`Modal ${show ? 'Modal--open' : 'Modal--closed'}`}>
       <div className='Modal-content u-posRelative' style={{ width: '50%', ...(style || {})}}>
         <div className='Modal-header u-flex u-flexJustifyBetween'>
-          <div className="u-sizeFill">
+          <div className='u-sizeFill'>
             <h2>{heading}</h2>
           </div>
           { showClose &&
-            <div className="Modal-close">
-              <button onClick={() => closeFn?.()} className="Button Button--text"><Icon name="dismiss"/></button>
+            <div className='Modal-close'>
+              <button onClick={() => closeFn?.()} className='Button Button--text'><Icon name='dismiss'/></button>
             </div>
           }
         </div>
