@@ -39,7 +39,7 @@ const Modal: React.FC<Props> = ({
 
   return (
     <div className={`Modal ${show ? 'Modal--open' : 'Modal--closed'}`}>
-      <div className={`Modal-content u-posRelative`} style={{ width: '50%', ...(style || {})}}>
+      <div className='Modal-content u-posRelative' style={{ width: '50%', ...(style || {})}}>
         <div className='Modal-header u-flex u-flexJustifyBetween'>
           <div className="u-sizeFill">
             <h2>{heading}</h2>
