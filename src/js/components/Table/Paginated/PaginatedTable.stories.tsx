@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import PaginatedTable from "./PaginatedTable";
 import BasicSearch from "./BasicSearch";
 import { Placement } from "../../../utils/placement";
-import { text } from "@storybook/addon-knobs/react";
+import { text } from '@storybook/addon-knobs';
 
 const stories = storiesOf("PaginatedTable", module);
 /**
