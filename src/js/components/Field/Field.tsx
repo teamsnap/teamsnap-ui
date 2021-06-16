@@ -25,9 +25,8 @@ import { FieldGroup } from "../FieldGroup";
 import { FieldLabel } from "../FieldLabel";
 import { FieldMessage } from "../FieldMessage";
 import { Input } from "../Input";
-import { Status, Size } from "../../types";
+import { CheckboxState, CheckboxStates, Status, Size } from "../../types";
 import { Checkbox } from "../Checkbox";
-import { CheckboxState, CheckboxStates } from "../../types";
 
 const checkboxShape = PropTypes.shape({
   text: PropTypes.string,
@@ -44,14 +43,13 @@ const inputShape = PropTypes.shape({
   showStatus: PropTypes.bool,
   showClear: PropTypes.bool,
   onClearClicked: PropTypes.func,
-  rawInputProps: PropTypes.any,
+  inputProps: PropTypes.any,
 });
 
 const fieldPropTypes = {
   type: PropTypes.oneOf(["toggle", "select", "input", "checkbox"]).isRequired,
   formFieldProps: PropTypes.oneOfType([checkboxShape, inputShape]),
   name: PropTypes.string.isRequired,
-  inputProps: PropTypes.any,
   label: PropTypes.string,
   caption: PropTypes.string,
   status: Status.PropType,
@@ -73,7 +71,6 @@ type FieldType = React.FunctionComponent<
 const Field: FieldType = ({
   type,
   name,
-  inputProps,
   label,
   caption,
   ref,
@@ -112,7 +109,7 @@ const Field: FieldType = ({
               showStatus,
               showClear,
               onClearClicked,
-              rawInputProps,
+              inputProps,
             } = formFieldProps as any;
             return (
               <Input
@@ -120,7 +117,7 @@ const Field: FieldType = ({
                 placeholder={placeholder}
                 name={name}
                 type={type || "text"}
-                inputProps={rawInputProps}
+                inputProps={inputProps}
                 status={status}
                 rightIcon={rightIcon}
                 leftIcon={leftIcon}

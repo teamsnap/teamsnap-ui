@@ -204,10 +204,10 @@ stories.add("Clear Icon", () => {
     <br/>
     <Field
       caption="This input clears when the right-most icon is clicked."
-      inputProps={{ value: value, onChange: (e) => setValue(e.target.value) }}
       isDisabled={disabled}
       label="Clearable Input"
       formFieldProps={{
+        inputProps: { value: value, onChange: (e) => setValue(e.target.value) },
         leftIcon: <Icon name="home" />,
         rightIcon: <Icon name="search" />,
         placeholder: placeholder,
