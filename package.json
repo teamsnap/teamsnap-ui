@@ -50,6 +50,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
     "@storybook/addon-knobs": "^6.2.9",
     "@storybook/react": "^6.2.9",
     "@types/node": "^12.6.2",
@@ -100,6 +101,7 @@
     "trim-newlines": "^4.0.1",
     "css-what": "^5.0.1",
     "glob-parent": "^5.1.2",
-    "browserslist": "^4.16.5"
+    "browserslist": "^4.16.5",
+    "trim": "^0.0.3"
   }
 }
