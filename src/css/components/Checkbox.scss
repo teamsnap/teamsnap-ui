@@ -97,6 +97,19 @@ $Checkbox-bg-color: $cu-foreground !default;
     .Checkbox-input:checked:not(:disabled) + .Checkbox-label:before {
       border-color: $color;
     }
+
+    .Checkbox-input:disabled {
+      // TODO: Add styles here
+      
+      & + .Checkbox-label{
+        color: color-neutral(5);
+        &:before {
+          // TODO ADD STYLES HERE
+          background-color: transparent !important;
+          border: 1px solid color-neutral(5) !important;
+        }
+      }
+    }
   }
 
   // Pill
