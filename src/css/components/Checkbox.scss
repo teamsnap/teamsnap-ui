@@ -103,7 +103,6 @@ $Checkbox-bg-color: $cu-foreground !default;
       & + .Checkbox-label{
         color: color-neutral(5);
         &:before {
-          // TODO ADD STYLES HERE
           border-radius: 50%; // Make it a circle
           background-color: color-neutral(5);
           border: 1px solid color-neutral(5) !important;
