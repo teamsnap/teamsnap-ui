@@ -5,6 +5,11 @@ import Avatar from "./Avatar";
 
 const stories = storiesOf("Avatar", module);
 
+export default {
+  title: 'Avatar',
+  component: Avatar,
+};
+
 const optionsList = {
   "xs": "xs",
   "sm": "sm",

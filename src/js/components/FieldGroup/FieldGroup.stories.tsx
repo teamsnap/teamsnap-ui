@@ -11,6 +11,11 @@ import { Icon } from "../Icon";
 
 const stories = storiesOf("FieldGroup", module);
 
+export default {
+  title: 'FieldGroup',
+  component: FieldGroup,
+};
+
 const statusOptions = {
   success: "success",
   error: "error",

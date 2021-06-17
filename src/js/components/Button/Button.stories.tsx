@@ -5,6 +5,12 @@ import Button from "./Button";
 
 const stories = storiesOf("Button", module);
 
+export default {
+  title: 'Button',
+  component: Button,
+};
+
+
 stories.add("Default", () => (
   <Button
     mods="u-spaceRightSm"

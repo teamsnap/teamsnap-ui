@@ -10,6 +10,11 @@ import { PanelCell } from "../PanelCell";
 
 const stories = storiesOf("Panel", module);
 
+export default {
+  title: 'Panel',
+  component: Panel,
+};
+
 const noImage = {
   Source: null,
   Placeholder: "http://via.placeholder.com/640x360"

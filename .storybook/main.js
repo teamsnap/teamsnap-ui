@@ -6,13 +6,7 @@ module.exports = {
     '../src/**/*.stories.@(tsx|js)',
   ],
   addons: [
-    {
-      name: '@storybook/addon-essentials',
-      options: {
-        configureJSX: true,
-        sourceLoaderOptions: null,
-      },
-    },
+    '@storybook/addon-docs',
     '@storybook/addon-knobs',
   ],
   typescript: {

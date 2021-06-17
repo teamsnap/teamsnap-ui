@@ -5,6 +5,11 @@ import Icon from "./Icon";
 
 const stories = storiesOf("Icon", module);
 
+export default {
+  title: 'Icon',
+  component: Icon,
+};
+
 const iconNames = {
   home: "home",
   roster: "roster",

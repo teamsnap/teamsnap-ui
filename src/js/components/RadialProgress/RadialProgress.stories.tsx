@@ -5,6 +5,11 @@ import RadialProgress from "./RadialProgress";
 
 const stories = storiesOf("RadialProgress", module);
 
+export default {
+  title: 'RadialProgress',
+  component: RadialProgress,
+};
+
 const sizeOptions = {
   xsmall: "xsmall",
   small: "small",
