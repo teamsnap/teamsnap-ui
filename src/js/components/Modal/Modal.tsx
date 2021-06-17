@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Icon } from '../Icon';
+import { Button } from '../Button';
 
 interface Props {
   heading: React.ReactNode;
@@ -46,7 +47,7 @@ const Modal: React.FC<Props> = ({
           </div>
           { showClose &&
             <div className='Modal-close'>
-              <button type="button" onClick={() => closeFn?.()} className='Button Button--text'><Icon name='dismiss'/></button>
+              <Button type="link" onClick={() => closeFn?.()} icon="dismiss" mods="u-colorNeutral9" />
             </div>
           }
         </div>
