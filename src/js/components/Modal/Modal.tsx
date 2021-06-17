@@ -46,7 +46,7 @@ const Modal: React.FC<Props> = ({
           </div>
           { showClose &&
             <div className='Modal-close'>
-              <button onClick={() => closeFn?.()} className='Button Button--text'><Icon name='dismiss'/></button>
+              <button type="button" onClick={() => closeFn?.()} className='Button Button--text'><Icon name='dismiss'/></button>
             </div>
           }
         </div>
