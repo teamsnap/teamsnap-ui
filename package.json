@@ -86,7 +86,7 @@
     "style-loader": "^2.0.0",
     "svgo": "^2.3.0",
     "typescript": "^4.0.3",
-    "webpack": "^5.39.0"
+    "webpack": "4"
   },
   "dependencies": {
     "@babel/node": "^7.5.5",
@@ -102,6 +102,7 @@
     "css-what": "^5.0.1",
     "glob-parent": "^5.1.2",
     "browserslist": "^4.16.5",
-    "trim": "^0.0.3"
+    "trim": "^0.0.3",
+    "webpack": "4"
   }
 }
