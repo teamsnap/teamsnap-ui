@@ -342,7 +342,7 @@ stories.add("Radios", () => {
     <>
       <h4>This example omits the label and caption on the field components, instead opting to work with those manually.</h4>
       <br/>
-      <Field.Label>Cats/Dogs/Both?</Field.Label>
+      <Field.Label>Favorite Pet?</Field.Label>
       <Field
         isInline
         style={{marginRight: "12px"}}
@@ -397,7 +397,7 @@ stories.add("Radios", () => {
         }}
         name="Fish"
       />
-      <Field.Caption>This determines if you'll see cat gifs, dog gifs, or both.</Field.Caption>
+      <Field.Caption>Pick one!</Field.Caption>
     </>
   )
 });
