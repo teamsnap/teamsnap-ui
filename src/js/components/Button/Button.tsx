@@ -61,6 +61,7 @@ const Button: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = 
     color && `Button--${color}`,
     size && `Button--${size}`,
     isActive && "is-active",
+    type === 'link' && 'Button--text',
     mods
   );
 
@@ -72,7 +73,7 @@ const Button: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = 
 
   return (
     <button
-      type={type as "button" | "reset"}
+      type={type === 'link' ? 'button' : type as 'button'}
       className={cname}
       style={style}
       onClick={onClick}
