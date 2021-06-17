@@ -27,6 +27,7 @@ import { FieldMessage } from "../FieldMessage";
 import { Input } from "../Input";
 import { CheckboxState, CheckboxStates, Status, Size } from "../../types";
 import { Checkbox } from "../Checkbox";
+import { Radio } from "../Radio";
 
 const checkboxShape = PropTypes.shape({
   text: PropTypes.string,
@@ -85,11 +86,24 @@ const Field: FieldType = ({
     <FieldGroup style={style} isInline={isInline} status={status} isDisabled={isDisabled}>
       {label && <FieldLabel name={name}>{label}</FieldLabel>}
       {((formFieldProps) => {
+        const { text, checked, onClick } = formFieldProps as any;
         switch (type) {
           case "checkbox":
-            const { text, checked, onClick } = formFieldProps as any;
             return (
               <Checkbox
+                name={name}
+                inputProps={{
+                  checked: checked,
+                  onClick: onClick,
+                  disabled: isDisabled,
+                }}
+                label={text}
+                isInline
+              />
+            );
+          case "radio":
+            return (
+              <Radio
                 name={name}
                 inputProps={{
                   checked: checked,
