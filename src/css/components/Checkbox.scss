@@ -99,7 +99,6 @@ $Checkbox-bg-color: $cu-foreground !default;
     }
 
     .Checkbox-input:disabled {
-      // TODO: Add styles here
 
       & + .Checkbox-label{
         color: color-neutral(5);
