@@ -18,7 +18,7 @@ stories.add("Default", () => <ProgressBar progress={33} />);
 stories.add(
   "Vertical Bars",
   () => {
-    const size = select("size", sizeOptions);
+    const size = select("size", sizeOptions, null);
     return (
       <div
         style={{
@@ -65,7 +65,7 @@ stories.add(
 stories.add(
   "Progress Colors",
   () => {
-    const size = select("size", sizeOptions);
+    const size = select("size", sizeOptions, null);
 
     return (
       <div>
