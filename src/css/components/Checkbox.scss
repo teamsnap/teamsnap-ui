@@ -62,7 +62,7 @@ $Checkbox-bg-color: $cu-foreground !default;
       // Transitions to narrow inner radius of checked radio
     }
 
-    .Checkbox-input:checked:not(:disabled) + .Checkbox-label:before {
+    .Checkbox-input:checked + .Checkbox-label:before {
       box-shadow: inset 0 0 0 $radioPadding #fff;
       // Creates inner radius for radio button
     }
@@ -100,13 +100,20 @@ $Checkbox-bg-color: $cu-foreground !default;
 
     .Checkbox-input:disabled {
       // TODO: Add styles here
-      
+
       & + .Checkbox-label{
         color: color-neutral(5);
         &:before {
           // TODO ADD STYLES HERE
-          background-color: transparent !important;
+          border-radius: 50%; // Make it a circle
+          background-color: color-neutral(5);
           border: 1px solid color-neutral(5) !important;
+        }
+      }
+
+      &:not(:checked) {
+        & + .Checkbox-label:before {
+          background-color: transparent !important
         }
       }
     }
@@ -216,7 +223,7 @@ $Checkbox-bg-color: $cu-foreground !default;
     background-image: none;
   }
 
-  .Checkbox-input:checked:not(:disabled) + .Checkbox-label:before {
+  .Checkbox-input:checked + .Checkbox-label:before {
     border-style: solid;
     border-width: $border-width-small; // Add a border to define the radius
     background-image: none; // Remove check icon

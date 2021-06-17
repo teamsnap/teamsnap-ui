@@ -337,7 +337,7 @@ stories.add("Indeterminate Checkbox", () => {
 
 stories.add("Radios", () => {
   const [favoritePet, setFavoritePet] = React.useState('');
-  
+
   return (
     <>
       <h4>This example omits the label and caption on the field components, instead opting to work with those manually.</h4>
@@ -359,6 +359,7 @@ stories.add("Radios", () => {
       <Field
         isInline
         type="radio"
+        style={{marginRight: "12px"}}
         formFieldProps={{
           text: "Dogs",
           checked: favoritePet === "dog",
@@ -372,6 +373,7 @@ stories.add("Radios", () => {
         isDisabled
         isInline
         type="radio"
+        style={{marginRight: "12px"}}
         formFieldProps={{
           text: "Birds",
           checked: true,
@@ -380,6 +382,20 @@ stories.add("Radios", () => {
           },
         }}
         name="Birds"
+      />
+
+      <Field
+        isDisabled
+        isInline
+        type="radio"
+        formFieldProps={{
+          text: "Fish",
+          checked: false,
+          onClick: () => {
+            setFavoritePet('fish');
+          },
+        }}
+        name="Fish"
       />
       <Field.Caption>This determines if you'll see cat gifs, dog gifs, or both.</Field.Caption>
     </>
