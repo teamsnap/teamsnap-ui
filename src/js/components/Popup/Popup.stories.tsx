@@ -7,6 +7,11 @@ import PopupConfirm from "./PopupConfirm";
 
 const stories = storiesOf("Popup", module);
 
+export default {
+  title: 'Popup',
+  component: Popup,
+};
+
 const actions = [
   {
     text: "Log to console",

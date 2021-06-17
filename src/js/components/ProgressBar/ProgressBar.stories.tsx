@@ -5,6 +5,11 @@ import ProgressBar from "./ProgressBar";
 
 const stories = storiesOf("ProgressBar", module);
 
+export default {
+  title: 'ProgressBar',
+  component: ProgressBar,
+};
+
 const sizeOptions = {
   xsmall: "xsmall",
   small: "small",

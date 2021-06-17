@@ -10,6 +10,11 @@ import { PanelCell } from "../PanelCell";
 
 const stories = storiesOf("Panel", module);
 
+export default {
+  title: 'Panel',
+  component: Panel,
+};
+
 stories.add("Defaults", () => (
   <Panel>
     <PanelHeader title="Panel with Header, Body, Rows, Cells, and Footer" />

@@ -6,7 +6,7 @@ module.exports = {
     '../src/**/*.stories.@(tsx|js)',
   ],
   addons: [
-    '@storybook/addon-knobs',
-    '@storybook/addon-docs'
+    '@storybook/addon-docs',
+    '@storybook/addon-knobs'
   ]
 };

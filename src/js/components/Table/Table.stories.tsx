@@ -4,6 +4,11 @@ import Table from "./Table";
 
 const stories = storiesOf("Table", module);
 
+export default {
+  title: 'Table',
+  component: Table,
+};
+
 const columns = [
   { name: "col1", label: <div>Column One (in a div)</div>, isSortable: true },
   { name: "col2", label: "Column Two", isSortable: true },

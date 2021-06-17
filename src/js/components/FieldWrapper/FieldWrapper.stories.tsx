@@ -7,6 +7,11 @@ import FieldWrapper from "./FieldWrapper";
 
 const stories = storiesOf("FieldWrapper", module);
 
+export default {
+  title: 'FieldWrapper',
+  component: FieldWrapper,
+};
+
 const statusOptions = {
   success: "success",
   error: "error",

@@ -4,6 +4,11 @@ import Avatar from "./Avatar";
 
 const stories = storiesOf("Avatar", module);
 
+export default {
+  title: 'Avatar',
+  component: Avatar,
+};
+
 stories.add("Default", () => (
   <Avatar
     mods="u-spaceRightSm"
