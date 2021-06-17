@@ -334,3 +334,70 @@ stories.add("Indeterminate Checkbox", () => {
     </>
   );
 });
+
+stories.add("Radios", () => {
+  const [favoritePet, setFavoritePet] = React.useState('');
+
+  return (
+    <>
+      <h4>This example omits the label and caption on the field components, instead opting to work with those manually.</h4>
+      <br/>
+      <Field.Label>Favorite Pet?</Field.Label>
+      <Field
+        isInline
+        style={{marginRight: "12px"}}
+        type="radio"
+        formFieldProps={{
+          text: "Cats",
+          checked: favoritePet === "cat",
+          onClick: () => {
+            setFavoritePet('cat');
+          },
+        }}
+        name="Cats"
+      />
+      <Field
+        isInline
+        type="radio"
+        style={{marginRight: "12px"}}
+        formFieldProps={{
+          text: "Dogs",
+          checked: favoritePet === "dog",
+          onClick: () => {
+            setFavoritePet('dog');
+          },
+        }}
+        name="Dogs"
+      />
+      <Field
+        isDisabled
+        isInline
+        type="radio"
+        style={{marginRight: "12px"}}
+        formFieldProps={{
+          text: "Birds",
+          checked: true,
+          onClick: () => {
+            setFavoritePet('bird');
+          },
+        }}
+        name="Birds"
+      />
+
+      <Field
+        isDisabled
+        isInline
+        type="radio"
+        formFieldProps={{
+          text: "Fish",
+          checked: false,
+          onClick: () => {
+            setFavoritePet('fish');
+          },
+        }}
+        name="Fish"
+      />
+      <Field.Caption>Pick one!</Field.Caption>
+    </>
+  )
+});
