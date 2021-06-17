@@ -125,3 +125,9 @@ $Button--large-padding: 0 scaleGrid(2);
   padding: $Button--large-padding;
   min-width: $Button--large-height;
 }
+
+// * Modifier: Buttton Text
+
+.Button--text {
+  border: 0;
+}

@@ -1,43 +1,57 @@
 import * as React from 'react';
-import { Button } from '../Button';
+import { Icon } from '../Icon';
 
 interface Props {
-  heading: string;
+  heading: React.ReactNode;
   show: boolean;
-  handleCTA: any;
-  actionable?: boolean;
-  ctaLabel?: string;
   children: React.ReactNode;
+  showClose?: boolean;
+  allowOverlayClose?: boolean;
+  style?: React.CSSProperties;
+  closeFn?: () => void;
 }
 
 const Modal: React.FC<Props> = ({
   heading,
   show,
-  handleCTA,
-  actionable,
-  ctaLabel,
-  children
+  children,
+  showClose,
+  closeFn,
+  allowOverlayClose,
+  style
 }: Props) => {
+
+  React.useEffect(() => {
+    if (allowOverlayClose) {
+      const toggleModal = (event: any) => {
+        if (!document.querySelector('.Modal-content').contains(event.target)) {
+          closeFn?.();
+        }
+      }
+
+      document.body.addEventListener('click', toggleModal, { capture: true });
+
+      return () => {
+        document.body.removeEventListener('click', toggleModal);
+      }
+    }
+  },[]);
+
   return (
     <div className={`Modal ${show ? 'Modal--open' : 'Modal--closed'}`}>
-      <div className='Modal-content'>
-        <div className='Modal-header'>
-          <h2 style={{ marginTop: '20px' }}>{heading}</h2>
-        </div>
-
-        <div className='Modal-body'>
-          { children }
-
-          { actionable &&
-            <div className='Modal-footer'>
-              <Button
-                label={ ctaLabel || 'Close' }
-                color='negative'
-                onClick={ handleCTA }
-                icon='dismiss'
-              />
+      <div className='Modal-content u-posRelative' style={{ width: '50%', ...(style || {})}}>
+        <div className='Modal-header u-flex u-flexJustifyBetween'>
+          <div className='u-sizeFill'>
+            <h2>{heading}</h2>
+          </div>
+          { showClose &&
+            <div className='Modal-close'>
+              <button onClick={() => closeFn?.()} className='Button Button--text'><Icon name='dismiss'/></button>
             </div>
           }
+        </div>
+        <div className='Modal-body'>
+          { children }
         </div>
       </div>
     </div>
