@@ -40,6 +40,29 @@ stories.add("Themed Colors", () => {
   );
 });
 
+stories.add("Text Button", () => {
+  return (
+    <>
+      <p>This is a <Button
+          mods="u-spaceRightSm"
+          type="link"
+        >
+          Text Button
+        </Button>
+      </p>
+      <p>
+        This is a <Button
+          mods="u-spaceRightSm"
+          type="link"
+          isDisabled={true}
+        >
+          Disabled Text Button
+        </Button>
+      </p>
+    </>
+  );
+});
+
 stories.add("Sizes", () => (
   <div>
     <Button mods="u-spaceRightSm" size="small">

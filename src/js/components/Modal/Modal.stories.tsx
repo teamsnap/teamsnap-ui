@@ -117,7 +117,7 @@ stories.add('With descriptors', () => {
   )
 });
 
-stories.add('With default CTA', () => {
+stories.add('With close button', () => {
   const [sending, setSending] = React.useState(false);
 
   return (
@@ -130,40 +130,6 @@ stories.add('With default CTA', () => {
       <Modal
         heading={<div className='u-textCenter'>Sending</div>}
         show={sending}
-        closeFn={() => setSending(false)}
-      >
-        <Loader
-          type='spin'
-          text='Sending'
-          message='Some really long message here'
-        />
-        <div className='Modal-footer u-textCenter'>
-          <Button
-            label='Close'
-            color='negative'
-            onClick={ ()=> setSending(false) }
-            icon='dismiss'
-          />
-        </div>
-      </Modal>
-    </>
-  )
-});
-
-stories.add('With custom CTA', () => {
-  const [sending, setSending] = React.useState(false);
-
-  return (
-    <>
-      <Button
-        label='Test Modal'
-        onClick={() => setSending(true)}
-      />
-
-      <Modal
-        heading={<div className='u-textCenter'>Sending</div>}
-        show={sending}
-        showClose
         closeFn={() => setSending(false)}
       >
         <Loader

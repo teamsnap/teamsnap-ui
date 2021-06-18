@@ -130,4 +130,16 @@ $Button--large-padding: 0 scaleGrid(2);
 
 .Button--text {
   border: 0;
+  font-weight: inherit;
+  padding: 0;
+  vertical-align: unset;
+  color: color-primary(6);
+
+  &:disabled {
+    background-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
 }
