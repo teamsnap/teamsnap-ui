@@ -9,7 +9,7 @@ const stories = storiesOf("Popup", module);
 
 export default {
   title: 'Popup',
-  component: Popup,
+  component: PopupAction,
 };
 
 const actions = [
