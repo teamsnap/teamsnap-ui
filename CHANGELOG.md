@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Security`
 
 =======
+## [3.11.0] - 2021-06-21
+- https://github.com/teamsnap/teamsnap-ui/pull/696
+- `Updated` dependencies to address vulnerabilities
+- `Updated` to Storybook 6
+
 ## [3.10.10] - 2021-06-04
 - https://github.com/teamsnap/teamsnap-ui/pull/669
 - `Added` version control to npm and node
