@@ -1,0 +1,33 @@
+@import "../config/index.scss";
+
+// * @define default Breadcrumbs
+
+.Nav-breadcrumb {
+  color: black;
+  font-size: 16px;
+}
+
+a {
+  color: black;
+}
+
+.Breadcrumb {
+  li {
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+
+    &:last-child {
+      color: #5d7180;
+    }
+  }
+}
+
+.Icon-home {
+  color: #758693;
+  margin-right: 2px !important;
+}
+
+.Icon-separator {
+  color: #768794;
+}
