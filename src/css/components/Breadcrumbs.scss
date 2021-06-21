@@ -2,13 +2,13 @@
 
 // * @define default Breadcrumbs
 
-.Nav-breadcrumb {
-  color: black;
-  font-size: 16px;
-}
+// Global default breadcrumbs colors
+$breadcrumb-primary-color: color-neutral(7) !default;
+$breadcrumb-secondary-color: color-neutral(10) !default;
 
-a {
-  color: black;
+.Nav-breadcrumb {
+  color: $breadcrumb-secondary-color;
+  font-size: scaleGrid(2);
 }
 
 .Breadcrumb {
@@ -17,17 +17,21 @@ a {
     margin-right: 10px;
     position: relative;
 
+    a {
+      color: $breadcrumb-secondary-color;
+    }
+
     &:last-child {
-      color: #5d7180;
+      color: $breadcrumb-primary-color;
     }
   }
 }
 
 .Icon-home {
-  color: #758693;
+  color: $breadcrumb-primary-color;
   margin-right: 2px !important;
 }
 
 .Icon-separator {
-  color: #768794;
+  color: $breadcrumb-primary-color;
 }

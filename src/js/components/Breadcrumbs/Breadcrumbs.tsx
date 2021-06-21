@@ -17,8 +17,15 @@ import Icon from "../Icon/Icon";
 
 const propTypes = {
   className: PropTypes.string,
-  breadcrumbs: PropTypes.array.isRequired,
-  home: PropTypes.any,
+  breadcrumbs: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string,
+      link: PropTypes.string,
+      className: PropTypes.string,
+      style: PropTypes.object,
+    })
+  ).isRequired,
+  home: PropTypes.shape({ url: PropTypes.string }),
   id: PropTypes.string,
   style: PropTypes.object,
 };
@@ -31,15 +38,7 @@ const Breadcrumbs: React.FunctionComponent<
       return;
     }
 
-    let content = (
-      <Icon
-        className="Icon Icon-home"
-        mods={null}
-        name="home"
-        otherProps={{}}
-        style={{}}
-      />
-    );
+    let content = <Icon className="Icon Icon-home" name="home" />;
 
     if (home.url) {
       content = <a href={home.url || "#"}>{content}</a>;
@@ -51,13 +50,7 @@ const Breadcrumbs: React.FunctionComponent<
   const renderSeparator = () => {
     return (
       <li>
-        <Icon
-          className="Icon Icon-separator"
-          mods={null}
-          name="right"
-          otherProps={{}}
-          style={{}}
-        />
+        <Icon className="Icon Icon-separator" name="right" />
       </li>
     );
   };
@@ -106,6 +99,12 @@ const Breadcrumbs: React.FunctionComponent<
 
 Breadcrumbs.propTypes = propTypes;
 
-Breadcrumbs.defaultProps = {};
+Breadcrumbs.defaultProps = {
+  className: null,
+  breadcrumbs: [],
+  id: null,
+  home: null,
+  style: null,
+};
 
 export default Breadcrumbs;
