@@ -4,6 +4,11 @@ import Tabs from "./Tabs";
 
 const stories = storiesOf("Tabs", module);
 
+export default {
+  title: 'Tabs',
+  component: Tabs,
+};
+
 stories.add("Default", () => (
   <Tabs
     mods="u-spaceRightSm"

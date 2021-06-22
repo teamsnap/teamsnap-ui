@@ -1,9 +1,13 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { boolean, select } from "@storybook/addon-knobs/react";
 import Table from "./Table";
 
 const stories = storiesOf("Table", module);
+
+export default {
+  title: 'Table',
+  component: Table,
+};
 
 const columns = [
   { name: "col1", label: <div>Column One (in a div)</div>, isSortable: true },
@@ -32,26 +36,10 @@ const smallDataSet = [
   }
 ];
 
-const jsxDataSet = [
-  {
-    id: 1,
-    col1: <span>This is a span</span>,
-    col2: <h1>This is an h1</h1>,
-    col3: <b>This is b tag</b>
-  }
-];
-const dataOptions = {
-  "Small Data Set": smallDataSet,
-  "Empty Data Set": [],
-  "JSX Data Set": jsxDataSet
-};
-
-const defaultDataSet = smallDataSet;
-
 stories.add("Default", () => (
   <Table
     columns={columns}
-    rows={select("Data Sets", dataOptions, defaultDataSet)}
-    isLoading={boolean("isLoading", false)}
+    rows={smallDataSet}
+    isLoading={false}
   />
 ));

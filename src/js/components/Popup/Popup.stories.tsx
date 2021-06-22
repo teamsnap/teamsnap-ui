@@ -1,11 +1,16 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { select } from "@storybook/addon-knobs/react";
+import { select } from '@storybook/addon-knobs';
 import { Icon } from "../Icon";
 import PopupAction from "./PopupAction";
 import PopupConfirm from "./PopupConfirm";
 
 const stories = storiesOf("Popup", module);
+
+export default {
+  title: 'Popup',
+  component: PopupAction,
+};
 
 const actions = [
   {

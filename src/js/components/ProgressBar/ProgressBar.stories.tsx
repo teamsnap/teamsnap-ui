@@ -1,9 +1,14 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { text, select } from "@storybook/addon-knobs/react";
+import { text, select } from '@storybook/addon-knobs';
 import ProgressBar from "./ProgressBar";
 
 const stories = storiesOf("ProgressBar", module);
+
+export default {
+  title: 'ProgressBar',
+  component: ProgressBar,
+};
 
 const sizeOptions = {
   xsmall: "xsmall",
@@ -18,7 +23,7 @@ stories.add("Default", () => <ProgressBar progress={33} />);
 stories.add(
   "Vertical Bars",
   () => {
-    const size = select("size", sizeOptions);
+    const size = select("size", sizeOptions, null);
     return (
       <div
         style={{
@@ -65,7 +70,7 @@ stories.add(
 stories.add(
   "Progress Colors",
   () => {
-    const size = select("size", sizeOptions);
+    const size = select("size", sizeOptions, null);
 
     return (
       <div>

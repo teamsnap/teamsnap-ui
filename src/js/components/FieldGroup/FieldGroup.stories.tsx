@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { select, text } from "@storybook/addon-knobs/react";
+import { select, text } from '@storybook/addon-knobs';
 import FieldGroup from "./FieldGroup";
 import { FieldLabel } from "../FieldLabel";
 import { FieldMessage } from "../FieldMessage";
@@ -10,6 +10,11 @@ import { Checkbox } from "../Checkbox";
 import { Icon } from "../Icon";
 
 const stories = storiesOf("FieldGroup", module);
+
+export default {
+  title: 'FieldGroup',
+  component: FieldGroup,
+};
 
 const statusOptions = {
   success: "success",
@@ -24,8 +29,8 @@ const iconOptions = {
 };
 
 stories.add("FieldGroup with Input text child", () => {
-  const errorMessage = text("Error Message", "There was an error");
-  const status = select("status", statusOptions);
+  const errorMessage = text("Error Message", "There was an error", null);
+  const status = select("status", statusOptions, null);
 
   return (
     <FieldGroup status={status}>
@@ -39,8 +44,8 @@ stories.add("FieldGroup with Input text child", () => {
 });
 
 stories.add("FieldGroup with Select child", () => {
-  const errorMessage = text("Error Message", "There was an error");
-  const status = select("status", statusOptions);
+  const errorMessage = text("Error Message", "There was an error", null);
+  const status = select("status", statusOptions, null);
 
   return (
     <FieldGroup status={status}>
@@ -66,9 +71,9 @@ stories.add("FieldGroup with Select child", () => {
 });
 
 stories.add("FieldGroup with Input text and Icon children", () => {
-  const errorMessage = text("Error Message", "There was an error");
-  const status = select("status", statusOptions);
-  const iconPosition = select("iconPosition", iconOptions);
+  const errorMessage = text("Error Message", "There was an error", null);
+  const status = select("status", statusOptions, null);
+  const iconPosition = select("iconPosition", iconOptions, null);
 
   return (
     <FieldGroup status={status}>
@@ -84,8 +89,8 @@ stories.add("FieldGroup with Input text and Icon children", () => {
 });
 
 stories.add("FieldGroup with Checkbox children", () => {
-  const errorMessage = text("Error Message", "There was an error");
-  const status = select("status", statusOptions);
+  const errorMessage = text("Error Message", "There was an error", null);
+  const status = select("status", statusOptions, null);
 
   return (
     <FieldGroup status={status}>
