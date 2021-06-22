@@ -5,7 +5,6 @@
   "main": "dist/js/index.js",
   "types": "dist/js/index.d.ts",
   "scripts": {
-    "preinstall": "npx npm-force-resolutions",
     "lint:js": "eslint src/js/ || true",
     "lint:css": "sass-lint 'src/css/**/*.scss' -v -q || true",
     "lint": "npm run lint:css && npm run lint:js",
@@ -74,7 +73,7 @@
     "html-webpack-plugin": "^5.3.1",
     "object-path": ">=0.11.5",
     "react": "^17.0.1",
-    "react-docgen-typescript-loader": "^3.1.0",
+    "react-docgen-typescript-loader": "^3.7.2",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
     "react-dom": "^17.0.1",
     "sass": "^1.35.1",
@@ -89,7 +88,7 @@
     "@babel/runtime": "^7.5.5",
     "core-js": "^3.1.4",
     "gulp-rename": "^2.0.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "prop-types": "^15.6.1"
   },
   "peerDependencies": {

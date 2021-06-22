@@ -4,6 +4,12 @@ import Loader from './Loader';
 
 const stories = storiesOf("Loader", module);
 
+export default {
+  title: 'Loader',
+  component: Loader,
+};
+
+
 stories.add('Default', () => (
   <>
     <Loader

@@ -6,6 +6,12 @@ import { AttachmentPill } from './AttachmentPill';
 
 const stories = storiesOf('Pill', module);
 
+export default {
+  title: 'Pill',
+  component: Pill,
+};
+
+
 stories.add('Default', () => (
   <Pill>
     <p>Default</p>

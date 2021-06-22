@@ -1,11 +1,17 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { select, text, boolean } from "@storybook/addon-knobs/react";
+import { select, text, boolean } from "@storybook/addon-knobs";
 import Field from "./Field";
 import { Icon } from "../Icon";
 import { Sizes, CheckboxStates } from "../../types";
 
 const stories = storiesOf("Field", module);
+
+export default {
+  title: 'Field',
+  component: Field,
+};
+
 
 const statusOptions = {
   success: "success",
@@ -21,9 +27,9 @@ const sizeOptions = {
 };
 
 stories.add("Default", () => {
-  const status = select("status", statusOptions);
+  const status = select("status", statusOptions, statusOptions[0]);
   const placeholder = text("Placeholder", "Input Placeholder");
-  const size = select("size", sizeOptions);
+  const size = select("size", sizeOptions, sizeOptions[0]);
   const disabled = boolean('Disabled', false);
 
   return (
@@ -40,9 +46,9 @@ stories.add("Default", () => {
 });
 
 stories.add("With Labels", () => {
-  const status = select("status", statusOptions);
+  const status = select("status", statusOptions, null);
   const placeholder = text("Placeholder", "Input Placeholder");
-  const size = select("size", sizeOptions);
+  const size = select("size", sizeOptions, null);
   const label = text("Label", "First Name");
   const disabled = boolean('Disabled', false);
 
@@ -61,7 +67,7 @@ stories.add("With Labels", () => {
 });
 
 stories.add("Captions", () => {
-  const status = select("status", statusOptions);
+  const status = select("status", statusOptions, statusOptions[0]);
   const placeholder = text("Placeholder", "sample@teamsnap.com");
   const caption = text(
     "Captions",
@@ -92,7 +98,7 @@ stories.add("Captions", () => {
 });
 
 stories.add("Sizes", () => {
-  const status = select("status", statusOptions);
+  const status = select("status", statusOptions, statusOptions[0]);
   const placeholder = text("Placeholder", "Input Placeholder");
   const disabled = boolean('Disabled', false);
 
@@ -143,9 +149,9 @@ stories.add("Sizes", () => {
 });
 
 stories.add("Field with Icons", () => {
-  const status = select("status", statusOptions);
+  const status = select("status", statusOptions, null);
   const placeholder = text("Placeholder", "Input Placeholder");
-  const size = select("size", sizeOptions);
+  const size = select("size", sizeOptions, sizeOptions[0]);
   const disabled = boolean('Disabled', false);
 
   return (
@@ -165,9 +171,9 @@ stories.add("Field with Icons", () => {
 });
 
 stories.add("Status Icons", () => {
-  const status = select("status", statusOptions);
+  const status = select("status", statusOptions, statusOptions[0]);
   const placeholder = text("Placeholder", "Input Placeholder");
-  const size = select("size", sizeOptions);
+  const size = select("size", sizeOptions, sizeOptions[0]);
   const disabled = boolean('Disabled', false);
 
   return (
@@ -189,9 +195,9 @@ stories.add("Status Icons", () => {
 });
 
 stories.add("Clear Icon", () => {
-  const status = select("status", statusOptions);
+  const status = select("status", statusOptions, statusOptions[0]);
   const placeholder = text("Placeholder", "Input Placeholder");
-  const size = select("size", sizeOptions);
+  const size = select("size", sizeOptions, sizeOptions[0]);
   const disabled = boolean('Disabled', false);
 
   const [value, setValue] = React.useState("");
@@ -226,7 +232,7 @@ stories.add("Clear Icon", () => {
 
 
 stories.add("Checkbox", () => {
-  const status = select("status", statusOptions);
+  const status = select("status", statusOptions, statusOptions[0]);
   const disabled = boolean('Disabled', false);
 
   const [value, setValue] = React.useState(false);
@@ -291,7 +297,7 @@ stories.add("Multiple Checkboxes", () => {
 });
 
 stories.add("Indeterminate Checkbox", () => {
-  const status = select("status", statusOptions);
+  const status = select("status", statusOptions, statusOptions[0]);
   const disabled = boolean('Disabled', false);
 
   const [state, setState] = React.useState(CheckboxStates.FALSE);
