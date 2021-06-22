@@ -1,6 +1,5 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { select } from "@storybook/addon-knobs/react";
 import Panel from "./Panel";
 import { PanelHeader } from "../PanelHeader";
 import { PanelBody } from "../PanelBody";
@@ -10,48 +9,9 @@ import { PanelCell } from "../PanelCell";
 
 const stories = storiesOf("Panel", module);
 
-const noImage = {
-  Source: null,
-  Placeholder: "http://via.placeholder.com/640x360",
-};
-const billMurrayImage = {
-  Source: "https://www.fillmurray.com/640/360",
-  Placeholder: "http://via.placeholder.com/640x360",
-};
-const catImage = {
-  Source: "https://loremflickr.com/800/300",
-  Placeholder: "http://via.placeholder.com/300x300",
-};
-const randomImage = {
-  Source: "http://lorempixel.com/300/300",
-  Placeholder: "http://via.placeholder.com/300x300",
-};
-const animalImage = {
-  Source: "http://placeimg.com/500/200/animals",
-  Placeholder: "http://via.placeholder.com/500x200",
-};
-const brownBearImage = {
-  Source: "https://placebear.com/1000/750",
-  Placeholder: "http://via.placeholder.com/1000x750",
-};
-const beardImage = {
-  Source: "https://placebeard.it/100x150",
-  Placeholder: "http://via.placeholder.com/100x150",
-};
-const architectureImage = {
-  Source: "http://placeimg.com/300/800/architecture",
-  Placeholder: "http://via.placeholder.com/300x800",
-};
-
-const imageOptions = {
-  None: noImage,
-  "Bill Murray (640x360)": billMurrayImage,
-  "Cats (800x300)": catImage,
-  "Random (300x300)": randomImage,
-  "Animal (500x200)": animalImage,
-  "Brown Bear (1000x750)": brownBearImage,
-  "Beards (100x150)": beardImage,
-  "Architecture (300x800)": architectureImage,
+export default {
+  title: 'Panel',
+  component: Panel,
 };
 
 stories.add("Defaults", () => (
@@ -140,7 +100,10 @@ stories.add("Full Panel", () => (
 stories.add("Image Header Panel", () => (
   <Panel mods="u-lg-size4of12 u-md-size8of12">
     <PanelHeader
-      headerImage={select("Select Image", imageOptions, noImage)}
+      headerImage={{
+        Source: "https://www.fillmurray.com/640/360",
+        Placeholder: "https://www.fillmurray.com/640/360"
+      }}
       title="Panel with Image Header"
     />
     <PanelBody>

@@ -28,7 +28,7 @@ interface Tab {
   content: React.ReactNode;
 }
 
-interface Props {
+export interface Props {
   mods?: string;
   tabs: Tab[];
 }

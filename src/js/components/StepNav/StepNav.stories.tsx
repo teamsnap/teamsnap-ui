@@ -4,6 +4,11 @@ import StepNav from "./StepNav";
 
 const stories = storiesOf("StepNav", module);
 
+export default {
+  title: 'StepNav',
+  component: StepNav,
+};
+
 stories.add("Default", () => (
   <div style={{ padding: 20 + "px" }}>
     <StepNav
