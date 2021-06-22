@@ -1,0 +1,37 @@
+@import "../config/index.scss";
+
+// * @define default Breadcrumbs
+
+// Global default breadcrumbs colors
+$breadcrumb-primary-color: color-neutral(7) !default;
+$breadcrumb-secondary-color: color-neutral(10) !default;
+
+.Nav-breadcrumb {
+  color: $breadcrumb-secondary-color;
+  font-size: scaleGrid(2);
+}
+
+.Breadcrumb {
+  li {
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+
+    a {
+      color: $breadcrumb-secondary-color;
+    }
+
+    &:last-child {
+      color: $breadcrumb-primary-color;
+    }
+  }
+}
+
+.Icon-home {
+  color: $breadcrumb-primary-color;
+  margin-right: 2px !important;
+}
+
+.Icon-separator {
+  color: $breadcrumb-primary-color;
+}
