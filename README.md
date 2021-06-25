@@ -11,7 +11,7 @@ Installs the @teamsnap/teamsnap-ui node module and builds the dist directory.
 
 ### To run locally:
 
-Make sure you are on node 14.
+Make sure you using the [correct version of node](./.nvmrc).
 
 ```
 nvm use
