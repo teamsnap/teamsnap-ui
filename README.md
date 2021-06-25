@@ -4,10 +4,6 @@ TeamSnaps UI framework. Built with sass and react.
 
 ![CI](https://github.com/teamsnap/teamsnap-ui/workflows/CI/badge.svg)
 
-### Installation
-
-Installs the @teamsnap/teamsnap-ui node module and builds the dist directory.
-
 
 ### To run locally:
 
