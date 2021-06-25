@@ -5,17 +5,16 @@
   "main": "dist/js/index.js",
   "types": "dist/js/index.d.ts",
   "scripts": {
-    "preinstall": "npx npm-force-resolutions",
     "lint:js": "eslint src/js/ || true",
     "lint:css": "true",
-    "lint": "npm run lint:css && npm run lint:js",
-    "prepublishOnly": "npm run lint && npm run build",
+    "lint": "yarn run lint:css && yarn run lint:js",
+    "prepublishOnly": "yarn run lint && yarn run build",
     "start": "node_modules/.bin/gulp --gulpfile ./scripts/gulpfile.js",
-    "build": "npm run build:css && npm run build:icons && npm run build:js",
+    "build": "yarn run build:css && yarn run build:icons && yarn run build:js",
     "build:css": "node_modules/.bin/gulp build --gulpfile ./scripts/gulpfile.js",
     "build:icons": "NODE_ENV=production babel-node ./scripts/buildIcons.js",
     "build:js": "tsc",
-    "deploy": "npm run build:css",
+    "deploy": "yarn run build:css",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook --quiet"
   },
@@ -49,10 +48,10 @@
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-    "@storybook/addon-actions": "^6.2.9",
-    "@storybook/addon-docs": "^6.2.9",
+    "@storybook/addon-actions": "^6.3.0",
+    "@storybook/addon-docs": "^6.3.0",
     "@storybook/addon-knobs": "^6.2.9",
-    "@storybook/react": "^6.2.9",
+    "@storybook/react": "^6.3.0",
     "@types/node": "^12.6.2",
     "@types/react": "^16.8.23",
     "@whitespace/storybook-addon-html": "^5.0.0",
@@ -73,7 +72,7 @@
     "gulp-autoprefixer": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-if": "^2.0.2",
-    "gulp-sass": "^4.1.0",
+    "gulp-sass": "^5.0.0",
     "gulp-util": "^3.0.8",
     "html-webpack-plugin": "^5.3.1",
     "object-path": ">=0.11.5",
@@ -99,11 +98,10 @@
     "react": "^17.0.1"
   },
   "resolutions": {
-    "trim-newlines": "^4.0.1",
-    "css-what": "^5.0.1",
-    "glob-parent": "~5.1.2",
-    "browserslist": "^4.16.5",
     "trim": "^0.0.3",
-    "webpack": "4"
+    "css-what": "^5.0.1",
+    "glob-parent": "^5.1.2",
+    "browserslist": "^4.16.5",
+    "@types/react": "^16.8.23"
   }
 }
