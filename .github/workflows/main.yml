@@ -40,6 +40,6 @@ jobs:
         run: yarn run build
 
       - name: Yarn Audit
-        run: yarn audit --audit-level=high
+        run: yarn npm audit --severity high
 
 #       - run: npm test -- Eventually.
