@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Security`
 
 =======
+## [3.12.0] - 2021-06-28
+- https://github.com/teamsnap/teamsnap-ui/pull/706
+- `Changed` from npm to yarn
+
 ## [3.11.0] - 2021-06-21
 - https://github.com/teamsnap/teamsnap-ui/pull/696
 - `Updated` dependencies to address vulnerabilities
