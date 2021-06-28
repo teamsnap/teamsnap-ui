@@ -10,7 +10,8 @@ Once your user is created and added to the org this guide details the steps to p
 
 * rebase and get  your branch ahead of master
 * then from your working branch
-* run `npm audit --audit-level=high` to ensure there are no vulnerabilities with level high or critical.
+* run `yarn npm audit` to ensure there are no vulnerabilities with level high or critical.
+* run `yarn run build` to ensure the package builds with no errors
 * As necessary, update packages to resolve npm audit failures for level high or critical vulnerabilities.
 * Update the package.json version number `npm version [major|minor|patch] -m "commit message"`
 * Update CHANGELOG.md with new npm version and release notes

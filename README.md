@@ -3,27 +3,48 @@
 TeamSnaps UI framework. Built with sass and react.
 
 ![CI](https://github.com/teamsnap/teamsnap-ui/workflows/CI/badge.svg)
-### Installation
 
-Installs the @teamsnap/teamsnap-ui node module and builds the dist directory.
+
+### To run locally:
+
+Make sure you using the [correct version of node](./.nvmrc).
 
 ```
 nvm use
-# make sure you are on node 14.7.0
-npm install -g npm@6.14.13
-# npm -v
-npm install
+```
+
+Install dependencies:
+
+```
+yarn
 ```
 
 To build the dist folder for css, js and icons
 
-`npm run build`
+`yarn run build`
 
 Each item can also be build independently
 
-`npm run build:css`
+`yarn run build:css`
 
-`npm run build:js`
+`yarn run build:js`
+
+### Storybook
+
+React components are documented with Storybook.
+
+To run storybook locally:
+
+`yarn run storybook`
+
+To access on Netlify:
+
+https://ts-ui-storybook.netlify.com
+
+Netlify makes our Storybook accessible without having to run it locally. Each PR runs a test deploy with a preview, and every merge to master automatically updates the Netlify site.
+
+
+### Linters
 
 All styles are linted using `sass-lint` and the config `.sass-lint.yml` is available to customize rules as needed.
 
@@ -31,30 +52,20 @@ The linter is also run automatically before publishing updates to npm. For full 
 
 To lint both css and js
 
-`npm run lint`
+`yarn run lint`
 
 To run the linters manually use:
 
-`npm run lint:css`
+`yarn run lint:css`
 
-`npm run lint:js`
+`yarn run lint:js`
 
 ### TODO:
 
 - Update docs with full process for working locally with TeamSnap-UI
 - Update scripts to use webpack for css management and serving locally
 
-### Storybook
 
-React components are documented with Storybook.
-
-https://teamsnap-ui-storybook.netlify.com
-
-Netlify makes our Storybook accessible without having to run it locally. Each PR runs a test deploy with a preview, and every merge to master automatically updates the Netlify site.
-
-To run storybook locally:
-
-`npm run storybook`
 
 ### CSS Components
 
