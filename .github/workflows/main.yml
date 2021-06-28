@@ -41,5 +41,3 @@ jobs:
 
       - name: Yarn Audit
         run: yarn npm audit --severity high
-
-#       - run: npm test -- Eventually.
