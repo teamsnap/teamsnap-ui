@@ -52,7 +52,7 @@ stories.add("Default", () => (
 stories.add("Default", () => (
   <div
     className="u-flex"
-    style={{ backgroundColor: "#FFEFA5", minHeight: "800px" }}
+    style={{ backgroundColor: "#FFEFA5", minHeight: "800px", position: "relative" }}
   >
     <Nav
       mods="u-size3of12"
@@ -120,7 +120,7 @@ stories.add("Default", () => (
             },
           ],
         },
-      ] }
+      ]}
     >
       <Nav.Item
         icon="dashboard"
@@ -151,6 +151,111 @@ stories.add("Default", () => (
     </main>
   </div>
 ));
+
+stories.add("With content overlay", () => (
+  <div
+    className="u-flex"
+    style={{ backgroundColor: "#FFEFA5", minHeight: "800px", position: "relative" }}
+  >
+    <Nav
+      mods="u-size3of12"
+      headerItem={{
+        title: text("Team Name", "Boulder Youth Soccer"),
+        image: text(
+          "Image Source",
+          "https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png"
+        ),
+      }}
+      flyoutSections={[
+        {
+          heading: "Organizations",
+          tree: [
+            {
+              title: "Boulder Sports",
+              tree: [
+                {
+                  title: "Organization Admin",
+                  wrapItem: ({ children }) => (
+                    <a href="https://organization.teamsnap.com" target="_blank" rel="noopener">{children}</a>
+                  ),
+                },
+                {
+                  title: "Soccer Start",
+                  useBadge: true,
+                  tree: [
+                    {
+                      title: "2021 Spring Season",
+                    },
+                    {
+                      title: "2021 Spring Playoffs",
+                    },
+                  ],
+                },
+                {
+                  title: "6U-8U Rec",
+                  useBadge: true,
+                },
+                {
+                  title: "9U Rec",
+                  useBadge: true,
+                },
+              ],
+            },
+            {
+              title: "Colorado Soccer",
+            },
+          ],
+        },
+        {
+          heading: "Teams",
+          tree: [
+            {
+              title: "Strikers",
+              useBadge: true,
+            },
+            {
+              title: "Panthers",
+              useBadge: true,
+            },
+            {
+              title: "Bobcats",
+              useBadge: true,
+            },
+          ],
+        },
+      ]}
+      includeOverlay
+    >
+      <Nav.Item
+        icon="dashboard"
+        isActive
+        wrapItem={({ children }) => (
+          <a href="https://go.teamsnap.com" target="_blank" rel="noreferrer">
+            {children}
+          </a>
+        )}
+      >
+        Dashboard
+      </Nav.Item>
+      <Nav.Item icon="medal" onClick={() => alert("Fire Custom On Click")}>
+        Programs
+      </Nav.Item>
+      <Nav.Item icon="user">Members</Nav.Item>
+      <Nav.Item icon="star">Staff</Nav.Item>
+      <Nav.Item icon="settings">Settings</Nav.Item>
+    </Nav>
+    <main className="u-sizeFill u-flex u-flexAlignItemsCenter u-flexJustifyCenter">
+      <div style={{ width: "40%" }}>
+        This main and the nav are contained in a div that acts as a frame. The
+        left nav is as tall as the frame, which, in this case, has a height
+        manually set to 800px. By default, the nav is as wide as its container,
+        so we use a grid to scope it to the size that we'd like. In this case,
+        It's a flex grid where the nav is contained in a u-size2of12 div.
+      </div>
+    </main>
+  </div>
+));
+
 
 stories.add("Without Header", () => (
   <>

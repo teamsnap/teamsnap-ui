@@ -40,32 +40,33 @@ const navPropTypes = {
   flyoutSections: PropTypes.arrayOf(
     PropTypes.shape({
       heading: PropTypes.string.isRequired,
-      tree: PropTypes.shape({
+      tree: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string.isRequired,
         image: PropTypes.string,
         // If an image is not provided and useBadge is, we will try to generate a badge based off the title
         useBadge: PropTypes.bool,
         // a function for wrapping each item. Commonly used with links or react router.
         wrapItem: PropTypes.func,
-        tree: PropTypes.shape({
+        tree: PropTypes.arrayOf(PropTypes.shape({
           title: PropTypes.string.isRequired,
           image: PropTypes.string,
           // If an image is not provided and useBadge is, we will try to generate a badge based off the title
           useBadge: PropTypes.bool,
           // a function for wrapping each item. Commonly used with links or react router.
           wrapItem: PropTypes.func,
-          tree: PropTypes.shape({
+          tree: PropTypes.arrayOf(PropTypes.shape({
             title: PropTypes.string.isRequired,
             image: PropTypes.string,
             // If an image is not provided and useBadge is, we will try to generate a badge based off the title
             useBadge: PropTypes.bool,
             // a function for wrapping each item. Commonly used with links or react router.
             wrapItem: PropTypes.func,
-          }),
-        }),
-      }),
+          })),
+        })),
+      })),
     })
   ),
+  includeOverlay: PropTypes.bool
 };
 
 const itemPropTypes = {
@@ -122,28 +123,28 @@ const FlyOutNode = ({ item }) => {
     ? item.wrapItem
     : ({ children }) => <>{children}</>;
   return (
-    <div className={`Nav-node`}>
-      <div className="u-flex" onClick={() => setIsExpanded(!isExpanded)}>
+    <div className={`Nav-node${item.tree && item.tree.length > 0 ? ' Nav-hasChildren' : ''}`}>
+      <div className="Nav-topLevelHeading u-flex" onClick={() => setIsExpanded(!isExpanded)}>
         {item.tree && (
           <div
-            className={`u-size1of8 Nav-itemTitle u-textRight ${
+            className={`Nav-caret ${
               isExpanded ? "Node-expanded" : ""
             }`}
           >
-            <Icon mods="u-fontSizeMd" name="caret-down" />
+            <Icon mods="u-fontSizeLg u-spaceRightXs" name="caret-down" />
           </div>
         )}
         {/* This is weird, but a solution to help manage the required spacing to make things align */}
         {/* We can probably come up with a better solution here. */}
         {!item.tree && (
           <Icon
-            mods="u-fontSizeMd"
+            mods="u-fontSizeLg u-spaceRightXs"
             style={{ visibility: "hidden" }}
             name="caret-down"
           />
         )}
         <Wrapper>
-          <div className="u-fill">
+          <div className="u-fill u-flex">
             {!item.image && item.useBadge && (
               <Skittles text={item.title} mods="u-spaceRightXs" />
             )}
@@ -152,7 +153,7 @@ const FlyOutNode = ({ item }) => {
         </Wrapper>
       </div>
       {isExpanded && item.tree && item.tree.length > 0 ? (
-        <div>{item.tree.reduce(reducer, [])}</div>
+        <div className="Nav-submenu u-spaceBottomSm">{item.tree.reduce(reducer, [])}</div>
       ) : null}
     </div>
   );
@@ -170,11 +171,11 @@ const reducer = (acc: [], cur) => {
 const generateFlyoutContents = (flyoutSections: any) => {
   return flyoutSections.map((section, idx) => {
     return (
-      <section className="u-borderTop" key={idx}>
+      <section className="u-borderTop u-spaceBottomSm" key={idx}>
         <div className="Nav-sectionHeading u-colorNeutral7 u-textUppercase u-textBold u-fontSizeXs">
           {section.heading}
         </div>
-        <div>{section.tree.reduce(reducer, [])}</div>
+        <div className="Nav-sectionItems">{section.tree.reduce(reducer, [])}</div>
       </section>
     );
   });
@@ -188,6 +189,7 @@ const Nav: NavType & { Item: ItemType } = ({
   otherProps,
   headerItem,
   flyoutSections,
+  includeOverlay
 }) => {
   const [isCollapsed, setCollapsed] = React.useState(false);
   const [isFlyoutActive, setIsFlyoutActive] = React.useState(false);
@@ -202,36 +204,43 @@ const Nav: NavType & { Item: ItemType } = ({
   const navHeaderIconClass = getClassName("Nav-headerIcon");
 
   return (
-    <nav className={cname} style={style} {...otherProps}>
-      {headerItem ? (
-        <div
-          title={headerItem.title}
-          className="Nav-header u-textSemiBold"
+    <>
+      { (isFlyoutActive && includeOverlay) && 
+        <div className="Nav-overlay"
           onClick={() => setIsFlyoutActive(!isFlyoutActive)}
-        >
-          <div className={navHeaderIconClass}>
-            <Avatar src={headerItem.image} size="fill" />
-          </div>
-          <div className="u-sizeFill Nav-itemTitle u-spaceLeftSm">
-            <span className="Nav-itemTitle">{headerItem.title}</span>
-          </div>
-          {flyoutSections && (
-            <div className="Nav-headerCaret">
-              <Icon mods="u-fontSizeMd u-spaceNone" name="down" />
+        ></div>
+      }
+      <nav className={cname} style={style} {...otherProps}>
+        {headerItem ? (
+          <div
+            className="Nav-header u-textSemiBold"
+            title={headerItem.title}
+            onClick={() => setIsFlyoutActive(!isFlyoutActive)}
+          >
+            <div className={navHeaderIconClass}>
+              <Avatar src={headerItem.image} size="fill" />
             </div>
-          )}
+            <div className="u-sizeFill Nav-itemTitle u-spaceLeftSm">
+              <span className="Nav-itemTitle">{headerItem.title}</span>
+            </div>
+            {flyoutSections && (
+              <div className="Nav-caret">
+                <Icon mods="u-fontSizeMd u-spaceNone" name="down" />
+              </div>
+            )}
+          </div>
+        ) : null}
+        <div className="Nav-body">
+          {isFlyoutActive ? generateFlyoutContents(flyoutSections) : children}
         </div>
-      ) : null}
-      <div className="Nav-body">
-        {isFlyoutActive ? generateFlyoutContents(flyoutSections) : children}
-      </div>
-      {!isFlyoutActive && (
-        <div className="Nav-footer" onClick={() => setCollapsed(!isCollapsed)}>
-          <Icon name="left" />{" "}
-          <span className="Nav-itemTitle">Collapse Menu</span>
-        </div>
-      )}
-    </nav>
+        {!isFlyoutActive && (
+          <div className="Nav-footer" onClick={() => setCollapsed(!isCollapsed)}>
+            <Icon name="left" />{" "}
+            <span className="Nav-itemTitle">Collapse Menu</span>
+          </div>
+        )}
+      </nav>
+    </>
   );
 };
 

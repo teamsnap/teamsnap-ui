@@ -11,6 +11,18 @@
     background-color: white;
     color: black;
     box-shadow: 4px 1px 10px #00000050;
+    position: relative;
+
+    // &::after {
+    //   content: "";
+    //   display: block;
+    //   background-color: red;
+    //   position: fixed;
+    //   top: 0;
+    //   left: 240px;
+    //   width: calc(100% - 240px);
+    //   height: 100%;
+    // }
 
     .Nav-header {
       border-bottom: 1px solid color-neutral(2);
@@ -31,8 +43,13 @@
     padding: 8px;
   }
 
-  .Nav-node{
-    padding: 8px;
+  .Nav-topLevelHeading {
+    padding: 6px 8px;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: color-neutral(3);
+    }
   }
 
   .Nav-node > .Nav-node {
@@ -46,6 +63,7 @@
 
   .Nav-node {
     cursor: pointer;
+    
     .Icon {
       transform: rotate(-90deg);
     }
@@ -142,9 +160,13 @@
   display: block;
 }
 
-.Nav-headerCaret {
+.Nav-caret {
   width: scaleGrid(2);
   display: block;
+}
+
+.Nav-sectionItems {
+  margin: 0 8px;
 }
 
 .Nav-footer {
@@ -155,6 +177,12 @@
   color: color-neutral(1);
   .Icon {
     transition: transform 0.2s ease-in-out;
+  }
+}
+
+.Nav-hasChildren {
+  .Nav-submenu {
+    padding-left: 14px;
   }
 }
 
@@ -182,4 +210,14 @@
     color:color-neutral(1);
     font-weight: bold;
   }
+}
+
+.Nav-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.25;
+  background-color: scaleColor($ts-black, 4);
 }
