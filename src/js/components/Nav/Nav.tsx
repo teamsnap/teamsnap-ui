@@ -117,7 +117,7 @@ const Item: ItemType = ({
 Item.propTypes = itemPropTypes;
 
 const FlyOutNode = ({ item }) => {
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [isExpanded, setIsExpanded] = React.useState(true);
   const Wrapper = item.wrapItem
     ? item.wrapItem
     : ({ children }) => <>{children}</>;
@@ -205,6 +205,7 @@ const Nav: NavType & { Item: ItemType } = ({
     <nav className={cname} style={style} {...otherProps}>
       {headerItem ? (
         <div
+          title={headerItem.title}
           className="Nav-header u-textSemiBold"
           onClick={() => setIsFlyoutActive(!isFlyoutActive)}
         >
@@ -215,8 +216,8 @@ const Nav: NavType & { Item: ItemType } = ({
             <span className="Nav-itemTitle">{headerItem.title}</span>
           </div>
           {flyoutSections && (
-            <div className="u-size1of8 Nav-itemTitle u-textRight">
-              <Icon mods="u-fontSizeMd" name="down" />
+            <div className="Nav-headerCaret">
+              <Icon mods="u-fontSizeMd u-spaceNone" name="down" />
             </div>
           )}
         </div>

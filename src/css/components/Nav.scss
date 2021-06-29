@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   min-width: scaleGrid(24);
-  max-width: scaleGrid(25);
+  max-width: scaleGrid(30);
 
   &.is-flyout {
     background-color: white;
@@ -112,7 +112,7 @@
   border-bottom: 1px solid color-primary(8);
   padding: scaleGrid(2);
   color: color-neutral(1);
-  font-size: 1rem;
+  font-size: 0.875rem;
   max-height: 65px;
 
   &:hover {
@@ -139,6 +139,11 @@
 
 .Nav-headerIcon {
   width: scaleGrid(3);
+  display: block;
+}
+
+.Nav-headerCaret {
+  width: scaleGrid(2);
   display: block;
 }
 

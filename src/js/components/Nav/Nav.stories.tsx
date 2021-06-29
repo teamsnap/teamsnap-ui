@@ -10,7 +10,7 @@ stories.add("Default", () => (
     style={{ backgroundColor: "#FFEFA5", minHeight: "800px" }}
   >
     <Nav
-      mods="u-size2of12"
+      mods="u-size3of12"
       headerItem={{
         title: text("Team Name", "Boulder Youth Soccer"),
         image: text(
@@ -55,7 +55,7 @@ stories.add("Default", () => (
     style={{ backgroundColor: "#FFEFA5", minHeight: "800px" }}
   >
     <Nav
-      mods="u-size2of12"
+      mods="u-size3of12"
       headerItem={{
         title: text("Team Name", "Boulder Youth Soccer"),
         image: text(
@@ -164,7 +164,7 @@ stories.add("Without Header", () => (
       className="u-flex"
       style={{ backgroundColor: "#FFEFA5", minHeight: "800px" }}
     >
-      <Nav mods="u-size2of12">
+      <Nav mods="u-size3of12">
         <Nav.Item
           icon="tracking"
           wrapItem={({ children }) => (
