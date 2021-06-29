@@ -66,7 +66,8 @@ const navPropTypes = {
       })),
     })
   ),
-  includeOverlay: PropTypes.bool
+  includeOverlay: PropTypes.bool,
+  openItems: PropTypes.bool,
 };
 
 const itemPropTypes = {
@@ -117,8 +118,8 @@ const Item: ItemType = ({
 
 Item.propTypes = itemPropTypes;
 
-const FlyOutNode = ({ item }) => {
-  const [isExpanded, setIsExpanded] = React.useState(true);
+const FlyOutNode = ({ item, openItems }) => {
+  const [isExpanded, setIsExpanded] = React.useState(openItems);
   const Wrapper = item.wrapItem
     ? item.wrapItem
     : ({ children }) => <>{children}</>;
@@ -153,7 +154,7 @@ const FlyOutNode = ({ item }) => {
         </Wrapper>
       </div>
       {isExpanded && item.tree && item.tree.length > 0 ? (
-        <div className="Nav-submenu u-spaceBottomSm">{item.tree.reduce(reducer, [])}</div>
+        <div className="Nav-submenu u-spaceBottomSm">{reducer(item.tree, openItems)}</div>
       ) : null}
     </div>
   );
@@ -164,18 +165,19 @@ const FlyOutNode = ({ item }) => {
  * @param acc an array
  * @param cur a flyout item
  */
-const reducer = (acc: [], cur) => {
-  return [...acc, <FlyOutNode key={cur.title} item={cur} />];
-};
+const reducer = (tree:[], openItems: boolean) => {
+  return tree.reduce((acc: [], cur:any)  => [...acc, <FlyOutNode key={cur.title} item={cur} openItems={openItems} />], []);
+}
 
-const generateFlyoutContents = (flyoutSections: any) => {
+const generateFlyoutContents = (flyoutSections: any, openItems: boolean) => {
   return flyoutSections.map((section, idx) => {
     return (
       <section className="u-borderTop u-spaceBottomSm" key={idx}>
         <div className="Nav-sectionHeading u-colorNeutral7 u-textUppercase u-textBold u-fontSizeXs">
           {section.heading}
         </div>
-        <div className="Nav-sectionItems">{section.tree.reduce(reducer, [])}</div>
+        {/* <div className="Nav-sectionItems">{section.tree.reduce(buildReducer, [])}</div> */}
+        <div className="Nav-sectionItems">{reducer(section.tree, openItems)}</div>
       </section>
     );
   });
@@ -189,7 +191,8 @@ const Nav: NavType & { Item: ItemType } = ({
   otherProps,
   headerItem,
   flyoutSections,
-  includeOverlay
+  includeOverlay,
+  openItems
 }) => {
   const [isCollapsed, setCollapsed] = React.useState(false);
   const [isFlyoutActive, setIsFlyoutActive] = React.useState(false);
@@ -200,7 +203,7 @@ const Nav: NavType & { Item: ItemType } = ({
     className,
     mods
   );
-
+  
   const navHeaderIconClass = getClassName("Nav-headerIcon");
 
   return (
@@ -231,7 +234,7 @@ const Nav: NavType & { Item: ItemType } = ({
           </div>
         ) : null}
         <div className="Nav-body">
-          {isFlyoutActive ? generateFlyoutContents(flyoutSections) : children}
+          {isFlyoutActive ? generateFlyoutContents(flyoutSections, openItems) : children}
         </div>
         {!isFlyoutActive && (
           <div className="Nav-footer" onClick={() => setCollapsed(!isCollapsed)}>
