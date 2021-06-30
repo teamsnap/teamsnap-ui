@@ -1,9 +1,14 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { text, select } from "@storybook/addon-knobs/react";
+import { text, select } from '@storybook/addon-knobs';
 import RadialProgress from "./RadialProgress";
 
 const stories = storiesOf("RadialProgress", module);
+
+export default {
+  title: 'RadialProgress',
+  component: RadialProgress,
+};
 
 const sizeOptions = {
   xsmall: "xsmall",
@@ -18,7 +23,7 @@ stories.add("Default", () => <RadialProgress progress={33} />);
 stories.add(
   "Progress Colors",
   () => {
-    const size = select("size", sizeOptions);
+    const size = select("size", sizeOptions, null);
 
     return (
       <div>

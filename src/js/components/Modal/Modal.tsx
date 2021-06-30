@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Icon } from '../Icon';
 import { Button } from '../Button';
 
-interface Props {
+export interface Props {
   heading: React.ReactNode;
   show: boolean;
   children: React.ReactNode;

@@ -2,6 +2,12 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import Breadcrumbs from "./Breadcrumbs";
 
+export default {
+  title: 'Breadcrumbs',
+  component: Breadcrumbs,
+};
+
+
 const breadcrumbs = [
   {
     text: "Organization",

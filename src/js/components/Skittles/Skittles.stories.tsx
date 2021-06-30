@@ -4,6 +4,12 @@ import Skittles from "./Skittles";
 
 const stories = storiesOf("Skittles", module);
 
+export default {
+  title: 'Skittles',
+  component: Skittles,
+};
+
+
 stories.add("Default", () => (
   <div style={{ padding: 20 + "px" }}>
     <Skittles text={ "Soccer Co." } style={{margin: "4px"}}/>

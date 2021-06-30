@@ -6,6 +6,12 @@ import { Nav } from "../Nav";
 
 const stories = storiesOf("Toolbar", module);
 
+export default {
+  title: 'Toolbar',
+  component: Toolbar,
+};
+
+
 stories.add("Default", () => (
   <>
     <Toolbar
