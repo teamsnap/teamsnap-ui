@@ -18,6 +18,24 @@ stories.add('Default', () => (
   </Pill>
 ));
 
+stories.add('Pill -- Active', () => (
+  <Pill active>
+    <p>Default</p>
+  </Pill>
+));
+
+stories.add('Pill -- style/ mod overrides', () => (
+  <Pill
+    active
+    mods='u-padXl'
+    style={{
+      backgroundColor: 'white'
+    }}
+  >
+    <p>Default</p>
+  </Pill>
+));
+
 stories.add('Centered Content', () => (
   <Pill align="center">
     <p>Centered Content</p>
