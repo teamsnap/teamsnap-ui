@@ -33,6 +33,7 @@ const navPropTypes = {
   otherProps: PropTypes.object,
   headerItem: PropTypes.shape({
     title: PropTypes.string,
+    subtitle: PropTypes.string,
     image: PropTypes.string,
     useBadge: PropTypes.bool,
   }),
@@ -108,7 +109,7 @@ const Item: ItemType = ({
     <Wrapper>
       <li
         className={`${isActive ? `is-active ` : ``}Nav-item`}
-        onClick={onClick || (() => {})}
+        onClick={onClick || (() => { })}
       >
         {maybeIcon} <span className="Nav-itemTitle">{children}</span>
       </li>
@@ -128,9 +129,8 @@ const FlyOutNode = ({ item, openItems }) => {
       <div className="Nav-topLevelHeading u-flex" onClick={() => setIsExpanded(!isExpanded)}>
         {item.tree && (
           <div
-            className={`Nav-caret ${
-              isExpanded ? "Node-expanded" : ""
-            }`}
+            className={`Nav-caret ${isExpanded ? "Node-expanded" : ""
+              }`}
           >
             <Icon mods="u-fontSizeLg u-spaceRightXs" name="caret-down" />
           </div>
@@ -165,8 +165,8 @@ const FlyOutNode = ({ item, openItems }) => {
  * @param acc an array
  * @param cur a flyout item
  */
-const reducer = (tree:[], openItems: boolean) => {
-  return tree.reduce((acc: [], cur:any)  => [...acc, <FlyOutNode key={cur.title} item={cur} openItems={openItems} />], []);
+const reducer = (tree: [], openItems: boolean) => {
+  return tree.reduce((acc: [], cur: any) => [...acc, <FlyOutNode key={cur.title} item={cur} openItems={openItems} />], []);
 }
 
 const generateFlyoutContents = (flyoutSections: any, openItems: boolean) => {
@@ -176,7 +176,6 @@ const generateFlyoutContents = (flyoutSections: any, openItems: boolean) => {
         <div className="Nav-sectionHeading u-colorNeutral7 u-textUppercase u-textBold u-fontSizeXs">
           {section.heading}
         </div>
-        {/* <div className="Nav-sectionItems">{section.tree.reduce(buildReducer, [])}</div> */}
         <div className="Nav-sectionItems">{reducer(section.tree, openItems)}</div>
       </section>
     );
@@ -203,28 +202,28 @@ const Nav: NavType & { Item: ItemType } = ({
     className,
     mods
   );
-  
+
   const navHeaderIconClass = getClassName("Nav-headerIcon");
 
   return (
-    <>
-      { (isFlyoutActive && includeOverlay) && 
-        <div className="Nav-overlay"
-          onClick={() => setIsFlyoutActive(!isFlyoutActive)}
-        ></div>
+    <div className={`Nav-container ${isFlyoutActive ? 'is-flyout' : ''}`}>
+      {(isFlyoutActive && includeOverlay) &&
+        <div className="Nav-overlay" onClick={() => setIsFlyoutActive(!isFlyoutActive)} />
       }
       <nav className={cname} style={style} {...otherProps}>
         {headerItem ? (
           <div
             className="Nav-header u-textSemiBold"
-            title={headerItem.title}
             onClick={() => setIsFlyoutActive(!isFlyoutActive)}
           >
             <div className={navHeaderIconClass}>
               <Avatar src={headerItem.image} size="fill" />
             </div>
             <div className="u-sizeFill Nav-itemTitle u-spaceLeftSm">
-              <span className="Nav-itemTitle">{headerItem.title}</span>
+              <span className="Nav-itemTitle" title={headerItem.title}>{headerItem.title}</span>
+              {headerItem?.subtitle &&
+                <span className="Nav-itemSubtitle" title={headerItem.subtitle}>{headerItem.subtitle}</span>
+              }
             </div>
             {flyoutSections && (
               <div className="Nav-caret">
@@ -242,8 +241,9 @@ const Nav: NavType & { Item: ItemType } = ({
             <span className="Nav-itemTitle">Collapse Menu</span>
           </div>
         )}
+
       </nav>
-    </>
+    </div>
   );
 };
 

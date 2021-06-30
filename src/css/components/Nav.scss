@@ -1,5 +1,9 @@
+.Nav-container {
+  position: relative;
+}
 
 .Nav {
+  height: 100%;
   transition: all ease 300ms;
   background-color: color-primary(9);
   display: flex;
@@ -128,10 +132,18 @@
     transition: all ease 200ms;
   }
 
-  .Nav-itemTitle {
+  .Nav-itemTitle,
+  .Nav-itemSubtitle {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .Nav-itemSubtitle {
+    color: color-neutral(5);
+    font-size: 0.6875rem;
+    display: block;
+    font-weight: normal;
   }
 
   .Icon {
@@ -202,7 +214,7 @@
 }
 
 .Nav-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
