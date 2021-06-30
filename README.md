@@ -10,9 +10,6 @@ TeamSnaps UI framework. Built with sass and react.
 Make sure you using the [correct version of node](./.nvmrc).
 
 ```
-<<<<<<< HEAD
-npm install
-=======
 nvm use
 ```
 
@@ -20,7 +17,6 @@ Install dependencies:
 
 ```
 yarn
->>>>>>> 2dc0464 (Merge pull request #706 from teamsnap/use-yarn)
 ```
 
 To build the dist folder for css, js and icons

@@ -19,11 +19,7 @@ jobs:
 
     strategy:
       matrix:
-<<<<<<< HEAD
-        node-version: [10.x, 12.x]
-=======
         node-version: [12.x, 14.x]
->>>>>>> 2dc0464 (Merge pull request #706 from teamsnap/use-yarn)
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
