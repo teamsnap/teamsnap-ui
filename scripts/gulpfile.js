@@ -4,7 +4,7 @@ const gulp = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const rename = require('gulp-rename');
 const browserSync = require('browser-sync').create();
-const cssnano = require('gulp-cssnano');
+const cleanCSS = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
 const del = require('del');
 const env = require('gulp-util').env;
@@ -16,7 +16,7 @@ gulp.task('css-teamsnap', (done) => {
   gulp.src(config.css.teamsnap.src)
     .pipe(sass())
     .pipe(autoprefixer('last 2 versions'))
-    .pipe(cssnano({ zindex: false }))
+    .pipe(cleanCSS({ level: 2 }))
     .pipe(rename("teamsnap-ui.v4.css"))
     .pipe(gulp.dest(config.css.teamsnap.dest));
   done();
@@ -27,7 +27,7 @@ gulp.task('css-themes', (done) => {
   gulp.src(config.css.themes.src)
     .pipe(sass())
     .pipe(autoprefixer('last 2 versions'))
-    .pipe(cssnano({ zindex: false }))
+    .pipe(cleanCSS({ level: 2 }))
     .pipe(gulp.dest(config.css.themes.dest));
   done();
 });
