@@ -1,0 +1,20 @@
+# netlify.toml -> https://www.netlify.com/docs/netlify-toml-reference/
+
+# Settings in build context are global and applied to all unless otherwise overridden by other contextx
+[build]
+	# Directory to change to before starting a build, location of package.json
+	base = "/"
+
+# Specific branch context, all deploys from this specific branch will inherit these settings.
+
+# Production context: all deploys from the Production branch set in your site's
+# deploy contexts will inherit these settings.
+[context.v4]
+  publish = "dist/"
+  command = "yarn deploy"
+
+# Route redirects for Netlify
+[[redirects]]
+	from = "/*"
+	to = "/index.html"
+	status = 200

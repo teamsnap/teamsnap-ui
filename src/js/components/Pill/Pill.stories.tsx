@@ -6,8 +6,32 @@ import { AttachmentPill } from './AttachmentPill';
 
 const stories = storiesOf('Pill', module);
 
+export default {
+  title: 'Pill',
+  component: Pill,
+};
+
+
 stories.add('Default', () => (
   <Pill>
+    <p>Default</p>
+  </Pill>
+));
+
+stories.add('Pill -- Active', () => (
+  <Pill active>
+    <p>Default</p>
+  </Pill>
+));
+
+stories.add('Pill -- style/ mod overrides', () => (
+  <Pill
+    active
+    mods='u-padXl'
+    style={{
+      backgroundColor: 'white'
+    }}
+  >
     <p>Default</p>
   </Pill>
 ));

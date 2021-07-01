@@ -1,8 +1,14 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { text } from "@storybook/addon-knobs/react";
+import { text } from "@storybook/addon-knobs";
 import Nav from "./Nav";
 const stories = storiesOf("Nav", module);
+
+export default {
+  title: 'Nav',
+  component: Nav,
+};
+
 
 stories.add("Default", () => (
   <div

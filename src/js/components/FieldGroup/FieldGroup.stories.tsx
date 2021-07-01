@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { select, text } from "@storybook/addon-knobs/react";
+import { select, text } from '@storybook/addon-knobs';
 import FieldGroup from "./FieldGroup";
 import { FieldLabel } from "../FieldLabel";
 import { FieldMessage } from "../FieldMessage";
@@ -12,6 +12,11 @@ import { Statuses } from "../../types";
 
 const stories = storiesOf("FieldGroup [deprecated]", module);
 
+export default {
+  title: 'FieldGroup',
+  component: FieldGroup,
+};
+
 const statusOptions = {
   success: "success",
   error: "error",
@@ -19,8 +24,8 @@ const statusOptions = {
 };
 
 stories.add("FieldGroup with Input text child", () => {
-  const errorMessage = text("Error Message", "There was an error");
-  const status = select("status", statusOptions);
+  const errorMessage = text("Error Message", "There was an error", null);
+  const status = select("status", statusOptions, null);
 
   return (
     <FieldGroup status={status}>
@@ -34,8 +39,8 @@ stories.add("FieldGroup with Input text child", () => {
 });
 
 stories.add("FieldGroup with Select child", () => {
-  const errorMessage = text("Error Message", "There was an error");
-  const status = select("status", statusOptions);
+  const errorMessage = text("Error Message", "There was an error", null);
+  const status = select("status", statusOptions, null);
 
   return (
     <FieldGroup status={status}>
@@ -62,7 +67,7 @@ stories.add("FieldGroup with Select child", () => {
 
 stories.add("FieldGroup with Input text and Icon children", () => {
   const errorMessage = text("Error Message", "There was an error");
-  const status = select("status", statusOptions);
+  const status = select("status", statusOptions, null);
 
   return (
     <FieldGroup status={status}>
@@ -76,8 +81,8 @@ stories.add("FieldGroup with Input text and Icon children", () => {
 });
 
 stories.add("FieldGroup with Checkbox children", () => {
-  const errorMessage = text("Error Message", "There was an error");
-  const status = select("status", statusOptions);
+  const errorMessage = text("Error Message", "There was an error", null);
+  const status = select("status", statusOptions, null);
 
   return (
     <FieldGroup status={status}>

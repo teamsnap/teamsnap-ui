@@ -4,6 +4,11 @@ import Select from "./Select";
 
 const stories = storiesOf("Select", module);
 
+export default {
+  title: 'Select',
+  component: Select,
+};
+
 const optionsList = [
   {
     label: "Option 1",

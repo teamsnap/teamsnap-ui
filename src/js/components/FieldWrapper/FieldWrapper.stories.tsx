@@ -2,10 +2,15 @@ import * as React from "react";
 
 import { storiesOf } from "@storybook/react";
 import { action } from '@storybook/addon-actions';
-import { select, text } from "@storybook/addon-knobs/react";
+import { select, text } from '@storybook/addon-knobs';
 import FieldWrapper from "./FieldWrapper";
 
 const stories = storiesOf("FieldWrapper [deprecated]", module);
+
+export default {
+  title: 'FieldWrapper',
+  component: FieldWrapper,
+};
 
 const statusOptions = {
   success: "success",
@@ -25,8 +30,8 @@ stories.add("Default", () => {
 });
 
 stories.add("Select", () => {
-  const errorMessage = text("Error Message", "There was an error");
-  const status = select("status", statusOptions);
+  const errorMessage = text("Error Message", "There was an error", null);
+  const status = select("status", statusOptions, null);
 
   return (
     <FieldWrapper
@@ -54,8 +59,8 @@ stories.add("Select", () => {
 // TODO: Array to allow multiple checkboxes or radio buttons in one field wrapper
 
 stories.add("Checkbox", () => {
-  const errorMessage = text("Error Message", "There was an error");
-  const status = select("status", statusOptions);
+  const errorMessage = text("Error Message", "There was an error", null);
+  const status = select("status", statusOptions, null);
 
   return (
     <FieldWrapper
@@ -75,8 +80,8 @@ stories.add("Checkbox", () => {
 });
 
 stories.add("Radio", () => {
-  const errorMessage = text("Error Message", "There was an error");
-  const status = select("status", statusOptions);
+  const errorMessage = text("Error Message", "There was an error", null);
+  const status = select("status", statusOptions, null);
 
   return (
     <FieldWrapper
@@ -99,8 +104,8 @@ stories.add("Radio", () => {
 });
 
 stories.add("Toggle", () => {
-  const errorMessage = text("Error Message", "There was an error");
-  const status = select("status", statusOptions);
+  const errorMessage = text("Error Message", "There was an error", null);
+  const status = select("status", statusOptions, null);
 
   return (
     <FieldWrapper
@@ -114,8 +119,8 @@ stories.add("Toggle", () => {
 });
 
 stories.add("Textarea", () => {
-  const errorMessage = text("Error Message", "There was an error");
-  const status = select("status", statusOptions);
+  const errorMessage = text("Error Message", "There was an error", null);
+  const status = select("status", statusOptions, null);
 
   return (
     <FieldWrapper

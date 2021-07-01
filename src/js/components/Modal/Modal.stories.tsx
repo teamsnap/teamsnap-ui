@@ -6,6 +6,12 @@ import { Loader } from '../Loader';
 
 const stories = storiesOf('Modal', module);
 
+export default {
+  title: 'Modal',
+  component: Modal,
+};
+
+
 stories.add('Default', () => {
   const [sending, setSending] = React.useState(false);
 

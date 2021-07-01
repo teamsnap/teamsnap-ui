@@ -5,6 +5,11 @@ import { Button } from "../Button";
 
 const stories = storiesOf("ButtonGroup", module);
 
+export default {
+  title: 'ButtonGroup',
+  component: ButtonGroup,
+};
+
 stories.add("Button Children", () => {
   return (
     <ButtonGroup>

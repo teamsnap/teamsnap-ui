@@ -12,32 +12,60 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Fixed` for any bug fixes.
 - `Security`
 
-## [3.9.8] - 2021-05-02
-- https://github.com/teamsnap/teamsnap-ui/pull/614
-- `Fixed` active background color for ToggleCheckboxList component
+=======
+## [3.12.0] - 2021-06-28
+- https://github.com/teamsnap/teamsnap-ui/pull/706
+- `Changed` from npm to yarn
 
-## [3.9.7] - 2021-04-29
-- https://github.com/teamsnap/teamsnap-ui/pull/610
-- `Fixed` unique key prop errors for Tabs & ToggleCheckboxList components
+## [3.11.0] - 2021-06-21
+- https://github.com/teamsnap/teamsnap-ui/pull/696
+- `Updated` dependencies to address vulnerabilities
+- `Updated` to Storybook 6
 
-## [3.9.6] - 2021-04-28
-- https://github.com/teamsnap/teamsnap-ui/pull/607
-- `Fixed` using `import * as React from 'react'` syntax
+## [3.10.10] - 2021-06-04
+- https://github.com/teamsnap/teamsnap-ui/pull/669
+- `Added` version control to npm and node
 
-## [3.9.5] - 2021-04-28
-- https://github.com/teamsnap/teamsnap-ui/pull/606
-- `Fixed` Forgot to export ListToggle, Pill, Tag, ToggleCheckboxList
+## [3.10.9] - 2021-06-03
+- https://github.com/teamsnap/teamsnap-ui/pull/665
+- `Changed` style compilation to use `sass` and fixed soon to be deprecated scss syntax. Also upgraded `gulp-sass` and `sass-loader`
 
-## [3.9.4] - 2021-04-26
-- https://github.com/teamsnap/teamsnap-ui/pull/589
-- `Added` Pill/AttachmentPill component
-- `Added` Pill/CheckboxPill component
+## [3.10.8] - 2021-06-03
+- https://github.com/teamsnap/teamsnap-ui/pull/341
+- `Changed` font paths to teamsnap-ui CDN.
 
-## [3.9.3] - 2021-04-22
-- https://github.com/teamsnap/teamsnap-ui/pull/593
-- `Added` Tag component
-- `Added` ListToggle component
-- `Added` ToggleCheckboxList component
+## [3.10.7] - 2021-05-25
+- https://github.com/teamsnap/teamsnap-ui/pull/644
+- `Fixed` Updated to patch CVE-2021-27515, CVE-2021-23337, CVE-2020-7733, and CVE-2021-27292
+
+## [3.10.6] - 2021-04-06
+- https://github.com/teamsnap/teamsnap-ui/pull/581
+- `Updated` Center paginated table elements as a group
+
+## [3.10.5] - 2021-04-06
+- https://github.com/teamsnap/teamsnap-ui/pull/564
+- `Added` Allow paginated table to export placement options type
+
+## [3.10.4] - 2021-04-05
+- https://github.com/teamsnap/teamsnap-ui/pull/557
+- `Added` Allow paginated table to choose pagination placement via prop
+
+## [3.10.3] - 2021-03-30
+- https://github.com/teamsnap/teamsnap-ui/pull/538
+- `Updated` Allow paginated table to take in custom filter objects
+
+## [3.10.2] - 2021-02-26
+- https://github.com/teamsnap/teamsnap-ui/pull/504/files
+- `Updated` Table headers to be spans instead of anchors
+
+## [3.10.1] - 2020-12-08
+- https://github.com/teamsnap/teamsnap-ui/pull/429
+- `Updated` React to 17
+- `Fixed` event delegation in Popup components for breaking React 17 changes
+
+## [3.10.0] - 2020-11-04
+- https://github.com/teamsnap/teamsnap-ui/pull/366
+- `Added` more options to Popup component to make it more customizable.
 
 ## [3.9.2] - 2020-11-04
 - https://github.com/teamsnap/teamsnap-ui/pull/366

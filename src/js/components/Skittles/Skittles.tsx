@@ -7,7 +7,7 @@ const colorMap = {
   3: 'u-bgPrimary',
 }
 
-interface PropTypes {
+export interface PropTypes {
   text: String;
   style?: React.CSSProperties;
   mods?: String;
