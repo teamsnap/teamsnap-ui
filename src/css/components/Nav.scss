@@ -8,8 +8,7 @@
   background-color: color-primary(9);
   display: flex;
   flex-direction: column;
-  min-width: scaleGrid(24);
-  max-width: scaleGrid(30);
+  min-width: scaleGrid(30);
 
   &.is-flyout {
     background-color: white;
