@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { boolean } from "@storybook/addon-knobs";
 import Toolbar from "./Toolbar";
 import { Nav } from "../Nav";
+import { Breadcrumbs } from "../Breadcrumbs";
 
 const stories = storiesOf("Toolbar", module);
 
@@ -103,5 +104,31 @@ stories.add("With Search", () => {
         </main>
       </div>
     </>
+  );
+});
+
+stories.add("With Breadcrumbs", () => {
+  const breadcrumbs = [
+    {
+      text: "Boulder Soccer",
+      link: "#boulder-soccer",
+    },
+    {
+      text: "Competitive",
+      link: "#competitive",
+    },
+    {
+      text: "2021 Fall Season",
+      link: "#2021-fall-season",
+    },
+    {
+      text: "Registration",
+    },
+  ];
+
+  return (
+    <Toolbar>
+      <Breadcrumbs breadcrumbs={breadcrumbs} />
+    </Toolbar>
   );
 });
