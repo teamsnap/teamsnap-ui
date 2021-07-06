@@ -214,7 +214,7 @@ const Nav: NavType & { Item: ItemType } = ({
         {headerItem ? (
           <div
             className="Nav-header u-textSemiBold"
-            onClick={() => setIsFlyoutActive(!isFlyoutActive)}
+            onClick={() => !isCollapsed && setIsFlyoutActive(!isFlyoutActive)}
           >
             <div className={navHeaderIconClass}>
               <Avatar src={headerItem.image} size="fill" />
