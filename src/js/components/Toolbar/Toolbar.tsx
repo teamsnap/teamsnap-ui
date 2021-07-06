@@ -9,7 +9,6 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import { Icon } from "../Icon";
-import { Field } from "../Field";
 
 enum Menu {
   None,
@@ -19,7 +18,6 @@ enum Menu {
 }
 
 const propTypes = {
-  showSearch: PropTypes.bool,
   showHelp: PropTypes.bool,
   showAccount: PropTypes.bool,
   showAdmin: PropTypes.bool,
@@ -35,7 +33,6 @@ const propTypes = {
 const Toolbar: React.FunctionComponent<
   PropTypes.InferProps<typeof propTypes>
 > = ({
-  showSearch,
   showHelp,
   showAccount,
   showAdmin,
@@ -62,24 +59,7 @@ const Toolbar: React.FunctionComponent<
 
   return (
     <div className="Grid Toolbar">
-      {children && (
-        <div className="Grid-cell u-flexAlignSelfCenter u-sizeFit u-textNoWrap u-textEllipsis u-spaceRightLg">
-          {children}
-        </div>
-      )}
-
-      {showSearch && (
-        <div className="Grid-cell u-flexAuto">
-            <Field
-              type="input"
-              formFieldProps={{
-                placeholder: "Find a program, season, or member",
-                leftIcon: <Icon className="Icon" name="search" />,
-              }}
-              name="Sample"
-            />
-        </div>
-      )}
+      {children}
 
       <div className="Grid-cell u-flexAuto u-sizeFit u-flex u-flexAlignContentCenter u-flexJustifyEnd u-padXs flyout-container">
         <div className="u-posRelative">
@@ -160,7 +140,6 @@ Toolbar.propTypes = propTypes;
 
 Toolbar.defaultProps = {
   showAccount: true,
-  showSearch: false,
   showAdmin: true,
   showHelp: true,
 };
