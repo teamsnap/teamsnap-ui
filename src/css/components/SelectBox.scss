@@ -62,13 +62,13 @@ $SelectBox-indicator-width: scaleGrid(4);
 
   // Focus state
   &:focus {
-    border-color: $cu-primary;
+    border-color: color-primary(6);
     outline: none;
   }
 
   &:disabled,
   &.is-disabled {
-    color: $cu-divider--light;
+    color: color-neutral(6);
     cursor: not-allowed;
   }
 }
