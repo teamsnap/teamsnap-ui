@@ -9,7 +9,6 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import { Icon } from "../Icon";
-import { Field } from "../Field";
 
 enum Menu {
   None,
@@ -19,25 +18,28 @@ enum Menu {
 }
 
 const propTypes = {
-  showSearch: PropTypes.bool,
   showHelp: PropTypes.bool,
   showAccount: PropTypes.bool,
   showAdmin: PropTypes.bool,
   helpBody: PropTypes.node,
   accountBody: PropTypes.node,
   adminBody: PropTypes.node,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ])
 };
 
 const Toolbar: React.FunctionComponent<
   PropTypes.InferProps<typeof propTypes>
 > = ({
-  showSearch,
   showHelp,
   showAccount,
   showAdmin,
   helpBody,
   accountBody,
   adminBody,
+  children,
 }) => {
   const [activeMenu, setActiveMenu] = React.useState(Menu.None);
   React.useEffect(() => {
@@ -57,18 +59,9 @@ const Toolbar: React.FunctionComponent<
 
   return (
     <div className="Grid Toolbar">
-      <div className="Grid-cell u-size3of4">
-        {showSearch && (
-          <Field
-            formFieldProps={{
-              placeholder: "Find a program, season, or member",
-              leftIcon: <Icon className="Icon" name="search" />,
-            }}
-            name="Sample"
-          />
-        )}
-      </div>
-      <div className="Grid-cell u-size1of4 u-flex u-flexAlignContentCenter u-flexJustifyEnd u-padXs flyout-container">
+      {children}
+
+      <div className="Grid-cell u-flexAuto u-sizeFit u-flex u-flexAlignContentCenter u-flexJustifyEnd u-padXs flyout-container">
         <div className="u-posRelative">
           <span
             style={{ cursor: "pointer" }}
@@ -76,7 +69,7 @@ const Toolbar: React.FunctionComponent<
           >
             {showHelp && (
               <Icon
-                className="Icon u-spaceRightLg"
+                className="Icon u-spaceLeftLg"
                 name="help"
                 style={{
                   border: "1px solid black",
@@ -99,7 +92,7 @@ const Toolbar: React.FunctionComponent<
           >
             {showAccount && (
               <Icon
-                className="Icon u-spaceRightLg"
+                className="Icon u-spaceLeftLg"
                 name="user"
                 style={{
                   border: "1px solid black",
@@ -122,7 +115,7 @@ const Toolbar: React.FunctionComponent<
           >
             {showAdmin && (
               <Icon
-                className="Icon u-spaceRightLg"
+                className="Icon u-spaceLeftLg"
                 name="wrench"
                 style={{
                   border: "1px solid black",
@@ -147,7 +140,6 @@ Toolbar.propTypes = propTypes;
 
 Toolbar.defaultProps = {
   showAccount: true,
-  showSearch: false,
   showAdmin: true,
   showHelp: true,
 };
