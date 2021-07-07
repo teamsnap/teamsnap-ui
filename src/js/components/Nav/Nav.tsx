@@ -137,15 +137,8 @@ const FlyOutNode = ({ item, openItems }) => {
         )}
         {/* This is weird, but a solution to help manage the required spacing to make things align */}
         {/* We can probably come up with a better solution here. */}
-        {!item.tree && (
-          <Icon
-            mods="u-fontSizeLg u-spaceRightXs"
-            style={{ visibility: "hidden" }}
-            name="caret-down"
-          />
-        )}
         <Wrapper>
-          <div className="u-fill u-flex">
+          <div className={`${!item.tree ? 'Nav-noChildren' : ''} u-fill u-flex`}>
             {!item.image && item.useBadge && (
               <Skittles text={item.title} mods="u-spaceRightXs" />
             )}
