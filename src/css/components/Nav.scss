@@ -88,6 +88,9 @@
     .Nav-itemTitle {
       display: none !important;
     }
+    .Nav-caret {
+      display: none !important;
+    }
     .Icon {
       margin-right: 0;
     }
@@ -96,6 +99,7 @@
       height: 57px;
       margin: 0 auto;
       padding: scaleGrid(2);
+      cursor: default;
     }
 
     .Nav-footer {
