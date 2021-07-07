@@ -159,7 +159,7 @@ const FlyOutNode = ({ item, openItems }) => {
  * @param cur a flyout item
  */
 const reducer = (tree: [], openItems: boolean) => {
-  return tree.reduce((acc: [], cur: any) => [...acc, <FlyOutNode key={cur.title} item={cur} openItems={openItems} />], []);
+  return tree.reduce((acc: [], cur: any, idx:number) => [...acc, <FlyOutNode key={cur.title+idx} item={cur} openItems={openItems} />], []);
 }
 
 const generateFlyoutContents = (flyoutSections: any, openItems: boolean) => {
