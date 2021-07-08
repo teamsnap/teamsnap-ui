@@ -147,6 +147,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
                   }
                 },
               }}
+              mods="u-padBottomNone"
             />
           </div>
         ),
