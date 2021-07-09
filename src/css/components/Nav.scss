@@ -12,8 +12,8 @@
   background-color: color-primary(9);
   display: flex;
   flex-direction: column;
-  min-width: scaleGrid(30);
-  max-width: scaleGrid(34);
+  min-width: scaleGrid(25);
+  max-width: scaleGrid(30);
 
   &.is-flyout {
     background-color: white;
@@ -33,6 +33,8 @@
 
     a {
       color: black;
+      display: block;
+      width: 100%;
     }
   }
 
