@@ -135,6 +135,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
           <div>
             <Checkbox
               name="select-all"
+              mods="u-padBottomNone"
               inputProps={{
                 checked: checkboxState,
                 onClick: () => {
