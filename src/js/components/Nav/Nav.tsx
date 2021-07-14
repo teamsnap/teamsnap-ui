@@ -137,15 +137,8 @@ const FlyOutNode = ({ item, openItems }) => {
         )}
         {/* This is weird, but a solution to help manage the required spacing to make things align */}
         {/* We can probably come up with a better solution here. */}
-        {!item.tree && (
-          <Icon
-            mods="u-fontSizeLg u-spaceRightXs"
-            style={{ visibility: "hidden" }}
-            name="caret-down"
-          />
-        )}
         <Wrapper>
-          <div className="u-fill u-flex">
+          <div className={`${!item.tree ? 'Nav-noChildren' : ''} u-fill u-flex`}>
             {!item.image && item.useBadge && (
               <Skittles text={item.title} mods="u-spaceRightXs" />
             )}
@@ -166,7 +159,7 @@ const FlyOutNode = ({ item, openItems }) => {
  * @param cur a flyout item
  */
 const reducer = (tree: [], openItems: boolean) => {
-  return tree.reduce((acc: [], cur: any) => [...acc, <FlyOutNode key={cur.title} item={cur} openItems={openItems} />], []);
+  return tree.reduce((acc: [], cur: any, idx:number) => [...acc, <FlyOutNode key={cur.title+idx} item={cur} openItems={openItems} />], []);
 }
 
 const generateFlyoutContents = (flyoutSections: any, openItems: boolean) => {
@@ -206,7 +199,7 @@ const Nav: NavType & { Item: ItemType } = ({
   const navHeaderIconClass = getClassName("Nav-headerIcon");
 
   return (
-    <div className={`Nav-container ${isFlyoutActive ? 'is-flyout' : ''}`}>
+    <>
       {(isFlyoutActive && includeOverlay) &&
         <div className="Nav-overlay" onClick={() => setIsFlyoutActive(!isFlyoutActive)} />
       }
@@ -241,9 +234,8 @@ const Nav: NavType & { Item: ItemType } = ({
             <span className="Nav-itemTitle">Collapse Menu</span>
           </div>
         )}
-
       </nav>
-    </div>
+    </>
   );
 };
 
