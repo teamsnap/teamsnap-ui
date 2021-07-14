@@ -129,22 +129,13 @@ stories.add("With Search", () => {
 });
 
 stories.add("With Breadcrumbs", () => {
+  const Link = ({ text, link }) => <a href={link}>{text}</a>
+
   const breadcrumbs = [
-    {
-      text: "Boulder Soccer",
-      link: "#boulder-soccer",
-    },
-    {
-      text: "Competitive",
-      link: "#competitive",
-    },
-    {
-      text: "2021 Fall Season",
-      link: "#2021-fall-season",
-    },
-    {
-      text: "Registration",
-    },
+    <Link text="Boulder Soccer" link="#boulder-soccer" />,
+    <Link text="Competitive" link="#competitive" />,
+    <Link text="2021 Fall Season" link="#2021-fall-season" />,
+    "Registration",
   ];
 
   return (
@@ -157,18 +148,13 @@ stories.add("With Breadcrumbs", () => {
 });
 
 stories.add("With Breadcrumbs and Search", () => {
+  const Link = ({ text, link }) => <a href={link}>{text}</a>
+
   const breadcrumbs = [
-    {
-      text: "Boulder Soccer",
-      link: "#boulder-soccer",
-    },
-    {
-      text: "Competitive",
-      link: "#competitive",
-    },
-    {
-      text: "Registration",
-    },
+    <Link text="Boulder Soccer" link="#boulder-soccer" />,
+    <Link text="Competitive" link="#competitive" />,
+    <Link text="2021 Fall Season" link="#2021-fall-season" />,
+    "Registration",
   ];
 
   return (
