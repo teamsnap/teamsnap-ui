@@ -7,13 +7,13 @@
 }
 
 .Nav {
-  height: 100%;
   transition: all ease 300ms;
   background-color: color-primary(9);
   display: flex;
   flex-direction: column;
   min-width: scaleGrid(25);
   max-width: scaleGrid(30);
+  z-index: 15;
 
   &.is-flyout {
     background-color: white;
