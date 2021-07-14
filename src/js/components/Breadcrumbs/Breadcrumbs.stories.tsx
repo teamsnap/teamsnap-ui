@@ -7,43 +7,66 @@ export default {
   component: Breadcrumbs,
 };
 
+const stories = storiesOf("Breadcrumbs", module);
 
 const breadcrumbs = [
-  {
-    text: "Organization",
-    link: "/path-to-organization",
-  },
-  {
-    text: "2021 Fall Season",
-    link: "/path-to-season",
-  },
-  {
-    text: "Registration",
-  },
+  <a href="/path-to-organization">Organization</a>,
+  <a href="/path-to-season">2021 Fall Season</a>,
+  <span>Registration</span>,
 ];
-
-const breadcrumbsWithoutLinks = [
-  {
-    text: "Organization",
-  },
-  {
-    text: "2021 Fall Season",
-  },
-  {
-    text: "Registration",
-  },
-];
-
-const home = { url: "https://storybook.js.org/" };
-
-const stories = storiesOf("Breadcrumbs", module);
 
 stories.add("Default", () => <Breadcrumbs breadcrumbs={breadcrumbs} />);
 
-stories.add("With Home", () => (
-  <Breadcrumbs breadcrumbs={breadcrumbs} home={home} />
-));
+const Link = ({ text, href }) => {
+  return (<a href={href}>{text}</a>);
+};
 
-stories.add("Without links", () => (
-  <Breadcrumbs breadcrumbs={breadcrumbsWithoutLinks} home={{}} />
-));
+stories.add("With components", () => {
+  const breadcrumbsWithComponents = [
+    <Link text="Organization" href="#" />,
+    <Link text="2021 Fall Season" href="#" />,
+    <Link text="Registration" href="#" />,
+  ];
+
+  return (
+    <Breadcrumbs breadcrumbs={breadcrumbsWithComponents} />
+  );
+});
+
+
+stories.add("With strings", () => {
+  const breadcrumbsWithStrings = [
+    'Organization',
+    '2021 Fall Season',
+    'Registration',
+  ];
+
+  return (
+    <Breadcrumbs breadcrumbs={breadcrumbsWithStrings} />
+  );
+});
+
+
+stories.add("With mixed types", () => {
+  const breadcrumbsWithMixedTypes = [
+    <a href="#">Organization</a>,
+    <Link text="2021 Fall Season" href="#" />,
+    'Registration',
+  ];
+
+  return (
+    <Breadcrumbs breadcrumbs={breadcrumbsWithMixedTypes} />
+  );
+});
+
+stories.add("With custom separator", () => {
+  const breadcrumbsWithCustomSeparator = [
+    'Organization',
+    '2021 Fall Season',
+    'Registration',
+  ];
+
+  return (
+    <Breadcrumbs breadcrumbs={breadcrumbsWithCustomSeparator} separator="🔥" />
+  );
+});
