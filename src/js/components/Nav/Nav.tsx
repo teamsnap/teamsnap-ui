@@ -199,7 +199,7 @@ const Nav: NavType & { Item: ItemType } = ({
   const navHeaderIconClass = getClassName("Nav-headerIcon");
 
   return (
-    <div className={`Nav-container ${isFlyoutActive ? 'is-flyout' : ''}`}>
+    <>
       {(isFlyoutActive && includeOverlay) &&
         <div className="Nav-overlay" onClick={() => setIsFlyoutActive(!isFlyoutActive)} />
       }
@@ -234,9 +234,8 @@ const Nav: NavType & { Item: ItemType } = ({
             <span className="Nav-itemTitle">Collapse Menu</span>
           </div>
         )}
-
       </nav>
-    </div>
+    </>
   );
 };
 

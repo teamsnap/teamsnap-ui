@@ -268,7 +268,7 @@ stories.add("With content overlay", () => (
     style={{ backgroundColor: "#FFEFA5", minHeight: "800px" }}
   >
     <Nav
-      mods="u-size3of12"
+      mods="u-size2of12"
       headerItem={{
         title: text("Team Name", "Boulder Youth Soccer"),
         image: text(
