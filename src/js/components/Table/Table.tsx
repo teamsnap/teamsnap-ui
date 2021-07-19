@@ -137,8 +137,7 @@ const Table: React.FunctionComponent<
       column.mods,
       role === 'columnheader' && column.isSortable ? 'Panel-cell--sortable' : ''
     );
-    console.log(column)
-    console.log(role)
+
     return (
       <PanelCell
         key={column.key}
