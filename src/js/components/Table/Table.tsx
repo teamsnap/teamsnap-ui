@@ -134,9 +134,11 @@ const Table: React.FunctionComponent<
   const renderPanelCell = (role, children, column) => {
     const cellMods = getClassName(
       `u-text${capitalize(column.align || "Left")}`,
-      column.mods
+      column.mods,
+      role === 'columnheader' && column.isSortable ? 'Panel-cell--sortable' : ''
     );
-
+    console.log(column)
+    console.log(role)
     return (
       <PanelCell
         key={column.key}

@@ -135,14 +135,17 @@ $Panel-header-text-color: $cu-info !default;
 .Panel-cell[role="columnheader"] {
   padding: 0;
   transition: background-color ease 300ms;
+  cursor: default;
 
   .Panel-title > a, .Panel-title > span {
     padding: 16px;
   }
 
-  &:hover {
-    background-color: color-neutral(2);
-    cursor: pointer;
+  &.Panel-cell--sortable {
+    &:hover {
+      background-color: color-neutral(2);
+      cursor: pointer;
+    }
   }
 }
 
