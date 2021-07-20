@@ -57,3 +57,30 @@ stories.add("Default", () => (
     />
   </>
 ));
+
+stories.add("Non-sortable Table", () => (
+  <>
+    <Table
+      style={{width: "800px"}}
+      columns={[
+        { name: "col1", label: "Name" },
+        { name: "col2", label: "Role" },
+        { name: "col3", label: "Contact" },
+        { name: "col4", label: "Invitation" }
+      ]}
+      rows={smallDataSet}
+      isLoading={boolean("isLoading", false)}
+    />
+    <Table
+      style={{width: "800px"}}
+      columns={[
+        { name: "col1", label: "Name", isSortable: false },
+        { name: "col2", label: "Role", isSortable: false },
+        { name: "col3", label: "Contact", isSortable: false },
+        { name: "col4", label: "Invitation", isSortable: false}
+      ]}
+      rows={smallDataSet}
+      isLoading={boolean("isLoading", false)}
+    />
+  </>
+));
