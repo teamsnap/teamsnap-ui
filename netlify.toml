@@ -1,0 +1,22 @@
+# netlify.toml -> https://www.netlify.com/docs/netlify-toml-reference/
+
+[[headers]]
+  for = "/*.eot"
+  [headers.values]
+    Access-Control-Allow-Origin = "teamsnap.com"
+    Content-Type = "application/font-eot"
+[[headers]]    
+  for = "/*.woff"
+  [headers.values]
+    Access-Control-Allow-Origin = "teamsnap.com"
+    Content-Type = "application/font-woff"
+[[headers]]
+  for = "/*.ttf"
+  [headers.values]
+    Access-Control-Allow-Origin = "teamsnap.com"
+    Content-Type = "application/font-ttf"
+[[headers]]    
+  for = "/*.svg"
+  [headers.values]
+    Access-Control-Allow-Origin = "teamsnap.com"
+    Content-Type = "application/font-svg"
