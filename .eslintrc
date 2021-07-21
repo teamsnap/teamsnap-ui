@@ -14,5 +14,12 @@
   },
   "parserOptions": {
     "project": "./tsconfig.json"
+  },
+  "rules": {
+    "react/require-default-props": "off",
+    "no-console": "off",
+    "arrow-parens": [0, "as-needed"],
+    "@typescript-eslint/comma-dangle": ["error", "only-multiline"],
+    "max-len": [2, 120]
   }
 }
