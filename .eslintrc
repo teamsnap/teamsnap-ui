@@ -1,26 +1,18 @@
 {
-  "parser": "babel-eslint",
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb-typescript"
+  ],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
   "env": {
     "browser": true,
     "node": true
   },
-  "rules": {
-    "object-curly-spacing": 0,
-    "react/jsx-curly-spacing": 0,
-    "eol-last": 2,
-    "no-multiple-empty-lines": [2, { "max": 5, "maxEOF": 0 }],
-    "max-len": [
-      2,
-      {
-        "code": 120,
-        "ignoreComments": true,
-        "ignoreTrailingComments": true,
-        "ignoreUrls": true,
-        "ignoreStrings": true,
-        "ignoreTemplateLiterals": true,
-        "ignoreRegExpLiterals": true
-      }
-    ]
+  "parserOptions": {
+    "project": "./tsconfig.json"
   }
 }
