@@ -19,7 +19,7 @@
 	to = "/index.html"
 	status = 200
 
-[headers]]
+[[headers]]
   for = "/*.eot"
   [headers.values]
     Access-Control-Allow-Origin = "*"
