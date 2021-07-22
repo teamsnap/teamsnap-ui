@@ -7,6 +7,7 @@ import { CheckboxStates } from "../../../types";
 import { Select } from "../../Select";
 import BasicSearch from "./BasicSearch";
 import { Placement } from "../../../types/placement";
+import ComboBox from "../../../components/ComboBox/Combobox";
 
 interface LoadDataObject {
   page: number;
@@ -37,14 +38,20 @@ interface Props {
   hideRowsSelect?: boolean;
   rowsAreSelectable?: boolean;
   bulkActions?: BulkAction[];
-  customFilter?: object;
+  filters?: React.ReactNode[];
   customSearchFilter?: any;
   includeBasicSearch?: boolean;
   searchPlaceholder?: string;
   paginationPlacement?: Placement;
 }
 
-const PaginatedTable: React.FunctionComponent<Props> = ({
+const Filter = (name: string, label: string, items: string[]): React.ReactNode => {
+  return <ComboBox name={name} buttonLabel={label} items={items} />
+};
+
+
+type PaginatedTableProps = React.FunctionComponent<Props> & { Filter: typeof Filter }
+const PaginatedTable: PaginatedTableProps = ({
   loadData,
   columns,
   mapDataToRow,
@@ -54,7 +61,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   hideRowsSelect,
   rowsAreSelectable = false,
   bulkActions,
-  customFilter = null,
+  filters = [],
   customSearchFilter,
   includeBasicSearch,
   searchPlaceholder,
@@ -95,8 +102,8 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
         sortBy: sortName,
         sortAsc: sortAscending,
         filter:
-          includeBasicSearch || customFilter
-            ? { searchTerm: searchTerm, ...customFilter }
+          includeBasicSearch || filters
+            ? { searchTerm: searchTerm, ...filters }
             : null,
       });
       setDataSet(data);
@@ -111,7 +118,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
     sortName,
     sortAscending,
     searchTerm,
-    customFilter,
+    filters,
   ]);
 
   let rows = dataSet.map(mapDataToRow);
@@ -282,5 +289,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
     </div>
   );
 };
+
+PaginatedTable.Filter = Filter;
 
 export default PaginatedTable;
