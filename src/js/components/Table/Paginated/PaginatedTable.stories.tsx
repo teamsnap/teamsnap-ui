@@ -317,3 +317,20 @@ stories.add("Basic Search", () => (
     searchPlaceholder="Search members by name"
   />
 ));
+
+stories.add("With Search Filters", () => (
+  <PaginatedTable
+    columns={columns}
+    mapDataToRow={mapData}
+    loadData={loadSearchData}
+    defaultItemsPerPage={2}
+    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
+    filters={[
+      PaginatedTable.Filter("role", "Participants Role", []),
+      PaginatedTable.Filter("gender", "Participants Preferred Gender", []),
+      PaginatedTable.Filter("birthdate", "Year of Birth", []),
+    ]}
+    includeBasicSearch={true}
+    searchPlaceholder="Search members by name"
+  />
+));
