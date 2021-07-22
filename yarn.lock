@@ -3465,6 +3465,7 @@ __metadata:
     eslint-plugin-react: ^7.20.3
     eslint-plugin-react-hooks: ^4.0.8
     fs-extra: ^5.0.0
+    git-format-staged: ^2.1.2
     glob: ^7.1.4
     gulp: ^4.0.2
     gulp-autoprefixer: ^8.0.0
@@ -9176,6 +9177,15 @@ fsevents@^1.2.7:
   version: 2.0.6
   resolution: "get-value@npm:2.0.6"
   checksum: f08da3262718e0f2617703cc99ecd0ddb4cca1541b0022118f898824c99157778e044c802160688dc184b17e5a894d11c5771aaadc376c68cdf66bdbc25ff865
+  languageName: node
+  linkType: hard
+
+"git-format-staged@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "git-format-staged@npm:2.1.2"
+  bin:
+    git-format-staged: git-format-staged
+  checksum: 676bc63842535232f211e9f6b1cf9d5c8f1df68767246316da9624a6c8b21a8a2e8758977b4a7dcfb80daa6f05f49211713032fb3f6e50c186b0f7fd39bf59c2
   languageName: node
   linkType: hard
 
