@@ -40,7 +40,7 @@ const navPropTypes = {
   // a list of items to be displayed in the header component
   flyoutSections: PropTypes.arrayOf(
     PropTypes.shape({
-      heading: PropTypes.string.isRequired,
+      heading: PropTypes.string,
       tree: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string.isRequired,
         image: PropTypes.string,
@@ -106,14 +106,14 @@ const Item: ItemType = ({
   ) : null;
   const Wrapper = wrapItem ? wrapItem : ({ children }) => <>{children}</>;
   return (
-    <Wrapper>
       <li
         className={`${isActive ? `is-active ` : ``}Nav-item`}
         onClick={onClick || (() => { })}
       >
-        {maybeIcon} <span className="Nav-itemTitle">{children}</span>
+        <Wrapper>
+          {maybeIcon} <span className="Nav-itemTitle">{children}</span>
+        </Wrapper>
       </li>
-    </Wrapper>
   );
 };
 
@@ -124,32 +124,28 @@ const FlyOutNode = ({ item, openItems }) => {
   const Wrapper = item.wrapItem
     ? item.wrapItem
     : ({ children }) => <>{children}</>;
+
+  console.log(item.wrapItem)
+
   return (
-    <div className={`Nav-node${item.tree && item.tree.length > 0 ? ' Nav-hasChildren' : ''}`}>
-      <div className="Nav-topLevelHeading u-flex" onClick={() => setIsExpanded(!isExpanded)}>
-        {item.tree && (
-          <div
-            className={`Nav-caret ${isExpanded ? "Node-expanded" : ""
-              }`}
-          >
-            <Icon mods="u-fontSizeLg u-spaceRightXs" name="caret-down" />
-          </div>
-        )}
-        {/* This is weird, but a solution to help manage the required spacing to make things align */}
-        {/* We can probably come up with a better solution here. */}
+    <li>
+      <div onClick={() => setIsExpanded(!isExpanded)} className={`Nav-node ${item.wrapItem ? 'Nav-wrapped' : ''} ${item.tree ? 'Nav-hasChildren' : ''} u-fill u-flex`}>
         <Wrapper>
-          <div className={`${!item.tree ? 'Nav-noChildren' : ''} u-fill u-flex`}>
-            {!item.image && item.useBadge && (
-              <Skittles text={item.title} mods="u-spaceRightXs" />
-            )}
-            {item.title}
-          </div>
+          {item.tree && 
+           <Icon className={`Icon ${isExpanded ? "Node-expanded" : ""}`} mods="u-fontSizeLg u-spaceRightXs" name="caret-down" />
+          }
+          {!item.image && item.useBadge && (
+            <Skittles text={item.title} mods="u-spaceRightSm" />
+          )}
+          <span title={item.title} className="Nav-nodeTitle">{item.title}</span>
         </Wrapper>
       </div>
-      {isExpanded && item.tree && item.tree.length > 0 ? (
-        <div className="Nav-submenu u-spaceBottomSm">{reducer(item.tree, openItems)}</div>
+      { item.tree && item.tree.length > 0 ? (
+        <ul className={`Nav-submenu ${isExpanded ? 'isActive' : ''}`}>
+          {reducer(item.tree, openItems)}
+        </ul>
       ) : null}
-    </div>
+    </li>
   );
 };
 
@@ -165,11 +161,17 @@ const reducer = (tree: [], openItems: boolean) => {
 const generateFlyoutContents = (flyoutSections: any, openItems: boolean) => {
   return flyoutSections.map((section, idx) => {
     return (
-      <section className="u-borderTop u-spaceBottomSm" key={idx}>
+      <section key={idx}>
+        { section.heading && 
         <div className="Nav-sectionHeading u-colorNeutral7 u-textUppercase u-textBold u-fontSizeXs">
           {section.heading}
         </div>
-        <div className="Nav-sectionItems">{reducer(section.tree, openItems)}</div>
+        }
+        <div className="Nav-sectionItems">
+          <ul className={`${section.tree.length > 1 ? 'Nav-multi' : 'Nav-single'}`}>
+            {reducer(section.tree, openItems)}
+          </ul>
+        </div>
       </section>
     );
   });
@@ -226,7 +228,7 @@ const Nav: NavType & { Item: ItemType } = ({
           </div>
         ) : null}
         <div className="Nav-body">
-          {isFlyoutActive ? generateFlyoutContents(flyoutSections, openItems) : children}
+          {isFlyoutActive ? generateFlyoutContents(flyoutSections, openItems) : <ul>{children}</ul>}
         </div>
         {!isFlyoutActive && (
           <div className="Nav-footer" onClick={() => setCollapsed(!isCollapsed)}>
