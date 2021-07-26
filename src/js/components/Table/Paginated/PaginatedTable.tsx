@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as PropTypes from "prop-types";
 import { Table } from "../../Table";
 import { usePagination } from "./helpers";
 import { PaginationCurrentSubsetDisplay, PaginationSelect, PaginationButtons } from "../../Pagination";
@@ -12,40 +13,37 @@ import {assert} from "../../../utils/assert";
 import { Button } from "../../Button";
 import { Panel } from "../../Panel";
 
-interface LoadDataObject {
-  page: number;
-  itemsPerPage: number;
-  sortBy?: string;
-  sortAsc?: boolean;
-  filter?: Object;
-}
-
 interface BulkAction {
   label: string;
   onSelected: (selected: any) => void;
   disabled?: boolean;
 }
-interface Props {
-  loadData: (requestedPayload: LoadDataObject) => Promise<any[]>;
-  columns: {
-    name: string;
-    label: string | React.ReactElement;
-    isSortable?: boolean;
-    align?: string;
-    mods?: string;
-  }[];
-  mapDataToRow: (item: any, index: number) => { id: any };
-  defaultPage?: number;
-  defaultItemsPerPage?: number;
-  totalItems: number;
-  hideRowsSelect?: boolean;
-  rowsAreSelectable?: boolean;
-  bulkActions?: BulkAction[];
-  filters?: React.ReactNode[];
-  customSearchFilter?: any;
-  includeBasicSearch?: boolean;
-  searchPlaceholder?: string;
-  paginationPlacement?: Placement;
+
+const propTypes = {
+  bulkActions: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    onSelected: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
+  })),
+  columns: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    label: PropTypes.element.isRequired,
+    isSortable: PropTypes.bool,
+    align: PropTypes.string,
+    mods: PropTypes.string,
+  })),
+  customSearchFilter: PropTypes.any,
+  defaultItemsPerPage: PropTypes.number,
+  defaultPage: PropTypes.number,
+  filters: PropTypes.arrayOf(PropTypes.element),
+  hideRowsSelect: PropTypes.bool,
+  includeBasicSearch: PropTypes.bool,
+  loadData: PropTypes.func.isRequired,
+  mapDataToRow: PropTypes.func.isRequired,
+  paginationPlacement: PropTypes.oneOf([Placement.Top, Placement.Bottom]),
+  rowsAreSelectable: PropTypes.bool,
+  searchPlaceholder: PropTypes.string,
+  totalItems: PropTypes.number.isRequired
 }
 
 /**
@@ -65,7 +63,7 @@ const Filter = (name: string, label: string, items: FilterKeyValue): React.React
 };
 
 
-type PaginatedTableProps = React.FunctionComponent<Props> & { Filter: typeof Filter }
+type PaginatedTableProps = React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> & { Filter: typeof Filter }
 const PaginatedTable: PaginatedTableProps = ({
   loadData,
   columns,
@@ -97,6 +95,7 @@ const PaginatedTable: PaginatedTableProps = ({
   const [selected, setSelected] = React.useState([]);
   const [searchTerm, setSearchTerm] = React.useState("");
   const [filterOpen, setFilterOpen] = React.useState(false);
+  const shouldPaginateAtTop = paginationPlacement !== Placement.Bottom && filters.length === 0;
 
   const setNewItemsPerPage = (newItemsPerPage) => {
     setItemsPerPage(newItemsPerPage);
@@ -228,7 +227,7 @@ const PaginatedTable: PaginatedTableProps = ({
   }, [filters]);
 
   const paginationItems = (
-  <div className={ `Grid-cell u-flex u-flexJustifyEnd ${paginationPlacement == Placement.Bottom ? "u-sizeFill u-sizeFull" : "u-sizeFit"}` }>
+  <div className={ `Grid-cell u-flex u-flexJustifyEnd ${!shouldPaginateAtTop ? "u-sizeFill u-sizeFull" : "u-sizeFit"}` }>
     <div className="u-spaceAuto u-spaceRightSm">
       <PaginationCurrentSubsetDisplay
         itemsPerPage={ itemsPerPage }
@@ -254,8 +253,6 @@ const PaginatedTable: PaginatedTableProps = ({
     ) : null }
   </div>
   );
-
-  const shouldPaginateAtTop = paginationPlacement !== Placement.Bottom && filters.length === 0;
 
   const filterButton = (
     <div>
@@ -327,5 +324,6 @@ const PaginatedTable: PaginatedTableProps = ({
 };
 
 PaginatedTable.Filter = Filter;
+PaginatedTable.propTypes = propTypes;
 
 export default PaginatedTable;
