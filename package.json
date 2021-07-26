@@ -7,7 +7,7 @@
   "scripts": {
     "lint:js": "eslint src/js/ || true",
     "lint:css": "true",
-    "lint:format": "npx git-format-staged -f 'prettier --stdin-filepath \"{}\"' 'src/*.ts' 'src/*.tsx'",
+    "lint:format": "npx git-format-staged -f 'prettier --stdin-filepath \"{}\"' 'src/*.ts' 'src/*.tsx' && npx eslint src/js/components/ToggleCheckboxList/ToggleCheckboxList.tsx --ext .tsx --fix",
     "lint": "yarn run lint:css && yarn run lint:js",
     "prepublishOnly": "yarn run lint && yarn run build",
     "start": "node_modules/.bin/gulp --gulpfile ./scripts/gulpfile.js",
@@ -68,6 +68,7 @@
     "dotenv-webpack": "^7.0.3",
     "eslint": "^7.30.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.3",

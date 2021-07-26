@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "extends": ["airbnb-typescript"],
+  "extends": ["airbnb-typescript", "prettier"],
   "plugins": ["react", "react-hooks", "@typescript-eslint"],
   "env": {
     "browser": true,
@@ -13,7 +13,6 @@
     "react/require-default-props": "off",
     "no-console": "off",
     "arrow-parens": [0, "as-needed"],
-    "@typescript-eslint/comma-dangle": ["error", "only-multiline"],
-    "max-len": [2, 120]
+    "@typescript-eslint/comma-dangle": ["error", "only-multiline"]
   }
 }
