@@ -2,7 +2,6 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import PaginatedTable from "./PaginatedTable";
 import { Placement } from "../../../types/placement";
-import { text } from '@storybook/addon-knobs';
 
 const stories = storiesOf("PaginatedTable", module);
 /**
@@ -312,7 +311,6 @@ stories.add("Basic Search", () => (
     loadData={loadSearchData}
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
-    customFilter={{ gender: text("Gender Filter", "") }}
     includeBasicSearch={true}
     searchPlaceholder="Search members by name"
   />
@@ -326,10 +324,21 @@ stories.add("With Search Filters", () => (
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
     filters={[
-      PaginatedTable.Filter("role", "Participants Role", []),
-      PaginatedTable.Filter("gender", "Participants Preferred Gender", []),
-      PaginatedTable.Filter("birthdate", "Year of Birth", []),
+      PaginatedTable.Filter("role", "Participants Role", {
+        "manager": "Manager",
+        "nonplayer": "Non-Player",
+        "player": "Player",
+        "teamOwner": "Team Owner"
+      }),
+      // We understand that this is not a comprehensive list of genders but merely a list to display how these filters can be used
+      PaginatedTable.Filter("gender", "Participants Preferred Gender", {
+        "male": "Male",
+        "female": "Female",
+        "other": "Other",
+        "unknown": "Unknown"
+      }),
     ]}
+    paginationPlacement={ Placement.Bottom }
     includeBasicSearch={true}
     searchPlaceholder="Search members by name"
   />
