@@ -11,6 +11,7 @@
   },
   "rules": {
     "react/require-default-props": "off",
+    "quotes": ["error", "single"],
     "no-console": "off",
     "arrow-parens": [0, "as-needed"],
     "@typescript-eslint/comma-dangle": ["error", "only-multiline"]

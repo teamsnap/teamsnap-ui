@@ -44,6 +44,7 @@ class Grid extends React.PureComponent<
     style: {},
     otherProps: {},
   };
+
   render() {
     const {
       children,

@@ -36,8 +36,8 @@ stories.add('Default', () => {
       isDisabled={disabled}
       name="Sample"
       formFieldProps={{
-        placeholder: placeholder,
-        size: size,
+        placeholder,
+        size,
       }}
       status={status}
     />
@@ -57,8 +57,8 @@ stories.add('With Labels', () => {
       label={label}
       name="Sample"
       formFieldProps={{
-        placeholder: placeholder,
-        size: size,
+        placeholder,
+        size,
       }}
       status={status}
     />
@@ -87,7 +87,7 @@ stories.add('Captions', () => {
         label="Primary Email Address"
         formFieldProps={{
           leftIcon: <Icon name="home" />,
-          placeholder: placeholder,
+          placeholder,
         }}
         name="Sample"
         status={status}
@@ -114,7 +114,7 @@ stories.add('Sizes', () => {
         label="Sizes.SMALL or 'small'"
         formFieldProps={{
           leftIcon: <Icon name="home" />,
-          placeholder: placeholder,
+          placeholder,
           size: Sizes.SMALL,
         }}
         name="Sample"
@@ -126,7 +126,7 @@ stories.add('Sizes', () => {
         label="No size provided (default/medium)"
         formFieldProps={{
           leftIcon: <Icon name="home" />,
-          placeholder: placeholder,
+          placeholder,
         }}
         name="Sample2"
         status={status}
@@ -137,7 +137,7 @@ stories.add('Sizes', () => {
         label="Sizes.LARGE or 'large'"
         formFieldProps={{
           leftIcon: <Icon name="home" />,
-          placeholder: placeholder,
+          placeholder,
           size: Sizes.LARGE,
         }}
         name="Sample3"
@@ -160,8 +160,8 @@ stories.add('Field with Icons', () => {
       label="This is a sample input"
       formFieldProps={{
         rightIcon: <Icon name="search" />,
-        placeholder: placeholder,
-        size: size,
+        placeholder,
+        size,
       }}
       name="Sample"
       status={status}
@@ -183,9 +183,9 @@ stories.add('Status Icons', () => {
       formFieldProps={{
         leftIcon: <Icon name="home" />,
         rightIcon: <Icon name="search" />,
-        placeholder: placeholder,
+        placeholder,
         showStatus: true,
-        size: size,
+        size,
       }}
       name="Sample"
       status={status}
@@ -215,13 +215,13 @@ stories.add('Clear Icon', () => {
         label="Clearable Input"
         formFieldProps={{
           inputProps: {
-            value: value,
+            value,
             onChange: (e) => setValue(e.target.value),
           },
           leftIcon: <Icon name="home" />,
           rightIcon: <Icon name="search" />,
-          placeholder: placeholder,
-          size: size,
+          placeholder,
+          size,
           showClear: true,
           onClearClicked: () => {
             setValue('');
@@ -327,7 +327,7 @@ stories.add('Indeterminate Checkbox', () => {
         label="Accept Terms of Service"
         name="Sample"
         status={status}
-        type={'checkbox'}
+        type="checkbox"
         formFieldProps={{
           text: 'Click me!',
           checked: state,

@@ -45,8 +45,7 @@ stories.add('Themed Colors', () => {
   );
 });
 
-stories.add('Text Button', () => {
-  return (
+stories.add('Text Button', () => (
     <>
       <p>
         This is a{' '}
@@ -56,13 +55,12 @@ stories.add('Text Button', () => {
       </p>
       <p>
         This is a{' '}
-        <Button mods="u-spaceRightSm" type="link" isDisabled={true}>
+        <Button mods="u-spaceRightSm" type="link" isDisabled>
           Disabled Text Button
         </Button>
       </p>
     </>
-  );
-});
+  ));
 
 stories.add('Sizes', () => (
   <div>
@@ -97,7 +95,7 @@ storiesOf('Button', module).add(
         isDisabled={boolean('Disabled', false)}
         mods="u-spaceRightSm"
         icon={text('Icon Small', 'home')}
-      ></Button>
+       />
       <Button
         isDisabled={boolean('Disabled', false)}
         mods="u-spaceRightSm"
@@ -121,7 +119,7 @@ storiesOf('Button', module).add(
         icon={text('Icon Right', 'right')}
         iconPosition="right"
         isDisabled={boolean('Disabled', false)}
-      ></Button>
+       />
     </div>
   ),
   {

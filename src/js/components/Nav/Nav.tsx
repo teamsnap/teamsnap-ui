@@ -110,11 +110,11 @@ const Item: ItemType = ({
   const maybeIcon = icon ? (
     <Icon name={icon} mods={`${iconModifiers}`} />
   ) : null;
-  const Wrapper = wrapItem ? wrapItem : ({ children }) => <>{children}</>;
+  const Wrapper = wrapItem || (({ children }) => <>{children}</>);
   return (
     <Wrapper>
       <li
-        className={`${isActive ? `is-active ` : ``}Nav-item`}
+        className={`${isActive ? 'is-active ' : ''}Nav-item`}
         onClick={onClick || (() => {})}
       >
         {maybeIcon} <span className="Nav-itemTitle">{children}</span>
@@ -172,19 +172,15 @@ const FlyOutNode = ({ item, openItems }) => {
  * @param acc an array
  * @param cur a flyout item
  */
-const reducer = (tree: [], openItems: boolean) => {
-  return tree.reduce(
+const reducer = (tree: [], openItems: boolean) => tree.reduce(
     (acc: [], cur: any, idx: number) => [
       ...acc,
       <FlyOutNode key={cur.title + idx} item={cur} openItems={openItems} />,
     ],
     []
   );
-};
 
-const generateFlyoutContents = (flyoutSections: any, openItems: boolean) => {
-  return flyoutSections.map((section, idx) => {
-    return (
+const generateFlyoutContents = (flyoutSections: any, openItems: boolean) => flyoutSections.map((section, idx) => (
       <section className="u-borderTop u-spaceBottomSm" key={idx}>
         <div className="Nav-sectionHeading u-colorNeutral7 u-textUppercase u-textBold u-fontSizeXs">
           {section.heading}
@@ -193,9 +189,7 @@ const generateFlyoutContents = (flyoutSections: any, openItems: boolean) => {
           {reducer(section.tree, openItems)}
         </div>
       </section>
-    );
-  });
-};
+    ));
 
 const Nav: NavType & { Item: ItemType } = ({
   className,

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
+import { text } from '@storybook/addon-knobs';
 import PaginatedTable from './PaginatedTable';
 import { Placement } from '../../../types/placement';
-import { text } from '@storybook/addon-knobs';
 
 const stories = storiesOf('PaginatedTable', module);
 /**
@@ -281,7 +281,7 @@ stories.add('Default', () => (
 stories.add('Selectable Rows', () => (
   <PaginatedTable
     columns={columns}
-    rowsAreSelectable={true}
+    rowsAreSelectable
     bulkActions={[
       {
         label: 'Log Selected',
@@ -298,7 +298,7 @@ stories.add('Selectable Rows', () => (
     ]}
     mapDataToRow={mapData}
     loadData={loadData}
-    includeBasicSearch={true}
+    includeBasicSearch
     searchPlaceholder="Search members by name"
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
@@ -313,7 +313,7 @@ stories.add('Basic Search', () => (
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
     customFilter={{ gender: text('Gender Filter', '') }}
-    includeBasicSearch={true}
+    includeBasicSearch
     searchPlaceholder="Search members by name"
   />
 ));

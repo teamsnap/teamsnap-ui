@@ -68,8 +68,8 @@ const Input: InputType = ({
 }) => {
   const inputClasses = getClassName(
     className,
-    leftIcon && `InputGroup--leftIcon`,
-    rightIcon && `InputGroup--rightIcon`,
+    leftIcon && 'InputGroup--leftIcon',
+    rightIcon && 'InputGroup--rightIcon',
     (showStatus || showClear) && 'InputGroup--auxIcon',
     'u-flex',
     mods
@@ -87,7 +87,7 @@ const Input: InputType = ({
         type={type}
         placeholder={placeholder}
         className={`Input ${size && `Input--${size}`} ${
-          isDisabled && `Input--isDisabled`
+          isDisabled && 'Input--isDisabled'
         }`}
         {...inputProps}
       />

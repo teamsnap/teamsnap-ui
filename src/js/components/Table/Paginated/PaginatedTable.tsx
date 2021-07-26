@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Table } from '../../Table';
+import { Table } from '..';
 import { usePagination } from './helpers';
 import {
   PaginationCurrentSubsetDisplay,
@@ -85,9 +85,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
       : [];
   const pageSizeOptions = defaultPageSizeOptions
     .concat(customOptions)
-    .sort((a, b) => {
-      return a - b;
-    });
+    .sort((a, b) => a - b);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -98,7 +96,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
         sortAsc: sortAscending,
         filter:
           includeBasicSearch || customFilter
-            ? { searchTerm: searchTerm, ...customFilter }
+            ? { searchTerm, ...customFilter }
             : null,
       });
       setDataSet(data);
@@ -161,8 +159,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
     // use IDs as keys to determine uniqueness
     const selectedids = selected.map((e) => e.id);
     rows = rows.map((ele) =>
-      Object.assign({}, ele, {
-        selected: (
+      ({ ...ele, selected: (
           <div>
             <Checkbox
               name={`select-${ele.id}`}
@@ -179,8 +176,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
               }}
             />
           </div>
-        ),
-      })
+        )})
     );
   }
 
@@ -275,9 +271,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
         ) : null}
         <div className="Grid-cell u-sizeFill u-spaceTopSm u-md-size1of4">
           {customSearchFilter || includeBasicSearch ? (
-            customSearchFilter ? (
-              customSearchFilter
-            ) : (
+            customSearchFilter || (
               <BasicSearch
                 searchPlaceholder={searchPlaceholder}
                 searchFunction={updateSearchFilter}

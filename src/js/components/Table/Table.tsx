@@ -79,7 +79,7 @@ const Table: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> =
     const [sortOrder, setSortOrder] = React.useState<boolean>(null); // TODO: rename?
 
     React.useEffect(() => {
-      const sortDirection = defaultSort.charAt(0) === '-' ? true : false;
+      const sortDirection = defaultSort.charAt(0) === '-';
       const sortName = sortDirection ? defaultSort.substr(1) : defaultSort;
 
       setSortOrder(sortDirection);
@@ -183,7 +183,7 @@ const Table: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> =
           <div className="u-colorNeutral5 u-fontSizeXs u-spaceLeftXs">
             <Icon
               name={activeColumn ? (sortOrder ? 'up' : 'down') : 'down'}
-              mods={activeColumn && `u-colorPrimary`}
+              mods={activeColumn && 'u-colorPrimary'}
             />
           </div>
         </TextLink>

@@ -1,3 +1,3 @@
 import ListToggle from './ListToggle';
 
-export { ListToggle };
+export default { ListToggle };

@@ -81,8 +81,7 @@ const Field: FieldType = ({
   isInline,
   style,
   ...otherProps
-}) => {
-  return (
+}) => (
     <FieldGroup
       style={style}
       isInline={isInline}
@@ -98,8 +97,8 @@ const Field: FieldType = ({
               <Checkbox
                 name={name}
                 inputProps={{
-                  checked: checked,
-                  onClick: onClick,
+                  checked,
+                  onClick,
                   disabled: isDisabled,
                 }}
                 label={text}
@@ -111,8 +110,8 @@ const Field: FieldType = ({
               <Radio
                 name={name}
                 inputProps={{
-                  checked: checked,
-                  onClick: onClick,
+                  checked,
+                  onClick,
                   disabled: isDisabled,
                 }}
                 label={text}
@@ -152,7 +151,6 @@ const Field: FieldType = ({
       {caption && <FieldMessage status={status}>{caption}</FieldMessage>}
     </FieldGroup>
   );
-};
 
 Field.propTypes = fieldPropTypes;
 Field.defaultProps = {};

@@ -114,7 +114,7 @@ stories.add(
     <Icon
       name={select('Icon', iconNames, 'home')}
       mods={
-        select('Size', iconSizes, '') + ' ' + select('Color', iconColors, '')
+        `${select('Size', iconSizes, '')  } ${  select('Color', iconColors, '')}`
       }
     />
   ),

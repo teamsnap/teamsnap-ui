@@ -47,13 +47,11 @@ const Breadcrumbs: React.FunctionComponent<
     return <li>{content}</li>;
   };
 
-  const renderSeparator = () => {
-    return (
+  const renderSeparator = () => (
       <li>
         <Icon className="Icon Icon-separator" name="right" />
       </li>
     );
-  };
 
   const renderCrumb = (crumb: any) => {
     let content = crumb.text;
@@ -72,14 +70,12 @@ const Breadcrumbs: React.FunctionComponent<
     if (!breadcrumbs) {
       return;
     }
-    return breadcrumbs.map((crumb, idx) => {
-      return (
+    return breadcrumbs.map((crumb, idx) => (
         <React.Fragment key={`${crumb.text}_${idx}`}>
           {renderCrumb(crumb)}
           {idx !== breadcrumbs.length - 1 && renderSeparator()}
         </React.Fragment>
-      );
-    });
+      ));
   };
 
   return (

@@ -4,6 +4,4 @@ import { Icon } from './components/Icon';
 
 const stories = storiesOf('Demo', module);
 
-stories.add('All', () => {
-  return <Icon name={'home'} />;
-});
+stories.add('All', () => <Icon name="home" />);

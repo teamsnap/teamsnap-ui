@@ -2,6 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text } from '@storybook/addon-knobs';
 import Nav from './Nav';
+
 const stories = storiesOf('Nav', module);
 
 export default {
@@ -81,7 +82,7 @@ stories.add('Default', () => (
                     <a
                       href="https://organization.teamsnap.com"
                       target="_blank"
-                      rel="noopener"
+                      rel="noopener noreferrer"
                     >
                       {children}
                     </a>
@@ -191,7 +192,7 @@ stories.add('With Subheading', () => (
                     <a
                       href="https://organization.teamsnap.com"
                       target="_blank"
-                      rel="noopener"
+                      rel="noopener noreferrer"
                     >
                       {children}
                     </a>
@@ -300,7 +301,7 @@ stories.add('With content overlay', () => (
                     <a
                       href="https://organization.teamsnap.com"
                       target="_blank"
-                      rel="noopener"
+                      rel="noopener noreferrer"
                     >
                       {children}
                     </a>
@@ -410,7 +411,7 @@ stories.add('With all items open', () => (
                     <a
                       href="https://organization.teamsnap.com"
                       target="_blank"
-                      rel="noopener"
+                      rel="noopener noreferrer"
                     >
                       {children}
                     </a>

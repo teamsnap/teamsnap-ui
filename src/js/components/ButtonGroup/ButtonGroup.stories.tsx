@@ -10,12 +10,10 @@ export default {
   component: ButtonGroup,
 };
 
-stories.add('Button Children', () => {
-  return (
+stories.add('Button Children', () => (
     <ButtonGroup>
       <Button>Button1</Button>
 
       <Button>Button2</Button>
     </ButtonGroup>
-  );
-});
+  ));

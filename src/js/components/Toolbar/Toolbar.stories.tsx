@@ -54,8 +54,7 @@ stories.add('With Flyouts', () => (
   </>
 ));
 
-stories.add('Ideal toolbar placement', () => {
-  return (
+stories.add('Ideal toolbar placement', () => (
     <>
       <div
         className="u-flex"
@@ -81,11 +80,9 @@ stories.add('Ideal toolbar placement', () => {
         </main>
       </div>
     </>
-  );
-});
+  ));
 
-stories.add('With Search', () => {
-  return (
+stories.add('With Search', () => (
     <>
       <div
         className="u-flex"
@@ -129,8 +126,7 @@ stories.add('With Search', () => {
         </main>
       </div>
     </>
-  );
-});
+  ));
 
 stories.add('With Breadcrumbs', () => {
   const breadcrumbs = [

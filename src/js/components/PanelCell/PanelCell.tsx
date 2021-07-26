@@ -41,6 +41,7 @@ class PanelCell extends React.PureComponent<
     style: {},
     otherProps: {},
   };
+
   renderTitle = () => <h4 className="Panel-title">{this.props.children}</h4>;
 
   render() {

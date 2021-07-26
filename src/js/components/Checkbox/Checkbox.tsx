@@ -33,7 +33,7 @@ type CheckboxType = React.FunctionComponent<
 const Checkbox: CheckboxType = (props) => {
   const { mods, inputProps } = props;
 
-  let modClasses = `${mods}${
+  const modClasses = `${mods}${
     inputProps.checked === CheckboxStates.INDETERMINATE
       ? ' Checkbox--indeterminate'
       : ''
