@@ -1,22 +1,22 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import PaginatedTable from "./PaginatedTable";
-import { Placement } from "../../../types/placement";
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import PaginatedTable from './PaginatedTable';
+import { Placement } from '../../../types/placement';
 import { text } from '@storybook/addon-knobs';
 
-const stories = storiesOf("PaginatedTable", module);
+const stories = storiesOf('PaginatedTable', module);
 /**
  * Columns to configure the table against.
  */
 const columns = [
-  { name: "name", label: "Member Name", isSortable: true, mods: "u-size1of2" },
-  { name: "gender", label: "Gender", isSortable: true, mods: "u-size1of2" },
-  { name: "age", label: "Age", isSortable: true, mods: "u-size1of2" },
+  { name: 'name', label: 'Member Name', isSortable: true, mods: 'u-size1of2' },
+  { name: 'gender', label: 'Gender', isSortable: true, mods: 'u-size1of2' },
+  { name: 'age', label: 'Age', isSortable: true, mods: 'u-size1of2' },
   {
-    name: "programs",
-    label: "Active Programs",
+    name: 'programs',
+    label: 'Active Programs',
     isSortable: true,
-    mods: "u-size1of2",
+    mods: 'u-size1of2',
   },
 ];
 
@@ -25,175 +25,175 @@ const columns = [
  */
 const data = [
   {
-    name: "Brad",
-    gender: "m",
+    name: 'Brad',
+    gender: 'm',
     age: 12,
-    position: "Goalie",
+    position: 'Goalie',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Dustin",
-    gender: "m",
+    name: 'Dustin',
+    gender: 'm',
     age: 56,
-    position: "Coach",
+    position: 'Coach',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Fred",
-    gender: "m",
+    name: 'Fred',
+    gender: 'm',
     age: 56,
-    position: "Coach",
+    position: 'Coach',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Bobby",
-    gender: "m",
+    name: 'Bobby',
+    gender: 'm',
     age: 56,
-    position: "Coach",
+    position: 'Coach',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Christie",
-    gender: "f",
+    name: 'Christie',
+    gender: 'f',
     age: 56,
-    position: "Coach",
+    position: 'Coach',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Jenna",
-    gender: "f",
+    name: 'Jenna',
+    gender: 'f',
     age: 56,
-    position: "Coach",
+    position: 'Coach',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Stacy",
-    gender: "f",
+    name: 'Stacy',
+    gender: 'f',
     age: 56,
-    position: "Coach",
+    position: 'Coach',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Joey",
-    gender: "m",
+    name: 'Joey',
+    gender: 'm',
     age: 12,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "William",
-    gender: "m",
+    name: 'William',
+    gender: 'm',
     age: 13,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Sharron",
-    gender: "f",
+    name: 'Sharron',
+    gender: 'f',
     age: 14,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Brenda",
-    gender: "f",
+    name: 'Brenda',
+    gender: 'f',
     age: 13,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Nathan",
-    gender: "m",
+    name: 'Nathan',
+    gender: 'm',
     age: 12,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Jimmy",
-    gender: "m",
+    name: 'Jimmy',
+    gender: 'm',
     age: 13,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Lester",
-    gender: "m",
+    name: 'Lester',
+    gender: 'm',
     age: 14,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Justine",
-    gender: "F",
+    name: 'Justine',
+    gender: 'F',
     age: 13,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Cassie",
-    gender: "f",
+    name: 'Cassie',
+    gender: 'f',
     age: 14,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Jessica",
-    gender: "f",
+    name: 'Jessica',
+    gender: 'f',
     age: 12,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
 ];
@@ -213,7 +213,7 @@ function loadData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
   return new Promise((resolve) => {
     setTimeout(() => resolve(data), 500);
   }).then((items: any[]) => {
-    console.log("filter load", filter)
+    console.log('filter load', filter);
     const endIndex = Math.min(items.length, startIndex + itemsPerPage);
     return items.slice(startIndex, endIndex);
   });
@@ -236,9 +236,9 @@ function loadSearchData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
     setTimeout(() => resolve(data), 500);
   }).then((items: any[]) => {
     items = items
-      .filter((item) => item.gender == filter.gender || filter.gender == "")
+      .filter((item) => item.gender == filter.gender || filter.gender == '')
       .filter(
-        (item) => item.name.search(new RegExp(filter.searchTerm, "i")) > -1
+        (item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1
       );
     const endIndex = Math.min(items.length, startIndex + itemsPerPage);
     return items.slice(startIndex, endIndex);
@@ -267,32 +267,32 @@ function mapData(item) {
   };
 }
 
-stories.add("Default", () => (
+stories.add('Default', () => (
   <PaginatedTable
     columns={columns}
     mapDataToRow={mapData}
     loadData={loadData}
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
-    paginationPlacement={ Placement.Bottom }
+    paginationPlacement={Placement.Bottom}
   />
 ));
 
-stories.add("Selectable Rows", () => (
+stories.add('Selectable Rows', () => (
   <PaginatedTable
     columns={columns}
     rowsAreSelectable={true}
     bulkActions={[
       {
-        label: "Log Selected",
+        label: 'Log Selected',
         onSelected: (selected) => {
           console.log(selected);
         },
       },
       {
-        label: "Alert Selected IDs",
+        label: 'Alert Selected IDs',
         onSelected: (selected) => {
-          console.log(alert(selected.map((e) => e.id).join(",")));
+          console.log(alert(selected.map((e) => e.id).join(',')));
         },
       },
     ]}
@@ -305,14 +305,14 @@ stories.add("Selectable Rows", () => (
   />
 ));
 
-stories.add("Basic Search", () => (
+stories.add('Basic Search', () => (
   <PaginatedTable
     columns={columns}
     mapDataToRow={mapData}
     loadData={loadSearchData}
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
-    customFilter={{ gender: text("Gender Filter", "") }}
+    customFilter={{ gender: text('Gender Filter', '') }}
     includeBasicSearch={true}
     searchPlaceholder="Search members by name"
   />

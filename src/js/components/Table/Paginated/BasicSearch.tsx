@@ -1,5 +1,5 @@
-import * as React from "react";
-import { Icon } from "../../Icon";
+import * as React from 'react';
+import { Icon } from '../../Icon';
 
 interface Props {
   searchPlaceholder: string;
@@ -10,8 +10,8 @@ const BasicSearchFilter: React.FunctionComponent<Props> = ({
   searchPlaceholder,
   searchFunction,
 }) => {
-  const [searchValue, setSearchValue] = React.useState("");
-  const [lastSearchValue, setLastSearchValue] = React.useState("");
+  const [searchValue, setSearchValue] = React.useState('');
+  const [lastSearchValue, setLastSearchValue] = React.useState('');
 
   const updateSearchField = React.useCallback(
     (e) => setSearchValue(e.target.value),
@@ -28,23 +28,26 @@ const BasicSearchFilter: React.FunctionComponent<Props> = ({
   }, [searchValue]);
 
   const clearAction = React.useCallback(() => {
-    setSearchValue("");
-    handleSearch("");
+    setSearchValue('');
+    handleSearch('');
   }, []);
 
   const handleSearchKeyPress = React.useCallback(
     (e) => {
-      if (e.key === "Enter") {
+      if (e.key === 'Enter') {
         searchAction();
       }
     },
     [searchValue]
   );
 
-  const showClear = lastSearchValue == searchValue && searchValue != "";
+  const showClear = lastSearchValue == searchValue && searchValue != '';
 
   return (
-    <div className="InputGroup InputGroup--leftIcon InputGroup--iconButton" style={{width: "100%"}}>
+    <div
+      className="InputGroup InputGroup--leftIcon InputGroup--iconButton"
+      style={{ width: '100%' }}
+    >
       <input
         value={searchValue}
         name="searchField"
@@ -52,7 +55,7 @@ const BasicSearchFilter: React.FunctionComponent<Props> = ({
         placeholder={searchPlaceholder}
         onChange={updateSearchField}
         onKeyPress={handleSearchKeyPress}
-        style={{ minWidth: 250}}
+        style={{ minWidth: 250 }}
       />
       <button
         className="InputGroup-icon"
@@ -61,7 +64,7 @@ const BasicSearchFilter: React.FunctionComponent<Props> = ({
         <Icon
           className="Icon"
           mods={null}
-          name={showClear ? "dismiss" : "search"}
+          name={showClear ? 'dismiss' : 'search'}
           otherProps={{}}
           style={{}}
         />

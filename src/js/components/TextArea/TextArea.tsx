@@ -9,26 +9,29 @@
  *    name='BatchInvoiceDescription' />
  *
  */
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
-class TextArea extends React.PureComponent<PropTypes.InferProps<typeof TextArea.propTypes>, any> {
+class TextArea extends React.PureComponent<
+  PropTypes.InferProps<typeof TextArea.propTypes>,
+  any
+> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     inputProps: PropTypes.object,
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
     inputProps: {},
-    className: "",
+    className: '',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {

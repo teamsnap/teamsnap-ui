@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as PropTypes from "prop-types";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
 interface State {
   isPopupOpen: boolean;
@@ -7,17 +7,34 @@ interface State {
   selectedAction: any;
 }
 
-export default class PopUpAction extends React.Component<PropTypes.InferProps<typeof PopUpAction.propTypes>, State> {
+export default class PopUpAction extends React.Component<
+  PropTypes.InferProps<typeof PopUpAction.propTypes>,
+  State
+> {
   static propTypes = {
     text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    actions: PropTypes.arrayOf(PropTypes.shape({
-      text: PropTypes.string.isRequired,
-      callback: PropTypes.func.isRequired,
-      requiresConfirmation: PropTypes.bool,
-      confirmationText: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    })),
+    actions: PropTypes.arrayOf(
+      PropTypes.shape({
+        text: PropTypes.string.isRequired,
+        callback: PropTypes.func.isRequired,
+        requiresConfirmation: PropTypes.bool,
+        confirmationText: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.element,
+        ]),
+      })
+    ),
     popupStyle: PropTypes.object,
-    direction: PropTypes.arrayOf(PropTypes.oneOf(["down", "right", "left", "rightHang", "leftHang", "overlay"])),
+    direction: PropTypes.arrayOf(
+      PropTypes.oneOf([
+        'down',
+        'right',
+        'left',
+        'rightHang',
+        'leftHang',
+        'overlay',
+      ])
+    ),
   };
 
   constructor(props) {
@@ -25,25 +42,25 @@ export default class PopUpAction extends React.Component<PropTypes.InferProps<ty
     this.state = {
       isPopupOpen: false,
       isConfirmOpen: false,
-      selectedAction: {}
+      selectedAction: {},
     };
   }
 
   componentDidMount() {
-    document.body.addEventListener("click", this.handleBodyClick.bind(this));
+    document.body.addEventListener('click', this.handleBodyClick.bind(this));
   }
 
   componentWillUnmount() {
-    document.body.removeEventListener("click", this.handleBodyClick.bind(this));
+    document.body.removeEventListener('click', this.handleBodyClick.bind(this));
   }
 
   handleBodyClick(e: any) {
     const isTargetingPopup = e.target.closest('.Popup-content') != null;
 
-      if (!isTargetingPopup) {
-        this.setState({
-          isPopupOpen: false,
-          isConfirmOpen: false
+    if (!isTargetingPopup) {
+      this.setState({
+        isPopupOpen: false,
+        isConfirmOpen: false,
       });
     }
   }
@@ -51,7 +68,7 @@ export default class PopUpAction extends React.Component<PropTypes.InferProps<ty
   togglePopup() {
     let isPopupOpen = this.state.isPopupOpen;
     this.setState({
-      isPopupOpen: !isPopupOpen
+      isPopupOpen: !isPopupOpen,
     });
   }
 
@@ -60,7 +77,7 @@ export default class PopUpAction extends React.Component<PropTypes.InferProps<ty
       this.setState({
         ...this.state,
         isConfirmOpen: true,
-        selectedAction: action
+        selectedAction: action,
       });
     } else {
       action.callback();
@@ -70,44 +87,46 @@ export default class PopUpAction extends React.Component<PropTypes.InferProps<ty
   render() {
     const dirString = this.props.direction.reduce((acc, cur) => {
       return acc + ` Popup-container--${cur}`;
-    }, "");
+    }, '');
     return (
       <>
         <div className="Popup Popup--hover">
           <button
             className="Button Button--small"
-            onClick={ this.togglePopup.bind(this) }
+            onClick={this.togglePopup.bind(this)}
           >
-            { this.props.text }
+            {this.props.text}
           </button>
           <div
-            className={ `Popup-container ${dirString} ${this.state.isPopupOpen ? "is-open" : ""}` }
-            style={ this.props.popupStyle }
+            className={`Popup-container ${dirString} ${
+              this.state.isPopupOpen ? 'is-open' : ''
+            }`}
+            style={this.props.popupStyle}
           >
             <div className="Popup-content">
               <div className="u-textLeft">
-                { this.props.actions.map(action => {
+                {this.props.actions.map((action) => {
                   return (
-                    <div key={ action.text }>
+                    <div key={action.text}>
                       <button
-                        tabIndex={ 0 }
+                        tabIndex={0}
                         className="u-padEndsSm u-padSidesMd"
                         style={{
-                          cursor: "pointer",
-                          appearance: "none",
-                          border: "none",
-                          background: "none",
-                          width: "100%",
-                          textAlign: "left"
+                          cursor: 'pointer',
+                          appearance: 'none',
+                          border: 'none',
+                          background: 'none',
+                          width: '100%',
+                          textAlign: 'left',
                         }}
-                        onClick={ this.handleActionClick.bind(this, action) }
+                        onClick={this.handleActionClick.bind(this, action)}
                       >
-                        { action.text }
+                        {action.text}
                       </button>
                       <hr className="Divider u-spaceEndsNone" />
                     </div>
                   );
-                }) }
+                })}
               </div>
             </div>
           </div>
@@ -115,25 +134,25 @@ export default class PopUpAction extends React.Component<PropTypes.InferProps<ty
         <div className="Popup">
           <div
             className={
-              "Popup-container Popup-container--overlay" +
+              'Popup-container Popup-container--overlay' +
               (this.state.selectedAction.requiresConfirmation &&
-                this.state.isConfirmOpen
-                ? " is-open"
-                : "")
+              this.state.isConfirmOpen
+                ? ' is-open'
+                : '')
             }
           >
             <div className="Popup-content u-padMd">
               <h3 className="u-spaceBottomSm u-textCenter">Are you sure?</h3>
               <p className="u-textLeft">
-                { this.state.selectedAction.confirmationText }
+                {this.state.selectedAction.confirmationText}
               </p>
               <div className="u-textCenter u-spaceTopMd">
                 <button
-                  onClick={ () =>
+                  onClick={() =>
                     this.setState({
                       ...this.state,
                       isConfirmOpen: false,
-                      selectedAction: {}
+                      selectedAction: {},
                     })
                   }
                   className="u-spaceRightSm Button Button--negative"
@@ -141,14 +160,14 @@ export default class PopUpAction extends React.Component<PropTypes.InferProps<ty
                   Cancel
                 </button>
                 <button
-                  onClick={ (...args) => {
+                  onClick={(...args) => {
                     this.state.selectedAction.callback(args);
                     this.setState({
                       ...this.state,
                       isConfirmOpen: false,
-                      selectedAction: {}
+                      selectedAction: {},
                     });
-                  } }
+                  }}
                   className="Button Button--primary"
                 >
                   Confirm

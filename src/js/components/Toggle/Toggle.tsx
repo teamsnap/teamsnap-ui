@@ -12,26 +12,29 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { InputControl } from "../InputControl";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { InputControl } from '../InputControl';
 
-class Toggle extends React.PureComponent<PropTypes.InferProps<typeof Toggle.propTypes>, any> {
+class Toggle extends React.PureComponent<
+  PropTypes.InferProps<typeof Toggle.propTypes>,
+  any
+> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     inputProps: PropTypes.object,
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
     inputProps: {},
-    className: "Toggle",
+    className: 'Toggle',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {
@@ -44,8 +47,8 @@ class Toggle extends React.PureComponent<PropTypes.InferProps<typeof Toggle.prop
         mods={mods}
         style={style}
         type="checkbox"
-        labelProps={{ className: "Toggle-label" }}
-        inputProps={{ className: "Toggle-input", ...inputProps }}
+        labelProps={{ className: 'Toggle-label' }}
+        inputProps={{ className: 'Toggle-input', ...inputProps }}
         {...otherProps}
       />
     );

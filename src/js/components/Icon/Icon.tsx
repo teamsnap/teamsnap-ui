@@ -12,26 +12,29 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
-const svgIcon = name => require(`../../icons/${name}`);
+const svgIcon = (name) => require(`../../icons/${name}`);
 
-class Icon extends React.PureComponent<PropTypes.InferProps<typeof Icon.propTypes>, any> {
+class Icon extends React.PureComponent<
+  PropTypes.InferProps<typeof Icon.propTypes>,
+  any
+> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
-    className: "Icon",
+    className: 'Icon',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {

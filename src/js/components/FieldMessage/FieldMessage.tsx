@@ -10,12 +10,15 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
-import { Status, Statuses } from "../../types";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
+import { Status, Statuses } from '../../types';
 
-class FieldMessage extends React.PureComponent<PropTypes.InferProps<typeof FieldMessage.propTypes>, any> {
+class FieldMessage extends React.PureComponent<
+  PropTypes.InferProps<typeof FieldMessage.propTypes>,
+  any
+> {
   static propTypes = {
     children: PropTypes.string,
     isError: PropTypes.bool,
@@ -28,27 +31,20 @@ class FieldMessage extends React.PureComponent<PropTypes.InferProps<typeof Field
 
   static defaultProps = {
     children: null,
-    className: "FieldGroup-message",
+    className: 'FieldGroup-message',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {
-    const {
-      children,
-      className,
-      mods,
-      style,
-      otherProps,
-      status
-    } = this.props;
+    const { children, className, mods, style, otherProps, status } = this.props;
 
     const messageClasses = getClassName(
-      "FieldGroup-message",
-      status == Statuses.ERROR && "FieldGroup-message--error",
-      status == Statuses.SUCCESS && "FieldGroup-message--success",
-      status == Statuses.WARNING && "FieldGroup-message--warning",
+      'FieldGroup-message',
+      status == Statuses.ERROR && 'FieldGroup-message--error',
+      status == Statuses.SUCCESS && 'FieldGroup-message--success',
+      status == Statuses.WARNING && 'FieldGroup-message--warning',
       className,
       mods
     );

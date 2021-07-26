@@ -11,9 +11,9 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import Icon from "../Icon/Icon";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import Icon from '../Icon/Icon';
 
 const propTypes = {
   className: PropTypes.string,
@@ -41,7 +41,7 @@ const Breadcrumbs: React.FunctionComponent<
     let content = <Icon className="Icon Icon-home" name="home" />;
 
     if (home.url) {
-      content = <a href={home.url || "#"}>{content}</a>;
+      content = <a href={home.url || '#'}>{content}</a>;
     }
 
     return <li>{content}</li>;
@@ -58,7 +58,7 @@ const Breadcrumbs: React.FunctionComponent<
   const renderCrumb = (crumb: any) => {
     let content = crumb.text;
     if (crumb.link) {
-      content = <a href={crumb.link || "#"}>{crumb.text}</a>;
+      content = <a href={crumb.link || '#'}>{crumb.text}</a>;
     }
 
     return (
@@ -86,7 +86,7 @@ const Breadcrumbs: React.FunctionComponent<
     <nav
       id={id}
       aria-label="Breadcrumb"
-      className={className ?? "Nav-breadcrumb"}
+      className={className ?? 'Nav-breadcrumb'}
       style={style}
     >
       <ul className="Breadcrumb">

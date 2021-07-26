@@ -1,27 +1,26 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import { text } from "@storybook/addon-knobs";
-import Nav from "./Nav";
-const stories = storiesOf("Nav", module);
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import { text } from '@storybook/addon-knobs';
+import Nav from './Nav';
+const stories = storiesOf('Nav', module);
 
 export default {
   title: 'Nav',
   component: Nav,
 };
 
-
-stories.add("Default", () => (
+stories.add('Default', () => (
   <div
     className="u-flex"
-    style={{ backgroundColor: "#FFEFA5", minHeight: "800px" }}
+    style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}
   >
     <Nav
       mods="u-size3of12"
       headerItem={{
-        title: text("Team Name", "Boulder Youth Soccer"),
+        title: text('Team Name', 'Boulder Youth Soccer'),
         image: text(
-          "Image Source",
-          "https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png"
+          'Image Source',
+          'https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png'
         ),
       }}
     >
@@ -36,7 +35,7 @@ stories.add("Default", () => (
       >
         Dashboard
       </Nav.Item>
-      <Nav.Item icon="medal" onClick={() => alert("Fire Custom On Click")}>
+      <Nav.Item icon="medal" onClick={() => alert('Fire Custom On Click')}>
         Programs
       </Nav.Item>
       <Nav.Item icon="user">Members</Nav.Item>
@@ -44,7 +43,7 @@ stories.add("Default", () => (
       <Nav.Item icon="settings">Settings</Nav.Item>
     </Nav>
     <main className="u-sizeFill u-flex u-flexAlignItemsCenter u-flexJustifyCenter">
-      <div style={{ width: "40%" }}>
+      <div style={{ width: '40%' }}>
         This main and the nav are contained in a div that acts as a frame. The
         left nav is as tall as the frame, which, in this case, has a height
         manually set to 800px. By default, the nav is as wide as its container,
@@ -55,73 +54,79 @@ stories.add("Default", () => (
   </div>
 ));
 
-stories.add("Default", () => (
+stories.add('Default', () => (
   <div
     className="u-flex"
-    style={{ backgroundColor: "#FFEFA5", minHeight: "800px"}}
+    style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}
   >
     <Nav
       mods="u-size3of12"
       headerItem={{
-        title: text("Team Name", "Boulder Youth Soccer"),
+        title: text('Team Name', 'Boulder Youth Soccer'),
         image: text(
-          "Image Source",
-          "https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png"
+          'Image Source',
+          'https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png'
         ),
       }}
       flyoutSections={[
         {
-          heading: "Organizations",
+          heading: 'Organizations',
           tree: [
             {
-              title: "Boulder Sports",
+              title: 'Boulder Sports',
               tree: [
                 {
-                  title: "Organization Admin",
+                  title: 'Organization Admin',
                   wrapItem: ({ children }) => (
-                    <a href="https://organization.teamsnap.com" target="_blank" rel="noopener">{children}</a>
+                    <a
+                      href="https://organization.teamsnap.com"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      {children}
+                    </a>
                   ),
                 },
                 {
-                  title: "Soccer Start",
+                  title: 'Soccer Start',
                   useBadge: true,
                   tree: [
                     {
-                      title: "2021 Spring Season",
+                      title: '2021 Spring Season',
                     },
                     {
-                      title: "2021 Spring Playoffs",
+                      title: '2021 Spring Playoffs',
                     },
                   ],
                 },
                 {
-                  title: "6U-8U Rec",
+                  title: '6U-8U Rec',
                   useBadge: true,
                 },
                 {
-                  title: "9U Rec",
+                  title: '9U Rec',
                   useBadge: true,
                 },
               ],
             },
             {
-              title: "Colorado Soccer",
+              title: 'Colorado Soccer',
             },
           ],
         },
         {
-          heading: "Teams",
+          heading: 'Teams',
           tree: [
             {
-              title: "Strikers",
+              title: 'Strikers',
               useBadge: true,
             },
             {
-              title: "Panthers",
+              title: 'Panthers',
               useBadge: true,
             },
             {
-              title: "Bobcats",
+              title: 'Bobcats',
               useBadge: true,
             },
           ],
@@ -139,7 +144,7 @@ stories.add("Default", () => (
       >
         Dashboard
       </Nav.Item>
-      <Nav.Item icon="medal" onClick={() => alert("Fire Custom On Click")}>
+      <Nav.Item icon="medal" onClick={() => alert('Fire Custom On Click')}>
         Programs
       </Nav.Item>
       <Nav.Item icon="user">Members</Nav.Item>
@@ -147,7 +152,7 @@ stories.add("Default", () => (
       <Nav.Item icon="settings">Settings</Nav.Item>
     </Nav>
     <main className="u-sizeFill u-flex u-flexAlignItemsCenter u-flexJustifyCenter">
-      <div style={{ width: "40%" }}>
+      <div style={{ width: '40%' }}>
         This main and the nav are contained in a div that acts as a frame. The
         left nav is as tall as the frame, which, in this case, has a height
         manually set to 800px. By default, the nav is as wide as its container,
@@ -158,74 +163,80 @@ stories.add("Default", () => (
   </div>
 ));
 
-stories.add("With Subheading", () => (
+stories.add('With Subheading', () => (
   <div
     className="u-flex"
-    style={{ backgroundColor: "#FFEFA5", minHeight: "800px" }}
+    style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}
   >
     <Nav
       mods="u-size3of12"
       headerItem={{
-        title: text("Team Name", "Boulder Youth Soccer"),
-        subtitle: text("Season", "2021 Fall Season"),
+        title: text('Team Name', 'Boulder Youth Soccer'),
+        subtitle: text('Season', '2021 Fall Season'),
         image: text(
-          "Image Source",
-          "https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png"
+          'Image Source',
+          'https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png'
         ),
       }}
       flyoutSections={[
         {
-          heading: "Organizations",
+          heading: 'Organizations',
           tree: [
             {
-              title: "Boulder Sports",
+              title: 'Boulder Sports',
               tree: [
                 {
-                  title: "Organization Admin",
+                  title: 'Organization Admin',
                   wrapItem: ({ children }) => (
-                    <a href="https://organization.teamsnap.com" target="_blank" rel="noopener">{children}</a>
+                    <a
+                      href="https://organization.teamsnap.com"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      {children}
+                    </a>
                   ),
                 },
                 {
-                  title: "Soccer Start",
+                  title: 'Soccer Start',
                   useBadge: true,
                   tree: [
                     {
-                      title: "2021 Spring Season",
+                      title: '2021 Spring Season',
                     },
                     {
-                      title: "2021 Spring Playoffs",
+                      title: '2021 Spring Playoffs',
                     },
                   ],
                 },
                 {
-                  title: "6U-8U Rec",
+                  title: '6U-8U Rec',
                   useBadge: true,
                 },
                 {
-                  title: "9U Rec",
+                  title: '9U Rec',
                   useBadge: true,
                 },
               ],
             },
             {
-              title: "Colorado Soccer",
+              title: 'Colorado Soccer',
             },
           ],
         },
         {
-          heading: "Teams",
+          heading: 'Teams',
           tree: [
             {
-              title: "Strikers",
+              title: 'Strikers',
               useBadge: true,
             },
             {
-              title: "Panthers",
+              title: 'Panthers',
               useBadge: true,
             },
             {
-              title: "Bobcats",
+              title: 'Bobcats',
               useBadge: true,
             },
           ],
@@ -243,7 +254,7 @@ stories.add("With Subheading", () => (
       >
         Dashboard
       </Nav.Item>
-      <Nav.Item icon="medal" onClick={() => alert("Fire Custom On Click")}>
+      <Nav.Item icon="medal" onClick={() => alert('Fire Custom On Click')}>
         Programs
       </Nav.Item>
       <Nav.Item icon="user">Members</Nav.Item>
@@ -251,7 +262,7 @@ stories.add("With Subheading", () => (
       <Nav.Item icon="settings">Settings</Nav.Item>
     </Nav>
     <main className="u-sizeFill u-flex u-flexAlignItemsCenter u-flexJustifyCenter">
-      <div style={{ width: "40%" }}>
+      <div style={{ width: '40%' }}>
         This main and the nav are contained in a div that acts as a frame. The
         left nav is as tall as the frame, which, in this case, has a height
         manually set to 800px. By default, the nav is as wide as its container,
@@ -262,73 +273,79 @@ stories.add("With Subheading", () => (
   </div>
 ));
 
-stories.add("With content overlay", () => (
+stories.add('With content overlay', () => (
   <div
     className="u-flex"
-    style={{ backgroundColor: "#FFEFA5", minHeight: "800px" }}
+    style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}
   >
     <Nav
       mods="u-size3of12"
       headerItem={{
-        title: text("Team Name", "Boulder Youth Soccer"),
+        title: text('Team Name', 'Boulder Youth Soccer'),
         image: text(
-          "Image Source",
-          "https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png"
+          'Image Source',
+          'https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png'
         ),
       }}
       flyoutSections={[
         {
-          heading: "Organizations",
+          heading: 'Organizations',
           tree: [
             {
-              title: "Boulder Sports",
+              title: 'Boulder Sports',
               tree: [
                 {
-                  title: "Organization Admin",
+                  title: 'Organization Admin',
                   wrapItem: ({ children }) => (
-                    <a href="https://organization.teamsnap.com" target="_blank" rel="noopener">{children}</a>
+                    <a
+                      href="https://organization.teamsnap.com"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      {children}
+                    </a>
                   ),
                 },
                 {
-                  title: "Soccer Start",
+                  title: 'Soccer Start',
                   useBadge: true,
                   tree: [
                     {
-                      title: "2021 Spring Season",
+                      title: '2021 Spring Season',
                     },
                     {
-                      title: "2021 Spring Playoffs",
+                      title: '2021 Spring Playoffs',
                     },
                   ],
                 },
                 {
-                  title: "6U-8U Rec",
+                  title: '6U-8U Rec',
                   useBadge: true,
                 },
                 {
-                  title: "9U Rec",
+                  title: '9U Rec',
                   useBadge: true,
                 },
               ],
             },
             {
-              title: "Colorado Soccer",
+              title: 'Colorado Soccer',
             },
           ],
         },
         {
-          heading: "Teams",
+          heading: 'Teams',
           tree: [
             {
-              title: "Strikers",
+              title: 'Strikers',
               useBadge: true,
             },
             {
-              title: "Panthers",
+              title: 'Panthers',
               useBadge: true,
             },
             {
-              title: "Bobcats",
+              title: 'Bobcats',
               useBadge: true,
             },
           ],
@@ -347,7 +364,7 @@ stories.add("With content overlay", () => (
       >
         Dashboard
       </Nav.Item>
-      <Nav.Item icon="medal" onClick={() => alert("Fire Custom On Click")}>
+      <Nav.Item icon="medal" onClick={() => alert('Fire Custom On Click')}>
         Programs
       </Nav.Item>
       <Nav.Item icon="user">Members</Nav.Item>
@@ -355,7 +372,7 @@ stories.add("With content overlay", () => (
       <Nav.Item icon="settings">Settings</Nav.Item>
     </Nav>
     <main className="u-sizeFill u-flex u-flexAlignItemsCenter u-flexJustifyCenter">
-      <div style={{ width: "40%" }}>
+      <div style={{ width: '40%' }}>
         This main and the nav are contained in a div that acts as a frame. The
         left nav is as tall as the frame, which, in this case, has a height
         manually set to 800px. By default, the nav is as wide as its container,
@@ -366,73 +383,79 @@ stories.add("With content overlay", () => (
   </div>
 ));
 
-stories.add("With all items open", () => (
+stories.add('With all items open', () => (
   <div
     className="u-flex"
-    style={{ backgroundColor: "#FFEFA5", minHeight: "800px"}}
+    style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}
   >
     <Nav
       mods="u-size3of12"
       headerItem={{
-        title: text("Team Name", "Boulder Youth Soccer"),
+        title: text('Team Name', 'Boulder Youth Soccer'),
         image: text(
-          "Image Source",
-          "https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png"
+          'Image Source',
+          'https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png'
         ),
       }}
       flyoutSections={[
         {
-          heading: "Organizations",
+          heading: 'Organizations',
           tree: [
             {
-              title: "Boulder Sports",
+              title: 'Boulder Sports',
               tree: [
                 {
-                  title: "Organization Admin",
+                  title: 'Organization Admin',
                   wrapItem: ({ children }) => (
-                    <a href="https://organization.teamsnap.com" target="_blank" rel="noopener">{children}</a>
+                    <a
+                      href="https://organization.teamsnap.com"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      {children}
+                    </a>
                   ),
                 },
                 {
-                  title: "Soccer Start",
+                  title: 'Soccer Start',
                   useBadge: true,
                   tree: [
                     {
-                      title: "2021 Spring Season",
+                      title: '2021 Spring Season',
                     },
                     {
-                      title: "2021 Spring Playoffs",
+                      title: '2021 Spring Playoffs',
                     },
                   ],
                 },
                 {
-                  title: "6U-8U Rec",
+                  title: '6U-8U Rec',
                   useBadge: true,
                 },
                 {
-                  title: "9U Rec",
+                  title: '9U Rec',
                   useBadge: true,
                 },
               ],
             },
             {
-              title: "Colorado Soccer",
+              title: 'Colorado Soccer',
             },
           ],
         },
         {
-          heading: "Teams",
+          heading: 'Teams',
           tree: [
             {
-              title: "Strikers",
+              title: 'Strikers',
               useBadge: true,
             },
             {
-              title: "Panthers",
+              title: 'Panthers',
               useBadge: true,
             },
             {
-              title: "Bobcats",
+              title: 'Bobcats',
               useBadge: true,
             },
           ],
@@ -451,7 +474,7 @@ stories.add("With all items open", () => (
       >
         Dashboard
       </Nav.Item>
-      <Nav.Item icon="medal" onClick={() => alert("Fire Custom On Click")}>
+      <Nav.Item icon="medal" onClick={() => alert('Fire Custom On Click')}>
         Programs
       </Nav.Item>
       <Nav.Item icon="user">Members</Nav.Item>
@@ -459,7 +482,7 @@ stories.add("With all items open", () => (
       <Nav.Item icon="settings">Settings</Nav.Item>
     </Nav>
     <main className="u-sizeFill u-flex u-flexAlignItemsCenter u-flexJustifyCenter">
-      <div style={{ width: "40%" }}>
+      <div style={{ width: '40%' }}>
         This main and the nav are contained in a div that acts as a frame. The
         left nav is as tall as the frame, which, in this case, has a height
         manually set to 800px. By default, the nav is as wide as its container,
@@ -470,7 +493,7 @@ stories.add("With all items open", () => (
   </div>
 ));
 
-stories.add("Without Header", () => (
+stories.add('Without Header', () => (
   <>
     <h4>
       Removing the header items from the Nav allows us to have a more generic,
@@ -480,7 +503,7 @@ stories.add("Without Header", () => (
     </h4>
     <div
       className="u-flex"
-      style={{ backgroundColor: "#FFEFA5", minHeight: "800px" }}
+      style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}
     >
       <Nav mods="u-size3of12">
         <Nav.Item
@@ -499,7 +522,7 @@ stories.add("Without Header", () => (
         </Nav.Item>
       </Nav>
       <main className="u-sizeFill u-flex u-flexAlignItemsCenter u-flexJustifyCenter">
-        <div style={{ width: "40%" }}>
+        <div style={{ width: '40%' }}>
           This main and the nav are contained in a div that acts as a frame. The
           left nav is as tall as the frame, which, in this case, has a height
           manually set to 800px. By default, the nav is as wide as its

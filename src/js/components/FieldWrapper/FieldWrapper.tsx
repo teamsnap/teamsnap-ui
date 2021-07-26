@@ -15,41 +15,44 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { FieldGroup } from "../FieldGroup";
-import { FieldLabel } from "../FieldLabel";
-import { FieldMessage } from "../FieldMessage";
-import { Input } from "../Input";
-import { TextArea } from "../TextArea";
-import { Checkbox } from "../Checkbox";
-import { Radio } from "../Radio";
-import { Toggle } from "../Toggle";
-import { Select } from "../Select";
-import { Status } from "../../types";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { FieldGroup } from '../FieldGroup';
+import { FieldLabel } from '../FieldLabel';
+import { FieldMessage } from '../FieldMessage';
+import { Input } from '../Input';
+import { TextArea } from '../TextArea';
+import { Checkbox } from '../Checkbox';
+import { Radio } from '../Radio';
+import { Toggle } from '../Toggle';
+import { Select } from '../Select';
+import { Status } from '../../types';
 
-class FieldWrapper extends React.PureComponent<PropTypes.InferProps<typeof FieldWrapper.propTypes>, any> {
+class FieldWrapper extends React.PureComponent<
+  PropTypes.InferProps<typeof FieldWrapper.propTypes>,
+  any
+> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     field: PropTypes.oneOf([
-      "input",
-      "checkbox",
-      "radio",
-      "toggle",
-      "select",
-      "textarea"
+      'input',
+      'checkbox',
+      'radio',
+      'toggle',
+      'select',
+      'textarea',
     ]).isRequired,
     fieldProps: PropTypes.any,
     status: Status.PropType,
     label: PropTypes.node,
-    message: PropTypes.string
+    message: PropTypes.string,
   };
 
   static defaultProps = {
     fieldProps: {},
     status: null,
     label: null,
-    message: null
+    message: null,
   };
 
   renderFieldComponent = () => {
@@ -60,12 +63,12 @@ class FieldWrapper extends React.PureComponent<PropTypes.InferProps<typeof Field
       checkbox: Checkbox,
       radio: Radio,
       toggle: Toggle,
-      textarea: TextArea
+      textarea: TextArea,
     };
 
     const FieldTag = FieldTypes[field] || Input;
 
-    if ((field == "checkbox" || field == "radio") && fieldProps.options) {
+    if ((field == 'checkbox' || field == 'radio') && fieldProps.options) {
       return (
         fieldProps.options &&
         fieldProps.options.map(({ label, value, ...optionProps }, i) => (
@@ -76,7 +79,11 @@ class FieldWrapper extends React.PureComponent<PropTypes.InferProps<typeof Field
             name={`${name}${i}`}
             label={label}
             {...optionProps}
-            inputProps={{...fieldProps.inputProps, ...optionProps.inputProps, value: value ?? label}}
+            inputProps={{
+              ...fieldProps.inputProps,
+              ...optionProps.inputProps,
+              value: value ?? label,
+            }}
           />
         ))
       );
@@ -92,9 +99,7 @@ class FieldWrapper extends React.PureComponent<PropTypes.InferProps<typeof Field
       <FieldGroup status={status}>
         {label && <FieldLabel name={name}>{label} </FieldLabel>}
         {this.renderFieldComponent()}
-        {message && (
-          <FieldMessage status={status}>{message}</FieldMessage>
-        )}
+        {message && <FieldMessage status={status}>{message}</FieldMessage>}
       </FieldGroup>
     );
   }

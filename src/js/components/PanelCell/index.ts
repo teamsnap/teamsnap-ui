@@ -1,2 +1,2 @@
-import PanelCell from "./PanelCell";
+import PanelCell from './PanelCell';
 export { PanelCell };

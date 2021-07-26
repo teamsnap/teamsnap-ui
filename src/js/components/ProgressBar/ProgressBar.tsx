@@ -14,11 +14,14 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
-class ProgressBar extends React.PureComponent<PropTypes.InferProps<typeof ProgressBar.propTypes>, any> {
+class ProgressBar extends React.PureComponent<
+  PropTypes.InferProps<typeof ProgressBar.propTypes>,
+  any
+> {
   static propTypes = {
     progress: PropTypes.number,
     size: PropTypes.string,
@@ -28,7 +31,7 @@ class ProgressBar extends React.PureComponent<PropTypes.InferProps<typeof Progre
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
@@ -37,10 +40,10 @@ class ProgressBar extends React.PureComponent<PropTypes.InferProps<typeof Progre
     color: null,
     isPrecise: false,
     isVertical: false,
-    className: "ProgressBar",
+    className: 'ProgressBar',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {
@@ -53,20 +56,20 @@ class ProgressBar extends React.PureComponent<PropTypes.InferProps<typeof Progre
       className,
       mods,
       style,
-      otherProps
+      otherProps,
     } = this.props;
 
     const progressClasses = getClassName(
       className,
       size && `ProgressBar--${size}`,
       color && `ProgressBar--${color}`,
-      isVertical && "ProgressBar--vertical",
-      isPrecise && "ProgressBar--precise",
+      isVertical && 'ProgressBar--vertical',
+      isPrecise && 'ProgressBar--precise',
       mods
     );
 
     const progressWidth = {
-      [isVertical ? "height" : "width"]: `${progress}%`
+      [isVertical ? 'height' : 'width']: `${progress}%`,
     };
 
     return (

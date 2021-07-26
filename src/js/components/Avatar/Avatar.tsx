@@ -13,18 +13,18 @@
  *
  */
 
-import * as React from "react";
+import * as React from 'react';
 
 export interface Props {
   src: string;
-  size: "xs" | "sm" | "md" | "lg" | "xl" | "xxl" | "fill";
+  size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'fill';
   mods?: string;
 }
 
-const Avatar: React.FunctionComponent<Props> = ({src, size, mods}) => (
-  <div className={`Avatar Avatar--${size} ${!!mods ? mods : ""}`}>
+const Avatar: React.FunctionComponent<Props> = ({ src, size, mods }) => (
+  <div className={`Avatar Avatar--${size} ${!!mods ? mods : ''}`}>
     <img src={src} />
   </div>
-)
+);
 
 export default Avatar;

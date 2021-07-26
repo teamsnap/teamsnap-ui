@@ -39,7 +39,7 @@ const Tabs: React.FunctionComponent<Props> = ({ mods, tabs }: Props) => {
 
   return (
     <div className={`Tabs ${boolMods ? mods : ''}`}>
-      <ul className='Tabs-header'>
+      <ul className="Tabs-header">
         {tabs.map((tab, index) => (
           <li
             key={`Tabs-headerItem-${index}`}
@@ -48,11 +48,11 @@ const Tabs: React.FunctionComponent<Props> = ({ mods, tabs }: Props) => {
               index === activeTabIndex ? 'is-active' : ''
             }`}
           >
-            { tab.heading }
+            {tab.heading}
           </li>
         ))}
       </ul>
-      <div className='Tabs-content'>
+      <div className="Tabs-content">
         {tabs.map((tab, index) => (
           <div
             key={`Tabs-contentItem-${index}`}
@@ -60,7 +60,7 @@ const Tabs: React.FunctionComponent<Props> = ({ mods, tabs }: Props) => {
               index === activeTabIndex ? 'is-active' : ''
             }`}
           >
-            { tab.content }
+            {tab.content}
           </div>
         ))}
       </div>

@@ -10,10 +10,10 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
-import { CheckboxStates } from "../../types";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
+import { CheckboxStates } from '../../types';
 
 class InputControl extends React.PureComponent<
   PropTypes.InferProps<typeof InputControl.propTypes>,
@@ -62,7 +62,7 @@ class InputControl extends React.PureComponent<
 
     const classes = getClassName(
       className,
-      isInline && "Checkbox--inline",
+      isInline && 'Checkbox--inline',
       mods
     );
 
@@ -70,13 +70,13 @@ class InputControl extends React.PureComponent<
     // handle checkboxstates as a valid input
     let value = undefined;
     if (inputProps.checked !== undefined) {
-      if (typeof inputProps.checked === "boolean") {
+      if (typeof inputProps.checked === 'boolean') {
         value = inputProps.checked;
       } else {
         if (inputProps.checked === CheckboxStates.INDETERMINATE) {
           value = true;
         } else {
-          value = inputProps.checked === "true";
+          value = inputProps.checked === 'true';
         }
       }
     }

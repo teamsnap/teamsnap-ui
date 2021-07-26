@@ -1,2 +1,2 @@
-import PanelRowExpandable from "./PanelRowExpandable";
+import PanelRowExpandable from './PanelRowExpandable';
 export { PanelRowExpandable };

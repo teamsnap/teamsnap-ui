@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as PropTypes from "prop-types";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
 interface State {
   isPopupOpen: boolean;
@@ -16,7 +16,7 @@ export default class Popup extends React.Component<
       .isRequired,
     popupStyle: PropTypes.object,
     onAccept: PropTypes.func.isRequired,
-    onCancel: PropTypes.func
+    onCancel: PropTypes.func,
   };
 
   popupRef: PropTypes.InferType<PropTypes.ReactElementLike>;
@@ -24,7 +24,7 @@ export default class Popup extends React.Component<
   constructor(props) {
     super(props);
     this.state = {
-      isPopupOpen: false
+      isPopupOpen: false,
     };
     this.popupRef = React.createRef();
   }
@@ -32,7 +32,7 @@ export default class Popup extends React.Component<
   handleBodyClick() {
     if (this.popupRef && this.popupRef.current)
       this.setState({
-        isPopupOpen: false
+        isPopupOpen: false,
       });
   }
 
@@ -40,16 +40,16 @@ export default class Popup extends React.Component<
     const { isPopupOpen } = this.state;
 
     if (!isPopupOpen) {
-      document.body.addEventListener("click", this.handleBodyClick.bind(this));
+      document.body.addEventListener('click', this.handleBodyClick.bind(this));
     } else {
       document.body.removeEventListener(
-        "click",
+        'click',
         this.handleBodyClick.bind(this)
       );
     }
 
     this.setState({
-      isPopupOpen: !isPopupOpen
+      isPopupOpen: !isPopupOpen,
     });
   }
 
@@ -64,8 +64,8 @@ export default class Popup extends React.Component<
         </button>
         <div
           className={
-            "Popup-container Popup-container--overlay" +
-            (this.state.isPopupOpen ? " is-open" : "")
+            'Popup-container Popup-container--overlay' +
+            (this.state.isPopupOpen ? ' is-open' : '')
           }
           style={this.props.popupStyle}
         >

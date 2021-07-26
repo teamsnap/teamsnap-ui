@@ -19,15 +19,15 @@
  *  />
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { FieldGroup } from "../FieldGroup";
-import { FieldLabel } from "../FieldLabel";
-import { FieldMessage } from "../FieldMessage";
-import { Input } from "../Input";
-import { CheckboxState, CheckboxStates, Status, Size } from "../../types";
-import { Checkbox } from "../Checkbox";
-import { Radio } from "../Radio";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { FieldGroup } from '../FieldGroup';
+import { FieldLabel } from '../FieldLabel';
+import { FieldMessage } from '../FieldMessage';
+import { Input } from '../Input';
+import { CheckboxState, CheckboxStates, Status, Size } from '../../types';
+import { Checkbox } from '../Checkbox';
+import { Radio } from '../Radio';
 
 const checkboxShape = PropTypes.shape({
   text: PropTypes.string,
@@ -48,7 +48,7 @@ const inputShape = PropTypes.shape({
 });
 
 const fieldPropTypes = {
-  type: PropTypes.oneOf(["toggle", "select", "input", "checkbox"]).isRequired,
+  type: PropTypes.oneOf(['toggle', 'select', 'input', 'checkbox']).isRequired,
   formFieldProps: PropTypes.oneOfType([checkboxShape, inputShape]),
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
@@ -83,12 +83,17 @@ const Field: FieldType = ({
   ...otherProps
 }) => {
   return (
-    <FieldGroup style={style} isInline={isInline} status={status} isDisabled={isDisabled}>
+    <FieldGroup
+      style={style}
+      isInline={isInline}
+      status={status}
+      isDisabled={isDisabled}
+    >
       {label && <FieldLabel name={name}>{label}</FieldLabel>}
       {((formFieldProps) => {
         const { text, checked, onClick } = formFieldProps as any;
         switch (type) {
-          case "checkbox":
+          case 'checkbox':
             return (
               <Checkbox
                 name={name}
@@ -101,7 +106,7 @@ const Field: FieldType = ({
                 isInline
               />
             );
-          case "radio":
+          case 'radio':
             return (
               <Radio
                 name={name}
@@ -130,7 +135,7 @@ const Field: FieldType = ({
                 size={size}
                 placeholder={placeholder}
                 name={name}
-                type={type || "text"}
+                type={type || 'text'}
                 inputProps={inputProps}
                 status={status}
                 rightIcon={rightIcon}

@@ -16,14 +16,17 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { PanelRow } from "../PanelRow";
-import { PanelCell } from "../PanelCell";
-import { Icon } from "../Icon";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { PanelRow } from '../PanelRow';
+import { PanelCell } from '../PanelCell';
+import { Icon } from '../Icon';
+import { getClassName } from '../../utils/helpers';
 
-class PanelRowExpandable extends React.PureComponent<PropTypes.InferProps<typeof PanelRowExpandable.propTypes>, any> {
+class PanelRowExpandable extends React.PureComponent<
+  PropTypes.InferProps<typeof PanelRowExpandable.propTypes>,
+  any
+> {
   static propTypes = {
     parentColumns: PropTypes.arrayOf(PropTypes.object).isRequired,
     childColumns: PropTypes.arrayOf(PropTypes.object),
@@ -31,36 +34,36 @@ class PanelRowExpandable extends React.PureComponent<PropTypes.InferProps<typeof
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
     childColumns: null,
     renderColumn: null,
-    className: "Panel-expandableRow",
+    className: 'Panel-expandableRow',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   state = {
-    isExpanded: false
+    isExpanded: false,
   };
 
-  handleRowClick = e => {
+  handleRowClick = (e) => {
     e.preventDefault();
 
     this.setState({
-      isExpanded: !this.state.isExpanded
+      isExpanded: !this.state.isExpanded,
     });
   };
 
-  renderChildLink = children => {
+  renderChildLink = (children) => {
     const { isExpanded } = this.state;
 
     const linkClasses = getClassName(
-      "Panel-expandableControl",
-      isExpanded && "is-expanded"
+      'Panel-expandableControl',
+      isExpanded && 'is-expanded'
     );
 
     return (
@@ -86,19 +89,19 @@ class PanelRowExpandable extends React.PureComponent<PropTypes.InferProps<typeof
       return renderColumn ? (
         renderColumn({ key: index, children, ...props })
       ) : (
-          <PanelCell key={index} {...props}>
-            {children}
-          </PanelCell>
-        );
+        <PanelCell key={index} {...props}>
+          {children}
+        </PanelCell>
+      );
     });
   };
 
-  renderChildColumns = childColumns => {
+  renderChildColumns = (childColumns) => {
     const { isExpanded } = this.state;
 
     return (
       <div
-        className={getClassName("Panel-childRows", isExpanded && "is-expanded")}
+        className={getClassName('Panel-childRows', isExpanded && 'is-expanded')}
       >
         <PanelRow isWithCells>{this.renderColumns(childColumns)}</PanelRow>
       </div>
@@ -106,14 +109,8 @@ class PanelRowExpandable extends React.PureComponent<PropTypes.InferProps<typeof
   };
 
   render() {
-    const {
-      parentColumns,
-      childColumns,
-      className,
-      mods,
-      style,
-      otherProps
-    } = this.props;
+    const { parentColumns, childColumns, className, mods, style, otherProps } =
+      this.props;
     const hasChildren = childColumns && childColumns.length > 0;
 
     return (

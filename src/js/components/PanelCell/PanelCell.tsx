@@ -12,9 +12,9 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
 class PanelCell extends React.PureComponent<
   PropTypes.InferProps<typeof PanelCell.propTypes>,
@@ -28,18 +28,18 @@ class PanelCell extends React.PureComponent<
     mods: PropTypes.string,
     role: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
     children: null,
     isTitle: false,
     isHeader: false,
-    className: "Panel-cell",
+    className: 'Panel-cell',
     mods: null,
-    role: "cell",
+    role: 'cell',
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
   renderTitle = () => <h4 className="Panel-title">{this.props.children}</h4>;
 
@@ -52,12 +52,12 @@ class PanelCell extends React.PureComponent<
       mods,
       role,
       style,
-      otherProps
+      otherProps,
     } = this.props;
 
     const cellClasses = getClassName(
       className,
-      isHeader && "Panel-cell--header",
+      isHeader && 'Panel-cell--header',
       mods
     );
 

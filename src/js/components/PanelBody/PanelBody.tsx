@@ -12,9 +12,9 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
 class PanelBody extends React.PureComponent<
   PropTypes.InferProps<typeof PanelBody.propTypes>,
@@ -26,14 +26,14 @@ class PanelBody extends React.PureComponent<
     mods: PropTypes.string,
     role: PropTypes.string,
     style: PropTypes.shape({}),
-    otherProps: PropTypes.shape({})
+    otherProps: PropTypes.shape({}),
   };
 
   static defaultProps = {
-    className: "Panel-body",
+    className: 'Panel-body',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {

@@ -1,23 +1,23 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import Panel from "./Panel";
-import { PanelHeader } from "../PanelHeader";
-import { PanelBody } from "../PanelBody";
-import { PanelFooter } from "../PanelFooter";
-import { PanelRow } from "../PanelRow";
-import { PanelCell } from "../PanelCell";
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import Panel from './Panel';
+import { PanelHeader } from '../PanelHeader';
+import { PanelBody } from '../PanelBody';
+import { PanelFooter } from '../PanelFooter';
+import { PanelRow } from '../PanelRow';
+import { PanelCell } from '../PanelCell';
 
-const stories = storiesOf("Panel", module);
+const stories = storiesOf('Panel', module);
 
 export default {
   title: 'Panel',
   component: Panel,
 };
 
-stories.add("Defaults", () => (
+stories.add('Defaults', () => (
   <>
     <h2>Panel with Set Width</h2>
-    <Panel style={{width: "50%"}}>
+    <Panel style={{ width: '50%' }}>
       <PanelHeader title="Panel Header" />
       <PanelBody>
         <PanelRow>
@@ -25,17 +25,17 @@ stories.add("Defaults", () => (
           imperdiet mauris vitae enim sollicitudin mattis. Integer sapien ex,
           congue et dictum vitae, porta vitae felis. Suspendisse tortor odio,
           elementum id gravida non, malesuada vel nisl.
-          <br/> <br/>
-          Ut nec ex magna. Sed at
-          ipsum eu nulla rhoncus faucibus ut vel erat. Integer vitae porta erat,
-          eu convallis lorem. Vestibulum ante ipsum primis in faucibus orci
-          luctus et ultrices posuere cubilia Curae; Sed efficitur at eros sed
-          lobortis. Phasellus metus dolor, suscipit id consectetur vel, auctor
-          in lacus. Mauris consequat ut enim id tempor. Morbi nec egestas elit.
+          <br /> <br />
+          Ut nec ex magna. Sed at ipsum eu nulla rhoncus faucibus ut vel erat.
+          Integer vitae porta erat, eu convallis lorem. Vestibulum ante ipsum
+          primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed
+          efficitur at eros sed lobortis. Phasellus metus dolor, suscipit id
+          consectetur vel, auctor in lacus. Mauris consequat ut enim id tempor.
+          Morbi nec egestas elit.
         </PanelRow>
       </PanelBody>
     </Panel>
-    <hr/>
+    <hr />
     <h2>Panels are fluid by default</h2>
     <Panel>
       <PanelHeader title="Panel with Header, Body, Rows, Cells, and Footer" />
@@ -51,7 +51,7 @@ stories.add("Defaults", () => (
   </>
 ));
 
-stories.add("Full Panel", () => (
+stories.add('Full Panel', () => (
   <Panel>
     <PanelHeader title="Full Panel, with Nested Child Elements" />
     <PanelBody>
@@ -67,11 +67,11 @@ stories.add("Full Panel", () => (
           Brian Doyle-Murray, Joel Murray, and John Murray. He and most of his
           siblings worked as caddies, which paid his tuition to Loyola Academy,
           a Jesuit school. He played sports and did some acting while in that
-          school, but in his words, mostly &quot;screwed off.&quot; He enrolled at Regis
-          College in Denver to study pre-med but dropped out after being
-          arrested for marijuana possession. He then joined the National Lampoon
-          Radio Hour with fellow members Dan Aykroyd, Gilda Radner, and John
-          Belushi.
+          school, but in his words, mostly &quot;screwed off.&quot; He enrolled
+          at Regis College in Denver to study pre-med but dropped out after
+          being arrested for marijuana possession. He then joined the National
+          Lampoon Radio Hour with fellow members Dan Aykroyd, Gilda Radner, and
+          John Belushi.
         </PanelCell>
         <PanelCell mods="u-size8of24">
           <img src="https://www.fillmurray.com/640/360" />
@@ -97,12 +97,12 @@ stories.add("Full Panel", () => (
   </Panel>
 ));
 
-stories.add("Image Header Panel", () => (
+stories.add('Image Header Panel', () => (
   <Panel mods="u-lg-size4of12 u-md-size8of12">
     <PanelHeader
       headerImage={{
-        Source: "https://www.fillmurray.com/640/360",
-        Placeholder: "https://www.fillmurray.com/640/360"
+        Source: 'https://www.fillmurray.com/640/360',
+        Placeholder: 'https://www.fillmurray.com/640/360',
       }}
       title="Panel with Image Header"
     />

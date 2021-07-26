@@ -1,35 +1,34 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import { select, text, boolean } from "@storybook/addon-knobs";
-import Field from "./Field";
-import { Icon } from "../Icon";
-import { Sizes, CheckboxStates } from "../../types";
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import { select, text, boolean } from '@storybook/addon-knobs';
+import Field from './Field';
+import { Icon } from '../Icon';
+import { Sizes, CheckboxStates } from '../../types';
 
-const stories = storiesOf("Field", module);
+const stories = storiesOf('Field', module);
 
 export default {
   title: 'Field',
   component: Field,
 };
 
-
 const statusOptions = {
-  success: "success",
-  error: "error",
-  warning: "warning",
+  success: 'success',
+  error: 'error',
+  warning: 'warning',
   default: null,
 };
 
 const sizeOptions = {
-  small: "small",
-  large: "large",
+  small: 'small',
+  large: 'large',
   default: null,
 };
 
-stories.add("Default", () => {
-  const status = select("status", statusOptions, statusOptions[0]);
-  const placeholder = text("Placeholder", "Input Placeholder");
-  const size = select("size", sizeOptions, sizeOptions[0]);
+stories.add('Default', () => {
+  const status = select('status', statusOptions, statusOptions[0]);
+  const placeholder = text('Placeholder', 'Input Placeholder');
+  const size = select('size', sizeOptions, sizeOptions[0]);
   const disabled = boolean('Disabled', false);
 
   return (
@@ -45,11 +44,11 @@ stories.add("Default", () => {
   );
 });
 
-stories.add("With Labels", () => {
-  const status = select("status", statusOptions, null);
-  const placeholder = text("Placeholder", "Input Placeholder");
-  const size = select("size", sizeOptions, null);
-  const label = text("Label", "First Name");
+stories.add('With Labels', () => {
+  const status = select('status', statusOptions, null);
+  const placeholder = text('Placeholder', 'Input Placeholder');
+  const size = select('size', sizeOptions, null);
+  const label = text('Label', 'First Name');
   const disabled = boolean('Disabled', false);
 
   return (
@@ -59,19 +58,19 @@ stories.add("With Labels", () => {
       name="Sample"
       formFieldProps={{
         placeholder: placeholder,
-        size: size
+        size: size,
       }}
       status={status}
     />
   );
 });
 
-stories.add("Captions", () => {
-  const status = select("status", statusOptions, statusOptions[0]);
-  const placeholder = text("Placeholder", "sample@teamsnap.com");
+stories.add('Captions', () => {
+  const status = select('status', statusOptions, statusOptions[0]);
+  const placeholder = text('Placeholder', 'sample@teamsnap.com');
   const caption = text(
-    "Captions",
-    "This is the primary email address that we will use to contact you."
+    'Captions',
+    'This is the primary email address that we will use to contact you.'
   );
   const disabled = boolean('Disabled', false);
 
@@ -88,7 +87,7 @@ stories.add("Captions", () => {
         label="Primary Email Address"
         formFieldProps={{
           leftIcon: <Icon name="home" />,
-          placeholder: placeholder
+          placeholder: placeholder,
         }}
         name="Sample"
         status={status}
@@ -97,9 +96,9 @@ stories.add("Captions", () => {
   );
 });
 
-stories.add("Sizes", () => {
-  const status = select("status", statusOptions, statusOptions[0]);
-  const placeholder = text("Placeholder", "Input Placeholder");
+stories.add('Sizes', () => {
+  const status = select('status', statusOptions, statusOptions[0]);
+  const placeholder = text('Placeholder', 'Input Placeholder');
   const disabled = boolean('Disabled', false);
 
   return (
@@ -116,7 +115,7 @@ stories.add("Sizes", () => {
         formFieldProps={{
           leftIcon: <Icon name="home" />,
           placeholder: placeholder,
-          size: Sizes.SMALL
+          size: Sizes.SMALL,
         }}
         name="Sample"
         status={status}
@@ -139,7 +138,7 @@ stories.add("Sizes", () => {
         formFieldProps={{
           leftIcon: <Icon name="home" />,
           placeholder: placeholder,
-          size: Sizes.LARGE
+          size: Sizes.LARGE,
         }}
         name="Sample3"
         status={status}
@@ -148,10 +147,10 @@ stories.add("Sizes", () => {
   );
 });
 
-stories.add("Field with Icons", () => {
-  const status = select("status", statusOptions, null);
-  const placeholder = text("Placeholder", "Input Placeholder");
-  const size = select("size", sizeOptions, sizeOptions[0]);
+stories.add('Field with Icons', () => {
+  const status = select('status', statusOptions, null);
+  const placeholder = text('Placeholder', 'Input Placeholder');
+  const size = select('size', sizeOptions, sizeOptions[0]);
   const disabled = boolean('Disabled', false);
 
   return (
@@ -162,7 +161,7 @@ stories.add("Field with Icons", () => {
       formFieldProps={{
         rightIcon: <Icon name="search" />,
         placeholder: placeholder,
-        size: size
+        size: size,
       }}
       name="Sample"
       status={status}
@@ -170,10 +169,10 @@ stories.add("Field with Icons", () => {
   );
 });
 
-stories.add("Status Icons", () => {
-  const status = select("status", statusOptions, statusOptions[0]);
-  const placeholder = text("Placeholder", "Input Placeholder");
-  const size = select("size", sizeOptions, sizeOptions[0]);
+stories.add('Status Icons', () => {
+  const status = select('status', statusOptions, statusOptions[0]);
+  const placeholder = text('Placeholder', 'Input Placeholder');
+  const size = select('size', sizeOptions, sizeOptions[0]);
   const disabled = boolean('Disabled', false);
 
   return (
@@ -194,58 +193,62 @@ stories.add("Status Icons", () => {
   );
 });
 
-stories.add("Clear Icon", () => {
-  const status = select("status", statusOptions, statusOptions[0]);
-  const placeholder = text("Placeholder", "Input Placeholder");
-  const size = select("size", sizeOptions, sizeOptions[0]);
+stories.add('Clear Icon', () => {
+  const status = select('status', statusOptions, statusOptions[0]);
+  const placeholder = text('Placeholder', 'Input Placeholder');
+  const size = select('size', sizeOptions, sizeOptions[0]);
   const disabled = boolean('Disabled', false);
 
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState('');
   return (
     <>
-    <h4>
-      Providing an onClearClicked callback and `showClear` allows you to wire up whatever form management logic you have.
-      Generally, you'll want to clear the value when the clear icon is clicked, but the implementation is entirely in your control.
-    </h4>
-    <br/>
-    <Field
-      caption="This input clears when the right-most icon is clicked."
-      isDisabled={disabled}
-      label="Clearable Input"
-      formFieldProps={{
-        inputProps: { value: value, onChange: (e) => setValue(e.target.value) },
-        leftIcon: <Icon name="home" />,
-        rightIcon: <Icon name="search" />,
-        placeholder: placeholder,
-        size: size,
-        showClear: true,
-        onClearClicked: () => {
-          setValue("");
-        }
-      }}
-      name="Sample"
-      status={status}
-    />
+      <h4>
+        Providing an onClearClicked callback and `showClear` allows you to wire
+        up whatever form management logic you have. Generally, you'll want to
+        clear the value when the clear icon is clicked, but the implementation
+        is entirely in your control.
+      </h4>
+      <br />
+      <Field
+        caption="This input clears when the right-most icon is clicked."
+        isDisabled={disabled}
+        label="Clearable Input"
+        formFieldProps={{
+          inputProps: {
+            value: value,
+            onChange: (e) => setValue(e.target.value),
+          },
+          leftIcon: <Icon name="home" />,
+          rightIcon: <Icon name="search" />,
+          placeholder: placeholder,
+          size: size,
+          showClear: true,
+          onClearClicked: () => {
+            setValue('');
+          },
+        }}
+        name="Sample"
+        status={status}
+      />
     </>
   );
 });
 
-
-stories.add("Checkbox", () => {
-  const status = select("status", statusOptions, statusOptions[0]);
+stories.add('Checkbox', () => {
+  const status = select('status', statusOptions, statusOptions[0]);
   const disabled = boolean('Disabled', false);
 
   const [value, setValue] = React.useState(false);
   return (
     <>
-      <br/>
+      <br />
       <Field
         caption="By accepting the terms of service, you agree to be a friendly human!"
         isDisabled={disabled}
         type="checkbox"
         label="Accept Terms of Service"
         formFieldProps={{
-          text: "Click me!",
+          text: 'Click me!',
           checked: value,
           onClick: () => {
             setValue(!value);
@@ -258,20 +261,23 @@ stories.add("Checkbox", () => {
   );
 });
 
-stories.add("Multiple Checkboxes", () => {
+stories.add('Multiple Checkboxes', () => {
   const [dogs, setDogs] = React.useState(false);
   const [cats, setCats] = React.useState(false);
   return (
     <>
-      <h4>This example omits the label and caption on the field components, instead opting to work with those manually.</h4>
-      <br/>
+      <h4>
+        This example omits the label and caption on the field components,
+        instead opting to work with those manually.
+      </h4>
+      <br />
       <Field.Label>Cats/Dogs/Both?</Field.Label>
       <Field
         isInline
-        style={{marginRight: "12px"}}
+        style={{ marginRight: '12px' }}
         type="checkbox"
         formFieldProps={{
-          text: "Cats",
+          text: 'Cats',
           checked: cats,
           onClick: () => {
             setCats(!cats);
@@ -283,7 +289,7 @@ stories.add("Multiple Checkboxes", () => {
         isInline
         type="checkbox"
         formFieldProps={{
-          text: "Dogs",
+          text: 'Dogs',
           checked: dogs,
           onClick: () => {
             setDogs(!dogs);
@@ -291,13 +297,15 @@ stories.add("Multiple Checkboxes", () => {
         }}
         name="Dogs"
       />
-      <Field.Caption>This determines if you'll see cat gifs, dog gifs, or both.</Field.Caption>
+      <Field.Caption>
+        This determines if you'll see cat gifs, dog gifs, or both.
+      </Field.Caption>
     </>
-  )
+  );
 });
 
-stories.add("Indeterminate Checkbox", () => {
-  const status = select("status", statusOptions, statusOptions[0]);
+stories.add('Indeterminate Checkbox', () => {
+  const status = select('status', statusOptions, statusOptions[0]);
   const disabled = boolean('Disabled', false);
 
   const [state, setState] = React.useState(CheckboxStates.FALSE);
@@ -305,25 +313,27 @@ stories.add("Indeterminate Checkbox", () => {
   return (
     <>
       <h4>
-        Checkboxes can have an indeterminate status. It's up to you to determine how this is managed
-        and what can cause an indeterminate status. This example catches false to true transitions and sets indeterminate instead.
-        This often can feel more complicated than it actually is. Please refer to the storybook source code for an example on
-        how to emulate this functionality.
+        Checkboxes can have an indeterminate status. It's up to you to determine
+        how this is managed and what can cause an indeterminate status. This
+        example catches false to true transitions and sets indeterminate
+        instead. This often can feel more complicated than it actually is.
+        Please refer to the storybook source code for an example on how to
+        emulate this functionality.
       </h4>
-      <br/>
+      <br />
       <Field
         caption="By accepting the terms of service, you agree to be a friendly human!"
         isDisabled={disabled}
         label="Accept Terms of Service"
         name="Sample"
         status={status}
-        type={"checkbox"}
+        type={'checkbox'}
         formFieldProps={{
-          text: "Click me!",
+          text: 'Click me!',
           checked: state,
           onClick: () => {
             // TINY little state machine to help model the transitions here.
-            switch(state) {
+            switch (state) {
               case CheckboxStates.FALSE:
                 setState(CheckboxStates.INDETERMINATE);
                 break;
@@ -341,21 +351,24 @@ stories.add("Indeterminate Checkbox", () => {
   );
 });
 
-stories.add("Radios", () => {
+stories.add('Radios', () => {
   const [favoritePet, setFavoritePet] = React.useState('');
 
   return (
     <>
-      <h4>This example omits the label and caption on the field components, instead opting to work with those manually.</h4>
-      <br/>
+      <h4>
+        This example omits the label and caption on the field components,
+        instead opting to work with those manually.
+      </h4>
+      <br />
       <Field.Label>Favorite Pet?</Field.Label>
       <Field
         isInline
-        style={{marginRight: "12px"}}
+        style={{ marginRight: '12px' }}
         type="radio"
         formFieldProps={{
-          text: "Cats",
-          checked: favoritePet === "cat",
+          text: 'Cats',
+          checked: favoritePet === 'cat',
           onClick: () => {
             setFavoritePet('cat');
           },
@@ -365,10 +378,10 @@ stories.add("Radios", () => {
       <Field
         isInline
         type="radio"
-        style={{marginRight: "12px"}}
+        style={{ marginRight: '12px' }}
         formFieldProps={{
-          text: "Dogs",
-          checked: favoritePet === "dog",
+          text: 'Dogs',
+          checked: favoritePet === 'dog',
           onClick: () => {
             setFavoritePet('dog');
           },
@@ -379,9 +392,9 @@ stories.add("Radios", () => {
         isDisabled
         isInline
         type="radio"
-        style={{marginRight: "12px"}}
+        style={{ marginRight: '12px' }}
         formFieldProps={{
-          text: "Birds",
+          text: 'Birds',
           checked: true,
           onClick: () => {
             setFavoritePet('bird');
@@ -395,7 +408,7 @@ stories.add("Radios", () => {
         isInline
         type="radio"
         formFieldProps={{
-          text: "Fish",
+          text: 'Fish',
           checked: false,
           onClick: () => {
             setFavoritePet('fish');
@@ -405,5 +418,5 @@ stories.add("Radios", () => {
       />
       <Field.Caption>Pick one!</Field.Caption>
     </>
-  )
+  );
 });

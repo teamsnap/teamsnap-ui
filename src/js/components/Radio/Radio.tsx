@@ -15,11 +15,14 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { InputControl } from "../InputControl";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { InputControl } from '../InputControl';
 
-class Radio extends React.PureComponent<PropTypes.InferProps<typeof Radio.propTypes>, any> {
+class Radio extends React.PureComponent<
+  PropTypes.InferProps<typeof Radio.propTypes>,
+  any
+> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.node.isRequired,
@@ -29,16 +32,16 @@ class Radio extends React.PureComponent<PropTypes.InferProps<typeof Radio.propTy
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
     inputProps: {},
     isInline: false,
-    className: "Checkbox Checkbox--radio",
+    className: 'Checkbox Checkbox--radio',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {

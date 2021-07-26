@@ -12,11 +12,14 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
-class Tooltip extends React.PureComponent<PropTypes.InferProps<typeof Tooltip.propTypes>, any> {
+class Tooltip extends React.PureComponent<
+  PropTypes.InferProps<typeof Tooltip.propTypes>,
+  any
+> {
   static propTypes = {
     text: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
@@ -24,28 +27,21 @@ class Tooltip extends React.PureComponent<PropTypes.InferProps<typeof Tooltip.pr
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
     children: null,
     type: null,
-    className: "Tooltip",
+    className: 'Tooltip',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {
-    const {
-      text,
-      children,
-      type,
-      className,
-      mods,
-      style,
-      otherProps
-    } = this.props;
+    const { text, children, type, className, mods, style, otherProps } =
+      this.props;
 
     const tooltipClasses = getClassName(
       className,

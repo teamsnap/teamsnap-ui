@@ -13,12 +13,12 @@
  * </Nav>
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { Icon } from "../Icon";
-import { getClassName } from "../../utils/helpers";
-import { Avatar } from "../Avatar";
-import { Skittles } from "../Skittles";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { Icon } from '../Icon';
+import { getClassName } from '../../utils/helpers';
+import { Avatar } from '../Avatar';
+import { Skittles } from '../Skittles';
 
 const navPropTypes = {
   // React component children
@@ -41,30 +41,36 @@ const navPropTypes = {
   flyoutSections: PropTypes.arrayOf(
     PropTypes.shape({
       heading: PropTypes.string.isRequired,
-      tree: PropTypes.arrayOf(PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        image: PropTypes.string,
-        // If an image is not provided and useBadge is, we will try to generate a badge based off the title
-        useBadge: PropTypes.bool,
-        // a function for wrapping each item. Commonly used with links or react router.
-        wrapItem: PropTypes.func,
-        tree: PropTypes.arrayOf(PropTypes.shape({
+      tree: PropTypes.arrayOf(
+        PropTypes.shape({
           title: PropTypes.string.isRequired,
           image: PropTypes.string,
           // If an image is not provided and useBadge is, we will try to generate a badge based off the title
           useBadge: PropTypes.bool,
           // a function for wrapping each item. Commonly used with links or react router.
           wrapItem: PropTypes.func,
-          tree: PropTypes.arrayOf(PropTypes.shape({
-            title: PropTypes.string.isRequired,
-            image: PropTypes.string,
-            // If an image is not provided and useBadge is, we will try to generate a badge based off the title
-            useBadge: PropTypes.bool,
-            // a function for wrapping each item. Commonly used with links or react router.
-            wrapItem: PropTypes.func,
-          })),
-        })),
-      })),
+          tree: PropTypes.arrayOf(
+            PropTypes.shape({
+              title: PropTypes.string.isRequired,
+              image: PropTypes.string,
+              // If an image is not provided and useBadge is, we will try to generate a badge based off the title
+              useBadge: PropTypes.bool,
+              // a function for wrapping each item. Commonly used with links or react router.
+              wrapItem: PropTypes.func,
+              tree: PropTypes.arrayOf(
+                PropTypes.shape({
+                  title: PropTypes.string.isRequired,
+                  image: PropTypes.string,
+                  // If an image is not provided and useBadge is, we will try to generate a badge based off the title
+                  useBadge: PropTypes.bool,
+                  // a function for wrapping each item. Commonly used with links or react router.
+                  wrapItem: PropTypes.func,
+                })
+              ),
+            })
+          ),
+        })
+      ),
     })
   ),
   includeOverlay: PropTypes.bool,
@@ -109,7 +115,7 @@ const Item: ItemType = ({
     <Wrapper>
       <li
         className={`${isActive ? `is-active ` : ``}Nav-item`}
-        onClick={onClick || (() => { })}
+        onClick={onClick || (() => {})}
       >
         {maybeIcon} <span className="Nav-itemTitle">{children}</span>
       </li>
@@ -125,20 +131,26 @@ const FlyOutNode = ({ item, openItems }) => {
     ? item.wrapItem
     : ({ children }) => <>{children}</>;
   return (
-    <div className={`Nav-node${item.tree && item.tree.length > 0 ? ' Nav-hasChildren' : ''}`}>
-      <div className="Nav-topLevelHeading u-flex" onClick={() => setIsExpanded(!isExpanded)}>
+    <div
+      className={`Nav-node${
+        item.tree && item.tree.length > 0 ? ' Nav-hasChildren' : ''
+      }`}
+    >
+      <div
+        className="Nav-topLevelHeading u-flex"
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
         {item.tree && (
-          <div
-            className={`Nav-caret ${isExpanded ? "Node-expanded" : ""
-              }`}
-          >
+          <div className={`Nav-caret ${isExpanded ? 'Node-expanded' : ''}`}>
             <Icon mods="u-fontSizeLg u-spaceRightXs" name="caret-down" />
           </div>
         )}
         {/* This is weird, but a solution to help manage the required spacing to make things align */}
         {/* We can probably come up with a better solution here. */}
         <Wrapper>
-          <div className={`${!item.tree ? 'Nav-noChildren' : ''} u-fill u-flex`}>
+          <div
+            className={`${!item.tree ? 'Nav-noChildren' : ''} u-fill u-flex`}
+          >
             {!item.image && item.useBadge && (
               <Skittles text={item.title} mods="u-spaceRightXs" />
             )}
@@ -147,7 +159,9 @@ const FlyOutNode = ({ item, openItems }) => {
         </Wrapper>
       </div>
       {isExpanded && item.tree && item.tree.length > 0 ? (
-        <div className="Nav-submenu u-spaceBottomSm">{reducer(item.tree, openItems)}</div>
+        <div className="Nav-submenu u-spaceBottomSm">
+          {reducer(item.tree, openItems)}
+        </div>
       ) : null}
     </div>
   );
@@ -159,8 +173,14 @@ const FlyOutNode = ({ item, openItems }) => {
  * @param cur a flyout item
  */
 const reducer = (tree: [], openItems: boolean) => {
-  return tree.reduce((acc: [], cur: any, idx:number) => [...acc, <FlyOutNode key={cur.title+idx} item={cur} openItems={openItems} />], []);
-}
+  return tree.reduce(
+    (acc: [], cur: any, idx: number) => [
+      ...acc,
+      <FlyOutNode key={cur.title + idx} item={cur} openItems={openItems} />,
+    ],
+    []
+  );
+};
 
 const generateFlyoutContents = (flyoutSections: any, openItems: boolean) => {
   return flyoutSections.map((section, idx) => {
@@ -169,7 +189,9 @@ const generateFlyoutContents = (flyoutSections: any, openItems: boolean) => {
         <div className="Nav-sectionHeading u-colorNeutral7 u-textUppercase u-textBold u-fontSizeXs">
           {section.heading}
         </div>
-        <div className="Nav-sectionItems">{reducer(section.tree, openItems)}</div>
+        <div className="Nav-sectionItems">
+          {reducer(section.tree, openItems)}
+        </div>
       </section>
     );
   });
@@ -184,25 +206,28 @@ const Nav: NavType & { Item: ItemType } = ({
   headerItem,
   flyoutSections,
   includeOverlay,
-  openItems
+  openItems,
 }) => {
   const [isCollapsed, setCollapsed] = React.useState(false);
   const [isFlyoutActive, setIsFlyoutActive] = React.useState(false);
   const cname = getClassName(
-    "Nav",
-    isFlyoutActive && "is-flyout",
-    isCollapsed && "is-collapsed",
+    'Nav',
+    isFlyoutActive && 'is-flyout',
+    isCollapsed && 'is-collapsed',
     className,
     mods
   );
 
-  const navHeaderIconClass = getClassName("Nav-headerIcon");
+  const navHeaderIconClass = getClassName('Nav-headerIcon');
 
   return (
     <div className={`Nav-container ${isFlyoutActive ? 'is-flyout' : ''}`}>
-      {(isFlyoutActive && includeOverlay) &&
-        <div className="Nav-overlay" onClick={() => setIsFlyoutActive(!isFlyoutActive)} />
-      }
+      {isFlyoutActive && includeOverlay && (
+        <div
+          className="Nav-overlay"
+          onClick={() => setIsFlyoutActive(!isFlyoutActive)}
+        />
+      )}
       <nav className={cname} style={style} {...otherProps}>
         {headerItem ? (
           <div
@@ -213,10 +238,14 @@ const Nav: NavType & { Item: ItemType } = ({
               <Avatar src={headerItem.image} size="fill" />
             </div>
             <div className="u-sizeFill Nav-itemTitle u-spaceLeftSm">
-              <span className="Nav-itemTitle" title={headerItem.title}>{headerItem.title}</span>
-              {headerItem?.subtitle &&
-                <span className="Nav-itemSubtitle" title={headerItem.subtitle}>{headerItem.subtitle}</span>
-              }
+              <span className="Nav-itemTitle" title={headerItem.title}>
+                {headerItem.title}
+              </span>
+              {headerItem?.subtitle && (
+                <span className="Nav-itemSubtitle" title={headerItem.subtitle}>
+                  {headerItem.subtitle}
+                </span>
+              )}
             </div>
             {flyoutSections && (
               <div className="Nav-caret">
@@ -226,15 +255,19 @@ const Nav: NavType & { Item: ItemType } = ({
           </div>
         ) : null}
         <div className="Nav-body">
-          {isFlyoutActive ? generateFlyoutContents(flyoutSections, openItems) : children}
+          {isFlyoutActive
+            ? generateFlyoutContents(flyoutSections, openItems)
+            : children}
         </div>
         {!isFlyoutActive && (
-          <div className="Nav-footer" onClick={() => setCollapsed(!isCollapsed)}>
-            <Icon name="left" />{" "}
+          <div
+            className="Nav-footer"
+            onClick={() => setCollapsed(!isCollapsed)}
+          >
+            <Icon name="left" />{' '}
             <span className="Nav-itemTitle">Collapse Menu</span>
           </div>
         )}
-
       </nav>
     </div>
   );

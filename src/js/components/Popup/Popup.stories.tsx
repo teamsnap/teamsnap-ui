@@ -1,9 +1,9 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import PopupAction from "./PopupAction";
-import PopupConfirm from "./PopupConfirm";
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import PopupAction from './PopupAction';
+import PopupConfirm from './PopupConfirm';
 
-const stories = storiesOf("Popup", module);
+const stories = storiesOf('Popup', module);
 
 export default {
   title: 'Popup',
@@ -12,41 +12,41 @@ export default {
 
 const actions = [
   {
-    text: "Log to console",
+    text: 'Log to console',
     callback: () => {
-      console.log("Logging to console");
+      console.log('Logging to console');
     },
     requiresConfirmation: true,
-    confirmationText: "Do you really want to write to the console?"
+    confirmationText: 'Do you really want to write to the console?',
   },
   {
-    text: "JavaScript Alert",
+    text: 'JavaScript Alert',
     callback: () => {
-      alert("whoa!");
-    }
-  }
+      alert('whoa!');
+    },
+  },
 ];
 
-stories.add("PopupActions", () => {
+stories.add('PopupActions', () => {
   return (
     <PopupAction
       text="..."
       actions={actions}
-      direction={["down", "left"]}
-      popupStyle={{ width: "150px" }}
+      direction={['down', 'left']}
+      popupStyle={{ width: '150px' }}
     />
   );
 });
 
-stories.add("PopupConfirm", () => {
+stories.add('PopupConfirm', () => {
   const popupText = (
     <h4>Do you really want to hurt me? Do you really want to make me cry?</h4>
   );
   const onAccept = () => {
-    alert("You said yes!");
+    alert('You said yes!');
   };
   const onCancel = () => {
-    alert("Good. I dont want to hurt or cry.");
+    alert('Good. I dont want to hurt or cry.');
   };
   return (
     <PopupConfirm

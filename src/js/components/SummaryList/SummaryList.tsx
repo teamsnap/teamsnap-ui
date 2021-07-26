@@ -15,11 +15,14 @@
  *    footer={ {description: 'Balance', '$175.00'} }/>
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
-class SummaryList extends React.PureComponent<PropTypes.InferProps<typeof SummaryList.propTypes>, any> {
+class SummaryList extends React.PureComponent<
+  PropTypes.InferProps<typeof SummaryList.propTypes>,
+  any
+> {
   static propTypes = {
     items: PropTypes.arrayOf(
       PropTypes.shape({
@@ -27,34 +30,34 @@ class SummaryList extends React.PureComponent<PropTypes.InferProps<typeof Summar
         value: PropTypes.node.isRequired,
         key: PropTypes.string,
         mods: PropTypes.string,
-        style: PropTypes.object
+        style: PropTypes.object,
       })
     ).isRequired,
     heading: PropTypes.string,
     subHeading: PropTypes.string,
     footer: PropTypes.shape({
       description: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     }),
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
     hasBorder: PropTypes.bool,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
     heading: null,
     subHeading: null,
     footer: null,
-    className: "SummaryList",
+    className: 'SummaryList',
     mods: null,
     style: {},
     hasBorder: true,
-    otherProps: {}
+    otherProps: {},
   };
 
-  renderColumn = value => <span>{value}</span>;
+  renderColumn = (value) => <span>{value}</span>;
 
   renderHeading = () => {
     const { heading, subHeading } = this.props;
@@ -67,10 +70,10 @@ class SummaryList extends React.PureComponent<PropTypes.InferProps<typeof Summar
     );
   };
 
-  renderItem = item => {
+  renderItem = (item) => {
     const listClasses = getClassName(
-      "SummaryList-item",
-      item.isFooterRow && "SummaryList-item--footer",
+      'SummaryList-item',
+      item.isFooterRow && 'SummaryList-item--footer',
       item.mods
     );
 
@@ -96,13 +99,13 @@ class SummaryList extends React.PureComponent<PropTypes.InferProps<typeof Summar
       mods,
       style,
       hasBorder,
-      otherProps
+      otherProps,
     } = this.props;
     const hasHeading = heading || subHeading;
 
     const summaryClasses = getClassName(
       className,
-      !hasHeading && "SummaryList--no-heading",
+      !hasHeading && 'SummaryList--no-heading',
       mods
     );
 

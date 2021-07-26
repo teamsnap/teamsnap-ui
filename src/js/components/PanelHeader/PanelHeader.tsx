@@ -12,11 +12,14 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
-class PanelHeader extends React.PureComponent<PropTypes.InferProps<typeof PanelHeader.propTypes>, any> {
+class PanelHeader extends React.PureComponent<
+  PropTypes.InferProps<typeof PanelHeader.propTypes>,
+  any
+> {
   static propTypes = {
     children: PropTypes.node,
     title: PropTypes.string,
@@ -25,36 +28,29 @@ class PanelHeader extends React.PureComponent<PropTypes.InferProps<typeof PanelH
     style: PropTypes.shape({}),
     headerImage: PropTypes.shape({
       Source: PropTypes.string,
-      Placeholder: PropTypes.string
+      Placeholder: PropTypes.string,
     }),
-    otherProps: PropTypes.shape({})
+    otherProps: PropTypes.shape({}),
   };
 
   static defaultProps = {
     children: null,
-    title: "",
-    className: "Panel-header",
+    title: '',
+    className: 'Panel-header',
     mods: null,
     style: {},
     headerImage: null,
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {
-    const {
-      title,
-      children,
-      className,
-      mods,
-      style,
-      headerImage,
-      otherProps
-    } = this.props;
+    const { title, children, className, mods, style, headerImage, otherProps } =
+      this.props;
 
     if (headerImage) {
       return (
         <header
-          className={getClassName(className, "Panel-header--withImage", mods)}
+          className={getClassName(className, 'Panel-header--withImage', mods)}
           style={style}
           {...otherProps}
         >
