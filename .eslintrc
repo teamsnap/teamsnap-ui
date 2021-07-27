@@ -14,6 +14,12 @@
     "quotes": ["error", "single"],
     "no-console": "off",
     "arrow-parens": [0, "as-needed"],
-    "@typescript-eslint/comma-dangle": ["error", "only-multiline"]
+    "@typescript-eslint/comma-dangle": ["error", "only-multiline"],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.stories.tsx"]
+      }
+    ]
   }
 }
