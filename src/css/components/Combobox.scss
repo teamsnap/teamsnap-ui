@@ -1,0 +1,89 @@
+@import "../config/index.scss";
+
+//------------------------------------------------------------//
+
+// * Select Box
+// * 1. Select Box Settings
+// * 2. Select Box
+
+//------------------------------------------------------------//
+
+// * 1. Select Box Settings
+
+$Combobox-bg-color: $cu-foreground--dark !default;
+$Combobox-text-color: $cu-info !default;
+$Combobox-height: $su-xlarge !default;
+$Combobox-indicator-width: scaleGrid(4);
+
+// * 2. Select Box
+
+.Combobox {
+  position: relative;
+  display: inline-block;
+}
+
+.Combobox-checkboxContainer {
+  min-width: 200px;
+  max-width: 300px;
+  position: absolute;
+  top: auto;
+  margin-top: 0.5rem;
+  left: auto;
+}
+
+.Combobox-checkboxes {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.Combobox-toggle {
+  height: $Combobox-height;
+  width: 100%;
+  line-height: $Combobox-height;
+  padding-right: $Combobox-indicator-width + $su-small;
+  padding-left: $su-small;
+  color: $cu-info;
+  background-color: $Combobox-bg-color;
+  font-family: $base-font-family;
+  border-radius: $border-radius-medium;
+  border: 1px solid $cu-divider;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align: left;
+  position: relative;
+
+  &:after {
+    content: '▾';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: $Combobox-indicator-width;
+    color: scaleColor($cu-info, 6);
+    font-size: $tu-medium-fontSize;
+    height: ( $Combobox-height - $su-small );
+    line-height: ( $Combobox-height - $su-small );
+    text-align: center;
+    pointer-events: none;
+  }
+
+  // Hide IE select arrow
+  &::-ms-expand {
+    display: none;
+  }
+
+  // Focus state
+  &:focus {
+    border-color: color-primary(6);
+    outline: none;
+  }
+
+  &:disabled,
+  &.is-disabled {
+    color: color-neutral(6);
+    cursor: not-allowed;
+  }
+}
