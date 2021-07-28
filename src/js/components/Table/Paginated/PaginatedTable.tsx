@@ -40,7 +40,7 @@ const propTypes = {
   customSearchFilter: PropTypes.any,
   defaultItemsPerPage: PropTypes.number,
   defaultPage: PropTypes.number,
-  filters: PropTypes.arrayOf(PropTypes.element),
+  filters: PropTypes.arrayOf(PropTypes.func),
   hideRowsSelect: PropTypes.bool,
   includeBasicSearch: PropTypes.bool,
   loadData: PropTypes.func.isRequired,
@@ -51,16 +51,24 @@ const propTypes = {
   totalItems: PropTypes.number.isRequired
 }
 
-const Filter = (fieldName: string, label: string, items: {[key: string]: string}): React.ReactNode => {
+const FilterComp = ({
+  fieldName, label, comboItems, mods
+}) => {
   const ctx = React.useContext(FilterContext);
+  return <ComboBox onChange={(values) => {
+    ctx.setActiveFilters({...ctx.activeFilters, [fieldName]: values});
+  }} name={fieldName} buttonLabel={label} mods={mods} items={comboItems} />
+}
+
+const Filter = (fieldName: string, label: string, items: {[key: string]: string}) => {
   const comboItems = Object.entries(items).reduce((acc, cur) => {
     const [value, label] = cur;
     return [...acc, {value, label}]
   }, []);
 
-  return <ComboBox onChange={() => {
-    ctx.setActiveFilters({...ctx.activeFilters, name: fieldName});
-  }} name={fieldName} buttonLabel={label} items={comboItems} />
+  return ({isLast}) => (
+    <FilterComp mods={isLast ? "" : "u-spaceRightSm"}  label={label} fieldName={fieldName} comboItems={comboItems} />
+  );
 };
 
 type PaginatedTableProps = React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> & { Filter: typeof Filter }
@@ -124,8 +132,8 @@ const PaginatedTable: PaginatedTableProps = ({
         sortBy: sortName,
         sortAsc: sortAscending,
         filter:
-          includeBasicSearch || filters
-            ? { searchTerm: searchTerm, ...filters }
+          includeBasicSearch || activeFilters
+            ? { searchTerm: searchTerm, ...activeFilters }
             : null,
       });
       setDataSet(data);
@@ -140,7 +148,7 @@ const PaginatedTable: PaginatedTableProps = ({
     sortName,
     sortAscending,
     searchTerm,
-    filters,
+    activeFilters,
   ]);
 
   let rows = dataSet.map(mapDataToRow);
@@ -227,7 +235,7 @@ const PaginatedTable: PaginatedTableProps = ({
 
   React.useEffect(() => {
     setCurrentPage(1);
-  }, [filters]);
+  }, [activeFilters]);
 
   const paginationItems = (
   <div className={ `Grid-cell u-flex u-flexJustifyEnd ${!shouldPaginateAtTop ? "u-sizeFill u-sizeFull" : "u-sizeFit"}` }>
@@ -259,7 +267,7 @@ const PaginatedTable: PaginatedTableProps = ({
 
   const filterButton = (
     <div>
-      <Button onClick={() => setFilterOpen(!filterOpen)} mods="u-spaceLeftSm" icon="wrench">
+      <Button isActive={filterOpen} onClick={() => setFilterOpen(!filterOpen)} mods="u-spaceLeftSm" icon="wrench">
         Filter
       </Button>
     </div>
@@ -308,14 +316,13 @@ const PaginatedTable: PaginatedTableProps = ({
       <FilterContext.Provider value={{
         activeFilters: activeFilters.activeFilters,
         setActiveFilters: (filters) => {
-          console.log(filters);
           setActiveFilters(filters);
         }
       }}>
 
       {filterOpen && (
         <Panel mods="u-padSm u-spaceTopSm u-borderNeutral4 u-bgNeutral1 Grid-cell">
-          {filters}
+          {filters.map((Item, index) => <Item key={index} isLast={index === filters.length-1} />)}
         </Panel>
       )}
       <div className="Grid-cell u-spaceTopSm">

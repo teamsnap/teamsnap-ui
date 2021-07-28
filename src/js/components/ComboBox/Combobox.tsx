@@ -30,12 +30,10 @@ const propTypes = {
   buttonLabel: PropTypes.node,
   searchLabel: PropTypes.node,
   items: PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.shape({
-        value: PropTypes.string,
-        label: PropTypes.string,
-      }),
-    ])
+    PropTypes.shape({
+      value: PropTypes.string,
+      label: PropTypes.string,
+    }),
   ),
   onChange: PropTypes.func,
   className: PropTypes.string,
@@ -62,6 +60,7 @@ const ComboBox: ComboBoxType = (props) => {
     className,
     mods,
     items,
+    onChange
   } = props;
 
   const [flyoutVisible, toggleFlyout] = React.useState(false);
@@ -71,12 +70,14 @@ const ComboBox: ComboBoxType = (props) => {
     console.log('apply filters');
     console.log(filterList);
     toggleFlyout(!flyoutVisible);
+    onChange(filterList);
   }
 
   const clearFilters = () => {
     console.log('clear filters');
     setFilterList([]);
     toggleFlyout(!flyoutVisible);
+    onChange([]);
   }
 
   return (
@@ -96,7 +97,7 @@ const ComboBox: ComboBoxType = (props) => {
       >
         {buttonLabel}
       </button>
-      {flyoutVisible && 
+      {flyoutVisible &&
         <Panel mods="Combobox-checkboxContainer">
           <PanelBody mods="Combobox-checkboxes">
             <PanelRow>
@@ -113,10 +114,9 @@ const ComboBox: ComboBoxType = (props) => {
                         value: item.value,
                         onChange: () => {
                           if (filterList.includes(item.value)) {
-                            setFilterList(filterList.filter(filter => filter != item.value))
+                            setFilterList(filterList.filter(filter => filter != item.value));
                           } else {
-                            filterList.push(item.value);
-                            setFilterList(filterList);
+                            setFilterList([...filterList, item.value]);
                           }
                         }
                       }}

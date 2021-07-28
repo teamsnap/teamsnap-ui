@@ -230,12 +230,11 @@ function loadData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
  */
 function loadSearchData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
   const startIndex = itemsPerPage * page - itemsPerPage;
-
   return new Promise((resolve) => {
     setTimeout(() => resolve(data), 500);
   }).then((items: any[]) => {
     items = items
-      .filter((item) => item.gender == filter.gender || filter.gender == "")
+      .filter((item) => !filter.gender || filter.gender.includes(item.gender))
       .filter(
         (item) => item.name.search(new RegExp(filter.searchTerm, "i")) > -1
       );
@@ -330,19 +329,10 @@ stories.add("With Search Filters", () => (
         "player": "Player",
         "teamOwner": "Team Owner"
       }),
-
-      // Lets get feedback on this approach vs objects
-      PaginatedTable.Filter("role", "Participants Role", [
-        ["manager", "Manager"],
-        ["nonplayer", "Non-Player"],
-        ["player", "Player"],
-        ["teamOwner", "Team Owner"],
-      ]),
-
       // We understand that this is not a comprehensive list of genders but merely a list to display how these filters can be used
       PaginatedTable.Filter("gender", "Participants Preferred Gender", {
-        "male": "Male",
-        "female": "Female",
+        "m": "Male",
+        "f": "Female",
         "other": "Other",
         "unknown": "Unknown"
       }),
