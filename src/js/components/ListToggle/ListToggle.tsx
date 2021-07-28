@@ -1,25 +1,28 @@
 import * as React from 'react';
 import { Icon } from '../Icon';
 
-type Props = {
-  onClick: (expanded: boolean) => void;
-};
+export interface Props {
+  onClick: () => void;
+}
 
-const ListToggle: React.FunctionComponent<Props> = ({ onClick }: Props) => {
-  const [expanded, setExpanded] = React.useState(false);
+const ListToggle: React.FC<Props> = ({ onClick }: Props) => {
+  const [expanded, setExpanded] = React.useState<boolean>(false);
 
-  const toggleState = () => {
-    setExpanded(!expanded);
-    onClick(!expanded);
+  const toggleState = (isExpanded) => {
+    console.log('isExpanded', isExpanded);
+    setExpanded(!isExpanded);
+    onClick();
   };
 
   return (
-    <a
-      onClick={() => toggleState()}
+    <button
+      type="button"
       className="u-borderNone u-padNone u-colorInfo"
+      style={{ backgroundColor: 'transparent' }}
+      onClick={() => toggleState(expanded)}
     >
       {expanded === true ? <Icon name="down" /> : <Icon name="right" />}
-    </a>
+    </button>
   );
 };
 

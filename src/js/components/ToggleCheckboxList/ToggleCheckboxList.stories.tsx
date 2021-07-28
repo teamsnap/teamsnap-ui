@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { ToggleCheckboxList } from '../ToggleCheckboxList';
+import { ToggleCheckboxList } from '.';
 import { Tag } from '../Tag';
 
 const stories = storiesOf('ToggleCheckboxList', module);
