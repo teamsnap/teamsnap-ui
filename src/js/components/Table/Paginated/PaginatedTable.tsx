@@ -19,6 +19,11 @@ interface BulkAction {
   disabled?: boolean;
 }
 
+const FilterContext = React.createContext<{activeFilters: any, setActiveFilters: (filters: any) => void}>({
+  activeFilters: {},
+  setActiveFilters: () => {},
+});
+
 const propTypes = {
   bulkActions: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
@@ -31,7 +36,7 @@ const propTypes = {
     isSortable: PropTypes.bool,
     align: PropTypes.string,
     mods: PropTypes.string,
-  })),
+  })).isRequired,
   customSearchFilter: PropTypes.any,
   defaultItemsPerPage: PropTypes.number,
   defaultPage: PropTypes.number,
@@ -46,22 +51,17 @@ const propTypes = {
   totalItems: PropTypes.number.isRequired
 }
 
-/**
- * FilterKeyValue
- * a type to represent a structuring containing the filter {key}=>{display value};
- * See the storybook examples on how to use.
- */
-type FilterKeyValue = {
-  [key: string]: string,
-};
-const Filter = (name: string, label: string, items: FilterKeyValue): React.ReactNode => {
+const Filter = (fieldName: string, label: string, items: {[key: string]: string}): React.ReactNode => {
+  const ctx = React.useContext(FilterContext);
   const comboItems = Object.entries(items).reduce((acc, cur) => {
-    const [key, value] = cur;
-    return [...acc, {key, value}]
+    const [value, label] = cur;
+    return [...acc, {value, label}]
   }, []);
-  return <ComboBox name={name} buttonLabel={label} items={comboItems} />
-};
 
+  return <ComboBox onChange={() => {
+    ctx.setActiveFilters({...ctx.activeFilters, name: fieldName});
+  }} name={fieldName} buttonLabel={label} items={comboItems} />
+};
 
 type PaginatedTableProps = React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> & { Filter: typeof Filter }
 const PaginatedTable: PaginatedTableProps = ({
@@ -95,6 +95,9 @@ const PaginatedTable: PaginatedTableProps = ({
   const [selected, setSelected] = React.useState([]);
   const [searchTerm, setSearchTerm] = React.useState("");
   const [filterOpen, setFilterOpen] = React.useState(false);
+  const [activeFilters, setActiveFilters] = React.useState({
+    activeFilters: {}
+  });
   const shouldPaginateAtTop = paginationPlacement !== Placement.Bottom && filters.length === 0;
 
   const setNewItemsPerPage = (newItemsPerPage) => {
@@ -302,8 +305,16 @@ const PaginatedTable: PaginatedTableProps = ({
         { shouldPaginateAtTop && paginationItems }
         { !shouldPaginateAtTop && filterButton }
       </div>
+      <FilterContext.Provider value={{
+        activeFilters: activeFilters.activeFilters,
+        setActiveFilters: (filters) => {
+          console.log(filters);
+          setActiveFilters(filters);
+        }
+      }}>
+
       {filterOpen && (
-        <Panel mods="u-spaceTopSm u-bgNeutral3 Grid-cell">
+        <Panel mods="u-padSm u-spaceTopSm u-borderNeutral4 u-bgNeutral1 Grid-cell">
           {filters}
         </Panel>
       )}
@@ -318,6 +329,7 @@ const PaginatedTable: PaginatedTableProps = ({
           isLoading={ isLoading }
         />
       </div>
+      </FilterContext.Provider>
       { (paginationPlacement === Placement.Bottom || !shouldPaginateAtTop) && paginationItems }
     </div>
   );

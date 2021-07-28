@@ -198,7 +198,7 @@ const data = [
 ];
 
 /**
- * This function is where all of your server calls should occur. Commonly likely just make a
+ * This function is where all of your server calls should occur. Very likely you'll just make a
  * server call and return the list of items. However, this is also a good place where you can
  * inspect the request and determine how many items the server has for this search.
  * @param page  - the table's current page
@@ -330,6 +330,15 @@ stories.add("With Search Filters", () => (
         "player": "Player",
         "teamOwner": "Team Owner"
       }),
+
+      // Lets get feedback on this approach vs objects
+      PaginatedTable.Filter("role", "Participants Role", [
+        ["manager", "Manager"],
+        ["nonplayer", "Non-Player"],
+        ["player", "Player"],
+        ["teamOwner", "Team Owner"],
+      ]),
+
       // We understand that this is not a comprehensive list of genders but merely a list to display how these filters can be used
       PaginatedTable.Filter("gender", "Participants Preferred Gender", {
         "male": "Male",
