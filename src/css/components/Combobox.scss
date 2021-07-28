@@ -89,4 +89,14 @@ $Combobox-indicator-width: scaleGrid(4);
     color: color-neutral(6);
     cursor: not-allowed;
   }
+
+  &--active {
+    border-color: color-primary(6);
+    color: color-primary(6);
+    font-weight: bold;
+
+    &::after {
+      color: color-primary(6);
+    }
+  }
 }

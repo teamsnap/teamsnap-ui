@@ -15,6 +15,7 @@ storiesOf("Combobox", module)
           mods='u-spaceRightMd'
           name='birthdate'
           buttonLabel="Birthdate"
+          onChange={() => {}}
           items={[
             {
               label: "2006",
@@ -53,6 +54,7 @@ storiesOf("Combobox", module)
       <Combobox
           name="gender"
           buttonLabel="Gender"
+          onChange={() => {}}
           items={[
             {
               label: 'Male',

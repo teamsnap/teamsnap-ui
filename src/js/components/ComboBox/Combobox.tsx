@@ -27,7 +27,7 @@ import { Checkbox } from "../Checkbox";
 
 const propTypes = {
   name: PropTypes.string.isRequired,
-  buttonLabel: PropTypes.node,
+  buttonLabel: PropTypes.string,
   searchLabel: PropTypes.node,
   items: PropTypes.arrayOf(
     PropTypes.shape({
@@ -65,18 +65,29 @@ const ComboBox: ComboBoxType = (props) => {
 
   const [flyoutVisible, toggleFlyout] = React.useState(false);
   const [filterList, setFilterList] = React.useState([]);
+  const [comboLabel, setComboLabel] = React.useState('');
+  const [hasFilters, setHasFilters] = React.useState(false);
 
+  React.useEffect(() => {
+    setComboLabel(buttonLabel);
+  }, []);
+
+  const createLabel = (acc, value) => {
+    return `${acc}, ${items.find(item => item.value == value).label}`.substring(1);
+  }
+ 
   const applyFilters = () => {
-    console.log('apply filters');
-    console.log(filterList);
+    setComboLabel(filterList.reduce(createLabel,''));
     toggleFlyout(!flyoutVisible);
+    setHasFilters(true);
     onChange(filterList);
   }
 
   const clearFilters = () => {
-    console.log('clear filters');
+    setComboLabel(buttonLabel);
     setFilterList([]);
     toggleFlyout(!flyoutVisible);
+    setHasFilters(false);
     onChange([]);
   }
 
@@ -87,7 +98,7 @@ const ComboBox: ComboBoxType = (props) => {
       {...otherProps}
     >
       <button
-        className="Combobox-toggle"
+        className={`Combobox-toggle ${hasFilters ? 'Combobox-toggle--active' : ''}`} 
         name={name}
         id={name}
         disabled={disabled}
@@ -95,7 +106,7 @@ const ComboBox: ComboBoxType = (props) => {
           toggleFlyout(!flyoutVisible)
         }}
       >
-        {buttonLabel}
+        {comboLabel}
       </button>
       {flyoutVisible &&
         <Panel mods="Combobox-checkboxContainer">
