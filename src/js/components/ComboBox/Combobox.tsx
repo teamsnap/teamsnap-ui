@@ -31,7 +31,6 @@ const propTypes = {
   searchLabel: PropTypes.node,
   items: PropTypes.arrayOf(
     PropTypes.oneOfType([
-      PropTypes.string,
       PropTypes.shape({
         value: PropTypes.string,
         label: PropTypes.string,
@@ -66,14 +65,17 @@ const ComboBox: ComboBoxType = (props) => {
   } = props;
 
   const [flyoutVisible, toggleFlyout] = React.useState(false);
+  const [filterList, setFilterList] = React.useState([]);
 
   const applyFilters = () => {
     console.log('apply filters');
+    console.log(filterList);
     toggleFlyout(!flyoutVisible);
   }
 
   const clearFilters = () => {
     console.log('clear filters');
+    setFilterList([]);
     toggleFlyout(!flyoutVisible);
   }
 
@@ -88,7 +90,9 @@ const ComboBox: ComboBoxType = (props) => {
         name={name}
         id={name}
         disabled={disabled}
-        onClick={() => toggleFlyout(!flyoutVisible)}
+        onClick={() => {
+          toggleFlyout(!flyoutVisible)
+        }}
       >
         {buttonLabel}
       </button>
@@ -97,17 +101,24 @@ const ComboBox: ComboBoxType = (props) => {
           <PanelBody mods="Combobox-checkboxes">
             <PanelRow>
               {items &&
-                items.map((item: Filter | string, idx) => {
-                  const name = (item as Filter).label !== undefined ? (item as Filter).label : item as string;
-                  const value =  (item as Filter).value !== undefined ? (item as Filter).label : item as string;
+                items.map((item: Filter, idx) => {
                   return (
                     <Checkbox
                       key={`${name}-${idx}`}
                       mods={`${idx === items.length - 1 ? "u-padBottomNone" : ""}`}
-                      name={name}
-                      label={item}
+                      name={item.value}
+                      label={item.label}
                       inputProps={{
-                        value: value
+                        checked: filterList.includes(item.value),
+                        value: item.value,
+                        onChange: () => {
+                          if (filterList.includes(item.value)) {
+                            setFilterList(filterList.filter(filter => filter != item.value))
+                          } else {
+                            filterList.push(item.value);
+                            setFilterList(filterList);
+                          }
+                        }
                       }}
                     />
                   );
