@@ -54,7 +54,7 @@
   }
 
   .Nav-node {
-    padding: 0.75rem 1rem 0.75rem 1.75rem;
+    padding: 12px 16px 12px 24px;
     cursor: pointer;
     align-items: center;
     border-bottom: 1px solid color-neutral(4);
@@ -69,23 +69,27 @@
       padding: 0;
 
       > * {
-        padding: 1rem 1.75rem;
+        padding: 12px 16px 12px 24px;
         display: block;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid transparent;
       }
     }
 
     .Nav-child {
-      padding: 1rem 1.75rem;
+      padding: 12px 16px 12px 24px;
       background-color: color-neutral(1);
       border: 0;
       transition: all ease 200ms;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid transparent;
+      
       &:hover {
         background-color: color-neutral(3);
       }
@@ -254,7 +258,7 @@
 
     > li {
       > .Nav-node {
-        padding: 1rem 1.75rem;
+        padding: 16px 24px;
         background-color: color-neutral(1);
         border: 0;
         transition: all ease 200ms;
