@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { text, select } from '@storybook/addon-knobs';
+import { select } from '@storybook/addon-knobs';
 import ProgressBar from './ProgressBar';
 
 const stories = storiesOf('ProgressBar', module);
@@ -32,30 +32,10 @@ stories.add(
           justifyContent: 'space-evenly',
         }}
       >
-        <ProgressBar
-          progress={33}
-          size={size}
-          style={{ height: 100 + 'px' }}
-          isVertical={true}
-        />
-        <ProgressBar
-          progress={33}
-          size={size}
-          style={{ height: 150 + 'px' }}
-          isVertical={true}
-        />
-        <ProgressBar
-          progress={33}
-          size={size}
-          style={{ height: 200 + 'px' }}
-          isVertical={true}
-        />
-        <ProgressBar
-          progress={33}
-          size={size}
-          style={{ height: 250 + 'px' }}
-          isVertical={true}
-        />
+        <ProgressBar progress={33} size={size} style={{ height: '100px' }} isVertical />
+        <ProgressBar progress={33} size={size} style={{ height: '150px' }} isVertical />
+        <ProgressBar progress={33} size={size} style={{ height: '200px' }} isVertical />
+        <ProgressBar progress={33} size={size} style={{ height: '250px' }} isVertical />
       </div>
     );
   },
