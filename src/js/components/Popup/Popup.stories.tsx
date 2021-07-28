@@ -27,27 +27,26 @@ const actions = [
   },
 ];
 
-stories.add('PopupActions', () => {
-  return (
-    <PopupAction
-      text="..."
-      actions={actions}
-      direction={['down', 'left']}
-      popupStyle={{ width: '150px' }}
-    />
-  );
-});
+stories.add('PopupActions', () => (
+  <PopupAction
+    text="..."
+    actions={actions}
+    direction={['down', 'left']}
+    popupStyle={{ width: '150px' }}
+  />
+));
 
 stories.add('PopupConfirm', () => {
-  const popupText = (
-    <h4>Do you really want to hurt me? Do you really want to make me cry?</h4>
-  );
+  const popupText = <h4>Do you really want to hurt me? Do you really want to make me cry?</h4>;
+
   const onAccept = () => {
     alert('You said yes!');
   };
+
   const onCancel = () => {
     alert('Good. I dont want to hurt or cry.');
   };
+
   return (
     <PopupConfirm
       onAccept={onAccept}

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 
 interface State {
   isPopupOpen: boolean;
@@ -7,36 +6,23 @@ interface State {
   selectedAction: any;
 }
 
-export default class PopUpAction extends React.Component<
-  PropTypes.InferProps<typeof PopUpAction.propTypes>,
-  State
-> {
-  static propTypes = {
-    text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    actions: PropTypes.arrayOf(
-      PropTypes.shape({
-        text: PropTypes.string.isRequired,
-        callback: PropTypes.func.isRequired,
-        requiresConfirmation: PropTypes.bool,
-        confirmationText: PropTypes.oneOfType([
-          PropTypes.string,
-          PropTypes.element,
-        ]),
-      })
-    ),
-    popupStyle: PropTypes.object,
-    direction: PropTypes.arrayOf(
-      PropTypes.oneOf([
-        'down',
-        'right',
-        'left',
-        'rightHang',
-        'leftHang',
-        'overlay',
-      ])
-    ),
-  };
+interface Actions {
+  text: string;
+  callback: Function;
+  requiresConfirmation?: boolean;
+  confirmationText?: string | React.ReactNode;
+}
 
+type Directions = 'down' | 'right' | 'left' | 'rightHang' | 'leftHang' | 'overlay';
+
+interface Props {
+  text: string | React.ReactNode;
+  actions: Actions[];
+  popupStyle: object;
+  direction: Directions[];
+}
+
+export default class PopUpAction extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -65,17 +51,12 @@ export default class PopUpAction extends React.Component<
     }
   }
 
-  togglePopup() {
-    let isPopupOpen = this.state.isPopupOpen;
-    this.setState({
-      isPopupOpen: !isPopupOpen,
-    });
-  }
-
   handleActionClick(action) {
+    const { state } = this;
+
     if (action.requiresConfirmation) {
       this.setState({
-        ...this.state,
+        ...state,
         isConfirmOpen: true,
         selectedAction: action,
       });
@@ -84,73 +65,80 @@ export default class PopUpAction extends React.Component<
     }
   }
 
+  togglePopup() {
+    const { isPopupOpen } = this.state;
+    this.setState({
+      isPopupOpen: !isPopupOpen,
+    });
+  }
+
   render() {
-    const dirString = this.props.direction.reduce((acc, cur) => {
-      return acc + ` Popup-container--${cur}`;
-    }, '');
+    const { state } = this;
+
+    const {
+      isConfirmOpen,
+      isPopupOpen,
+      selectedAction: { callback, confirmationText, requiresConfirmation },
+    } = state;
+    const { actions, direction, popupStyle, text } = this.props;
+
+    const dirString = direction.reduce((acc, cur) => `${acc} Popup-container--${cur}`, '');
     return (
       <>
         <div className="Popup Popup--hover">
           <button
+            type="button"
             className="Button Button--small"
             onClick={this.togglePopup.bind(this)}
           >
-            {this.props.text}
+            {text}
           </button>
           <div
-            className={`Popup-container ${dirString} ${
-              this.state.isPopupOpen ? 'is-open' : ''
-            }`}
-            style={this.props.popupStyle}
+            className={`Popup-container ${dirString} ${isPopupOpen ? 'is-open' : ''}`}
+            style={popupStyle}
           >
             <div className="Popup-content">
               <div className="u-textLeft">
-                {this.props.actions.map((action) => {
-                  return (
-                    <div key={action.text}>
-                      <button
-                        tabIndex={0}
-                        className="u-padEndsSm u-padSidesMd"
-                        style={{
-                          cursor: 'pointer',
-                          appearance: 'none',
-                          border: 'none',
-                          background: 'none',
-                          width: '100%',
-                          textAlign: 'left',
-                        }}
-                        onClick={this.handleActionClick.bind(this, action)}
-                      >
-                        {action.text}
-                      </button>
-                      <hr className="Divider u-spaceEndsNone" />
-                    </div>
-                  );
-                })}
+                {actions.map((action) => (
+                  <div key={action.text}>
+                    <button
+                      type="button"
+                      tabIndex={0}
+                      className="u-padEndsSm u-padSidesMd"
+                      style={{
+                        cursor: 'pointer',
+                        appearance: 'none',
+                        border: 'none',
+                        background: 'none',
+                        width: '100%',
+                        textAlign: 'left',
+                      }}
+                      onClick={this.handleActionClick.bind(this, action)}
+                    >
+                      {action.text}
+                    </button>
+                    <hr className="Divider u-spaceEndsNone" />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
         <div className="Popup">
           <div
-            className={
-              'Popup-container Popup-container--overlay' +
-              (this.state.selectedAction.requiresConfirmation &&
-              this.state.isConfirmOpen
-                ? ' is-open'
-                : '')
-            }
+            className={`Popup-container Popup-container--overlay${
+              requiresConfirmation && isConfirmOpen ? ' is-open' : ''
+            }`}
           >
             <div className="Popup-content u-padMd">
               <h3 className="u-spaceBottomSm u-textCenter">Are you sure?</h3>
-              <p className="u-textLeft">
-                {this.state.selectedAction.confirmationText}
-              </p>
+              <p className="u-textLeft">{confirmationText}</p>
               <div className="u-textCenter u-spaceTopMd">
                 <button
+                  type="button"
                   onClick={() =>
                     this.setState({
-                      ...this.state,
+                      ...state,
                       isConfirmOpen: false,
                       selectedAction: {},
                     })
@@ -160,10 +148,11 @@ export default class PopUpAction extends React.Component<
                   Cancel
                 </button>
                 <button
+                  type="button"
                   onClick={(...args) => {
-                    this.state.selectedAction.callback(args);
+                    callback(args);
                     this.setState({
-                      ...this.state,
+                      ...state,
                       isConfirmOpen: false,
                       selectedAction: {},
                     });
