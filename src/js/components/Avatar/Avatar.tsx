@@ -21,9 +21,9 @@ export interface Props {
   mods?: string;
 }
 
-const Avatar: React.FunctionComponent<Props> = ({ src, size, mods }) => (
+const Avatar: React.FC<Props> = ({ src, size, mods }: Props) => (
   <div className={`Avatar Avatar--${size} ${mods || ''}`}>
-    <img src={src} />
+    <img src={src} alt="Avatar" />
   </div>
 );
 
