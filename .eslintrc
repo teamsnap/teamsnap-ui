@@ -16,11 +16,7 @@
     "arrow-parens": [0, "as-needed"],
     "arrow-body-style": "off",
     "@typescript-eslint/comma-dangle": ["error", "only-multiline"],
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": ["**/*.stories.tsx"]
-      }
-    ]
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.stories.tsx"] }],
+    "import/prefer-default-export": "off"
   }
 }

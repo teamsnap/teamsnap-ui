@@ -25,7 +25,7 @@ const Pill: React.FunctionComponent<Props> = ({
 
   return (
     <div className={classes} style={style}>
-      {children ? children : 'Default'}
+      {children || 'Default'}
     </div>
   );
 };
