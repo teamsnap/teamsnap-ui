@@ -35,10 +35,8 @@ $Combobox-indicator-width: scaleGrid(4);
 }
 
 .Combobox-checkboxes {
-  .Combobox-checkboxes--unchecked {
-    max-height: 150px;
-    overflow-y: auto;
-  }
+  max-height: 150px;
+  overflow-y: auto;
 
   .Checkbox:last-child {
     padding-bottom: 0;
