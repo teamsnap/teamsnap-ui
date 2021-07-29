@@ -73,7 +73,7 @@ const ComboBox: ComboBoxType = (props) => {
   }, []);
 
   const createLabel = (acc, value) => {
-    return `${acc}, ${items.find(item => item.value == value).label}`.substring(1);
+    return `${acc}, ${items.find(item => item.value == value).label}`;
   }
  
   const applyFilters = () => {
@@ -107,7 +107,7 @@ const ComboBox: ComboBoxType = (props) => {
           toggleFlyout(!flyoutVisible)
         }}
       >
-        {comboLabel}
+        { comboLabel !== buttonLabel ? comboLabel.substring(1) : comboLabel}
       </button>
       {flyoutVisible &&
         <Panel mods="Combobox-checkboxContainer">

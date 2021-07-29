@@ -56,6 +56,9 @@ $Combobox-indicator-width: scaleGrid(4);
   appearance: none;
   text-align: left;
   position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:after {
     content: '▾';

@@ -12,7 +12,7 @@ storiesOf("Combobox", module)
     return (
       <div style={{height: '50vh'}}>
         <Combobox
-          mods='u-spaceRightMd'
+          mods='u-spaceRightMd u-size2of12'
           name='birthdate'
           buttonLabel="Birthdate"
           onChange={() => {}}
@@ -53,6 +53,7 @@ storiesOf("Combobox", module)
 
       <Combobox
           name="gender"
+          mods='u-size2of12'
           buttonLabel="Gender"
           onChange={() => {}}
           items={[
