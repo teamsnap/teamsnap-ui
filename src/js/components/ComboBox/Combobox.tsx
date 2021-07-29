@@ -64,23 +64,53 @@ const ComboBox: ComboBoxType = (props) => {
   } = props;
 
   const [flyoutVisible, toggleFlyout] = React.useState(false);
-  const [filterList, setFilterList] = React.useState([]);
   const [comboLabel, setComboLabel] = React.useState('');
   const [hasFilters, setHasFilters] = React.useState(false);
 
+  const [filterList, setFilterList] = React.useState([]);
+  const [uncheckedFilters, setUncheckedFilters] = React.useState([]);
+  const [checkedFilters, setCheckedFilters] = React.useState([]);
+
   React.useEffect(() => {
     setComboLabel(buttonLabel);
+    mapFilters();
   }, []);
+
+  React.useEffect(() => {
+    setUncheckedFilters([]);
+    setCheckedFilters([]);
+    mapFilters();
+  }, [flyoutVisible]);
+
+  const mapFilters = () => {
+    if (flyoutVisible) {
+      let checked = [];
+      let unchecked = [];
+      items.map(item => {
+        if (filterList.includes(item.value)) {
+          checked.push(item);
+        } else {
+          unchecked.push(item);
+        }
+      })
+      setUncheckedFilters(unchecked);
+      setCheckedFilters(checked);
+    }
+  }
 
   const createLabel = (acc, value) => {
     return `${acc}, ${items.find(item => item.value == value).label}`;
   }
  
   const applyFilters = () => {
-    setComboLabel(filterList.reduce(createLabel,''));
-    toggleFlyout(!flyoutVisible);
-    setHasFilters(true);
-    onChange(filterList);
+    if (filterList.length > 0) {
+      setComboLabel(filterList.reduce(createLabel, ''));
+      toggleFlyout(!flyoutVisible);
+      setHasFilters(true);
+      onChange(filterList);
+    } else {
+      clearFilters();
+    }
   }
 
   const clearFilters = () => {
@@ -89,6 +119,28 @@ const ComboBox: ComboBoxType = (props) => {
     toggleFlyout(!flyoutVisible);
     setHasFilters(false);
     onChange([]);
+  }
+
+  const buildCheckbox = (filter, idx) => {
+    return (
+      <Checkbox
+        key={`${name}-${idx}`}
+        mods={`${idx === items.length - 1 ? "u-padBottomNone" : ""}`}
+        name={filter.value}
+        label={filter.label}
+        inputProps={{
+          checked: filterList.includes(filter.value),
+          value: filter.value,
+          onChange: () => {
+            if (filterList.includes(filter.value)) {
+              setFilterList(filterList.filter(filter => filter != filter.value));
+            } else {
+              setFilterList([...filterList, filter.value]);
+            }
+          }
+        }}
+      />
+    )
   }
 
   return (
@@ -107,35 +159,21 @@ const ComboBox: ComboBoxType = (props) => {
           toggleFlyout(!flyoutVisible)
         }}
       >
-        { comboLabel !== buttonLabel ? comboLabel.substring(1) : comboLabel}
+        { comboLabel !== buttonLabel ? comboLabel.substring(1) : buttonLabel}
       </button>
       {flyoutVisible &&
         <Panel mods="Combobox-checkboxContainer">
           <PanelBody mods="Combobox-checkboxes">
+            {checkedFilters?.length > 0 && 
             <PanelRow>
-              {items &&
-                items.map((item: Filter, idx) => {
-                  return (
-                    <Checkbox
-                      key={`${name}-${idx}`}
-                      mods={`${idx === items.length - 1 ? "u-padBottomNone" : ""}`}
-                      name={item.value}
-                      label={item.label}
-                      inputProps={{
-                        checked: filterList.includes(item.value),
-                        value: item.value,
-                        onChange: () => {
-                          if (filterList.includes(item.value)) {
-                            setFilterList(filterList.filter(filter => filter != item.value));
-                          } else {
-                            setFilterList([...filterList, item.value]);
-                          }
-                        }
-                      }}
-                    />
-                  );
-                })}
+              {checkedFilters.map((item: Filter, idx) => buildCheckbox(item, idx))}
             </PanelRow>
+            }
+            {uncheckedFilters?.length > 0 && 
+            <PanelRow mods="Combobox-checkboxes--unchecked">
+              {uncheckedFilters.map((item: Filter, idx) => buildCheckbox(item, idx))}
+            </PanelRow>
+            }
           </PanelBody>
           <PanelFooter mods="u-padEndsSm u-padSidesMd">
             <Button onClick={clearFilters} mods="u-spaceRightMd u-colorNeutral7" type="link">
