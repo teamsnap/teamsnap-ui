@@ -102,6 +102,7 @@ const ComboBox: ComboBoxType = (props) => {
         name={name}
         id={name}
         disabled={disabled}
+        title={comboLabel}
         onClick={() => {
           toggleFlyout(!flyoutVisible)
         }}

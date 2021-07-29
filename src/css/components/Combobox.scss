@@ -94,6 +94,7 @@ $Combobox-indicator-width: scaleGrid(4);
     border-color: color-primary(6);
     color: color-primary(6);
     font-weight: bold;
+    background-color: color-neutral(1);
 
     &::after {
       color: color-primary(6);
