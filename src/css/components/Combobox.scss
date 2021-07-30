@@ -35,8 +35,12 @@ $Combobox-indicator-width: scaleGrid(4);
 }
 
 .Combobox-checkboxes {
-  max-height: 200px;
+  max-height: 150px;
   overflow-y: auto;
+
+  .Checkbox:last-child {
+    padding-bottom: 0;
+  }
 }
 
 .Combobox-toggle {
@@ -56,6 +60,9 @@ $Combobox-indicator-width: scaleGrid(4);
   appearance: none;
   text-align: left;
   position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:after {
     content: '▾';
@@ -94,6 +101,7 @@ $Combobox-indicator-width: scaleGrid(4);
     border-color: color-primary(6);
     color: color-primary(6);
     font-weight: bold;
+    background-color: color-neutral(1);
 
     &::after {
       color: color-primary(6);

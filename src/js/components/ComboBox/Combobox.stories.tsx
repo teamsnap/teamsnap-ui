@@ -12,10 +12,10 @@ storiesOf("Combobox", module)
     return (
       <div style={{height: '50vh'}}>
         <Combobox
-          mods='u-spaceRightMd'
+          mods='u-spaceRightMd u-size2of12'
           name='birthdate'
           buttonLabel="Birthdate"
-          onChange={() => {}}
+          onChange={selected => console.log(selected)}
           items={[
             {
               label: "2006",
@@ -46,8 +46,24 @@ storiesOf("Combobox", module)
               value: "2012",
             }, 
             {
-              label: "2013",
-              value: "2013",
+              label: "2014",
+              value: "2014",
+            }, 
+            {
+              label: "2015",
+              value: "2015",
+            }, 
+            {
+              label: "2016",
+              value: "2016",
+            }, 
+            {
+              label: "2017",
+              value: "2017",
+            }, 
+            {
+              label: "2018",
+              value: "2018",
             }
           ]} />
 
@@ -55,7 +71,7 @@ storiesOf("Combobox", module)
         mods='u-spaceRightMd'
         name="gender"
         buttonLabel="Gender"
-        onChange={() => {}}
+        onChange={selected => console.log(selected)}
         items={[
           {
             label: 'Male',
