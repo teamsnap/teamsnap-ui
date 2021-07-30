@@ -124,6 +124,10 @@
   .Nav-item {
     color: color-neutral(5);
     white-space: nowrap;
+
+    a {
+      color: color-neutral(5);
+    }
   }
 
   .Icon {
