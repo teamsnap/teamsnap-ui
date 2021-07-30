@@ -17,6 +17,9 @@
     "arrow-body-style": "off",
     "@typescript-eslint/comma-dangle": ["error", "only-multiline"],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.stories.tsx"] }],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/forbid-prop-types": "off",
+    "react/no-array-index-key": "off"
   }
 }

@@ -16,6 +16,7 @@ import * as PropTypes from 'prop-types';
 import Icon from '../Icon/Icon';
 
 const propTypes = {
+  id: PropTypes.string,
   className: PropTypes.string,
   breadcrumbs: PropTypes.arrayOf(
     PropTypes.shape({
@@ -25,33 +26,26 @@ const propTypes = {
       style: PropTypes.object,
     })
   ).isRequired,
-  home: PropTypes.shape({ url: PropTypes.string }),
-  id: PropTypes.string,
   style: PropTypes.object,
+  separator: PropTypes.node,
 };
 
-const Breadcrumbs: React.FunctionComponent<
-  PropTypes.InferProps<typeof propTypes>
-> = ({ className, breadcrumbs, home, id, style }) => {
-  const renderHome = () => {
-    if (!home) {
-      return;
-    }
+const Breadcrumbs: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = ({
+  className,
+  breadcrumbs,
+  id,
+  style,
+  separator,
+}) => {
+  const Separator = () => <>{separator}</>;
 
-    let content = <Icon className="Icon Icon-home" name="home" />;
-
-    if (home.url) {
-      content = <a href={home.url || '#'}>{content}</a>;
-    }
-
-    return <li>{content}</li>;
-  };
-
-  const renderSeparator = () => (
+  const renderSeparator = () => {
+    return (
       <li>
-        <Icon className="Icon Icon-separator" name="right" />
+        <Separator />
       </li>
     );
+  };
 
   const renderCrumb = (crumb: any) => {
     let content = crumb.text;
@@ -68,27 +62,22 @@ const Breadcrumbs: React.FunctionComponent<
 
   const renderBreadcrumbs = () => {
     if (!breadcrumbs) {
-      return;
+      return null;
     }
-    return breadcrumbs.map((crumb, idx) => (
-        <React.Fragment key={`${crumb.text}_${idx}`}>
+
+    return breadcrumbs.map((crumb, idx) => {
+      return (
+        <React.Fragment key={`breadcrumb_${idx}`}>
           {renderCrumb(crumb)}
           {idx !== breadcrumbs.length - 1 && renderSeparator()}
         </React.Fragment>
-      ));
+      );
+    });
   };
 
   return (
-    <nav
-      id={id}
-      aria-label="Breadcrumb"
-      className={className ?? 'Nav-breadcrumb'}
-      style={style}
-    >
-      <ul className="Breadcrumb">
-        {renderHome()}
-        {renderBreadcrumbs()}
-      </ul>
+    <nav id={id} aria-label="Breadcrumb" className={className ?? 'Nav-breadcrumb'} style={style}>
+      <ul className="Breadcrumb">{renderBreadcrumbs()}</ul>
     </nav>
   );
 };
@@ -97,10 +86,9 @@ Breadcrumbs.propTypes = propTypes;
 
 Breadcrumbs.defaultProps = {
   className: null,
-  breadcrumbs: [],
   id: null,
-  home: null,
   style: null,
+  separator: <Icon className="Icon Icon-separator" name="right" />,
 };
 
 export default Breadcrumbs;
