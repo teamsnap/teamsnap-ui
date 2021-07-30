@@ -68,20 +68,21 @@ storiesOf("Combobox", module)
           ]} />
 
       <Combobox
-          name="gender"
-          mods='u-size2of12'
-          buttonLabel="Gender"
-          onChange={selected => console.log(selected)}
-          items={[
-            {
-              label: 'Male',
-              value: 'male',
-            }, 
-            {
-              label: 'Female',
-              value: 'female',
-            }
-          ]} />
+        mods='u-spaceRightMd'
+        name="gender"
+        buttonLabel="Gender"
+        onChange={selected => console.log(selected)}
+        items={[
+          {
+            label: 'Male',
+            value: 'male',
+          }, 
+          {
+            label: 'Female',
+            value: 'female',
+          }
+        ]}
+      />
       </div>
     )
   })
