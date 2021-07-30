@@ -24,6 +24,8 @@ import { PanelBody } from "../PanelBody";
 import { PanelRow } from "../PanelRow";
 import { Button } from "../Button";
 import { Checkbox } from "../Checkbox";
+import { Field } from "../Field";
+import { Icon } from "../Icon";
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -67,6 +69,10 @@ const ComboBox: ComboBoxType = (props) => {
   const [filterList, setFilterList] = React.useState([]);
   const [comboLabel, setComboLabel] = React.useState('');
   const [hasFilters, setHasFilters] = React.useState(false);
+  const [searchParam, setSearchParam] = React.useState('')
+
+  const shouldShowSearchBar = items.length > 6
+  const filteredItems = searchParam ? items.filter(item => item.label.includes(searchParam)) : items
 
   React.useEffect(() => {
     setComboLabel(buttonLabel);
@@ -75,9 +81,9 @@ const ComboBox: ComboBoxType = (props) => {
   const createLabel = (acc, value) => {
     return `${acc}, ${items.find(item => item.value == value).label}`.substring(1);
   }
- 
+
   const applyFilters = () => {
-    setComboLabel(filterList.reduce(createLabel,''));
+    setComboLabel(filterList.reduce(createLabel, ''));
     toggleFlyout(!flyoutVisible);
     setHasFilters(true);
     onChange(filterList);
@@ -98,7 +104,7 @@ const ComboBox: ComboBoxType = (props) => {
       {...otherProps}
     >
       <button
-        className={`Combobox-toggle ${hasFilters ? 'Combobox-toggle--active' : ''}`} 
+        className={`Combobox-toggle ${hasFilters ? 'Combobox-toggle--active' : ''}`}
         name={name}
         id={name}
         disabled={disabled}
@@ -111,9 +117,24 @@ const ComboBox: ComboBoxType = (props) => {
       {flyoutVisible &&
         <Panel mods="Combobox-checkboxContainer">
           <PanelBody mods="Combobox-checkboxes">
+            {shouldShowSearchBar && (
+              <>
+                <PanelRow mods="Grid-cell u-flexAuto u-padBottomMd">
+                  <Field
+                    type="input"
+                    formFieldProps={{
+                      inputProps: { value: searchParam, onChange: e => setSearchParam(e.target.value) },
+                      placeholder: `Search for a ${buttonLabel}`,
+                      leftIcon: <Icon className="Icon" name="search" />,
+                    }}
+                    name="Sample"
+                  />
+                </PanelRow>
+              </>
+            )}
             <PanelRow>
-              {items &&
-                items.map((item: Filter, idx) => {
+              {filteredItems &&
+                filteredItems.map((item: Filter, idx) => {
                   return (
                     <Checkbox
                       key={`${name}-${idx}`}
