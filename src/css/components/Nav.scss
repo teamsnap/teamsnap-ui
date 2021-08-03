@@ -22,7 +22,7 @@
     position: relative;
 
     .Nav-header {
-      border-bottom: 1px solid color-neutral(2);
+      border-bottom: 1px solid color-neutral(4);
 
       &:hover {
         cursor: pointer;
@@ -40,38 +40,85 @@
 
   .Nav-sectionHeading {
     padding: 8px;
+    border-bottom: 1px solid color-neutral(4);
   }
 
   .Nav-topLevelHeading {
     padding: 6px 8px;
     border-radius: 5px;
+    border-bottom: 1px solid color-neutral(4);
 
     &:hover {
       background-color: color-neutral(3);
     }
   }
 
-  .Nav-node > .Nav-node {
-    padding-left: 16px;
-  }
-
-  .Nav-node > .Nav-node > .Nav-node {
-    padding-left: 24px;
-  }
-
-
   .Nav-node {
+    padding: 12px 16px 12px 24px;
     cursor: pointer;
-    
+    align-items: center;
+    border-bottom: 1px solid color-neutral(4);
+
+    span.Nav-nodeTitle {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &.Nav-wrapped {
+      padding: 0;
+
+      > * {
+        padding: 12px 16px 12px 24px;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+      }
+    }
+
+    .Nav-child {
+      padding: 12px 16px 12px 24px;
+      background-color: color-neutral(1);
+      border: 0;
+      transition: all ease 200ms;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid transparent;
+      
+      &:hover {
+        background-color: color-neutral(3);
+      }
+    }
+
+    .Nav-selected {
+      color: color-primary(6);
+      border-top: 1px solid color-primary(6);
+      border-bottom: 1px solid color-primary(6);
+    }
+
     .Icon {
       transform: rotate(-90deg);
+      transition: all ease 200ms;
+    }
+
+    &.Nav-hasChildren {
+      position: relative;
+
+      .Icon {
+        position: absolute;
+        top: calc(50% - 9px);
+        left: 0.75rem;
+      }
     }
   }
 
-  .Node-expanded {
-    & > .Icon {
-      transform: rotate(0deg);
-    }
+  .Node-expanded.Icon {
+    transform: rotate(0deg);
   }
 
   .Nav-item {
@@ -150,7 +197,7 @@
   }
 
   .Nav-itemSubtitle {
-    color: color-neutral(5);
+    color: color-neutral(7);
     font-size: 0.6875rem;
     display: block;
     font-weight: normal;
@@ -177,7 +224,51 @@
 }
 
 .Nav-sectionItems {
-  margin: 0 8px;
+  ul.Nav-single {
+    > li {
+      > .Nav-node {
+        @extend .u-hiddenVisually;
+      }
+    }
+  }
+
+  ul.Nav-multi {
+    .Nav-submenu {
+      height: 0;
+      overflow: hidden; 
+
+      &.isActive {
+        height: auto;
+      }
+    }
+  }
+
+  li {
+    list-style: none;
+  }
+
+  > ul > li > ul > li > ul {
+    overflow: hidden;
+    height: 0;
+
+    &.isActive {
+      height: auto;
+      border-bottom: 1px solid color-neutral(4);
+    }
+
+    > li {
+      > .Nav-node {
+        padding: 16px 24px;
+        background-color: color-neutral(1);
+        border: 0;
+        transition: all ease 200ms;
+
+        &:hover {
+          background-color: color-neutral(3);
+        }
+      }
+    }
+  }
 }
 
 .Nav-footer {
@@ -189,16 +280,6 @@
   .Icon {
     transition: transform 0.2s ease-in-out;
   }
-}
-
-.Nav-hasChildren {
-  .Nav-submenu {
-    padding-left: 14px;
-  }
-}
-
-.Nav-noChildren {
-  padding-left: 15px;
 }
 
 .Nav-item {
@@ -224,6 +305,10 @@
     background-color: color-primary(6);
     color:color-neutral(1);
     font-weight: bold;
+
+    a {
+      color:color-neutral(1);
+    }
   }
 }
 
