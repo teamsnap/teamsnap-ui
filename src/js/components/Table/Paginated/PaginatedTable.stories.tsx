@@ -2,7 +2,6 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import PaginatedTable from "./PaginatedTable";
 import { Placement } from "../../../types/placement";
-import { text } from '@storybook/addon-knobs';
 
 const stories = storiesOf("PaginatedTable", module);
 /**
@@ -199,7 +198,7 @@ const data = [
 ];
 
 /**
- * This function is where all of your server calls should occur. Commonly likely just make a
+ * This function is where all of your server calls should occur. Very likely you'll just make a
  * server call and return the list of items. However, this is also a good place where you can
  * inspect the request and determine how many items the server has for this search.
  * @param page  - the table's current page
@@ -231,12 +230,11 @@ function loadData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
  */
 function loadSearchData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
   const startIndex = itemsPerPage * page - itemsPerPage;
-
   return new Promise((resolve) => {
     setTimeout(() => resolve(data), 500);
   }).then((items: any[]) => {
     items = items
-      .filter((item) => item.gender == filter.gender || filter.gender == "")
+      .filter((item) => !filter.gender || filter.gender.includes(item.gender))
       .filter(
         (item) => item.name.search(new RegExp(filter.searchTerm, "i")) > -1
       );
@@ -312,7 +310,34 @@ stories.add("Basic Search", () => (
     loadData={loadSearchData}
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
-    customFilter={{ gender: text("Gender Filter", "") }}
+    includeBasicSearch={true}
+    searchPlaceholder="Search members by name"
+  />
+));
+
+stories.add("With Search Filters", () => (
+  <PaginatedTable
+    columns={columns}
+    mapDataToRow={mapData}
+    loadData={loadSearchData}
+    defaultItemsPerPage={2}
+    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
+    filters={[
+      PaginatedTable.Filter("role", "Participants Role", {
+        "manager": "Manager",
+        "nonplayer": "Non-Player",
+        "player": "Player",
+        "teamOwner": "Team Owner"
+      }),
+      // We understand that this is not a comprehensive list of genders but merely a list to display how these filters can be used
+      PaginatedTable.Filter("gender", "Participants Preferred Gender", {
+        "m": "Male",
+        "f": "Female",
+        "other": "Other",
+        "unknown": "Unknown"
+      }),
+    ]}
+    paginationPlacement={ Placement.Bottom }
     includeBasicSearch={true}
     searchPlaceholder="Search members by name"
   />

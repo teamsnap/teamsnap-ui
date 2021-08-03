@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as PropTypes from "prop-types";
 import { Table } from "../../Table";
 import { usePagination } from "./helpers";
 import { PaginationCurrentSubsetDisplay, PaginationSelect, PaginationButtons } from "../../Pagination";
@@ -7,44 +8,71 @@ import { CheckboxStates } from "../../../types";
 import { Select } from "../../Select";
 import BasicSearch from "./BasicSearch";
 import { Placement } from "../../../types/placement";
-
-interface LoadDataObject {
-  page: number;
-  itemsPerPage: number;
-  sortBy?: string;
-  sortAsc?: boolean;
-  filter?: object;
-}
+import ComboBox from "../../ComboBox/Combobox";
+import {assert} from "../../../utils/assert";
+import { Button } from "../../Button";
+import { Panel } from "../../Panel";
 
 interface BulkAction {
   label: string;
   onSelected: (selected: any) => void;
   disabled?: boolean;
 }
-interface Props {
-  loadData: (requestedPayload: LoadDataObject) => Promise<any[]>;
-  columns: {
-    name: string;
-    label: string | React.ReactElement;
-    isSortable?: boolean;
-    align?: string;
-    mods?: string;
-  }[];
-  mapDataToRow: (item: any, index: number) => { id: any };
-  defaultPage?: number;
-  defaultItemsPerPage?: number;
-  totalItems: number;
-  hideRowsSelect?: boolean;
-  rowsAreSelectable?: boolean;
-  bulkActions?: BulkAction[];
-  customFilter?: object;
-  customSearchFilter?: any;
-  includeBasicSearch?: boolean;
-  searchPlaceholder?: string;
-  paginationPlacement?: Placement;
+
+const FilterContext = React.createContext<{activeFilters: any, setActiveFilters: (filters: any) => void}>({
+  activeFilters: {},
+  setActiveFilters: () => {},
+});
+
+const propTypes = {
+  bulkActions: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    onSelected: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
+  })),
+  columns: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    label: PropTypes.element.isRequired,
+    isSortable: PropTypes.bool,
+    align: PropTypes.string,
+    mods: PropTypes.string,
+  })).isRequired,
+  customSearchFilter: PropTypes.any,
+  defaultItemsPerPage: PropTypes.number,
+  defaultPage: PropTypes.number,
+  filters: PropTypes.arrayOf(PropTypes.func),
+  hideRowsSelect: PropTypes.bool,
+  includeBasicSearch: PropTypes.bool,
+  loadData: PropTypes.func.isRequired,
+  mapDataToRow: PropTypes.func.isRequired,
+  paginationPlacement: PropTypes.oneOf([Placement.Top, Placement.Bottom]),
+  rowsAreSelectable: PropTypes.bool,
+  searchPlaceholder: PropTypes.string,
+  totalItems: PropTypes.number.isRequired
 }
 
-const PaginatedTable: React.FunctionComponent<Props> = ({
+const FilterComp = ({
+  fieldName, label, comboItems, mods
+}) => {
+  const ctx = React.useContext(FilterContext);
+  return <ComboBox onChange={(values) => {
+    ctx.setActiveFilters({...ctx.activeFilters, [fieldName]: values});
+  }} name={fieldName} buttonLabel={label} mods={mods} items={comboItems} />
+}
+
+const Filter = (fieldName: string, label: string, items: {[key: string]: string}) => {
+  const comboItems = Object.entries(items).reduce((acc, cur) => {
+    const [value, label] = cur;
+    return [...acc, {value, label}]
+  }, []);
+
+  return ({isLast}) => (
+    <FilterComp mods={isLast ? "" : "u-spaceRightSm"}  label={label} fieldName={fieldName} comboItems={comboItems} />
+  );
+};
+
+type PaginatedTableProps = React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> & { Filter: typeof Filter }
+const PaginatedTable: PaginatedTableProps = ({
   loadData,
   columns,
   mapDataToRow,
@@ -54,12 +82,16 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   hideRowsSelect,
   rowsAreSelectable = false,
   bulkActions,
-  customFilter = null,
+  filters = [],
   customSearchFilter,
   includeBasicSearch,
   searchPlaceholder,
   paginationPlacement,
 }) => {
+
+  assert(!(filters.length && paginationPlacement === Placement.Top),
+    "Invalid State: Pagination Positioning Top + Filters");
+
   const [
     [itemsPerPage, setItemsPerPage],
     [currentPage, setCurrentPage],
@@ -70,6 +102,11 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   const [isLoading, setIsLoading] = React.useState(false);
   const [selected, setSelected] = React.useState([]);
   const [searchTerm, setSearchTerm] = React.useState("");
+  const [filterOpen, setFilterOpen] = React.useState(false);
+  const [activeFilters, setActiveFilters] = React.useState({
+    activeFilters: {}
+  });
+  const shouldPaginateAtTop = paginationPlacement !== Placement.Bottom && filters.length === 0;
 
   const setNewItemsPerPage = (newItemsPerPage) => {
     setItemsPerPage(newItemsPerPage);
@@ -95,8 +132,8 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
         sortBy: sortName,
         sortAsc: sortAscending,
         filter:
-          includeBasicSearch || customFilter
-            ? { searchTerm: searchTerm, ...customFilter }
+          includeBasicSearch || activeFilters
+            ? { searchTerm: searchTerm, ...activeFilters }
             : null,
       });
       setDataSet(data);
@@ -111,7 +148,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
     sortName,
     sortAscending,
     searchTerm,
-    customFilter,
+    activeFilters,
   ]);
 
   let rows = dataSet.map(mapDataToRow);
@@ -191,17 +228,17 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
     {}
   );
 
-  function updateSearchFilter({ searchTerm }) {
+  const updateSearchFilter = ({ searchTerm }) => {
     setCurrentPage(1);
     setSearchTerm(searchTerm);
   }
 
   React.useEffect(() => {
     setCurrentPage(1);
-  }, [customFilter]);
+  }, [activeFilters]);
 
   const paginationItems = (
-  <div className={ `Grid-cell u-spaceTopSm u-flex u-flexJustifyEnd ${paginationPlacement == Placement.Bottom ? "u-sizeFill u-sizeFull" : "u-sizeFit"}` }>
+  <div className={ `Grid-cell u-flex u-flexJustifyEnd ${!shouldPaginateAtTop ? "u-sizeFill u-sizeFull" : "u-sizeFit"}` }>
     <div className="u-spaceAuto u-spaceRightSm">
       <PaginationCurrentSubsetDisplay
         itemsPerPage={ itemsPerPage }
@@ -228,11 +265,19 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   </div>
   );
 
+  const filterButton = (
+    <div>
+      <Button isActive={filterOpen} onClick={() => setFilterOpen(!filterOpen)} mods="u-spaceLeftSm" icon="wrench">
+        Filter
+      </Button>
+    </div>
+  )
+
   return (
     <div className="Grid">
-      <div className="Grid Grid-cell">
+      <div className="Grid Grid-cell u-spaceTopSm">
         { bulkActions?.length > 0 ? (
-          <div className="Grid-cell u-spaceTopSm u-spaceRightXs u-flex u-size1of1 u-md-size1of12 u-flexJustifyStart">
+          <div className="Grid-cellu-spaceRightXs u-flex u-size1of1 u-md-size1of12 u-flexJustifyStart">
             <Select inputProps={{
               value: "",
               onChange: (event) => {
@@ -253,7 +298,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
             ] } />
           </div>
         ) : null }
-        <div className="Grid-cell u-sizeFill u-spaceTopSm u-md-size1of4">
+        <div className="Grid-cell u-sizeFill u-md-size1of4">
         { customSearchFilter || includeBasicSearch ? (
             customSearchFilter ? (
               customSearchFilter
@@ -265,8 +310,21 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
             )
         ) : null }
         </div>
-        { paginationPlacement != Placement.Bottom && paginationItems }
+        { shouldPaginateAtTop && paginationItems }
+        { !shouldPaginateAtTop && filterButton }
       </div>
+      <FilterContext.Provider value={{
+        activeFilters: activeFilters.activeFilters,
+        setActiveFilters: (filters) => {
+          setActiveFilters(filters);
+        }
+      }}>
+
+      {filterOpen && (
+        <Panel mods="u-padSm u-spaceTopSm u-borderNeutral4 u-bgNeutral1 Grid-cell">
+          {filters.map((Item, index) => <Item key={index} isLast={index === filters.length-1} />)}
+        </Panel>
+      )}
       <div className="Grid-cell u-spaceTopSm">
         <Table
           columns={ cols }
@@ -278,9 +336,13 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
           isLoading={ isLoading }
         />
       </div>
-      { paginationPlacement == Placement.Bottom && paginationItems }
+      </FilterContext.Provider>
+      { (paginationPlacement === Placement.Bottom || !shouldPaginateAtTop) && paginationItems }
     </div>
   );
 };
+
+PaginatedTable.Filter = Filter;
+PaginatedTable.propTypes = propTypes;
 
 export default PaginatedTable;

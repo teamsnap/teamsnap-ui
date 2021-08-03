@@ -40,6 +40,26 @@ $maxIndex: 999;
   .u-bgNeutral#{$i} {
     background-color: color-neutral($i) !important;
   }
+
+  .u-borderPrimary#{$i} {
+    border-color: color-primary($i) !important;
+  }
+
+  .u-borderNegative#{$i} {
+    border-color: color-negative($i) !important;
+  }
+
+  .u-borderWarning#{$i} {
+    border-color: color-warning($i) !important;
+  }
+
+  .u-borderSuccess#{$i} {
+    border-color: color-success($i) !important;
+  }
+
+  .u-borderNeutral#{$i} {
+    border-color: color-neutral($i) !important;
+  }
 }
 
 // TODO: rename to .u-colorSuccess?
