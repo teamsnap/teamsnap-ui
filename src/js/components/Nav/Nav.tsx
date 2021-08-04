@@ -125,8 +125,6 @@ const FlyOutNode = ({ item, openItems }) => {
     ? item.wrapItem
     : ({ children }) => <>{children}</>;
 
-  console.log(item.wrapItem)
-
   return (
     <li>
       <div onClick={() => setIsExpanded(!isExpanded)} className={`Nav-node ${item.wrapItem ? 'Nav-wrapped' : ''} ${item.tree ? 'Nav-hasChildren' : ''} u-fill u-flex`}>

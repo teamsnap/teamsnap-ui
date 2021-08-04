@@ -28,9 +28,7 @@ const Skittles: React.FunctionComponent<PropTypes> = ({text, style, mods}) => {
   const colorHash = firstLetterCharCode % 3;
   const lastLetterCharCode = text.charCodeAt(text.length - 1) || 1;
   const intensityHash = lastLetterCharCode % 4;
-  console.log(lastLetterCharCode);
-  console.log(intensityHash);
-  console.log(`${colorMap[colorHash]}`)
+
   return <span
           style={{width: "22px", height: "22px", display: "inline-block", ...style}}
           className={`u-colorPrimary1 u-textCenter u-borderRadiusMd u-fontSizeXs u-padXs ${colorMap[colorHash]} ${intensityHash >= 2 ? "u-colorNeutral1" : ""} ${mods ? mods: ""}`}>
