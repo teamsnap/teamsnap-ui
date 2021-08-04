@@ -32,7 +32,7 @@ const propTypes = {
   })),
   columns: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    label: PropTypes.element.isRequired,
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     isSortable: PropTypes.bool,
     align: PropTypes.string,
     mods: PropTypes.string,
