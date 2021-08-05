@@ -3,6 +3,12 @@ import { storiesOf } from "@storybook/react";
 import PaginatedTable from "./PaginatedTable";
 import { Placement } from "../../../types/placement";
 
+const eighteenYearsBirthdate = new Date()
+eighteenYearsBirthdate.setFullYear(eighteenYearsBirthdate.getFullYear() - 18)
+
+const seventeenYearsBirthdate = new Date()
+seventeenYearsBirthdate.setFullYear(seventeenYearsBirthdate.getFullYear() - 17)
+
 const stories = storiesOf("PaginatedTable", module);
 /**
  * Columns to configure the table against.
@@ -10,6 +16,7 @@ const stories = storiesOf("PaginatedTable", module);
 const columns = [
   { name: "name", label: "Member Name", isSortable: true, mods: "u-size1of2" },
   { name: "gender", label: "Gender", isSortable: true, mods: "u-size1of2" },
+  { name: "birthdate", label: "Birthdate", isSortable: false, mods: "u-size1of2" },
   { name: "age", label: "Age", isSortable: true, mods: "u-size1of2" },
   {
     name: "programs",
@@ -26,6 +33,7 @@ const data = [
   {
     name: "Brad",
     gender: "m",
+    birthdate: seventeenYearsBirthdate,
     age: 12,
     position: "Goalie",
     activePrograms: [
@@ -38,6 +46,7 @@ const data = [
   {
     name: "Dustin",
     gender: "m",
+    birthdate: seventeenYearsBirthdate,
     age: 56,
     position: "Coach",
     activePrograms: [
@@ -48,6 +57,7 @@ const data = [
   {
     name: "Fred",
     gender: "m",
+    birthdate: seventeenYearsBirthdate,
     age: 56,
     position: "Coach",
     activePrograms: [
@@ -58,6 +68,7 @@ const data = [
   {
     name: "Bobby",
     gender: "m",
+    birthdate: seventeenYearsBirthdate,
     age: 56,
     position: "Coach",
     activePrograms: [
@@ -68,6 +79,7 @@ const data = [
   {
     name: "Christie",
     gender: "f",
+    birthdate: seventeenYearsBirthdate,
     age: 56,
     position: "Coach",
     activePrograms: [
@@ -78,6 +90,7 @@ const data = [
   {
     name: "Jenna",
     gender: "f",
+    birthdate: seventeenYearsBirthdate,
     age: 56,
     position: "Coach",
     activePrograms: [
@@ -88,6 +101,7 @@ const data = [
   {
     name: "Stacy",
     gender: "f",
+    birthdate: seventeenYearsBirthdate,
     age: 56,
     position: "Coach",
     activePrograms: [
@@ -98,6 +112,7 @@ const data = [
   {
     name: "Joey",
     gender: "m",
+    birthdate: seventeenYearsBirthdate,
     age: 12,
     position: "Player",
     activePrograms: [
@@ -108,6 +123,7 @@ const data = [
   {
     name: "William",
     gender: "m",
+    birthdate: eighteenYearsBirthdate,
     age: 13,
     position: "Player",
     activePrograms: [
@@ -118,6 +134,7 @@ const data = [
   {
     name: "Sharron",
     gender: "f",
+    birthdate: eighteenYearsBirthdate,
     age: 14,
     position: "Player",
     activePrograms: [
@@ -128,6 +145,7 @@ const data = [
   {
     name: "Brenda",
     gender: "f",
+    birthdate: eighteenYearsBirthdate,
     age: 13,
     position: "Player",
     activePrograms: [
@@ -138,6 +156,7 @@ const data = [
   {
     name: "Nathan",
     gender: "m",
+    birthdate: eighteenYearsBirthdate,
     age: 12,
     position: "Player",
     activePrograms: [
@@ -148,6 +167,7 @@ const data = [
   {
     name: "Jimmy",
     gender: "m",
+    birthdate: eighteenYearsBirthdate,
     age: 13,
     position: "Player",
     activePrograms: [
@@ -158,6 +178,7 @@ const data = [
   {
     name: "Lester",
     gender: "m",
+    birthdate: eighteenYearsBirthdate,
     age: 14,
     position: "Player",
     activePrograms: [
@@ -168,6 +189,7 @@ const data = [
   {
     name: "Justine",
     gender: "F",
+    birthdate: eighteenYearsBirthdate,
     age: 13,
     position: "Player",
     activePrograms: [
@@ -178,6 +200,7 @@ const data = [
   {
     name: "Cassie",
     gender: "f",
+    birthdate: eighteenYearsBirthdate,
     age: 14,
     position: "Player",
     activePrograms: [
@@ -188,6 +211,7 @@ const data = [
   {
     name: "Jessica",
     gender: "f",
+    birthdate: eighteenYearsBirthdate,
     age: 12,
     position: "Player",
     activePrograms: [
@@ -258,6 +282,7 @@ function mapData(item) {
       </div>
     ),
     gender: item.gender,
+    birthdate: item.birthdate.toLocaleDateString('en-US'),
     age: `${item.age}`,
     programs: item.activePrograms.map((p, idx) => (
       <div key={idx}>{p.name}</div>
@@ -272,7 +297,7 @@ stories.add("Default", () => (
     loadData={loadData}
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
-    paginationPlacement={ Placement.Bottom }
+    paginationPlacement={Placement.Bottom}
   />
 ));
 
@@ -336,8 +361,9 @@ stories.add("With Search Filters", () => (
         "other": "Other",
         "unknown": "Unknown"
       }),
+      PaginatedTable.Filter("birthdate", "Participants Birthdate", undefined, 'date'),
     ]}
-    paginationPlacement={ Placement.Bottom }
+    paginationPlacement={Placement.Bottom}
     includeBasicSearch={true}
     searchPlaceholder="Search members by name"
   />

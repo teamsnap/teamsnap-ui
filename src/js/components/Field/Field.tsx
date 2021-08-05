@@ -53,6 +53,7 @@ const fieldPropTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
   caption: PropTypes.string,
+  mods: PropTypes.string,
   status: Status.PropType,
   ref: PropTypes.any,
   otherProps: PropTypes.any,

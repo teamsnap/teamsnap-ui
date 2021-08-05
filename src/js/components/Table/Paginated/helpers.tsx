@@ -1,5 +1,12 @@
 import * as React from "react";
 
+export const convertObjsToValueLabel = (items: { [key: string]: string; }) => (
+  Object.entries(items).reduce((acc, cur) => {
+    const [value, label] = cur;
+    return [...acc, { value, label }]
+  }, [])
+)
+
 export const getLastPageIndex = (
   totalItems: number,
   itemsPerPage: number
