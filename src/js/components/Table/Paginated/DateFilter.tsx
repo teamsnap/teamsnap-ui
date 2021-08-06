@@ -12,8 +12,8 @@ import { Field } from "../../Field";
 interface Range {
   kind: 'range',
   value: {
-    from?: string,
-    to?: string
+    from?: Date,
+    to?: Date
   }
 }
 
@@ -51,6 +51,14 @@ const propTypes = {
 
 type Props = Omit<PropTypes.InferProps<typeof propTypes>, 'onChange'> & {
   onChange: (value?: FilterValue) => void
+}
+
+const formatDate = (x?: string) => {
+  if (!x) return
+
+  const date = new Date(`${x}T12:00:00 GMT`)
+  date.setHours(0)
+  return date
 }
 
 const DateFilter = ({
@@ -97,8 +105,11 @@ const DateFilter = ({
       setYears('')
       setButtonLabel([fromDate, toDate].filter(x => !!x).join(' - '))
       toggleFlyout(!flyoutVisible);
-      onChange({ kind: 'range', value: { from: fromDate, to: toDate } });
       setHasFilters(true);
+      onChange({
+        kind: 'range',
+        value: { from: formatDate(fromDate), to: formatDate(toDate) }
+      });
       return
     }
 
@@ -163,6 +174,7 @@ const DateFilter = ({
 
               {mode === 'year' && (
                 <Field
+                  type="input"
                   name="years"
                   caption="Use commas to separate multiple years."
                   formFieldProps={{

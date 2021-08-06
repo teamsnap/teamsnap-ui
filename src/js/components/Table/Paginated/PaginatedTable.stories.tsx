@@ -244,13 +244,24 @@ function loadData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
 
 const filterBirthDate = (filter: FilterValue, items: any[]) => {
   if (filter.kind === "years") {
-    console.log(filter.value)
     return items.filter(item => {
       const birthdateYear = new Date(item.birthdate).getFullYear()
-      console.log(birthdateYear)
-      filter.value.includes(birthdateYear.toString())
+      return filter.value.includes(birthdateYear.toString())
     })
   }
+
+  const { from, to } = filter.value
+  return items.filter(item => {
+    const birthdateYear = new Date(item.birthdate)
+    birthdateYear.setHours(0)
+    birthdateYear.setMinutes(0)
+    birthdateYear.setSeconds(0)
+    birthdateYear.setMilliseconds(0)
+    const greaterThanFromDate = !filter.value.from || (birthdateYear >= from)
+    const lesserThanToDate = !filter.value.to || (birthdateYear <= to)
+
+    return greaterThanFromDate && lesserThanToDate
+  })
 }
 
 /**
