@@ -9,6 +9,21 @@ import { Button } from "../../Button";
 import { Select } from "../../Select";
 import { Field } from "../../Field";
 
+interface Range {
+  kind: 'range',
+  value: {
+    from?: string,
+    to?: string
+  }
+}
+
+interface Years {
+  kind: 'years',
+  value: string[]
+}
+
+export type FilterValue = Range | Years
+
 const modes = [
   {
     label: "Year",
@@ -34,6 +49,10 @@ const propTypes = {
   otherProps: PropTypes.object
 };
 
+type Props = Omit<PropTypes.InferProps<typeof propTypes>, 'onChange'> & {
+  onChange: (value?: FilterValue) => void
+}
+
 const DateFilter = ({
   name,
   title,
@@ -43,11 +62,13 @@ const DateFilter = ({
   mods,
   defaultSelectLabel,
   ...props
-}: PropTypes.InferProps<typeof propTypes>) => {
+}: Props) => {
   const [mode, setMode] = React.useState<'year' | 'range' | 'noDate'>('year');
   const [hasFilters, setHasFilters] = React.useState(false);
   const [flyoutVisible, toggleFlyout] = React.useState(false);
   const [years, setYears] = React.useState('');
+  const [fromDate, setFromDate] = React.useState('');
+  const [toDate, setToDate] = React.useState('');
   const [buttonLabel, setButtonLabel] = React.useState(title)
 
   React.useEffect(() => {
@@ -58,23 +79,39 @@ const DateFilter = ({
 
   const clearFilters = () => {
     setYears('');
+    setFromDate('');
+    setToDate('');
     setHasFilters(false);
-    onChange([]);
+    onChange();
     toggleFlyout(!flyoutVisible);
     setButtonLabel(title)
   }
 
   const applyFilters = () => {
+    if ((mode === 'year' && !years) || (mode === 'range' && !fromDate && !toDate)) {
+      clearFilters()
+      return
+    }
+
+    if (mode === 'range') {
+      setYears('')
+      setButtonLabel([fromDate, toDate].filter(x => !!x).join(' - '))
+      toggleFlyout(!flyoutVisible);
+      onChange({ kind: 'range', value: { from: fromDate, to: toDate } });
+      setHasFilters(true);
+      return
+    }
+
     if (years.length > 0) {
       const elements = years.split(',').filter(item => !!item)
       const cleanYears = elements.join(',')
+      setFromDate('')
+      setToDate('')
       toggleFlyout(!flyoutVisible);
       setHasFilters(true);
-      onChange(elements);
+      onChange({ kind: 'years', value: elements });
       setButtonLabel(cleanYears)
       setYears(cleanYears)
-    } else {
-      clearFilters();
     }
   }
 
@@ -110,10 +147,11 @@ const DateFilter = ({
       </button>
       {flyoutVisible &&
         <Panel mods="Combobox-checkboxContainer">
-          <PanelBody mods="Combobox-checkboxes">
+          <PanelBody>
             <PanelRow mods="Grid-cell u-flexAuto u-padBottomMd">
               <Select
                 name="mode"
+                mods={mode === 'noDate' ? '' : 'u-spaceBottomMd'}
                 options={[...modes, { value: 'noDate', label: `[${defaultSelectLabel}]` }]}
                 inputProps={{
                   value: mode,
@@ -125,13 +163,34 @@ const DateFilter = ({
 
               {mode === 'year' && (
                 <Field
-                  mods="u-spaceTopMd"
                   name="years"
                   caption="Use commas to separate multiple years."
                   formFieldProps={{
                     inputProps: { value: years, onChange: onChangeYear }
                   }}
                 />
+              )}
+
+              {mode === 'range' && (
+                <>
+                  <Field
+                    mods="u-spaceBottomMd"
+                    label="From:"
+                    type="date"
+                    name="fromDate"
+                    formFieldProps={{
+                      inputProps: { value: fromDate, onChange: e => setFromDate(e.target.value) }
+                    }}
+                  />
+                  <Field
+                    label="To:"
+                    type="date"
+                    name="toDate"
+                    formFieldProps={{
+                      inputProps: { value: toDate, onChange: e => setToDate(e.target.value) }
+                    }}
+                  />
+                </>
               )}
             </PanelRow>
           </PanelBody>

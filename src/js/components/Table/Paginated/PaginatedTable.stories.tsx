@@ -2,6 +2,7 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import PaginatedTable from "./PaginatedTable";
 import { Placement } from "../../../types/placement";
+import { FilterValue } from "./DateFilter";
 
 const eighteenYearsBirthdate = new Date()
 eighteenYearsBirthdate.setFullYear(eighteenYearsBirthdate.getFullYear() - 18)
@@ -236,10 +237,20 @@ function loadData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
   return new Promise((resolve) => {
     setTimeout(() => resolve(data), 500);
   }).then((items: any[]) => {
-    console.log("filter load", filter)
     const endIndex = Math.min(items.length, startIndex + itemsPerPage);
     return items.slice(startIndex, endIndex);
   });
+}
+
+const filterBirthDate = (filter: FilterValue, items: any[]) => {
+  if (filter.kind === "years") {
+    console.log(filter.value)
+    return items.filter(item => {
+      const birthdateYear = new Date(item.birthdate).getFullYear()
+      console.log(birthdateYear)
+      filter.value.includes(birthdateYear.toString())
+    })
+  }
 }
 
 /**
@@ -262,8 +273,10 @@ function loadSearchData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
       .filter(
         (item) => item.name.search(new RegExp(filter.searchTerm, "i")) > -1
       );
-    const endIndex = Math.min(items.length, startIndex + itemsPerPage);
-    return items.slice(startIndex, endIndex);
+
+    const dateFilteredItems = filter.birthdate ? filterBirthDate(filter.birthdate, items) : items
+    const endIndex = Math.min(dateFilteredItems.length, startIndex + itemsPerPage);
+    return dateFilteredItems.slice(startIndex, endIndex);
   });
 }
 
