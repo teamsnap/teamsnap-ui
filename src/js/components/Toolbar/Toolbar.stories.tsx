@@ -55,78 +55,78 @@ stories.add('With Flyouts', () => (
 ));
 
 stories.add('Ideal toolbar placement', () => (
-    <>
-      <div
-        className="u-flex"
-        style={{
-          minHeight: '80vh',
+  <>
+    <div
+      className="u-flex"
+      style={{
+        minHeight: '80vh',
+      }}
+    >
+      <Nav
+        headerItem={{
+          image:
+            'https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png',
+          title: 'sample',
         }}
+        mods="u-size2of12"
       >
-        <Nav
-          headerItem={{
-            image:
-              'https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png',
-            title: 'sample',
-          }}
-          mods="u-size2of12"
-        >
-          <Nav.Item icon="divisions">Programs</Nav.Item>
-        </Nav>
-        <main className="u-sizeFill u-flex u-flexJustifyCenter">
-          <div style={{ width: '100%' }}>
-            <Toolbar />
-            <div>Page content here.</div>
-          </div>
-        </main>
-      </div>
-    </>
-  ));
+        <Nav.Item icon="divisions">Programs</Nav.Item>
+      </Nav>
+      <main className="u-sizeFill u-flex u-flexJustifyCenter">
+        <div style={{ width: '100%' }}>
+          <Toolbar />
+          <div>Page content here.</div>
+        </div>
+      </main>
+    </div>
+  </>
+));
 
 stories.add('With Search', () => (
-    <>
-      <div
-        className="u-flex"
-        style={{
-          minHeight: '80vh',
+  <>
+    <div
+      className="u-flex"
+      style={{
+        minHeight: '80vh',
+      }}
+    >
+      <Nav
+        headerItem={{
+          image:
+            'https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png',
+          title: 'sample',
         }}
+        mods="u-size2of12"
       >
-        <Nav
-          headerItem={{
-            image:
-              'https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png',
-            title: 'sample',
-          }}
-          mods="u-size2of12"
-        >
-          <Nav.Item icon="divisions">Programs</Nav.Item>
-        </Nav>
-        <main className="u-sizeFill u-flex u-flexJustifyCenter">
-          <div style={{ width: '100%' }}>
-            <Toolbar
-              showAccount
-              accountBody={
-                <div className="u-padXs">
-                  <div>You're logged in as Thomas Edison!</div>
-                  <div>
-                    <a href="#">Sign Out?</a>
-                  </div>
+        <Nav.Item icon="divisions">Programs</Nav.Item>
+      </Nav>
+      <main className="u-sizeFill u-flex u-flexJustifyCenter">
+        <div style={{ width: '100%' }}>
+          <Toolbar
+            showAccount
+            accountBody={
+              <div className="u-padXs">
+                <div>You're logged in as Thomas Edison!</div>
+                <div>
+                  <a href="#">Sign Out?</a>
                 </div>
-              }
-              helpBody={
-                <div className="u-padXs">
-                  <h1>You can put whatver you want here!</h1>
-                </div>
-              }
-            >
-              <Search />
-            </Toolbar>
+              </div>
+            }
+            helpBody={
+              <div className="u-padXs">
+                <h1>You can put whatver you want here!</h1>
+              </div>
+            }
+          >
+            <Search />
+          </Toolbar>
 
-            <div>Page content here.</div>
-          </div>
-        </main>
-      </div>
-    </>
-  ));
+          <div>Page content here.</div>
+        </div>
+      </main>
+    </div>
+  </>
+));
 
 stories.add('With Breadcrumbs', () => {
   const breadcrumbs = [

@@ -61,10 +61,7 @@ class PanelRowExpandable extends React.PureComponent<
   renderChildLink = (children) => {
     const { isExpanded } = this.state;
 
-    const linkClasses = getClassName(
-      'Panel-expandableControl',
-      isExpanded && 'is-expanded'
-    );
+    const linkClasses = getClassName('Panel-expandableControl', isExpanded && 'is-expanded');
 
     return (
       <a onClick={this.handleRowClick} className={linkClasses}>
@@ -82,9 +79,7 @@ class PanelRowExpandable extends React.PureComponent<
     return columns.map((column, index) => {
       const { children: columnChildren, ...props } = column;
       const children =
-        includeLink && index === 0
-          ? this.renderChildLink(columnChildren)
-          : columnChildren;
+        includeLink && index === 0 ? this.renderChildLink(columnChildren) : columnChildren;
 
       return renderColumn ? (
         renderColumn({ key: index, children, ...props })
@@ -100,25 +95,18 @@ class PanelRowExpandable extends React.PureComponent<
     const { isExpanded } = this.state;
 
     return (
-      <div
-        className={getClassName('Panel-childRows', isExpanded && 'is-expanded')}
-      >
+      <div className={getClassName('Panel-childRows', isExpanded && 'is-expanded')}>
         <PanelRow isWithCells>{this.renderColumns(childColumns)}</PanelRow>
       </div>
     );
   };
 
   render() {
-    const { parentColumns, childColumns, className, mods, style, otherProps } =
-      this.props;
+    const { parentColumns, childColumns, className, mods, style, otherProps } = this.props;
     const hasChildren = childColumns && childColumns.length > 0;
 
     return (
-      <div
-        className={getClassName(className, mods)}
-        style={style}
-        {...otherProps}
-      >
+      <div className={getClassName(className, mods)} style={style} {...otherProps}>
         <PanelRow isWithCells isParent>
           {this.renderColumns(parentColumns, hasChildren)}
         </PanelRow>

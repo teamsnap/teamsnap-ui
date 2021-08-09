@@ -22,10 +22,7 @@ import { Icon } from '../Icon';
 import { TextLink } from '../TextLink';
 import { getClassName } from '../../utils/helpers';
 
-class StepNav extends React.PureComponent<
-  PropTypes.InferProps<typeof StepNav.propTypes>,
-  any
-> {
+class StepNav extends React.PureComponent<PropTypes.InferProps<typeof StepNav.propTypes>, any> {
   static propTypes = {
     steps: PropTypes.arrayOf(
       PropTypes.shape({
@@ -83,8 +80,7 @@ class StepNav extends React.PureComponent<
   };
 
   render() {
-    const { steps, title, isSmall, className, mods, style, otherProps } =
-      this.props;
+    const { steps, title, isSmall, className, mods, style, otherProps } = this.props;
 
     const stepNavClass = getClassName(
       className,
@@ -97,9 +93,7 @@ class StepNav extends React.PureComponent<
       <div className={stepNavClass} style={style} {...otherProps}>
         {title && this.renderTitle()}
 
-        <ul className="StepNav-steps">
-          {steps.map((step) => this.renderStep(step))}
-        </ul>
+        <ul className="StepNav-steps">{steps.map((step) => this.renderStep(step))}</ul>
       </div>
     );
   }

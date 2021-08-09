@@ -60,11 +60,7 @@ class InputControl extends React.PureComponent<
       otherProps,
     } = this.props;
 
-    const classes = getClassName(
-      className,
-      isInline && 'Checkbox--inline',
-      mods
-    );
+    const classes = getClassName(className, isInline && 'Checkbox--inline', mods);
 
     // booleans can skip the extra checking here
     // handle checkboxstates as a valid input
@@ -73,10 +69,10 @@ class InputControl extends React.PureComponent<
       if (typeof inputProps.checked === 'boolean') {
         value = inputProps.checked;
       } else if (inputProps.checked === CheckboxStates.INDETERMINATE) {
-          value = true;
-        } else {
-          value = inputProps.checked === 'true';
-        }
+        value = true;
+      } else {
+        value = inputProps.checked === 'true';
+      }
     }
 
     return (

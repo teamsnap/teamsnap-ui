@@ -39,11 +39,7 @@ class PanelFooter extends React.PureComponent<
     const { children, className, mods, style, otherProps } = this.props;
 
     return (
-      <footer
-        className={getClassName(className, mods)}
-        style={style}
-        {...otherProps}
-      >
+      <footer className={getClassName(className, mods)} style={style} {...otherProps}>
         {children}
       </footer>
     );

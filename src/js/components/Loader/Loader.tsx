@@ -69,11 +69,7 @@ const Loader: React.FC<Props> = ({
     return renderAnimation(type);
   }
 
-  const loaderClasses = getClassName(
-    className,
-    type === 'jello' && 'Loader--jello',
-    mods
-  );
+  const loaderClasses = getClassName(className, type === 'jello' && 'Loader--jello', mods);
 
   return (
     <div className={loaderClasses} style={style}>

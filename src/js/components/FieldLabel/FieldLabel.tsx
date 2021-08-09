@@ -39,12 +39,7 @@ class FieldLabel extends React.PureComponent<
     const { name, children, className, mods, style, otherProps } = this.props;
 
     return (
-      <label
-        htmlFor={name}
-        className={getClassName(className, mods)}
-        style={style}
-        {...otherProps}
-      >
+      <label htmlFor={name} className={getClassName(className, mods)} style={style} {...otherProps}>
         {children}
       </label>
     );

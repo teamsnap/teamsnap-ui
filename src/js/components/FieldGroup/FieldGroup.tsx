@@ -42,16 +42,8 @@ class FieldGroup extends React.PureComponent<
   };
 
   render() {
-    const {
-      children,
-      status,
-      className,
-      mods,
-      style,
-      otherProps,
-      isDisabled,
-      isInline,
-    } = this.props;
+    const { children, status, className, mods, style, otherProps, isDisabled, isInline } =
+      this.props;
 
     const fieldClasses = getClassName(
       className,

@@ -19,13 +19,13 @@ const statusOptions = {
 };
 
 stories.add('Default', () => (
-    <FieldWrapper
-      name="example"
-      label="Test Input"
-      field="input"
-      fieldProps={{ placeholder: 'Some placeholder text' }}
-    />
-  ));
+  <FieldWrapper
+    name="example"
+    label="Test Input"
+    field="input"
+    fieldProps={{ placeholder: 'Some placeholder text' }}
+  />
+));
 
 stories.add('Select', () => {
   const errorMessage = text('Error Message', 'There was an error', null);

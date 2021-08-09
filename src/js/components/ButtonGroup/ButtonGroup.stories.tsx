@@ -11,9 +11,9 @@ export default {
 };
 
 stories.add('Button Children', () => (
-    <ButtonGroup>
-      <Button>Button1</Button>
+  <ButtonGroup>
+    <Button>Button1</Button>
 
-      <Button>Button2</Button>
-    </ButtonGroup>
-  ));
+    <Button>Button2</Button>
+  </ButtonGroup>
+));

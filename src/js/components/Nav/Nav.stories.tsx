@@ -11,10 +11,7 @@ export default {
 };
 
 stories.add('Default', () => (
-  <div
-    className="u-flex"
-    style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}
-  >
+  <div className="u-flex" style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}>
     <Nav
       mods="u-size3of12"
       headerItem={{
@@ -45,21 +42,17 @@ stories.add('Default', () => (
     </Nav>
     <main className="u-sizeFill u-flex u-flexAlignItemsCenter u-flexJustifyCenter">
       <div style={{ width: '40%' }}>
-        This main and the nav are contained in a div that acts as a frame. The
-        left nav is as tall as the frame, which, in this case, has a height
-        manually set to 800px. By default, the nav is as wide as its container,
-        so we use a grid to scope it to the size that we'd like. In this case,
-        It's a flex grid where the nav is contained in a u-size2of12 div.
+        This main and the nav are contained in a div that acts as a frame. The left nav is as tall
+        as the frame, which, in this case, has a height manually set to 800px. By default, the nav
+        is as wide as its container, so we use a grid to scope it to the size that we'd like. In
+        this case, It's a flex grid where the nav is contained in a u-size2of12 div.
       </div>
     </main>
   </div>
 ));
 
 stories.add('Default', () => (
-  <div
-    className="u-flex"
-    style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}
-  >
+  <div className="u-flex" style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}>
     <Nav
       mods="u-size3of12"
       headerItem={{
@@ -154,21 +147,17 @@ stories.add('Default', () => (
     </Nav>
     <main className="u-sizeFill u-flex u-flexAlignItemsCenter u-flexJustifyCenter">
       <div style={{ width: '40%' }}>
-        This main and the nav are contained in a div that acts as a frame. The
-        left nav is as tall as the frame, which, in this case, has a height
-        manually set to 800px. By default, the nav is as wide as its container,
-        so we use a grid to scope it to the size that we'd like. In this case,
-        It's a flex grid where the nav is contained in a u-size2of12 div.
+        This main and the nav are contained in a div that acts as a frame. The left nav is as tall
+        as the frame, which, in this case, has a height manually set to 800px. By default, the nav
+        is as wide as its container, so we use a grid to scope it to the size that we'd like. In
+        this case, It's a flex grid where the nav is contained in a u-size2of12 div.
       </div>
     </main>
   </div>
 ));
 
 stories.add('With Subheading', () => (
-  <div
-    className="u-flex"
-    style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}
-  >
+  <div className="u-flex" style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}>
     <Nav
       mods="u-size3of12"
       headerItem={{
@@ -264,21 +253,17 @@ stories.add('With Subheading', () => (
     </Nav>
     <main className="u-sizeFill u-flex u-flexAlignItemsCenter u-flexJustifyCenter">
       <div style={{ width: '40%' }}>
-        This main and the nav are contained in a div that acts as a frame. The
-        left nav is as tall as the frame, which, in this case, has a height
-        manually set to 800px. By default, the nav is as wide as its container,
-        so we use a grid to scope it to the size that we'd like. In this case,
-        It's a flex grid where the nav is contained in a u-size2of12 div.
+        This main and the nav are contained in a div that acts as a frame. The left nav is as tall
+        as the frame, which, in this case, has a height manually set to 800px. By default, the nav
+        is as wide as its container, so we use a grid to scope it to the size that we'd like. In
+        this case, It's a flex grid where the nav is contained in a u-size2of12 div.
       </div>
     </main>
   </div>
 ));
 
 stories.add('With content overlay', () => (
-  <div
-    className="u-flex"
-    style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}
-  >
+  <div className="u-flex" style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}>
     <Nav
       mods="u-size3of12"
       headerItem={{
@@ -374,21 +359,17 @@ stories.add('With content overlay', () => (
     </Nav>
     <main className="u-sizeFill u-flex u-flexAlignItemsCenter u-flexJustifyCenter">
       <div style={{ width: '40%' }}>
-        This main and the nav are contained in a div that acts as a frame. The
-        left nav is as tall as the frame, which, in this case, has a height
-        manually set to 800px. By default, the nav is as wide as its container,
-        so we use a grid to scope it to the size that we'd like. In this case,
-        It's a flex grid where the nav is contained in a u-size2of12 div.
+        This main and the nav are contained in a div that acts as a frame. The left nav is as tall
+        as the frame, which, in this case, has a height manually set to 800px. By default, the nav
+        is as wide as its container, so we use a grid to scope it to the size that we'd like. In
+        this case, It's a flex grid where the nav is contained in a u-size2of12 div.
       </div>
     </main>
   </div>
 ));
 
 stories.add('With all items open', () => (
-  <div
-    className="u-flex"
-    style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}
-  >
+  <div className="u-flex" style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}>
     <Nav
       mods="u-size3of12"
       headerItem={{
@@ -484,11 +465,10 @@ stories.add('With all items open', () => (
     </Nav>
     <main className="u-sizeFill u-flex u-flexAlignItemsCenter u-flexJustifyCenter">
       <div style={{ width: '40%' }}>
-        This main and the nav are contained in a div that acts as a frame. The
-        left nav is as tall as the frame, which, in this case, has a height
-        manually set to 800px. By default, the nav is as wide as its container,
-        so we use a grid to scope it to the size that we'd like. In this case,
-        It's a flex grid where the nav is contained in a u-size2of12 div.
+        This main and the nav are contained in a div that acts as a frame. The left nav is as tall
+        as the frame, which, in this case, has a height manually set to 800px. By default, the nav
+        is as wide as its container, so we use a grid to scope it to the size that we'd like. In
+        this case, It's a flex grid where the nav is contained in a u-size2of12 div.
       </div>
     </main>
   </div>
@@ -497,15 +477,11 @@ stories.add('With all items open', () => (
 stories.add('Without Header', () => (
   <>
     <h4>
-      Removing the header items from the Nav allows us to have a more generic,
-      left-aligned collapsible bar. Possible use cases could involve a
-      collapsible bar for rich editing experience (possibly drag-and-drop) and
-      more.
+      Removing the header items from the Nav allows us to have a more generic, left-aligned
+      collapsible bar. Possible use cases could involve a collapsible bar for rich editing
+      experience (possibly drag-and-drop) and more.
     </h4>
-    <div
-      className="u-flex"
-      style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}
-    >
+    <div className="u-flex" style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}>
       <Nav mods="u-size3of12">
         <Nav.Item
           icon="tracking"
@@ -524,12 +500,10 @@ stories.add('Without Header', () => (
       </Nav>
       <main className="u-sizeFill u-flex u-flexAlignItemsCenter u-flexJustifyCenter">
         <div style={{ width: '40%' }}>
-          This main and the nav are contained in a div that acts as a frame. The
-          left nav is as tall as the frame, which, in this case, has a height
-          manually set to 800px. By default, the nav is as wide as its
-          container, so we use a grid to scope it to the size that we'd like. In
-          this case, It's a flex grid where the nav is contained in a
-          u-size2of12 div.
+          This main and the nav are contained in a div that acts as a frame. The left nav is as tall
+          as the frame, which, in this case, has a height manually set to 800px. By default, the nav
+          is as wide as its container, so we use a grid to scope it to the size that we'd like. In
+          this case, It's a flex grid where the nav is contained in a u-size2of12 div.
         </div>
       </main>
     </div>

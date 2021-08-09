@@ -52,11 +52,7 @@ stories.add('Alternates', () => (
       ]}
     />
 
-    <label
-      htmlFor="largeSelect"
-      style={{ marginTop: '15px' }}
-      className="FieldGroup-label"
-    >
+    <label htmlFor="largeSelect" style={{ marginTop: '15px' }} className="FieldGroup-label">
       Large Select
     </label>
     <Select

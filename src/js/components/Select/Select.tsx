@@ -26,10 +26,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 
-class Select extends React.PureComponent<
-  PropTypes.InferProps<typeof Select.propTypes>,
-  any
-> {
+class Select extends React.PureComponent<PropTypes.InferProps<typeof Select.propTypes>, any> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     options: PropTypes.arrayOf(
@@ -66,23 +63,10 @@ class Select extends React.PureComponent<
   };
 
   render() {
-    const {
-      name,
-      options,
-      inputProps,
-      className,
-      mods,
-      style,
-      otherProps,
-      disabled,
-    } = this.props;
+    const { name, options, inputProps, className, mods, style, otherProps, disabled } = this.props;
 
     return (
-      <div
-        className={getClassName(className, mods)}
-        style={style}
-        {...otherProps}
-      >
+      <div className={getClassName(className, mods)} style={style} {...otherProps}>
         <select
           className="SelectBox-options"
           name={name}

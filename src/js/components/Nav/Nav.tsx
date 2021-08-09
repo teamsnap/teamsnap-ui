@@ -92,31 +92,15 @@ const itemPropTypes = {
   wrapItem: PropTypes.func,
 };
 
-type NavType = React.FunctionComponent<
-  PropTypes.InferProps<typeof navPropTypes>
->;
-type ItemType = React.FunctionComponent<
-  PropTypes.InferProps<typeof itemPropTypes>
->;
+type NavType = React.FunctionComponent<PropTypes.InferProps<typeof navPropTypes>>;
+type ItemType = React.FunctionComponent<PropTypes.InferProps<typeof itemPropTypes>>;
 
-const Item: ItemType = ({
-  children,
-  icon,
-  iconModifiers,
-  isActive,
-  onClick,
-  wrapItem,
-}) => {
-  const maybeIcon = icon ? (
-    <Icon name={icon} mods={`${iconModifiers}`} />
-  ) : null;
+const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, wrapItem }) => {
+  const maybeIcon = icon ? <Icon name={icon} mods={`${iconModifiers}`} /> : null;
   const Wrapper = wrapItem || (({ children }) => <>{children}</>);
   return (
     <Wrapper>
-      <li
-        className={`${isActive ? 'is-active ' : ''}Nav-item`}
-        onClick={onClick || (() => {})}
-      >
+      <li className={`${isActive ? 'is-active ' : ''}Nav-item`} onClick={onClick || (() => {})}>
         {maybeIcon} <span className="Nav-itemTitle">{children}</span>
       </li>
     </Wrapper>
@@ -127,19 +111,10 @@ Item.propTypes = itemPropTypes;
 
 const FlyOutNode = ({ item, openItems }) => {
   const [isExpanded, setIsExpanded] = React.useState(openItems);
-  const Wrapper = item.wrapItem
-    ? item.wrapItem
-    : ({ children }) => <>{children}</>;
+  const Wrapper = item.wrapItem ? item.wrapItem : ({ children }) => <>{children}</>;
   return (
-    <div
-      className={`Nav-node${
-        item.tree && item.tree.length > 0 ? ' Nav-hasChildren' : ''
-      }`}
-    >
-      <div
-        className="Nav-topLevelHeading u-flex"
-        onClick={() => setIsExpanded(!isExpanded)}
-      >
+    <div className={`Nav-node${item.tree && item.tree.length > 0 ? ' Nav-hasChildren' : ''}`}>
+      <div className="Nav-topLevelHeading u-flex" onClick={() => setIsExpanded(!isExpanded)}>
         {item.tree && (
           <div className={`Nav-caret ${isExpanded ? 'Node-expanded' : ''}`}>
             <Icon mods="u-fontSizeLg u-spaceRightXs" name="caret-down" />
@@ -148,20 +123,14 @@ const FlyOutNode = ({ item, openItems }) => {
         {/* This is weird, but a solution to help manage the required spacing to make things align */}
         {/* We can probably come up with a better solution here. */}
         <Wrapper>
-          <div
-            className={`${!item.tree ? 'Nav-noChildren' : ''} u-fill u-flex`}
-          >
-            {!item.image && item.useBadge && (
-              <Skittles text={item.title} mods="u-spaceRightXs" />
-            )}
+          <div className={`${!item.tree ? 'Nav-noChildren' : ''} u-fill u-flex`}>
+            {!item.image && item.useBadge && <Skittles text={item.title} mods="u-spaceRightXs" />}
             {item.title}
           </div>
         </Wrapper>
       </div>
       {isExpanded && item.tree && item.tree.length > 0 ? (
-        <div className="Nav-submenu u-spaceBottomSm">
-          {reducer(item.tree, openItems)}
-        </div>
+        <div className="Nav-submenu u-spaceBottomSm">{reducer(item.tree, openItems)}</div>
       ) : null}
     </div>
   );
@@ -172,7 +141,8 @@ const FlyOutNode = ({ item, openItems }) => {
  * @param acc an array
  * @param cur a flyout item
  */
-const reducer = (tree: [], openItems: boolean) => tree.reduce(
+const reducer = (tree: [], openItems: boolean) =>
+  tree.reduce(
     (acc: [], cur: any, idx: number) => [
       ...acc,
       <FlyOutNode key={cur.title + idx} item={cur} openItems={openItems} />,
@@ -180,16 +150,15 @@ const reducer = (tree: [], openItems: boolean) => tree.reduce(
     []
   );
 
-const generateFlyoutContents = (flyoutSections: any, openItems: boolean) => flyoutSections.map((section, idx) => (
-      <section className="u-borderTop u-spaceBottomSm" key={idx}>
-        <div className="Nav-sectionHeading u-colorNeutral7 u-textUppercase u-textBold u-fontSizeXs">
-          {section.heading}
-        </div>
-        <div className="Nav-sectionItems">
-          {reducer(section.tree, openItems)}
-        </div>
-      </section>
-    ));
+const generateFlyoutContents = (flyoutSections: any, openItems: boolean) =>
+  flyoutSections.map((section, idx) => (
+    <section className="u-borderTop u-spaceBottomSm" key={idx}>
+      <div className="Nav-sectionHeading u-colorNeutral7 u-textUppercase u-textBold u-fontSizeXs">
+        {section.heading}
+      </div>
+      <div className="Nav-sectionItems">{reducer(section.tree, openItems)}</div>
+    </section>
+  ));
 
 const Nav: NavType & { Item: ItemType } = ({
   className,
@@ -217,10 +186,7 @@ const Nav: NavType & { Item: ItemType } = ({
   return (
     <div className={`Nav-container ${isFlyoutActive ? 'is-flyout' : ''}`}>
       {isFlyoutActive && includeOverlay && (
-        <div
-          className="Nav-overlay"
-          onClick={() => setIsFlyoutActive(!isFlyoutActive)}
-        />
+        <div className="Nav-overlay" onClick={() => setIsFlyoutActive(!isFlyoutActive)} />
       )}
       <nav className={cname} style={style} {...otherProps}>
         {headerItem ? (
@@ -249,17 +215,11 @@ const Nav: NavType & { Item: ItemType } = ({
           </div>
         ) : null}
         <div className="Nav-body">
-          {isFlyoutActive
-            ? generateFlyoutContents(flyoutSections, openItems)
-            : children}
+          {isFlyoutActive ? generateFlyoutContents(flyoutSections, openItems) : children}
         </div>
         {!isFlyoutActive && (
-          <div
-            className="Nav-footer"
-            onClick={() => setCollapsed(!isCollapsed)}
-          >
-            <Icon name="left" />{' '}
-            <span className="Nav-itemTitle">Collapse Menu</span>
+          <div className="Nav-footer" onClick={() => setCollapsed(!isCollapsed)}>
+            <Icon name="left" /> <span className="Nav-itemTitle">Collapse Menu</span>
           </div>
         )}
       </nav>

@@ -15,8 +15,7 @@ import _capitalize from 'lodash/capitalize';
  *  capitalize('name')
  *
  */
-export const capitalize: (string: string) => string = (string) =>
-  _capitalize(string);
+export const capitalize: (string: string) => string = (string) => _capitalize(string);
 
 /**
  * @name generateUniqueId
@@ -108,8 +107,7 @@ export const parseNumericString = (value) =>
  *  stringifyArray(['Simpson', 'Homer'], ', ')
  *
  */
-export const stringifyArray = (array, joinBy = ' ') =>
-  array.filter(Boolean).join(joinBy);
+export const stringifyArray = (array, joinBy = ' ') => array.filter(Boolean).join(joinBy);
 
 /**
  * @name getClassName

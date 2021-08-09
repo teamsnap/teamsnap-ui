@@ -34,14 +34,8 @@ class FieldWrapper extends React.PureComponent<
 > {
   static propTypes = {
     name: PropTypes.string.isRequired,
-    field: PropTypes.oneOf([
-      'input',
-      'checkbox',
-      'radio',
-      'toggle',
-      'select',
-      'textarea',
-    ]).isRequired,
+    field: PropTypes.oneOf(['input', 'checkbox', 'radio', 'toggle', 'select', 'textarea'])
+      .isRequired,
     fieldProps: PropTypes.any,
     status: Status.PropType,
     label: PropTypes.node,

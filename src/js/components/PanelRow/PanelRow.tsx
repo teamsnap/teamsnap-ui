@@ -16,10 +16,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 
-class PanelRow extends React.PureComponent<
-  PropTypes.InferProps<typeof PanelRow.propTypes>,
-  any
-> {
+class PanelRow extends React.PureComponent<PropTypes.InferProps<typeof PanelRow.propTypes>, any> {
   static propTypes = {
     children: PropTypes.node.isRequired,
     isWithCells: PropTypes.bool,
@@ -42,16 +39,8 @@ class PanelRow extends React.PureComponent<
   };
 
   render() {
-    const {
-      children,
-      isWithCells,
-      isParent,
-      className,
-      mods,
-      role,
-      style,
-      otherProps,
-    } = this.props;
+    const { children, isWithCells, isParent, className, mods, role, style, otherProps } =
+      this.props;
 
     const panelClasses = getClassName(
       className,

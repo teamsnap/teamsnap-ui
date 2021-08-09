@@ -237,9 +237,7 @@ function loadSearchData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
   }).then((items: any[]) => {
     items = items
       .filter((item) => item.gender == filter.gender || filter.gender == '')
-      .filter(
-        (item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1
-      );
+      .filter((item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1);
     const endIndex = Math.min(items.length, startIndex + itemsPerPage);
     return items.slice(startIndex, endIndex);
   });
@@ -261,9 +259,7 @@ function mapData(item) {
     ),
     gender: item.gender,
     age: `${item.age}`,
-    programs: item.activePrograms.map((p, idx) => (
-      <div key={idx}>{p.name}</div>
-    )),
+    programs: item.activePrograms.map((p, idx) => <div key={idx}>{p.name}</div>),
   };
 }
 

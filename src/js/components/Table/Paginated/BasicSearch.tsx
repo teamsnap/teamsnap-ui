@@ -13,10 +13,7 @@ const BasicSearchFilter: React.FunctionComponent<Props> = ({
   const [searchValue, setSearchValue] = React.useState('');
   const [lastSearchValue, setLastSearchValue] = React.useState('');
 
-  const updateSearchField = React.useCallback(
-    (e) => setSearchValue(e.target.value),
-    []
-  );
+  const updateSearchField = React.useCallback((e) => setSearchValue(e.target.value), []);
 
   const handleSearch = React.useCallback((searchValue) => {
     searchFunction({ searchTerm: searchValue });
@@ -57,10 +54,7 @@ const BasicSearchFilter: React.FunctionComponent<Props> = ({
         onKeyPress={handleSearchKeyPress}
         style={{ minWidth: 250 }}
       />
-      <button
-        className="InputGroup-icon"
-        onClick={showClear ? clearAction : searchAction}
-      >
+      <button className="InputGroup-icon" onClick={showClear ? clearAction : searchAction}>
         <Icon
           className="Icon"
           mods={null}

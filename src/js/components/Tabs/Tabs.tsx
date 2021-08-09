@@ -44,9 +44,7 @@ const Tabs: React.FunctionComponent<Props> = ({ mods, tabs }: Props) => {
           <li
             key={`Tabs-headerItem-${index}`}
             onClick={() => setActiveTabIndex(index)}
-            className={`Tabs-headerItem ${
-              index === activeTabIndex ? 'is-active' : ''
-            }`}
+            className={`Tabs-headerItem ${index === activeTabIndex ? 'is-active' : ''}`}
           >
             {tab.heading}
           </li>
@@ -56,9 +54,7 @@ const Tabs: React.FunctionComponent<Props> = ({ mods, tabs }: Props) => {
         {tabs.map((tab, index) => (
           <div
             key={`Tabs-contentItem-${index}`}
-            className={`Tabs-contentItem ${
-              index === activeTabIndex ? 'is-active' : ''
-            }`}
+            className={`Tabs-contentItem ${index === activeTabIndex ? 'is-active' : ''}`}
           >
             {tab.content}
           </div>

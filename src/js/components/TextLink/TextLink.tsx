@@ -17,10 +17,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 
-class TextLink extends React.PureComponent<
-  PropTypes.InferProps<typeof TextLink.propTypes>,
-  any
-> {
+class TextLink extends React.PureComponent<PropTypes.InferProps<typeof TextLink.propTypes>, any> {
   static propTypes = {
     children: PropTypes.node.isRequired,
     routerLink: PropTypes.func,
@@ -43,16 +40,8 @@ class TextLink extends React.PureComponent<
   };
 
   render() {
-    const {
-      children,
-      location,
-      routerLink,
-      onClick,
-      className,
-      mods,
-      style,
-      otherProps,
-    } = this.props;
+    const { children, location, routerLink, onClick, className, mods, style, otherProps } =
+      this.props;
 
     // Define anchorTag to be the passed in router 'Link' or 'a' as default.
     const AnchorTag = routerLink || 'a';

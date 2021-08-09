@@ -64,8 +64,10 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   searchPlaceholder,
   paginationPlacement,
 }) => {
-  const [[itemsPerPage, setItemsPerPage], [currentPage, setCurrentPage]] =
-    usePagination(defaultItemsPerPage || 10, defaultPage || 1);
+  const [[itemsPerPage, setItemsPerPage], [currentPage, setCurrentPage]] = usePagination(
+    defaultItemsPerPage || 10,
+    defaultPage || 1
+  );
   const [dataSet, setDataSet] = React.useState([]);
   const [sortName, setSortName] = React.useState('');
   const [sortAscending, setSortAscending] = React.useState(false);
@@ -80,12 +82,8 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
 
   const defaultPageSizeOptions = [10, 25, 50];
   const customOptions =
-    defaultPageSizeOptions.indexOf(defaultItemsPerPage) < 0
-      ? [defaultItemsPerPage]
-      : [];
-  const pageSizeOptions = defaultPageSizeOptions
-    .concat(customOptions)
-    .sort((a, b) => a - b);
+    defaultPageSizeOptions.indexOf(defaultItemsPerPage) < 0 ? [defaultItemsPerPage] : [];
+  const pageSizeOptions = defaultPageSizeOptions.concat(customOptions).sort((a, b) => a - b);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -94,10 +92,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
         itemsPerPage,
         sortBy: sortName,
         sortAsc: sortAscending,
-        filter:
-          includeBasicSearch || customFilter
-            ? { searchTerm, ...customFilter }
-            : null,
+        filter: includeBasicSearch || customFilter ? { searchTerm, ...customFilter } : null,
       });
       setDataSet(data);
       setIsLoading(false);
@@ -105,14 +100,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
 
     setIsLoading(true);
     fetchData();
-  }, [
-    itemsPerPage,
-    currentPage,
-    sortName,
-    sortAscending,
-    searchTerm,
-    customFilter,
-  ]);
+  }, [itemsPerPage, currentPage, sortName, sortAscending, searchTerm, customFilter]);
 
   let rows = dataSet.map(mapDataToRow);
 
@@ -158,36 +146,34 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
 
     // use IDs as keys to determine uniqueness
     const selectedids = selected.map((e) => e.id);
-    rows = rows.map((ele) =>
-      ({ ...ele, selected: (
-          <div>
-            <Checkbox
-              name={`select-${ele.id}`}
-              mods="u-padBottomNone"
-              inputProps={{
-                checked: selectedids.includes(ele.id),
-                onClick: () => {
-                  if (selectedids.includes(ele.id)) {
-                    setSelected(selected.filter((e) => e.id != ele.id));
-                  } else {
-                    setSelected([...selected, ele]);
-                  }
-                },
-              }}
-            />
-          </div>
-        )})
-    );
+    rows = rows.map((ele) => ({
+      ...ele,
+      selected: (
+        <div>
+          <Checkbox
+            name={`select-${ele.id}`}
+            mods="u-padBottomNone"
+            inputProps={{
+              checked: selectedids.includes(ele.id),
+              onClick: () => {
+                if (selectedids.includes(ele.id)) {
+                  setSelected(selected.filter((e) => e.id != ele.id));
+                } else {
+                  setSelected([...selected, ele]);
+                }
+              },
+            }}
+          />
+        </div>
+      ),
+    }));
   }
 
   // collisions overwrite
-  const bulkActionFuncsByLabel = bulkActions?.reduce(
-    (acc, action: BulkAction) => {
-      acc[action.label] = action.onSelected;
-      return acc;
-    },
-    {}
-  );
+  const bulkActionFuncsByLabel = bulkActions?.reduce((acc, action: BulkAction) => {
+    acc[action.label] = action.onSelected;
+    return acc;
+  }, {});
 
   function updateSearchFilter({ searchTerm }) {
     setCurrentPage(1);
@@ -201,9 +187,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
   const paginationItems = (
     <div
       className={`Grid-cell u-spaceTopSm u-flex u-flexJustifyEnd ${
-        paginationPlacement == Placement.Bottom
-          ? 'u-sizeFill u-sizeFull'
-          : 'u-sizeFit'
+        paginationPlacement == Placement.Bottom ? 'u-sizeFill u-sizeFull' : 'u-sizeFit'
       }`}
     >
       <div className="u-spaceAuto u-spaceRightSm">
@@ -218,11 +202,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
         itemsPerPage={itemsPerPage}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-        mods={
-          paginationPlacement == Placement.Bottom
-            ? 'u-flexJustifyCenter u-flexGrow1'
-            : ''
-        }
+        mods={paginationPlacement == Placement.Bottom ? 'u-flexJustifyCenter u-flexGrow1' : ''}
       />
       {!hideRowsSelect ? (
         <div className="u-spaceLeftSm">
@@ -254,10 +234,7 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
               name="bulkActions"
               options={[
                 {
-                  label:
-                    selected.length > 0
-                      ? `${selected.length} selected`
-                      : 'Actions',
+                  label: selected.length > 0 ? `${selected.length} selected` : 'Actions',
                   value: null,
                 },
                 ...bulkActions.map((e) => ({
@@ -270,14 +247,14 @@ const PaginatedTable: React.FunctionComponent<Props> = ({
           </div>
         ) : null}
         <div className="Grid-cell u-sizeFill u-spaceTopSm u-md-size1of4">
-          {customSearchFilter || includeBasicSearch ? (
-            customSearchFilter || (
-              <BasicSearch
-                searchPlaceholder={searchPlaceholder}
-                searchFunction={updateSearchFilter}
-              />
-            )
-          ) : null}
+          {customSearchFilter || includeBasicSearch
+            ? customSearchFilter || (
+                <BasicSearch
+                  searchPlaceholder={searchPlaceholder}
+                  searchFunction={updateSearchFilter}
+                />
+              )
+            : null}
         </div>
         {paginationPlacement != Placement.Bottom && paginationItems}
       </div>

@@ -78,11 +78,7 @@ class SummaryList extends React.PureComponent<
     );
 
     return (
-      <li
-        key={item.key || item.description}
-        className={listClasses}
-        style={item.style}
-      >
+      <li key={item.key || item.description} className={listClasses} style={item.style}>
         {this.renderColumn(item.description)}
         {this.renderColumn(item.value)}
       </li>
@@ -90,24 +86,11 @@ class SummaryList extends React.PureComponent<
   };
 
   render() {
-    const {
-      items,
-      heading,
-      subHeading,
-      footer,
-      className,
-      mods,
-      style,
-      hasBorder,
-      otherProps,
-    } = this.props;
+    const { items, heading, subHeading, footer, className, mods, style, hasBorder, otherProps } =
+      this.props;
     const hasHeading = heading || subHeading;
 
-    const summaryClasses = getClassName(
-      className,
-      !hasHeading && 'SummaryList--no-heading',
-      mods
-    );
+    const summaryClasses = getClassName(className, !hasHeading && 'SummaryList--no-heading', mods);
 
     const sectionStyle = hasBorder ? {} : { border: 0 };
 

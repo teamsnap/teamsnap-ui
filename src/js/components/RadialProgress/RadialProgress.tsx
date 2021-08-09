@@ -34,8 +34,7 @@ class RadialProgress extends React.PureComponent<
   };
 
   render() {
-    const { size, color, progress, className, mods, style, otherProps } =
-      this.props;
+    const { size, color, progress, className, mods, style, otherProps } = this.props;
 
     const degrees = 360 * (progress / 100);
     const circle: Circle = {};
@@ -60,10 +59,7 @@ class RadialProgress extends React.PureComponent<
     return (
       <div className={radialClassName} style={style} {...otherProps}>
         <div className={circle.className}>
-          <div
-            className="RadialProgress-status"
-            style={{ transform: `rotate(${circle.first})` }}
-          />
+          <div className="RadialProgress-status" style={{ transform: `rotate(${circle.first})` }} />
           <div
             className="RadialProgress-status"
             style={{ transform: `rotate(${circle.second})` }}

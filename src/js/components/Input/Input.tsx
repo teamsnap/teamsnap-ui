@@ -44,9 +44,7 @@ const propTypes = {
   isDisabled: PropTypes.bool,
 };
 
-type InputType = React.FunctionComponent<
-  PropTypes.InferProps<typeof propTypes>
->;
+type InputType = React.FunctionComponent<PropTypes.InferProps<typeof propTypes>>;
 
 const Input: InputType = ({
   className,
@@ -77,25 +75,17 @@ const Input: InputType = ({
 
   return (
     <div className={inputClasses} style={style} {...otherProps}>
-      {leftIcon && (
-        <div className="InputGroup-icon--left InputGroup-icon">{leftIcon}</div>
-      )}
+      {leftIcon && <div className="InputGroup-icon--left InputGroup-icon">{leftIcon}</div>}
       <input
         disabled={isDisabled}
         id={name}
         name={name}
         type={type}
         placeholder={placeholder}
-        className={`Input ${size && `Input--${size}`} ${
-          isDisabled && 'Input--isDisabled'
-        }`}
+        className={`Input ${size && `Input--${size}`} ${isDisabled && 'Input--isDisabled'}`}
         {...inputProps}
       />
-      {rightIcon && (
-        <div className="InputGroup-icon--right InputGroup-icon">
-          {rightIcon}
-        </div>
-      )}
+      {rightIcon && <div className="InputGroup-icon--right InputGroup-icon">{rightIcon}</div>}
       {(showStatus || showClear) && (
         <div className="InputGroup-icon--aux InputGroup-icon">
           {showStatus && !showClear && (

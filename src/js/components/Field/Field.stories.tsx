@@ -77,8 +77,7 @@ stories.add('Captions', () => {
   return (
     <>
       <h4>
-        Captions can be added to explain how the entered data is used, why is
-        required, or similar.
+        Captions can be added to explain how the entered data is used, why is required, or similar.
       </h4>
       <br />
       <Field
@@ -104,8 +103,8 @@ stories.add('Sizes', () => {
   return (
     <>
       <h4>
-        Inputs match their container's width, but height, font size and more can
-        be controlled via the Size property.
+        Inputs match their container's width, but height, font size and more can be controlled via
+        the Size property.
       </h4>
       <br />
       <Field
@@ -203,10 +202,9 @@ stories.add('Clear Icon', () => {
   return (
     <>
       <h4>
-        Providing an onClearClicked callback and `showClear` allows you to wire
-        up whatever form management logic you have. Generally, you'll want to
-        clear the value when the clear icon is clicked, but the implementation
-        is entirely in your control.
+        Providing an onClearClicked callback and `showClear` allows you to wire up whatever form
+        management logic you have. Generally, you'll want to clear the value when the clear icon is
+        clicked, but the implementation is entirely in your control.
       </h4>
       <br />
       <Field
@@ -267,8 +265,8 @@ stories.add('Multiple Checkboxes', () => {
   return (
     <>
       <h4>
-        This example omits the label and caption on the field components,
-        instead opting to work with those manually.
+        This example omits the label and caption on the field components, instead opting to work
+        with those manually.
       </h4>
       <br />
       <Field.Label>Cats/Dogs/Both?</Field.Label>
@@ -297,9 +295,7 @@ stories.add('Multiple Checkboxes', () => {
         }}
         name="Dogs"
       />
-      <Field.Caption>
-        This determines if you'll see cat gifs, dog gifs, or both.
-      </Field.Caption>
+      <Field.Caption>This determines if you'll see cat gifs, dog gifs, or both.</Field.Caption>
     </>
   );
 });
@@ -313,12 +309,11 @@ stories.add('Indeterminate Checkbox', () => {
   return (
     <>
       <h4>
-        Checkboxes can have an indeterminate status. It's up to you to determine
-        how this is managed and what can cause an indeterminate status. This
-        example catches false to true transitions and sets indeterminate
-        instead. This often can feel more complicated than it actually is.
-        Please refer to the storybook source code for an example on how to
-        emulate this functionality.
+        Checkboxes can have an indeterminate status. It's up to you to determine how this is managed
+        and what can cause an indeterminate status. This example catches false to true transitions
+        and sets indeterminate instead. This often can feel more complicated than it actually is.
+        Please refer to the storybook source code for an example on how to emulate this
+        functionality.
       </h4>
       <br />
       <Field
@@ -357,8 +352,8 @@ stories.add('Radios', () => {
   return (
     <>
       <h4>
-        This example omits the label and caption on the field components,
-        instead opting to work with those manually.
+        This example omits the label and caption on the field components, instead opting to work
+        with those manually.
       </h4>
       <br />
       <Field.Label>Favorite Pet?</Field.Label>

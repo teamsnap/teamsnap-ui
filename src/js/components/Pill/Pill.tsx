@@ -9,13 +9,7 @@ export interface Props {
   children: React.ReactNode;
 }
 
-const Pill: React.FunctionComponent<Props> = ({
-  align,
-  active,
-  style,
-  mods,
-  children,
-}: Props) => {
+const Pill: React.FunctionComponent<Props> = ({ align, active, style, mods, children }: Props) => {
   const classes = getClassName(
     'Pill',
     align ? `Pill__content--${align}` : '',

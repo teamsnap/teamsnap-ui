@@ -44,8 +44,7 @@ class PanelHeader extends React.PureComponent<
   };
 
   render() {
-    const { title, children, className, mods, style, headerImage, otherProps } =
-      this.props;
+    const { title, children, className, mods, style, headerImage, otherProps } = this.props;
 
     if (headerImage) {
       return (
@@ -55,13 +54,7 @@ class PanelHeader extends React.PureComponent<
           {...otherProps}
         >
           <div className="Panel-headerImage">
-            <img
-              src={
-                headerImage.Source
-                  ? headerImage.Source
-                  : headerImage.Placeholder
-              }
-            />
+            <img src={headerImage.Source ? headerImage.Source : headerImage.Placeholder} />
           </div>
           {title && <h3 className="Panel-title">{title}</h3>}
           {children}
@@ -69,11 +62,7 @@ class PanelHeader extends React.PureComponent<
       );
     }
     return (
-      <header
-        className={getClassName(className, mods)}
-        style={style}
-        {...otherProps}
-      >
+      <header className={getClassName(className, mods)} style={style} {...otherProps}>
         {title && <h3 className="Panel-title">{title}</h3>}
         {children}
       </header>

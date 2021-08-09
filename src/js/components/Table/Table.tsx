@@ -60,177 +60,162 @@ const propTypes = {
   placeHolder: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 
-const Table: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> =
-  ({
-    className,
-    mods,
-    style,
-    otherProps,
-    maxTableHeight,
-    placeHolder,
-    isLoading,
-    columns,
-    externalSortingFunction,
-    defaultSort,
-    rows,
-  }) => {
-    const [items, setItems] = React.useState([]);
-    const [sortBy, setSortBy] = React.useState<string>(null);
-    const [sortOrder, setSortOrder] = React.useState<boolean>(null); // TODO: rename?
+const Table: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = ({
+  className,
+  mods,
+  style,
+  otherProps,
+  maxTableHeight,
+  placeHolder,
+  isLoading,
+  columns,
+  externalSortingFunction,
+  defaultSort,
+  rows,
+}) => {
+  const [items, setItems] = React.useState([]);
+  const [sortBy, setSortBy] = React.useState<string>(null);
+  const [sortOrder, setSortOrder] = React.useState<boolean>(null); // TODO: rename?
 
-    React.useEffect(() => {
-      const sortDirection = defaultSort.charAt(0) === '-';
-      const sortName = sortDirection ? defaultSort.substr(1) : defaultSort;
+  React.useEffect(() => {
+    const sortDirection = defaultSort.charAt(0) === '-';
+    const sortName = sortDirection ? defaultSort.substr(1) : defaultSort;
 
-      setSortOrder(sortDirection);
-      setSortBy(sortName);
-      setItems(rows);
-    }, [defaultSort, rows, columns]);
+    setSortOrder(sortDirection);
+    setSortBy(sortName);
+    setItems(rows);
+  }, [defaultSort, rows, columns]);
 
-    const sortItems = React.useCallback(
-      (
-        columns: any[],
-        newItems: any[],
-        sortByColumn: string,
-        sortByReverse: boolean
-      ) => {
-        const sortColumn = columns.find((c) => c.name === sortByColumn);
-        let items = newItems;
-        if (sortColumn) {
-          const { name, sortType, sortFn } = sortColumn;
-          items = sortByFn(newItems, {
-            name,
-            sortType,
-            sortFn,
-            isReverse: sortByReverse,
-          });
-        }
-
-        return { items, sortByColumn, sortByReverse };
-      },
-      []
-    );
-
-    const handleSortClick = (e) => {
-      e.preventDefault();
-      const sortName = e.currentTarget.getAttribute('href');
-      const sortDirection = sortName === sortBy ? !sortOrder : false;
-
-      // If an function is provided here, we let the parent component figure out the sorting
-      // This is valuable when we sort beyond the data thats currently in the table
-      // IE: We keep data on the server and want to sort against that or are supporting pagination.
-      if (externalSortingFunction != null) {
-        externalSortingFunction(sortName, sortDirection);
-      } else {
-        const tableState = sortItems(columns, items, sortName, sortDirection);
-
-        setItems(tableState.items);
-        setSortBy(tableState.sortByColumn);
-        setSortOrder(tableState.sortByReverse);
+  const sortItems = React.useCallback(
+    (columns: any[], newItems: any[], sortByColumn: string, sortByReverse: boolean) => {
+      const sortColumn = columns.find((c) => c.name === sortByColumn);
+      let items = newItems;
+      if (sortColumn) {
+        const { name, sortType, sortFn } = sortColumn;
+        items = sortByFn(newItems, {
+          name,
+          sortType,
+          sortFn,
+          isReverse: sortByReverse,
+        });
       }
-    };
 
-    const renderPanelCell = (role, children, column) => {
-      const cellMods = getClassName(
-        `u-text${capitalize(column.align || 'Left')}`,
-        column.mods
-      );
+      return { items, sortByColumn, sortByReverse };
+    },
+    []
+  );
 
-      return (
-        <PanelCell
-          key={column.key}
-          mods={cellMods}
-          role={role}
-          style={column.style}
-          isTitle={column.isTitle}
-          {...column.otherProps}
-        >
-          {children}
-        </PanelCell>
-      );
-    };
+  const handleSortClick = (e) => {
+    e.preventDefault();
+    const sortName = e.currentTarget.getAttribute('href');
+    const sortDirection = sortName === sortBy ? !sortOrder : false;
 
-    const renderColumn = (column, row) => {
-      const data = row[column.name];
-      const children = column.render ? column.render(column, row) : data;
+    // If an function is provided here, we let the parent component figure out the sorting
+    // This is valuable when we sort beyond the data thats currently in the table
+    // IE: We keep data on the server and want to sort against that or are supporting pagination.
+    if (externalSortingFunction != null) {
+      externalSortingFunction(sortName, sortDirection);
+    } else {
+      const tableState = sortItems(columns, items, sortName, sortDirection);
 
-      return renderPanelCell('cell', children, {
-        key: `${row.id}-${column.name}`,
-        itTitle: false,
-        ...column,
-      });
-    };
+      setItems(tableState.items);
+      setSortBy(tableState.sortByColumn);
+      setSortOrder(tableState.sortByReverse);
+    }
+  };
 
-    const columnsJsx = columns.map((column) => {
-      const activeColumn = items.length && column.name === sortBy;
-
-      const textLinkMods = getClassName(
-        'u-flex',
-        'u-flexAlignItemsCenter',
-        column.align === 'right' && 'u-flexJustifyEnd u-spaceNegativeRightSm',
-        column.align === 'center' && 'u-flexJustifyCenter'
-      );
-
-      const children = column.isSortable ? (
-        <TextLink
-          location={column.name}
-          onClick={handleSortClick}
-          mods={textLinkMods}
-        >
-          <span className="u-colorInfo u-textNoWrap u-flex u-flexAlignItemsCenter">
-            {column.label}
-          </span>
-          <div className="u-colorNeutral5 u-fontSizeXs u-spaceLeftXs">
-            <Icon
-              name={activeColumn ? (sortOrder ? 'up' : 'down') : 'down'}
-              mods={activeColumn && 'u-colorPrimary'}
-            />
-          </div>
-        </TextLink>
-      ) : (
-        <span
-          className={`u-colorInfo u-textNoWrap u-flex u-flexAlignItemsCenter ${textLinkMods}`}
-        >
-          {column.label}
-        </span>
-      );
-
-      return renderPanelCell('columnheader', children, {
-        key: column.name,
-        isTitle: true,
-        ...column,
-      });
-    });
-
-    const withMaxTableHeight = { height: maxTableHeight, overflow: 'scroll' };
+  const renderPanelCell = (role, children, column) => {
+    const cellMods = getClassName(`u-text${capitalize(column.align || 'Left')}`, column.mods);
 
     return (
-      <Panel className={className} mods={mods} style={style} {...otherProps}>
-        <PanelBody role="table">
-          <PanelRow isWithCells>{columnsJsx}</PanelRow>
-          {isLoading ? (
-            <div className="u-padMd u-textCenter">
-              <Loader type="spin" text="loading..." />
-            </div>
-          ) : (
-            <>
-              {!items.length ? (
-                <div className="u-padMd u-textCenter">{placeHolder}</div>
-              ) : (
-                <div style={maxTableHeight ? withMaxTableHeight : null}>
-                  {items.map((row) => (
-                    <PanelRow key={row.id} isWithCells>
-                      {columns.map((column) => renderColumn(column, row))}
-                    </PanelRow>
-                  ))}
-                </div>
-              )}
-            </>
-          )}
-        </PanelBody>
-      </Panel>
+      <PanelCell
+        key={column.key}
+        mods={cellMods}
+        role={role}
+        style={column.style}
+        isTitle={column.isTitle}
+        {...column.otherProps}
+      >
+        {children}
+      </PanelCell>
     );
   };
+
+  const renderColumn = (column, row) => {
+    const data = row[column.name];
+    const children = column.render ? column.render(column, row) : data;
+
+    return renderPanelCell('cell', children, {
+      key: `${row.id}-${column.name}`,
+      itTitle: false,
+      ...column,
+    });
+  };
+
+  const columnsJsx = columns.map((column) => {
+    const activeColumn = items.length && column.name === sortBy;
+
+    const textLinkMods = getClassName(
+      'u-flex',
+      'u-flexAlignItemsCenter',
+      column.align === 'right' && 'u-flexJustifyEnd u-spaceNegativeRightSm',
+      column.align === 'center' && 'u-flexJustifyCenter'
+    );
+
+    const children = column.isSortable ? (
+      <TextLink location={column.name} onClick={handleSortClick} mods={textLinkMods}>
+        <span className="u-colorInfo u-textNoWrap u-flex u-flexAlignItemsCenter">
+          {column.label}
+        </span>
+        <div className="u-colorNeutral5 u-fontSizeXs u-spaceLeftXs">
+          <Icon
+            name={activeColumn ? (sortOrder ? 'up' : 'down') : 'down'}
+            mods={activeColumn && 'u-colorPrimary'}
+          />
+        </div>
+      </TextLink>
+    ) : (
+      <span className={`u-colorInfo u-textNoWrap u-flex u-flexAlignItemsCenter ${textLinkMods}`}>
+        {column.label}
+      </span>
+    );
+
+    return renderPanelCell('columnheader', children, {
+      key: column.name,
+      isTitle: true,
+      ...column,
+    });
+  });
+
+  const withMaxTableHeight = { height: maxTableHeight, overflow: 'scroll' };
+
+  return (
+    <Panel className={className} mods={mods} style={style} {...otherProps}>
+      <PanelBody role="table">
+        <PanelRow isWithCells>{columnsJsx}</PanelRow>
+        {isLoading ? (
+          <div className="u-padMd u-textCenter">
+            <Loader type="spin" text="loading..." />
+          </div>
+        ) : (
+          <>
+            {!items.length ? (
+              <div className="u-padMd u-textCenter">{placeHolder}</div>
+            ) : (
+              <div style={maxTableHeight ? withMaxTableHeight : null}>
+                {items.map((row) => (
+                  <PanelRow key={row.id} isWithCells>
+                    {columns.map((column) => renderColumn(column, row))}
+                  </PanelRow>
+                ))}
+              </div>
+            )}
+          </>
+        )}
+      </PanelBody>
+    </Panel>
+  );
+};
 
 Table.defaultProps = {
   columns: [],

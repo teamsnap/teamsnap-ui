@@ -39,11 +39,7 @@ const smallDataSet = [
 
 stories.add('Default', () => (
   <>
-    <Table
-      columns={columns}
-      rows={smallDataSet}
-      isLoading={boolean('isLoading', false)}
-    />
+    <Table columns={columns} rows={smallDataSet} isLoading={boolean('isLoading', false)} />
     <Table
       style={{ width: '800px' }}
       columns={[

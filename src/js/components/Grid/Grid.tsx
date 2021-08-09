@@ -16,10 +16,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 
-class Grid extends React.PureComponent<
-  PropTypes.InferProps<typeof Grid.propTypes>,
-  any
-> {
+class Grid extends React.PureComponent<PropTypes.InferProps<typeof Grid.propTypes>, any> {
   static propTypes = {
     children: PropTypes.node.isRequired,
     isFit: PropTypes.bool,

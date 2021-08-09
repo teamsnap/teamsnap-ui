@@ -40,55 +40,54 @@ const propTypes = {
   otherProps: PropTypes.object,
 };
 
-const Button: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> =
-  ({
+const Button: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = ({
+  className,
+  color,
+  size,
+  isActive,
+  mods,
+  label,
+  children,
+  icon,
+  iconPosition,
+  type,
+  isDisabled,
+  onClick,
+  style,
+  otherProps,
+}) => {
+  const cname = getClassName(
     className,
-    color,
-    size,
-    isActive,
-    mods,
-    label,
-    children,
-    icon,
-    iconPosition,
-    type,
-    isDisabled,
-    onClick,
-    style,
-    otherProps,
-  }) => {
-    const cname = getClassName(
-      className,
-      color && `Button--${color}`,
-      size && `Button--${size}`,
-      isActive && 'is-active',
-      type === 'link' && 'Button--text',
-      mods
-    );
+    color && `Button--${color}`,
+    size && `Button--${size}`,
+    isActive && 'is-active',
+    type === 'link' && 'Button--text',
+    mods
+  );
 
-    let modifier = null;
-    const hasChildren = label != null || children != null;
-    if (iconPosition === 'left' && hasChildren) modifier = 'u-spaceRightXs';
-    if (iconPosition === 'right' && hasChildren) modifier = 'u-spaceLeftXs';
-    const maybeIcon = icon ? <Icon name={icon} mods={modifier} /> : null;
+  let modifier = null;
+  const hasChildren = label != null || children != null;
+  if (iconPosition === 'left' && hasChildren) modifier = 'u-spaceRightXs';
+  if (iconPosition === 'right' && hasChildren) modifier = 'u-spaceLeftXs';
+  const maybeIcon = icon ? <Icon name={icon} mods={modifier} /> : null;
 
-    return (
-      <button
-        type={type === 'link' ? 'button' : (type as 'button')}
-        className={cname}
-        style={style}
-        onClick={onClick}
-        disabled={isDisabled}
-        {...otherProps}
-      >
-        <span>
-          {iconPosition === 'left' && maybeIcon}
-          {label || children}
-          {iconPosition === 'right' && maybeIcon}
-        </span>
-      </button>
-    );
-  };
+  return (
+    <button
+      type={type === 'link' ? 'button' : (type as 'button')}
+      className={cname}
+      style={style}
+      onClick={onClick}
+      disabled={isDisabled}
+      {...otherProps}
+    >
+      <span>
+        {iconPosition === 'left' && maybeIcon}
+        {label || children}
+        {iconPosition === 'right' && maybeIcon}
+      </span>
+    </button>
+  );
+};
 
 Button.propTypes = propTypes;
 

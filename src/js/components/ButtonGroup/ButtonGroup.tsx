@@ -51,11 +51,7 @@ class ButtonGroup extends React.PureComponent<
     const { children, className, mods, style, otherProps } = this.props;
 
     return (
-      <div
-        className={getClassName(className, mods)}
-        style={style}
-        {...otherProps}
-      >
+      <div className={getClassName(className, mods)} style={style} {...otherProps}>
         {children || this.renderButtons()}
       </div>
     );

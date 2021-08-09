@@ -13,10 +13,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 
-class TextArea extends React.PureComponent<
-  PropTypes.InferProps<typeof TextArea.propTypes>,
-  any
-> {
+class TextArea extends React.PureComponent<PropTypes.InferProps<typeof TextArea.propTypes>, any> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     inputProps: PropTypes.object,
@@ -38,11 +35,7 @@ class TextArea extends React.PureComponent<
     const { name, inputProps, className, mods, style, otherProps } = this.props;
 
     return (
-      <div
-        className={getClassName(className, mods)}
-        style={style}
-        {...otherProps}
-      >
+      <div className={getClassName(className, mods)} style={style} {...otherProps}>
         <textarea name={name} id={name} {...inputProps} />
       </div>
     );

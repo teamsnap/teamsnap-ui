@@ -25,20 +25,10 @@ stories.add('Themed Colors', () => {
   const isActive = boolean('isActive', false);
   return (
     <div>
-      <Button
-        mods="u-spaceRightSm"
-        isDisabled={isDisabled}
-        isActive={isActive}
-        color="primary"
-      >
+      <Button mods="u-spaceRightSm" isDisabled={isDisabled} isActive={isActive} color="primary">
         Primary Button
       </Button>
-      <Button
-        mods="u-spaceRightSm"
-        isDisabled={isDisabled}
-        isActive={isActive}
-        color="negative"
-      >
+      <Button mods="u-spaceRightSm" isDisabled={isDisabled} isActive={isActive} color="negative">
         Negative Button
       </Button>
     </div>
@@ -46,21 +36,21 @@ stories.add('Themed Colors', () => {
 });
 
 stories.add('Text Button', () => (
-    <>
-      <p>
-        This is a{' '}
-        <Button mods="u-spaceRightSm" type="link">
-          Text Button
-        </Button>
-      </p>
-      <p>
-        This is a{' '}
-        <Button mods="u-spaceRightSm" type="link" isDisabled>
-          Disabled Text Button
-        </Button>
-      </p>
-    </>
-  ));
+  <>
+    <p>
+      This is a{' '}
+      <Button mods="u-spaceRightSm" type="link">
+        Text Button
+      </Button>
+    </p>
+    <p>
+      This is a{' '}
+      <Button mods="u-spaceRightSm" type="link" isDisabled>
+        Disabled Text Button
+      </Button>
+    </p>
+  </>
+));
 
 stories.add('Sizes', () => (
   <div>
@@ -95,7 +85,7 @@ storiesOf('Button', module).add(
         isDisabled={boolean('Disabled', false)}
         mods="u-spaceRightSm"
         icon={text('Icon Small', 'home')}
-       />
+      />
       <Button
         isDisabled={boolean('Disabled', false)}
         mods="u-spaceRightSm"
@@ -119,7 +109,7 @@ storiesOf('Button', module).add(
         icon={text('Icon Right', 'right')}
         iconPosition="right"
         isDisabled={boolean('Disabled', false)}
-       />
+      />
     </div>
   ),
   {

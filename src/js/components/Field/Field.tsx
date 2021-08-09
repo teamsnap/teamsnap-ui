@@ -61,9 +61,7 @@ const fieldPropTypes = {
   style: PropTypes.any,
 };
 
-type FieldType = React.FunctionComponent<
-  PropTypes.InferProps<typeof fieldPropTypes>
-> & {
+type FieldType = React.FunctionComponent<PropTypes.InferProps<typeof fieldPropTypes>> & {
   CheckboxStates: typeof CheckboxStates;
   Label: typeof React.Component;
   Caption: typeof React.Component;
@@ -82,75 +80,70 @@ const Field: FieldType = ({
   style,
   ...otherProps
 }) => (
-    <FieldGroup
-      style={style}
-      isInline={isInline}
-      status={status}
-      isDisabled={isDisabled}
-    >
-      {label && <FieldLabel name={name}>{label}</FieldLabel>}
-      {((formFieldProps) => {
-        const { text, checked, onClick } = formFieldProps as any;
-        switch (type) {
-          case 'checkbox':
-            return (
-              <Checkbox
-                name={name}
-                inputProps={{
-                  checked,
-                  onClick,
-                  disabled: isDisabled,
-                }}
-                label={text}
-                isInline
-              />
-            );
-          case 'radio':
-            return (
-              <Radio
-                name={name}
-                inputProps={{
-                  checked,
-                  onClick,
-                  disabled: isDisabled,
-                }}
-                label={text}
-                isInline
-              />
-            );
-          default:
-            const {
-              leftIcon,
-              rightIcon,
-              placeholder,
-              size,
-              showStatus,
-              showClear,
-              onClearClicked,
-              inputProps,
-            } = formFieldProps as any;
-            return (
-              <Input
-                size={size}
-                placeholder={placeholder}
-                name={name}
-                type={type || 'text'}
-                inputProps={inputProps}
-                status={status}
-                rightIcon={rightIcon}
-                leftIcon={leftIcon}
-                showStatus={showStatus}
-                showClear={showClear}
-                onClearClicked={onClearClicked}
-                isDisabled={isDisabled}
-                {...otherProps}
-              />
-            );
-        }
-      })(formFieldProps)}
-      {caption && <FieldMessage status={status}>{caption}</FieldMessage>}
-    </FieldGroup>
-  );
+  <FieldGroup style={style} isInline={isInline} status={status} isDisabled={isDisabled}>
+    {label && <FieldLabel name={name}>{label}</FieldLabel>}
+    {((formFieldProps) => {
+      const { text, checked, onClick } = formFieldProps as any;
+      switch (type) {
+        case 'checkbox':
+          return (
+            <Checkbox
+              name={name}
+              inputProps={{
+                checked,
+                onClick,
+                disabled: isDisabled,
+              }}
+              label={text}
+              isInline
+            />
+          );
+        case 'radio':
+          return (
+            <Radio
+              name={name}
+              inputProps={{
+                checked,
+                onClick,
+                disabled: isDisabled,
+              }}
+              label={text}
+              isInline
+            />
+          );
+        default:
+          const {
+            leftIcon,
+            rightIcon,
+            placeholder,
+            size,
+            showStatus,
+            showClear,
+            onClearClicked,
+            inputProps,
+          } = formFieldProps as any;
+          return (
+            <Input
+              size={size}
+              placeholder={placeholder}
+              name={name}
+              type={type || 'text'}
+              inputProps={inputProps}
+              status={status}
+              rightIcon={rightIcon}
+              leftIcon={leftIcon}
+              showStatus={showStatus}
+              showClear={showClear}
+              onClearClicked={onClearClicked}
+              isDisabled={isDisabled}
+              {...otherProps}
+            />
+          );
+      }
+    })(formFieldProps)}
+    {caption && <FieldMessage status={status}>{caption}</FieldMessage>}
+  </FieldGroup>
+);
 
 Field.propTypes = fieldPropTypes;
 Field.defaultProps = {};

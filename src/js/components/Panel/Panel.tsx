@@ -16,10 +16,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 
-class Panel extends React.PureComponent<
-  PropTypes.InferProps<typeof Panel.propTypes>,
-  any
-> {
+class Panel extends React.PureComponent<PropTypes.InferProps<typeof Panel.propTypes>, any> {
   static propTypes = {
     children: PropTypes.node.isRequired,
     isStriped: PropTypes.bool,
@@ -40,8 +37,7 @@ class Panel extends React.PureComponent<
   };
 
   render() {
-    const { children, className, mods, isStriped, maxSize, style, otherProps } =
-      this.props;
+    const { children, className, mods, isStriped, maxSize, style, otherProps } = this.props;
 
     const panelClasses = getClassName(
       className,

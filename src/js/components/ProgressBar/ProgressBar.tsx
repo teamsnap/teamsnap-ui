@@ -47,17 +47,8 @@ class ProgressBar extends React.PureComponent<
   };
 
   render() {
-    const {
-      progress,
-      color,
-      size,
-      isVertical,
-      isPrecise,
-      className,
-      mods,
-      style,
-      otherProps,
-    } = this.props;
+    const { progress, color, size, isVertical, isPrecise, className, mods, style, otherProps } =
+      this.props;
 
     const progressClasses = getClassName(
       className,

@@ -35,10 +35,7 @@ stories.add('Loader with Text', () => (
 
 stories.add('Loader with Message', () => (
   <>
-    <Loader
-      type="spin"
-      message="Please while wait we take care of this for you."
-    />
+    <Loader type="spin" message="Please while wait we take care of this for you." />
   </>
 ));
 

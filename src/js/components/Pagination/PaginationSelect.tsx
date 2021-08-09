@@ -8,12 +8,14 @@ const propTypes = {
   itemsPerPage: PropTypes.number,
 };
 
-const PaginationSelect: React.FunctionComponent<
-  PropTypes.InferProps<typeof propTypes>
-> = ({ setItemsPerPage, options, itemsPerPage }) => {
+const PaginationSelect: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = ({
+  setItemsPerPage,
+  options,
+  itemsPerPage,
+}) => {
   const selectOptions = options.map((num) => ({
     label: `${num} Rows`,
-    value: `${  num}`,
+    value: `${num}`,
   }));
   return (
     <Select

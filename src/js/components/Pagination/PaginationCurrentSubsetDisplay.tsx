@@ -17,10 +17,8 @@ const PaginationCurrentSubsetDisplay: React.FunctionComponent<
   return (
     <>
       {(currentPage - 1) * itemsPerPage + 1} -{' '}
-      {currentPage * itemsPerPage < totalItems
-        ? currentPage * itemsPerPage
-        : totalItems}{' '}
-      of {totalItems}
+      {currentPage * itemsPerPage < totalItems ? currentPage * itemsPerPage : totalItems} of{' '}
+      {totalItems}
     </>
   );
 };
