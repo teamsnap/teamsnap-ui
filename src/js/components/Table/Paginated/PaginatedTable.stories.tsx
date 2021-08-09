@@ -1,21 +1,29 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import PaginatedTable from "./PaginatedTable";
-import { Placement } from "../../../types/placement";
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import PaginatedTable from './PaginatedTable';
+import { Placement } from '../../../types/placement';
+import { FilterValue } from './DateFilter';
 
-const stories = storiesOf("PaginatedTable", module);
+const eighteenYearsBirthdate = new Date();
+eighteenYearsBirthdate.setFullYear(eighteenYearsBirthdate.getFullYear() - 18);
+
+const seventeenYearsBirthdate = new Date();
+seventeenYearsBirthdate.setFullYear(seventeenYearsBirthdate.getFullYear() - 17);
+
+const stories = storiesOf('PaginatedTable', module);
 /**
  * Columns to configure the table against.
  */
 const columns = [
-  { name: "name", label: "Member Name", isSortable: true, mods: "u-size1of2" },
-  { name: "gender", label: "Gender", isSortable: true, mods: "u-size1of2" },
-  { name: "age", label: "Age", isSortable: true, mods: "u-size1of2" },
+  { name: 'name', label: 'Member Name', isSortable: true, mods: 'u-size1of2' },
+  { name: 'gender', label: 'Gender', isSortable: true, mods: 'u-size1of2' },
+  { name: 'birthdate', label: 'Birthdate', isSortable: false, mods: 'u-size1of2' },
+  { name: 'age', label: 'Age', isSortable: true, mods: 'u-size1of2' },
   {
-    name: "programs",
-    label: "Active Programs",
+    name: 'programs',
+    label: 'Active Programs',
     isSortable: true,
-    mods: "u-size1of2",
+    mods: 'u-size1of2',
   },
 ];
 
@@ -24,175 +32,190 @@ const columns = [
  */
 const data = [
   {
-    name: "Brad",
-    gender: "m",
+    name: 'Brad',
+    gender: 'm',
+    birthdate: seventeenYearsBirthdate,
     age: 12,
-    position: "Goalie",
+    position: 'Goalie',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Dustin",
-    gender: "m",
+    name: 'Dustin',
+    gender: 'm',
+    birthdate: seventeenYearsBirthdate,
     age: 56,
-    position: "Coach",
+    position: 'Coach',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Fred",
-    gender: "m",
+    name: 'Fred',
+    gender: 'm',
+    birthdate: seventeenYearsBirthdate,
     age: 56,
-    position: "Coach",
+    position: 'Coach',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Bobby",
-    gender: "m",
+    name: 'Bobby',
+    gender: 'm',
+    birthdate: seventeenYearsBirthdate,
     age: 56,
-    position: "Coach",
+    position: 'Coach',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Christie",
-    gender: "f",
+    name: 'Christie',
+    gender: 'f',
+    birthdate: seventeenYearsBirthdate,
     age: 56,
-    position: "Coach",
+    position: 'Coach',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Jenna",
-    gender: "f",
+    name: 'Jenna',
+    gender: 'f',
+    birthdate: seventeenYearsBirthdate,
     age: 56,
-    position: "Coach",
+    position: 'Coach',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Stacy",
-    gender: "f",
+    name: 'Stacy',
+    gender: 'f',
+    birthdate: seventeenYearsBirthdate,
     age: 56,
-    position: "Coach",
+    position: 'Coach',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Joey",
-    gender: "m",
+    name: 'Joey',
+    gender: 'm',
     age: 12,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "William",
-    gender: "m",
+    name: 'William',
+    gender: 'm',
+    birthdate: eighteenYearsBirthdate,
     age: 13,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Sharron",
-    gender: "f",
+    name: 'Sharron',
+    gender: 'f',
+    birthdate: eighteenYearsBirthdate,
     age: 14,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Brenda",
-    gender: "f",
+    name: 'Brenda',
+    gender: 'f',
+    birthdate: eighteenYearsBirthdate,
     age: 13,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Nathan",
-    gender: "m",
+    name: 'Nathan',
+    gender: 'm',
+    birthdate: eighteenYearsBirthdate,
     age: 12,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Jimmy",
-    gender: "m",
+    name: 'Jimmy',
+    gender: 'm',
+    birthdate: eighteenYearsBirthdate,
     age: 13,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Lester",
-    gender: "m",
+    name: 'Lester',
+    gender: 'm',
+    birthdate: eighteenYearsBirthdate,
     age: 14,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Justine",
-    gender: "F",
+    name: 'Justine',
+    gender: 'F',
+    birthdate: eighteenYearsBirthdate,
     age: 13,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Cassie",
-    gender: "f",
+    name: 'Cassie',
+    gender: 'f',
+    birthdate: eighteenYearsBirthdate,
     age: 14,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
   {
-    name: "Jessica",
-    gender: "f",
+    name: 'Jessica',
+    gender: 'f',
     age: 12,
-    position: "Player",
+    position: 'Player',
     activePrograms: [
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
-      { name: "2019 ACC Academy", subtitle: "(Junior Academy Tryout)" },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
+      { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
   },
 ];
@@ -212,11 +235,38 @@ function loadData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
   return new Promise((resolve) => {
     setTimeout(() => resolve(data), 500);
   }).then((items: any[]) => {
-    console.log("filter load", filter)
     const endIndex = Math.min(items.length, startIndex + itemsPerPage);
     return items.slice(startIndex, endIndex);
   });
 }
+
+const filterBirthDate = (filter: FilterValue, items: any[]) => {
+  if (filter.kind === 'years') {
+    return items.filter((item) => {
+      const birthdateYear = new Date(item.birthdate).getFullYear();
+      return filter.value.includes(birthdateYear.toString());
+    });
+  }
+
+  if (filter.kind === 'noDate') {
+    return items.filter((item) => {
+      return item.birthdate === undefined;
+    });
+  }
+
+  const { from, to } = filter.value;
+  return items.filter((item) => {
+    const birthdateYear = new Date(item.birthdate);
+    birthdateYear.setHours(0);
+    birthdateYear.setMinutes(0);
+    birthdateYear.setSeconds(0);
+    birthdateYear.setMilliseconds(0);
+    const greaterThanFromDate = !filter.value.from || birthdateYear >= from;
+    const lesserThanToDate = !filter.value.to || birthdateYear <= to;
+
+    return greaterThanFromDate && lesserThanToDate;
+  });
+};
 
 /**
  * This function is where all of your server calls should occur. Commonly likely just make a
@@ -235,11 +285,11 @@ function loadSearchData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
   }).then((items: any[]) => {
     items = items
       .filter((item) => !filter.gender || filter.gender.includes(item.gender))
-      .filter(
-        (item) => item.name.search(new RegExp(filter.searchTerm, "i")) > -1
-      );
-    const endIndex = Math.min(items.length, startIndex + itemsPerPage);
-    return items.slice(startIndex, endIndex);
+      .filter((item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1);
+
+    const dateFilteredItems = filter.birthdate ? filterBirthDate(filter.birthdate, items) : items;
+    const endIndex = Math.min(dateFilteredItems.length, startIndex + itemsPerPage);
+    return dateFilteredItems.slice(startIndex, endIndex);
   });
 }
 
@@ -258,39 +308,38 @@ function mapData(item) {
       </div>
     ),
     gender: item.gender,
+    birthdate: item.birthdate ? item.birthdate.toLocaleDateString('en-US') : 'undefined',
     age: `${item.age}`,
-    programs: item.activePrograms.map((p, idx) => (
-      <div key={idx}>{p.name}</div>
-    )),
+    programs: item.activePrograms.map((p, idx) => <div key={idx}>{p.name}</div>),
   };
 }
 
-stories.add("Default", () => (
+stories.add('Default', () => (
   <PaginatedTable
     columns={columns}
     mapDataToRow={mapData}
     loadData={loadData}
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
-    paginationPlacement={ Placement.Bottom }
+    paginationPlacement={Placement.Bottom}
   />
 ));
 
-stories.add("Selectable Rows", () => (
+stories.add('Selectable Rows', () => (
   <PaginatedTable
     columns={columns}
     rowsAreSelectable={true}
     bulkActions={[
       {
-        label: "Log Selected",
+        label: 'Log Selected',
         onSelected: (selected) => {
           console.log(selected);
         },
       },
       {
-        label: "Alert Selected IDs",
+        label: 'Alert Selected IDs',
         onSelected: (selected) => {
-          console.log(alert(selected.map((e) => e.id).join(",")));
+          console.log(alert(selected.map((e) => e.id).join(',')));
         },
       },
     ]}
@@ -303,7 +352,7 @@ stories.add("Selectable Rows", () => (
   />
 ));
 
-stories.add("Basic Search", () => (
+stories.add('Basic Search', () => (
   <PaginatedTable
     columns={columns}
     mapDataToRow={mapData}
@@ -315,7 +364,7 @@ stories.add("Basic Search", () => (
   />
 ));
 
-stories.add("With Search Filters", () => (
+stories.add('With Search Filters', () => (
   <PaginatedTable
     columns={columns}
     mapDataToRow={mapData}
@@ -323,21 +372,22 @@ stories.add("With Search Filters", () => (
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
     filters={[
-      PaginatedTable.Filter("role", "Participants Role", {
-        "manager": "Manager",
-        "nonplayer": "Non-Player",
-        "player": "Player",
-        "teamOwner": "Team Owner"
+      PaginatedTable.Filter('role', 'Participants Role', {
+        manager: 'Manager',
+        nonplayer: 'Non-Player',
+        player: 'Player',
+        teamOwner: 'Team Owner',
       }),
       // We understand that this is not a comprehensive list of genders but merely a list to display how these filters can be used
-      PaginatedTable.Filter("gender", "Participants Preferred Gender", {
-        "m": "Male",
-        "f": "Female",
-        "other": "Other",
-        "unknown": "Unknown"
+      PaginatedTable.Filter('gender', 'Participants Preferred Gender', {
+        m: 'Male',
+        f: 'Female',
+        other: 'Other',
+        unknown: 'Unknown',
       }),
+      PaginatedTable.Filter('birthdate', 'Participants Birthdate', undefined, 'date'),
     ]}
-    paginationPlacement={ Placement.Bottom }
+    paginationPlacement={Placement.Bottom}
     includeBasicSearch={true}
     searchPlaceholder="Search members by name"
   />
