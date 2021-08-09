@@ -113,7 +113,6 @@ const data = [
   {
     name: "Joey",
     gender: "m",
-    birthdate: seventeenYearsBirthdate,
     age: 12,
     position: "Player",
     activePrograms: [
@@ -212,7 +211,6 @@ const data = [
   {
     name: "Jessica",
     gender: "f",
-    birthdate: eighteenYearsBirthdate,
     age: 12,
     position: "Player",
     activePrograms: [
@@ -247,6 +245,12 @@ const filterBirthDate = (filter: FilterValue, items: any[]) => {
     return items.filter(item => {
       const birthdateYear = new Date(item.birthdate).getFullYear()
       return filter.value.includes(birthdateYear.toString())
+    })
+  }
+
+  if (filter.kind === "noDate") {
+    return items.filter(item => {
+      return item.birthdate === undefined
     })
   }
 
@@ -306,7 +310,7 @@ function mapData(item) {
       </div>
     ),
     gender: item.gender,
-    birthdate: item.birthdate.toLocaleDateString('en-US'),
+    birthdate: item.birthdate ? item.birthdate.toLocaleDateString('en-US') : 'undefined',
     age: `${item.age}`,
     programs: item.activePrograms.map((p, idx) => (
       <div key={idx}>{p.name}</div>

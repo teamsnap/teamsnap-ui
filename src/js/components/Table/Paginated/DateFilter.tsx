@@ -22,7 +22,11 @@ interface Years {
   value: string[]
 }
 
-export type FilterValue = Range | Years
+interface NoDate {
+  kind: 'noDate'
+}
+
+export type FilterValue = Range | Years | NoDate
 
 const modes = [
   {
@@ -42,7 +46,7 @@ const propTypes = {
   title: PropTypes.string,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
-  defaultSelectLabel: PropTypes.string,
+  noDateLabel: PropTypes.string,
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
@@ -68,7 +72,7 @@ const DateFilter = ({
   disabled,
   className,
   mods,
-  defaultSelectLabel,
+  noDateLabel,
   ...props
 }: Props) => {
   const [mode, setMode] = React.useState<'year' | 'range' | 'noDate'>('year');
@@ -78,12 +82,6 @@ const DateFilter = ({
   const [fromDate, setFromDate] = React.useState('');
   const [toDate, setToDate] = React.useState('');
   const [buttonLabel, setButtonLabel] = React.useState(title)
-
-  React.useEffect(() => {
-    if (mode === 'noDate') {
-      clearFilters()
-    }
-  }, [mode])
 
   const clearFilters = () => {
     setYears('');
@@ -98,6 +96,13 @@ const DateFilter = ({
   const applyFilters = () => {
     if ((mode === 'year' && !years) || (mode === 'range' && !fromDate && !toDate)) {
       clearFilters()
+      return
+    }
+
+    if (mode === 'noDate') {
+      clearFilters()
+      onChange({ kind: 'noDate' });
+      setButtonLabel(`[${noDateLabel}]`)
       return
     }
 
@@ -163,7 +168,7 @@ const DateFilter = ({
               <Select
                 name="mode"
                 mods={mode === 'noDate' ? '' : 'u-spaceBottomMd'}
-                options={[...modes, { value: 'noDate', label: `[${defaultSelectLabel}]` }]}
+                options={[...modes, { value: 'noDate', label: `[${noDateLabel}]` }]}
                 inputProps={{
                   value: mode,
                   onChange: e => {
@@ -225,7 +230,7 @@ DateFilter.defaultProps = {
   style: {},
   className: "Combobox",
   otherProps: {},
-  defaultSelectLabel: 'No Date'
+  noDateLabel: 'No Date'
 };
 
 export default DateFilter;
