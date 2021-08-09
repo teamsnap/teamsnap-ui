@@ -1,45 +1,45 @@
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../../utils/helpers";
-import { Panel } from "../../Panel";
-import { PanelFooter } from "../../PanelFooter";
-import { PanelBody } from "../../PanelBody";
-import { PanelRow } from "../../PanelRow";
-import { Button } from "../../Button";
-import { Select } from "../../Select";
-import { Field } from "../../Field";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../../utils/helpers';
+import { Panel } from '../../Panel';
+import { PanelFooter } from '../../PanelFooter';
+import { PanelBody } from '../../PanelBody';
+import { PanelRow } from '../../PanelRow';
+import { Button } from '../../Button';
+import { Select } from '../../Select';
+import { Field } from '../../Field';
 
 interface Range {
-  kind: 'range',
+  kind: 'range';
   value: {
-    from?: Date,
-    to?: Date
-  }
+    from?: Date;
+    to?: Date;
+  };
 }
 
 interface Years {
-  kind: 'years',
-  value: string[]
+  kind: 'years';
+  value: string[];
 }
 
 interface NoDate {
-  kind: 'noDate'
+  kind: 'noDate';
 }
 
-export type FilterValue = Range | Years | NoDate
+export type FilterValue = Range | Years | NoDate;
 
 const modes = [
   {
-    label: "Year",
-    value: "year"
+    label: 'Year',
+    value: 'year',
   },
   {
-    label: "Date Range",
-    value: "range"
-  }
+    label: 'Date Range',
+    value: 'range',
+  },
 ];
 
-const yearsInputRegex = new RegExp(/^[0-9,]*$/)
+const yearsInputRegex = new RegExp(/^[0-9,]*$/);
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -50,20 +50,20 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
-  otherProps: PropTypes.object
+  otherProps: PropTypes.object,
 };
 
 type Props = Omit<PropTypes.InferProps<typeof propTypes>, 'onChange'> & {
-  onChange: (value?: FilterValue) => void
-}
+  onChange: (value?: FilterValue) => void;
+};
 
 const formatDate = (x?: string) => {
-  if (!x) return
+  if (!x) return;
 
-  const date = new Date(`${x}T12:00:00 GMT`)
-  date.setHours(0)
-  return date
-}
+  const date = new Date(`${x}T12:00:00 GMT`);
+  date.setHours(0);
+  return date;
+};
 
 const DateFilter = ({
   name,
@@ -81,7 +81,7 @@ const DateFilter = ({
   const [years, setYears] = React.useState('');
   const [fromDate, setFromDate] = React.useState('');
   const [toDate, setToDate] = React.useState('');
-  const [buttonLabel, setButtonLabel] = React.useState(title)
+  const [buttonLabel, setButtonLabel] = React.useState(title);
 
   const clearFilters = () => {
     setYears('');
@@ -90,65 +90,62 @@ const DateFilter = ({
     setHasFilters(false);
     onChange();
     toggleFlyout(!flyoutVisible);
-    setButtonLabel(title)
-  }
+    setButtonLabel(title);
+  };
 
   const applyFilters = () => {
     if ((mode === 'year' && !years) || (mode === 'range' && !fromDate && !toDate)) {
-      clearFilters()
-      return
+      clearFilters();
+      return;
     }
 
     if (mode === 'noDate') {
-      clearFilters()
+      clearFilters();
       onChange({ kind: 'noDate' });
-      setButtonLabel(`[${noDateLabel}]`)
-      return
+      setButtonLabel(`[${noDateLabel}]`);
+      return;
     }
 
     if (mode === 'range') {
-      setYears('')
-      setButtonLabel([fromDate, toDate].filter(x => !!x).join(' - '))
+      setYears('');
+      setButtonLabel([fromDate, toDate].filter((x) => !!x).join(' - '));
       toggleFlyout(!flyoutVisible);
       setHasFilters(true);
       onChange({
         kind: 'range',
-        value: { from: formatDate(fromDate), to: formatDate(toDate) }
+        value: { from: formatDate(fromDate), to: formatDate(toDate) },
       });
-      return
+      return;
     }
 
     if (years.length > 0) {
-      const elements = years.split(',').filter(item => !!item)
-      const cleanYears = elements.join(',')
-      setFromDate('')
-      setToDate('')
+      const elements = years.split(',').filter((item) => !!item);
+      const cleanYears = elements.join(',');
+      setFromDate('');
+      setToDate('');
       toggleFlyout(!flyoutVisible);
       setHasFilters(true);
       onChange({ kind: 'years', value: elements });
-      setButtonLabel(cleanYears)
-      setYears(cleanYears)
+      setButtonLabel(cleanYears);
+      setYears(cleanYears);
     }
-  }
+  };
 
   const onChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target
+    const { value } = e.target;
     if (yearsInputRegex.test(value)) {
       if (!years && value === ',') {
-        return
+        return;
       }
       if (value[value.length - 1] === ',' && years[years.length - 1] === ',') {
-        return
+        return;
       }
-      setYears(value)
+      setYears(value);
     }
-  }
+  };
 
   return (
-    <div
-      className={getClassName(className, mods)}
-      {...props}
-    >
+    <div className={getClassName(className, mods)} {...props}>
       <button
         className={`Combobox-toggle ${hasFilters ? 'Combobox-toggle--active' : ''}`}
         name={name}
@@ -156,12 +153,12 @@ const DateFilter = ({
         disabled={disabled}
         title={buttonLabel}
         onClick={() => {
-          toggleFlyout(!flyoutVisible)
+          toggleFlyout(!flyoutVisible);
         }}
       >
         {buttonLabel}
       </button>
-      {flyoutVisible &&
+      {flyoutVisible && (
         <Panel mods="Combobox-checkboxContainer">
           <PanelBody>
             <PanelRow mods="Grid-cell u-flexAuto u-padBottomMd">
@@ -171,9 +168,9 @@ const DateFilter = ({
                 options={[...modes, { value: 'noDate', label: `[${noDateLabel}]` }]}
                 inputProps={{
                   value: mode,
-                  onChange: e => {
-                    setMode(e.target.value)
-                  }
+                  onChange: (e) => {
+                    setMode(e.target.value);
+                  },
                 }}
               />
 
@@ -183,7 +180,7 @@ const DateFilter = ({
                   name="years"
                   caption="Use commas to separate multiple years."
                   formFieldProps={{
-                    inputProps: { value: years, onChange: onChangeYear }
+                    inputProps: { value: years, onChange: onChangeYear },
                   }}
                 />
               )}
@@ -196,7 +193,7 @@ const DateFilter = ({
                     type="date"
                     name="fromDate"
                     formFieldProps={{
-                      inputProps: { value: fromDate, onChange: e => setFromDate(e.target.value) }
+                      inputProps: { value: fromDate, onChange: (e) => setFromDate(e.target.value) },
                     }}
                   />
                   <Field
@@ -204,7 +201,7 @@ const DateFilter = ({
                     type="date"
                     name="toDate"
                     formFieldProps={{
-                      inputProps: { value: toDate, onChange: e => setToDate(e.target.value) }
+                      inputProps: { value: toDate, onChange: (e) => setToDate(e.target.value) },
                     }}
                   />
                 </>
@@ -215,10 +212,12 @@ const DateFilter = ({
             <Button onClick={clearFilters} mods="u-spaceRightMd u-colorNeutral7" type="link">
               Clear
             </Button>
-            <Button onClick={applyFilters} type="link">Done</Button>
+            <Button onClick={applyFilters} type="link">
+              Done
+            </Button>
           </PanelFooter>
         </Panel>
-      }
+      )}
     </div>
   );
 };
@@ -228,9 +227,9 @@ DateFilter.propTypes = propTypes;
 DateFilter.defaultProps = {
   mods: null,
   style: {},
-  className: "Combobox",
+  className: 'Combobox',
   otherProps: {},
-  noDateLabel: 'No Date'
+  noDateLabel: 'No Date',
 };
 
 export default DateFilter;
