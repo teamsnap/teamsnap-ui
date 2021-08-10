@@ -10,9 +10,9 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
 class Divider extends React.PureComponent<PropTypes.InferProps<typeof Divider.propTypes>, any> {
   static propTypes = {
@@ -22,35 +22,27 @@ class Divider extends React.PureComponent<PropTypes.InferProps<typeof Divider.pr
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
     isIndented: false,
     isSpaced: false,
     isThick: false,
-    className: "Divider",
+    className: 'Divider',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {
-    const {
-      className,
-      isIndented,
-      isSpaced,
-      isThick,
-      mods,
-      style,
-      otherProps
-    } = this.props;
+    const { className, isIndented, isSpaced, isThick, mods, style, otherProps } = this.props;
 
     const dividerClasses = getClassName(
       className,
-      isIndented && "Divider--indented",
-      isSpaced && "Divider--space",
-      isThick && "Divider--thick",
+      isIndented && 'Divider--indented',
+      isSpaced && 'Divider--space',
+      isThick && 'Divider--thick',
       mods
     );
 

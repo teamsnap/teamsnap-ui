@@ -1,2 +1,2 @@
-import Skittles from "./Skittles";
+import Skittles from './Skittles';
 export { Skittles };

@@ -22,9 +22,9 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
 class Select extends React.PureComponent<PropTypes.InferProps<typeof Select.propTypes>, any> {
   static propTypes = {
@@ -33,7 +33,7 @@ class Select extends React.PureComponent<PropTypes.InferProps<typeof Select.prop
       PropTypes.shape({
         label: PropTypes.string.isRequired,
         value: PropTypes.string.isRequired,
-        disabled: PropTypes.bool
+        disabled: PropTypes.bool,
       })
     ).isRequired,
     inputProps: PropTypes.object,
@@ -41,18 +41,18 @@ class Select extends React.PureComponent<PropTypes.InferProps<typeof Select.prop
     mods: PropTypes.string,
     style: PropTypes.object,
     otherProps: PropTypes.object,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
     inputProps: {},
-    className: "SelectBox",
+    className: 'SelectBox',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
-  renderOptions = option => {
+  renderOptions = (option) => {
     const { label, value, disabled } = option;
 
     return (
@@ -63,23 +63,10 @@ class Select extends React.PureComponent<PropTypes.InferProps<typeof Select.prop
   };
 
   render() {
-    const {
-      name,
-      options,
-      inputProps,
-      className,
-      mods,
-      style,
-      otherProps,
-      disabled
-    } = this.props;
+    const { name, options, inputProps, className, mods, style, otherProps, disabled } = this.props;
 
     return (
-      <div
-        className={getClassName(className, mods)}
-        style={style}
-        {...otherProps}
-      >
+      <div className={getClassName(className, mods)} style={style} {...otherProps}>
         <select
           className="SelectBox-options"
           name={name}

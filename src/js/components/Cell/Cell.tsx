@@ -12,9 +12,9 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
 class Cell extends React.PureComponent<PropTypes.InferProps<typeof Cell.propTypes>, any> {
   static propTypes = {
@@ -22,26 +22,22 @@ class Cell extends React.PureComponent<PropTypes.InferProps<typeof Cell.propType
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
     children: null,
-    className: "Grid-cell",
+    className: 'Grid-cell',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {
     const { children, className, mods, style, otherProps } = this.props;
 
     return (
-      <div
-        className={getClassName(className, mods)}
-        style={style}
-        {...otherProps}
-      >
+      <div className={getClassName(className, mods)} style={style} {...otherProps}>
         {children}
       </div>
     );

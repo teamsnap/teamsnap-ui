@@ -12,9 +12,9 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
 class Grid extends React.PureComponent<PropTypes.InferProps<typeof Grid.propTypes>, any> {
   static propTypes = {
@@ -27,7 +27,7 @@ class Grid extends React.PureComponent<PropTypes.InferProps<typeof Grid.propType
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
@@ -36,10 +36,10 @@ class Grid extends React.PureComponent<PropTypes.InferProps<typeof Grid.propType
     isAlignCenter: false,
     isAlignMiddle: false,
     isWithGutter: false,
-    className: "Grid",
+    className: 'Grid',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
   render() {
     const {
@@ -52,16 +52,16 @@ class Grid extends React.PureComponent<PropTypes.InferProps<typeof Grid.propType
       className,
       mods,
       style,
-      otherProps
+      otherProps,
     } = this.props;
 
     const gridClasses = getClassName(
       className,
-      isFit && "Grid--fit",
-      isEqualHeight && "Grid--equalHeight",
-      isAlignCenter && "Grid--alignCenter",
-      isAlignMiddle && "Grid--alignMiddle",
-      isWithGutter && "Grid--withGutter",
+      isFit && 'Grid--fit',
+      isEqualHeight && 'Grid--equalHeight',
+      isAlignCenter && 'Grid--alignCenter',
+      isAlignMiddle && 'Grid--alignMiddle',
+      isWithGutter && 'Grid--withGutter',
       mods
     );
 

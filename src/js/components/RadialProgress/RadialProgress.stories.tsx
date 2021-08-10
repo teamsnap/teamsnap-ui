@@ -1,9 +1,9 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
 import { text, select } from '@storybook/addon-knobs';
-import RadialProgress from "./RadialProgress";
+import RadialProgress from './RadialProgress';
 
-const stories = storiesOf("RadialProgress", module);
+const stories = storiesOf('RadialProgress', module);
 
 export default {
   title: 'RadialProgress',
@@ -11,19 +11,19 @@ export default {
 };
 
 const sizeOptions = {
-  xsmall: "xsmall",
-  small: "small",
+  xsmall: 'xsmall',
+  small: 'small',
   default: null,
-  large: "large",
-  xlarge: "xlarge"
+  large: 'large',
+  xlarge: 'xlarge',
 };
 
-stories.add("Default", () => <RadialProgress progress={33} />);
+stories.add('Default', () => <RadialProgress progress={33} />);
 
 stories.add(
-  "Progress Colors",
+  'Progress Colors',
   () => {
-    const size = select("size", sizeOptions, null);
+    const size = select('size', sizeOptions, null);
 
     return (
       <div>
@@ -45,7 +45,7 @@ stories.add(
   {
     knobs: {
       timestamps: true,
-      debounce: { wait: 500, leading: false }
-    }
+      debounce: { wait: 500, leading: false },
+    },
   }
 );

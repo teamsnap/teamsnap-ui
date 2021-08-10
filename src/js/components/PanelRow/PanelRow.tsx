@@ -12,14 +12,11 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
-class PanelRow extends React.PureComponent<
-  PropTypes.InferProps<typeof PanelRow.propTypes>,
-  any
-> {
+class PanelRow extends React.PureComponent<PropTypes.InferProps<typeof PanelRow.propTypes>, any> {
   static propTypes = {
     children: PropTypes.node.isRequired,
     isWithCells: PropTypes.bool,
@@ -28,35 +25,27 @@ class PanelRow extends React.PureComponent<
     mods: PropTypes.string,
     role: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
-    className: "Panel-row",
+    className: 'Panel-row',
     isWithCells: null,
     isParent: null,
     mods: null,
-    role: "row",
+    role: 'row',
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {
-    const {
-      children,
-      isWithCells,
-      isParent,
-      className,
-      mods,
-      role,
-      style,
-      otherProps
-    } = this.props;
+    const { children, isWithCells, isParent, className, mods, role, style, otherProps } =
+      this.props;
 
     const panelClasses = getClassName(
       className,
-      isWithCells && "Panel-row--withCells",
-      isParent && "Panel-row--parent",
+      isWithCells && 'Panel-row--withCells',
+      isParent && 'Panel-row--parent',
       mods
     );
 

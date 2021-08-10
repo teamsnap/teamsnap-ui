@@ -14,28 +14,31 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { Button } from "../Button";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { Button } from '../Button';
+import { getClassName } from '../../utils/helpers';
 
-class ButtonGroup extends React.PureComponent<PropTypes.InferProps<typeof ButtonGroup.propTypes>, any> {
+class ButtonGroup extends React.PureComponent<
+  PropTypes.InferProps<typeof ButtonGroup.propTypes>,
+  any
+> {
   static propTypes = {
     children: PropTypes.node,
     buttons: PropTypes.array,
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
     children: null,
     buttons: [],
-    className: "ButtonGroup",
+    className: 'ButtonGroup',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   renderButtons = () => {
@@ -48,11 +51,7 @@ class ButtonGroup extends React.PureComponent<PropTypes.InferProps<typeof Button
     const { children, className, mods, style, otherProps } = this.props;
 
     return (
-      <div
-        className={getClassName(className, mods)}
-        style={style}
-        {...otherProps}
-      >
+      <div className={getClassName(className, mods)} style={style} {...otherProps}>
         {children || this.renderButtons()}
       </div>
     );

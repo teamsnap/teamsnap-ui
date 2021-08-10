@@ -39,28 +39,24 @@ const Tabs: React.FunctionComponent<Props> = ({ mods, tabs }: Props) => {
 
   return (
     <div className={`Tabs ${boolMods ? mods : ''}`}>
-      <ul className='Tabs-header'>
+      <ul className="Tabs-header">
         {tabs.map((tab, index) => (
           <li
             key={`Tabs-headerItem-${index}`}
             onClick={() => setActiveTabIndex(index)}
-            className={`Tabs-headerItem ${
-              index === activeTabIndex ? 'is-active' : ''
-            }`}
+            className={`Tabs-headerItem ${index === activeTabIndex ? 'is-active' : ''}`}
           >
-            { tab.heading }
+            {tab.heading}
           </li>
         ))}
       </ul>
-      <div className='Tabs-content'>
+      <div className="Tabs-content">
         {tabs.map((tab, index) => (
           <div
             key={`Tabs-contentItem-${index}`}
-            className={`Tabs-contentItem ${
-              index === activeTabIndex ? 'is-active' : ''
-            }`}
+            className={`Tabs-contentItem ${index === activeTabIndex ? 'is-active' : ''}`}
           >
-            { tab.content }
+            {tab.content}
           </div>
         ))}
       </div>

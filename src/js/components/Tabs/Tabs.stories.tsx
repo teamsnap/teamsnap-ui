@@ -1,26 +1,26 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import Tabs from "./Tabs";
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import Tabs from './Tabs';
 
-const stories = storiesOf("Tabs", module);
+const stories = storiesOf('Tabs', module);
 
 export default {
   title: 'Tabs',
   component: Tabs,
 };
 
-stories.add("Default", () => (
+stories.add('Default', () => (
   <Tabs
     mods="u-spaceRightSm"
     tabs={[
       {
-        heading: "Tab 1",
-        content: <h1>Hello from Tab 1!</h1>
+        heading: 'Tab 1',
+        content: <h1>Hello from Tab 1!</h1>,
       },
       {
-        heading: "Tab 2",
-        content: <h1>Hello from Tab 2!</h1>
-      }
+        heading: 'Tab 2',
+        content: <h1>Hello from Tab 2!</h1>,
+      },
     ]}
-   />
+  />
 ));

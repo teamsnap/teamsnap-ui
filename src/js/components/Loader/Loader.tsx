@@ -10,28 +10,28 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
 class Loader extends React.PureComponent<PropTypes.InferProps<typeof Loader.propTypes>, any> {
   static propTypes = {
-    type: PropTypes.oneOf(["jello", "pulse", "spin"]).isRequired,
+    type: PropTypes.oneOf(['jello', 'pulse', 'spin']).isRequired,
     text: PropTypes.string,
     message: PropTypes.string,
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
     text: null,
     message: null,
-    className: "Loader",
+    className: 'Loader',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   renderSpinAnimation = () => <span className="SpinAnimation" />;
@@ -51,36 +51,24 @@ class Loader extends React.PureComponent<PropTypes.InferProps<typeof Loader.prop
     </span>
   );
 
-  renderAnimation = type => {
-    if (type === "jello") {
+  renderAnimation = (type) => {
+    if (type === 'jello') {
       return this.renderJelloAnimation();
-    } else if (type === "pulse") {
+    } else if (type === 'pulse') {
       return this.renderPulseAnimation();
-    } else if (type === "spin") {
+    } else if (type === 'spin') {
       return this.renderSpinAnimation();
     }
   };
 
   render() {
-    const {
-      type,
-      text,
-      message,
-      className,
-      mods,
-      style,
-      otherProps
-    } = this.props;
+    const { type, text, message, className, mods, style, otherProps } = this.props;
 
     if (!text && !message) {
       return this.renderAnimation(type);
     }
 
-    const loaderClasses = getClassName(
-      className,
-      type === "jello" && "Loader--jello",
-      mods
-    );
+    const loaderClasses = getClassName(className, type === 'jello' && 'Loader--jello', mods);
 
     return (
       <div className={loaderClasses} style={style} {...otherProps}>

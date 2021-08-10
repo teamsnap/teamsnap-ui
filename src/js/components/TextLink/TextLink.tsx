@@ -13,9 +13,9 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
 class TextLink extends React.PureComponent<PropTypes.InferProps<typeof TextLink.propTypes>, any> {
   static propTypes = {
@@ -26,36 +26,28 @@ class TextLink extends React.PureComponent<PropTypes.InferProps<typeof TextLink.
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
     routerLink: null,
-    location: "",
+    location: '',
     onClick: null,
-    className: "",
+    className: '',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {
-    const {
-      children,
-      location,
-      routerLink,
-      onClick,
-      className,
-      mods,
-      style,
-      otherProps
-    } = this.props;
+    const { children, location, routerLink, onClick, className, mods, style, otherProps } =
+      this.props;
 
     // Define anchorTag to be the passed in router 'Link' or 'a' as default.
-    const AnchorTag = routerLink || "a";
+    const AnchorTag = routerLink || 'a';
 
     // Various React Routers use the attribute 'to' as opposed to the html anchors default 'href'
-    const linkType = { [routerLink ? "to" : "href"]: location };
+    const linkType = { [routerLink ? 'to' : 'href']: location };
 
     return (
       <AnchorTag

@@ -12,35 +12,34 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
-class PanelFooter extends React.PureComponent<PropTypes.InferProps<typeof PanelFooter.propTypes>, any> {
+class PanelFooter extends React.PureComponent<
+  PropTypes.InferProps<typeof PanelFooter.propTypes>,
+  any
+> {
   static propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
-    className: "Panel-footer",
+    className: 'Panel-footer',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {
     const { children, className, mods, style, otherProps } = this.props;
 
     return (
-      <footer
-        className={getClassName(className, mods)}
-        style={style}
-        {...otherProps}
-      >
+      <footer className={getClassName(className, mods)} style={style} {...otherProps}>
         {children}
       </footer>
     );

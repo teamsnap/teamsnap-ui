@@ -1,12 +1,12 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import Toggle from "./Toggle";
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import Toggle from './Toggle';
 
-const stories = storiesOf("Toggle", module);
+const stories = storiesOf('Toggle', module);
 
 export default {
   title: 'Toggle',
   component: Toggle,
 };
 
-stories.add("Default", () => <Toggle name="myToggle" />);
+stories.add('Default', () => <Toggle name="myToggle" />);

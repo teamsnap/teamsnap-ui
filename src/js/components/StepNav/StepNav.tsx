@@ -16,11 +16,11 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { Icon } from "../Icon";
-import { TextLink } from "../TextLink";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { Icon } from '../Icon';
+import { TextLink } from '../TextLink';
+import { getClassName } from '../../utils/helpers';
 
 class StepNav extends React.PureComponent<PropTypes.InferProps<typeof StepNav.propTypes>, any> {
   static propTypes = {
@@ -29,7 +29,7 @@ class StepNav extends React.PureComponent<PropTypes.InferProps<typeof StepNav.pr
         name: PropTypes.string.isRequired,
         icon: PropTypes.string.isRequired,
         isActive: PropTypes.bool,
-        linkProps: PropTypes.object
+        linkProps: PropTypes.object,
       })
     ).isRequired,
     title: PropTypes.string,
@@ -37,16 +37,16 @@ class StepNav extends React.PureComponent<PropTypes.InferProps<typeof StepNav.pr
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
     title: null,
     isSmall: false,
-    className: "StepNav",
+    className: 'StepNav',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   renderTitle = () => {
@@ -62,12 +62,12 @@ class StepNav extends React.PureComponent<PropTypes.InferProps<typeof StepNav.pr
   renderStep = (step) => {
     const { name, icon, isActive, linkProps } = step;
     const stepClasses = getClassName(
-      "StepNav-step",
-      linkProps && "is-enabled",
-      linkProps && isActive && "is-active"
+      'StepNav-step',
+      linkProps && 'is-enabled',
+      linkProps && isActive && 'is-active'
     );
 
-    const LinkTag = linkProps ? TextLink : "span";
+    const LinkTag = linkProps ? TextLink : 'span';
 
     return (
       <li key={name} className={stepClasses}>
@@ -80,20 +80,12 @@ class StepNav extends React.PureComponent<PropTypes.InferProps<typeof StepNav.pr
   };
 
   render() {
-    const {
-      steps,
-      title,
-      isSmall,
-      className,
-      mods,
-      style,
-      otherProps
-    } = this.props;
+    const { steps, title, isSmall, className, mods, style, otherProps } = this.props;
 
     const stepNavClass = getClassName(
       className,
-      title && "StepNav--titled",
-      isSmall && "StepNav--small",
+      title && 'StepNav--titled',
+      isSmall && 'StepNav--small',
       mods
     );
 
@@ -101,9 +93,7 @@ class StepNav extends React.PureComponent<PropTypes.InferProps<typeof StepNav.pr
       <div className={stepNavClass} style={style} {...otherProps}>
         {title && this.renderTitle()}
 
-        <ul className="StepNav-steps">
-          {steps.map(step => this.renderStep(step))}
-        </ul>
+        <ul className="StepNav-steps">{steps.map((step) => this.renderStep(step))}</ul>
       </div>
     );
   }

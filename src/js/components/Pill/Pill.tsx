@@ -18,8 +18,8 @@ const Pill: React.FunctionComponent<Props> = ({ align, active, style, mods, chil
   );
 
   return (
-    <div  className={ classes } style={ style }>
-      { children ? children : 'Default' }
+    <div className={classes} style={style}>
+      {children ? children : 'Default'}
     </div>
   );
 };

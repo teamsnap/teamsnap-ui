@@ -1,4 +1,4 @@
-import { parseAlphaString, parseNumericString } from "./helpers";
+import { parseAlphaString, parseNumericString } from './helpers';
 
 // Sort a,b results by a parsed date
 const sortByDate = (a, b) => {
@@ -44,17 +44,17 @@ const sortTypes = {
   date: sortByDate,
   alpha: sortByAlpha,
   numeric: sortByNumeric,
-  alphaNumeric: sortByAlphaNumeric
+  alphaNumeric: sortByAlphaNumeric,
 };
 
 // Compare the sortBy results, sorting by the provided type if available.
-const compare = options => (a, b) => {
+const compare = (options) => (a, b) => {
   const { name, sortType, sortFn, isReverse } = options;
   let sortValue = null;
 
   // Check provided values are an object
-  const aValue = typeof a === "object" ? a[name] : a;
-  const bValue = typeof b === "object" ? b[name] : b;
+  const aValue = typeof a === 'object' ? a[name] : a;
+  const bValue = typeof b === 'object' ? b[name] : b;
 
   // Use custom sorting if provided
   if (sortFn) {
@@ -70,7 +70,7 @@ const compare = options => (a, b) => {
     sortValue = sortType.indexOf(aValue) - sortType.indexOf(bValue);
   } else {
     // Use selected sortType or default 'alphaNumeric'
-    const sorter = sortTypes[sortType] || sortTypes["alphaNumeric"];
+    const sorter = sortTypes[sortType] || sortTypes['alphaNumeric'];
     sortValue = sorter(aValue, bValue);
   }
 

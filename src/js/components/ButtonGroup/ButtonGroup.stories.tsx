@@ -1,16 +1,16 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import ButtonGroup from "./ButtonGroup";
-import { Button } from "../Button";
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import ButtonGroup from './ButtonGroup';
+import { Button } from '../Button';
 
-const stories = storiesOf("ButtonGroup", module);
+const stories = storiesOf('ButtonGroup', module);
 
 export default {
   title: 'ButtonGroup',
   component: ButtonGroup,
 };
 
-stories.add("Button Children", () => {
+stories.add('Button Children', () => {
   return (
     <ButtonGroup>
       <Button>Button1</Button>

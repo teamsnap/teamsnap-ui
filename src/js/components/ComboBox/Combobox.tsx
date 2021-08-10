@@ -15,17 +15,17 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
-import { Panel } from "../Panel";
-import { PanelFooter } from "../PanelFooter";
-import { PanelBody } from "../PanelBody";
-import { PanelRow } from "../PanelRow";
-import { Button } from "../Button";
-import { Checkbox } from "../Checkbox";
-import { Field } from "../Field";
-import { Icon } from "../Icon";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
+import { Panel } from '../Panel';
+import { PanelFooter } from '../PanelFooter';
+import { PanelBody } from '../PanelBody';
+import { PanelRow } from '../PanelRow';
+import { Button } from '../Button';
+import { Checkbox } from '../Checkbox';
+import { Field } from '../Field';
+import { Icon } from '../Icon';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -35,7 +35,7 @@ const propTypes = {
     PropTypes.shape({
       value: PropTypes.string,
       label: PropTypes.string,
-    }),
+    })
   ),
   onChange: PropTypes.func,
   className: PropTypes.string,
@@ -49,34 +49,23 @@ interface Filter {
   label: string;
 }
 
-type ComboBoxType = React.FunctionComponent<
-  PropTypes.InferProps<typeof propTypes>
->;
+type ComboBoxType = React.FunctionComponent<PropTypes.InferProps<typeof propTypes>>;
 const ComboBox: ComboBoxType = (props) => {
-  const {
-    name,
-    buttonLabel,
-    style,
-    otherProps,
-    disabled,
-    className,
-    mods,
-    items,
-    onChange
-  } = props;
+  const { name, buttonLabel, style, otherProps, disabled, className, mods, items, onChange } =
+    props;
 
   const [flyoutVisible, toggleFlyout] = React.useState(false);
   const [comboLabel, setComboLabel] = React.useState('');
   const [hasFilters, setHasFilters] = React.useState(false);
-  const [searchParam, setSearchParam] = React.useState('')
+  const [searchParam, setSearchParam] = React.useState('');
   const [filterList, setFilterList] = React.useState([]);
   const [uncheckedfilterList, setUncheckedFilterList] = React.useState([]);
   const [selectedFilters, setSelectedFilters] = React.useState([]);
 
-  const shouldShowSearchBar = items.length > 6
+  const shouldShowSearchBar = items.length > 6;
   const filteredItems = searchParam
-    ? uncheckedfilterList.filter(item => item.label.includes(searchParam))
-    : uncheckedfilterList
+    ? uncheckedfilterList.filter((item) => item.label.includes(searchParam))
+    : uncheckedfilterList;
 
   React.useEffect(() => {
     sortFilters();
@@ -86,7 +75,7 @@ const ComboBox: ComboBoxType = (props) => {
     let checked = [];
     let unchecked = [];
 
-    items.map(item => {
+    items.map((item) => {
       if (selectedFilters.includes(item.value)) {
         checked.push(item);
       } else {
@@ -97,11 +86,11 @@ const ComboBox: ComboBoxType = (props) => {
     setComboLabel(checked.length > 0 ? checked.reduce(createLabel, '') : buttonLabel);
     setFilterList(checked);
     setUncheckedFilterList(unchecked);
-  }
+  };
 
   const createLabel = (acc, filter) => {
-    return `${acc}, ${items.find(item => item.value == filter.value).label}`;
-  }
+    return `${acc}, ${items.find((item) => item.value == filter.value).label}`;
+  };
 
   const applyFilters = () => {
     if (selectedFilters.length > 0) {
@@ -112,20 +101,20 @@ const ComboBox: ComboBoxType = (props) => {
     } else {
       clearFilters();
     }
-  }
+  };
 
   const clearFilters = () => {
     setSelectedFilters([]);
     setHasFilters(false);
     onChange([]);
     toggleFlyout(!flyoutVisible);
-  }
+  };
 
   const buildCheckbox = (filter, idx) => {
     return (
       <Checkbox
         key={`${name}-${idx}`}
-        mods={`${idx === items.length - 1 ? "u-padBottomNone" : ""}`}
+        mods={`${idx === items.length - 1 ? 'u-padBottomNone' : ''}`}
         name={filter.value}
         label={filter.label}
         inputProps={{
@@ -133,22 +122,20 @@ const ComboBox: ComboBoxType = (props) => {
           value: filter.value,
           onChange: () => {
             if (selectedFilters.includes(filter.value)) {
-              setSelectedFilters(selectedFilters.filter(selectedFilter => selectedFilter != filter.value));
+              setSelectedFilters(
+                selectedFilters.filter((selectedFilter) => selectedFilter != filter.value)
+              );
             } else {
               setSelectedFilters([...selectedFilters, filter.value]);
             }
-          }
+          },
         }}
       />
-    )
-  }
+    );
+  };
 
   return (
-    <div
-      className={getClassName(className, mods)}
-      style={style}
-      {...otherProps}
-    >
+    <div className={getClassName(className, mods)} style={style} {...otherProps}>
       <button
         className={`Combobox-toggle ${hasFilters ? 'Combobox-toggle--active' : ''}`}
         name={name}
@@ -156,12 +143,12 @@ const ComboBox: ComboBoxType = (props) => {
         disabled={disabled}
         title={comboLabel !== buttonLabel ? comboLabel.substring(1) : ''}
         onClick={() => {
-          toggleFlyout(!flyoutVisible)
+          toggleFlyout(!flyoutVisible);
         }}
       >
         {comboLabel !== buttonLabel ? comboLabel.substring(1) : buttonLabel}
       </button>
-      {flyoutVisible &&
+      {flyoutVisible && (
         <Panel mods="Combobox-checkboxContainer">
           <PanelBody mods="Combobox-checkboxes">
             {shouldShowSearchBar && (
@@ -169,7 +156,10 @@ const ComboBox: ComboBoxType = (props) => {
                 <Field
                   type="input"
                   formFieldProps={{
-                    inputProps: { value: searchParam, onChange: e => setSearchParam(e.target.value) },
+                    inputProps: {
+                      value: searchParam,
+                      onChange: (e) => setSearchParam(e.target.value),
+                    },
                     placeholder: `Search for a ${buttonLabel}`,
                     leftIcon: <Icon className="Icon" name="search" />,
                   }}
@@ -177,25 +167,27 @@ const ComboBox: ComboBoxType = (props) => {
                 />
               </PanelRow>
             )}
-            {filterList?.length > 0 &&
+            {filterList?.length > 0 && (
               <PanelRow mods="Grid-cell u-flexAuto u-padBottomSm">
                 {filterList.map((item: Filter, idx) => buildCheckbox(item, idx))}
               </PanelRow>
-            }
-            {filteredItems?.length > 0 &&
+            )}
+            {filteredItems?.length > 0 && (
               <PanelRow>
                 {filteredItems.map((item: Filter, idx) => buildCheckbox(item, idx))}
               </PanelRow>
-            }
+            )}
           </PanelBody>
           <PanelFooter mods="u-padEndsSm u-padSidesMd">
             <Button onClick={clearFilters} mods="u-spaceRightMd u-colorNeutral7" type="link">
               Clear
             </Button>
-            <Button onClick={applyFilters} type="link">Done</Button>
+            <Button onClick={applyFilters} type="link">
+              Done
+            </Button>
           </PanelFooter>
         </Panel>
-      }
+      )}
     </div>
   );
 };
@@ -205,7 +197,7 @@ ComboBox.propTypes = propTypes;
 ComboBox.defaultProps = {
   mods: null,
   style: {},
-  className: "Combobox",
+  className: 'Combobox',
   otherProps: {},
 };
 

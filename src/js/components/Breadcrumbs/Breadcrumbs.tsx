@@ -11,23 +11,25 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import Icon from "../Icon/Icon";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import Icon from '../Icon/Icon';
 
 const propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
-  breadcrumbs: PropTypes.arrayOf(
-    PropTypes.node,
-  ).isRequired,
+  breadcrumbs: PropTypes.arrayOf(PropTypes.node).isRequired,
   style: PropTypes.object,
   separator: PropTypes.node,
 };
 
-const Breadcrumbs: React.FunctionComponent<
-  PropTypes.InferProps<typeof propTypes>
-> = ({ className, breadcrumbs, id, style, separator }) => {
+const Breadcrumbs: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = ({
+  className,
+  breadcrumbs,
+  id,
+  style,
+  separator,
+}) => {
   const Separator = () => <>{separator}</>;
 
   const renderSeparator = () => {
@@ -63,15 +65,8 @@ const Breadcrumbs: React.FunctionComponent<
   };
 
   return (
-    <nav
-      id={id}
-      aria-label="Breadcrumb"
-      className={className ?? "Nav-breadcrumb"}
-      style={style}
-    >
-      <ul className="Breadcrumb">
-        {renderBreadcrumbs()}
-      </ul>
+    <nav id={id} aria-label="Breadcrumb" className={className ?? 'Nav-breadcrumb'} style={style}>
+      <ul className="Breadcrumb">{renderBreadcrumbs()}</ul>
     </nav>
   );
 };

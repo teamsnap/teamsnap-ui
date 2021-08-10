@@ -1,2 +1,2 @@
-import PanelBody from "./PanelBody";
+import PanelBody from './PanelBody';
 export { PanelBody };

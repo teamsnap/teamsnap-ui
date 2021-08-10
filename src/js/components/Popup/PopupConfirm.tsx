@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as PropTypes from "prop-types";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
 interface State {
   isPopupOpen: boolean;
@@ -10,13 +10,11 @@ export default class Popup extends React.Component<
   State
 > {
   static propTypes = {
-    buttonText: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
-      .isRequired,
-    popUpText: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-      .isRequired,
+    buttonText: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
+    popUpText: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     popupStyle: PropTypes.object,
     onAccept: PropTypes.func.isRequired,
-    onCancel: PropTypes.func
+    onCancel: PropTypes.func,
   };
 
   popupRef: PropTypes.InferType<PropTypes.ReactElementLike>;
@@ -24,7 +22,7 @@ export default class Popup extends React.Component<
   constructor(props) {
     super(props);
     this.state = {
-      isPopupOpen: false
+      isPopupOpen: false,
     };
     this.popupRef = React.createRef();
   }
@@ -32,7 +30,7 @@ export default class Popup extends React.Component<
   handleBodyClick() {
     if (this.popupRef && this.popupRef.current)
       this.setState({
-        isPopupOpen: false
+        isPopupOpen: false,
       });
   }
 
@@ -40,32 +38,25 @@ export default class Popup extends React.Component<
     const { isPopupOpen } = this.state;
 
     if (!isPopupOpen) {
-      document.body.addEventListener("click", this.handleBodyClick.bind(this));
+      document.body.addEventListener('click', this.handleBodyClick.bind(this));
     } else {
-      document.body.removeEventListener(
-        "click",
-        this.handleBodyClick.bind(this)
-      );
+      document.body.removeEventListener('click', this.handleBodyClick.bind(this));
     }
 
     this.setState({
-      isPopupOpen: !isPopupOpen
+      isPopupOpen: !isPopupOpen,
     });
   }
 
   render() {
     return (
       <div className="Popup" ref={this.popupRef}>
-        <button
-          className="Button Button--small"
-          onClick={this.togglePopup.bind(this)}
-        >
+        <button className="Button Button--small" onClick={this.togglePopup.bind(this)}>
           {this.props.buttonText}
         </button>
         <div
           className={
-            "Popup-container Popup-container--overlay" +
-            (this.state.isPopupOpen ? " is-open" : "")
+            'Popup-container Popup-container--overlay' + (this.state.isPopupOpen ? ' is-open' : '')
           }
           style={this.props.popupStyle}
         >
@@ -78,10 +69,7 @@ export default class Popup extends React.Component<
               >
                 Cancel
               </button>
-              <button
-                onClick={this.props.onAccept}
-                className="Button Button--primary"
-              >
+              <button onClick={this.props.onAccept} className="Button Button--primary">
                 Confirm
               </button>
             </div>

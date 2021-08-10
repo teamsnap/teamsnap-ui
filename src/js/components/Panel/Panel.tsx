@@ -12,9 +12,9 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
 class Panel extends React.PureComponent<PropTypes.InferProps<typeof Panel.propTypes>, any> {
   static propTypes = {
@@ -24,33 +24,25 @@ class Panel extends React.PureComponent<PropTypes.InferProps<typeof Panel.propTy
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
-    otherProps: PropTypes.object
+    otherProps: PropTypes.object,
   };
 
   static defaultProps = {
-    className: "Panel",
+    className: 'Panel',
     isStriped: false,
     maxSize: null,
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {
-    const {
-      children,
-      className,
-      mods,
-      isStriped,
-      maxSize,
-      style,
-      otherProps
-    } = this.props;
+    const { children, className, mods, isStriped, maxSize, style, otherProps } = this.props;
 
     const panelClasses = getClassName(
       className,
       maxSize && `Panel--${maxSize}Max-stacked`,
-      isStriped && "Panel--striped",
+      isStriped && 'Panel--striped',
       mods
     );
 

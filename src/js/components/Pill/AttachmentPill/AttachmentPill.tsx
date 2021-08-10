@@ -11,11 +11,8 @@ type Props = {
 const AttachmentPill: React.FunctionComponent<Props> = ({ active, children }: Props) => (
   <Grid>
     <Cell mods="u-size1of1">
-      <Pill
-        align='ends'
-        active={ active }
-      >
-        { children }
+      <Pill align="ends" active={active}>
+        {children}
       </Pill>
     </Cell>
   </Grid>

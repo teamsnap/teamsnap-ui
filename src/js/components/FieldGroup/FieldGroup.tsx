@@ -12,16 +12,19 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { Icon } from "../Icon";
-import { getClassName } from "../../utils/helpers";
-import { Status, Statuses } from "../../types";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { Icon } from '../Icon';
+import { getClassName } from '../../utils/helpers';
+import { Status, Statuses } from '../../types';
 
-class FieldGroup extends React.PureComponent<PropTypes.InferProps<typeof FieldGroup.propTypes>, any> {
+class FieldGroup extends React.PureComponent<
+  PropTypes.InferProps<typeof FieldGroup.propTypes>,
+  any
+> {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    status: PropTypes.oneOf([null, "success", "error"]),
+    status: PropTypes.oneOf([null, 'success', 'error']),
     className: PropTypes.string,
     mods: PropTypes.string,
     style: PropTypes.object,
@@ -32,22 +35,23 @@ class FieldGroup extends React.PureComponent<PropTypes.InferProps<typeof FieldGr
 
   static defaultProps = {
     status: null,
-    className: "FieldGroup",
+    className: 'FieldGroup',
     mods: null,
     style: {},
-    otherProps: {}
+    otherProps: {},
   };
 
   render() {
-    const { children, status, className, mods, style, otherProps, isDisabled, isInline } = this.props;
+    const { children, status, className, mods, style, otherProps, isDisabled, isInline } =
+      this.props;
 
     const fieldClasses = getClassName(
       className,
-      status === Statuses.ERROR && "is-notValid",
-      status === Statuses.SUCCESS && "is-valid",
-      status === Statuses.WARNING && "is-warning",
-      isDisabled && "is-disabled",
-      isInline && "FieldGroup--inline",
+      status === Statuses.ERROR && 'is-notValid',
+      status === Statuses.SUCCESS && 'is-valid',
+      status === Statuses.WARNING && 'is-warning',
+      isDisabled && 'is-disabled',
+      isInline && 'FieldGroup--inline',
       mods
     );
 
