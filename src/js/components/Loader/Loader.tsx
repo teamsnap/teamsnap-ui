@@ -54,9 +54,9 @@ class Loader extends React.PureComponent<PropTypes.InferProps<typeof Loader.prop
   renderAnimation = (type) => {
     if (type === 'jello') {
       return this.renderJelloAnimation();
-    } else if (type === 'pulse') {
+    } if (type === 'pulse') {
       return this.renderPulseAnimation();
-    } else if (type === 'spin') {
+    } if (type === 'spin') {
       return this.renderSpinAnimation();
     }
   };

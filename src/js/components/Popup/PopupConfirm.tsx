@@ -56,7 +56,7 @@ export default class Popup extends React.Component<
         </button>
         <div
           className={
-            'Popup-container Popup-container--overlay' + (this.state.isPopupOpen ? ' is-open' : '')
+            `Popup-container Popup-container--overlay${  this.state.isPopupOpen ? ' is-open' : ''}`
           }
           style={this.props.popupStyle}
         >

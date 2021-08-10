@@ -10,7 +10,7 @@ export default {
 };
 
 stories.add('Default', () => (
-  <div style={{ padding: 20 + 'px' }}>
+  <div style={{ padding: `${20  }px` }}>
     <StepNav
       title="Lets get familiar with TeamSnap"
       steps={[
@@ -35,7 +35,7 @@ stories.add('Default', () => (
           },
         },
         {
-          name: "Message your coach to let them know you're signed up!",
+          name: 'Message your coach to let them know you\'re signed up!',
           icon: 'messages',
         },
       ]}
@@ -44,9 +44,9 @@ stories.add('Default', () => (
 ));
 
 stories.add('Small', () => (
-  <div style={{ padding: 20 + 'px' }}>
+  <div style={{ padding: `${20  }px` }}>
     <StepNav
-      isSmall={true}
+      isSmall
       title="Lets get familiar with TeamSnap"
       steps={[
         {
@@ -70,7 +70,7 @@ stories.add('Small', () => (
           },
         },
         {
-          name: "Message your coach to let them know you're signed up!",
+          name: 'Message your coach to let them know you\'re signed up!',
           icon: 'messages',
         },
       ]}

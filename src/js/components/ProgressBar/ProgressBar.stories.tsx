@@ -32,10 +32,10 @@ stories.add(
           justifyContent: 'space-evenly',
         }}
       >
-        <ProgressBar progress={33} size={size} style={{ height: 100 + 'px' }} isVertical={true} />
-        <ProgressBar progress={33} size={size} style={{ height: 150 + 'px' }} isVertical={true} />
-        <ProgressBar progress={33} size={size} style={{ height: 200 + 'px' }} isVertical={true} />
-        <ProgressBar progress={33} size={size} style={{ height: 250 + 'px' }} isVertical={true} />
+        <ProgressBar progress={33} size={size} style={{ height: `${100  }px` }} isVertical />
+        <ProgressBar progress={33} size={size} style={{ height: `${150  }px` }} isVertical />
+        <ProgressBar progress={33} size={size} style={{ height: `${200  }px` }} isVertical />
+        <ProgressBar progress={33} size={size} style={{ height: `${250  }px` }} isVertical />
       </div>
     );
   },

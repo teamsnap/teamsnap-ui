@@ -328,7 +328,7 @@ stories.add('Default', () => (
 stories.add('Selectable Rows', () => (
   <PaginatedTable
     columns={columns}
-    rowsAreSelectable={true}
+    rowsAreSelectable
     bulkActions={[
       {
         label: 'Log Selected',
@@ -345,7 +345,7 @@ stories.add('Selectable Rows', () => (
     ]}
     mapDataToRow={mapData}
     loadData={loadData}
-    includeBasicSearch={true}
+    includeBasicSearch
     searchPlaceholder="Search members by name"
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
@@ -359,7 +359,7 @@ stories.add('Basic Search', () => (
     loadData={loadSearchData}
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
-    includeBasicSearch={true}
+    includeBasicSearch
     searchPlaceholder="Search members by name"
   />
 ));
@@ -388,7 +388,7 @@ stories.add('With Search Filters', () => (
       PaginatedTable.Filter('birthdate', 'Participants Birthdate', undefined, 'date'),
     ]}
     paginationPlacement={Placement.Bottom}
-    includeBasicSearch={true}
+    includeBasicSearch
     searchPlaceholder="Search members by name"
   />
 ));

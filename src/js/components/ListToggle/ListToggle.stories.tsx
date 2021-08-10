@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { ListToggle } from '../ListToggle';
+import { ListToggle } from '.';
 
 const stories = storiesOf('ListToggle', module);
 

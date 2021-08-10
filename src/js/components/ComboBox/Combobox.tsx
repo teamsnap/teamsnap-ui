@@ -72,8 +72,8 @@ const ComboBox: ComboBoxType = (props) => {
   }, [flyoutVisible]);
 
   const sortFilters = () => {
-    let checked = [];
-    let unchecked = [];
+    const checked = [];
+    const unchecked = [];
 
     items.map((item) => {
       if (selectedFilters.includes(item.value)) {

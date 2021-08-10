@@ -56,7 +56,7 @@ export default class PopUpAction extends React.Component<
   }
 
   togglePopup() {
-    let isPopupOpen = this.state.isPopupOpen;
+    const {isPopupOpen} = this.state;
     this.setState({
       isPopupOpen: !isPopupOpen,
     });
@@ -76,7 +76,7 @@ export default class PopUpAction extends React.Component<
 
   render() {
     const dirString = this.props.direction.reduce((acc, cur) => {
-      return acc + ` Popup-container--${cur}`;
+      return `${acc  } Popup-container--${cur}`;
     }, '');
     return (
       <>
@@ -119,10 +119,10 @@ export default class PopUpAction extends React.Component<
         <div className="Popup">
           <div
             className={
-              'Popup-container Popup-container--overlay' +
-              (this.state.selectedAction.requiresConfirmation && this.state.isConfirmOpen
+              `Popup-container Popup-container--overlay${ 
+              this.state.selectedAction.requiresConfirmation && this.state.isConfirmOpen
                 ? ' is-open'
-                : '')
+                : ''}`
             }
           >
             <div className="Popup-content u-padMd">

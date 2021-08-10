@@ -34,7 +34,7 @@ const Skittles: React.FunctionComponent<PropTypes> = ({ text, style, mods }) => 
       style={{ width: '22px', height: '22px', display: 'inline-block', ...style }}
       className={`u-colorPrimary1 u-textCenter u-borderRadiusMd u-fontSizeXs u-padXs ${
         colorMap[colorHash]
-      } ${intensityHash >= 2 ? 'u-colorNeutral1' : ''} ${mods ? mods : ''}`}
+      } ${intensityHash >= 2 ? 'u-colorNeutral1' : ''} ${mods || ''}`}
     >
       {text.substr(0, 2)}
     </span>

@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Tag: React.FunctionComponent<Props> = ({ icon, mods, text }: Props) => {
-  let classes = mods ? `Tag ${mods}` : 'Tag';
+  const classes = mods ? `Tag ${mods}` : 'Tag';
 
   return (
     <span className={classes}>

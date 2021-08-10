@@ -1,6 +1,6 @@
-import { Select } from '../Select';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
+import { Select } from '../Select';
 
 const propTypes = {
   options: PropTypes.arrayOf(PropTypes.number).isRequired,
@@ -15,7 +15,7 @@ const PaginationSelect: React.FunctionComponent<PropTypes.InferProps<typeof prop
 }) => {
   const selectOptions = options.map((num) => ({
     label: `${num} Rows`,
-    value: '' + num,
+    value: `${  num}`,
   }));
   return (
     <Select

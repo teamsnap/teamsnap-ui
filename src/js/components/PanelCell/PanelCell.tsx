@@ -38,6 +38,7 @@ class PanelCell extends React.PureComponent<PropTypes.InferProps<typeof PanelCel
     style: {},
     otherProps: {},
   };
+
   renderTitle = () => <h4 className="Panel-title">{this.props.children}</h4>;
 
   render() {

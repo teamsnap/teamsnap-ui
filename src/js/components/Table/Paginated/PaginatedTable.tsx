@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { Table } from '../../Table';
+import { Table } from '..';
 import { convertObjsToValueLabel, usePagination } from './helpers';
 import {
   PaginationCurrentSubsetDisplay,
@@ -156,7 +156,7 @@ const PaginatedTable: PaginatedTableProps = ({
       sortBy: sortName,
       sortAsc: sortAscending,
       filter:
-        includeBasicSearch || activeFilters ? { searchTerm: searchTerm, ...activeFilters } : null,
+        includeBasicSearch || activeFilters ? { searchTerm, ...activeFilters } : null,
     }).then((data) => {
       setDataSet(data);
       setIsLoading(false);
@@ -208,8 +208,7 @@ const PaginatedTable: PaginatedTableProps = ({
     // use IDs as keys to determine uniqueness
     const selectedids = selected.map((e) => e.id);
     rows = rows.map((ele) =>
-      Object.assign({}, ele, {
-        selected: (
+      ({ ...ele, selected: (
           <div>
             <Checkbox
               name={`select-${ele.id}`}
@@ -226,8 +225,7 @@ const PaginatedTable: PaginatedTableProps = ({
               }}
             />
           </div>
-        ),
-      })
+        )})
     );
   }
 
@@ -323,9 +321,7 @@ const PaginatedTable: PaginatedTableProps = ({
         ) : null}
         <div className="Grid-cell u-sizeFill u-md-size1of4">
           {customSearchFilter || includeBasicSearch ? (
-            customSearchFilter ? (
-              customSearchFilter
-            ) : (
+            customSearchFilter || (
               <BasicSearch
                 searchPlaceholder={searchPlaceholder}
                 searchFunction={updateSearchFilter}

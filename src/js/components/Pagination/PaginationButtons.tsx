@@ -1,8 +1,8 @@
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
 import { Button } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
 import { getLastPageIndex } from '../Table/Paginated/helpers';
-import * as PropTypes from 'prop-types';
-import * as React from 'react';
 import { getClassName } from '../../utils/helpers';
 
 const propTypes = {
@@ -36,7 +36,7 @@ const PaginationButtons: React.FunctionComponent<PropTypes.InferProps<typeof pro
 
   const renderPaginateButton = (key, text, isCurrentPage, isDisabled, pageForClick) => {
     let linkClassName = 'PaginateItem';
-    let onclick = !isDisabled ? () => setCurrentPage(pageForClick) : null;
+    const onclick = !isDisabled ? () => setCurrentPage(pageForClick) : null;
 
     if (isCurrentPage) {
       linkClassName = 'PaginateItemIsActive';
@@ -58,7 +58,7 @@ const PaginationButtons: React.FunctionComponent<PropTypes.InferProps<typeof pro
   return (
     <ButtonGroup
       className={buttonGroupClasses}
-      style={Object.assign({}, style, { overflow: 'auto' })}
+      style={({ ...style, overflow: 'auto'})}
     >
       {renderPaginateButton('P', 'Previous', false, currentPage === 1, currentPage - 1)}
       {renderPaginateButton(1, '1', currentPage === 1, currentPage === 1, 1)}

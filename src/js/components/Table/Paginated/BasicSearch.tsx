@@ -48,7 +48,7 @@ const BasicSearchFilter: React.FunctionComponent<Props> = ({
       <input
         value={searchValue}
         name="searchField"
-        className={`BasicSearch Input Grid-cell`}
+        className="BasicSearch Input Grid-cell"
         placeholder={searchPlaceholder}
         onChange={updateSearchField}
         onKeyPress={handleSearchKeyPress}

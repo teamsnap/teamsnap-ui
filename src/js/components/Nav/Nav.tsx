@@ -97,9 +97,9 @@ type ItemType = React.FunctionComponent<PropTypes.InferProps<typeof itemPropType
 
 const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, wrapItem }) => {
   const maybeIcon = icon ? <Icon name={icon} mods={`${iconModifiers}`} /> : null;
-  const Wrapper = wrapItem ? wrapItem : ({ children }) => <>{children}</>;
+  const Wrapper = wrapItem || (({ children }) => <>{children}</>);
   return (
-    <li className={`${isActive ? `is-active ` : ``}Nav-item`} onClick={onClick || (() => {})}>
+    <li className={`${isActive ? 'is-active ' : ''}Nav-item`} onClick={onClick || (() => {})}>
       <Wrapper>
         {maybeIcon} <span className="Nav-itemTitle">{children}</span>
       </Wrapper>

@@ -41,6 +41,7 @@ class Grid extends React.PureComponent<PropTypes.InferProps<typeof Grid.propType
     style: {},
     otherProps: {},
   };
+
   render() {
     const {
       children,

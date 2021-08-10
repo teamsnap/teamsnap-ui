@@ -31,7 +31,7 @@ type CheckboxType = React.FunctionComponent<PropTypes.InferProps<typeof propType
 const Checkbox: CheckboxType = (props) => {
   const { mods, inputProps } = props;
 
-  let modClasses = `${mods}${
+  const modClasses = `${mods}${
     inputProps.checked === CheckboxStates.INDETERMINATE ? ' Checkbox--indeterminate' : ''
   }`;
   return <InputControl type="checkbox" {...props} mods={modClasses} />;

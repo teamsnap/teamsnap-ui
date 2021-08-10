@@ -2,6 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text } from '@storybook/addon-knobs';
 import Nav from './Nav';
+
 const stories = storiesOf('Nav', module);
 
 export default {
@@ -71,7 +72,7 @@ stories.add('Default', () => (
                 {
                   title: 'Organization Home',
                   wrapItem: ({ children }) => (
-                    <a href="https://organization.teamsnap.com" target="_blank" rel="noopener">
+                    <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
                       {children}
                     </a>
                   ),
@@ -173,7 +174,7 @@ stories.add('With Subheading', () => (
                 {
                   title: 'Organization Home',
                   wrapItem: ({ children }) => (
-                    <a href="https://organization.teamsnap.com" target="_blank" rel="noopener">
+                    <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
                       {children}
                     </a>
                   ),
@@ -273,7 +274,7 @@ stories.add('With content overlay', () => (
                 {
                   title: 'Organization Home',
                   wrapItem: ({ children }) => (
-                    <a href="https://organization.teamsnap.com" target="_blank" rel="noopener">
+                    <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
                       {children}
                     </a>
                   ),
@@ -480,7 +481,7 @@ stories.add('With `Nav-child` class', () => (
                       className="Nav-child"
                       href="https://organization.teamsnap.com"
                       target="_blank"
-                      rel="noopener"
+                      rel="noopener noreferrer"
                     >
                       {children}
                     </a>
@@ -597,7 +598,7 @@ stories.add('with `Nav-selected` class', () => (
                           className="Nav-selected"
                           href="https://organization.teamsnap.com"
                           target="_blank"
-                          rel="noopener"
+                          rel="noopener noreferrer"
                         >
                           {children}
                         </a>
@@ -606,7 +607,7 @@ stories.add('with `Nav-selected` class', () => (
                     {
                       title: 'Spectacular Amazing Fall 2021',
                       wrapItem: ({ children }) => (
-                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener">
+                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
                           {children}
                         </a>
                       ),
@@ -614,7 +615,7 @@ stories.add('with `Nav-selected` class', () => (
                     {
                       title: 'Summer 2021',
                       wrapItem: ({ children }) => (
-                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener">
+                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
                           {children}
                         </a>
                       ),
@@ -628,7 +629,7 @@ stories.add('with `Nav-selected` class', () => (
                     {
                       title: 'Spring 2021',
                       wrapItem: ({ children }) => (
-                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener">
+                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
                           {children}
                         </a>
                       ),
@@ -699,7 +700,7 @@ stories.add('with single organization', () => (
                           className="Nav-selected"
                           href="https://organization.teamsnap.com"
                           target="_blank"
-                          rel="noopener"
+                          rel="noopener noreferrer"
                         >
                           {children}
                         </a>
@@ -708,7 +709,7 @@ stories.add('with single organization', () => (
                     {
                       title: 'Spectacular Amazing Fall 2021',
                       wrapItem: ({ children }) => (
-                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener">
+                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
                           {children}
                         </a>
                       ),
@@ -716,7 +717,7 @@ stories.add('with single organization', () => (
                     {
                       title: 'Summer 2021',
                       wrapItem: ({ children }) => (
-                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener">
+                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
                           {children}
                         </a>
                       ),
@@ -730,7 +731,7 @@ stories.add('with single organization', () => (
                     {
                       title: 'Spring 2021',
                       wrapItem: ({ children }) => (
-                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener">
+                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
                           {children}
                         </a>
                       ),

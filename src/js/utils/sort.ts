@@ -12,9 +12,9 @@ const sortByAlpha = (a, b) => {
 
   if (aString === bString) {
     return 0;
-  } else {
+  } 
     return aString < bString ? -1 : 1;
-  }
+  
 };
 
 // Sort by Numeric parseFloat characters, this will help in sorting number by 'human' methods
@@ -34,9 +34,9 @@ const sortByAlphaNumeric = (a, b) => {
   // Parsed alpha strings are equal, attempt to sort remaining 'numeric'
   if (aValue === bValue) {
     return sortByNumeric(a, b);
-  } else {
+  } 
     return sortByAlpha(aValue, bValue);
-  }
+  
 };
 
 // Define sortTypes for easier selection, will default in compare to 'alphaNumeric'
@@ -70,7 +70,7 @@ const compare = (options) => (a, b) => {
     sortValue = sortType.indexOf(aValue) - sortType.indexOf(bValue);
   } else {
     // Use selected sortType or default 'alphaNumeric'
-    const sorter = sortTypes[sortType] || sortTypes['alphaNumeric'];
+    const sorter = sortTypes[sortType] || sortTypes.alphaNumeric;
     sortValue = sorter(aValue, bValue);
   }
 

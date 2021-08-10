@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Icon } from '../Icon';
-import { Pill, CheckboxPill } from './';
+import { Pill, CheckboxPill } from '.';
 import { AttachmentPill } from './AttachmentPill';
 
 const stories = storiesOf('Pill', module);

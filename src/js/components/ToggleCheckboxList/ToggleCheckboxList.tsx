@@ -88,7 +88,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
     let rowData = [];
     const headerName = `${heading}-${subheading}`;
 
-    if (headerName in headerStatus && headerStatus[headerName]['activeCount'] >= 0) {
+    if (headerName in headerStatus && headerStatus[headerName].activeCount >= 0) {
       // Remove rows which are associated with the header's naming convention
       rowData = activeRows.filter((row) => !row.includes(headerName));
 
@@ -134,15 +134,15 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
       newActiveList = activeRows.filter((item) => item != division);
 
       activeCount = headerStatus[headerName]
-        ? headerStatus[headerName]['activeCount'] - 1
-        : headerStatus[headerName]['activeCount'];
+        ? headerStatus[headerName].activeCount - 1
+        : headerStatus[headerName].activeCount;
 
       if (activeCount > 0 && activeCount < children.length) {
         newStatus = CheckboxStates.INDETERMINATE;
       }
     } else {
       // Row doesn't exists, select it
-      activeCount = headerStatus[headerName] ? headerStatus[headerName]['activeCount'] + 1 : 1;
+      activeCount = headerStatus[headerName] ? headerStatus[headerName].activeCount + 1 : 1;
 
       if (activeCount === children.length) {
         newStatus = CheckboxStates.TRUE;
@@ -156,7 +156,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
     const itemActiveStatus = {
       ...headerStatus,
       [headerName]: {
-        activeCount: activeCount,
+        activeCount,
         status: newStatus,
       },
     };
@@ -201,7 +201,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
 
       if (headerStatus[headerName]) {
         selected =
-          headerStatus[headerName]['activeCount'] == getChildren(idx).length
+          headerStatus[headerName].activeCount == getChildren(idx).length
             ? 'Panel-header--active'
             : '';
       }
@@ -236,7 +236,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
                 name={headerName}
                 type="checkbox"
                 formFieldProps={{
-                  checked: headerStatus[headerName] && headerStatus[headerName]['status'],
+                  checked: headerStatus[headerName] && headerStatus[headerName].status,
                   onClick: () => toggleSubheadingRows(heading, subheading, idx),
                 }}
               />

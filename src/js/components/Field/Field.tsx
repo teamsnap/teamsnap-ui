@@ -92,8 +92,8 @@ const Field: FieldType = ({
               <Checkbox
                 name={name}
                 inputProps={{
-                  checked: checked,
-                  onClick: onClick,
+                  checked,
+                  onClick,
                   disabled: isDisabled,
                 }}
                 label={text}
@@ -105,8 +105,8 @@ const Field: FieldType = ({
               <Radio
                 name={name}
                 inputProps={{
-                  checked: checked,
-                  onClick: onClick,
+                  checked,
+                  onClick,
                   disabled: isDisabled,
                 }}
                 label={text}
