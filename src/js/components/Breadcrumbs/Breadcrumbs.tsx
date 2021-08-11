@@ -75,7 +75,6 @@ Breadcrumbs.propTypes = propTypes;
 
 Breadcrumbs.defaultProps = {
   className: null,
-  breadcrumbs: [],
   id: null,
   style: null,
   separator: <Icon className="Icon Icon-separator" name="right" />,
