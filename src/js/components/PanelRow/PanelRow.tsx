@@ -16,45 +16,51 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 
-class PanelRow extends React.PureComponent<PropTypes.InferProps<typeof PanelRow.propTypes>, any> {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    isWithCells: PropTypes.bool,
-    isParent: PropTypes.bool,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    role: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-  };
+const propTypes = {
+  children: PropTypes.node.isRequired,
+  isWithCells: PropTypes.bool,
+  isParent: PropTypes.bool,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  role: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+};
 
-  static defaultProps = {
-    className: 'Panel-row',
-    isWithCells: null,
-    isParent: null,
-    mods: null,
-    role: 'row',
-    style: {},
-    otherProps: {},
-  };
+type Props = PropTypes.InferProps<typeof propTypes>;
 
-  render() {
-    const { children, isWithCells, isParent, className, mods, role, style, otherProps } =
-      this.props;
+const PanelRow = ({
+  children,
+  isWithCells,
+  isParent,
+  className,
+  mods,
+  role,
+  style,
+  otherProps,
+}: Props) => {
+  const panelClasses = getClassName(
+    className,
+    isWithCells && 'Panel-row--withCells',
+    isParent && 'Panel-row--parent',
+    mods
+  );
 
-    const panelClasses = getClassName(
-      className,
-      isWithCells && 'Panel-row--withCells',
-      isParent && 'Panel-row--parent',
-      mods
-    );
+  return (
+    <div className={panelClasses} role={role} style={style} {...otherProps}>
+      {children}
+    </div>
+  );
+};
 
-    return (
-      <div className={panelClasses} role={role} style={style} {...otherProps}>
-        {children}
-      </div>
-    );
-  }
-}
+PanelRow.defaultProps = {
+  className: 'Panel-row',
+  isWithCells: null,
+  isParent: null,
+  mods: null,
+  role: 'row',
+  style: {},
+  otherProps: {},
+};
 
 export default PanelRow;

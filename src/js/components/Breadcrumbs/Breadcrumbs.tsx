@@ -23,13 +23,9 @@ const propTypes = {
   separator: PropTypes.node,
 };
 
-const Breadcrumbs: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = ({
-  className,
-  breadcrumbs,
-  id,
-  style,
-  separator,
-}) => {
+type Props = PropTypes.InferProps<typeof propTypes>;
+
+const Breadcrumbs = ({ className, breadcrumbs, id, style, separator }: Props) => {
   const Separator = () => <>{separator}</>;
 
   const renderSeparator = () => {
