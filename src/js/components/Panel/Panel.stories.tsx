@@ -6,6 +6,7 @@ import { PanelBody } from '../PanelBody';
 import { PanelFooter } from '../PanelFooter';
 import { PanelRow } from '../PanelRow';
 import { PanelCell } from '../PanelCell';
+import { PanelRowExpandable } from '../PanelRowExpandable';
 
 const stories = storiesOf('Panel', module);
 
@@ -111,5 +112,20 @@ stories.add('Image Header Panel', () => (
         Action Button Placeholder
       </span>
     </PanelFooter>
+  </Panel>
+));
+
+stories.add('Expandable Panel Row', () => (
+  <Panel>
+    <PanelRowExpandable
+      parentColumns={[
+        { children: 'Homer Simpson', mods: 'u-size1of2' },
+        { children: 'Marge Simpson', mods: 'u-size1of2' },
+      ]}
+      childColumns={[
+        { children: 'Bart Simpson', mods: 'u-size1of2' },
+        { children: 'Lisa Simpson', mods: 'u-size1of2' },
+      ]}
+    />
   </Panel>
 ));
