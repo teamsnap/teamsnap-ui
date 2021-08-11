@@ -13,18 +13,22 @@
  */
 
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
+
 import { getClassName } from '../../utils/helpers';
 
-export interface Props {
-  children: React.ReactNode;
-  isTitle: boolean;
-  isHeader: boolean;
-  className: string;
-  mods: string;
-  role: string;
-  style: React.CSSProperties;
-  otherProps: object;
-}
+const propTypes = {
+  children: PropTypes.node,
+  isHeader: PropTypes.bool,
+  isTitle: PropTypes.bool,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  role: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+};
+
+type Props = PropTypes.InferProps<typeof propTypes>;
 
 const PanelCell = ({
   children,
