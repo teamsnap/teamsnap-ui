@@ -13,45 +13,49 @@
  */
 
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 
-class PanelCell extends React.PureComponent<PropTypes.InferProps<typeof PanelCell.propTypes>, any> {
-  static propTypes = {
-    children: PropTypes.node,
-    isTitle: PropTypes.bool,
-    isHeader: PropTypes.bool,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    role: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-  };
-
-  static defaultProps = {
-    children: null,
-    isTitle: false,
-    isHeader: false,
-    className: 'Panel-cell',
-    mods: null,
-    role: 'cell',
-    style: {},
-    otherProps: {},
-  };
-
-  renderTitle = () => <h4 className="Panel-title">{this.props.children}</h4>;
-
-  render() {
-    const { children, isHeader, isTitle, className, mods, role, style, otherProps } = this.props;
-
-    const cellClasses = getClassName(className, isHeader && 'Panel-cell--header', mods);
-
-    return (
-      <div className={cellClasses} role={role} style={style} {...otherProps}>
-        {isTitle ? this.renderTitle() : children}
-      </div>
-    );
-  }
+export interface Props {
+  children: React.ReactNode;
+  isTitle: boolean;
+  isHeader: boolean;
+  className: string;
+  mods: string;
+  role: string;
+  style: React.CSSProperties;
+  otherProps: object;
 }
+
+const PanelCell = ({
+  children,
+  isHeader,
+  isTitle,
+  className,
+  mods,
+  role,
+  style,
+  otherProps,
+}: Props) => {
+  const renderTitle = () => <h4 className="Panel-title">{children}</h4>;
+
+  const cellClasses = getClassName(className, isHeader && 'Panel-cell--header', mods);
+
+  return (
+    <div className={cellClasses} role={role} style={style} {...otherProps}>
+      {isTitle ? renderTitle() : children}
+    </div>
+  );
+};
+
+PanelCell.defaultProps = {
+  children: null,
+  isTitle: false,
+  isHeader: false,
+  className: 'Panel-cell',
+  mods: null,
+  role: 'cell',
+  style: {},
+  otherProps: {},
+};
 
 export default PanelCell;

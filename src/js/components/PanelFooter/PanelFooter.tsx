@@ -13,37 +13,29 @@
  */
 
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 
-class PanelFooter extends React.PureComponent<
-  PropTypes.InferProps<typeof PanelFooter.propTypes>,
-  any
-> {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-  };
-
-  static defaultProps = {
-    className: 'Panel-footer',
-    mods: null,
-    style: {},
-    otherProps: {},
-  };
-
-  render() {
-    const { children, className, mods, style, otherProps } = this.props;
-
-    return (
-      <footer className={getClassName(className, mods)} style={style} {...otherProps}>
-        {children}
-      </footer>
-    );
-  }
+export interface Props {
+  children: React.ReactNode;
+  className?: string;
+  mods?: string;
+  style?: React.CSSProperties;
+  otherProps?: object;
 }
+
+const PanelFooter = ({ children, className, mods, style, otherProps }: Props) => {
+  return (
+    <footer className={getClassName(className, mods)} style={style} {...otherProps}>
+      {children}
+    </footer>
+  );
+};
+
+PanelFooter.defaultProps = {
+  className: 'Panel-footer',
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default PanelFooter;

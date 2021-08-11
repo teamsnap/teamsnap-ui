@@ -22,7 +22,7 @@ export interface Props {
   className?: string;
   mods?: string;
   style?: React.CSSProperties;
-  otherProps?: Object;
+  otherProps?: object;
 }
 
 const Panel = ({ children, className, mods, isStriped, maxSize, style, otherProps }: Props) => {
@@ -32,8 +32,6 @@ const Panel = ({ children, className, mods, isStriped, maxSize, style, otherProp
     isStriped && 'Panel--striped',
     mods
   );
-
-  console.log('style', style);
 
   return (
     <div className={panelClasses} style={style} {...otherProps}>
