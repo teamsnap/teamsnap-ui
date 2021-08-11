@@ -16,32 +16,30 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 
-class Cell extends React.PureComponent<PropTypes.InferProps<typeof Cell.propTypes>, any> {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-  };
+const propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+};
 
-  static defaultProps = {
-    children: null,
-    className: 'Grid-cell',
-    mods: null,
-    style: {},
-    otherProps: {},
-  };
+const Cell = (props: PropTypes.InferProps<typeof propTypes>) => {
+  const { children, className, mods, style, otherProps } = props;
 
-  render() {
-    const { children, className, mods, style, otherProps } = this.props;
+  return (
+    <div className={getClassName(className, mods)} style={style} {...otherProps}>
+      {children}
+    </div>
+  );
+};
 
-    return (
-      <div className={getClassName(className, mods)} style={style} {...otherProps}>
-        {children}
-      </div>
-    );
-  }
-}
+Cell.defaultProps = {
+  children: null,
+  className: 'Grid-cell',
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default Cell;

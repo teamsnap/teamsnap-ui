@@ -67,15 +67,15 @@ const ComboBox: ComboBoxType = (props) => {
     ? uncheckedfilterList.filter((item) => item.label.includes(searchParam))
     : uncheckedfilterList;
 
-  React.useEffect(() => {
-    sortFilters();
-  }, [flyoutVisible]);
+  const createLabel = (acc, filter) => {
+    return `${acc}, ${items.find((item) => item.value === filter.value).label}`;
+  };
 
   const sortFilters = () => {
     const checked = [];
     const unchecked = [];
 
-    items.map((item) => {
+    items.forEach((item) => {
       if (selectedFilters.includes(item.value)) {
         checked.push(item);
       } else {
@@ -88,8 +88,15 @@ const ComboBox: ComboBoxType = (props) => {
     setUncheckedFilterList(unchecked);
   };
 
-  const createLabel = (acc, filter) => {
-    return `${acc}, ${items.find((item) => item.value == filter.value).label}`;
+  React.useEffect(() => {
+    sortFilters();
+  }, [flyoutVisible]);
+
+  const clearFilters = () => {
+    setSelectedFilters([]);
+    setHasFilters(false);
+    onChange([]);
+    toggleFlyout(!flyoutVisible);
   };
 
   const applyFilters = () => {
@@ -101,13 +108,6 @@ const ComboBox: ComboBoxType = (props) => {
     } else {
       clearFilters();
     }
-  };
-
-  const clearFilters = () => {
-    setSelectedFilters([]);
-    setHasFilters(false);
-    onChange([]);
-    toggleFlyout(!flyoutVisible);
   };
 
   const buildCheckbox = (filter, idx) => {
@@ -123,7 +123,7 @@ const ComboBox: ComboBoxType = (props) => {
           onChange: () => {
             if (selectedFilters.includes(filter.value)) {
               setSelectedFilters(
-                selectedFilters.filter((selectedFilter) => selectedFilter != filter.value)
+                selectedFilters.filter((selectedFilter) => selectedFilter !== filter.value)
               );
             } else {
               setSelectedFilters([...selectedFilters, filter.value]);
@@ -137,6 +137,7 @@ const ComboBox: ComboBoxType = (props) => {
   return (
     <div className={getClassName(className, mods)} style={style} {...otherProps}>
       <button
+        type="submit"
         className={`Combobox-toggle ${hasFilters ? 'Combobox-toggle--active' : ''}`}
         name={name}
         id={name}
