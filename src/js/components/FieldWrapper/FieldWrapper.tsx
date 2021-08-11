@@ -37,7 +37,7 @@ const propTypes = {
   message: PropTypes.string,
 };
 
-const FieldWrapper = (props: PropTypes.InferProps<typeof FieldWrapper.propTypes>) => {
+const FieldWrapper = (props: PropTypes.InferProps<typeof propTypes>) => {
   const renderFieldComponent = () => {
     const { name, field, fieldProps } = props;
 

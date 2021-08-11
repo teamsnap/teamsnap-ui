@@ -23,7 +23,7 @@ const propTypes = {
   otherProps: PropTypes.object,
 };
 
-const FieldLabel = (props: PropTypes.InferProps<typeof FieldLabel.propTypes>) => {
+const FieldLabel = (props: PropTypes.InferProps<typeof propTypes>) => {
   const { name, children, className, mods, style, otherProps } = props;
 
   return (

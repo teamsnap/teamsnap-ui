@@ -28,7 +28,7 @@ const propTypes = {
   isInline: PropTypes.bool,
 };
 
-const FieldGroup = (props: PropTypes.InferProps<typeof FieldGroup.propTypes>) => {
+const FieldGroup = (props: PropTypes.InferProps<typeof propTypes>) => {
   const { children, status, className, mods, style, otherProps, isDisabled, isInline } = props;
 
   const fieldClasses = getClassName(

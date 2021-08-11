@@ -24,7 +24,7 @@ const propTypes = {
   status: Status.PropType,
 };
 
-const FieldMessage = (props: PropTypes.InferProps<typeof FieldMessage.propTypes>) => {
+const FieldMessage = (props: PropTypes.InferProps<typeof propTypes>) => {
   const { children, className, mods, style, otherProps, status } = props;
 
   const messageClasses = getClassName(
