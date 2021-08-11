@@ -69,7 +69,7 @@ stories.add('Full Panel', () => (
           with fellow members Dan Aykroyd, Gilda Radner, and John Belushi.
         </PanelCell>
         <PanelCell mods="u-size8of24">
-          <img src="https://www.fillmurray.com/640/360" />
+          <img src="https://www.fillmurray.com/640/360" alt="Full Panel" />
         </PanelCell>
       </PanelRow>
       <PanelRow isWithCells>

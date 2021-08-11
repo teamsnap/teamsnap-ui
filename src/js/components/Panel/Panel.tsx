@@ -13,45 +13,42 @@
  */
 
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 
-class Panel extends React.PureComponent<PropTypes.InferProps<typeof Panel.propTypes>, any> {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    isStriped: PropTypes.bool,
-    maxSize: PropTypes.string,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-  };
-
-  static defaultProps = {
-    className: 'Panel',
-    isStriped: false,
-    maxSize: null,
-    mods: null,
-    style: {},
-    otherProps: {},
-  };
-
-  render() {
-    const { children, className, mods, isStriped, maxSize, style, otherProps } = this.props;
-
-    const panelClasses = getClassName(
-      className,
-      maxSize && `Panel--${maxSize}Max-stacked`,
-      isStriped && 'Panel--striped',
-      mods
-    );
-
-    return (
-      <div className={panelClasses} style={style} {...otherProps}>
-        {children}
-      </div>
-    );
-  }
+export interface Props {
+  children: React.ReactNode;
+  isStriped?: boolean;
+  maxSize?: string;
+  className?: string;
+  mods?: string;
+  style?: React.CSSProperties;
+  otherProps?: Object;
 }
+
+const Panel = ({ children, className, mods, isStriped, maxSize, style, otherProps }: Props) => {
+  const panelClasses = getClassName(
+    className,
+    maxSize && `Panel--${maxSize}Max-stacked`,
+    isStriped && 'Panel--striped',
+    mods
+  );
+
+  console.log('style', style);
+
+  return (
+    <div className={panelClasses} style={style} {...otherProps}>
+      {children}
+    </div>
+  );
+};
+
+Panel.defaultProps = {
+  className: 'Panel',
+  isStriped: false,
+  maxSize: null,
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default Panel;
