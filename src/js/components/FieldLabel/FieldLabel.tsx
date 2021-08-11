@@ -14,36 +14,31 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 
-class FieldLabel extends React.PureComponent<
-  PropTypes.InferProps<typeof FieldLabel.propTypes>,
-  any
-> {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    name: PropTypes.string,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-  };
+const propTypes = {
+  children: PropTypes.node.isRequired,
+  name: PropTypes.string,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+};
 
-  static defaultProps = {
-    name: null,
-    className: 'FieldGroup-label',
-    mods: null,
-    style: {},
-    otherProps: {},
-  };
+const FieldLabel = (props: PropTypes.InferProps<typeof FieldLabel.propTypes>) => {
+  const { name, children, className, mods, style, otherProps } = props;
 
-  render() {
-    const { name, children, className, mods, style, otherProps } = this.props;
+  return (
+    <label htmlFor={name} className={getClassName(className, mods)} style={style} {...otherProps}>
+      {children}
+    </label>
+  );
+};
 
-    return (
-      <label htmlFor={name} className={getClassName(className, mods)} style={style} {...otherProps}>
-        {children}
-      </label>
-    );
-  }
-}
+FieldLabel.defaultProps = {
+  name: null,
+  className: 'FieldGroup-label',
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default FieldLabel;

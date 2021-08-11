@@ -28,29 +28,18 @@ import { Toggle } from '../Toggle';
 import { Select } from '../Select';
 import { Status } from '../../types';
 
-class FieldWrapper extends React.PureComponent<
-  PropTypes.InferProps<typeof FieldWrapper.propTypes>,
-  any
-> {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    field: PropTypes.oneOf(['input', 'checkbox', 'radio', 'toggle', 'select', 'textarea'])
-      .isRequired,
-    fieldProps: PropTypes.any,
-    status: Status.PropType,
-    label: PropTypes.node,
-    message: PropTypes.string,
-  };
+const propTypes = {
+  name: PropTypes.string.isRequired,
+  field: PropTypes.oneOf(['input', 'checkbox', 'radio', 'toggle', 'select', 'textarea']).isRequired,
+  fieldProps: PropTypes.any,
+  status: Status.PropType,
+  label: PropTypes.node,
+  message: PropTypes.string,
+};
 
-  static defaultProps = {
-    fieldProps: {},
-    status: null,
-    label: null,
-    message: null,
-  };
-
-  renderFieldComponent = () => {
-    const { name, field, fieldProps } = this.props;
+const FieldWrapper = (props: PropTypes.InferProps<typeof FieldWrapper.propTypes>) => {
+  const renderFieldComponent = () => {
+    const { name, field, fieldProps } = props;
 
     const FieldTypes = {
       select: Select,
@@ -62,7 +51,7 @@ class FieldWrapper extends React.PureComponent<
 
     const FieldTag = FieldTypes[field] || Input;
 
-    if ((field == 'checkbox' || field == 'radio') && fieldProps.options) {
+    if ((field === 'checkbox' || field === 'radio') && fieldProps.options) {
       return (
         fieldProps.options &&
         fieldProps.options.map(({ label, value, ...optionProps }, i) => (
@@ -86,17 +75,22 @@ class FieldWrapper extends React.PureComponent<
     return <FieldTag name={name} {...fieldProps} />;
   };
 
-  render() {
-    const { status, name, label, message } = this.props;
+  const { status, name, label, message } = props;
 
-    return (
-      <FieldGroup status={status}>
-        {label && <FieldLabel name={name}>{label} </FieldLabel>}
-        {this.renderFieldComponent()}
-        {message && <FieldMessage status={status}>{message}</FieldMessage>}
-      </FieldGroup>
-    );
-  }
-}
+  return (
+    <FieldGroup status={status}>
+      {label && <FieldLabel name={name}>{label} </FieldLabel>}
+      {renderFieldComponent()}
+      {message && <FieldMessage status={status}>{message}</FieldMessage>}
+    </FieldGroup>
+  );
+};
+
+FieldWrapper.defaultProps = {
+  fieldProps: {},
+  status: null,
+  label: null,
+  message: null,
+};
 
 export default FieldWrapper;

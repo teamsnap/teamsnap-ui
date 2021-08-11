@@ -14,53 +14,46 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { Icon } from '../Icon';
 import { getClassName } from '../../utils/helpers';
-import { Status, Statuses } from '../../types';
+import { Statuses } from '../../types';
 
-class FieldGroup extends React.PureComponent<
-  PropTypes.InferProps<typeof FieldGroup.propTypes>,
-  any
-> {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    status: PropTypes.oneOf([null, 'success', 'error']),
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-    isDisabled: PropTypes.bool,
-    isInline: PropTypes.bool,
-  };
+const propTypes = {
+  children: PropTypes.node.isRequired,
+  status: PropTypes.oneOf([null, 'success', 'error']),
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+  isDisabled: PropTypes.bool,
+  isInline: PropTypes.bool,
+};
 
-  static defaultProps = {
-    status: null,
-    className: 'FieldGroup',
-    mods: null,
-    style: {},
-    otherProps: {},
-  };
+const FieldGroup = (props: PropTypes.InferProps<typeof FieldGroup.propTypes>) => {
+  const { children, status, className, mods, style, otherProps, isDisabled, isInline } = props;
 
-  render() {
-    const { children, status, className, mods, style, otherProps, isDisabled, isInline } =
-      this.props;
+  const fieldClasses = getClassName(
+    className,
+    status === Statuses.ERROR && 'is-notValid',
+    status === Statuses.SUCCESS && 'is-valid',
+    status === Statuses.WARNING && 'is-warning',
+    isDisabled && 'is-disabled',
+    isInline && 'FieldGroup--inline',
+    mods
+  );
 
-    const fieldClasses = getClassName(
-      className,
-      status === Statuses.ERROR && 'is-notValid',
-      status === Statuses.SUCCESS && 'is-valid',
-      status === Statuses.WARNING && 'is-warning',
-      isDisabled && 'is-disabled',
-      isInline && 'FieldGroup--inline',
-      mods
-    );
+  return (
+    <div className={fieldClasses} style={style} {...otherProps}>
+      {children}
+    </div>
+  );
+};
 
-    return (
-      <div className={fieldClasses} style={style} {...otherProps}>
-        {children}
-      </div>
-    );
-  }
-}
+FieldGroup.defaultProps = {
+  status: null,
+  className: 'FieldGroup',
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default FieldGroup;
