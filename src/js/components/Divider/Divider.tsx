@@ -14,40 +14,38 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 
-class Divider extends React.PureComponent<PropTypes.InferProps<typeof Divider.propTypes>, any> {
-  static propTypes = {
-    isIndented: PropTypes.bool,
-    isSpaced: PropTypes.bool,
-    isThick: PropTypes.bool,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-  };
+const propTypes = {
+  isIndented: PropTypes.bool,
+  isSpaced: PropTypes.bool,
+  isThick: PropTypes.bool,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+};
 
-  static defaultProps = {
-    isIndented: false,
-    isSpaced: false,
-    isThick: false,
-    className: 'Divider',
-    mods: null,
-    style: {},
-    otherProps: {},
-  };
+const Divider = (props: PropTypes.InferProps<typeof propTypes>) => {
+  const { className, isIndented, isSpaced, isThick, mods, style, otherProps } = props;
 
-  render() {
-    const { className, isIndented, isSpaced, isThick, mods, style, otherProps } = this.props;
+  const dividerClasses = getClassName(
+    className,
+    isIndented && 'Divider--indented',
+    isSpaced && 'Divider--space',
+    isThick && 'Divider--thick',
+    mods
+  );
 
-    const dividerClasses = getClassName(
-      className,
-      isIndented && 'Divider--indented',
-      isSpaced && 'Divider--space',
-      isThick && 'Divider--thick',
-      mods
-    );
+  return <hr className={dividerClasses} style={style} {...otherProps} />;
+};
 
-    return <hr className={dividerClasses} style={style} {...otherProps} />;
-  }
-}
+Divider.defaultProps = {
+  isIndented: false,
+  isSpaced: false,
+  isThick: false,
+  className: 'Divider',
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default Divider;

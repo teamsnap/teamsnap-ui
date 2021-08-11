@@ -16,62 +16,60 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 
-class Grid extends React.PureComponent<PropTypes.InferProps<typeof Grid.propTypes>, any> {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    isFit: PropTypes.bool,
-    isEqualHeight: PropTypes.bool,
-    isAlignCenter: PropTypes.bool,
-    isAlignMiddle: PropTypes.bool,
-    isWithGutter: PropTypes.bool,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-  };
+const propTypes = {
+  children: PropTypes.node.isRequired,
+  isFit: PropTypes.bool,
+  isEqualHeight: PropTypes.bool,
+  isAlignCenter: PropTypes.bool,
+  isAlignMiddle: PropTypes.bool,
+  isWithGutter: PropTypes.bool,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+};
 
-  static defaultProps = {
-    isFit: false,
-    isEqualHeight: false,
-    isAlignCenter: false,
-    isAlignMiddle: false,
-    isWithGutter: false,
-    className: 'Grid',
-    mods: null,
-    style: {},
-    otherProps: {},
-  };
+const Grid = (props: PropTypes.InferProps<typeof propTypes>) => {
+  const {
+    children,
+    isFit,
+    isEqualHeight,
+    isAlignCenter,
+    isAlignMiddle,
+    isWithGutter,
+    className,
+    mods,
+    style,
+    otherProps,
+  } = props;
 
-  render() {
-    const {
-      children,
-      isFit,
-      isEqualHeight,
-      isAlignCenter,
-      isAlignMiddle,
-      isWithGutter,
-      className,
-      mods,
-      style,
-      otherProps,
-    } = this.props;
+  const gridClasses = getClassName(
+    className,
+    isFit && 'Grid--fit',
+    isEqualHeight && 'Grid--equalHeight',
+    isAlignCenter && 'Grid--alignCenter',
+    isAlignMiddle && 'Grid--alignMiddle',
+    isWithGutter && 'Grid--withGutter',
+    mods
+  );
 
-    const gridClasses = getClassName(
-      className,
-      isFit && 'Grid--fit',
-      isEqualHeight && 'Grid--equalHeight',
-      isAlignCenter && 'Grid--alignCenter',
-      isAlignMiddle && 'Grid--alignMiddle',
-      isWithGutter && 'Grid--withGutter',
-      mods
-    );
+  return (
+    <div className={gridClasses} style={style} {...otherProps}>
+      {children}
+    </div>
+  );
+};
 
-    return (
-      <div className={gridClasses} style={style} {...otherProps}>
-        {children}
-      </div>
-    );
-  }
-}
+Grid.defaultProps = {
+  isFit: false,
+  isEqualHeight: false,
+  isAlignCenter: false,
+  isAlignMiddle: false,
+  isWithGutter: false,
+  className: 'Grid',
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default Grid;
