@@ -73,7 +73,7 @@ const Button: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = 
 
   return (
     <button
-      type={type === 'link' ? 'button' : (type as 'button')}
+      type={type === 'submit' ? 'submit' : 'button'}
       className={cname}
       style={style}
       onClick={onClick}

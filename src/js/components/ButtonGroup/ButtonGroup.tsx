@@ -19,43 +19,37 @@ import * as PropTypes from 'prop-types';
 import { Button } from '../Button';
 import { getClassName } from '../../utils/helpers';
 
-class ButtonGroup extends React.PureComponent<
-  PropTypes.InferProps<typeof ButtonGroup.propTypes>,
-  any
-> {
-  static propTypes = {
-    children: PropTypes.node,
-    buttons: PropTypes.array,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-  };
+const propTypes = {
+  children: PropTypes.node,
+  buttons: PropTypes.array,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+};
 
-  static defaultProps = {
-    children: null,
-    buttons: [],
-    className: 'ButtonGroup',
-    mods: null,
-    style: {},
-    otherProps: {},
-  };
-
-  renderButtons = () => {
-    const { buttons } = this.props;
+const ButtonGroup = (props: PropTypes.InferProps<typeof propTypes>) => {
+  const renderButtons = () => {
+    const { buttons } = props;
 
     return buttons.map((button, index) => <Button key={index} {...button} />);
   };
 
-  render() {
-    const { children, className, mods, style, otherProps } = this.props;
+  const { children, className, mods, style, otherProps } = props;
+  return (
+    <div className={getClassName(className, mods)} style={style} {...otherProps}>
+      {children || renderButtons()}
+    </div>
+  );
+};
 
-    return (
-      <div className={getClassName(className, mods)} style={style} {...otherProps}>
-        {children || this.renderButtons()}
-      </div>
-    );
-  }
-}
+ButtonGroup.defaultProps = {
+  children: null,
+  buttons: [],
+  className: 'ButtonGroup',
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default ButtonGroup;
