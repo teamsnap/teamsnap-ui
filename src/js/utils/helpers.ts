@@ -50,7 +50,7 @@ export const setUniqueId = (items, property = 'id') => {
   let updatedItems = null;
 
   // Assume if first row has an id, they all do and just return items
-  if (items.length && items[0].hasOwnProperty(property)) {
+  if (items.length && Object.prototype.isPrototypeOf.call(items[0], property)) {
     updatedItems = items;
   } else {
     updatedItems = items.map((item) => ({ [property]: generateUniqueId('item-'), ...item }));
