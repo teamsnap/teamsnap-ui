@@ -262,7 +262,7 @@ const PaginatedTable: PaginatedTableProps = ({
         itemsPerPage={itemsPerPage}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-        mods={paginationPlacement == Placement.Bottom ? 'u-flexJustifyCenter u-flexGrow1' : ''}
+        mods={paginationPlacement === Placement.Bottom ? 'u-flexJustifyCenter u-flexGrow1' : ''}
       />
       {!hideRowsSelect ? (
         <div className="u-spaceLeftSm">

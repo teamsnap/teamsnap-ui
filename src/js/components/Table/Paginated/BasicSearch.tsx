@@ -1,21 +1,21 @@
 import * as React from 'react';
 import { Icon } from '../../Icon';
+import * as PropTypes from 'prop-types';
 
-interface Props {
-  searchPlaceholder: string;
-  searchFunction: Function;
-}
+const propTypes = {
+  searchPlaceholder: PropTypes.string.isRequired,
+  searchFunction: PropTypes.func.isRequired,
+};
 
-const BasicSearchFilter: React.FunctionComponent<Props> = ({
-  searchPlaceholder,
-  searchFunction,
-}) => {
+type Props = PropTypes.InferProps<typeof propTypes>;
+
+const BasicSearchFilter = ({ searchPlaceholder, searchFunction }: Props) => {
   const [searchValue, setSearchValue] = React.useState('');
   const [lastSearchValue, setLastSearchValue] = React.useState('');
 
   const updateSearchField = React.useCallback((e) => setSearchValue(e.target.value), []);
 
-  const handleSearch = React.useCallback((searchValue) => {
+  const handleSearch = React.useCallback((searchValue: string) => {
     searchFunction({ searchTerm: searchValue });
     setLastSearchValue(searchValue);
   }, []);
@@ -38,7 +38,7 @@ const BasicSearchFilter: React.FunctionComponent<Props> = ({
     [searchValue]
   );
 
-  const showClear = lastSearchValue == searchValue && searchValue != '';
+  const showClear = lastSearchValue === searchValue && searchValue !== '';
 
   return (
     <div
@@ -54,7 +54,11 @@ const BasicSearchFilter: React.FunctionComponent<Props> = ({
         onKeyPress={handleSearchKeyPress}
         style={{ minWidth: 250 }}
       />
-      <button className="InputGroup-icon" onClick={showClear ? clearAction : searchAction}>
+      <button
+        type="submit"
+        className="InputGroup-icon"
+        onClick={showClear ? clearAction : searchAction}
+      >
         <Icon
           className="Icon"
           mods={null}
