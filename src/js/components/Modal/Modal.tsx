@@ -34,6 +34,8 @@ const Modal: React.FC<Props> = ({
         document.body.removeEventListener('click', toggleModal);
       };
     }
+
+    return () => {};
   }, []);
 
   return (
