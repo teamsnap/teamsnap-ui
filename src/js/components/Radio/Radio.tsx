@@ -17,33 +17,32 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+
 import { InputControl } from '../InputControl';
 
-class Radio extends React.PureComponent<PropTypes.InferProps<typeof Radio.propTypes>, any> {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    label: PropTypes.node.isRequired,
-    group: PropTypes.string.isRequired,
-    inputProps: PropTypes.object,
-    isInline: PropTypes.bool,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-  };
+const propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
+  group: PropTypes.string.isRequired,
+  inputProps: PropTypes.object,
+  isInline: PropTypes.bool,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+};
 
-  static defaultProps = {
-    inputProps: {},
-    isInline: false,
-    className: 'Checkbox Checkbox--radio',
-    mods: null,
-    style: {},
-    otherProps: {},
-  };
+type Props = PropTypes.InferProps<typeof propTypes> | any;
 
-  render() {
-    return <InputControl type="radio" {...this.props} />;
-  }
-}
+const Radio = (props: Props) => <InputControl type="radio" {...props} />;
+
+Radio.defaultProps = {
+  inputProps: {},
+  isInline: false,
+  className: 'Checkbox Checkbox--radio',
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default Radio;
