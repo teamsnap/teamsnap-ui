@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { text, select } from '@storybook/addon-knobs';
+import { select } from '@storybook/addon-knobs';
 import RadialProgress from './RadialProgress';
 
 const stories = storiesOf('RadialProgress', module);
