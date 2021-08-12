@@ -14,29 +14,20 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 
-class Loader extends React.PureComponent<PropTypes.InferProps<typeof Loader.propTypes>, any> {
-  static propTypes = {
-    type: PropTypes.oneOf(['jello', 'pulse', 'spin']).isRequired,
-    text: PropTypes.string,
-    message: PropTypes.string,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-  };
+const propTypes = {
+  type: PropTypes.oneOf(['jello', 'pulse', 'spin']).isRequired,
+  text: PropTypes.string,
+  message: PropTypes.string,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+};
 
-  static defaultProps = {
-    text: null,
-    message: null,
-    className: 'Loader',
-    mods: null,
-    style: {},
-    otherProps: {},
-  };
+const Loader = (props: PropTypes.InferProps<typeof propTypes>) => {
+  const renderSpinAnimation = () => <span className="SpinAnimation" />;
 
-  renderSpinAnimation = () => <span className="SpinAnimation" />;
-
-  renderPulseAnimation = () => (
+  const renderPulseAnimation = () => (
     <span className="PulseAnimation">
       <span className="PulseAnimation-dot" />
       <span className="PulseAnimation-dot" />
@@ -44,42 +35,49 @@ class Loader extends React.PureComponent<PropTypes.InferProps<typeof Loader.prop
     </span>
   );
 
-  renderJelloAnimation = () => (
+  const renderJelloAnimation = () => (
     <span className="JelloAnimation">
       <span className="JelloAnimation-shadow" />
       <span className="JelloAnimation-box" />
     </span>
   );
 
-  renderAnimation = (type) => {
+  const renderAnimation = (type) => {
     if (type === 'jello') {
-      return this.renderJelloAnimation();
-    } if (type === 'pulse') {
-      return this.renderPulseAnimation();
-    } if (type === 'spin') {
-      return this.renderSpinAnimation();
+      return renderJelloAnimation();
     }
+    if (type === 'pulse') {
+      return renderPulseAnimation();
+    }
+    return renderSpinAnimation();
   };
 
-  render() {
-    const { type, text, message, className, mods, style, otherProps } = this.props;
+  const { type, text, message, className, mods, style, otherProps } = props;
 
-    if (!text && !message) {
-      return this.renderAnimation(type);
-    }
-
-    const loaderClasses = getClassName(className, type === 'jello' && 'Loader--jello', mods);
-
-    return (
-      <div className={loaderClasses} style={style} {...otherProps}>
-        <div className="Loader-indicator">
-          {this.renderAnimation(type)}
-          {text && <div className="Loader-indicatorText">{text}</div>}
-        </div>
-        {message && <div className="Loader-message">{message}</div>}
-      </div>
-    );
+  if (!text && !message) {
+    return renderAnimation(type);
   }
-}
+
+  const loaderClasses = getClassName(className, type === 'jello' && 'Loader--jello', mods);
+
+  return (
+    <div className={loaderClasses} style={style} {...otherProps}>
+      <div className="Loader-indicator">
+        {renderAnimation(type)}
+        {text && <div className="Loader-indicatorText">{text}</div>}
+      </div>
+      {message && <div className="Loader-message">{message}</div>}
+    </div>
+  );
+};
+
+Loader.defaultProps = {
+  text: null,
+  message: null,
+  className: 'Loader',
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default Loader;

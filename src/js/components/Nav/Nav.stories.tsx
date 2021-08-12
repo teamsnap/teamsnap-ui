@@ -44,8 +44,8 @@ stories.add('Default', () => (
       <div style={{ width: '40%' }}>
         This main and the nav are contained in a div that acts as a frame. The left nav is as tall
         as the frame, which, in this case, has a height manually set to 800px. By default, the nav
-        is as wide as its container, so we use a grid to scope it to the size that we'd like. In
-        this case, It's a flex grid where the nav is contained in a u-size2of12 div.
+        is as wide as its container, so we use a grid to scope it to the size that we&apos;d like.
+        In this case, It&apos;s a flex grid where the nav is contained in a u-size2of12 div.
       </div>
     </main>
   </div>
@@ -71,8 +71,12 @@ stories.add('Default', () => (
               tree: [
                 {
                   title: 'Organization Home',
-                  wrapItem: ({ children }) => (
-                    <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
+                  wrapItem: ({ children }: { children: React.ReactNode }) => (
+                    <a
+                      href="https://organization.teamsnap.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       {children}
                     </a>
                   ),
@@ -126,7 +130,7 @@ stories.add('Default', () => (
       <Nav.Item
         icon="dashboard"
         isActive
-        wrapItem={({ children }) => (
+        wrapItem={({ children }: { children: React.ReactNode }) => (
           <a href="https://go.teamsnap.com" target="_blank" rel="noreferrer">
             {children}
           </a>
@@ -145,8 +149,8 @@ stories.add('Default', () => (
       <div style={{ width: '40%' }}>
         This main and the nav are contained in a div that acts as a frame. The left nav is as tall
         as the frame, which, in this case, has a height manually set to 800px. By default, the nav
-        is as wide as its container, so we use a grid to scope it to the size that we'd like. In
-        this case, It's a flex grid where the nav is contained in a u-size2of12 div.
+        is as wide as its container, so we use a grid to scope it to the size that we&apos;d like.
+        In this case, It&apos;s a flex grid where the nav is contained in a u-size2of12 div.
       </div>
     </main>
   </div>
@@ -173,8 +177,12 @@ stories.add('With Subheading', () => (
               tree: [
                 {
                   title: 'Organization Home',
-                  wrapItem: ({ children }) => (
-                    <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
+                  wrapItem: ({ children }: { children: React.ReactNode }) => (
+                    <a
+                      href="https://organization.teamsnap.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       {children}
                     </a>
                   ),
@@ -247,8 +255,8 @@ stories.add('With Subheading', () => (
       <div style={{ width: '40%' }}>
         This main and the nav are contained in a div that acts as a frame. The left nav is as tall
         as the frame, which, in this case, has a height manually set to 800px. By default, the nav
-        is as wide as its container, so we use a grid to scope it to the size that we'd like. In
-        this case, It's a flex grid where the nav is contained in a u-size2of12 div.
+        is as wide as its container, so we use a grid to scope it to the size that we&apos;d like.
+        In this case, It&apos;s a flex grid where the nav is contained in a u-size2of12 div.
       </div>
     </main>
   </div>
@@ -273,8 +281,12 @@ stories.add('With content overlay', () => (
               tree: [
                 {
                   title: 'Organization Home',
-                  wrapItem: ({ children }) => (
-                    <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
+                  wrapItem: ({ children }: { children: React.ReactNode }) => (
+                    <a
+                      href="https://organization.teamsnap.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       {children}
                     </a>
                   ),
@@ -348,8 +360,8 @@ stories.add('With content overlay', () => (
       <div style={{ width: '40%' }}>
         This main and the nav are contained in a div that acts as a frame. The left nav is as tall
         as the frame, which, in this case, has a height manually set to 800px. By default, the nav
-        is as wide as its container, so we use a grid to scope it to the size that we'd like. In
-        this case, It's a flex grid where the nav is contained in a u-size2of12 div.
+        is as wide as its container, so we use a grid to scope it to the size that we&apos;d like.
+        In this case, It&apos;s a flex grid where the nav is contained in a u-size2of12 div.
       </div>
     </main>
   </div>
@@ -430,7 +442,7 @@ stories.add('With all items open', () => (
       <Nav.Item
         icon="dashboard"
         isActive
-        wrapItem={({ children }) => (
+        wrapItem={({ children }: { children: React.ReactNode }) => (
           <a href="https://go.teamsnap.com" target="_blank" rel="noreferrer">
             {children}
           </a>
@@ -449,8 +461,8 @@ stories.add('With all items open', () => (
       <div style={{ width: '40%' }}>
         This main and the nav are contained in a div that acts as a frame. The left nav is as tall
         as the frame, which, in this case, has a height manually set to 800px. By default, the nav
-        is as wide as its container, so we use a grid to scope it to the size that we'd like. In
-        this case, It's a flex grid where the nav is contained in a u-size2of12 div.
+        is as wide as its container, so we use a grid to scope it to the size that we&apos;d like.
+        In this case, It&apos;s a flex grid where the nav is contained in a u-size2of12 div.
       </div>
     </main>
   </div>
@@ -476,7 +488,7 @@ stories.add('With `Nav-child` class', () => (
               tree: [
                 {
                   title: 'Organization Home',
-                  wrapItem: ({ children }) => (
+                  wrapItem: ({ children }: { children: React.ReactNode }) => (
                     <a
                       className="Nav-child"
                       href="https://organization.teamsnap.com"
@@ -544,7 +556,7 @@ stories.add('With `Nav-child` class', () => (
       <Nav.Item
         icon="dashboard"
         isActive
-        wrapItem={({ children }) => (
+        wrapItem={({ children }: { children: React.ReactNode }) => (
           <a href="https://go.teamsnap.com" target="_blank" rel="noreferrer">
             {children}
           </a>
@@ -563,8 +575,8 @@ stories.add('With `Nav-child` class', () => (
       <div style={{ width: '40%' }}>
         This main and the nav are contained in a div that acts as a frame. The left nav is as tall
         as the frame, which, in this case, has a height manually set to 800px. By default, the nav
-        is as wide as its container, so we use a grid to scope it to the size that we'd like. In
-        this case, It's a flex grid where the nav is contained in a u-size2of12 div.
+        is as wide as its container, so we use a grid to scope it to the size that we&apos;d like.
+        In this case, It&apos;s a flex grid where the nav is contained in a u-size2of12 div.
       </div>
     </main>
   </div>
@@ -593,7 +605,7 @@ stories.add('with `Nav-selected` class', () => (
                   tree: [
                     {
                       title: 'Spectacular Amazing Spring 2021',
-                      wrapItem: ({ children }) => (
+                      wrapItem: ({ children }: { children: React.ReactNode }) => (
                         <a
                           className="Nav-selected"
                           href="https://organization.teamsnap.com"
@@ -606,16 +618,24 @@ stories.add('with `Nav-selected` class', () => (
                     },
                     {
                       title: 'Spectacular Amazing Fall 2021',
-                      wrapItem: ({ children }) => (
-                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
+                      wrapItem: ({ children }: { children: React.ReactNode }) => (
+                        <a
+                          href="https://organization.teamsnap.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           {children}
                         </a>
                       ),
                     },
                     {
                       title: 'Summer 2021',
-                      wrapItem: ({ children }) => (
-                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
+                      wrapItem: ({ children }: { children: React.ReactNode }) => (
+                        <a
+                          href="https://organization.teamsnap.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           {children}
                         </a>
                       ),
@@ -628,8 +648,12 @@ stories.add('with `Nav-selected` class', () => (
                   tree: [
                     {
                       title: 'Spring 2021',
-                      wrapItem: ({ children }) => (
-                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
+                      wrapItem: ({ children }: { children: React.ReactNode }) => (
+                        <a
+                          href="https://organization.teamsnap.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           {children}
                         </a>
                       ),
@@ -646,7 +670,7 @@ stories.add('with `Nav-selected` class', () => (
       <Nav.Item
         icon="dashboard"
         isActive
-        wrapItem={({ children }) => (
+        wrapItem={({ children }: { children: React.ReactNode }) => (
           <a href="https://go.teamsnap.com" target="_blank" rel="noreferrer">
             {children}
           </a>
@@ -665,8 +689,8 @@ stories.add('with `Nav-selected` class', () => (
       <div style={{ width: '40%' }}>
         This main and the nav are contained in a div that acts as a frame. The left nav is as tall
         as the frame, which, in this case, has a height manually set to 800px. By default, the nav
-        is as wide as its container, so we use a grid to scope it to the size that we'd like. In
-        this case, It's a flex grid where the nav is contained in a u-size2of12 div.
+        is as wide as its container, so we use a grid to scope it to the size that we&apos;d like.
+        In this case, It&apos;s a flex grid where the nav is contained in a u-size2of12 div.
       </div>
     </main>
   </div>
@@ -695,7 +719,7 @@ stories.add('with single organization', () => (
                   tree: [
                     {
                       title: 'Spectacular Amazing Spring 2021',
-                      wrapItem: ({ children }) => (
+                      wrapItem: ({ children }: { children: React.ReactNode }) => (
                         <a
                           className="Nav-selected"
                           href="https://organization.teamsnap.com"
@@ -708,16 +732,24 @@ stories.add('with single organization', () => (
                     },
                     {
                       title: 'Spectacular Amazing Fall 2021',
-                      wrapItem: ({ children }) => (
-                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
+                      wrapItem: ({ children }: { children: React.ReactNode }) => (
+                        <a
+                          href="https://organization.teamsnap.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           {children}
                         </a>
                       ),
                     },
                     {
                       title: 'Summer 2021',
-                      wrapItem: ({ children }) => (
-                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
+                      wrapItem: ({ children }: { children: React.ReactNode }) => (
+                        <a
+                          href="https://organization.teamsnap.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           {children}
                         </a>
                       ),
@@ -730,8 +762,12 @@ stories.add('with single organization', () => (
                   tree: [
                     {
                       title: 'Spring 2021',
-                      wrapItem: ({ children }) => (
-                        <a href="https://organization.teamsnap.com" target="_blank" rel="noopener noreferrer">
+                      wrapItem: ({ children }: { children: React.ReactNode }) => (
+                        <a
+                          href="https://organization.teamsnap.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           {children}
                         </a>
                       ),
@@ -748,7 +784,7 @@ stories.add('with single organization', () => (
       <Nav.Item
         icon="dashboard"
         isActive
-        wrapItem={({ children }) => (
+        wrapItem={({ children }: { children: React.ReactNode }) => (
           <a href="https://go.teamsnap.com" target="_blank" rel="noreferrer">
             {children}
           </a>
@@ -767,8 +803,8 @@ stories.add('with single organization', () => (
       <div style={{ width: '40%' }}>
         This main and the nav are contained in a div that acts as a frame. The left nav is as tall
         as the frame, which, in this case, has a height manually set to 800px. By default, the nav
-        is as wide as its container, so we use a grid to scope it to the size that we'd like. In
-        this case, It's a flex grid where the nav is contained in a u-size2of12 div.
+        is as wide as its container, so we use a grid to scope it to the size that we&apos;d like.
+        In this case, It&apos;s a flex grid where the nav is contained in a u-size2of12 div.
       </div>
     </main>
   </div>
@@ -802,8 +838,8 @@ stories.add('Without Header', () => (
         <div style={{ width: '40%' }}>
           This main and the nav are contained in a div that acts as a frame. The left nav is as tall
           as the frame, which, in this case, has a height manually set to 800px. By default, the nav
-          is as wide as its container, so we use a grid to scope it to the size that we'd like. In
-          this case, It's a flex grid where the nav is contained in a u-size2of12 div.
+          is as wide as its container, so we use a grid to scope it to the size that we&apos;d like.
+          In this case, It&apos;s a flex grid where the nav is contained in a u-size2of12 div.
         </div>
       </main>
     </div>
