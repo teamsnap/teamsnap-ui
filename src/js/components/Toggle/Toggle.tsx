@@ -16,40 +16,38 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { InputControl } from '../InputControl';
 
-class Toggle extends React.PureComponent<PropTypes.InferProps<typeof Toggle.propTypes>, any> {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    inputProps: PropTypes.object,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-  };
+const propTypes = {
+  name: PropTypes.string.isRequired,
+  inputProps: PropTypes.object,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+};
 
-  static defaultProps = {
-    inputProps: {},
-    className: 'Toggle',
-    mods: null,
-    style: {},
-    otherProps: {},
-  };
+const Toggle = (props: PropTypes.InferProps<typeof propTypes>) => {
+  const { name, inputProps, className, mods, style, otherProps } = props;
 
-  render() {
-    const { name, inputProps, className, mods, style, otherProps } = this.props;
+  return (
+    <InputControl
+      name={name}
+      className={className}
+      mods={mods}
+      style={style}
+      type="checkbox"
+      labelProps={{ className: 'Toggle-label' }}
+      inputProps={{ className: 'Toggle-input', ...inputProps }}
+      {...otherProps}
+    />
+  );
+};
 
-    return (
-      <InputControl
-        name={name}
-        className={className}
-        mods={mods}
-        style={style}
-        type="checkbox"
-        labelProps={{ className: 'Toggle-label' }}
-        inputProps={{ className: 'Toggle-input', ...inputProps }}
-        {...otherProps}
-      />
-    );
-  }
-}
+Toggle.defaultProps = {
+  inputProps: {},
+  className: 'Toggle',
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default Toggle;

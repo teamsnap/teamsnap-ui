@@ -58,7 +58,7 @@ type Props = Omit<PropTypes.InferProps<typeof propTypes>, 'onChange'> & {
 };
 
 const formatDate = (x?: string) => {
-  if (!x) return;
+  if (!x) return undefined;
 
   const date = new Date(`${x}T12:00:00 GMT`);
   date.setHours(0);
@@ -147,6 +147,7 @@ const DateFilter = ({
   return (
     <div className={getClassName(className, mods)} {...props}>
       <button
+        type="button"
         className={`Combobox-toggle ${hasFilters ? 'Combobox-toggle--active' : ''}`}
         name={name}
         id={name}

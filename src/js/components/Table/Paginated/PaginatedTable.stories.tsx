@@ -229,7 +229,7 @@ const data = [
  * @param sortBy - the key that the table is sorting by
  * @param sortAsc boolean - true if ascending, false if not.
  */
-function loadData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
+function loadData({ page, itemsPerPage }) {
   const startIndex = itemsPerPage * page - itemsPerPage;
 
   return new Promise((resolve) => {
@@ -278,16 +278,18 @@ const filterBirthDate = (filter: FilterValue, items: any[]) => {
  * @param sortAsc boolean - true if ascending, false if not.
  * @param filter objec - extra info to provide custom search.
  */
-function loadSearchData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
+function loadSearchData({ page, itemsPerPage, filter }) {
   const startIndex = itemsPerPage * page - itemsPerPage;
   return new Promise((resolve) => {
     setTimeout(() => resolve(data), 500);
   }).then((items: any[]) => {
-    items = items
+    const filteredItems = items
       .filter((item) => !filter.gender || filter.gender.includes(item.gender))
       .filter((item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1);
 
-    const dateFilteredItems = filter.birthdate ? filterBirthDate(filter.birthdate, items) : items;
+    const dateFilteredItems = filter.birthdate
+      ? filterBirthDate(filter.birthdate, filteredItems)
+      : filteredItems;
     const endIndex = Math.min(dateFilteredItems.length, startIndex + itemsPerPage);
     return dateFilteredItems.slice(startIndex, endIndex);
   });
