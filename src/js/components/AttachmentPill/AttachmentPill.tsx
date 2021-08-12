@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Grid } from '../../Grid';
-import { Cell } from '../../Cell';
-import { Pill } from '..';
+import { Grid } from '../Grid';
+import { Cell } from '../Cell';
+import { Pill } from '../Pill';
 
 type Props = {
   active?: boolean;

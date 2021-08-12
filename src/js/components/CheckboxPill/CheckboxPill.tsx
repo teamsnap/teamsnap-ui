@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Grid } from '../../Grid';
-import { Cell } from '../../Cell';
-import { Pill } from '..';
-import { Field } from '../../Field';
+import { Grid } from '../Grid';
+import { Cell } from '../Cell';
+import { Pill } from '../Pill';
+import { Field } from '../Field';
 
 const CheckboxPill = () => {
   const [checked, setChecked] = React.useState(false);
