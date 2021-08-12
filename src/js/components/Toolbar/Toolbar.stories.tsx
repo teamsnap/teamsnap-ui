@@ -14,6 +14,13 @@ export default {
   component: Toolbar,
 };
 
+interface LinkType {
+  text: string;
+  href: string;
+}
+
+const Link = ({ text, href }: LinkType) => <a href={href}>{text}</a>;
+
 const Search = () => (
   <div className="Grid-cell u-flexAuto">
     <Field
@@ -109,9 +116,9 @@ stories.add('With Search', () => {
               showAccount
               accountBody={
                 <div className="u-padXs">
-                  <div>You're logged in as Thomas Edison!</div>
+                  <div>You&apos;re logged in as Thomas Edison!</div>
                   <div>
-                    <a href="#">Sign Out?</a>
+                    <a href="#signout">Sign Out?</a>
                   </div>
                 </div>
               }
@@ -133,12 +140,10 @@ stories.add('With Search', () => {
 });
 
 stories.add('With Breadcrumbs', () => {
-  const Link = ({ text, link }) => <a href={link}>{text}</a>;
-
   const breadcrumbs = [
-    <Link text="Boulder Soccer" link="#boulder-soccer" />,
-    <Link text="Competitive" link="#competitive" />,
-    <Link text="2021 Fall Season" link="#2021-fall-season" />,
+    <Link text="Boulder Soccer" href="#boulder-soccer" />,
+    <Link text="Competitive" href="#competitive" />,
+    <Link text="2021 Fall Season" href="#2021-fall-season" />,
     'Registration',
   ];
 
@@ -152,12 +157,10 @@ stories.add('With Breadcrumbs', () => {
 });
 
 stories.add('With Breadcrumbs and Search', () => {
-  const Link = ({ text, link }) => <a href={link}>{text}</a>;
-
   const breadcrumbs = [
-    <Link text="Boulder Soccer" link="#boulder-soccer" />,
-    <Link text="Competitive" link="#competitive" />,
-    <Link text="2021 Fall Season" link="#2021-fall-season" />,
+    <Link text="Boulder Soccer" href="#boulder-soccer" />,
+    <Link text="Competitive" href="#competitive" />,
+    <Link text="2021 Fall Season" href="#2021-fall-season" />,
     'Registration',
   ];
 
