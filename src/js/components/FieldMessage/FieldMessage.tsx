@@ -14,6 +14,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 import { Status, Statuses } from '../../types';
+
 const propTypes = {
   children: PropTypes.string,
   isError: PropTypes.bool,
