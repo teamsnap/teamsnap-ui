@@ -18,40 +18,32 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+
 import { Icon } from '../Icon';
 import { TextLink } from '../TextLink';
 import { getClassName } from '../../utils/helpers';
 
-class StepNav extends React.PureComponent<PropTypes.InferProps<typeof StepNav.propTypes>, any> {
-  static propTypes = {
-    steps: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        icon: PropTypes.string.isRequired,
-        isActive: PropTypes.bool,
-        linkProps: PropTypes.object,
-      })
-    ).isRequired,
-    title: PropTypes.string,
-    isSmall: PropTypes.bool,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-  };
+const propTypes = {
+  steps: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+      isActive: PropTypes.bool,
+      linkProps: PropTypes.object,
+    })
+  ).isRequired,
+  title: PropTypes.string,
+  isSmall: PropTypes.bool,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+};
 
-  static defaultProps = {
-    title: null,
-    isSmall: false,
-    className: 'StepNav',
-    mods: null,
-    style: {},
-    otherProps: {},
-  };
+type Props = PropTypes.InferProps<typeof propTypes> | any;
 
-  renderTitle = () => {
-    const { title } = this.props;
-
+const StepNav = ({ steps, title, isSmall, className, mods, style, otherProps }: Props) => {
+  const renderTitle = () => {
     return (
       <div className="StepNav-title">
         <h2 className="StepNav-titleText">{title}</h2>
@@ -59,7 +51,7 @@ class StepNav extends React.PureComponent<PropTypes.InferProps<typeof StepNav.pr
     );
   };
 
-  renderStep = (step) => {
+  const renderStep = (step) => {
     const { name, icon, isActive, linkProps } = step;
     const stepClasses = getClassName(
       'StepNav-step',
@@ -79,24 +71,29 @@ class StepNav extends React.PureComponent<PropTypes.InferProps<typeof StepNav.pr
     );
   };
 
-  render() {
-    const { steps, title, isSmall, className, mods, style, otherProps } = this.props;
+  const stepNavClass = getClassName(
+    className,
+    title && 'StepNav--titled',
+    isSmall && 'StepNav--small',
+    mods
+  );
 
-    const stepNavClass = getClassName(
-      className,
-      title && 'StepNav--titled',
-      isSmall && 'StepNav--small',
-      mods
-    );
+  return (
+    <div className={stepNavClass} style={style} {...otherProps}>
+      {title && renderTitle()}
 
-    return (
-      <div className={stepNavClass} style={style} {...otherProps}>
-        {title && this.renderTitle()}
+      <ul className="StepNav-steps">{steps.map((step) => renderStep(step))}</ul>
+    </div>
+  );
+};
 
-        <ul className="StepNav-steps">{steps.map((step) => this.renderStep(step))}</ul>
-      </div>
-    );
-  }
-}
+StepNav.defaultProps = {
+  title: null,
+  isSmall: false,
+  className: 'StepNav',
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default StepNav;

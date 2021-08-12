@@ -23,7 +23,7 @@ export interface PropTypes {
  * Skittles takes in a string of text and creates a simple "badge" style object with consistent colors
  * @param text
  */
-const Skittles: React.FunctionComponent<PropTypes> = ({ text, style, mods }) => {
+const Skittles = ({ text, style, mods }: PropTypes) => {
   const firstLetterCharCode = text.charCodeAt(0) || 1;
   const colorHash = firstLetterCharCode % 3;
   const lastLetterCharCode = text.charCodeAt(text.length - 1) || 1;
