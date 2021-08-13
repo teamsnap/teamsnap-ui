@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Icon } from '../../Icon';
 import * as PropTypes from 'prop-types';
+
+import { Icon } from '../../Icon';
 
 const propTypes = {
   searchPlaceholder: PropTypes.string.isRequired,
@@ -15,9 +16,9 @@ const BasicSearchFilter = ({ searchPlaceholder, searchFunction }: Props) => {
 
   const updateSearchField = React.useCallback((e) => setSearchValue(e.target.value), []);
 
-  const handleSearch = React.useCallback((searchValue: string) => {
-    searchFunction({ searchTerm: searchValue });
-    setLastSearchValue(searchValue);
+  const handleSearch = React.useCallback((searchStr: string) => {
+    searchFunction({ searchTerm: searchStr });
+    setLastSearchValue(searchStr);
   }, []);
 
   const searchAction = React.useCallback(() => {
