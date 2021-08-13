@@ -62,13 +62,9 @@ const fieldPropTypes = {
   style: PropTypes.any,
 };
 
-type FieldType = React.FunctionComponent<PropTypes.InferProps<typeof fieldPropTypes>> & {
-  CheckboxStates: typeof CheckboxStates;
-  Label: typeof React.Component;
-  Caption: typeof React.Component;
-};
+type FieldProps = PropTypes.InferProps<typeof fieldPropTypes>;
 
-const Field: FieldType = ({
+const Field = ({
   type,
   name,
   label,
@@ -80,12 +76,25 @@ const Field: FieldType = ({
   isInline,
   style,
   ...otherProps
-}) => {
+}: FieldProps) => {
   return (
     <FieldGroup style={style} isInline={isInline} status={status} isDisabled={isDisabled}>
       {label && <FieldLabel name={name}>{label}</FieldLabel>}
-      {((formFieldProps) => {
-        const { text, checked, onClick } = formFieldProps as any;
+      {((fieldProps) => {
+        const {
+          text,
+          checked,
+          onClick,
+          leftIcon,
+          rightIcon,
+          placeholder,
+          size,
+          showStatus,
+          showClear,
+          onClearClicked,
+          inputProps,
+        } = fieldProps as any;
+
         switch (type) {
           case 'checkbox':
             return (
@@ -114,16 +123,6 @@ const Field: FieldType = ({
               />
             );
           default:
-            const {
-              leftIcon,
-              rightIcon,
-              placeholder,
-              size,
-              showStatus,
-              showClear,
-              onClearClicked,
-              inputProps,
-            } = formFieldProps as any;
             return (
               <Input
                 size={size}

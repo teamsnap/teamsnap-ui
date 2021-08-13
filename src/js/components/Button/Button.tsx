@@ -40,7 +40,9 @@ const propTypes = {
   otherProps: PropTypes.object,
 };
 
-const Button: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = ({
+type Props = PropTypes.InferProps<typeof propTypes>;
+
+const Button = ({
   className,
   color,
   size,
@@ -55,7 +57,7 @@ const Button: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = 
   onClick,
   style,
   otherProps,
-}) => {
+}: Props) => {
   const cname = getClassName(
     className,
     color && `Button--${color}`,

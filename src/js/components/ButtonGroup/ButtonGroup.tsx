@@ -28,14 +28,13 @@ const propTypes = {
   otherProps: PropTypes.object,
 };
 
-const ButtonGroup = (props: PropTypes.InferProps<typeof propTypes>) => {
-  const renderButtons = () => {
-    const { buttons } = props;
+type Props = PropTypes.InferProps<typeof propTypes>;
 
+const ButtonGroup = ({ buttons, children, className, mods, style, otherProps }: Props) => {
+  const renderButtons = () => {
     return buttons.map((button, index) => <Button key={index} {...button} />);
   };
 
-  const { children, className, mods, style, otherProps } = props;
   return (
     <div className={getClassName(className, mods)} style={style} {...otherProps}>
       {children || renderButtons()}
