@@ -22,6 +22,7 @@
  */
 
 import * as React from 'react';
+import { Button } from '../Button';
 
 interface Tab {
   heading: React.ReactNode;
@@ -43,10 +44,15 @@ const Tabs: React.FunctionComponent<Props> = ({ mods, tabs }: Props) => {
         {tabs.map((tab, index) => (
           <li
             key={`Tabs-headerItem-${index}`}
-            onClick={() => setActiveTabIndex(index)}
             className={`Tabs-headerItem ${index === activeTabIndex ? 'is-active' : ''}`}
           >
-            {tab.heading}
+            <Button
+              style={{ color: 'inherit' }}
+              onClick={() => setActiveTabIndex(index)}
+              type="link"
+            >
+              {tab.heading}
+            </Button>
           </li>
         ))}
       </ul>
