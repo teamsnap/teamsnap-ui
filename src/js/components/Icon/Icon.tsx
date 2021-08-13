@@ -14,9 +14,9 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { getClassName } from '../../utils/helpers';
 
-const svgIcon = (name) => require(`../../icons/${name}`);
+import { Loader } from '../Loader';
+import { getClassName } from '../../utils/helpers';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -25,22 +25,37 @@ const propTypes = {
   style: PropTypes.object,
   otherProps: PropTypes.object,
 };
-const Icon = (props: PropTypes.InferProps<typeof propTypes>) => {
-  const { name, className, mods, style, otherProps } = props;
-  const svg = svgIcon(name) || {};
 
-  return (
-    <svg
-      width="24"
-      height="24"
-      className={getClassName(className, mods)}
-      style={style}
-      {...svg.metadata}
-      {...otherProps}
-      dangerouslySetInnerHTML={{ __html: svg.source }}
-    />
-  );
+type Props = PropTypes.InferProps<typeof propTypes>;
+
+const Icon = ({ name, className, mods, style, otherProps }: Props) => {
+  const [icon, setIcon] = React.useState(null);
+
+  const loadImage = (iconName: string) => {
+    import(`../../icons/${iconName}`).then((svg) => {
+      setIcon(svg.default);
+    });
+  };
+
+  loadImage(name);
+
+  if (icon) {
+    return (
+      <svg
+        width="24"
+        height="24"
+        className={getClassName(className, mods)}
+        style={style}
+        {...icon.metadata}
+        {...otherProps}
+        dangerouslySetInnerHTML={{ __html: icon.source }}
+      />
+    );
+  }
+
+  return <Loader type="spin" />;
 };
+
 Icon.defaultProps = {
   className: 'Icon',
   mods: null,
