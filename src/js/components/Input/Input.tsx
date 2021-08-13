@@ -14,8 +14,10 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+
 import { getClassName } from '../../utils/helpers';
 import { Icon } from '../Icon';
+import { Button } from '../Button';
 import { Size, Status } from '../../types';
 
 const statusToColor = {
@@ -44,9 +46,9 @@ const propTypes = {
   isDisabled: PropTypes.bool,
 };
 
-type InputType = React.FunctionComponent<PropTypes.InferProps<typeof propTypes>>;
+type Props = PropTypes.InferProps<typeof propTypes>;
 
-const Input: InputType = ({
+const Input = ({
   className,
   inputProps,
   leftIcon,
@@ -63,7 +65,7 @@ const Input: InputType = ({
   onClearClicked,
   status,
   isDisabled,
-}) => {
+}: Props) => {
   const inputClasses = getClassName(
     className,
     leftIcon && 'InputGroup--leftIcon',
@@ -94,12 +96,16 @@ const Input: InputType = ({
             </span>
           )}
           {showClear && (
-            <span
+            <Button
+              type="link"
+              style={{
+                color: 'inherit',
+                backgroundColor: 'transparent',
+              }}
               className={`${statusToColor[status]} InputGroup-icon--clear`}
               onClick={onClearClicked}
-            >
-              <Icon name="dismiss" />
-            </span>
+              icon="dismiss"
+            />
           )}
         </div>
       )}
