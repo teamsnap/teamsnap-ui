@@ -60,7 +60,9 @@ const propTypes = {
   placeHolder: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 
-const Table: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = ({
+type Props = PropTypes.InferProps<typeof propTypes>;
+
+const Table = ({
   className,
   mods,
   style,
@@ -72,7 +74,7 @@ const Table: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = (
   externalSortingFunction,
   defaultSort,
   rows,
-}) => {
+}: Props) => {
   const [items, setItems] = React.useState([]);
   const [sortBy, setSortBy] = React.useState<string>(null);
   const [sortOrder, setSortOrder] = React.useState<boolean>(null); // TODO: rename?
@@ -87,20 +89,25 @@ const Table: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = (
   }, [defaultSort, rows, columns]);
 
   const sortItems = React.useCallback(
-    (columns: any[], newItems: any[], sortByColumn: string, sortByReverse: boolean) => {
-      const sortColumn = columns.find((c) => c.name === sortByColumn);
-      let items = newItems;
+    (sortColumns: any[], newItems: any[], sortByColumn: string, sortByReverse: boolean) => {
+      const sortColumn = sortColumns.find((c) => c.name === sortByColumn);
+
       if (sortColumn) {
         const { name, sortType, sortFn } = sortColumn;
-        items = sortByFn(newItems, {
-          name,
-          sortType,
-          sortFn,
-          isReverse: sortByReverse,
-        });
+
+        return {
+          sortByColumn,
+          sortByReverse,
+          items: sortByFn(newItems, {
+            name,
+            sortType,
+            sortFn,
+            isReverse: sortByReverse,
+          }),
+        };
       }
 
-      return { items, sortByColumn, sortByReverse };
+      return { items: newItems, sortByColumn, sortByReverse };
     },
     []
   );
@@ -156,6 +163,13 @@ const Table: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = (
     });
   };
 
+  const getName = (activeColumn: boolean) => {
+    if (activeColumn) {
+      return sortOrder ? 'up' : 'down';
+    }
+    return 'down';
+  };
+
   const columnsJsx = columns.map((column) => {
     const activeColumn = items.length && column.name === sortBy;
 
@@ -172,10 +186,7 @@ const Table: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = (
           {column.label}
         </span>
         <div className="u-colorNeutral5 u-fontSizeXs u-spaceLeftXs">
-          <Icon
-            name={activeColumn ? (sortOrder ? 'up' : 'down') : 'down'}
-            mods={activeColumn && 'u-colorPrimary'}
-          />
+          <Icon name={getName(activeColumn)} mods={activeColumn && 'u-colorPrimary'} />
         </div>
       </TextLink>
     ) : (
