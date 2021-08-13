@@ -49,11 +49,19 @@ interface Filter {
   label: string;
 }
 
-type ComboBoxType = React.FunctionComponent<PropTypes.InferProps<typeof propTypes>>;
-const ComboBox: ComboBoxType = (props) => {
-  const { name, buttonLabel, style, otherProps, disabled, className, mods, items, onChange } =
-    props;
+type Props = PropTypes.InferProps<typeof propTypes>;
 
+const ComboBox = ({
+  name,
+  buttonLabel,
+  style,
+  otherProps,
+  disabled,
+  className,
+  mods,
+  items,
+  onChange,
+}: Props) => {
   const [flyoutVisible, toggleFlyout] = React.useState(false);
   const [comboLabel, setComboLabel] = React.useState('');
   const [hasFilters, setHasFilters] = React.useState(false);

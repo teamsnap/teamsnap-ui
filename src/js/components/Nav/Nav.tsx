@@ -78,8 +78,6 @@ const navPropTypes = {
 };
 
 const itemPropTypes = {
-  // Any additional classes to include
-  mods: PropTypes.string,
   // String that matches a teamsnap-ui icon name
   icon: PropTypes.string,
   // Teamsnap UI modifiers passed to the icon component

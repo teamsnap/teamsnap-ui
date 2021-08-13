@@ -28,9 +28,18 @@ const propTypes = {
   isInline: PropTypes.bool,
 };
 
-const FieldGroup = (props: PropTypes.InferProps<typeof propTypes>) => {
-  const { children, status, className, mods, style, otherProps, isDisabled, isInline } = props;
+type Props = PropTypes.InferProps<typeof propTypes>;
 
+const FieldGroup = ({
+  children,
+  status,
+  className,
+  mods,
+  style,
+  otherProps,
+  isDisabled,
+  isInline,
+}: Props) => {
   const fieldClasses = getClassName(
     className,
     status === Statuses.ERROR && 'is-notValid',

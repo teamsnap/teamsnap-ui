@@ -24,15 +24,13 @@ const propTypes = {
   otherProps: PropTypes.object,
 };
 
-const Cell = (props: PropTypes.InferProps<typeof propTypes>) => {
-  const { children, className, mods, style, otherProps } = props;
+type Props = PropTypes.InferProps<typeof propTypes>;
 
-  return (
-    <div className={getClassName(className, mods)} style={style} {...otherProps}>
-      {children}
-    </div>
-  );
-};
+const Cell = ({ children, className, mods, style, otherProps }: Props) => (
+  <div className={getClassName(className, mods)} style={style} {...otherProps}>
+    {children}
+  </div>
+);
 
 Cell.defaultProps = {
   children: null,

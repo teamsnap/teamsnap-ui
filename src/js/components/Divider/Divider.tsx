@@ -24,9 +24,9 @@ const propTypes = {
   otherProps: PropTypes.object,
 };
 
-const Divider = (props: PropTypes.InferProps<typeof propTypes>) => {
-  const { className, isIndented, isSpaced, isThick, mods, style, otherProps } = props;
+type Props = PropTypes.InferProps<typeof propTypes>;
 
+const Divider = ({ className, isIndented, isSpaced, isThick, mods, style, otherProps }: Props) => {
   const dividerClasses = getClassName(
     className,
     isIndented && 'Divider--indented',
