@@ -20,6 +20,40 @@ import { getClassName } from '../../utils/helpers';
 import { Avatar } from '../Avatar';
 import { Skittles } from '../Skittles';
 
+const treePropTypes = {
+  title: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  // If an image is not provided and useBadge is, we will try to generate a badge based off the title
+  useBadge: PropTypes.bool,
+  // a function for wrapping each item. Commonly used with links or react router.
+  wrapItem: PropTypes.func,
+  tree: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      image: PropTypes.string,
+      // If an image is not provided and useBadge is, we will try to generate a badge based off the title
+      useBadge: PropTypes.bool,
+      // a function for wrapping each item. Commonly used with links or react router.
+      wrapItem: PropTypes.func,
+      tree: PropTypes.arrayOf(
+        PropTypes.shape({
+          title: PropTypes.string.isRequired,
+          image: PropTypes.string,
+          // If an image is not provided and useBadge is, we will try to generate a badge based off the title
+          useBadge: PropTypes.bool,
+          // a function for wrapping each item. Commonly used with links or react router.
+          wrapItem: PropTypes.func,
+        })
+      ),
+    })
+  ),
+};
+
+const flyoutSectionsPropTypes = {
+  heading: PropTypes.string,
+  tree: PropTypes.arrayOf(PropTypes.shape(treePropTypes)),
+};
+
 const navPropTypes = {
   // React component children
   children: PropTypes.node,
@@ -38,41 +72,7 @@ const navPropTypes = {
     useBadge: PropTypes.bool,
   }),
   // a list of items to be displayed in the header component
-  flyoutSections: PropTypes.arrayOf(
-    PropTypes.shape({
-      heading: PropTypes.string,
-      tree: PropTypes.arrayOf(
-        PropTypes.shape({
-          title: PropTypes.string.isRequired,
-          image: PropTypes.string,
-          // If an image is not provided and useBadge is, we will try to generate a badge based off the title
-          useBadge: PropTypes.bool,
-          // a function for wrapping each item. Commonly used with links or react router.
-          wrapItem: PropTypes.func,
-          tree: PropTypes.arrayOf(
-            PropTypes.shape({
-              title: PropTypes.string.isRequired,
-              image: PropTypes.string,
-              // If an image is not provided and useBadge is, we will try to generate a badge based off the title
-              useBadge: PropTypes.bool,
-              // a function for wrapping each item. Commonly used with links or react router.
-              wrapItem: PropTypes.func,
-              tree: PropTypes.arrayOf(
-                PropTypes.shape({
-                  title: PropTypes.string.isRequired,
-                  image: PropTypes.string,
-                  // If an image is not provided and useBadge is, we will try to generate a badge based off the title
-                  useBadge: PropTypes.bool,
-                  // a function for wrapping each item. Commonly used with links or react router.
-                  wrapItem: PropTypes.func,
-                })
-              ),
-            })
-          ),
-        })
-      ),
-    })
-  ),
+  flyoutSections: PropTypes.arrayOf(PropTypes.shape(flyoutSectionsPropTypes)),
   includeOverlay: PropTypes.bool,
   openItems: PropTypes.bool,
 };
@@ -88,14 +88,20 @@ const itemPropTypes = {
   onClick: PropTypes.func,
   // a function for wrapping each item. Commonly used with links or react router.
   wrapItem: PropTypes.func,
+  children: PropTypes.node,
 };
 
+type FlyoutSectionsPropTypes = PropTypes.InferProps<typeof flyoutSectionsPropTypes>;
+type Tree = PropTypes.InferProps<typeof treePropTypes>;
 type NavType = React.FunctionComponent<PropTypes.InferProps<typeof navPropTypes>>;
 type ItemType = React.FunctionComponent<PropTypes.InferProps<typeof itemPropTypes>>;
 
+const EmptyComponent = ({ children }: { children: React.ReactNode }) => <>{children}</>;
+
 const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, wrapItem }) => {
   const maybeIcon = icon ? <Icon name={icon} mods={`${iconModifiers}`} /> : null;
-  const Wrapper = wrapItem || (({ children }) => <>{children}</>);
+  const Wrapper = wrapItem || EmptyComponent;
+
   return (
     <li className={`${isActive ? 'is-active ' : ''}Nav-item`} onClick={onClick || (() => {})}>
       <Wrapper>
@@ -105,9 +111,7 @@ const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, wrap
   );
 };
 
-Item.propTypes = itemPropTypes;
-
-const FlyOutNode = ({ item, openItems }) => {
+const FlyOutNode = ({ item, openItems }: { item: Tree; openItems: boolean }) => {
   const [isExpanded, setIsExpanded] = React.useState(openItems);
   const Wrapper = item.wrapItem ? item.wrapItem : ({ children }) => <>{children}</>;
 
@@ -147,9 +151,9 @@ const FlyOutNode = ({ item, openItems }) => {
  * @param acc an array
  * @param cur a flyout item
  */
-const reducer = (tree: [], openItems: boolean) => {
+const reducer = (tree: Tree[], openItems: boolean) => {
   return tree.reduce(
-    (acc: [], cur: any, idx: number) => [
+    (acc: [], cur: Tree, idx: number) => [
       ...acc,
       <FlyOutNode key={cur.title + idx} item={cur} openItems={openItems} />,
     ],
@@ -157,23 +161,21 @@ const reducer = (tree: [], openItems: boolean) => {
   );
 };
 
-const generateFlyoutContents = (flyoutSections: any, openItems: boolean) => {
-  return flyoutSections.map((section, idx) => {
-    return (
-      <section key={idx}>
-        {section.heading && (
-          <div className="Nav-sectionHeading u-colorNeutral7 u-textUppercase u-textBold u-fontSizeXs">
-            {section.heading}
-          </div>
-        )}
-        <div className="Nav-sectionItems">
-          <ul className={`${section.tree.length > 1 ? 'Nav-multi' : 'Nav-single'}`}>
-            {reducer(section.tree, openItems)}
-          </ul>
+const generateFlyoutContents = (flyoutSections: FlyoutSectionsPropTypes[], openItems: boolean) => {
+  return flyoutSections.map((section, idx) => (
+    <section key={idx}>
+      {section.heading && (
+        <div className="Nav-sectionHeading u-colorNeutral7 u-textUppercase u-textBold u-fontSizeXs">
+          {section.heading}
         </div>
-      </section>
-    );
-  });
+      )}
+      <div className="Nav-sectionItems">
+        <ul className={`${section.tree.length > 1 ? 'Nav-multi' : 'Nav-single'}`}>
+          {reducer(section.tree, openItems)}
+        </ul>
+      </div>
+    </section>
+  ));
 };
 
 const Nav: NavType & { Item: ItemType } = ({
@@ -242,6 +244,8 @@ const Nav: NavType & { Item: ItemType } = ({
     </>
   );
 };
+
+Item.propTypes = itemPropTypes;
 
 Nav.Item = Item;
 
