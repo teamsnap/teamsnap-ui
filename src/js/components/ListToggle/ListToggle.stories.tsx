@@ -9,4 +9,13 @@ export default {
   component: ListToggle,
 };
 
-stories.add('List Toggle', () => <ListToggle onClick={() => {}} />);
+stories.add('List Toggle', () => {
+  const [showContainer, setShowContainer] = React.useState(false);
+
+  return (
+    <div>
+      <ListToggle onClick={() => setShowContainer(!showContainer)} />
+      {showContainer && <div>Open</div>}
+    </div>
+  );
+});
