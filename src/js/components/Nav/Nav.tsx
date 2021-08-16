@@ -16,6 +16,7 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+
 import { Icon } from '../Icon';
 import { getClassName } from '../../utils/helpers';
 import { Avatar } from '../Avatar';
@@ -105,8 +106,8 @@ const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, wrap
 
   return (
     <li className={`${isActive ? 'is-active' : ''} Nav-item`}>
-      <div 
-        onKeyDown={onClick || (() => {})} 
+      <div
+        onKeyDown={onClick || (() => {})}
         onClick={onClick || (() => {})}
         role="button"
         tabIndex={0}
@@ -215,7 +216,7 @@ const Nav: NavType & { Item: ItemType } = ({
   return (
     <>
       {isFlyoutActive && includeOverlay && (
-        <div 
+        <div
           className="Nav-overlay"
           onClick={() => setIsFlyoutActive(!isFlyoutActive)}
           onKeyDown={() => setIsFlyoutActive(!isFlyoutActive)}
@@ -229,7 +230,7 @@ const Nav: NavType & { Item: ItemType } = ({
           <div
             className="Nav-header u-textSemiBold"
             onClick={() => !isCollapsed && setIsFlyoutActive(!isFlyoutActive)}
-            onKeyDown={() => setIsFlyoutActive(!isFlyoutActive)} 
+            onKeyDown={() => setIsFlyoutActive(!isFlyoutActive)}
             tabIndex={0}
             role="button"
           >
@@ -257,7 +258,7 @@ const Nav: NavType & { Item: ItemType } = ({
           {isFlyoutActive ? generateFlyoutContents(flyoutSections, openItems) : <ul>{children}</ul>}
         </div>
         {!isFlyoutActive && (
-          <div 
+          <div
             className="Nav-footer"
             onKeyDown={() => setCollapsed(!isCollapsed)}
             onClick={() => setCollapsed(!isCollapsed)}
