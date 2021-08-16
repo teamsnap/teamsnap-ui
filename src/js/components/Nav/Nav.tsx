@@ -1,4 +1,3 @@
-/* eslint "@typescript-eslint/no-use-before-define": 0 */
 /**
  * @name Nav
  *
@@ -120,7 +119,7 @@ const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, wrap
   );
 };
 
-const FlyOutNode = ({ item, openItems }: { item: Tree; openItems: boolean }) => {
+const FlyOutNode = ({ item, openItems, reducer }: { item: Tree; openItems: boolean, reducer: Function }) => {
   const [isExpanded, setIsExpanded] = React.useState(openItems);
   const Wrapper = item.wrapItem ? item.wrapItem : ({ children }) => <>{children}</>;
 
@@ -167,7 +166,7 @@ const reducer = (tree: Tree[], openItems: boolean) => {
   return tree.reduce(
     (acc: [], cur: Tree, idx: number) => [
       ...acc,
-      <FlyOutNode key={cur.title + idx} item={cur} openItems={openItems} />,
+      <FlyOutNode key={cur.title + idx} item={cur} openItems={openItems} reducer={reducer} />,
     ],
     []
   );
