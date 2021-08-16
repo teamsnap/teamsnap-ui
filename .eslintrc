@@ -23,5 +23,13 @@
     "react/forbid-prop-types": "off",
     "react/no-array-index-key": "off",
     "jsx-a11y/label-has-associated-control": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/js/**/*.stories.tsx"],
+      "rules": {
+        "no-alert": "off"
+      }
+    }
+  ]
 }
