@@ -104,10 +104,17 @@ const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, wrap
   const Wrapper = wrapItem || EmptyComponent;
 
   return (
-    <li className={`${isActive ? 'is-active' : ''} Nav-item`} onClick={onClick || (() => {})}>
-      <Wrapper>
-        {maybeIcon} <span className="Nav-itemTitle">{children}</span>
-      </Wrapper>
+    <li className={`${isActive ? 'is-active' : ''} Nav-item`}>
+      <div 
+        onKeyDown={onClick || (() => {})} 
+        onClick={onClick || (() => {})}
+        role="button"
+        tabIndex={0}
+      >
+        <Wrapper>
+          {maybeIcon} <span className="Nav-itemTitle">{children}</span>
+        </Wrapper>
+      </div>
     </li>
   );
 };
@@ -120,6 +127,9 @@ const FlyOutNode = ({ item, openItems }: { item: Tree; openItems: boolean }) => 
     <li>
       <div
         onClick={() => setIsExpanded(!isExpanded)}
+        onKeyDown={() => setIsExpanded(!isExpanded)}
+        tabIndex={0}
+        role="button"
         className={`Nav-node ${item.wrapItem ? 'Nav-wrapped' : ''} ${
           item.tree ? 'Nav-hasChildren' : ''
         } u-fill u-flex`}
@@ -205,13 +215,23 @@ const Nav: NavType & { Item: ItemType } = ({
   return (
     <>
       {isFlyoutActive && includeOverlay && (
-        <div className="Nav-overlay" onClick={() => setIsFlyoutActive(!isFlyoutActive)} />
+        <div 
+          className="Nav-overlay"
+          onClick={() => setIsFlyoutActive(!isFlyoutActive)}
+          onKeyDown={() => setIsFlyoutActive(!isFlyoutActive)}
+          tabIndex={0}
+          role="button"
+          aria-label="Close Overlay"
+        />
       )}
       <nav className={cname} style={style} {...otherProps}>
         {headerItem ? (
           <div
             className="Nav-header u-textSemiBold"
             onClick={() => !isCollapsed && setIsFlyoutActive(!isFlyoutActive)}
+            onKeyDown={() => setIsFlyoutActive(!isFlyoutActive)} 
+            tabIndex={0}
+            role="button"
           >
             <div className={navHeaderIconClass}>
               <Avatar src={headerItem.image} size="fill" />
@@ -237,7 +257,13 @@ const Nav: NavType & { Item: ItemType } = ({
           {isFlyoutActive ? generateFlyoutContents(flyoutSections, openItems) : <ul>{children}</ul>}
         </div>
         {!isFlyoutActive && (
-          <div className="Nav-footer" onClick={() => setCollapsed(!isCollapsed)}>
+          <div 
+            className="Nav-footer"
+            onKeyDown={() => setCollapsed(!isCollapsed)}
+            onClick={() => setCollapsed(!isCollapsed)}
+            role="button"
+            tabIndex={0}
+          >
             <Icon name="left" /> <span className="Nav-itemTitle">Collapse Menu</span>
           </div>
         )}
