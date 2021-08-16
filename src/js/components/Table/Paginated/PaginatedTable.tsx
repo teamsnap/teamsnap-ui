@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { Table } from '..';
+import Table from '../Table';
 import { convertObjsToValueLabel, usePagination } from './helpers';
 import {
   PaginationCurrentSubsetDisplay,
