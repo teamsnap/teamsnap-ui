@@ -1,6 +1,7 @@
-/* eslint "jsx-a11y/click-events-have-key-events": "off" */
-/* eslint "jsx-a11y/no-noninteractive-element-interactions": "off" */
-/* eslint "jsx-a11y/no-static-element-interactions": "off" */
+/* eslint "jsx-a11y/click-events-have-key-events": 0 */
+/* eslint "jsx-a11y/no-noninteractive-element-interactions": 0 */
+/* eslint "jsx-a11y/no-static-element-interactions": 0 */
+/* eslint "@typescript-eslint/no-use-before-define": 0 */
 /**
  * @name Nav
  *
