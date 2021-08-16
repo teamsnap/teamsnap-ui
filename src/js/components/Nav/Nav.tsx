@@ -1,3 +1,6 @@
+/* eslint "jsx-a11y/click-events-have-key-events": "off" */
+/* eslint "jsx-a11y/no-noninteractive-element-interactions": "off" */
+/* eslint "jsx-a11y/no-static-element-interactions": "off" */
 /**
  * @name Nav
  *
@@ -103,7 +106,7 @@ const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, wrap
   const Wrapper = wrapItem || EmptyComponent;
 
   return (
-    <li className={`${isActive ? 'is-active ' : ''}Nav-item`} onClick={onClick || (() => {})}>
+    <li className={`${isActive ? 'is-active' : ''} Nav-item`} onClick={onClick || (() => {})}>
       <Wrapper>
         {maybeIcon} <span className="Nav-itemTitle">{children}</span>
       </Wrapper>
