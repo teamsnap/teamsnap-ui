@@ -1,4 +1,3 @@
-/* eslint "@typescript-eslint/no-use-before-define": 0 */
 /**
  * @name Nav
  *
@@ -105,8 +104,8 @@ const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, wrap
 
   return (
     <li className={`${isActive ? 'is-active' : ''} Nav-item`}>
-      <div 
-        onKeyDown={onClick || (() => {})} 
+      <div
+        onKeyDown={onClick || (() => {})}
         onClick={onClick || (() => {})}
         role="button"
         tabIndex={0}
@@ -116,6 +115,21 @@ const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, wrap
         </Wrapper>
       </div>
     </li>
+  );
+};
+
+/**
+ * This function is pulled out and named so that it can be used by both FlyOutNode and generateFlyoutContents
+ * @param acc an array
+ * @param cur a flyout item
+ */
+ const reducer = (tree: Tree[], openItems: boolean) => {
+  return tree.reduce(
+    (acc: [], cur: Tree, idx: number) => [
+      ...acc,
+      <FlyOutNode key={cur.title + idx} item={cur} openItems={openItems} />,
+    ],
+    []
   );
 };
 
@@ -154,21 +168,6 @@ const FlyOutNode = ({ item, openItems }: { item: Tree; openItems: boolean }) => 
         </ul>
       ) : null}
     </li>
-  );
-};
-
-/**
- * This function is pulled out and named so that it can be used by both FlyOutNode and generateFlyoutContents
- * @param acc an array
- * @param cur a flyout item
- */
-const reducer = (tree: Tree[], openItems: boolean) => {
-  return tree.reduce(
-    (acc: [], cur: Tree, idx: number) => [
-      ...acc,
-      <FlyOutNode key={cur.title + idx} item={cur} openItems={openItems} />,
-    ],
-    []
   );
 };
 
@@ -215,7 +214,7 @@ const Nav: NavType & { Item: ItemType } = ({
   return (
     <>
       {isFlyoutActive && includeOverlay && (
-        <div 
+        <div
           className="Nav-overlay"
           onClick={() => setIsFlyoutActive(!isFlyoutActive)}
           onKeyDown={() => setIsFlyoutActive(!isFlyoutActive)}
@@ -229,7 +228,7 @@ const Nav: NavType & { Item: ItemType } = ({
           <div
             className="Nav-header u-textSemiBold"
             onClick={() => !isCollapsed && setIsFlyoutActive(!isFlyoutActive)}
-            onKeyDown={() => setIsFlyoutActive(!isFlyoutActive)} 
+            onKeyDown={() => setIsFlyoutActive(!isFlyoutActive)}
             tabIndex={0}
             role="button"
           >
@@ -257,7 +256,7 @@ const Nav: NavType & { Item: ItemType } = ({
           {isFlyoutActive ? generateFlyoutContents(flyoutSections, openItems) : <ul>{children}</ul>}
         </div>
         {!isFlyoutActive && (
-          <div 
+          <div
             className="Nav-footer"
             onKeyDown={() => setCollapsed(!isCollapsed)}
             onClick={() => setCollapsed(!isCollapsed)}
