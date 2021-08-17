@@ -17,7 +17,10 @@
     "arrow-parens": [0, "as-needed"],
     "arrow-body-style": "off",
     "@typescript-eslint/comma-dangle": ["error", "only-multiline"],
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.stories.tsx"] }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.stories.tsx", "**/*.test.tsx"] }
+    ],
     "import/prefer-default-export": "off",
     "react/jsx-props-no-spreading": "off",
     "react/forbid-prop-types": "off",
