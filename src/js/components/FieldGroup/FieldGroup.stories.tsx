@@ -1,16 +1,16 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
 import { select, text } from '@storybook/addon-knobs';
-import FieldGroup from "./FieldGroup";
-import { FieldLabel } from "../FieldLabel";
-import { FieldMessage } from "../FieldMessage";
-import { Input } from "../Input";
-import { Select } from "../Select";
-import { Checkbox } from "../Checkbox";
-import { Icon } from "../Icon";
-import { Statuses } from "../../types";
+import FieldGroup from './FieldGroup';
+import { FieldLabel } from '../FieldLabel';
+import { FieldMessage } from '../FieldMessage';
+import { Input } from '../Input';
+import { Select } from '../Select';
+import { Checkbox } from '../Checkbox';
+import { Icon } from '../Icon';
+import { Statuses } from '../../types';
 
-const stories = storiesOf("FieldGroup [deprecated]", module);
+const stories = storiesOf('FieldGroup [deprecated]', module);
 
 export default {
   title: 'FieldGroup',
@@ -18,29 +18,29 @@ export default {
 };
 
 const statusOptions = {
-  success: "success",
-  error: "error",
-  default: null
+  success: 'success',
+  error: 'error',
+  default: null,
 };
 
-stories.add("FieldGroup with Input text child", () => {
-  const errorMessage = text("Error Message", "There was an error", null);
-  const status = select("status", statusOptions, null);
+stories.add('FieldGroup with Input text child', () => {
+  const errorMessage = text('Error Message', 'There was an error', null);
+  const status = select('status', statusOptions, null);
 
   return (
     <FieldGroup status={status}>
       <FieldLabel name="example">Text Input</FieldLabel>
       <Input name="storybook" type="text" />
-      {status === "error" ? (
+      {status === 'error' ? (
         <FieldMessage status={Statuses.ERROR}>{errorMessage}</FieldMessage>
       ) : null}
     </FieldGroup>
   );
 });
 
-stories.add("FieldGroup with Select child", () => {
-  const errorMessage = text("Error Message", "There was an error", null);
-  const status = select("status", statusOptions, null);
+stories.add('FieldGroup with Select child', () => {
+  const errorMessage = text('Error Message', 'There was an error', null);
+  const status = select('status', statusOptions, null);
 
   return (
     <FieldGroup status={status}>
@@ -49,13 +49,13 @@ stories.add("FieldGroup with Select child", () => {
         name="LineItemFeeCategory"
         options={[
           {
-            label: "Tournament",
-            value: "tournament"
+            label: 'Tournament',
+            value: 'tournament',
           },
           {
-            label: "Other",
-            value: "other"
-          }
+            label: 'Other',
+            value: 'other',
+          },
         ]}
       />
       {status === Statuses.ERROR ? (
@@ -65,9 +65,9 @@ stories.add("FieldGroup with Select child", () => {
   );
 });
 
-stories.add("FieldGroup with Input text and Icon children", () => {
-  const errorMessage = text("Error Message", "There was an error");
-  const status = select("status", statusOptions, null);
+stories.add('FieldGroup with Input text and Icon children', () => {
+  const errorMessage = text('Error Message', 'There was an error');
+  const status = select('status', statusOptions, null);
 
   return (
     <FieldGroup status={status}>
@@ -80,16 +80,16 @@ stories.add("FieldGroup with Input text and Icon children", () => {
   );
 });
 
-stories.add("FieldGroup with Checkbox children", () => {
-  const errorMessage = text("Error Message", "There was an error", null);
-  const status = select("status", statusOptions, null);
+stories.add('FieldGroup with Checkbox children', () => {
+  const errorMessage = text('Error Message', 'There was an error', null);
+  const status = select('status', statusOptions, null);
 
   return (
     <FieldGroup status={status}>
       <FieldLabel name="example">Select all that apply:</FieldLabel>
       <Checkbox name="example" label="Check Me" isInline />
       <Checkbox name="example2" label="Check Me 2" isInline />
-      {status === "error" ? (
+      {status === 'error' ? (
         <FieldMessage status={Statuses.ERROR}>{errorMessage}</FieldMessage>
       ) : null}
     </FieldGroup>

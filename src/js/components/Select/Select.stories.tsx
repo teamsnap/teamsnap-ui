@@ -1,8 +1,8 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import Select from "./Select";
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import Select from './Select';
 
-const stories = storiesOf("Select", module);
+const stories = storiesOf('Select', module);
 
 export default {
   title: 'Select',
@@ -11,20 +11,20 @@ export default {
 
 const optionsList = [
   {
-    label: "Option 1",
-    value: "option 1"
+    label: 'Option 1',
+    value: 'option 1',
   },
   {
-    label: "Option 2",
-    value: "option 2"
+    label: 'Option 2',
+    value: 'option 2',
   },
   {
-    label: "Option 3",
-    value: "option 3"
-  }
+    label: 'Option 3',
+    value: 'option 3',
+  },
 ];
 
-stories.add("Default", () => (
+stories.add('Default', () => (
   <div>
     <label htmlFor="standardSelect" className="FieldGroup-label">
       Standard Select
@@ -33,7 +33,7 @@ stories.add("Default", () => (
   </div>
 ));
 
-stories.add("Alternates", () => (
+stories.add('Alternates', () => (
   <div>
     <label htmlFor="disabledSelect" className="FieldGroup-label">
       Select with Disabled Option
@@ -44,19 +44,15 @@ stories.add("Alternates", () => (
       disabled
       options={[
         {
-          label: "--Select an Option--",
-          value: "unselected",
-          disabled: true
+          label: '--Select an Option--',
+          value: 'unselected',
+          disabled: true,
         },
-        ...optionsList
+        ...optionsList,
       ]}
     />
 
-    <label
-      htmlFor="largeSelect"
-      style={{ marginTop: "15px" }}
-      className="FieldGroup-label"
-    >
+    <label htmlFor="largeSelect" style={{ marginTop: '15px' }} className="FieldGroup-label">
       Large Select
     </label>
     <Select

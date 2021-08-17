@@ -12,39 +12,34 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
-class PanelFooter extends React.PureComponent<PropTypes.InferProps<typeof PanelFooter.propTypes>, any> {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object
-  };
+import { getClassName } from '../../utils/helpers';
 
-  static defaultProps = {
-    className: "Panel-footer",
-    mods: null,
-    style: {},
-    otherProps: {}
-  };
+const propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.shape({}),
+  otherProps: PropTypes.shape({}),
+};
 
-  render() {
-    const { children, className, mods, style, otherProps } = this.props;
+type Props = PropTypes.InferProps<typeof propTypes>;
 
-    return (
-      <footer
-        className={getClassName(className, mods)}
-        style={style}
-        {...otherProps}
-      >
-        {children}
-      </footer>
-    );
-  }
-}
+const PanelFooter = ({ children, className, mods, style, otherProps }: Props) => {
+  return (
+    <footer className={getClassName(className, mods)} style={style} {...otherProps}>
+      {children}
+    </footer>
+  );
+};
+
+PanelFooter.defaultProps = {
+  className: 'Panel-footer',
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default PanelFooter;

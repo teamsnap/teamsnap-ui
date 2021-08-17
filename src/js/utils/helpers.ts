@@ -1,5 +1,5 @@
-import _uniqueId from 'lodash/uniqueId'
-import _capitalize from 'lodash/capitalize'
+import _uniqueId from 'lodash/uniqueId';
+import _capitalize from 'lodash/capitalize';
 
 /**
  * @name capitalize
@@ -15,7 +15,7 @@ import _capitalize from 'lodash/capitalize'
  *  capitalize('name')
  *
  */
-export const capitalize: (string: string) => string = (string) => _capitalize(string)
+export const capitalize: (string: string) => string = (string) => _capitalize(string);
 
 /**
  * @name generateUniqueId
@@ -31,7 +31,7 @@ export const capitalize: (string: string) => string = (string) => _capitalize(st
  *  generateUniqueId()
  *
  */
-export const generateUniqueId = (prefix = '') => _uniqueId(prefix)
+export const generateUniqueId = (prefix = '') => _uniqueId(prefix);
 
 /**
  * @name setUniqueId
@@ -47,17 +47,17 @@ export const generateUniqueId = (prefix = '') => _uniqueId(prefix)
  *
  */
 export const setUniqueId = (items, property = 'id') => {
-  let updatedItems = null
+  let updatedItems = null;
 
   // Assume if first row has an id, they all do and just return items
-  if (items.length && items[0].hasOwnProperty(property)) {
-    updatedItems = items
+  if (items.length && Object.prototype.isPrototypeOf.call(items[0], property)) {
+    updatedItems = items;
   } else {
-    updatedItems = items.map(item => ({ [property]: generateUniqueId('item-'), ...item }))
+    updatedItems = items.map((item) => ({ [property]: generateUniqueId('item-'), ...item }));
   }
 
-  return updatedItems
-}
+  return updatedItems;
+};
 
 /**
  * @name parseAlphaString
@@ -71,7 +71,11 @@ export const setUniqueId = (items, property = 'id') => {
  *  parseAlphaString('abcd 1234 dcba')
  *
  */
-export const parseAlphaString = value => value.toString().replace(/[^a-zA-Z]/g, "").toLowerCase()
+export const parseAlphaString = (value) =>
+  value
+    .toString()
+    .replace(/[^a-zA-Z]/g, '')
+    .toLowerCase();
 
 /**
  * @name parseNumericString
@@ -85,7 +89,8 @@ export const parseAlphaString = value => value.toString().replace(/[^a-zA-Z]/g, 
  *  parseNumericString('abcd 1234 dcba')
  *
  */
-export const parseNumericString = value => parseFloat(value.toString().replace(/[^0-9.-]/g, "")).toFixed(2)
+export const parseNumericString = (value) =>
+  parseFloat(value.toString().replace(/[^0-9.-]/g, '')).toFixed(2);
 
 /**
  * @name stringifyArray
@@ -99,7 +104,7 @@ export const parseNumericString = value => parseFloat(value.toString().replace(/
  *  stringifyArray(['Simpson', 'Homer'], ', ')
  *
  */
-export const stringifyArray = (array, joinBy = ' ') => array.filter(Boolean).join(joinBy)
+export const stringifyArray = (array, joinBy = ' ') => array.filter(Boolean).join(joinBy);
 
 /**
  * @name getClassName
@@ -119,10 +124,7 @@ export const stringifyArray = (array, joinBy = ' ') => array.filter(Boolean).joi
  *
  */
 export const getClassName = (className, ...classModifiers) => {
-  const classes = [
-    className,
-    ...classModifiers
-  ]
+  const classes = [className, ...classModifiers];
 
-  return stringifyArray(classes)
-}
+  return stringifyArray(classes);
+};

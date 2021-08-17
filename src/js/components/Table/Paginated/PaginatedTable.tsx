@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { Table } from '../../Table';
+import Table from '../Table';
 import { convertObjsToValueLabel, usePagination } from './helpers';
 import {
   PaginationCurrentSubsetDisplay,
@@ -71,7 +71,7 @@ const Filter = (
   items?: { [key: string]: string },
   type: FilterType = 'select'
 ) => {
-  return ({ isLast }) => {
+  return ({ isLast }: { isLast: boolean }) => {
     const ctx = React.useContext(FilterContext);
 
     const onChange = (values) => {
@@ -155,8 +155,7 @@ const PaginatedTable: PaginatedTableProps = ({
       itemsPerPage,
       sortBy: sortName,
       sortAsc: sortAscending,
-      filter:
-        includeBasicSearch || activeFilters ? { searchTerm: searchTerm, ...activeFilters } : null,
+      filter: includeBasicSearch || activeFilters ? { searchTerm, ...activeFilters } : null,
     }).then((data) => {
       setDataSet(data);
       setIsLoading(false);
@@ -166,11 +165,11 @@ const PaginatedTable: PaginatedTableProps = ({
   let rows = dataSet.map(mapDataToRow);
 
   let checkboxState = CheckboxStates.FALSE;
-  if (selected.length != 0 && selected.length != rows.length) {
+  if (selected.length !== 0 && selected.length !== rows.length) {
     // some but not all rows are checked
     checkboxState = CheckboxStates.INDETERMINATE;
   }
-  if (selected.length != 0 && selected.length == rows.length) {
+  if (selected.length !== 0 && selected.length === rows.length) {
     // all rows are checked
     checkboxState = CheckboxStates.TRUE;
   }
@@ -189,7 +188,7 @@ const PaginatedTable: PaginatedTableProps = ({
                 checked: checkboxState,
                 onClick: () => {
                   // if there is at least one row checked, clear all
-                  if (checkboxState != CheckboxStates.FALSE) {
+                  if (checkboxState !== CheckboxStates.FALSE) {
                     setSelected([]);
                   } else {
                     // select all rows if none are checked
@@ -207,28 +206,27 @@ const PaginatedTable: PaginatedTableProps = ({
 
     // use IDs as keys to determine uniqueness
     const selectedids = selected.map((e) => e.id);
-    rows = rows.map((ele) =>
-      Object.assign({}, ele, {
-        selected: (
-          <div>
-            <Checkbox
-              name={`select-${ele.id}`}
-              mods="u-padBottomNone"
-              inputProps={{
-                checked: selectedids.includes(ele.id),
-                onClick: () => {
-                  if (selectedids.includes(ele.id)) {
-                    setSelected(selected.filter((e) => e.id != ele.id));
-                  } else {
-                    setSelected([...selected, ele]);
-                  }
-                },
-              }}
-            />
-          </div>
-        ),
-      })
-    );
+    rows = rows.map((ele) => ({
+      ...ele,
+      selected: (
+        <div>
+          <Checkbox
+            name={`select-${ele.id}`}
+            mods="u-padBottomNone"
+            inputProps={{
+              checked: selectedids.includes(ele.id),
+              onClick: () => {
+                if (selectedids.includes(ele.id)) {
+                  setSelected(selected.filter((e) => e.id !== ele.id));
+                } else {
+                  setSelected([...selected, ele]);
+                }
+              },
+            }}
+          />
+        </div>
+      ),
+    }));
   }
 
   // collisions overwrite
@@ -237,9 +235,9 @@ const PaginatedTable: PaginatedTableProps = ({
     return acc;
   }, {});
 
-  const updateSearchFilter = ({ searchTerm }) => {
+  const updateSearchFilter = ({ searchTerm: search }) => {
     setCurrentPage(1);
-    setSearchTerm(searchTerm);
+    setSearchTerm(search);
   };
 
   React.useEffect(() => {
@@ -264,7 +262,7 @@ const PaginatedTable: PaginatedTableProps = ({
         itemsPerPage={itemsPerPage}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-        mods={paginationPlacement == Placement.Bottom ? 'u-flexJustifyCenter u-flexGrow1' : ''}
+        mods={paginationPlacement === Placement.Bottom ? 'u-flexJustifyCenter u-flexGrow1' : ''}
       />
       {!hideRowsSelect ? (
         <div className="u-spaceLeftSm">
@@ -322,16 +320,14 @@ const PaginatedTable: PaginatedTableProps = ({
           </div>
         ) : null}
         <div className="Grid-cell u-sizeFill u-md-size1of4">
-          {customSearchFilter || includeBasicSearch ? (
-            customSearchFilter ? (
-              customSearchFilter
-            ) : (
-              <BasicSearch
-                searchPlaceholder={searchPlaceholder}
-                searchFunction={updateSearchFilter}
-              />
-            )
-          ) : null}
+          {customSearchFilter || includeBasicSearch
+            ? customSearchFilter || (
+                <BasicSearch
+                  searchPlaceholder={searchPlaceholder}
+                  searchFunction={updateSearchFilter}
+                />
+              )
+            : null}
         </div>
         {shouldPaginateAtTop && paginationItems}
         {!shouldPaginateAtTop && filterButton}

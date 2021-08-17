@@ -1,2 +1,3 @@
-import RadialProgress from "./RadialProgress";
+import RadialProgress from './RadialProgress';
+
 export { RadialProgress };

@@ -19,15 +19,15 @@
  *  />
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { FieldGroup } from "../FieldGroup";
-import { FieldLabel } from "../FieldLabel";
-import { FieldMessage } from "../FieldMessage";
-import { Input } from "../Input";
-import { CheckboxState, CheckboxStates, Status, Size } from "../../types";
-import { Checkbox } from "../Checkbox";
-import { Radio } from "../Radio";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { FieldGroup } from '../FieldGroup';
+import { FieldLabel } from '../FieldLabel';
+import { FieldMessage } from '../FieldMessage';
+import { Input } from '../Input';
+import { CheckboxState, CheckboxStates, Status, Size } from '../../types';
+import { Checkbox } from '../Checkbox';
+import { Radio } from '../Radio';
 
 const checkboxShape = PropTypes.shape({
   text: PropTypes.string,
@@ -48,7 +48,7 @@ const inputShape = PropTypes.shape({
 });
 
 const fieldPropTypes = {
-  type: PropTypes.oneOf(["toggle", "select", "input", "checkbox", "date"]).isRequired,
+  type: PropTypes.oneOf(['toggle', 'select', 'input', 'checkbox', 'date']).isRequired,
   formFieldProps: PropTypes.oneOfType([checkboxShape, inputShape]),
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
@@ -62,15 +62,9 @@ const fieldPropTypes = {
   style: PropTypes.any,
 };
 
-type FieldType = React.FunctionComponent<
-  PropTypes.InferProps<typeof fieldPropTypes>
-> & {
-  CheckboxStates: typeof CheckboxStates;
-  Label: typeof React.Component;
-  Caption: typeof React.Component;
-};
+type FieldProps = PropTypes.InferProps<typeof fieldPropTypes>;
 
-const Field: FieldType = ({
+const Field = ({
   type,
   name,
   label,
@@ -82,33 +76,46 @@ const Field: FieldType = ({
   isInline,
   style,
   ...otherProps
-}) => {
+}: FieldProps) => {
   return (
     <FieldGroup style={style} isInline={isInline} status={status} isDisabled={isDisabled}>
       {label && <FieldLabel name={name}>{label}</FieldLabel>}
-      {((formFieldProps) => {
-        const { text, checked, onClick } = formFieldProps as any;
+      {((fieldProps) => {
+        const {
+          text,
+          checked,
+          onClick,
+          leftIcon,
+          rightIcon,
+          placeholder,
+          size,
+          showStatus,
+          showClear,
+          onClearClicked,
+          inputProps,
+        } = fieldProps as any;
+
         switch (type) {
-          case "checkbox":
+          case 'checkbox':
             return (
               <Checkbox
                 name={name}
                 inputProps={{
-                  checked: checked,
-                  onClick: onClick,
+                  checked,
+                  onClick,
                   disabled: isDisabled,
                 }}
                 label={text}
                 isInline
               />
             );
-          case "radio":
+          case 'radio':
             return (
               <Radio
                 name={name}
                 inputProps={{
-                  checked: checked,
-                  onClick: onClick,
+                  checked,
+                  onClick,
                   disabled: isDisabled,
                 }}
                 label={text}
@@ -116,22 +123,12 @@ const Field: FieldType = ({
               />
             );
           default:
-            const {
-              leftIcon,
-              rightIcon,
-              placeholder,
-              size,
-              showStatus,
-              showClear,
-              onClearClicked,
-              inputProps,
-            } = formFieldProps as any;
             return (
               <Input
                 size={size}
                 placeholder={placeholder}
                 name={name}
-                type={type || "text"}
+                type={type || 'text'}
                 inputProps={inputProps}
                 status={status}
                 rightIcon={rightIcon}

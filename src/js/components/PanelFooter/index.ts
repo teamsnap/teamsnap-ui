@@ -1,2 +1,3 @@
-import PanelFooter from "./PanelFooter";
+import PanelFooter from './PanelFooter';
+
 export { PanelFooter };

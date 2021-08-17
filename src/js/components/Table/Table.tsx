@@ -21,17 +21,17 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { capitalize, getClassName } from "../../utils/helpers";
-import { sortBy as sortByFn } from "../../utils/sort";
-import { Icon } from "../Icon";
-import { Panel } from "../Panel";
-import { PanelBody } from "../PanelBody";
-import { PanelRow } from "../PanelRow";
-import { PanelCell } from "../PanelCell";
-import { TextLink } from "../TextLink";
-import { Loader } from "../Loader";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { capitalize, getClassName } from '../../utils/helpers';
+import { sortBy as sortByFn } from '../../utils/sort';
+import { Icon } from '../Icon';
+import { Panel } from '../Panel';
+import { PanelBody } from '../PanelBody';
+import { PanelRow } from '../PanelRow';
+import { PanelCell } from '../PanelCell';
+import { TextLink } from '../TextLink';
+import { Loader } from '../Loader';
 
 const propTypes = {
   columns: PropTypes.arrayOf(
@@ -42,7 +42,7 @@ const propTypes = {
       isSortable: PropTypes.bool,
       sortType: PropTypes.string,
       sortFn: PropTypes.func,
-      align: PropTypes.oneOf(["right", "left", "center"]),
+      align: PropTypes.oneOf(['right', 'left', 'center']),
       mods: PropTypes.string,
       style: PropTypes.object,
       otherProps: PropTypes.object,
@@ -60,9 +60,9 @@ const propTypes = {
   placeHolder: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 
-const Table: React.FunctionComponent<
-  PropTypes.InferProps<typeof propTypes>
-> = ({
+type Props = PropTypes.InferProps<typeof propTypes>;
+
+const Table = ({
   className,
   mods,
   style,
@@ -74,13 +74,13 @@ const Table: React.FunctionComponent<
   externalSortingFunction,
   defaultSort,
   rows,
-}) => {
+}: Props) => {
   const [items, setItems] = React.useState([]);
   const [sortBy, setSortBy] = React.useState<string>(null);
   const [sortOrder, setSortOrder] = React.useState<boolean>(null); // TODO: rename?
 
   React.useEffect(() => {
-    const sortDirection = defaultSort.charAt(0) === "-" ? true : false;
+    const sortDirection = defaultSort.charAt(0) === '-';
     const sortName = sortDirection ? defaultSort.substr(1) : defaultSort;
 
     setSortOrder(sortDirection);
@@ -89,32 +89,32 @@ const Table: React.FunctionComponent<
   }, [defaultSort, rows, columns]);
 
   const sortItems = React.useCallback(
-    (
-      columns: any[],
-      newItems: any[],
-      sortByColumn: string,
-      sortByReverse: boolean
-    ) => {
-      const sortColumn = columns.find((c) => c.name === sortByColumn);
-      let items = newItems;
+    (sortColumns: any[], newItems: any[], sortByColumn: string, sortByReverse: boolean) => {
+      const sortColumn = sortColumns.find((c) => c.name === sortByColumn);
+
       if (sortColumn) {
         const { name, sortType, sortFn } = sortColumn;
-        items = sortByFn(newItems, {
-          name,
-          sortType,
-          sortFn,
-          isReverse: sortByReverse,
-        });
+
+        return {
+          sortByColumn,
+          sortByReverse,
+          items: sortByFn(newItems, {
+            name,
+            sortType,
+            sortFn,
+            isReverse: sortByReverse,
+          }),
+        };
       }
 
-      return { items, sortByColumn, sortByReverse };
+      return { items: newItems, sortByColumn, sortByReverse };
     },
     []
   );
 
   const handleSortClick = (e) => {
     e.preventDefault();
-    const sortName = e.currentTarget.getAttribute("href");
+    const sortName = e.currentTarget.getAttribute('href');
     const sortDirection = sortName === sortBy ? !sortOrder : false;
 
     // If an function is provided here, we let the parent component figure out the sorting
@@ -133,7 +133,7 @@ const Table: React.FunctionComponent<
 
   const renderPanelCell = (role, children, column) => {
     const cellMods = getClassName(
-      `u-text${capitalize(column.align || "Left")}`,
+      `u-text${capitalize(column.align || 'Left')}`,
       column.mods,
       role === 'columnheader' && column.isSortable ? 'Panel-cell--sortable' : ''
     );
@@ -156,37 +156,37 @@ const Table: React.FunctionComponent<
     const data = row[column.name];
     const children = column.render ? column.render(column, row) : data;
 
-    return renderPanelCell("cell", children, {
+    return renderPanelCell('cell', children, {
       key: `${row.id}-${column.name}`,
       itTitle: false,
       ...column,
     });
   };
 
+  const getName = (activeColumn: boolean) => {
+    if (activeColumn) {
+      return sortOrder ? 'up' : 'down';
+    }
+    return 'down';
+  };
+
   const columnsJsx = columns.map((column) => {
     const activeColumn = items.length && column.name === sortBy;
 
     const textLinkMods = getClassName(
-      "u-flex",
-      "u-flexAlignItemsCenter",
-      column.align === "right" && "u-flexJustifyEnd u-spaceNegativeRightSm",
-      column.align === "center" && "u-flexJustifyCenter"
+      'u-flex',
+      'u-flexAlignItemsCenter',
+      column.align === 'right' && 'u-flexJustifyEnd u-spaceNegativeRightSm',
+      column.align === 'center' && 'u-flexJustifyCenter'
     );
 
     const children = column.isSortable ? (
-      <TextLink
-        location={column.name}
-        onClick={handleSortClick}
-        mods={textLinkMods}
-      >
+      <TextLink location={column.name} onClick={handleSortClick} mods={textLinkMods}>
         <span className="u-colorInfo u-textNoWrap u-flex u-flexAlignItemsCenter">
           {column.label}
         </span>
         <div className="u-colorNeutral5 u-fontSizeXs u-spaceLeftXs">
-          <Icon
-            name={activeColumn ? (sortOrder ? "up" : "down") : "down"}
-            mods={activeColumn && `u-colorPrimary`}
-          />
+          <Icon name={getName(activeColumn)} mods={activeColumn && 'u-colorPrimary'} />
         </div>
       </TextLink>
     ) : (
@@ -195,14 +195,14 @@ const Table: React.FunctionComponent<
       </span>
     );
 
-    return renderPanelCell("columnheader", children, {
+    return renderPanelCell('columnheader', children, {
       key: column.name,
       isTitle: true,
       ...column,
     });
   });
 
-  const withMaxTableHeight = { height: maxTableHeight, overflow: "scroll" };
+  const withMaxTableHeight = { height: maxTableHeight, overflow: 'scroll' };
 
   return (
     <Panel className={className} mods={mods} style={style} {...otherProps}>
@@ -235,12 +235,12 @@ const Table: React.FunctionComponent<
 Table.defaultProps = {
   columns: [],
   rows: [],
-  defaultSort: "",
-  className: "Panel",
+  defaultSort: '',
+  className: 'Panel',
   mods: null,
   style: {},
   otherProps: {},
-  placeHolder: "Nothing to see here",
+  placeHolder: 'Nothing to see here',
   maxTableHeight: null,
   isLoading: false,
 };

@@ -1,4 +1,3 @@
-import Field from "./Field";
-export {
-  Field
-}
+import Field from './Field';
+
+export { Field };

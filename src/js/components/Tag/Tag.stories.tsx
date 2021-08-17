@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import Tag from './Tag'
+import Tag from './Tag';
 
 const stories = storiesOf('Tag', module);
 
@@ -9,9 +9,8 @@ export default {
   component: Tag,
 };
 
-
-stories.add("Default", () => (
+stories.add('Default', () => (
   <>
-    <Tag text='2021 Fall Season' />
+    <Tag text="2021 Fall Season" />
   </>
 ));

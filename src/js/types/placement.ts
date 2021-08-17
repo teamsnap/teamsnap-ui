@@ -1,4 +1,4 @@
 export enum Placement {
   Bottom,
-  Top
+  Top,
 }

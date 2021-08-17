@@ -1,2 +1,3 @@
-import PaginatedTable from "./PaginatedTable";
+import PaginatedTable from './PaginatedTable';
+
 export { PaginatedTable };

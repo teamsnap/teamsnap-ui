@@ -6,9 +6,11 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { Icon } from "../Icon";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+
+import { Button } from '../Button';
+import { Icon } from '../Icon';
 
 enum Menu {
   None,
@@ -24,15 +26,12 @@ const propTypes = {
   helpBody: PropTypes.node,
   accountBody: PropTypes.node,
   adminBody: PropTypes.node,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ])
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };
 
-const Toolbar: React.FunctionComponent<
-  PropTypes.InferProps<typeof propTypes>
-> = ({
+type Props = PropTypes.InferProps<typeof propTypes>;
+
+const Toolbar = ({
   showHelp,
   showAccount,
   showAdmin,
@@ -40,94 +39,59 @@ const Toolbar: React.FunctionComponent<
   accountBody,
   adminBody,
   children,
-}) => {
+}: Props) => {
   const [activeMenu, setActiveMenu] = React.useState(Menu.None);
+
   React.useEffect(() => {
     const listener = (e) => {
-      const isTargetingPopup = e.target.closest(".flyout-container") != null;
+      const isTargetingPopup = e.target.closest('.flyout-container') != null;
 
       if (!isTargetingPopup) {
         setActiveMenu(Menu.None);
       }
     };
-    document.body.addEventListener("click", listener);
+    document.body.addEventListener('click', listener);
 
     return () => {
-      document.body.removeEventListener("click", listener);
+      document.body.removeEventListener('click', listener);
     };
   });
+
+  const btnStyle = { color: '#000', marginTop: '-5px' };
+  const iconStyle = {
+    border: '1px solid black',
+    borderRadius: '12px',
+    padding: '4px',
+    width: '24px',
+    height: '24px',
+  };
 
   return (
     <div className="Grid Toolbar">
       {children}
 
       <div className="Grid-cell u-flexAuto u-sizeFit u-flex u-flexAlignContentCenter u-flexJustifyEnd u-padXs flyout-container">
-        <div className="u-posRelative">
-          <span
-            style={{ cursor: "pointer" }}
-            onClick={() => setActiveMenu(Menu.Help)}
-          >
-            {showHelp && (
-              <Icon
-                className="Icon u-spaceLeftLg"
-                name="help"
-                style={{
-                  border: "1px solid black",
-                  borderRadius: "12px",
-                  padding: "4px",
-                  width: "24px",
-                  height: "24px",
-                }}
-              />
-            )}
-          </span>
-          {activeMenu == Menu.Help && (
+        <div>
+          <Button type="link" style={btnStyle} onClick={() => setActiveMenu(Menu.Help)}>
+            {showHelp && <Icon className="Icon u-spaceLeftLg" name="help" style={iconStyle} />}
+          </Button>
+          {activeMenu === Menu.Help && (
             <div className="u-posAbsolute Toolbar-flyout">{helpBody}</div>
           )}
         </div>
-        <div className="u-posRelative">
-          <span
-            style={{ cursor: "pointer" }}
-            onClick={() => setActiveMenu(Menu.Account)}
-          >
-            {showAccount && (
-              <Icon
-                className="Icon u-spaceLeftLg"
-                name="user"
-                style={{
-                  border: "1px solid black",
-                  borderRadius: "12px",
-                  padding: "4px",
-                  width: "24px",
-                  height: "24px",
-                }}
-              />
-            )}
-          </span>
-          {activeMenu == Menu.Account && (
+        <div>
+          <Button type="link" style={btnStyle} onClick={() => setActiveMenu(Menu.Account)}>
+            {showAccount && <Icon className="Icon u-spaceLeftLg" name="user" style={iconStyle} />}
+          </Button>
+          {activeMenu === Menu.Account && (
             <div className="u-posAbsolute Toolbar-flyout">{accountBody}</div>
           )}
         </div>
-        <div className="u-posRelative">
-          <span
-            style={{ cursor: "pointer" }}
-            onClick={() => setActiveMenu(Menu.Admin)}
-          >
-            {showAdmin && (
-              <Icon
-                className="Icon u-spaceLeftLg"
-                name="wrench"
-                style={{
-                  border: "1px solid black",
-                  borderRadius: "12px",
-                  padding: "4px",
-                  width: "24px",
-                  height: "24px",
-                }}
-              />
-            )}
-          </span>
-          {activeMenu == Menu.Admin && (
+        <div>
+          <Button type="link" style={btnStyle} onClick={() => setActiveMenu(Menu.Admin)}>
+            {showAdmin && <Icon className="Icon u-spaceLeftLg" name="wrench" style={iconStyle} />}
+          </Button>
+          {activeMenu === Menu.Admin && (
             <div className="u-posAbsolute Toolbar-flyout">{adminBody}</div>
           )}
         </div>

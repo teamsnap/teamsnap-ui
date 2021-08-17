@@ -11,10 +11,10 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { InputControl } from "../InputControl";
-import { CheckboxStates } from "../../types";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { InputControl } from '../InputControl';
+import { CheckboxStates } from '../../types';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -27,24 +27,20 @@ const propTypes = {
   otherProps: PropTypes.object,
 };
 
-type CheckboxType = React.FunctionComponent<
-  PropTypes.InferProps<typeof propTypes>
->;
-const Checkbox: CheckboxType = (props) => {
-  const { mods, inputProps } = props;
+type Props = PropTypes.InferProps<typeof propTypes>;
 
-  let modClasses = `${mods}${
-    inputProps.checked === CheckboxStates.INDETERMINATE
-      ? " Checkbox--indeterminate"
-      : ""
+const Checkbox = ({ mods, inputProps, ...props }: Props) => {
+  const modClasses = `${mods}${
+    inputProps.checked === CheckboxStates.INDETERMINATE ? ' Checkbox--indeterminate' : ''
   }`;
-  return <InputControl type="checkbox" {...props} mods={modClasses} />;
+
+  return <InputControl type="checkbox" inputProps={inputProps} mods={modClasses} {...props} />;
 };
 
 Checkbox.defaultProps = {
   inputProps: {},
   isInline: false,
-  className: "Checkbox",
+  className: 'Checkbox',
   mods: null,
   style: {},
   otherProps: {},

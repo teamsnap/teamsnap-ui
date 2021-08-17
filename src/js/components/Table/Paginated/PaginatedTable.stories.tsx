@@ -229,7 +229,7 @@ const data = [
  * @param sortBy - the key that the table is sorting by
  * @param sortAsc boolean - true if ascending, false if not.
  */
-function loadData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
+function loadData({ page, itemsPerPage }) {
   const startIndex = itemsPerPage * page - itemsPerPage;
 
   return new Promise((resolve) => {
@@ -278,16 +278,18 @@ const filterBirthDate = (filter: FilterValue, items: any[]) => {
  * @param sortAsc boolean - true if ascending, false if not.
  * @param filter objec - extra info to provide custom search.
  */
-function loadSearchData({ page, itemsPerPage, sortBy, sortAsc, filter }) {
+function loadSearchData({ page, itemsPerPage, filter }) {
   const startIndex = itemsPerPage * page - itemsPerPage;
   return new Promise((resolve) => {
     setTimeout(() => resolve(data), 500);
   }).then((items: any[]) => {
-    items = items
+    const filteredItems = items
       .filter((item) => !filter.gender || filter.gender.includes(item.gender))
       .filter((item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1);
 
-    const dateFilteredItems = filter.birthdate ? filterBirthDate(filter.birthdate, items) : items;
+    const dateFilteredItems = filter.birthdate
+      ? filterBirthDate(filter.birthdate, filteredItems)
+      : filteredItems;
     const endIndex = Math.min(dateFilteredItems.length, startIndex + itemsPerPage);
     return dateFilteredItems.slice(startIndex, endIndex);
   });
@@ -328,7 +330,7 @@ stories.add('Default', () => (
 stories.add('Selectable Rows', () => (
   <PaginatedTable
     columns={columns}
-    rowsAreSelectable={true}
+    rowsAreSelectable
     bulkActions={[
       {
         label: 'Log Selected',
@@ -345,7 +347,7 @@ stories.add('Selectable Rows', () => (
     ]}
     mapDataToRow={mapData}
     loadData={loadData}
-    includeBasicSearch={true}
+    includeBasicSearch
     searchPlaceholder="Search members by name"
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
@@ -359,7 +361,7 @@ stories.add('Basic Search', () => (
     loadData={loadSearchData}
     defaultItemsPerPage={2}
     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
-    includeBasicSearch={true}
+    includeBasicSearch
     searchPlaceholder="Search members by name"
   />
 ));
@@ -388,7 +390,7 @@ stories.add('With Search Filters', () => (
       PaginatedTable.Filter('birthdate', 'Participants Birthdate', undefined, 'date'),
     ]}
     paginationPlacement={Placement.Bottom}
-    includeBasicSearch={true}
+    includeBasicSearch
     searchPlaceholder="Search members by name"
   />
 ));

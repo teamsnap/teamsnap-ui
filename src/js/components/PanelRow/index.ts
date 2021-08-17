@@ -1,2 +1,3 @@
-import PanelRow from "./PanelRow";
+import PanelRow from './PanelRow';
+
 export { PanelRow };
