@@ -12,58 +12,39 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
 
-class Tooltip extends React.PureComponent<PropTypes.InferProps<typeof Tooltip.propTypes>, any> {
-  static propTypes = {
-    text: PropTypes.string.isRequired,
-    children: PropTypes.node.isRequired,
-    type: PropTypes.string,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object
-  };
+const propTypes = {
+  text: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  type: PropTypes.string,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+};
 
-  static defaultProps = {
-    children: null,
-    type: null,
-    className: "Tooltip",
-    mods: null,
-    style: {},
-    otherProps: {}
-  };
+const Tooltip = (props: PropTypes.InferProps<typeof propTypes>) => {
+  const { text, children, type, className, mods, style, otherProps } = props;
 
-  render() {
-    const {
-      text,
-      children,
-      type,
-      className,
-      mods,
-      style,
-      otherProps
-    } = this.props;
+  const tooltipClasses = getClassName(className, type && `Tooltip--${type}`, mods);
 
-    const tooltipClasses = getClassName(
-      className,
-      type && `Tooltip--${type}`,
-      mods
-    );
+  return (
+    <span data-tooltip={text} className={tooltipClasses} style={style} {...otherProps}>
+      {children}
+    </span>
+  );
+};
 
-    return (
-      <span
-        data-tooltip={text}
-        className={tooltipClasses}
-        style={style}
-        {...otherProps}
-      >
-        {children}
-      </span>
-    );
-  }
-}
+Tooltip.defaultProps = {
+  children: null,
+  type: null,
+  className: 'Tooltip',
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default Tooltip;

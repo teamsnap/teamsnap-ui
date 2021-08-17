@@ -1,2 +1,3 @@
-import PanelHeader from "./PanelHeader";
+import PanelHeader from './PanelHeader';
+
 export { PanelHeader };

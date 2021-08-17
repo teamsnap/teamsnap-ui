@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Icon } from '../Icon';
-import { Pill, CheckboxPill } from './'
-import { AttachmentPill } from './AttachmentPill';
+import { Pill } from '.';
+import { AttachmentPill } from '../AttachmentPill';
+import { CheckboxPill } from '../CheckboxPill';
 
 const stories = storiesOf('Pill', module);
 
@@ -10,7 +11,6 @@ export default {
   title: 'Pill',
   component: Pill,
 };
-
 
 stories.add('Default', () => (
   <Pill>
@@ -27,9 +27,9 @@ stories.add('Pill -- Active', () => (
 stories.add('Pill -- style/ mod overrides', () => (
   <Pill
     active
-    mods='u-padXl'
+    mods="u-padXl"
     style={{
-      backgroundColor: 'white'
+      backgroundColor: 'white',
     }}
   >
     <p>Default</p>
@@ -42,21 +42,22 @@ stories.add('Centered Content', () => (
   </Pill>
 ));
 
-stories.add('Checkbok Pill', () => (
-  <CheckboxPill />
-));
-
+stories.add('Checkbok Pill', () => <CheckboxPill />);
 
 stories.add('Attatchment Pill -- Inactive', () => (
   <AttachmentPill>
-    <p><Icon name="file" /> tournament-registration-flyer.pdf (4.5 MB)</p>
+    <p>
+      <Icon name="file" /> tournament-registration-flyer.pdf (4.5 MB)
+    </p>
     <Icon name="dismiss" />
   </AttachmentPill>
 ));
 
 stories.add('Attatchment Pill -- Active', () => (
   <AttachmentPill active>
-    <p><Icon name="file" /> tournament-registration-flyer.pdf (4.5 MB)</p>
+    <p>
+      <Icon name="file" /> tournament-registration-flyer.pdf (4.5 MB)
+    </p>
     <Icon name="dismiss" />
   </AttachmentPill>
 ));

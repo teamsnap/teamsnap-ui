@@ -10,55 +10,46 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { getClassName } from "../../utils/helpers";
-import { Status, Statuses } from "../../types";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { getClassName } from '../../utils/helpers';
+import { Status, Statuses } from '../../types';
 
-class FieldMessage extends React.PureComponent<PropTypes.InferProps<typeof FieldMessage.propTypes>, any> {
-  static propTypes = {
-    children: PropTypes.string,
-    isError: PropTypes.bool,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object,
-    status: Status.PropType,
-  };
+const propTypes = {
+  children: PropTypes.string,
+  isError: PropTypes.bool,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+  status: Status.PropType,
+};
 
-  static defaultProps = {
-    children: null,
-    className: "FieldGroup-message",
-    mods: null,
-    style: {},
-    otherProps: {}
-  };
+const FieldMessage = (props: PropTypes.InferProps<typeof propTypes>) => {
+  const { children, className, mods, style, otherProps, status } = props;
 
-  render() {
-    const {
-      children,
-      className,
-      mods,
-      style,
-      otherProps,
-      status
-    } = this.props;
+  const messageClasses = getClassName(
+    'FieldGroup-message',
+    status === Statuses.ERROR && 'FieldGroup-message--error',
+    status === Statuses.SUCCESS && 'FieldGroup-message--success',
+    status === Statuses.WARNING && 'FieldGroup-message--warning',
+    className,
+    mods
+  );
 
-    const messageClasses = getClassName(
-      "FieldGroup-message",
-      status == Statuses.ERROR && "FieldGroup-message--error",
-      status == Statuses.SUCCESS && "FieldGroup-message--success",
-      status == Statuses.WARNING && "FieldGroup-message--warning",
-      className,
-      mods
-    );
+  return (
+    <div className={messageClasses} style={style} {...otherProps}>
+      {children}
+    </div>
+  );
+};
 
-    return (
-      <div className={messageClasses} style={style} {...otherProps}>
-        {children}
-      </div>
-    );
-  }
-}
+FieldMessage.defaultProps = {
+  children: null,
+  className: 'FieldGroup-message',
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default FieldMessage;

@@ -1,2 +1,3 @@
-import SummaryList from "./SummaryList";
+import SummaryList from './SummaryList';
+
 export { SummaryList };

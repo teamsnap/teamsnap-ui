@@ -1,9 +1,9 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import { text, select } from '@storybook/addon-knobs';
-import ProgressBar from "./ProgressBar";
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import { select } from '@storybook/addon-knobs';
+import ProgressBar from './ProgressBar';
 
-const stories = storiesOf("ProgressBar", module);
+const stories = storiesOf('ProgressBar', module);
 
 export default {
   title: 'ProgressBar',
@@ -11,66 +11,46 @@ export default {
 };
 
 const sizeOptions = {
-  xsmall: "xsmall",
-  small: "small",
+  xsmall: 'xsmall',
+  small: 'small',
   default: null,
-  large: "large",
-  xlarge: "xlarge"
+  large: 'large',
+  xlarge: 'xlarge',
 };
 
-stories.add("Default", () => <ProgressBar progress={33} />);
+stories.add('Default', () => <ProgressBar progress={33} />);
 
 stories.add(
-  "Vertical Bars",
+  'Vertical Bars',
   () => {
-    const size = select("size", sizeOptions, null);
+    const size = select('size', sizeOptions, null);
     return (
       <div
         style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-evenly"
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-evenly',
         }}
       >
-        <ProgressBar
-          progress={33}
-          size={size}
-          style={{ height: 100 + "px" }}
-          isVertical={true}
-        />
-        <ProgressBar
-          progress={33}
-          size={size}
-          style={{ height: 150 + "px" }}
-          isVertical={true}
-        />
-        <ProgressBar
-          progress={33}
-          size={size}
-          style={{ height: 200 + "px" }}
-          isVertical={true}
-        />
-        <ProgressBar
-          progress={33}
-          size={size}
-          style={{ height: 250 + "px" }}
-          isVertical={true}
-        />
+        <ProgressBar progress={33} size={size} style={{ height: '100px' }} isVertical />
+        <ProgressBar progress={33} size={size} style={{ height: '150px' }} isVertical />
+        <ProgressBar progress={33} size={size} style={{ height: '200px' }} isVertical />
+        <ProgressBar progress={33} size={size} style={{ height: '250px' }} isVertical />
       </div>
     );
   },
   {
     knobs: {
       timestamps: true,
-      debounce: { wait: 500, leading: false }
-    }
+      debounce: { wait: 500, leading: false },
+    },
   }
 );
 
 stories.add(
-  "Progress Colors",
+  'Progress Colors',
   () => {
-    const size = select("size", sizeOptions, null);
+    const size = select('size', sizeOptions, null);
 
     return (
       <div>
@@ -92,7 +72,7 @@ stories.add(
   {
     knobs: {
       timestamps: true,
-      debounce: { wait: 500, leading: false }
-    }
+      debounce: { wait: 500, leading: false },
+    },
   }
 );

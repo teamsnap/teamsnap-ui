@@ -16,120 +16,107 @@
  *
  */
 
-import * as React from "react";
-import * as PropTypes from "prop-types";
-import { PanelRow } from "../PanelRow";
-import { PanelCell } from "../PanelCell";
-import { Icon } from "../Icon";
-import { getClassName } from "../../utils/helpers";
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { PanelRow } from '../PanelRow';
+import { PanelCell } from '../PanelCell';
+import { Icon } from '../Icon';
+import { getClassName } from '../../utils/helpers';
 
-class PanelRowExpandable extends React.PureComponent<PropTypes.InferProps<typeof PanelRowExpandable.propTypes>, any> {
-  static propTypes = {
-    parentColumns: PropTypes.arrayOf(PropTypes.object).isRequired,
-    childColumns: PropTypes.arrayOf(PropTypes.object),
-    renderColumn: PropTypes.func,
-    className: PropTypes.string,
-    mods: PropTypes.string,
-    style: PropTypes.object,
-    otherProps: PropTypes.object
-  };
+const propTypes = {
+  parentColumns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  childColumns: PropTypes.arrayOf(PropTypes.object),
+  renderColumn: PropTypes.func,
+  className: PropTypes.string,
+  mods: PropTypes.string,
+  style: PropTypes.object,
+  otherProps: PropTypes.object,
+};
 
-  static defaultProps = {
-    childColumns: null,
-    renderColumn: null,
-    className: "Panel-expandableRow",
-    mods: null,
-    style: {},
-    otherProps: {}
-  };
+type Props = PropTypes.InferProps<typeof propTypes> | any;
 
-  state = {
-    isExpanded: false
-  };
+const PanelRowExpandable = ({
+  parentColumns,
+  childColumns,
+  renderColumn,
+  className,
+  mods,
+  style,
+  otherProps,
+}: Props) => {
+  const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
 
-  handleRowClick = e => {
+  const handleRowClick = (e) => {
     e.preventDefault();
 
-    this.setState({
-      isExpanded: !this.state.isExpanded
-    });
+    setIsExpanded(!isExpanded);
   };
 
-  renderChildLink = children => {
-    const { isExpanded } = this.state;
-
-    const linkClasses = getClassName(
-      "Panel-expandableControl",
-      isExpanded && "is-expanded"
-    );
+  const renderChildLink = (children) => {
+    const linkClasses = getClassName('Panel-expandableControl', isExpanded && 'is-expanded');
 
     return (
-      <a onClick={this.handleRowClick} className={linkClasses}>
+      <button
+        type="button"
+        onClick={handleRowClick}
+        className={linkClasses}
+        style={{
+          backgroundColor: 'transparent',
+          border: 'none',
+        }}
+      >
         <span className="Panel-expandableControlIcon">
           <Icon name="right" />
         </span>
         {children}
-      </a>
+      </button>
     );
   };
 
-  renderColumns = (columns, includeLink = false) => {
-    const { renderColumn } = this.props;
-
+  const renderColumns = (columns, includeLink = false) => {
     return columns.map((column, index) => {
       const { children: columnChildren, ...props } = column;
       const children =
-        includeLink && index === 0
-          ? this.renderChildLink(columnChildren)
-          : columnChildren;
+        includeLink && index === 0 ? renderChildLink(columnChildren) : columnChildren;
 
       return renderColumn ? (
         renderColumn({ key: index, children, ...props })
       ) : (
-          <PanelCell key={index} {...props}>
-            {children}
-          </PanelCell>
-        );
+        <PanelCell key={index} {...props}>
+          {children}
+        </PanelCell>
+      );
     });
   };
 
-  renderChildColumns = childColumns => {
-    const { isExpanded } = this.state;
-
+  const renderChildColumns = (childCols) => {
     return (
-      <div
-        className={getClassName("Panel-childRows", isExpanded && "is-expanded")}
-      >
-        <PanelRow isWithCells>{this.renderColumns(childColumns)}</PanelRow>
+      <div className={getClassName('Panel-childRows', isExpanded && 'is-expanded')}>
+        <PanelRow isWithCells>{renderColumns(childCols)}</PanelRow>
       </div>
     );
   };
 
-  render() {
-    const {
-      parentColumns,
-      childColumns,
-      className,
-      mods,
-      style,
-      otherProps
-    } = this.props;
-    const hasChildren = childColumns && childColumns.length > 0;
+  const hasChildren = childColumns && childColumns.length > 0;
 
-    return (
-      <div
-        className={getClassName(className, mods)}
-        style={style}
-        {...otherProps}
-      >
-        <PanelRow isWithCells isParent>
-          {this.renderColumns(parentColumns, hasChildren)}
-        </PanelRow>
+  return (
+    <div className={getClassName(className, mods)} style={style} {...otherProps}>
+      <PanelRow isWithCells isParent>
+        {renderColumns(parentColumns, hasChildren)}
+      </PanelRow>
 
-        {hasChildren && this.renderChildColumns(childColumns)}
-      </div>
-    );
-  }
-}
+      {hasChildren && renderChildColumns(childColumns)}
+    </div>
+  );
+};
+
+PanelRowExpandable.defaultProps = {
+  childColumns: null,
+  renderColumn: null,
+  className: 'Panel-expandableRow',
+  mods: null,
+  style: {},
+  otherProps: {},
+};
 
 export default PanelRowExpandable;

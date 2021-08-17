@@ -1,2 +1,3 @@
-import TextArea from "./TextArea";
+import TextArea from './TextArea';
+
 export { TextArea };
