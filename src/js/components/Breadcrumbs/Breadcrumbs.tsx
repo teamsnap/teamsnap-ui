@@ -42,7 +42,7 @@ const Breadcrumbs: React.FunctionComponent<
     const Crumb = () => <>{crumb}</>;
 
     return (
-      <li className={crumb.className} style={crumb.style}>
+      <li>
         <Crumb />
       </li>
     );
