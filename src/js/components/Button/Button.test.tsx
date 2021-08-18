@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import Button from './Button';
 
 describe('Button component', () => {
-  test('mock', () => {
+  test('should call onClick function when button clicked', () => {
     const onClick = jest.fn();
     render(
       <Button className="my-button" onClick={onClick}>

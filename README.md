@@ -84,6 +84,20 @@ To run prettier on command line, we are using a package called `git-format-stage
 - Ensure that any files you want linted and formatted are staged (on git). Remember we are using `git-format-staged`
 - Run `yarn lint:format`
 
+### Running unit tests
+
+To run all the tests:
+
+```
+  yarn test
+```
+
+To run a single file:
+
+```
+  yarn test <myFile>
+```
+
 ### TODO:
 
 - Update docs with full process for working locally with TeamSnap-UI

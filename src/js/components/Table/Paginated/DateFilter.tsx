@@ -50,7 +50,6 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
-  otherProps: PropTypes.object,
 };
 
 type Props = Omit<PropTypes.InferProps<typeof propTypes>, 'onChange'> & {
@@ -229,7 +228,6 @@ DateFilter.defaultProps = {
   mods: null,
   style: {},
   className: 'Combobox',
-  otherProps: {},
   noDateLabel: 'No Date',
 };
 
