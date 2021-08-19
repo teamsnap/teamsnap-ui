@@ -11,7 +11,7 @@ type Props = {
 const AttachmentPill = ({ active, children }: Props) => (
   <Grid>
     <Cell mods="u-size1of1">
-      <Pill align="ends" active={active}>
+      <Pill data-testid="pill" align="ends" active={active}>
         {children}
       </Pill>
     </Cell>
