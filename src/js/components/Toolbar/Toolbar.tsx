@@ -87,14 +87,16 @@ const Toolbar = ({
             <div className="u-posAbsolute Toolbar-flyout">{accountBody}</div>
           )}
         </div>
-        <div>
-          <Button type="link" style={btnStyle} onClick={() => setActiveMenu(Menu.Admin)}>
-            {showAdmin && <Icon className="Icon u-spaceLeftLg" name="wrench" style={iconStyle} />}
-          </Button>
-          {activeMenu === Menu.Admin && (
-            <div className="u-posAbsolute Toolbar-flyout">{adminBody}</div>
-          )}
-        </div>
+        {showAdmin && (
+          <div>
+            <Button type="link" style={btnStyle} onClick={() => setActiveMenu(Menu.Admin)}>
+              <Icon className="Icon u-spaceLeftLg" name="wrench" style={iconStyle} />
+            </Button>
+            {activeMenu === Menu.Admin && (
+              <div className="u-posAbsolute Toolbar-flyout">{adminBody}</div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
