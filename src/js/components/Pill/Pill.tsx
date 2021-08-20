@@ -25,7 +25,7 @@ const Pill: React.FunctionComponent<Props> = ({
   );
 
   return (
-    <div className={classes} style={style} {...props}>
+    <div data-testid="pill" className={classes} style={style} {...props}>
       {children || 'Default'}
     </div>
   );

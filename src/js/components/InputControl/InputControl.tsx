@@ -29,21 +29,20 @@ const propTypes = {
   otherProps: PropTypes.object,
 };
 
-const InputControl = (props: PropTypes.InferProps<typeof propTypes>) => {
-  const {
-    name,
-    label,
-    group,
-    type,
-    inputProps,
-    labelProps,
-    isInline,
-    className,
-    mods,
-    style,
-    otherProps,
-  } = props;
-
+const InputControl = ({
+  name,
+  label,
+  group,
+  type,
+  inputProps,
+  labelProps,
+  isInline,
+  className,
+  mods,
+  style,
+  otherProps,
+  ...rest
+}: PropTypes.InferProps<typeof propTypes>) => {
   const classes = getClassName(className, isInline && 'Checkbox--inline', mods);
 
   // booleans can skip the extra checking here
@@ -60,11 +59,12 @@ const InputControl = (props: PropTypes.InferProps<typeof propTypes>) => {
   }
 
   return (
-    <div className={classes} style={style} {...otherProps}>
+    <div className={classes} style={style} {...otherProps} {...rest}>
       <input
         className="Checkbox-input"
         type={type}
         name={group || name}
+        data-testid={`${name}-input`}
         id={name}
         {...inputProps}
         checked={value} // has to come after spreading input props to support indeterminate
