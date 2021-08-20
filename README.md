@@ -62,7 +62,7 @@ To run the linters manually use:
 
 We are using [AirBnB JavaScript Style Guide](https://github.com/airbnb/javascript). This style guide provides a good amount of default linting rules that we can leverage to start with and then simply provide some overrides for our team
 
-We have the option to work with a code editor like VSCode or via command line. For VSCode, you will have to install the [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) VSCode extension and for command line, you will have to install `prettier` globally as a dependency using `yarn` or `npm` (i.e. `yarn add -g prettier`)
+We have the option to work with a code editor like VSCode or via command line. For VSCode, you will have to install the [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) VSCode extension and for command line, you will have to install `prettier` globally as a dependency using `yarn` or `npm` (i.e. `yarn global add prettier`)
 
 If you have a different code editor like sublime or atom etc you can find a plugin to work with in the [editors](https://prettier.io/docs/en/editors.html) section of the docs
 
