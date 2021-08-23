@@ -149,6 +149,7 @@ const ComboBox = ({
         className={`Combobox-toggle ${hasFilters ? 'Combobox-toggle--active' : ''}`}
         name={name}
         id={name}
+        data-testid="comboboxButton"
         disabled={disabled}
         title={comboLabel !== buttonLabel ? comboLabel.substring(1) : ''}
         onClick={() => {
@@ -158,7 +159,7 @@ const ComboBox = ({
         {comboLabel !== buttonLabel ? comboLabel.substring(1) : buttonLabel}
       </button>
       {flyoutVisible && (
-        <Panel mods="Combobox-checkboxContainer">
+        <Panel mods="Combobox-checkboxContainer" data-testid="flyout">
           <PanelBody mods="Combobox-checkboxes">
             {shouldShowSearchBar && (
               <PanelRow mods="Grid-cell u-flexAuto u-padBottomMd">

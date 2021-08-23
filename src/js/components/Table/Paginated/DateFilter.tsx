@@ -50,7 +50,6 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
-  otherProps: PropTypes.object,
 };
 
 type Props = Omit<PropTypes.InferProps<typeof propTypes>, 'onChange'> & {
@@ -160,7 +159,7 @@ const DateFilter = ({
         {buttonLabel}
       </button>
       {flyoutVisible && (
-        <Panel mods="Combobox-checkboxContainer">
+        <Panel otherProps={{ 'data-testid': 'flyout' }} mods="Combobox-checkboxContainer">
           <PanelBody>
             <PanelRow mods="Grid-cell u-flexAuto u-padBottomMd">
               <Select
@@ -229,7 +228,6 @@ DateFilter.defaultProps = {
   mods: null,
   style: {},
   className: 'Combobox',
-  otherProps: {},
   noDateLabel: 'No Date',
 };
 
