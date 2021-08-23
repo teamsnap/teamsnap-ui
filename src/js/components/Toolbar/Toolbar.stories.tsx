@@ -174,3 +174,22 @@ stories.add('With Breadcrumbs and Search', () => {
     </Toolbar>
   );
 });
+
+stories.add('Hide Admin', () => {
+  const breadcrumbs = [
+    <Link text="Boulder Soccer" href="#boulder-soccer" />,
+    <Link text="Competitive" href="#competitive" />,
+    <Link text="2021 Fall Season" href="#2021-fall-season" />,
+    'Registration',
+  ];
+
+  return (
+    <Toolbar showAdmin={false}>
+      <div className="Grid-cell u-flexAlignSelfCenter u-sizeFit u-textNoWrap u-textEllipsis u-spaceRightLg">
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
+      </div>
+
+      <Search />
+    </Toolbar>
+  );
+});
