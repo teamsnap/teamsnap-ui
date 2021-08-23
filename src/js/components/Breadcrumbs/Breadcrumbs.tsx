@@ -40,7 +40,7 @@ const Breadcrumbs = ({ className, breadcrumbs, id, style, separator }: Props) =>
     const Crumb = () => <>{crumb}</>;
 
     return (
-      <li className={crumb.className} style={crumb.style}>
+      <li>
         <Crumb />
       </li>
     );
