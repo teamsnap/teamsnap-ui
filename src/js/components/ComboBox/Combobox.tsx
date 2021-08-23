@@ -62,7 +62,7 @@ const ComboBox = ({
   items,
   onChange,
 }: Props) => {
-  const [flyoutVisible, toggleFlyout] = React.useState(true);
+  const [flyoutVisible, toggleFlyout] = React.useState(false);
   const [comboLabel, setComboLabel] = React.useState('');
   const [hasFilters, setHasFilters] = React.useState(false);
   const [searchParam, setSearchParam] = React.useState('');
