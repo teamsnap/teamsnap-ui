@@ -68,7 +68,9 @@ export default class PopUpAction extends React.Component<Props, State> {
     }
   }
 
-  togglePopup() {
+  togglePopup(e) {
+    e.stopPropagation();
+
     const { isPopupOpen } = this.state;
 
     this.setState({

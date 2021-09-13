@@ -59,16 +59,16 @@ $Popup-arrow-borderRadius: 3px;
   left: 50%;
   transform: translateX(-50%) rotate(45deg);
   width: $Popup-arrow-size;
-	height: $Popup-arrow-size;
+  height: $Popup-arrow-size;
   background-color: $Popup-bg-color;
   border-radius: $Popup-arrow-borderRadius 0 $Popup-arrow-borderRadius 0;
-  animation: popInArrow 75ms cubic-bezier(0.2, 0.8, 0.4, 1.0) forwards;
+  animation: popInArrow 75ms cubic-bezier(0.2, 0.8, 0.4, 1) forwards;
 }
 
 // * Bottom square has border and box shadow
 
 .Popup-container::before {
-  top: calc( 100% - #{$Popup-arrow-offset} );
+  top: calc(100% - #{$Popup-arrow-offset});
   border: solid $Popup-border-color $border-width-small;
   box-shadow: $box-shadow-small;
 }
@@ -77,7 +77,7 @@ $Popup-arrow-borderRadius: 3px;
 //   of bottom square that overlay the popup
 
 .Popup-container::after {
-  top: calc( 100% - #{$Popup-arrow-offsetCover} );
+  top: calc(100% - #{$Popup-arrow-offsetCover});
 }
 
 // * .Popup-content
@@ -89,7 +89,7 @@ $Popup-arrow-borderRadius: 3px;
   border: solid $Popup-border-color $border-width-small;
   border-radius: $border-radius-medium;
   box-shadow: $box-shadow-small;
-  animation: popIn 75ms cubic-bezier(0.2, 0.8, 0.4, 1.0) forwards;
+  animation: popIn 75ms cubic-bezier(0.2, 0.8, 0.4, 1) forwards;
 }
 
 // * Overlay modifier
@@ -133,7 +133,7 @@ $Popup-arrow-borderRadius: 3px;
 
   &::before,
   &::after {
-    left: $su-large;
+    left: $su-small;
     transform: translateX(0) rotate(45deg);
   }
 }
@@ -153,7 +153,6 @@ $Popup-arrow-borderRadius: 3px;
   }
 }
 
-
 // * Right modifier
 //
 // * Aligns popover with right side of toggle
@@ -166,7 +165,7 @@ $Popup-arrow-borderRadius: 3px;
   &::before,
   &::after {
     left: auto;
-    right: $su-large;
+    right: $su-small;
     transform: translateX(0) rotate(45deg);
   }
 }
@@ -191,40 +190,36 @@ $Popup-arrow-borderRadius: 3px;
 // * Hover modifier
 //
 // * Allows the user to hover over a popup instead of click
-// * 1. the Popup-content:before creates a small transparent hoverable box that fills the gap between the popup trigger and container  
+// * 1. the Popup-content:before creates a small transparent hoverable box that fills the gap between the popup trigger and container
 // * 2. Since the content: ''; attribute is nested in the hover modifier the Popup-content:before CSS only effects content in a hover modified popup
 
 .Popup--hover {
-
-  .Popup-content:before { // 2
+  .Popup-content:before {
+    // 2
     content: '';
     position: absolute;
     display: block;
   }
-
 }
 
-.Popup-content:before { // 1
+.Popup-content:before {
+  // 1
   height: $su-medium;
   width: 100%;
   left: 0;
-  top: 100%;
 
   .Popup-container--down & {
     top: auto;
     bottom: 100%;
   }
-
 }
 
 .Popup--hover:hover,
-.Popup--hover:focus,
-.Popup--hover:focus-within {
-
-  .Popup-container {
+.Popup--hover:focus {
+  .Popup-container,
+  .Popup-container:focus-within {
     display: block;
   }
-
 }
 
 // * Animations
@@ -236,7 +231,7 @@ $Popup-arrow-borderRadius: 3px;
   }
   100% {
     opacity: 1;
-    transform: scale3d(1.0, 1.0, 1.0);
+    transform: scale3d(1, 1, 1);
   }
 }
 
