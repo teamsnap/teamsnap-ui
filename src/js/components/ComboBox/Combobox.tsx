@@ -124,8 +124,12 @@ const ComboBox = ({
     }
   };
 
+  const filtersFromPropsAreDifferent = (fromProps, currentFilters) => {
+    return !!fromProps && (fromProps.length !== 0) && fromProps.some((item) => !(currentFilters || []).includes(item));
+  }
+
   React.useEffect(() => {
-    if (!!selected && (selected.length !== 0) && selected.some((item) => !(selectedFilters || []).includes(item))) {
+    if (filtersFromPropsAreDifferent(selected, selectedFilters)) {
       setSelectedFilters(selected);
     }
   }, [selected]);
