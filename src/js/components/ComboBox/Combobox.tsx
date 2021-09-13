@@ -37,6 +37,9 @@ const propTypes = {
       label: PropTypes.string,
     })
   ),
+  selected: PropTypes.arrayOf(
+    PropTypes.any
+  ),
   onChange: PropTypes.func,
   className: PropTypes.string,
   mods: PropTypes.string,
@@ -58,6 +61,7 @@ const ComboBox = ({
   otherProps,
   disabled,
   className,
+  selected,
   mods,
   items,
   onChange,
@@ -94,29 +98,45 @@ const ComboBox = ({
     setComboLabel(checked.length > 0 ? checked.reduce(createLabel, '') : buttonLabel);
     setFilterList(checked);
     setUncheckedFilterList(unchecked);
+    if (selectedFilters.length > 0) {
+      setHasFilters(true);
+    }
   };
-
-  React.useEffect(() => {
-    sortFilters();
-  }, [flyoutVisible]);
 
   const clearFilters = () => {
     setSelectedFilters([]);
     setHasFilters(false);
     onChange([]);
-    toggleFlyout(!flyoutVisible);
+    toggleFlyout(false);
   };
 
-  const applyFilters = () => {
+  const applyFilters = (triggerOnChange = true) => {
     if (selectedFilters.length > 0) {
       setComboLabel(filterList.reduce(createLabel, ''));
-      toggleFlyout(!flyoutVisible);
       setHasFilters(true);
-      onChange(selectedFilters);
+
+      if (triggerOnChange) {
+        toggleFlyout(false);
+        onChange(selectedFilters);
+      }
     } else {
       clearFilters();
     }
   };
+
+  const filtersFromPropsAreDifferent = (fromProps, currentFilters) => {
+    return !!fromProps && (fromProps.length !== 0) && fromProps.some((item) => !(currentFilters || []).includes(item));
+  }
+
+  React.useEffect(() => {
+    if (filtersFromPropsAreDifferent(selected, selectedFilters)) {
+      setSelectedFilters(selected);
+    }
+  }, [selected]);
+
+  React.useEffect(() => {
+    sortFilters();
+  }, [flyoutVisible, selectedFilters]);
 
   const buildCheckbox = (filter, idx) => {
     return (
@@ -153,7 +173,7 @@ const ComboBox = ({
         disabled={disabled}
         title={comboLabel !== buttonLabel ? comboLabel.substring(1) : ''}
         onClick={() => {
-          toggleFlyout(!flyoutVisible);
+          toggleFlyout(true);
         }}
       >
         {comboLabel !== buttonLabel ? comboLabel.substring(1) : buttonLabel}
@@ -192,7 +212,7 @@ const ComboBox = ({
             <Button onClick={clearFilters} mods="u-spaceRightMd u-colorNeutral7" type="link">
               Clear
             </Button>
-            <Button onClick={applyFilters} type="link">
+            <Button onClick={() => applyFilters()} type="link">
               Done
             </Button>
           </PanelFooter>

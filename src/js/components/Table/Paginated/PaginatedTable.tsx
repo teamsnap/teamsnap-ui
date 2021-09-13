@@ -82,6 +82,7 @@ const Filter = (
       <ComboBox
         mods={isLast ? '' : 'u-spaceRightSm'}
         onChange={onChange}
+        selected={ctx.activeFilters[fieldName]}
         name={fieldName}
         buttonLabel={label}
         items={convertObjsToValueLabel(items)}
