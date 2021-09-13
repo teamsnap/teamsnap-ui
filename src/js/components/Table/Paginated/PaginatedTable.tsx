@@ -78,10 +78,13 @@ const Filter = (
       ctx.setActiveFilters({ ...ctx.activeFilters, [fieldName]: values });
     };
 
+    //console.log("PT:", ctx.activeFilters, fieldName,ctx.activeFilters[fieldName]);
+
     return type === 'select' ? (
       <ComboBox
         mods={isLast ? '' : 'u-spaceRightSm'}
         onChange={onChange}
+        selected={ctx.activeFilters[fieldName]}
         name={fieldName}
         buttonLabel={label}
         items={convertObjsToValueLabel(items)}
