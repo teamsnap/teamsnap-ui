@@ -29,12 +29,91 @@ const actions = [
 
 stories.add('PopupActions', () => {
   return (
-    <PopupAction
-      text="..."
-      actions={actions}
-      direction={['down', 'left']}
-      popupStyle={{ width: '150px' }}
-    />
+    <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
+      <div>
+        <PopupAction
+          text="..."
+          actions={actions}
+          direction={['down', 'left']}
+          popupStyle={{ width: '150px' }}
+        />
+      </div>
+    </div>
+  );
+});
+
+stories.add('PopupActions - Down & Left', () => {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
+      <div>
+        <PopupAction
+          text="..."
+          actions={actions}
+          direction={['down', 'left']}
+          popupStyle={{ width: '150px' }}
+        />
+      </div>
+    </div>
+  );
+});
+
+stories.add('PopupActions - Down & Right', () => {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
+      <div>
+        <PopupAction
+          text="..."
+          actions={actions}
+          direction={['down', 'right']}
+          popupStyle={{ width: '150px' }}
+        />
+      </div>
+    </div>
+  );
+});
+
+stories.add('PopupActions - Down & Left Hang', () => {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
+      <div>
+        <PopupAction
+          text="..."
+          actions={actions}
+          direction={['down', 'leftHang']}
+          popupStyle={{ width: '150px' }}
+        />
+      </div>
+    </div>
+  );
+});
+
+stories.add('PopupActions - Down & Right Hang', () => {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
+      <div>
+        <PopupAction
+          text="..."
+          actions={actions}
+          direction={['down', 'rightHang']}
+          popupStyle={{ width: '150px' }}
+        />
+      </div>
+    </div>
+  );
+});
+
+stories.add('PopupActions - Overlay', () => {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
+      <div>
+        <PopupAction
+          text="..."
+          actions={actions}
+          direction={['overlay']}
+          popupStyle={{ width: '150px' }}
+        />
+      </div>
+    </div>
   );
 });
 
@@ -47,11 +126,17 @@ stories.add('PopupConfirm', () => {
     alert('Good. I dont want to hurt or cry.');
   };
   return (
-    <PopupConfirm
-      onAccept={onAccept}
-      onCancel={onCancel}
-      buttonText="Perform the Culture Club!"
-      popUpText={popupText}
-    />
+    <div
+      style={{ display: 'flex', justifyContent: 'center', minHeight: '100px', paddingTop: '2rem' }}
+    >
+      <div>
+        <PopupConfirm
+          onAccept={onAccept}
+          onCancel={onCancel}
+          buttonText="Perform the Culture Club!"
+          popUpText={popupText}
+        />
+      </div>
+    </div>
   );
 });
