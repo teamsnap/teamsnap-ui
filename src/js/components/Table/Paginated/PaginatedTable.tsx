@@ -82,6 +82,7 @@ const Filter = (
       <ComboBox
         mods={isLast ? '' : 'u-spaceRightSm'}
         onChange={onChange}
+        selected={ctx.activeFilters[fieldName]}
         name={fieldName}
         buttonLabel={label}
         items={convertObjsToValueLabel(items)}
@@ -293,7 +294,7 @@ const PaginatedTable: PaginatedTableProps = ({
     <div className="Grid">
       <div className="Grid Grid-cell u-spaceTopSm">
         {bulkActions?.length > 0 ? (
-          <div className="Grid-cellu-spaceRightXs u-flex u-size1of1 u-md-size1of12 u-flexJustifyStart">
+          <div className="Grid-cell u-spaceRightXs u-flex u-size1of1 u-md-size1of12 u-flexJustifyStart">
             <Select
               inputProps={{
                 value: '',
