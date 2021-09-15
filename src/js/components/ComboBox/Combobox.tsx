@@ -111,6 +111,7 @@ const ComboBox = ({
   };
 
   const applyFilters = (triggerOnChange = true) => {
+    console.log(selectedFilters);
     if (selectedFilters.length > 0) {
       setComboLabel(filterList.reduce(createLabel, ''));
       setHasFilters(true);
@@ -128,15 +129,37 @@ const ComboBox = ({
     return !!fromProps && (fromProps.length !== 0) && fromProps.some((item) => !(currentFilters || []).includes(item));
   }
 
+  // Run this when the props change
   React.useEffect(() => {
     if (filtersFromPropsAreDifferent(selected, selectedFilters)) {
       setSelectedFilters(selected);
     }
   }, [selected]);
 
+  // Run this when the flyout visibility
   React.useEffect(() => {
-    sortFilters();
-  }, [flyoutVisible, selectedFilters]);
+    if (!flyoutVisible) {
+      applyFilters();
+      sortFilters();
+    }
+  }, [flyoutVisible]);
+
+  // Set up handler when flyoutVisibility changes
+  const handleBodyClick = (e) => {
+    const isTargetingPopup = e.target.closest('.Combobox') != null;
+
+    if (!isTargetingPopup) {
+      toggleFlyout(false);
+    }
+  };
+
+  React.useEffect(() => {
+    document.body.addEventListener('click', handleBodyClick, { capture: true });
+
+    return () => {
+      document.body.removeEventListener('click', handleBodyClick);
+    };
+  }, []);
 
   const buildCheckbox = (filter, idx) => {
     return (
@@ -173,7 +196,7 @@ const ComboBox = ({
         disabled={disabled}
         title={comboLabel !== buttonLabel ? comboLabel.substring(1) : ''}
         onClick={() => {
-          toggleFlyout(true);
+          toggleFlyout(!flyoutVisible);
         }}
       >
         {comboLabel !== buttonLabel ? comboLabel.substring(1) : buttonLabel}
@@ -212,7 +235,7 @@ const ComboBox = ({
             <Button onClick={clearFilters} mods="u-spaceRightMd u-colorNeutral7" type="link">
               Clear
             </Button>
-            <Button onClick={() => applyFilters()} type="link">
+            <Button onClick={() => toggleFlyout(false)} type="link">
               Done
             </Button>
           </PanelFooter>
