@@ -111,7 +111,6 @@ const ComboBox = ({
   };
 
   const applyFilters = (triggerOnChange = true) => {
-    console.log(selectedFilters);
     if (selectedFilters.length > 0) {
       setComboLabel(filterList.reduce(createLabel, ''));
       setHasFilters(true);
