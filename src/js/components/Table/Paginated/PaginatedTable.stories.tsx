@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import PaginatedTable from './PaginatedTable';
 import { Placement } from '../../../types/placement';
 import { FilterValue } from './DateFilter';
+import * as _ from 'lodash';
 
 const eighteenYearsBirthdate = new Date();
 eighteenYearsBirthdate.setFullYear(eighteenYearsBirthdate.getFullYear() - 18);
@@ -229,11 +230,16 @@ const data = [
  * @param sortBy - the key that the table is sorting by
  * @param sortAsc boolean - true if ascending, false if not.
  */
-function loadData({ page, itemsPerPage }) {
+function loadData({ page, itemsPerPage, sortBy, sortAsc }) {
   const startIndex = itemsPerPage * page - itemsPerPage;
 
+  let finalData = _.sortBy(data, sortBy);
+  if (sortAsc) {
+    finalData = _.reverse(finalData);
+  }
+
   return new Promise((resolve) => {
-    setTimeout(() => resolve(data), 500);
+    setTimeout(() => resolve(finalData), 500);
   }).then((items: any[]) => {
     const endIndex = Math.min(items.length, startIndex + itemsPerPage);
     return items.slice(startIndex, endIndex);

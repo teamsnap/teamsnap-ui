@@ -121,6 +121,8 @@ const Table = ({
     // This is valuable when we sort beyond the data thats currently in the table
     // IE: We keep data on the server and want to sort against that or are supporting pagination.
     if (externalSortingFunction != null) {
+      setSortBy(sortName);
+      setSortOrder(sortDirection);
       externalSortingFunction(sortName, sortDirection);
     } else {
       const tableState = sortItems(columns, items, sortName, sortDirection);
