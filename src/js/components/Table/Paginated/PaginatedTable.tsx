@@ -63,6 +63,7 @@ const propTypes = {
   rowsAreSelectable: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
   totalItems: PropTypes.number.isRequired,
+  defaultSort: PropTypes.string,
 };
 
 const Filter = (
@@ -116,6 +117,7 @@ const PaginatedTable: PaginatedTableProps = ({
   includeBasicSearch,
   searchPlaceholder,
   paginationPlacement,
+  defaultSort,
 }) => {
   assert(
     !(filters.length && paginationPlacement === Placement.Top),
@@ -290,6 +292,8 @@ const PaginatedTable: PaginatedTableProps = ({
     </div>
   );
 
+  const defaultSortStr =  sortName.length ? `${sortAscending ? '-' : ''}${sortName}` : defaultSort;
+
   return (
     <div className="Grid">
       <div className="Grid Grid-cell u-spaceTopSm">
@@ -345,6 +349,7 @@ const PaginatedTable: PaginatedTableProps = ({
           <Table
             columns={cols}
             rows={rows}
+            defaultSort={defaultSortStr}
             externalSortingFunction={(name, ascending) => {
               setSortName(name);
               setSortAscending(ascending);
