@@ -379,6 +379,9 @@ stories.add('With Search Filters', () => (
         nonplayer: 'Non-Player',
         player: 'Player',
         teamOwner: 'Team Owner',
+        coach: 'Coach',
+        supporter: 'Supporter',
+        goalkeeper: 'Goalkeeper',
       }),
       // We understand that this is not a comprehensive list of genders but merely a list to display how these filters can be used
       PaginatedTable.Filter('gender', 'Participants Preferred Gender', {
