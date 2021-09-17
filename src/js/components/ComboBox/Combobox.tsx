@@ -76,7 +76,7 @@ const ComboBox = ({
 
   const shouldShowSearchBar = items.length > 6;
   const filteredItems = searchParam
-    ? uncheckedfilterList.filter((item) => item.label.includes(searchParam))
+    ? uncheckedfilterList.filter((item) => item.label.toLowerCase().includes(searchParam.toLowerCase()))
     : uncheckedfilterList;
 
   const createLabel = (acc, filter) => {
