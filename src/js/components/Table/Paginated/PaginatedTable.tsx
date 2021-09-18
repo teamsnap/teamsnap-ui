@@ -337,12 +337,13 @@ const PaginatedTable: PaginatedTableProps = ({
         {shouldPaginateAtTop && paginationItems}
         {!shouldPaginateAtTop && filterButton}
       </div>
-      <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
         {filterOpen && (
           <Panel mods="u-padSm u-spaceTopSm u-borderNeutral4 u-bgNeutral1 Grid-cell">
-            {filters.map((Item, index) => (
-              <Item key={index} isLast={index === filters.length - 1} />
-            ))}
+            <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
+              {filters.map((Item, index) => (
+                <Item key={index} isLast={index === filters.length - 1} />
+              ))}
+            </FilterContext.Provider>
           </Panel>
         )}
         <div className="Grid-cell u-spaceTopSm">
@@ -357,7 +358,6 @@ const PaginatedTable: PaginatedTableProps = ({
             isLoading={isLoading}
           />
         </div>
-      </FilterContext.Provider>
       {(paginationPlacement === Placement.Bottom || !shouldPaginateAtTop) && paginationItems}
     </div>
   );

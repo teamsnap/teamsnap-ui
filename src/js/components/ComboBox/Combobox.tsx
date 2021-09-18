@@ -103,11 +103,13 @@ const ComboBox = ({
     }
   };
 
-  const clearFilters = () => {
+  const clearFilters = (triggerOnChange = true) => {
     setSelectedFilters([]);
     setHasFilters(false);
-    onChange([]);
     toggleFlyout(false);
+    if (triggerOnChange) {
+      onChange([]);
+    }
   };
 
   const applyFilters = (triggerOnChange = true) => {
@@ -120,7 +122,7 @@ const ComboBox = ({
         onChange(selectedFilters);
       }
     } else {
-      clearFilters();
+      clearFilters(triggerOnChange);
     }
   };
 
@@ -138,7 +140,7 @@ const ComboBox = ({
   // Run this when the flyout visibility
   React.useEffect(() => {
     if (!flyoutVisible) {
-      applyFilters();
+      applyFilters(false);
       sortFilters();
     }
   }, [flyoutVisible]);
