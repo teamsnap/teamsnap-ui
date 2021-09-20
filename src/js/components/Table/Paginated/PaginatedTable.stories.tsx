@@ -284,7 +284,7 @@ function loadSearchData({ page, itemsPerPage, filter }) {
     setTimeout(() => resolve(data), 500);
   }).then((items: any[]) => {
     const filteredItems = items
-      .filter((item) => !filter.gender || filter.gender.includes(item.gender))
+      .filter((item) => (!filter.gender || filter.gender.length === 0) || filter.gender?.includes(item.gender))
       .filter((item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1);
 
     const dateFilteredItems = filter.birthdate

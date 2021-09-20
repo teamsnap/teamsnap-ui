@@ -334,13 +334,11 @@ const PaginatedTable: PaginatedTableProps = ({
         {!shouldPaginateAtTop && filterButton}
       </div>
       <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
-        {filterOpen && (
-          <Panel mods="u-padSm u-spaceTopSm u-borderNeutral4 u-bgNeutral1 Grid-cell">
-            {filters.map((Item, index) => (
-              <Item key={index} isLast={index === filters.length - 1} />
-            ))}
-          </Panel>
-        )}
+        <Panel mods={`u-padSm u-spaceTopSm u-borderNeutral4 u-bgNeutral1 Grid-cell ${!filterOpen ? 'u-hidden' : ''}`}>
+          {filters.map((Item, index) => (
+            <Item key={index} isLast={index === filters.length - 1} />
+          ))}
+        </Panel>
         <div className="Grid-cell u-spaceTopSm">
           <Table
             columns={cols}

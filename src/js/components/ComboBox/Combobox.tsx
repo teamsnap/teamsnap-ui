@@ -125,7 +125,7 @@ const ComboBox = ({
   };
 
   const filtersFromPropsAreDifferent = (fromProps, currentFilters) => {
-    return !!fromProps && (fromProps.length !== 0) && fromProps.some((item) => !(currentFilters || []).includes(item));
+    return !fromProps || fromProps.some((item) => !(currentFilters || []).includes(item));
   }
 
   // Run this when the props change
