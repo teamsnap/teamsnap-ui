@@ -79,8 +79,10 @@ const ComboBox = ({
     ? uncheckedfilterList.filter((item) => item.label.toLowerCase().includes(searchParam.toLowerCase()))
     : uncheckedfilterList;
 
-  const createLabel = (acc, filter) => {
-    return `${acc}, ${items.find((item) => item.value === filter.value).label}`;
+  const createLabel = (comboboxItems: any[]) => {
+    return comboboxItems.reduce((prev, current) => (
+      [...prev, items.find((item) => item.value === current.value).label]
+    ), []).join(', ')
   };
 
   const sortFilters = () => {
@@ -95,7 +97,7 @@ const ComboBox = ({
       }
     });
 
-    setComboLabel(checked.length > 0 ? checked.reduce(createLabel, '') : buttonLabel);
+    setComboLabel(checked.length > 0 ? createLabel(checked) : buttonLabel);
     setFilterList(checked);
     setUncheckedFilterList(unchecked);
     if (selectedFilters.length > 0) {
@@ -103,27 +105,26 @@ const ComboBox = ({
     }
   };
 
-  const clearFilters = (triggerOnChange = true) => {
+  const clearFilters = () => {
     setSelectedFilters([]);
     setHasFilters(false);
     toggleFlyout(false);
-    if (triggerOnChange) {
-      onChange([]);
-    }
+    onChange([]);
+    setComboLabel(buttonLabel);
   };
 
-  const applyFilters = (triggerOnChange = true) => {
+  const applyFilters = () => {
     if (selectedFilters.length > 0) {
-      setComboLabel(filterList.reduce(createLabel, ''));
+      setComboLabel(createLabel(filterList));
       setHasFilters(true);
 
-      if (triggerOnChange) {
-        toggleFlyout(false);
-        onChange(selectedFilters);
-      }
+      toggleFlyout(false);
+      onChange(selectedFilters);
     } else {
-      clearFilters(triggerOnChange);
+      clearFilters();
     }
+
+    sortFilters();
   };
 
   const filtersFromPropsAreDifferent = (fromProps, currentFilters) => {
@@ -136,14 +137,10 @@ const ComboBox = ({
       setSelectedFilters(selected);
     }
   }, [selected]);
-
-  // Run this when the flyout visibility
+  
   React.useEffect(() => {
-    if (!flyoutVisible) {
-      applyFilters(false);
-      sortFilters();
-    }
-  }, [flyoutVisible]);
+    sortFilters()
+  }, []);
 
   // Set up handler when flyoutVisibility changes
   const handleBodyClick = (e) => {
@@ -195,12 +192,12 @@ const ComboBox = ({
         id={name}
         data-testid="comboboxButton"
         disabled={disabled}
-        title={comboLabel !== buttonLabel ? comboLabel.substring(1) : ''}
+        title={comboLabel ?? ''}
         onClick={() => {
           toggleFlyout(!flyoutVisible);
         }}
       >
-        {comboLabel !== buttonLabel ? comboLabel.substring(1) : buttonLabel}
+        {comboLabel ?? buttonLabel}
       </button>
       {flyoutVisible && (
         <Panel mods="Combobox-checkboxContainer" data-testid="flyout">
@@ -236,7 +233,7 @@ const ComboBox = ({
             <Button onClick={clearFilters} mods="u-spaceRightMd u-colorNeutral7" type="link">
               Clear
             </Button>
-            <Button onClick={() => toggleFlyout(false)} type="link">
+            <Button onClick={applyFilters} type="link">
               Done
             </Button>
           </PanelFooter>
