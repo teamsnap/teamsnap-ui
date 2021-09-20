@@ -1,9 +1,9 @@
+import * as _ from 'lodash';
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import PaginatedTable from './PaginatedTable';
 import { Placement } from '../../../types/placement';
 import { FilterValue } from './DateFilter';
-import * as _ from 'lodash';
 
 const eighteenYearsBirthdate = new Date();
 eighteenYearsBirthdate.setFullYear(eighteenYearsBirthdate.getFullYear() - 18);
@@ -286,19 +286,22 @@ const filterBirthDate = (filter: FilterValue, items: any[]) => {
  */
 function loadSearchData({ page, itemsPerPage, filter }) {
   const startIndex = itemsPerPage * page - itemsPerPage;
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(data), 500);
-  }).then((items: any[]) => {
-    const filteredItems = items
-      .filter((item) => !filter.gender || !filter.gender.length || filter.gender.includes(item.gender))
-      .filter((item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1);
+  const filteredItems = data
+    .filter((item) => !filter.gender || !filter.gender.length || filter.gender.includes(item.gender))
+    .filter((item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1);
 
-    const dateFilteredItems = filter.birthdate
-      ? filterBirthDate(filter.birthdate, filteredItems)
-      : filteredItems;
-    const endIndex = Math.min(dateFilteredItems.length, startIndex + itemsPerPage);
-    return dateFilteredItems.slice(startIndex, endIndex);
-  });
+  const dateFilteredItems = filter.birthdate
+    ? filterBirthDate(filter.birthdate, filteredItems)
+    : filteredItems;
+  const endIndex = Math.min(dateFilteredItems.length, startIndex + itemsPerPage);
+  const items = dateFilteredItems.slice(startIndex, endIndex);
+
+  return new Promise((resolve) => {
+    setTimeout(() => resolve({
+      data: items,
+      totalItems: dateFilteredItems.length
+    }), 500);
+  })
 }
 
 /**
@@ -328,7 +331,6 @@ stories.add('Default', () => (
     mapDataToRow={mapData}
     loadData={loadData}
     defaultItemsPerPage={2}
-    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
     paginationPlacement={Placement.Bottom}
   />
 ));
@@ -356,7 +358,6 @@ stories.add('Selectable Rows', () => (
     includeBasicSearch
     searchPlaceholder="Search members by name"
     defaultItemsPerPage={2}
-    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
   />
 ));
 
@@ -366,7 +367,6 @@ stories.add('Basic Search', () => (
     mapDataToRow={mapData}
     loadData={loadSearchData}
     defaultItemsPerPage={2}
-    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
     includeBasicSearch
     searchPlaceholder="Search members by name"
   />
@@ -378,7 +378,6 @@ stories.add('With Search Filters', () => (
     mapDataToRow={mapData}
     loadData={loadSearchData}
     defaultItemsPerPage={2}
-    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
     filters={[
       PaginatedTable.Filter('role', 'Participants Role', {
         manager: 'Manager',
