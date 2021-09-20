@@ -62,7 +62,6 @@ const propTypes = {
   paginationPlacement: PropTypes.oneOf([Placement.Top, Placement.Bottom]),
   rowsAreSelectable: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
-  totalItems: PropTypes.number.isRequired,
 };
 
 const Filter = (
