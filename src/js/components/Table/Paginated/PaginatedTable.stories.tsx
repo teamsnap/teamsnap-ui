@@ -291,7 +291,13 @@ function loadSearchData({ page, itemsPerPage, filter }) {
       ? filterBirthDate(filter.birthdate, filteredItems)
       : filteredItems;
     const endIndex = Math.min(dateFilteredItems.length, startIndex + itemsPerPage);
-    return dateFilteredItems.slice(startIndex, endIndex);
+    const filtered = dateFilteredItems.slice(startIndex, endIndex);
+    return {
+      data: filtered,
+      metadata: {
+        total: dateFilteredItems.length,
+      }
+    }
   });
 }
 
@@ -322,7 +328,6 @@ stories.add('Default', () => (
     mapDataToRow={mapData}
     loadData={loadData}
     defaultItemsPerPage={2}
-    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
     paginationPlacement={Placement.Bottom}
   />
 ));
@@ -350,7 +355,6 @@ stories.add('Selectable Rows', () => (
     includeBasicSearch
     searchPlaceholder="Search members by name"
     defaultItemsPerPage={2}
-    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
   />
 ));
 
@@ -360,7 +364,6 @@ stories.add('Basic Search', () => (
     mapDataToRow={mapData}
     loadData={loadSearchData}
     defaultItemsPerPage={2}
-    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
     includeBasicSearch
     searchPlaceholder="Search members by name"
   />
@@ -372,7 +375,6 @@ stories.add('With Search Filters', () => (
     mapDataToRow={mapData}
     loadData={loadSearchData}
     defaultItemsPerPage={2}
-    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
     filters={[
       PaginatedTable.Filter('role', 'Participants Role', {
         manager: 'Manager',

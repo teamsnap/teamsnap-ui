@@ -107,7 +107,6 @@ const PaginatedTable: PaginatedTableProps = ({
   mapDataToRow,
   defaultPage,
   defaultItemsPerPage,
-  totalItems,
   hideRowsSelect,
   rowsAreSelectable = false,
   bulkActions,
@@ -134,6 +133,7 @@ const PaginatedTable: PaginatedTableProps = ({
   const [searchTerm, setSearchTerm] = React.useState('');
   const [filterOpen, setFilterOpen] = React.useState(false);
   const [activeFilters, setActiveFilters] = React.useState({});
+  const [totalItems, setTotalItems] = React.useState<number | null>(null);
   const shouldPaginateAtTop = paginationPlacement !== Placement.Bottom && filters.length === 0;
 
   const setNewItemsPerPage = (newItemsPerPage) => {
@@ -157,8 +157,11 @@ const PaginatedTable: PaginatedTableProps = ({
       sortBy: sortName,
       sortAsc: sortAscending,
       filter: includeBasicSearch || activeFilters ? { searchTerm, ...activeFilters } : null,
-    }).then((data) => {
+    }).then((response) => {
+      const {data} = response;
+      const {metadata} = response;
       setDataSet(data);
+      setTotalItems(metadata.total);
       setIsLoading(false);
     });
   }, [itemsPerPage, currentPage, sortName, sortAscending, searchTerm, activeFilters]);
