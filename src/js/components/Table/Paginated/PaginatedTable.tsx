@@ -62,7 +62,6 @@ const propTypes = {
   paginationPlacement: PropTypes.oneOf([Placement.Top, Placement.Bottom]),
   rowsAreSelectable: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
-  // totalItems: PropTypes.number.isRequired,
   defaultSort: PropTypes.string,
 };
 
@@ -113,7 +112,6 @@ const PaginatedTable: PaginatedTableProps = ({
   mapDataToRow,
   defaultPage,
   defaultItemsPerPage,
-  // totalItems,
   hideRowsSelect,
   rowsAreSelectable = false,
   bulkActions,
@@ -303,7 +301,7 @@ const PaginatedTable: PaginatedTableProps = ({
   );
 
   const defaultSortStr = sortName.length ? `${sortAscending ? '-' : ''}${sortName}` : defaultSort;
-  
+
   return (
     <div className="Grid">
       <div className="Grid Grid-cell u-spaceTopSm">
