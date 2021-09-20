@@ -37,9 +37,7 @@ const propTypes = {
       label: PropTypes.string,
     })
   ),
-  selected: PropTypes.arrayOf(
-    PropTypes.any
-  ),
+  selected: PropTypes.arrayOf(PropTypes.any),
   onChange: PropTypes.func,
   className: PropTypes.string,
   mods: PropTypes.string,
@@ -76,7 +74,9 @@ const ComboBox = ({
 
   const shouldShowSearchBar = items.length > 6;
   const filteredItems = searchParam
-    ? uncheckedfilterList.filter((item) => item.label.toLowerCase().includes(searchParam.toLowerCase()))
+    ? uncheckedfilterList.filter((item) =>
+        item.label.toLowerCase().includes(searchParam.toLowerCase())
+      )
     : uncheckedfilterList;
 
   const createLabel = (acc, filter) => {
@@ -104,6 +104,7 @@ const ComboBox = ({
   };
 
   const clearFilters = (triggerOnChange = true) => {
+    console.log('clearFilters()');
     setSelectedFilters([]);
     setHasFilters(false);
     toggleFlyout(false);
@@ -113,6 +114,9 @@ const ComboBox = ({
   };
 
   const applyFilters = (triggerOnChange = true) => {
+    console.log('applyFilters()');
+    console.log('triggerOnChange', triggerOnChange);
+    console.log('selectedFilters', selectedFilters);
     if (selectedFilters.length > 0) {
       setComboLabel(filterList.reduce(createLabel, ''));
       setHasFilters(true);
@@ -127,8 +131,12 @@ const ComboBox = ({
   };
 
   const filtersFromPropsAreDifferent = (fromProps, currentFilters) => {
-    return !!fromProps && (fromProps.length !== 0) && fromProps.some((item) => !(currentFilters || []).includes(item));
-  }
+    return (
+      !!fromProps &&
+      fromProps.length !== 0 &&
+      fromProps.some((item) => !(currentFilters || []).includes(item))
+    );
+  };
 
   // Run this when the props change
   React.useEffect(() => {
@@ -139,8 +147,9 @@ const ComboBox = ({
 
   // Run this when the flyout visibility
   React.useEffect(() => {
+    console.log('flyoutVisible', flyoutVisible);
     if (!flyoutVisible) {
-      applyFilters(false);
+      applyFilters();
       sortFilters();
     }
   }, [flyoutVisible]);

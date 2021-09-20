@@ -285,6 +285,8 @@ const filterBirthDate = (filter: FilterValue, items: any[]) => {
  * @param filter objec - extra info to provide custom search.
  */
 function loadSearchData({ page, itemsPerPage, filter }) {
+  console.log('loadSearchData');
+  console.log('filter', filter);
   const startIndex = itemsPerPage * page - itemsPerPage;
   return new Promise((resolve) => {
     setTimeout(() => resolve(data), 500);
@@ -322,63 +324,63 @@ function mapData(item) {
   };
 }
 
+// stories.add('Default', () => (
+//   <PaginatedTable
+//     columns={columns}
+//     mapDataToRow={mapData}
+//     loadData={loadData}
+//     defaultItemsPerPage={2}
+//     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
+//     paginationPlacement={Placement.Bottom}
+//   />
+// ));
+
+// stories.add('Selectable Rows', () => (
+//   <PaginatedTable
+//     columns={columns}
+//     rowsAreSelectable
+//     bulkActions={[
+//       {
+//         label: 'Log Selected',
+//         onSelected: (selected) => {
+//           console.log(selected);
+//         },
+//       },
+//       {
+//         label: 'Alert Selected IDs',
+//         onSelected: (selected) => {
+//           console.log(alert(selected.map((e) => e.id).join(',')));
+//         },
+//       },
+//     ]}
+//     mapDataToRow={mapData}
+//     loadData={loadData}
+//     includeBasicSearch
+//     searchPlaceholder="Search members by name"
+//     defaultItemsPerPage={2}
+//     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
+//   />
+// ));
+
+// stories.add('Basic Search', () => (
+//   <PaginatedTable
+//     columns={columns}
+//     mapDataToRow={mapData}
+//     loadData={loadSearchData}
+//     defaultItemsPerPage={2}
+//     totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
+//     includeBasicSearch
+//     searchPlaceholder="Search members by name"
+//   />
+// ));
+
 stories.add('Default', () => (
   <PaginatedTable
     columns={columns}
     mapDataToRow={mapData}
-    loadData={loadData}
-    defaultItemsPerPage={2}
-    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
-    paginationPlacement={Placement.Bottom}
-  />
-));
-
-stories.add('Selectable Rows', () => (
-  <PaginatedTable
-    columns={columns}
-    rowsAreSelectable
-    bulkActions={[
-      {
-        label: 'Log Selected',
-        onSelected: (selected) => {
-          console.log(selected);
-        },
-      },
-      {
-        label: 'Alert Selected IDs',
-        onSelected: (selected) => {
-          console.log(alert(selected.map((e) => e.id).join(',')));
-        },
-      },
-    ]}
-    mapDataToRow={mapData}
-    loadData={loadData}
-    includeBasicSearch
-    searchPlaceholder="Search members by name"
-    defaultItemsPerPage={2}
-    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
-  />
-));
-
-stories.add('Basic Search', () => (
-  <PaginatedTable
-    columns={columns}
-    mapDataToRow={mapData}
     loadData={loadSearchData}
-    defaultItemsPerPage={2}
-    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
-    includeBasicSearch
-    searchPlaceholder="Search members by name"
-  />
-));
-
-stories.add('With Search Filters', () => (
-  <PaginatedTable
-    columns={columns}
-    mapDataToRow={mapData}
-    loadData={loadSearchData}
-    defaultItemsPerPage={2}
-    totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
+    defaultItemsPerPage={10}
+    // totalItems={data.length} // you'll likely need to calculate this in your component by inspecting the http response.
     filters={[
       PaginatedTable.Filter('role', 'Participants Role', {
         manager: 'Manager',
@@ -396,7 +398,7 @@ stories.add('With Search Filters', () => (
         other: 'Other',
         unknown: 'Unknown',
       }),
-      PaginatedTable.Filter('birthdate', 'Participants Birthdate', undefined, 'date'),
+      // PaginatedTable.Filter('birthdate', 'Participants Birthdate', undefined, 'date'),
     ]}
     paginationPlacement={Placement.Bottom}
     includeBasicSearch
