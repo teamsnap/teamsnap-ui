@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ReactDOM from 'react-dom';
 import { Button } from '../Button';
 
 export interface Props {
@@ -9,6 +10,8 @@ export interface Props {
   allowOverlayClose?: boolean;
   style?: React.CSSProperties;
   closeFn?: () => void;
+  isFullBleed?: boolean;
+  fullBleedRootNode?: HTMLElement;
 }
 
 const Modal: React.FC<Props> = ({
@@ -19,6 +22,8 @@ const Modal: React.FC<Props> = ({
   closeFn,
   allowOverlayClose,
   style,
+  isFullBleed,
+  fullBleedRootNode,
 }: Props) => {
   React.useEffect(() => {
     if (allowOverlayClose) {
@@ -38,9 +43,17 @@ const Modal: React.FC<Props> = ({
     return () => {};
   }, []);
 
-  return (
-    <div className={`Modal ${show ? 'Modal--open' : 'Modal--closed'}`}>
-      <div className="Modal-content u-posRelative" style={{ width: '50%', ...(style || {}) }}>
+  React.useEffect(() => {
+    document.body.classList.toggle('Modal--open', show);
+  }, [show]);
+
+  const component = (
+    <div
+      className={`Modal ${show ? 'Modal--open' : 'Modal--closed'} ${
+        isFullBleed ? 'Modal--full-bleed' : ''
+      }`}
+    >
+      <div className="Modal-content u-posRelative" style={{ ...(style || {}) }}>
         <div className="Modal-header u-flex u-flexJustifyBetween">
           <div className="u-sizeFill">
             <h2>{heading}</h2>
@@ -60,6 +73,13 @@ const Modal: React.FC<Props> = ({
       </div>
     </div>
   );
+
+  if (isFullBleed) {
+    const rootNode = fullBleedRootNode || document.body;
+    return ReactDOM.createPortal(component, rootNode);
+  } else {
+    return component;
+  }
 };
 
 export default Modal;
