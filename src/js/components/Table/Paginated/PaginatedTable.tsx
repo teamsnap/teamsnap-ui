@@ -62,7 +62,6 @@ const propTypes = {
   paginationPlacement: PropTypes.oneOf([Placement.Top, Placement.Bottom]),
   rowsAreSelectable: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
-  totalItems: PropTypes.number.isRequired,
   defaultSort: PropTypes.string,
 };
 
@@ -76,7 +75,12 @@ const Filter = (
     const ctx = React.useContext(FilterContext);
 
     const onChange = (values) => {
-      ctx.setActiveFilters({ ...ctx.activeFilters, [fieldName]: values });
+      if (values.length > 0) {
+        ctx.setActiveFilters({ ...ctx.activeFilters, [fieldName]: values });
+      } else {
+        delete ctx.activeFilters[fieldName];
+        ctx.setActiveFilters({ ...ctx.activeFilters });
+      }
     };
 
     return type === 'select' ? (
@@ -108,7 +112,6 @@ const PaginatedTable: PaginatedTableProps = ({
   mapDataToRow,
   defaultPage,
   defaultItemsPerPage,
-  totalItems,
   hideRowsSelect,
   rowsAreSelectable = false,
   bulkActions,
@@ -128,6 +131,7 @@ const PaginatedTable: PaginatedTableProps = ({
     defaultItemsPerPage || 10,
     defaultPage || 1
   );
+  const [totalItems, setTotalItems] = React.useState<number | null>(null);
   const [dataSet, setDataSet] = React.useState([]);
   const [sortName, setSortName] = React.useState('');
   const [sortAscending, setSortAscending] = React.useState(false);
@@ -159,9 +163,11 @@ const PaginatedTable: PaginatedTableProps = ({
       sortBy: sortName,
       sortAsc: sortAscending,
       filter: includeBasicSearch || activeFilters ? { searchTerm, ...activeFilters } : null,
-    }).then((data) => {
-      setDataSet(data);
+    }).then(({ data, totalItems: currentTotalItems }) => {
       setIsLoading(false);
+      if (data) setDataSet(data);
+
+      if (currentTotalItems) setTotalItems(currentTotalItems);
     });
   }, [itemsPerPage, currentPage, sortName, sortAscending, searchTerm, activeFilters]);
 
@@ -283,7 +289,9 @@ const PaginatedTable: PaginatedTableProps = ({
     <div>
       <Button
         isActive={filterOpen}
-        onClick={() => setFilterOpen(!filterOpen)}
+        onClick={() => {
+          setFilterOpen(!filterOpen);
+        }}
         mods="u-spaceLeftSm"
         icon="wrench"
       >
@@ -292,7 +300,7 @@ const PaginatedTable: PaginatedTableProps = ({
     </div>
   );
 
-  const defaultSortStr =  sortName.length ? `${sortAscending ? '-' : ''}${sortName}` : defaultSort;
+  const defaultSortStr = sortName.length ? `${sortAscending ? '-' : ''}${sortName}` : defaultSort;
 
   return (
     <div className="Grid">
@@ -337,27 +345,29 @@ const PaginatedTable: PaginatedTableProps = ({
         {shouldPaginateAtTop && paginationItems}
         {!shouldPaginateAtTop && filterButton}
       </div>
-      <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
-        {filterOpen && (
-          <Panel mods="u-padSm u-spaceTopSm u-borderNeutral4 u-bgNeutral1 Grid-cell">
-            {filters.map((Item, index) => (
-              <Item key={index} isLast={index === filters.length - 1} />
-            ))}
-          </Panel>
-        )}
-        <div className="Grid-cell u-spaceTopSm">
-          <Table
-            columns={cols}
-            rows={rows}
-            defaultSort={defaultSortStr}
-            externalSortingFunction={(name, ascending) => {
-              setSortName(name);
-              setSortAscending(ascending);
-            }}
-            isLoading={isLoading}
-          />
-        </div>
-      </FilterContext.Provider>
+      <Panel
+        mods={`${
+          filterOpen ? '' : 'u-hidden'
+        } u-padSm u-spaceTopSm u-borderNeutral4 u-bgNeutral1 Grid-cell`}
+      >
+        <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
+          {filters.map((Item, index) => (
+            <Item key={index} isLast={index === filters.length - 1} />
+          ))}
+        </FilterContext.Provider>
+      </Panel>
+      <div className="Grid-cell u-spaceTopSm">
+        <Table
+          columns={cols}
+          rows={rows}
+          defaultSort={defaultSortStr}
+          externalSortingFunction={(name, ascending) => {
+            setSortName(name);
+            setSortAscending(ascending);
+          }}
+          isLoading={isLoading}
+        />
+      </div>
       {(paginationPlacement === Placement.Bottom || !shouldPaginateAtTop) && paginationItems}
     </div>
   );

@@ -37,9 +37,7 @@ const propTypes = {
       label: PropTypes.string,
     })
   ),
-  selected: PropTypes.arrayOf(
-    PropTypes.any
-  ),
+  selected: PropTypes.arrayOf(PropTypes.any),
   onChange: PropTypes.func,
   className: PropTypes.string,
   mods: PropTypes.string,
@@ -76,11 +74,18 @@ const ComboBox = ({
 
   const shouldShowSearchBar = items.length > 6;
   const filteredItems = searchParam
-    ? uncheckedfilterList.filter((item) => item.label.toLowerCase().includes(searchParam.toLowerCase()))
+    ? uncheckedfilterList.filter((item) =>
+        item.label.toLowerCase().includes(searchParam.toLowerCase())
+      )
     : uncheckedfilterList;
 
-  const createLabel = (acc, filter) => {
-    return `${acc}, ${items.find((item) => item.value === filter.value).label}`;
+  const createLabel = (comboboxItems: any[]) => {
+    return comboboxItems
+      .reduce(
+        (prev, current) => [...prev, items.find((item) => item.value === current.value).label],
+        []
+      )
+      .join(', ');
   };
 
   const sortFilters = () => {
@@ -95,7 +100,7 @@ const ComboBox = ({
       }
     });
 
-    setComboLabel(checked.length > 0 ? checked.reduce(createLabel, '') : buttonLabel);
+    setComboLabel(checked.length > 0 ? createLabel(checked) : buttonLabel);
     setFilterList(checked);
     setUncheckedFilterList(unchecked);
     if (selectedFilters.length > 0) {
@@ -107,26 +112,28 @@ const ComboBox = ({
     setSelectedFilters([]);
     setHasFilters(false);
     onChange([]);
-    toggleFlyout(false);
+    setComboLabel(buttonLabel);
   };
 
-  const applyFilters = (triggerOnChange = true) => {
+  const applyFilters = () => {
     if (selectedFilters.length > 0) {
-      setComboLabel(filterList.reduce(createLabel, ''));
+      setComboLabel(createLabel(filterList));
       setHasFilters(true);
-
-      if (triggerOnChange) {
-        toggleFlyout(false);
-        onChange(selectedFilters);
-      }
+      onChange(selectedFilters);
     } else {
       clearFilters();
     }
+
+    sortFilters();
   };
 
   const filtersFromPropsAreDifferent = (fromProps, currentFilters) => {
-    return !!fromProps && (fromProps.length !== 0) && fromProps.some((item) => !(currentFilters || []).includes(item));
-  }
+    return (
+      !!fromProps &&
+      fromProps.length !== 0 &&
+      fromProps.some((item) => !(currentFilters || []).includes(item))
+    );
+  };
 
   // Run this when the props change
   React.useEffect(() => {
@@ -135,30 +142,32 @@ const ComboBox = ({
     }
   }, [selected]);
 
-  // Run this when the flyout visibility
   React.useEffect(() => {
-    if (!flyoutVisible) {
-      applyFilters();
-      sortFilters();
-    }
-  }, [flyoutVisible]);
+    sortFilters();
+  }, []);
 
   // Set up handler when flyoutVisibility changes
-  const handleBodyClick = (e) => {
-    const isTargetingPopup = e.target.closest('.Combobox') != null;
-
-    if (!isTargetingPopup) {
-      toggleFlyout(false);
-    }
-  };
-
   React.useEffect(() => {
+    const handleBodyClick = (e) => {
+      const isTargetingPopup = e.target.closest('.Combobox') != null;
+
+      if (!isTargetingPopup) {
+        toggleFlyout(false);
+      }
+    };
+
     document.body.addEventListener('click', handleBodyClick, { capture: true });
 
     return () => {
       document.body.removeEventListener('click', handleBodyClick);
     };
-  }, []);
+  }, [toggleFlyout]);
+
+  React.useEffect(() => {
+    if (!flyoutVisible) {
+      applyFilters();
+    }
+  }, [flyoutVisible]);
 
   const buildCheckbox = (filter, idx) => {
     return (
@@ -193,12 +202,10 @@ const ComboBox = ({
         id={name}
         data-testid="comboboxButton"
         disabled={disabled}
-        title={comboLabel !== buttonLabel ? comboLabel.substring(1) : ''}
-        onClick={() => {
-          toggleFlyout(!flyoutVisible);
-        }}
+        title={comboLabel ?? ''}
+        onClick={() => toggleFlyout(!flyoutVisible)}
       >
-        {comboLabel !== buttonLabel ? comboLabel.substring(1) : buttonLabel}
+        {comboLabel ?? buttonLabel}
       </button>
       {flyoutVisible && (
         <Panel mods="Combobox-checkboxContainer" data-testid="flyout">
@@ -231,7 +238,14 @@ const ComboBox = ({
             )}
           </PanelBody>
           <PanelFooter mods="u-padEndsSm u-padSidesMd">
-            <Button onClick={clearFilters} mods="u-spaceRightMd u-colorNeutral7" type="link">
+            <Button
+              onClick={() => {
+                clearFilters();
+                toggleFlyout(false);
+              }}
+              mods="u-spaceRightMd u-colorNeutral7"
+              type="link"
+            >
               Clear
             </Button>
             <Button onClick={() => toggleFlyout(false)} type="link">

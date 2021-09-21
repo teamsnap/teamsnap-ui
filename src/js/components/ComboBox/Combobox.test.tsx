@@ -1,6 +1,6 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Combobox from './Combobox';
 
 const items = [
@@ -16,7 +16,7 @@ const items = [
 
 describe('Combobox component', () => {
   test('should use the buttonLabel prop to set button text', () => {
-    render(<Combobox name="test" buttonLabel="Click me" items={items} />);
+    render(<Combobox name="test" buttonLabel="Click me" items={items} onChange={() => {}}/>);
 
     const Button = screen.getByTestId('comboboxButton');
 
@@ -24,20 +24,10 @@ describe('Combobox component', () => {
   });
 
   test('should start with hidden flyout', () => {
-    render(<Combobox name="test" buttonLabel="Click me" items={items} />);
+    render(<Combobox name="test" buttonLabel="Click me" items={items} onChange={() => {}}/>);
 
     const Flyout = screen.queryByTestId('flyout');
 
     expect(Flyout).toBeNull();
-  });
-
-  test.skip('should open flyout when click on button', () => {
-    render(<Combobox name="test" buttonLabel="Click me" items={items} />);
-
-    const Button = screen.getByTestId('comboboxButton');
-    fireEvent.click(Button);
-    const Flyout = screen.queryByTestId('flyout');
-
-    expect(Flyout).not.toBeNull();
   });
 });
