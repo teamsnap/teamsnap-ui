@@ -168,7 +168,7 @@ stories.add('Full bleed', () => {
       <Modal
         heading="Full bleed"
         show={isOpen}
-        showClose={true}
+        showClose
         allowOverlayClose={false}
         closeFn={() => setIsOpen(false)}
         isFullBleed

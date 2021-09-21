@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ReactDOM from 'react-dom';
+import { createPortal } from 'react-dom';
 import { Button } from '../Button';
 
 export interface Props {
@@ -47,7 +47,7 @@ const Modal: React.FC<Props> = ({
     document.body.classList.toggle('Modal--open', show);
   }, [show]);
 
-  const component = (
+  let component = (
     <div
       className={`Modal ${show ? 'Modal--open' : 'Modal--closed'} ${
         isFullBleed ? 'Modal--full-bleed' : ''
@@ -76,10 +76,10 @@ const Modal: React.FC<Props> = ({
 
   if (isFullBleed) {
     const rootNode = fullBleedRootNode || document.body;
-    return ReactDOM.createPortal(component, rootNode);
-  } else {
-    return component;
+    component = createPortal(component, rootNode);
   }
+
+  return component;
 };
 
 export default Modal;
