@@ -287,7 +287,9 @@ const filterBirthDate = (filter: FilterValue, items: any[]) => {
 function loadSearchData({ page, itemsPerPage, filter }) {
   const startIndex = itemsPerPage * page - itemsPerPage;
   const filteredItems = data
-    .filter((item) => !filter.gender || !filter.gender.length || filter.gender.includes(item.gender))
+    .filter(
+      (item) => !filter.gender || !filter.gender.length || filter.gender.includes(item.gender)
+    )
     .filter((item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1);
 
   const dateFilteredItems = filter.birthdate
@@ -297,11 +299,15 @@ function loadSearchData({ page, itemsPerPage, filter }) {
   const items = dateFilteredItems.slice(startIndex, endIndex);
 
   return new Promise((resolve) => {
-    setTimeout(() => resolve({
-      data: items,
-      totalItems: dateFilteredItems.length
-    }), 500);
-  })
+    setTimeout(
+      () =>
+        resolve({
+          data: items,
+          totalItems: dateFilteredItems.length,
+        }),
+      500
+    );
+  });
 }
 
 /**

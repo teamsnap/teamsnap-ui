@@ -131,7 +131,7 @@ const PaginatedTable: PaginatedTableProps = ({
     defaultItemsPerPage || 10,
     defaultPage || 1
   );
-  const [totalItems, setTotalItems] = React.useState(0);
+  const [totalItems, setTotalItems] = React.useState<number | null>(null);
   const [dataSet, setDataSet] = React.useState([]);
   const [sortName, setSortName] = React.useState('');
   const [sortAscending, setSortAscending] = React.useState(false);

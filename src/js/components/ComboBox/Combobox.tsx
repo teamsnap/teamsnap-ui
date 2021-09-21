@@ -111,7 +111,6 @@ const ComboBox = ({
   const clearFilters = () => {
     setSelectedFilters([]);
     setHasFilters(false);
-    toggleFlyout(false);
     onChange([]);
     setComboLabel(buttonLabel);
   };
@@ -120,8 +119,6 @@ const ComboBox = ({
     if (selectedFilters.length > 0) {
       setComboLabel(createLabel(filterList));
       setHasFilters(true);
-
-      toggleFlyout(false);
       onChange(selectedFilters);
     } else {
       clearFilters();
@@ -150,21 +147,27 @@ const ComboBox = ({
   }, []);
 
   // Set up handler when flyoutVisibility changes
-  const handleBodyClick = (e) => {
-    const isTargetingPopup = e.target.closest('.Combobox') != null;
-
-    if (!isTargetingPopup) {
-      toggleFlyout(false);
-    }
-  };
-
   React.useEffect(() => {
+    const handleBodyClick = (e) => {
+      const isTargetingPopup = e.target.closest('.Combobox') != null;
+
+      if (!isTargetingPopup) {
+        toggleFlyout(false);
+      }
+    };
+
     document.body.addEventListener('click', handleBodyClick, { capture: true });
 
     return () => {
       document.body.removeEventListener('click', handleBodyClick);
     };
-  }, []);
+  }, [toggleFlyout]);
+
+  React.useEffect(() => {
+    if (!flyoutVisible) {
+      applyFilters();
+    }
+  }, [flyoutVisible]);
 
   const buildCheckbox = (filter, idx) => {
     return (
@@ -200,9 +203,7 @@ const ComboBox = ({
         data-testid="comboboxButton"
         disabled={disabled}
         title={comboLabel ?? ''}
-        onClick={() => {
-          toggleFlyout(!flyoutVisible);
-        }}
+        onClick={() => toggleFlyout(!flyoutVisible)}
       >
         {comboLabel ?? buttonLabel}
       </button>
@@ -237,10 +238,17 @@ const ComboBox = ({
             )}
           </PanelBody>
           <PanelFooter mods="u-padEndsSm u-padSidesMd">
-            <Button onClick={clearFilters} mods="u-spaceRightMd u-colorNeutral7" type="link">
+            <Button
+              onClick={() => {
+                clearFilters();
+                toggleFlyout(false);
+              }}
+              mods="u-spaceRightMd u-colorNeutral7"
+              type="link"
+            >
               Clear
             </Button>
-            <Button onClick={applyFilters} type="link">
+            <Button onClick={() => toggleFlyout(false)} type="link">
               Done
             </Button>
           </PanelFooter>
