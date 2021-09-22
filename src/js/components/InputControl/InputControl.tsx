@@ -69,9 +69,12 @@ const InputControl = ({
         {...inputProps}
         checked={value} // has to come after spreading input props to support indeterminate
       />
-      <label className="Checkbox-label" htmlFor={name} {...labelProps}>
-        {label}
-      </label>
+      <label
+        dangerouslySetInnerHTML={{ __html: label as string }}
+        className="Checkbox-label"
+        htmlFor={name}
+        {...labelProps}
+      />
     </div>
   );
 };

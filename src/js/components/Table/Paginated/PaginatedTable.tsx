@@ -298,7 +298,7 @@ const PaginatedTable: PaginatedTableProps = ({
     <div className="Grid">
       <div className="Grid Grid-cell u-spaceTopSm">
         {bulkActions?.length > 0 ? (
-          <div className="Grid-cell u-spaceRightXs u-flex u-size1of1 u-md-size1of12 u-flexJustifyStart">
+          <div className="Grid-cell u-spaceRightSm u-flex u-size1of1 u-md-size2of12 u-flexJustifyStart">
             <Select
               inputProps={{
                 value: '',
