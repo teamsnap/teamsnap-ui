@@ -96,6 +96,7 @@
     "react": "^17.0.1",
     "react-docgen-typescript-loader": "^3.7.2",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
+    "react-dom": "^17.0.1",
     "react-test-renderer": "^17.0.2",
     "sass": "^1.35.1",
     "sass-loader": "^10.1.1",
@@ -111,8 +112,7 @@
     "core-js": "^3.1.4",
     "gulp-rename": "^2.0.0",
     "lodash": "^4.17.21",
-    "prop-types": "^15.6.1",
-    "react-dom": "^17.0.1"
+    "prop-types": "^15.6.1"
   },
   "peerDependencies": {
     "prettier": "^2.3.2",
