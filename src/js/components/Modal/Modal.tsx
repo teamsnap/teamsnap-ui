@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { createPortal } from 'react-dom';
 import { Button } from '../Button';
 
 export interface Props {
@@ -11,7 +10,6 @@ export interface Props {
   style?: React.CSSProperties;
   closeFn?: () => void;
   isFullBleed?: boolean;
-  fullBleedRootNode?: HTMLElement;
 }
 
 const Modal: React.FC<Props> = ({
@@ -23,7 +21,6 @@ const Modal: React.FC<Props> = ({
   allowOverlayClose,
   style,
   isFullBleed,
-  fullBleedRootNode,
 }: Props) => {
   React.useEffect(() => {
     if (allowOverlayClose) {
@@ -47,7 +44,7 @@ const Modal: React.FC<Props> = ({
     document.body.classList.toggle('Modal--open', show);
   }, [show]);
 
-  let component = (
+  return (
     <div
       className={`Modal ${show ? 'Modal--open' : 'Modal--closed'} ${
         isFullBleed ? 'Modal--full-bleed' : ''
@@ -73,13 +70,6 @@ const Modal: React.FC<Props> = ({
       </div>
     </div>
   );
-
-  if (isFullBleed) {
-    const rootNode = fullBleedRootNode || document.body;
-    component = createPortal(component, rootNode);
-  }
-
-  return component;
 };
 
 export default Modal;
