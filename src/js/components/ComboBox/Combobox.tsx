@@ -35,7 +35,6 @@ const propTypes = {
     PropTypes.shape({
       value: PropTypes.string,
       label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-      subtext: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     })
   ),
   selected: PropTypes.arrayOf(PropTypes.any),
@@ -49,10 +48,11 @@ const propTypes = {
 interface Filter {
   value: string;
   label: string;
-  subtext?: string;
 }
 
 type Props = PropTypes.InferProps<typeof propTypes>;
+
+const isString = (s) => typeof(s) === 'string' || s instanceof String;
 
 const ComboBox = ({
   name,
@@ -83,11 +83,13 @@ const ComboBox = ({
 
   const createLabel = (comboboxItems: any[]) => {
     return comboboxItems
-      .reduce(
-        (prev, current) => [...prev, items.find((item) => item.value === current.value).label],
-        []
-      )
-      .join(', ');
+    .reduce(
+      (prev, current) => {
+        debugger;
+        const match = items.find((item) => item.value === current.value).label;
+        return [...prev, isString(match) ? match : (match as React.ReactElement).props['children'].filter(value => isString(value)).join(",")]},
+      []
+    )
   };
 
   const sortFilters = () => {
@@ -177,15 +179,7 @@ const ComboBox = ({
         key={`${name}-${idx}`}
         mods={`${idx === items.length - 1 ? 'u-padBottomNone' : ''}`}
         name={filter.value}
-        label={
-          filter.subtext ? (
-            <>
-              {filter.label} <span style={{ color: '#7a7a7a' }}>({filter.subtext})</span>
-            </>
-          ) : (
-            filter.label
-          )
-        }
+        label={filter.label}
         inputProps={{
           checked: selectedFilters.includes(filter.value),
           value: filter.value,

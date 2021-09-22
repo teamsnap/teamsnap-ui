@@ -470,23 +470,18 @@ stories.add('With Search Filters', () => (
         other: 'Other',
         unknown: 'Unknown',
       }),
-      PaginatedTable.Filter('team', 'Participants Preferred Team', [
+      PaginatedTable.Filter('team', 'Participants Preferred Team',
         {
-          value: '1',
-          label: 'Team 1',
-          subtext: 'A Division',
-        },
-        {
-          value: '2',
-          label: 'Team 2',
-          subtext: 'Some Division',
-        },
-        {
-          value: '3',
-          label: 'Team 3',
-          subtext: 'Another Division',
-        },
-      ]),
+          "1": <>
+            Team 1 <span style={{ color: '#7a7a7a' }}>(A Division)</span>
+          </>,
+          "2": <>
+            Team 2 <span style={{ color: '#7a7a7a' }}>(Some Division)</span>
+          </>,
+          "3": <>
+            Team 3 <span style={{ color: '#7a7a7a' }}>(Another Division)</span>
+          </>
+        }),
       PaginatedTable.Filter('birthdate', 'Participants Birthdate', undefined, 'date'),
     ]}
     paginationPlacement={Placement.Bottom}

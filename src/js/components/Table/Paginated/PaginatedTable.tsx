@@ -68,9 +68,7 @@ const propTypes = {
 const Filter = (
   fieldName: string,
   label: string,
-  items?:
-    | { [key: string]: string | React.ReactNode }
-    | { value: string; label: string; subtext?: string }[],
+  items?: { [key: string]: string | React.ReactNode },
   type: FilterType = 'select'
 ) => {
   return ({ isLast }: { isLast: boolean }) => {
@@ -92,11 +90,7 @@ const Filter = (
         selected={ctx.activeFilters[fieldName]}
         name={fieldName}
         buttonLabel={label}
-        items={
-          items.length
-            ? (items as { value: string; label: string; subtext?: string }[])
-            : convertObjsToValueLabel(items as { [key: string]: string | React.ReactNode })
-        }
+        items={convertObjsToValueLabel(items as { [key: string]: string | React.ReactNode })}
       />
     ) : (
       <DateFilter
