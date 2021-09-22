@@ -401,6 +401,13 @@ stories.add('With Search Filters', () => (
         other: 'Other',
         unknown: 'Unknown',
       }),
+      PaginatedTable.Filter('team', 'Participants Preferred Team', [
+        {
+          value: 'm',
+          label: 'Team Name',
+          subtext: 'Hello',
+        },
+      ]),
       PaginatedTable.Filter('birthdate', 'Participants Birthdate', undefined, 'date'),
     ]}
     paginationPlacement={Placement.Bottom}

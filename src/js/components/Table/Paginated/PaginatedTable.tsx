@@ -23,8 +23,15 @@ interface BulkAction {
   onSelected: (selected: any) => void;
   disabled?: boolean;
 }
+interface ComboBoxOption {
+  label: string;
+  value: string;
+  subtext?: string;
+}
 
 type FilterType = 'select' | 'date';
+
+type FilterOptionType = string | React.ReactNode;
 
 const FilterContext = React.createContext<{
   activeFilters: any;
@@ -68,7 +75,9 @@ const propTypes = {
 const Filter = (
   fieldName: string,
   label: string,
-  items?: { [key: string]: string },
+  items?:
+    | { [key: string]: string | React.ReactNode }
+    | [{ value: string; label: string; subtext?: string }],
   type: FilterType = 'select'
 ) => {
   return ({ isLast }: { isLast: boolean }) => {
@@ -90,7 +99,11 @@ const Filter = (
         selected={ctx.activeFilters[fieldName]}
         name={fieldName}
         buttonLabel={label}
-        items={convertObjsToValueLabel(items)}
+        items={
+          items.length
+            ? (items as [{ value: string; label: string; subtext?: string }])
+            : convertObjsToValueLabel(items as { [key: string]: string | React.ReactNode })
+        }
       />
     ) : (
       <DateFilter
