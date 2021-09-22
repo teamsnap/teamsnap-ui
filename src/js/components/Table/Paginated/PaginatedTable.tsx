@@ -77,7 +77,7 @@ const Filter = (
   label: string,
   items?:
     | { [key: string]: string | React.ReactNode }
-    | [{ value: string; label: string; subtext?: string }],
+    | { value: string; label: string; subtext?: string }[],
   type: FilterType = 'select'
 ) => {
   return ({ isLast }: { isLast: boolean }) => {
@@ -101,7 +101,7 @@ const Filter = (
         buttonLabel={label}
         items={
           items.length
-            ? (items as [{ value: string; label: string; subtext?: string }])
+            ? (items as { value: string; label: string; subtext?: string }[])
             : convertObjsToValueLabel(items as { [key: string]: string | React.ReactNode })
         }
       />

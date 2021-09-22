@@ -172,7 +172,6 @@ const ComboBox = ({
   }, [flyoutVisible]);
 
   const buildCheckbox = (filter, idx) => {
-    console.log(filter);
     return (
       <Checkbox
         key={`${name}-${idx}`}
