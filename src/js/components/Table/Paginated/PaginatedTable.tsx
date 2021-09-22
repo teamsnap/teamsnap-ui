@@ -23,15 +23,8 @@ interface BulkAction {
   onSelected: (selected: any) => void;
   disabled?: boolean;
 }
-interface ComboBoxOption {
-  label: string;
-  value: string;
-  subtext?: string;
-}
 
 type FilterType = 'select' | 'date';
-
-type FilterOptionType = string | React.ReactNode;
 
 const FilterContext = React.createContext<{
   activeFilters: any;
