@@ -158,7 +158,7 @@ stories.add('Long Body Text', () => {
   );
 });
 
-stories.add('Full bleed', () => {
+stories.add('Fullscreen', () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -171,7 +171,7 @@ stories.add('Full bleed', () => {
         showClose
         allowOverlayClose={false}
         closeFn={() => setIsOpen(false)}
-        isFullBleed
+        fullscreen
       >
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent

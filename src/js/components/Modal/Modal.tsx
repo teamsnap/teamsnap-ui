@@ -9,7 +9,7 @@ export interface Props {
   allowOverlayClose?: boolean;
   style?: React.CSSProperties;
   closeFn?: () => void;
-  isFullBleed?: boolean;
+  fullscreen?: boolean;
 }
 
 const Modal: React.FC<Props> = ({
@@ -20,7 +20,7 @@ const Modal: React.FC<Props> = ({
   closeFn,
   allowOverlayClose,
   style,
-  isFullBleed,
+  fullscreen,
 }: Props) => {
   React.useEffect(() => {
     if (allowOverlayClose) {
@@ -47,7 +47,7 @@ const Modal: React.FC<Props> = ({
   return (
     <div
       className={`Modal ${show ? 'Modal--open' : 'Modal--closed'} ${
-        isFullBleed ? 'Modal--full-bleed' : ''
+        fullscreen ? 'Modal--fullscreen' : ''
       }`}
     >
       <div className="Modal-content u-posRelative" style={{ ...(style || {}) }}>
