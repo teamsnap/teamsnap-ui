@@ -38,6 +38,7 @@ const propTypes = {
   mods: PropTypes.string,
   style: PropTypes.object,
   otherProps: PropTypes.object,
+  testId: PropTypes.string,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -57,6 +58,7 @@ const Button = ({
   onClick,
   style,
   otherProps,
+  testId,
 }: Props) => {
   const cname = getClassName(
     className,
@@ -80,6 +82,7 @@ const Button = ({
       style={style}
       onClick={onClick}
       disabled={isDisabled}
+      data-testid={testId}
       {...otherProps}
     >
       <span>
