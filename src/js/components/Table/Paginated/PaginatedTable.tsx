@@ -68,7 +68,9 @@ const propTypes = {
 const Filter = (
   fieldName: string,
   label: string,
-  items?: { [key: string]: string },
+  items?:
+    | { [key: string]: string | React.ReactNode }
+    | { value: string; label: string; subtext?: string }[],
   type: FilterType = 'select'
 ) => {
   return ({ isLast }: { isLast: boolean }) => {
@@ -90,7 +92,11 @@ const Filter = (
         selected={ctx.activeFilters[fieldName]}
         name={fieldName}
         buttonLabel={label}
-        items={convertObjsToValueLabel(items)}
+        items={
+          items.length
+            ? (items as { value: string; label: string; subtext?: string }[])
+            : convertObjsToValueLabel(items as { [key: string]: string | React.ReactNode })
+        }
       />
     ) : (
       <DateFilter
@@ -306,7 +312,7 @@ const PaginatedTable: PaginatedTableProps = ({
     <div className="Grid">
       <div className="Grid Grid-cell u-spaceTopSm">
         {bulkActions?.length > 0 ? (
-          <div className="Grid-cell u-spaceRightXs u-flex u-size1of1 u-md-size1of12 u-flexJustifyStart">
+          <div className="Grid-cell u-spaceRightSm u-flex u-size1of1 u-md-size2of12 u-flexJustifyStart">
             <Select
               inputProps={{
                 value: '',
