@@ -63,7 +63,7 @@ const Modal: React.FC<Props> = ({
                 onClick={() => closeFn?.()}
                 icon="dismiss"
                 mods="u-colorNeutral9"
-                testId={'modal-heading-close-btn'}
+                testId="modal-heading-close-btn"
               />
             </div>
           )}
