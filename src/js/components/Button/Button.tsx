@@ -38,6 +38,7 @@ const propTypes = {
   mods: PropTypes.string,
   style: PropTypes.object,
   otherProps: PropTypes.object,
+  testId: PropTypes.string,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;

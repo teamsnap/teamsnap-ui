@@ -9,6 +9,7 @@ export interface Props {
   allowOverlayClose?: boolean;
   style?: React.CSSProperties;
   closeFn?: () => void;
+  fullscreen?: boolean;
 }
 
 const Modal: React.FC<Props> = ({
@@ -19,6 +20,7 @@ const Modal: React.FC<Props> = ({
   closeFn,
   allowOverlayClose,
   style,
+  fullscreen,
 }: Props) => {
   React.useEffect(() => {
     if (allowOverlayClose) {
@@ -38,12 +40,21 @@ const Modal: React.FC<Props> = ({
     return () => {};
   }, []);
 
+  React.useEffect(() => {
+    document.body.classList.toggle('Modal--open', show);
+  }, [show]);
+
   return (
-    <div className={`Modal ${show ? 'Modal--open' : 'Modal--closed'}`}>
-      <div className="Modal-content u-posRelative" style={{ width: '50%', ...(style || {}) }}>
+    <div
+      className={`Modal ${show ? 'Modal--open' : 'Modal--closed'} ${
+        fullscreen ? 'Modal--fullscreen' : ''
+      }`}
+      data-testid="modal"
+    >
+      <div className="Modal-content u-posRelative" style={{ ...(style || {}) }}>
         <div className="Modal-header u-flex u-flexJustifyBetween">
           <div className="u-sizeFill">
-            <h2>{heading}</h2>
+            <h2 data-testid="modal-heading">{heading}</h2>
           </div>
           {showClose && (
             <div className="Modal-close">
@@ -52,11 +63,14 @@ const Modal: React.FC<Props> = ({
                 onClick={() => closeFn?.()}
                 icon="dismiss"
                 mods="u-colorNeutral9"
+                otherProps={{ 'data-testid': 'modal-heading-close-btn' }}
               />
             </div>
           )}
         </div>
-        <div className="Modal-body">{children}</div>
+        <div className="Modal-body" data-testid="modal-body">
+          {children}
+        </div>
       </div>
     </div>
   );
