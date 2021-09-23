@@ -58,7 +58,6 @@ const Button = ({
   onClick,
   style,
   otherProps,
-  testId,
 }: Props) => {
   const cname = getClassName(
     className,
@@ -82,7 +81,6 @@ const Button = ({
       style={style}
       onClick={onClick}
       disabled={isDisabled}
-      data-testid={testId}
       {...otherProps}
     >
       <span>
