@@ -20,6 +20,7 @@ const columns = [
   { name: 'gender', label: 'Gender', isSortable: true, mods: 'u-size1of2' },
   { name: 'birthdate', label: 'Birthdate', isSortable: false, mods: 'u-size1of2' },
   { name: 'age', label: 'Age', isSortable: true, mods: 'u-size1of2' },
+  { name: 'team', label: 'Team', isSortable: true, mods: 'u-size1of2' },
   {
     name: 'programs',
     label: 'Active Programs',
@@ -44,6 +45,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 1',
+      id: 1,
+    },
   },
   {
     name: 'Dustin',
@@ -55,6 +60,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 1',
+      id: 1,
+    },
   },
   {
     name: 'Fred',
@@ -66,6 +75,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 1',
+      id: 1,
+    },
   },
   {
     name: 'Bobby',
@@ -77,6 +90,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 2',
+      id: 2,
+    },
   },
   {
     name: 'Christie',
@@ -99,6 +116,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 2',
+      id: 2,
+    },
   },
   {
     name: 'Stacy',
@@ -110,6 +131,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 2',
+      id: 2,
+    },
   },
   {
     name: 'Joey',
@@ -120,6 +145,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 2',
+      id: 2,
+    },
   },
   {
     name: 'William',
@@ -131,6 +160,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 2',
+      id: 2,
+    },
   },
   {
     name: 'Sharron',
@@ -142,6 +175,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 2',
+      id: 2,
+    },
   },
   {
     name: 'Brenda',
@@ -153,6 +190,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 2',
+      id: 2,
+    },
   },
   {
     name: 'Nathan',
@@ -164,6 +205,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 2',
+      id: 2,
+    },
   },
   {
     name: 'Jimmy',
@@ -175,6 +220,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 3',
+      id: 3,
+    },
   },
   {
     name: 'Lester',
@@ -186,6 +235,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 3',
+      id: 3,
+    },
   },
   {
     name: 'Justine',
@@ -197,6 +250,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 3',
+      id: 3,
+    },
   },
   {
     name: 'Cassie',
@@ -208,6 +265,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 3',
+      id: 3,
+    },
   },
   {
     name: 'Jessica',
@@ -218,6 +279,10 @@ const data = [
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
       { name: '2019 ACC Academy', subtitle: '(Junior Academy Tryout)' },
     ],
+    team: {
+      name: 'Team 3',
+      id: 3,
+    },
   },
 ];
 
@@ -290,6 +355,9 @@ function loadSearchData({ page, itemsPerPage, filter }) {
     .filter(
       (item) => !filter.gender || !filter.gender.length || filter.gender.includes(item.gender)
     )
+    .filter(
+      (item) => !filter.team || !filter.team.length || filter.team.includes(String(item.team?.id))
+    )
     .filter((item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1);
 
   const dateFilteredItems = filter.birthdate
@@ -328,6 +396,7 @@ function mapData(item) {
     birthdate: item.birthdate ? item.birthdate.toLocaleDateString('en-US') : 'undefined',
     age: `${item.age}`,
     programs: item.activePrograms.map((p, idx) => <div key={idx}>{p.name}</div>),
+    team: item.team.name,
   };
 }
 
@@ -401,6 +470,23 @@ stories.add('With Search Filters', () => (
         other: 'Other',
         unknown: 'Unknown',
       }),
+      PaginatedTable.Filter('team', 'Participants Preferred Team', [
+        {
+          value: '1',
+          label: 'Team 1',
+          subtext: 'A Division',
+        },
+        {
+          value: '2',
+          label: 'Team 2',
+          subtext: 'Some Division',
+        },
+        {
+          value: '3',
+          label: 'Team 3',
+          subtext: 'Another Division',
+        },
+      ]),
       PaginatedTable.Filter('birthdate', 'Participants Birthdate', undefined, 'date'),
     ]}
     paginationPlacement={Placement.Bottom}
