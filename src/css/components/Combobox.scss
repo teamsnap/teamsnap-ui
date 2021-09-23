@@ -1,4 +1,4 @@
-@import "../config/index.scss";
+@import '../config/index.scss';
 
 //------------------------------------------------------------//
 
@@ -20,11 +20,16 @@ $Combobox-indicator-width: scaleGrid(4);
 .Combobox {
   position: relative;
   display: inline-block;
+
+  .Checkbox-label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
 .Combobox-checkboxContainer {
-  min-width: 200px;
-  max-width: 300px;
+  width: 250px;
   position: absolute;
   top: auto;
   margin-top: 0.5rem;
@@ -74,8 +79,8 @@ $Combobox-indicator-width: scaleGrid(4);
     width: $Combobox-indicator-width;
     color: scaleColor($cu-info, 6);
     font-size: $tu-medium-fontSize;
-    height: ( $Combobox-height - $su-small );
-    line-height: ( $Combobox-height - $su-small );
+    height: ($Combobox-height - $su-small);
+    line-height: ($Combobox-height - $su-small);
     text-align: center;
     pointer-events: none;
   }

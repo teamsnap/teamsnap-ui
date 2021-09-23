@@ -186,6 +186,9 @@ const ComboBox = ({
             filter.label
           )
         }
+        otherProps={{
+          title: `${filter.label}${filter.subtext ? ` (${filter.subtext})` : ''}`,
+        }}
         inputProps={{
           checked: selectedFilters.includes(filter.value),
           value: filter.value,
@@ -206,13 +209,13 @@ const ComboBox = ({
   return (
     <div className={getClassName(className, mods)} style={style} {...otherProps}>
       <button
-        type="submit"
+        type="button"
         className={`Combobox-toggle ${hasFilters ? 'Combobox-toggle--active' : ''}`}
         name={name}
         id={name}
         data-testid="comboboxButton"
         disabled={disabled}
-        title={comboLabel ?? ''}
+        title={comboLabel ?? buttonLabel}
         onClick={() => toggleFlyout(!flyoutVisible)}
       >
         {comboLabel ?? buttonLabel}
