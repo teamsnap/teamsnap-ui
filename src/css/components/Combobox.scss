@@ -23,7 +23,7 @@ $Combobox-indicator-width: scaleGrid(4);
 }
 
 .Combobox-checkboxContainer {
-  min-width: 200px;
+  min-width: 284px;
   max-width: 300px;
   position: absolute;
   top: auto;
@@ -35,7 +35,7 @@ $Combobox-indicator-width: scaleGrid(4);
 }
 
 .Combobox-checkboxes {
-  max-height: 150px;
+  max-height: 300px;
   overflow-y: auto;
 
   .Checkbox:last-child {
