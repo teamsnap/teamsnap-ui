@@ -10,20 +10,13 @@ export default {
   component: ProgressBar,
 };
 
-const sizeOptions = {
-  xsmall: 'xsmall',
-  small: 'small',
-  default: null,
-  large: 'large',
-  xlarge: 'xlarge',
-};
-
 stories.add('Default', () => <ProgressBar progress={33} />);
 
 stories.add(
   'Vertical Bars',
   () => {
-    const size = select('size', sizeOptions, null);
+    const size = select('size', ProgressBar.SIZE, null);
+
     return (
       <div
         style={{
@@ -32,10 +25,31 @@ stories.add(
           justifyContent: 'space-evenly',
         }}
       >
-        <ProgressBar progress={33} size={size} style={{ height: '100px' }} isVertical />
-        <ProgressBar progress={33} size={size} style={{ height: '150px' }} isVertical />
-        <ProgressBar progress={33} size={size} style={{ height: '200px' }} isVertical />
-        <ProgressBar progress={33} size={size} style={{ height: '250px' }} isVertical />
+        <ProgressBar
+          progress={33}
+          size={size}
+          style={{ height: '100px' }}
+          direction={ProgressBar.DIRECTION.VERTICAL}
+          color={`#f90`}
+        />
+        <ProgressBar
+          progress={33}
+          size={size}
+          style={{ height: '150px' }}
+          direction={ProgressBar.DIRECTION.VERTICAL}
+        />
+        <ProgressBar
+          progress={33}
+          size={size}
+          style={{ height: '200px' }}
+          direction={ProgressBar.DIRECTION.VERTICAL}
+        />
+        <ProgressBar
+          progress={33}
+          size={size}
+          style={{ height: '250px' }}
+          direction={ProgressBar.DIRECTION.VERTICAL}
+        />
       </div>
     );
   },
@@ -48,20 +62,20 @@ stories.add(
 );
 
 stories.add(
-  'Progress Colors',
+  'Variants',
   () => {
-    const size = select('size', sizeOptions, null);
+    const size = select('size', ProgressBar.SIZE, null);
 
     return (
       <div>
         <h4>Neutral</h4>
-        <ProgressBar progress={33} color="neutral" size={size} />
+        <ProgressBar progress={33} variant={ProgressBar.VARIANT.NEUTRAL} size={size} />
         <br />
         <h4>Negative</h4>
-        <ProgressBar progress={66} color="negative" size={size} />
+        <ProgressBar progress={66} variant={ProgressBar.VARIANT.NEGATIVE} size={size} />
         <br />
         <h4>Highlight</h4>
-        <ProgressBar progress={66} color="highlight" size={size} />
+        <ProgressBar progress={66} variant={ProgressBar.VARIANT.HIGHLIGHT} size={size} />
         <br />
         <h4>Default Color</h4>
         <ProgressBar progress={100} size={size} />

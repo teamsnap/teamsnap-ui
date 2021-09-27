@@ -17,17 +17,18 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
+import { DIRECTION, PRECISION, SIZE, VARIANT } from './constants';
 import { getClassName } from '../../utils/helpers';
 
 const propTypes = {
   progress: PropTypes.number,
-  size: PropTypes.string,
   color: PropTypes.string,
-  isPrecise: PropTypes.bool,
-  isVertical: PropTypes.bool,
   className: PropTypes.string,
-  mods: PropTypes.string,
   style: PropTypes.object,
+  size: PropTypes.oneOf(Object.values(SIZE)),
+  variant: PropTypes.oneOf(Object.values(VARIANT)),
+  direction: PropTypes.oneOf(Object.values(DIRECTION)),
+  precision: PropTypes.oneOf(Object.values(PRECISION)),
   otherProps: PropTypes.object,
 };
 
@@ -35,44 +36,49 @@ type Props = PropTypes.InferProps<typeof propTypes>;
 
 const ProgressBar = ({
   progress,
+  className,
+  style,
   color,
   size,
-  isVertical,
-  isPrecise,
-  className,
-  mods,
-  style,
+  variant,
+  direction,
+  precision,
   otherProps,
 }: Props) => {
   const progressClasses = getClassName(
     className,
-    size && `ProgressBar--${size}`,
-    color && `ProgressBar--${color}`,
-    isVertical && 'ProgressBar--vertical',
-    isPrecise && 'ProgressBar--precise',
-    mods
+    size && `ProgressBar--size-${size}`,
+    variant && `ProgressBar--variant-${variant}`,
+    direction && `ProgressBar--direction-${direction}`,
+    precision && `ProgressBar--precision-${precision}`
   );
 
-  const progressWidth = {
-    [isVertical ? 'height' : 'width']: `${progress}%`,
+  const statusStyle = {
+    backgroundColor: color,
+    [direction === ProgressBar.DIRECTION.VERTICAL ? 'height' : 'width']: `${progress}%`,
   };
 
   return (
     <div className={progressClasses} style={style} {...otherProps}>
-      <div className="ProgressBar-status" style={progressWidth} />
+      <div className="ProgressBar-status" style={statusStyle} />
     </div>
   );
 };
 
+ProgressBar.SIZE = SIZE;
+ProgressBar.VARIANT = VARIANT;
+ProgressBar.DIRECTION = DIRECTION;
+ProgressBar.PRECISION = PRECISION;
+
 ProgressBar.defaultProps = {
   progress: 0,
-  size: null,
-  color: null,
-  isPrecise: false,
-  isVertical: false,
   className: 'ProgressBar',
-  mods: null,
   style: {},
+  color: null,
+  size: ProgressBar.SIZE.DEFAULT,
+  variant: null,
+  direction: DIRECTION.HORIZONTAL,
+  precision: PRECISION.APPROXIMATE,
   otherProps: {},
 };
 

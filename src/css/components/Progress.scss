@@ -41,6 +41,7 @@
 
 // * 1.a Default Progress Sizes
 
+.ProgressBar--size-xsmall,
 .ProgressBar--xsmall {
   height: $su-xxsmall;
   &, .ProgressBar-status {
@@ -48,6 +49,7 @@
   }
 }
 
+.ProgressBar--size-small,
 .ProgressBar--small {
   height: $su-xsmall;
   &, .ProgressBar-status {
@@ -55,6 +57,7 @@
   }
 }
 
+.ProgressBar--size-large,
 .ProgressBar--large {
   height: $su-medium;
   &, .ProgressBar-status {
@@ -62,6 +65,7 @@
   }
 }
 
+.ProgressBar--size-xlarge,
 .ProgressBar--xlarge {
   height: $su-large;
   &, .ProgressBar-status {
@@ -71,6 +75,7 @@
 
 // * 2. Vertical Progress Modifier
 
+.ProgressBar--direction-vertical,
 .ProgressBar--vertical {
   height: 100%;
   width: $su-xlarge;
@@ -92,8 +97,10 @@
 
 // * 2a. Vertical Progress Sizes
 
+.ProgressBar--direction-vertical,
 .ProgressBar--vertical {
 
+  &.ProgressBar--size-xsmall,
   &.ProgressBar--xsmall {
     width: $su-medium;
     &, .ProgressBar-status {
@@ -101,6 +108,7 @@
     }
   }
 
+  &.ProgressBar--size-small,
   &.ProgressBar--small {
     width: $su-large;
     &, .ProgressBar-status {
@@ -108,6 +116,7 @@
     }
   }
 
+  &.ProgressBar--size-large,
   &.ProgressBar--large {
     width: scaleGrid(6);
     &, .ProgressBar-status {
@@ -115,6 +124,7 @@
     }
   }
 
+  &.ProgressBar--size-xlarge,
   &.ProgressBar--xlarge {
     width: scaleGrid(8);
     &, .ProgressBar-status {
@@ -126,6 +136,7 @@
 
 // * 3. Precise Modifier
 
+.ProgressBar--precision-precise,
 .ProgressBar--precise {
 
   .ProgressBar-status {
@@ -213,6 +224,7 @@
 
 // * 4.a RadialProgress Sizes
 
+.RadialProgress--size-xsmall,
 .RadialProgress--xsmall {
   height: scaleGrid(4);
   width: scaleGrid(4);
@@ -228,6 +240,7 @@
 
 }
 
+.RadialProgress--size-small,
 .RadialProgress--small {
   height: scaleGrid(6);
   width: scaleGrid(6);
@@ -243,6 +256,7 @@
 
 }
 
+.RadialProgress--size-large,
 .RadialProgress--large {
   height: scaleGrid(14);
   width: scaleGrid(14);
@@ -258,6 +272,7 @@
 
 }
 
+.RadialProgress--size-xlarge,
 .RadialProgress--xlarge {
   height: scaleGrid(20);
   width: scaleGrid(20);
@@ -276,6 +291,7 @@
 
 // * 5. Progress Color Modifiers
 
+.ProgressBar--variant-neutral,
 .ProgressBar--neutral {
 
    .ProgressBar-status {
@@ -284,6 +300,7 @@
 
 }
 
+.ProgressBar--variant-negative,
 .ProgressBar--negative {
 
    .ProgressBar-status {
@@ -292,6 +309,7 @@
 
 }
 
+.ProgressBar--variant-highlight,
 .ProgressBar--highlight {
 
   .ProgressBar-status {
@@ -300,6 +318,7 @@
 
 }
 
+.RadialProgress--variant-neutral,
 .RadialProgress--neutral {
 
   .RadialProgress-status {
@@ -308,6 +327,7 @@
 
 }
 
+.RadialProgress--variant-negative,
 .RadialProgress--negative {
 
   .RadialProgress-status {
@@ -316,6 +336,7 @@
 
 }
 
+.RadialProgress--variant-highlight,
 .RadialProgress--highlight {
 
   .RadialProgress-status {
