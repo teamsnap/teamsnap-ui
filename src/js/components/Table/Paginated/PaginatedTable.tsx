@@ -17,6 +17,7 @@ import { assert } from '../../../utils/assert';
 import { Button } from '../../Button';
 import { Panel } from '../../Panel';
 import DateFilter from './DateFilter';
+import { isEqual } from 'lodash';
 
 interface BulkAction {
   label: string;
@@ -77,7 +78,12 @@ const Filter = (
     const ctx = React.useContext(FilterContext);
 
     const onChange = (values) => {
-      if (values.length > 0) {
+      if (
+        values?.length > 0 ||
+        (values?.value?.length > 0 &&
+          ctx.activeFilters[fieldName] &&
+          !isEqual(values, ctx.activeFilters[fieldName]))
+      ) {
         ctx.setActiveFilters({ ...ctx.activeFilters, [fieldName]: values });
       } else {
         delete ctx.activeFilters[fieldName];

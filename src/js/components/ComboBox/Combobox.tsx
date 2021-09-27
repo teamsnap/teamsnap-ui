@@ -26,6 +26,7 @@ import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import { Field } from '../Field';
 import { Icon } from '../Icon';
+import { isEqual } from 'lodash';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -114,18 +115,20 @@ const ComboBox = ({
     setSelectedFilters([]);
     setHasFilters(false);
     onChange([]);
+    setSearchParam('');
     setComboLabel(buttonLabel);
   };
 
   const applyFilters = () => {
-    if (selectedFilters.length > 0) {
-      setComboLabel(createLabel(filterList));
-      setHasFilters(true);
-      onChange(selectedFilters);
-    } else {
-      clearFilters();
+    if (!isEqual(selected, selectedFilters)) {
+      if (selectedFilters.length > 0) {
+        setComboLabel(createLabel(filterList));
+        setHasFilters(true);
+        onChange(selectedFilters);
+      } else {
+        clearFilters();
+      }
     }
-
     sortFilters();
   };
 
@@ -151,7 +154,7 @@ const ComboBox = ({
   // Set up handler when flyoutVisibility changes
   React.useEffect(() => {
     const handleBodyClick = (e) => {
-      const isTargetingPopup = e.target.closest('.Combobox') != null;
+      const isTargetingPopup = e.target.closest(`#Combobox-${name}`) != null;
 
       if (!isTargetingPopup) {
         toggleFlyout(false);
@@ -163,7 +166,7 @@ const ComboBox = ({
     return () => {
       document.body.removeEventListener('click', handleBodyClick);
     };
-  }, [toggleFlyout]);
+  }, []);
 
   React.useEffect(() => {
     if (!flyoutVisible) {
@@ -204,7 +207,12 @@ const ComboBox = ({
   };
 
   return (
-    <div className={getClassName(className, mods)} style={style} {...otherProps}>
+    <div
+      id={`Combobox-${name}`}
+      className={getClassName(className, mods)}
+      style={style}
+      {...otherProps}
+    >
       <button
         type="submit"
         className={`Combobox-toggle ${hasFilters ? 'Combobox-toggle--active' : ''}`}
@@ -275,6 +283,7 @@ ComboBox.defaultProps = {
   style: {},
   className: 'Combobox',
   otherProps: {},
+  selected: [],
 };
 
 export default ComboBox;
