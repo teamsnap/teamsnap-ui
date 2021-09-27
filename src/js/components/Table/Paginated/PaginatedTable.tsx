@@ -78,12 +78,7 @@ const Filter = (
     const ctx = React.useContext(FilterContext);
 
     const onChange = (values) => {
-      if (
-        values?.length > 0 ||
-        (values?.value?.length > 0 &&
-          ctx.activeFilters[fieldName] &&
-          !isEqual(values, ctx.activeFilters[fieldName]))
-      ) {
+      if (values?.length > 0 || values?.value) {
         ctx.setActiveFilters({ ...ctx.activeFilters, [fieldName]: values });
       } else {
         delete ctx.activeFilters[fieldName];

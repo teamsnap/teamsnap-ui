@@ -307,7 +307,7 @@ function loadData({ page, itemsPerPage, sortBy, sortAsc }) {
     setTimeout(() => resolve(finalData), 500);
   }).then((items: any[]) => {
     const endIndex = Math.min(items.length, startIndex + itemsPerPage);
-    return items.slice(startIndex, endIndex);
+    return { data: items.slice(startIndex, endIndex), totalItems: items.length };
   });
 }
 

@@ -59,7 +59,8 @@ type Props = Omit<PropTypes.InferProps<typeof propTypes>, 'onChange'> & {
 const formatDate = (x?: string) => {
   if (!x) return undefined;
 
-  const date = new Date(`${x}T12:00:00 GMT`);
+  let date = new Date(x);
+  date = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
   date.setHours(0);
   return date;
 };
@@ -131,7 +132,6 @@ const DateFilter = ({
     if (mode === 'range') {
       setYears('');
       setButtonLabel([fromDate, toDate].filter((x) => !!x).join(' - '));
-      toggleFlyout(!flyoutVisible);
       setHasFilters(true);
       onChange({
         kind: 'range',
