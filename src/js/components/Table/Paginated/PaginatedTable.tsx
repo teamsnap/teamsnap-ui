@@ -231,6 +231,7 @@ const PaginatedTable: PaginatedTableProps = ({
             mods="u-padBottomNone"
             inputProps={{
               checked: selectedids.includes(ele.id),
+              onChange: () => {},
               onClick: () => {
                 if (selectedids.includes(ele.id)) {
                   setSelected(selected.filter((e) => e.id !== ele.id));
