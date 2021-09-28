@@ -58,13 +58,39 @@ stories.add(
         <ProgressBar progress={33} color="neutral" size={size} />
         <br />
         <h4>Negative</h4>
-        <ProgressBar progress={66} color="negative" size={size} />
+        <ProgressBar progress={56} color="negative" size={size} />
         <br />
         <h4>Highlight</h4>
         <ProgressBar progress={66} color="highlight" size={size} />
         <br />
+        <h4>Primary Color</h4>
+        <ProgressBar progress={88} color="primary" size={size} />
+        <br />
         <h4>Default Color</h4>
         <ProgressBar progress={100} size={size} />
+        <br />
+      </div>
+    );
+  },
+  {
+    knobs: {
+      timestamps: true,
+      debounce: { wait: 500, leading: false },
+    },
+  }
+);
+
+stories.add(
+  'Squared Bars',
+  () => {
+    const size = select('size', sizeOptions, null);
+    return (
+      <div>
+        <h4>Vertical squared Bar</h4>
+        <ProgressBar progress={33} size={size} style={{ height: '200px' }} isVertical isSquared/>
+        <br />
+        <h4>Horizontal squared Bar</h4>
+        <ProgressBar progress={33} size={size} style={{ height: '20px' }} isSquared />
         <br />
       </div>
     );

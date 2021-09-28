@@ -11,6 +11,7 @@
 // * 4. RadialProgress
 // * 4.a RadialProgress Sizes
 // * 5. Progress Color Modifiers
+// * 6. Squared ProgressBar
 
 // * Notes:
 // * 1: uses fontSize variable to lineup x-height with width
@@ -139,7 +140,6 @@
       border-top-left-radius: 0;
     }
   }
-
 }
 
 // * 4. RadialProgress
@@ -300,6 +300,14 @@
 
 }
 
+.ProgressBar--primary {
+
+  .ProgressBar-status {
+    background: $cu-primary;
+  }
+
+}
+
 .RadialProgress--neutral {
 
   .RadialProgress-status {
@@ -322,4 +330,20 @@
     border-color: $cu-highlight;
   }
 
+}
+
+.RadialProgress--primary {
+
+  .RadialProgress-status {
+    border-color: $cu-primary;
+  }
+
+}
+
+// * 6. Squared ProgressBar
+
+.ProgressBar--squared {
+  &, .ProgressBar-status {
+    border-radius: 0;
+  }
 }
