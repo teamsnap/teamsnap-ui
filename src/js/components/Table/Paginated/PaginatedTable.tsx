@@ -17,7 +17,6 @@ import { assert } from '../../../utils/assert';
 import { Button } from '../../Button';
 import { Panel } from '../../Panel';
 import DateFilter from './DateFilter';
-
 interface BulkAction {
   label: string;
   onSelected: (selected: any) => void;
@@ -77,7 +76,7 @@ const Filter = (
     const ctx = React.useContext(FilterContext);
 
     const onChange = (values) => {
-      if (values.length > 0) {
+      if (values?.length > 0 || values?.value) {
         ctx.setActiveFilters({ ...ctx.activeFilters, [fieldName]: values });
       } else {
         delete ctx.activeFilters[fieldName];
@@ -230,6 +229,7 @@ const PaginatedTable: PaginatedTableProps = ({
             mods="u-padBottomNone"
             inputProps={{
               checked: selectedids.includes(ele.id),
+              onChange: () => {},
               onClick: () => {
                 if (selectedids.includes(ele.id)) {
                   setSelected(selected.filter((e) => e.id !== ele.id));

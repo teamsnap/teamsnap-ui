@@ -59,7 +59,8 @@ type Props = Omit<PropTypes.InferProps<typeof propTypes>, 'onChange'> & {
 const formatDate = (x?: string) => {
   if (!x) return undefined;
 
-  const date = new Date(`${x}T12:00:00 GMT`);
+  let date = new Date(x);
+  date = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
   date.setHours(0);
   return date;
 };
@@ -82,13 +83,36 @@ const DateFilter = ({
   const [toDate, setToDate] = React.useState('');
   const [buttonLabel, setButtonLabel] = React.useState(title);
 
+  // Set up handler when flyoutVisibility changes
+  React.useEffect(() => {
+    const handleBodyClick = (e) => {
+      const isTargetingPopup = e.target.closest(`#Combobox-${name}`) != null;
+
+      if (!isTargetingPopup) {
+        toggleFlyout(false);
+      }
+    };
+
+    document.body.addEventListener('click', handleBodyClick, { capture: true });
+
+    return () => {
+      document.body.removeEventListener('click', handleBodyClick);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (!flyoutVisible) {
+      applyFilters();
+    }
+  }, [flyoutVisible]);
+
   const clearFilters = () => {
     setYears('');
     setFromDate('');
     setToDate('');
     setHasFilters(false);
     onChange();
-    toggleFlyout(!flyoutVisible);
+    toggleFlyout(false);
     setButtonLabel(title);
   };
 
@@ -108,7 +132,6 @@ const DateFilter = ({
     if (mode === 'range') {
       setYears('');
       setButtonLabel([fromDate, toDate].filter((x) => !!x).join(' - '));
-      toggleFlyout(!flyoutVisible);
       setHasFilters(true);
       onChange({
         kind: 'range',
@@ -122,7 +145,6 @@ const DateFilter = ({
       const cleanYears = elements.join(',');
       setFromDate('');
       setToDate('');
-      toggleFlyout(!flyoutVisible);
       setHasFilters(true);
       onChange({ kind: 'years', value: elements });
       setButtonLabel(cleanYears);
@@ -144,7 +166,7 @@ const DateFilter = ({
   };
 
   return (
-    <div className={getClassName(className, mods)} {...props}>
+    <div id={`Combobox-${name}`} className={getClassName(className, mods)} {...props}>
       <button
         type="button"
         className={`Combobox-toggle ${hasFilters ? 'Combobox-toggle--active' : ''}`}
@@ -209,10 +231,17 @@ const DateFilter = ({
             </PanelRow>
           </PanelBody>
           <PanelFooter mods="u-padEndsSm u-padSidesMd">
-            <Button onClick={clearFilters} mods="u-spaceRightMd u-colorNeutral7" type="link">
+            <Button
+              onClick={() => {
+                clearFilters();
+                toggleFlyout(false);
+              }}
+              mods="u-spaceRightMd u-colorNeutral7"
+              type="link"
+            >
               Clear
             </Button>
-            <Button onClick={applyFilters} type="link">
+            <Button onClick={() => toggleFlyout(false)} type="link">
               Done
             </Button>
           </PanelFooter>

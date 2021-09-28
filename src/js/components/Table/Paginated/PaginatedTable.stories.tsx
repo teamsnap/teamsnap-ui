@@ -307,7 +307,7 @@ function loadData({ page, itemsPerPage, sortBy, sortAsc }) {
     setTimeout(() => resolve(finalData), 500);
   }).then((items: any[]) => {
     const endIndex = Math.min(items.length, startIndex + itemsPerPage);
-    return items.slice(startIndex, endIndex);
+    return { data: items.slice(startIndex, endIndex), totalItems: items.length };
   });
 }
 
@@ -396,7 +396,7 @@ function mapData(item) {
     birthdate: item.birthdate ? item.birthdate.toLocaleDateString('en-US') : 'undefined',
     age: `${item.age}`,
     programs: item.activePrograms.map((p, idx) => <div key={idx}>{p.name}</div>),
-    team: item.team.name,
+    team: item.team?.name,
   };
 }
 
