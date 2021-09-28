@@ -17,8 +17,6 @@ import { assert } from '../../../utils/assert';
 import { Button } from '../../Button';
 import { Panel } from '../../Panel';
 import DateFilter from './DateFilter';
-import { isEqual } from 'lodash';
-
 interface BulkAction {
   label: string;
   onSelected: (selected: any) => void;
