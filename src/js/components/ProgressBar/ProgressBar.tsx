@@ -25,10 +25,11 @@ const propTypes = {
   color: PropTypes.string,
   isPrecise: PropTypes.bool,
   isVertical: PropTypes.bool,
+  isSquared: PropTypes.bool,
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
-  otherProps: PropTypes.object,
+  otherProps: PropTypes.object
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -39,6 +40,7 @@ const ProgressBar = ({
   size,
   isVertical,
   isPrecise,
+  isSquared,
   className,
   mods,
   style,
@@ -50,6 +52,7 @@ const ProgressBar = ({
     color && `ProgressBar--${color}`,
     isVertical && 'ProgressBar--vertical',
     isPrecise && 'ProgressBar--precise',
+    isSquared && 'ProgressBar--squared',
     mods
   );
 
@@ -70,6 +73,7 @@ ProgressBar.defaultProps = {
   color: null,
   isPrecise: false,
   isVertical: false,
+  isSquared: false,
   className: 'ProgressBar',
   mods: null,
   style: {},

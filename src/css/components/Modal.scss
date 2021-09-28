@@ -18,20 +18,51 @@
 .Modal-content {
   position: fixed;
   background: white;
+  width: 80%;
   min-width: 50%;
   height: auto;
+  max-height: 90vh;
+  overflow: scroll;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
   border-radius: 10px;
 }
 
-.Modal--open {
-  display: block;
+.Modal--fullscreen {
+  background: white;
+
+  .Modal-content {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    max-height: none;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+    transform: none;
+  }
+
+  .Modal-header,
+  .Modal-body {
+    padding: 0;
+  }
 }
 
-.Modal--closed {
-  display: none;
+// Prevent the body from scrolling while the modal is open.
+body.Modal--open {
+  overflow: hidden;
+  height: 100%;
+}
+
+.Modal {
+  &.Modal--open {
+    display: block;
+  }
+
+  &.Modal--closed {
+    display: none;
+  }
 }
 
 .Modal-header,
@@ -43,4 +74,10 @@
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
+}
+
+@media screen and (min-width: 480px) {
+  .Modal-content {
+    width: 50%;
+  }
 }
