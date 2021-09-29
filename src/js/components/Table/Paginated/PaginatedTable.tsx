@@ -291,17 +291,19 @@ const PaginatedTable: PaginatedTableProps = ({
     </div>
   );
 
+  const filterLength = Object.entries(activeFilters).length;
+
   const filterButton = (
     <div>
       <Button
-        isActive={filterOpen}
+        isActive={filterLength > 0 || filterOpen}
         onClick={() => {
           setFilterOpen(!filterOpen);
         }}
         mods="u-spaceLeftSm"
         icon="wrench"
       >
-        Filter
+        Filter {filterLength > 0 ? <span className="u-bgPrimary7 u-colorNeutral1 u-fontSizeXs" style={{borderRadius: "50px", padding: "1px 4px"}}>{filterLength}</span> : null}
       </Button>
     </div>
   );
