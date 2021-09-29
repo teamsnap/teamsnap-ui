@@ -17,6 +17,7 @@ import { assert } from '../../../utils/assert';
 import { Button } from '../../Button';
 import { Panel } from '../../Panel';
 import DateFilter from './DateFilter';
+
 interface BulkAction {
   label: string;
   onSelected: (selected: any) => void;
@@ -303,7 +304,7 @@ const PaginatedTable: PaginatedTableProps = ({
         mods="u-spaceLeftSm"
         icon="wrench"
       >
-        Filter {filterLength > 0 ? <span className="u-bgPrimary7 u-colorNeutral1 u-fontSizeXs" style={{borderRadius: "50px", padding: "1px 4px"}}>{filterLength}</span> : null}
+        Filter {filterLength > 0 ? <span className="u-bgPrimary7 u-colorNeutral1 u-fontSizeXs" style={{borderRadius: '50px', padding: '1px 4px'}}>{filterLength}</span> : null}
       </Button>
     </div>
   );
@@ -356,12 +357,17 @@ const PaginatedTable: PaginatedTableProps = ({
       <Panel
         mods={`${
           filterOpen ? '' : 'u-hidden'
-        } u-padSm u-spaceTopSm u-borderNeutral4 u-bgNeutral1 Grid-cell`}
+        } u-padSm u-spaceTopSm u-borderNeutral4 u-bgNeutral1 Grid-cell u-flex`}
       >
         <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
-          {filters.map((Item, index) => (
-            <Item key={index} isLast={index === filters.length - 1} />
-          ))}
+          <div className="u-size7of8">
+            {filters.map((Item, index) => (
+              <Item key={index} isLast={index === filters.length - 1} />
+            ))}
+          </div>
+          <div className="u-size1of8 u-textRight u-spaceRightMd">
+            <Button type="text" onClick={() => setActiveFilters({})}>Clear All</Button>
+          </div>
         </FilterContext.Provider>
       </Panel>
       <div className="Grid-cell u-spaceTopSm">
