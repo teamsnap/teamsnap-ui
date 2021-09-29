@@ -24,7 +24,7 @@ import { getClassName } from '../../utils/helpers';
 import { Size } from '../../types';
 
 const propTypes = {
-  type: PropTypes.oneOf(['button', 'submit', 'link']),
+  type: PropTypes.oneOf(['button', 'submit', 'link', 'text']),
   label: PropTypes.string,
   children: PropTypes.node,
   icon: PropTypes.string,
@@ -65,6 +65,7 @@ const Button = ({
     size && `Button--${size}`,
     isActive && 'is-active',
     type === 'link' && 'Button--text',
+    type === 'text' && 'Button--text',
     mods
   );
 
