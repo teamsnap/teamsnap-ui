@@ -66,6 +66,7 @@ const iconNames = {
   'caret-down': 'caret-down',
   sort: 'sort',
   check: 'check',
+  'check-circle-fill': 'check-circle-fill',
   dismiss: 'dismiss',
   plus: 'plus',
   edit: 'edit',
