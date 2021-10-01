@@ -34,11 +34,18 @@
 
   .Modal-content {
     position: relative;
-    width: auto;
-    top: auto;
-    left: auto;
-    border-radius: none;
+    width: 100vw;
+    height: 100vh;
+    max-height: none;
+    top: 0;
+    left: 0;
+    border-radius: 0;
     transform: none;
+  }
+
+  .Modal-header,
+  .Modal-body {
+    padding: 0;
   }
 }
 

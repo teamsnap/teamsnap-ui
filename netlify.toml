@@ -5,6 +5,9 @@
 	# Directory to change to before starting a build, location of package.json
 	base = "/"
 
+[build.environment]
+  NODE_VERSION = "14.7.0"
+
 # Specific branch context, all deploys from this specific branch will inherit these settings.
 
 # Production context: all deploys from the Production branch set in your site's
