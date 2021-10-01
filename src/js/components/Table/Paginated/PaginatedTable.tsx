@@ -67,7 +67,8 @@ const propTypes = {
 const Filter = (
   fieldName: string,
   label: string,
-  items?:
+  options?:
+    | string
     | { [key: string]: string | React.ReactNode }
     | { value: string; label: string; subtext?: string }[],
   type: FilterType = 'select'
@@ -92,9 +93,9 @@ const Filter = (
         name={fieldName}
         buttonLabel={label}
         items={
-          items.length
-            ? (items as { value: string; label: string; subtext?: string }[])
-            : convertObjsToValueLabel(items as { [key: string]: string | React.ReactNode })
+          options.length
+            ? (options as { value: string; label: string; subtext?: string }[])
+            : convertObjsToValueLabel(options as { [key: string]: string | React.ReactNode })
         }
       />
     ) : (
@@ -103,6 +104,7 @@ const Filter = (
         onChange={onChange}
         name={fieldName}
         title={label}
+        noDateLabel={options as string}
       />
     );
   };

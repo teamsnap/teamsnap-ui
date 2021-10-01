@@ -134,7 +134,7 @@ const DateFilter = ({
       setFromDate('');
       setToDate('');
       setHasFilters(true);
-      setButtonLabel(`[${noDateLabel}]`);
+      setButtonLabel(`${noDateLabel}`);
       onChange({ kind: 'noDate' });
       return;
     }
@@ -197,7 +197,7 @@ const DateFilter = ({
               <Select
                 name="mode"
                 mods={mode === 'noDate' ? '' : 'u-spaceBottomMd'}
-                options={[...modes, { value: 'noDate', label: `[${noDateLabel}]` }]}
+                options={[...modes, { value: 'noDate', label: `${noDateLabel}` }]}
                 inputProps={{
                   value: mode,
                   onChange: (e) => {
