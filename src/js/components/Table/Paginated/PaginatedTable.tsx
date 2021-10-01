@@ -175,7 +175,7 @@ const PaginatedTable: PaginatedTableProps = ({
       setIsLoading(false);
       if (data) setDataSet(data);
 
-      if (currentTotalItems) setTotalItems(currentTotalItems);
+      if (typeof currentTotalItems === 'number') setTotalItems(currentTotalItems);
     });
   }, [itemsPerPage, currentPage, sortName, sortAscending, searchTerm, activeFilters]);
 
