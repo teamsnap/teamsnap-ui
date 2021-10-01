@@ -76,7 +76,7 @@ const Filter = (
     const ctx = React.useContext(FilterContext);
 
     const onChange = (values) => {
-      if (values?.length > 0 || values?.value) {
+      if (values?.length > 0 || values?.kind) {
         ctx.setActiveFilters({ ...ctx.activeFilters, [fieldName]: values });
       } else {
         delete ctx.activeFilters[fieldName];
@@ -200,7 +200,7 @@ const PaginatedTable: PaginatedTableProps = ({
               mods="u-padBottomNone"
               inputProps={{
                 checked: checkboxState,
-                onClick: () => {
+                onChange: () => {
                   // if there is at least one row checked, clear all
                   if (checkboxState !== CheckboxStates.FALSE) {
                     setSelected([]);
