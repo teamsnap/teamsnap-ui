@@ -14,15 +14,11 @@ stories.add('Default', () => (
   <SelectCard />
 ));
 
-stories.add('Customized Select Card content', () => {
-  const content = (
+stories.add('Customized Select Card content', () => (
+  <SelectCard style={{padding: '20px'}}>
     <div>
       <p>Hello!</p>
       <p>Select me!</p>
     </div>
-  )
-
-  return (
-    <SelectCard children={content} style={{padding: '20px'}}/>
-  )
-});
+  </SelectCard>
+));

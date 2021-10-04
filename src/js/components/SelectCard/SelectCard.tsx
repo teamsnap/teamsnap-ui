@@ -31,7 +31,7 @@ const SelectCard: React.FunctionComponent<Props> = ({
 
   const cardClasses = getClassName(
     className,
-    selected && `Card--selected`,
+    selected && `is-selected`,
     mods
   );
 
@@ -42,10 +42,11 @@ const SelectCard: React.FunctionComponent<Props> = ({
         (<div className="Card--container">
           <div className="Card--icon">
             <Icon
-              name={selected ? 'check-circle-fill' : iconName} style={iconStyle}
+              name={iconName} style={iconStyle}
             />
           </div>
-          <div>{text}</div>
+          <input type="checkbox" name="option" value={text}/>
+          <label htmlFor="option">{text}</label>
         </div>)
       }
     </div>
