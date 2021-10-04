@@ -1,3 +1,4 @@
+import { CheckboxStates } from '../../../types';
 import * as React from 'react';
 
 export const convertObjsToValueLabel = (items: { [key: string]: string | React.ReactNode }) =>
@@ -19,3 +20,18 @@ export const usePagination = (defaultItemsPerPage: number, defaultCurrentPage: n
 
   return [itemsPerPageStateHooks, currentPageStateHooks];
 };
+
+
+export const getCheckboxStateForBulkActions = (selected: any[], rows: any[]) => {
+  let checkboxState = CheckboxStates.FALSE;
+  const allRowsChecked = selected.length !== 0 && selected.length === rows.length;
+  const someRowsChecked = selected.length !== 0 && selected.length !== rows.length;
+  if (someRowsChecked) {
+    checkboxState = CheckboxStates.INDETERMINATE;
+  }
+  if (allRowsChecked) {
+    checkboxState = CheckboxStates.TRUE;
+  }
+
+  return checkboxState;
+}
