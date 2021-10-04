@@ -63,6 +63,7 @@ const propTypes = {
   rowsAreSelectable: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
   defaultSort: PropTypes.string,
+  noResultsText: PropTypes.string,
 };
 
 const Filter = (
@@ -127,6 +128,7 @@ const PaginatedTable: PaginatedTableProps = ({
   searchPlaceholder,
   paginationPlacement,
   defaultSort,
+  noResultsText,
 }) => {
   assert(
     !(filters.length && paginationPlacement === Placement.Top),
@@ -173,7 +175,7 @@ const PaginatedTable: PaginatedTableProps = ({
       setIsLoading(false);
       if (data) setDataSet(data);
 
-      if (currentTotalItems) setTotalItems(currentTotalItems);
+      if (typeof currentTotalItems === 'number') setTotalItems(currentTotalItems);
     });
   }, [itemsPerPage, currentPage, sortName, sortAscending, searchTerm, activeFilters]);
 
@@ -304,7 +306,15 @@ const PaginatedTable: PaginatedTableProps = ({
         mods="u-spaceLeftSm"
         icon="wrench"
       >
-        Filter {filterLength > 0 ? <span className="u-bgPrimary7 u-colorNeutral1 u-fontSizeXs" style={{borderRadius: '50px', padding: '1px 4px'}}>{filterLength}</span> : null}
+        Filter{' '}
+        {filterLength > 0 ? (
+          <span
+            className="u-bgPrimary7 u-colorNeutral1 u-fontSizeXs"
+            style={{ borderRadius: '50px', padding: '1px 4px' }}
+          >
+            {filterLength}
+          </span>
+        ) : null}
       </Button>
     </div>
   );
@@ -366,7 +376,9 @@ const PaginatedTable: PaginatedTableProps = ({
             ))}
           </div>
           <div className="u-size1of8 u-textRight u-spaceRightMd">
-            <Button type="text" onClick={() => setActiveFilters({})}>Clear All</Button>
+            <Button type="text" onClick={() => setActiveFilters({})}>
+              Clear All
+            </Button>
           </div>
         </FilterContext.Provider>
       </Panel>
@@ -380,6 +392,7 @@ const PaginatedTable: PaginatedTableProps = ({
             setSortAscending(ascending);
           }}
           isLoading={isLoading}
+          placeHolder={noResultsText}
         />
       </div>
       {(paginationPlacement === Placement.Bottom || !shouldPaginateAtTop) && paginationItems}

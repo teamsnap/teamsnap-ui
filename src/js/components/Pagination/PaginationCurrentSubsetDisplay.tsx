@@ -11,7 +11,7 @@ const PaginationCurrentSubsetDisplay: React.FunctionComponent<
   PropTypes.InferProps<typeof propTypes>
 > = ({ totalItems, itemsPerPage, currentPage }) => {
   if (totalItems < 1) {
-    return null;
+    return <>0 of 0</>;
   }
 
   return (
