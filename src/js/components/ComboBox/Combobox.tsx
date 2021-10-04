@@ -17,6 +17,7 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import { isEqual } from 'lodash';
 import { getClassName } from '../../utils/helpers';
 import { Panel } from '../Panel';
 import { PanelFooter } from '../PanelFooter';
@@ -26,7 +27,6 @@ import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import { Field } from '../Field';
 import { Icon } from '../Icon';
-import { isEqual } from 'lodash';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -134,8 +134,7 @@ const ComboBox = ({
 
   const filtersFromPropsAreDifferent = (fromProps, currentFilters) => {
     return (
-      !!fromProps &&
-      fromProps.length !== 0 &&
+      fromProps?.length !== (currentFilters || []).length ||
       fromProps.some((item) => !(currentFilters || []).includes(item))
     );
   };
@@ -144,6 +143,7 @@ const ComboBox = ({
   React.useEffect(() => {
     if (filtersFromPropsAreDifferent(selected, selectedFilters)) {
       setSelectedFilters(selected);
+      applyFilters();
     }
   }, [selected]);
 

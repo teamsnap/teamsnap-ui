@@ -17,6 +17,7 @@ import { assert } from '../../../utils/assert';
 import { Button } from '../../Button';
 import { Panel } from '../../Panel';
 import DateFilter from './DateFilter';
+
 interface BulkAction {
   label: string;
   onSelected: (selected: any) => void;
@@ -62,6 +63,7 @@ const propTypes = {
   rowsAreSelectable: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
   defaultSort: PropTypes.string,
+  noResultsText: PropTypes.string,
 };
 
 const Filter = (
@@ -128,6 +130,7 @@ const PaginatedTable: PaginatedTableProps = ({
   searchPlaceholder,
   paginationPlacement,
   defaultSort,
+  noResultsText,
 }) => {
   assert(
     !(filters.length && paginationPlacement === Placement.Top),
@@ -174,7 +177,7 @@ const PaginatedTable: PaginatedTableProps = ({
       setIsLoading(false);
       if (data) setDataSet(data);
 
-      if (currentTotalItems) setTotalItems(currentTotalItems);
+      if (typeof currentTotalItems === 'number') setTotalItems(currentTotalItems);
     });
   }, [itemsPerPage, currentPage, sortName, sortAscending, searchTerm, activeFilters]);
 
@@ -293,17 +296,27 @@ const PaginatedTable: PaginatedTableProps = ({
     </div>
   );
 
+  const filterLength = Object.entries(activeFilters).length;
+
   const filterButton = (
     <div>
       <Button
-        isActive={filterOpen}
+        isActive={filterLength > 0 || filterOpen}
         onClick={() => {
           setFilterOpen(!filterOpen);
         }}
         mods="u-spaceLeftSm"
         icon="wrench"
       >
-        Filter
+        Filter{' '}
+        {filterLength > 0 ? (
+          <span
+            className="u-bgPrimary7 u-colorNeutral1 u-fontSizeXs"
+            style={{ borderRadius: '50px', padding: '1px 4px' }}
+          >
+            {filterLength}
+          </span>
+        ) : null}
       </Button>
     </div>
   );
@@ -356,12 +369,19 @@ const PaginatedTable: PaginatedTableProps = ({
       <Panel
         mods={`${
           filterOpen ? '' : 'u-hidden'
-        } u-padSm u-spaceTopSm u-borderNeutral4 u-bgNeutral1 Grid-cell`}
+        } u-padSm u-spaceTopSm u-borderNeutral4 u-bgNeutral1 Grid-cell u-flex`}
       >
         <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
-          {filters.map((Item, index) => (
-            <Item key={index} isLast={index === filters.length - 1} />
-          ))}
+          <div className="u-size7of8">
+            {filters.map((Item, index) => (
+              <Item key={index} isLast={index === filters.length - 1} />
+            ))}
+          </div>
+          <div className="u-size1of8 u-textRight u-spaceRightMd">
+            <Button type="text" onClick={() => setActiveFilters({})}>
+              Clear All
+            </Button>
+          </div>
         </FilterContext.Provider>
       </Panel>
       <div className="Grid-cell u-spaceTopSm">
@@ -374,6 +394,7 @@ const PaginatedTable: PaginatedTableProps = ({
             setSortAscending(ascending);
           }}
           isLoading={isLoading}
+          placeHolder={noResultsText}
         />
       </div>
       {(paginationPlacement === Placement.Bottom || !shouldPaginateAtTop) && paginationItems}
