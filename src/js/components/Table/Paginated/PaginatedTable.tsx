@@ -63,7 +63,7 @@ const propTypes = {
   rowsAreSelectable: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
   defaultSort: PropTypes.string,
-  placeholder: PropTypes.string,
+  noResultsText: PropTypes.string,
 };
 
 const Filter = (
@@ -128,7 +128,7 @@ const PaginatedTable: PaginatedTableProps = ({
   searchPlaceholder,
   paginationPlacement,
   defaultSort,
-  placeholder,
+  noResultsText,
 }) => {
   assert(
     !(filters.length && paginationPlacement === Placement.Top),
@@ -392,7 +392,7 @@ const PaginatedTable: PaginatedTableProps = ({
             setSortAscending(ascending);
           }}
           isLoading={isLoading}
-          placeHolder={placeholder}
+          placeHolder={noResultsText}
         />
       </div>
       {(paginationPlacement === Placement.Bottom || !shouldPaginateAtTop) && paginationItems}
