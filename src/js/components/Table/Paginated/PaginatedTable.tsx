@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Table from '../Table';
-import { convertObjsToValueLabel, usePagination } from './helpers';
+import { convertObjsToValueLabel, getCheckboxStateForBulkActions, usePagination } from './helpers';
 import {
   PaginationCurrentSubsetDisplay,
   PaginationSelect,
@@ -26,6 +26,8 @@ interface BulkAction {
 
 type FilterType = 'select' | 'date';
 
+// This context is used to provide the current state of filters to the paginated table
+// and to allow the filters to individually update the context when changes are triggered.
 const FilterContext = React.createContext<{
   activeFilters: any;
   setActiveFilters: (filters: any) => void;
@@ -150,50 +152,22 @@ const PaginatedTable: PaginatedTableProps = ({
   const [searchTerm, setSearchTerm] = React.useState('');
   const [filterOpen, setFilterOpen] = React.useState(false);
   const [activeFilters, setActiveFilters] = React.useState({});
+  const [isResettingFilters, setIsResettingFilters] = React.useState(false);
   const shouldPaginateAtTop = paginationPlacement !== Placement.Bottom && filters.length === 0;
+  const defaultPageSizeOptions = [10, 25, 50];
+  const customOptions = defaultPageSizeOptions.indexOf(defaultItemsPerPage) < 0 ? [defaultItemsPerPage] : [];
+  const pageSizeOptions = defaultPageSizeOptions.concat(customOptions).sort((a, b) => {
+    return a - b;
+  });
 
   const setNewItemsPerPage = (newItemsPerPage) => {
     setItemsPerPage(newItemsPerPage);
     setCurrentPage(1);
   };
 
-  const defaultPageSizeOptions = [10, 25, 50];
-  const customOptions =
-    defaultPageSizeOptions.indexOf(defaultItemsPerPage) < 0 ? [defaultItemsPerPage] : [];
-  const pageSizeOptions = defaultPageSizeOptions.concat(customOptions).sort((a, b) => {
-    return a - b;
-  });
-
-  React.useEffect(() => {
-    setIsLoading(true);
-
-    loadData({
-      page: currentPage,
-      itemsPerPage,
-      sortBy: sortName,
-      sortAsc: sortAscending,
-      filter: includeBasicSearch || activeFilters ? { searchTerm, ...activeFilters } : null,
-    }).then(({ data, totalItems: currentTotalItems }) => {
-      setIsLoading(false);
-      if (data) setDataSet(data);
-
-      if (typeof currentTotalItems === 'number') setTotalItems(currentTotalItems);
-    });
-  }, [itemsPerPage, currentPage, sortName, sortAscending, searchTerm, activeFilters]);
-
   let rows = dataSet.map(mapDataToRow);
-
-  let checkboxState = CheckboxStates.FALSE;
-  if (selected.length !== 0 && selected.length !== rows.length) {
-    // some but not all rows are checked
-    checkboxState = CheckboxStates.INDETERMINATE;
-  }
-  if (selected.length !== 0 && selected.length === rows.length) {
-    // all rows are checked
-    checkboxState = CheckboxStates.TRUE;
-  }
-
   let cols = columns;
+  const checkboxState = getCheckboxStateForBulkActions(selected, rows);
   if (rowsAreSelectable) {
     cols = [
       {
@@ -255,14 +229,39 @@ const PaginatedTable: PaginatedTableProps = ({
     return acc;
   }, {});
 
+  const filterLength = Object.entries(activeFilters).length;
+  const defaultSortStr = sortName.length ? `${sortAscending ? '-' : ''}${sortName}` : defaultSort;
+
   const updateSearchFilter = ({ searchTerm: search }) => {
     setCurrentPage(1);
     setSearchTerm(search);
   };
 
+  // Load new data when the metadata around pagination changes
+  React.useEffect(() => {
+    setIsLoading(true);
+
+    loadData({
+      page: currentPage,
+      itemsPerPage,
+      sortBy: sortName,
+      sortAsc: sortAscending,
+      filter: includeBasicSearch || activeFilters ? { searchTerm, ...activeFilters } : null,
+    }).then(({ data, totalItems: currentTotalItems }) => {
+      setIsLoading(false);
+      if (data) setDataSet(data);
+
+      if (typeof currentTotalItems === 'number') setTotalItems(currentTotalItems);
+    });
+  }, [itemsPerPage, currentPage, sortName, sortAscending, searchTerm, activeFilters]);
+
   React.useEffect(() => {
     setCurrentPage(1);
   }, [activeFilters]);
+
+  React.useEffect(() => {
+    if (isResettingFilters) setIsResettingFilters(false);
+  }, [isResettingFilters]);
 
   const paginationItems = (
     <div
@@ -295,33 +294,6 @@ const PaginatedTable: PaginatedTableProps = ({
       ) : null}
     </div>
   );
-
-  const filterLength = Object.entries(activeFilters).length;
-
-  const filterButton = (
-    <div>
-      <Button
-        isActive={filterLength > 0 || filterOpen}
-        onClick={() => {
-          setFilterOpen(!filterOpen);
-        }}
-        mods="u-spaceLeftSm"
-        icon="wrench"
-      >
-        Filter{' '}
-        {filterLength > 0 ? (
-          <span
-            className="u-bgPrimary7 u-colorNeutral1 u-fontSizeXs"
-            style={{ borderRadius: '50px', padding: '1px 4px' }}
-          >
-            {filterLength}
-          </span>
-        ) : null}
-      </Button>
-    </div>
-  );
-
-  const defaultSortStr = sortName.length ? `${sortAscending ? '-' : ''}${sortName}` : defaultSort;
 
   return (
     <div className="Grid">
@@ -364,7 +336,28 @@ const PaginatedTable: PaginatedTableProps = ({
             : null}
         </div>
         {shouldPaginateAtTop && paginationItems}
-        {!shouldPaginateAtTop && filterButton}
+        {!shouldPaginateAtTop && (
+          <div>
+            <Button
+              isActive={filterLength > 0 || filterOpen}
+              onClick={() => {
+                setFilterOpen(!filterOpen);
+              }}
+              mods="u-spaceLeftSm"
+              icon="wrench"
+            >
+              Filter{' '}
+              {filterLength > 0 ? (
+                <span
+                  className="u-bgPrimary7 u-colorNeutral1 u-fontSizeXs"
+                  style={{ borderRadius: '50px', padding: '1px 4px' }}
+                >
+                  {filterLength}
+                </span>
+              ) : null}
+            </Button>
+          </div>
+        )}
       </div>
       <Panel
         mods={`${
@@ -373,12 +366,22 @@ const PaginatedTable: PaginatedTableProps = ({
       >
         <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
           <div className="u-size7of8">
-            {filters.map((Item, index) => (
-              <Item key={index} isLast={index === filters.length - 1} />
-            ))}
+            {!isResettingFilters &&
+              filters.map((Item, index) => <Item isLast={index === filters.length - 1} />)}
           </div>
           <div className="u-size1of8 u-textRight u-spaceRightMd">
-            <Button type="text" onClick={() => setActiveFilters({})}>
+            <Button
+              type="text"
+              onClick={() => {
+                setActiveFilters({});
+                // This is a bit weird.
+                // We were seeing issues updating the components successfully when clearing out all the filter
+                // values. This, paired with the condition in the filter rendering, forces the filter section
+                // to rerender when we clear out all the filters, ensuring that its rendering with the "freshest"
+                // of values from the context.
+                setIsResettingFilters(true);
+              }}
+            >
               Clear All
             </Button>
           </div>
