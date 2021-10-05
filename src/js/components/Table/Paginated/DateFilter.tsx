@@ -107,25 +107,35 @@ const DateFilter = ({
   }, [flyoutVisible]);
 
   const clearFilters = () => {
+    toggleFlyout(false);
     setYears('');
     setFromDate('');
     setToDate('');
     setHasFilters(false);
     onChange();
-    toggleFlyout(false);
     setButtonLabel(title);
+
+    if (mode === 'noDate') {
+      setMode('year');
+      toggleFlyout(false);
+    }
   };
 
   const applyFilters = () => {
-    if ((mode === 'year' && !years) || (mode === 'range' && !fromDate && !toDate)) {
-      clearFilters();
+    if ((mode === 'year' && !years) || (mode === 'range' && (!fromDate || !toDate))) {
+      setYears('');
+      setFromDate('');
+      setToDate('');
       return;
     }
 
     if (mode === 'noDate') {
-      clearFilters();
+      setYears('');
+      setFromDate('');
+      setToDate('');
+      setHasFilters(true);
+      setButtonLabel(`${noDateLabel}`);
       onChange({ kind: 'noDate' });
-      setButtonLabel(`[${noDateLabel}]`);
       return;
     }
 
@@ -143,11 +153,11 @@ const DateFilter = ({
     if (years.length > 0) {
       const elements = years.split(',').filter((item) => !!item);
       const cleanYears = elements.join(',');
+      setButtonLabel(cleanYears);
       setFromDate('');
       setToDate('');
       setHasFilters(true);
       onChange({ kind: 'years', value: elements });
-      setButtonLabel(cleanYears);
       setYears(cleanYears);
     }
   };
@@ -187,7 +197,7 @@ const DateFilter = ({
               <Select
                 name="mode"
                 mods={mode === 'noDate' ? '' : 'u-spaceBottomMd'}
-                options={[...modes, { value: 'noDate', label: `[${noDateLabel}]` }]}
+                options={[...modes, { value: 'noDate', label: `${noDateLabel}` }]}
                 inputProps={{
                   value: mode,
                   onChange: (e) => {
@@ -234,7 +244,6 @@ const DateFilter = ({
             <Button
               onClick={() => {
                 clearFilters();
-                toggleFlyout(false);
               }}
               mods="u-spaceRightMd u-colorNeutral7"
               type="link"
