@@ -65,6 +65,13 @@ const formatDate = (x?: string) => {
   return date;
 };
 
+const formatDisplayDate = (date: string): string => {
+  if (navigator.language) {
+    return new Intl.DateTimeFormat(navigator.language).format(formatDate(date));
+  }
+  return '';
+};
+
 const DateFilter = ({
   name,
   title,
@@ -122,7 +129,7 @@ const DateFilter = ({
   };
 
   const applyFilters = () => {
-    if ((mode === 'year' && !years) || (mode === 'range' && (!fromDate || !toDate))) {
+    if ((mode === 'year' && !years) || (mode === 'range' && !fromDate && !toDate)) {
       setYears('');
       setFromDate('');
       setToDate('');
@@ -134,14 +141,23 @@ const DateFilter = ({
       setFromDate('');
       setToDate('');
       setHasFilters(true);
-      setButtonLabel(`${noDateLabel}`);
+      setButtonLabel(`${noDateLabel ? noDateLabel : `[No Date]`}`);
       onChange({ kind: 'noDate' });
       return;
     }
 
     if (mode === 'range') {
       setYears('');
-      setButtonLabel([fromDate, toDate].filter((x) => !!x).join(' - '));
+      if (fromDate && !toDate) {
+        setButtonLabel(`After ${formatDisplayDate(fromDate)}`);
+      } else if (toDate && !fromDate) {
+        setButtonLabel(`Before ${formatDisplayDate(toDate)}`);
+      } else {
+        setButtonLabel(
+          [formatDisplayDate(fromDate), formatDisplayDate(toDate)].filter((x) => !!x).join(' - ')
+        );
+      }
+
       setHasFilters(true);
       onChange({
         kind: 'range',
@@ -197,7 +213,10 @@ const DateFilter = ({
               <Select
                 name="mode"
                 mods={mode === 'noDate' ? '' : 'u-spaceBottomMd'}
-                options={[...modes, { value: 'noDate', label: `${noDateLabel}` }]}
+                options={[
+                  ...modes,
+                  { value: 'noDate', label: `${noDateLabel ? noDateLabel : `[No Date]`}` },
+                ]}
                 inputProps={{
                   value: mode,
                   onChange: (e) => {
