@@ -50,6 +50,9 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  yearPlaceholder: PropTypes.string,
+  rangeMin: PropTypes.string,
+  rangeMax: PropTypes.string,
 };
 
 type Props = Omit<PropTypes.InferProps<typeof propTypes>, 'onChange'> & {
@@ -80,6 +83,9 @@ const DateFilter = ({
   className,
   mods,
   noDateLabel,
+  yearPlaceholder,
+  rangeMin,
+  rangeMax,
   ...props
 }: Props) => {
   const [mode, setMode] = React.useState<'year' | 'range' | 'noDate'>('year');
@@ -231,7 +237,11 @@ const DateFilter = ({
                   name="years"
                   caption="Use commas to separate multiple years."
                   formFieldProps={{
-                    inputProps: { value: years, onChange: onChangeYear },
+                    inputProps: {
+                      placeholder: yearPlaceholder,
+                      value: years,
+                      onChange: onChangeYear,
+                    },
                   }}
                 />
               )}
@@ -244,7 +254,11 @@ const DateFilter = ({
                     type="date"
                     name="fromDate"
                     formFieldProps={{
-                      inputProps: { value: fromDate, onChange: (e) => setFromDate(e.target.value) },
+                      inputProps: {
+                        min: rangeMin,
+                        value: fromDate,
+                        onChange: (e) => setFromDate(e.target.value),
+                      },
                     }}
                   />
                   <Field
@@ -252,7 +266,11 @@ const DateFilter = ({
                     type="date"
                     name="toDate"
                     formFieldProps={{
-                      inputProps: { value: toDate, onChange: (e) => setToDate(e.target.value) },
+                      inputProps: {
+                        max: rangeMax,
+                        value: toDate,
+                        onChange: (e) => setToDate(e.target.value),
+                      },
                     }}
                   />
                 </>
@@ -286,6 +304,9 @@ DateFilter.defaultProps = {
   style: {},
   className: 'Combobox',
   noDateLabel: 'No Date',
+  yearPlaceholder: null,
+  rangeMin: null,
+  rangeMax: null,
 };
 
 export default DateFilter;

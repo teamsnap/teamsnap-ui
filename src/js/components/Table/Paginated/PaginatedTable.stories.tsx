@@ -454,7 +454,7 @@ stories.add('With Search Filters', () => (
     loadData={loadSearchData}
     defaultItemsPerPage={2}
     filters={[
-      PaginatedTable.Filter('role', 'Participants Role', {
+      PaginatedTable.SelectFilter('role', 'Participants Role', {
         manager: 'Manager',
         nonplayer: 'Non-Player',
         player: 'Player',
@@ -464,13 +464,13 @@ stories.add('With Search Filters', () => (
         goalkeeper: 'Goalkeeper',
       }),
       // We understand that this is not a comprehensive list of genders but merely a list to display how these filters can be used
-      PaginatedTable.Filter('gender', 'Participants Preferred Gender', {
+      PaginatedTable.SelectFilter('gender', 'Participants Preferred Gender', {
         m: 'Male',
         f: 'Female',
         other: 'Other',
         unknown: 'Unknown',
       }),
-      PaginatedTable.Filter('team', 'Participants Preferred Team', [
+      PaginatedTable.SelectFilter('team', 'Participants Preferred Team', [
         {
           value: '1',
           label: 'Team 1',
@@ -487,7 +487,14 @@ stories.add('With Search Filters', () => (
           subtext: 'Another Division',
         },
       ]),
-      PaginatedTable.Filter('birthdate', 'Participants Birthdate', '[No Birthdate]', 'date'),
+      PaginatedTable.DateFilter(
+        'birthdate',
+        'Participants Birthdate',
+        '[No Birthdate]',
+        '2005,2004',
+        null,
+        new Date().toISOString().split('T')[0]
+      ),
     ]}
     paginationPlacement={Placement.Bottom}
     includeBasicSearch
