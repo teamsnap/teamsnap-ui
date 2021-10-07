@@ -68,9 +68,9 @@ const formatDate = (x?: string) => {
   return date;
 };
 
-const formatDisplayDate = (date: string, locale?: string | string[]): string => {
+const formatDisplayDate = (date: string, locales?: string[]): string => {
   return new Intl.DateTimeFormat(
-    locale ? locale : navigator.languages ? [...navigator.languages] : navigator.language
+    locales ? locales : navigator.languages ? [...navigator.languages] : navigator.language
   ).format(formatDate(date));
 };
 

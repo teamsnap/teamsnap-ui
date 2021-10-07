@@ -16,7 +16,7 @@ import ComboBox from '../../ComboBox/Combobox';
 import { assert } from '../../../utils/assert';
 import { Button } from '../../Button';
 import { Panel } from '../../Panel';
-import DateFilter from './DateFilter';
+import { default as DateFilterComponent } from './DateFilter';
 
 interface BulkAction {
   label: string;
@@ -68,7 +68,7 @@ const propTypes = {
   noResultsText: PropTypes.string,
 };
 
-const SelectFilterType = (
+const SelectFilter = (
   fieldName: string,
   label: string,
   options?:
@@ -104,7 +104,7 @@ const SelectFilterType = (
   };
 };
 
-const DateFilterType = (
+const DateFilter = (
   fieldName: string,
   label: string,
   noDateLabel?: string,
@@ -125,7 +125,7 @@ const DateFilterType = (
     };
 
     return (
-      <DateFilter
+      <DateFilterComponent
         mods={isLast ? '' : 'u-spaceRightSm'}
         onChange={onChange}
         name={fieldName}
@@ -140,8 +140,8 @@ const DateFilterType = (
 };
 
 type PaginatedTableProps = React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> & {
-  SelectFilter: typeof SelectFilterType;
-  DateFilter: typeof DateFilterType;
+  SelectFilter: typeof SelectFilter;
+  DateFilter: typeof DateFilter;
 };
 const PaginatedTable: PaginatedTableProps = ({
   loadData,
@@ -432,8 +432,8 @@ const PaginatedTable: PaginatedTableProps = ({
   );
 };
 
-PaginatedTable.SelectFilter = SelectFilterType;
-PaginatedTable.DateFilter = DateFilterType;
+PaginatedTable.SelectFilter = SelectFilter;
+PaginatedTable.DateFilter = DateFilter;
 PaginatedTable.propTypes = propTypes;
 
 export default PaginatedTable;
