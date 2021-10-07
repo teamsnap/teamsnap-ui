@@ -9,12 +9,6 @@
 <!--- Why is this change required? What problem does it solve? -->
 <!--- If it fixes an open issue, please link to the issue here. -->
 
-## Does your code effect "Classic" (if applicable):
-
-<!--- Because the compiled styles will automatically publish to CLASSIC IN PRODUCTION please be sure your changes won't effect "classic". -->
-
-### If code effected "Classic" what is effected and how is it being handled:
-
 ## Screenshots:
 
 ## Types of changes
