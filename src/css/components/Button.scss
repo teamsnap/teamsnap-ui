@@ -1,11 +1,11 @@
-@import "../config/index.scss";
+@import '../config/index.scss';
 
 // * @define default Button
 
 // Global default button colors that are themed
-$button-color:                       $ts-white !default;
-$button-border-color:                color-neutral(5) !default;
-$button-text-color:                  color-neutral(9) !default;
+$button-color: $ts-white !default;
+$button-border-color: color-neutral(5) !default;
+$button-text-color: color-neutral(9) !default;
 
 // Default button styles
 $Button-bg: $button-color;
@@ -50,7 +50,8 @@ $Button-active-color: color-primary(7);
     outline: none;
   }
 
-  &:active, &.is-active {
+  &:active,
+  &.is-active {
     border-color: $Button-active-color;
     color: $Button-active-color;
   }
@@ -69,9 +70,9 @@ $Button-active-color: color-primary(7);
 }
 
 $permutations: (
-  "primary" color-primary(6) color-primary(5) color-primary(7),
-  "warning" color-warning(6) color-warning(5) color-warning(7),
-  "success" color-success(6) color-success(5) color-success(7)
+  'primary' color-primary(6) color-primary(5) color-primary(7),
+  'warning' color-warning(6) color-warning(5) color-warning(7),
+  'success' color-success(6) color-success(5) color-success(7)
 );
 
 @each $name, $color, $hover, $active in $permutations {
@@ -87,7 +88,8 @@ $permutations: (
       color: color-neutral(1);
     }
 
-    &:active, &.is-active {
+    &:active,
+    &.is-active {
       border-color: $active;
       background-color: $active;
       color: color-neutral(1);
@@ -101,7 +103,6 @@ $Button--small-font-size: $tu-small-fontSize;
 $Button--small-height: scaleGrid(3);
 $Button--small-line-height: $Button--small-height - 3;
 $Button--small-padding: 0 scaleGrid(1);
-
 
 .Button--small {
   font-size: $Button--small-font-size;
@@ -134,6 +135,7 @@ $Button--large-padding: 0 scaleGrid(2);
   padding: 0;
   vertical-align: unset;
   color: color-primary(6);
+  background-color: transparent;
 
   &:disabled {
     background-color: transparent;
