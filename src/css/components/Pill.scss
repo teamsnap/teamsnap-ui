@@ -20,7 +20,7 @@ $paddingY: $su-small + 2px;
   }
 
   &--error {
-    border-color: color-negative(4);
+    border-color: color-negative(4) !important;
   }
 
   &-content--center {
