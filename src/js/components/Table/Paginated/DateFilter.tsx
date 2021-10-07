@@ -68,11 +68,10 @@ const formatDate = (x?: string) => {
   return date;
 };
 
-const formatDisplayDate = (date: string): string => {
-  if (navigator.language) {
-    return new Intl.DateTimeFormat(navigator.language).format(formatDate(date));
-  }
-  return '';
+const formatDisplayDate = (date: string, locale?: string | string[]): string => {
+  return new Intl.DateTimeFormat(
+    locale ? locale : navigator.languages ? [...navigator.languages] : navigator.language
+  ).format(formatDate(date));
 };
 
 const DateFilter = ({
