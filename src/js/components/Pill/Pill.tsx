@@ -5,7 +5,6 @@ import { getClassName } from '../../utils/helpers';
 export interface Props {
   align?: string;
   status?: PillStatus.ACTIVE | PillStatus.ERROR;
-  error?: boolean;
   style?: React.CSSProperties;
   mods?: string;
   children: any;
