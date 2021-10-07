@@ -74,7 +74,6 @@ const Input = ({
     'u-flex',
     mods
   );
-
   return (
     <div className={inputClasses} style={style} {...otherProps}>
       {leftIcon && <div className="InputGroup-icon--left InputGroup-icon">{leftIcon}</div>}

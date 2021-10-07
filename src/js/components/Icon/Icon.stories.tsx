@@ -89,6 +89,7 @@ const iconNames = {
   location: 'location',
   loader: 'loader',
   stopwatch: 'stopwatch',
+  safety: 'safety',
 };
 
 const iconSizes = {
@@ -114,7 +115,7 @@ stories.add(
   () => (
     <Icon
       name={select('Icon', iconNames, 'home')}
-      mods={`${select('Size', iconSizes, '')  } ${  select('Color', iconColors, '')}`}
+      mods={`${select('Size', iconSizes, '')} ${select('Color', iconColors, '')}`}
     />
   ),
   {
