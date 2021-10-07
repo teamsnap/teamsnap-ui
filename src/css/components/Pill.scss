@@ -5,6 +5,7 @@ $paddingY: $su-small + 2px;
   padding: $paddingY $su-medium;
   border: 1px solid color-neutral(4);
   border-radius: $border-radius-medium;
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 255, 0.03);
 
   &:hover {
     border-color: color-primary(6);
