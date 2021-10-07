@@ -303,7 +303,7 @@
 .ProgressBar--primary {
 
   .ProgressBar-status {
-    background: $cu-primary;
+    background: color-primary(6);
   }
 
 }
@@ -335,7 +335,7 @@
 .RadialProgress--primary {
 
   .RadialProgress-status {
-    border-color: $cu-primary;
+    border-color: color-primary(6);
   }
 
 }

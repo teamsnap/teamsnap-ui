@@ -487,7 +487,7 @@ stories.add('With Search Filters', () => (
           subtext: 'Another Division',
         },
       ]),
-      PaginatedTable.Filter('birthdate', 'Participants Birthdate', undefined, 'date'),
+      PaginatedTable.Filter('birthdate', 'Participants Birthdate', '[No Date]', 'date'),
     ]}
     paginationPlacement={Placement.Bottom}
     includeBasicSearch
