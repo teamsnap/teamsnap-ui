@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { Grid } from '../Grid';
 import { Cell } from '../Cell';
-import { Pill } from '../Pill';
+import { Pill, PillStatus } from '../Pill';
 
 type Props = {
-  active?: boolean;
+  status?: PillStatus.ACTIVE | PillStatus.ERROR;
   children: React.ReactNode;
 };
 
-const AttachmentPill = ({ active, children }: Props) => (
+const AttachmentPill = ({ status, children }: Props) => (
   <Grid>
     <Cell mods="u-size1of1">
-      <Pill align="ends" active={active}>
+      <Pill align="ends" status={status}>
         {children}
       </Pill>
     </Cell>
