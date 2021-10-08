@@ -16,6 +16,8 @@ import ComboBox from '../../ComboBox/Combobox';
 import { assert } from '../../../utils/assert';
 import { Button } from '../../Button';
 import { Panel } from '../../Panel';
+
+// eslint-disable-next-line import/no-named-default
 import { default as DateFilterComponent } from './DateFilter';
 
 interface BulkAction {
@@ -23,8 +25,6 @@ interface BulkAction {
   onSelected: (selected: any) => void;
   disabled?: boolean;
 }
-
-type FilterType = 'select' | 'date';
 
 // This context is used to provide the current state of filters to the paginated table
 // and to allow the filters to individually update the context when changes are triggered.

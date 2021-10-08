@@ -1,32 +1,46 @@
 import * as React from 'react';
+
 import { getClassName } from '../../utils/helpers';
 
 export interface Props {
   align?: string;
-  active?: boolean;
+  status?: PillStatus.ACTIVE | PillStatus.ERROR;
   style?: React.CSSProperties;
   mods?: string;
-  children: React.ReactNode;
+  children: any;
+  onClick?: () => void;
 }
 
-const Pill: React.FunctionComponent<Props> = ({
-  align,
-  active,
-  style,
-  mods,
-  children,
-  ...props
-}: Props) => {
+export enum PillStatus {
+  ACTIVE = 'active',
+  ERROR = 'error',
+}
+
+const Pill = ({ align, status, style, mods, children, onClick }: Props) => {
+  const clickable = () => children.props?.type === 'checkbox' || children.props?.type === 'radio';
+
   const classes = getClassName(
     'Pill',
-    align ? `Pill__content--${align}` : '',
-    active ? 'Pill--active' : '',
+    align && `Pill-content--${align}`,
+    status === PillStatus.ACTIVE && 'Pill--active',
+    status === PillStatus.ERROR && 'Pill--error',
     mods
   );
 
   return (
-    <div data-testid="pill" className={classes} style={style} {...props}>
-      {children || 'Default'}
+    <div
+      data-testid="pill"
+      className={classes}
+      style={{
+        ...style,
+        cursor: clickable() ? 'pointer' : 'default',
+      }}
+      onKeyDown={onClick}
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+    >
+      {children}
     </div>
   );
 };

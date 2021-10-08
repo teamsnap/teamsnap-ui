@@ -1,21 +1,35 @@
 $paddingY: $su-small + 2px;
 
 .Pill {
-  display: flex;
+  width: 100%;
   padding: $paddingY $su-medium;
-  border: 1.5px solid color-neutral(5);
+  border: 1px solid color-neutral(4);
   border-radius: $border-radius-medium;
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 255, 0.03);
 
-  &--active {
-    border-color: color-primary(5);
-    background-color: color-neutral(2)
+  &:hover {
+    border-color: color-primary(6);
   }
 
-  &__content--center {
+  &:hover .Checkbox-input {
+    background-color: red;
+  }
+
+  &--active {
+    border-color: color-primary(6);
+  }
+
+  &--error {
+    border-color: color-negative(4) !important;
+  }
+
+  &-content--center {
+    display: flex;
     justify-content: center;
   }
 
-  &__content--ends {
+  &-content--ends {
+    display: flex;
     justify-content: space-between;
   }
 }

@@ -14,7 +14,7 @@ const CheckboxPill = () => {
   return (
     <Grid>
       <Cell>
-        <Pill align="center" active={checked}>
+        <Pill align="center">
           <Field
             formFieldProps={{
               checked,

@@ -1,5 +1,5 @@
-import { CheckboxStates } from '../../../types';
 import * as React from 'react';
+import { CheckboxStates } from '../../../types';
 
 export const convertObjsToValueLabel = (items: { [key: string]: string | React.ReactNode }) =>
   Object.entries(items)
@@ -21,7 +21,6 @@ export const usePagination = (defaultItemsPerPage: number, defaultCurrentPage: n
   return [itemsPerPageStateHooks, currentPageStateHooks];
 };
 
-
 export const getCheckboxStateForBulkActions = (selected: any[], rows: any[]) => {
   let checkboxState = CheckboxStates.FALSE;
   const allRowsChecked = selected.length !== 0 && selected.length === rows.length;
@@ -34,4 +33,4 @@ export const getCheckboxStateForBulkActions = (selected: any[], rows: any[]) => 
   }
 
   return checkboxState;
-}
+};
