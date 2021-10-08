@@ -1,3 +1,3 @@
-import Pill from './Pill';
+import Pill, { PillStatus } from './Pill';
 
-export { Pill };
+export { Pill, PillStatus };
