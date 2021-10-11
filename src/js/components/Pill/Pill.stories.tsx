@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Icon } from '../Icon';
-import { Pill } from '.';
+import { Pill, PillStatus } from '.';
 import { AttachmentPill } from '../AttachmentPill';
 import { CheckboxPill } from '../CheckboxPill';
 
@@ -19,14 +19,20 @@ stories.add('Default', () => (
 ));
 
 stories.add('Pill -- Active', () => (
-  <Pill active>
+  <Pill status={PillStatus.ACTIVE}>
+    <p>Default</p>
+  </Pill>
+));
+
+stories.add('Pill -- Error', () => (
+  <Pill status={PillStatus.ERROR}>
     <p>Default</p>
   </Pill>
 ));
 
 stories.add('Pill -- style/ mod overrides', () => (
   <Pill
-    active
+    status={PillStatus.ACTIVE}
     mods="u-padXl"
     style={{
       backgroundColor: 'white',
@@ -54,7 +60,7 @@ stories.add('Attatchment Pill -- Inactive', () => (
 ));
 
 stories.add('Attatchment Pill -- Active', () => (
-  <AttachmentPill active>
+  <AttachmentPill status={PillStatus.ACTIVE}>
     <p>
       <Icon name="file" /> tournament-registration-flyer.pdf (4.5 MB)
     </p>

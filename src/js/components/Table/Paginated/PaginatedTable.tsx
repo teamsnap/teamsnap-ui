@@ -16,15 +16,15 @@ import ComboBox from '../../ComboBox/Combobox';
 import { assert } from '../../../utils/assert';
 import { Button } from '../../Button';
 import { Panel } from '../../Panel';
-import DateFilter from './DateFilter';
+
+// eslint-disable-next-line import/no-named-default
+import { default as DateFilterComponent } from './DateFilter';
 
 interface BulkAction {
   label: string;
   onSelected: (selected: any) => void;
   disabled?: boolean;
 }
-
-type FilterType = 'select' | 'date';
 
 // This context is used to provide the current state of filters to the paginated table
 // and to allow the filters to individually update the context when changes are triggered.
@@ -68,14 +68,12 @@ const propTypes = {
   noResultsText: PropTypes.string,
 };
 
-const Filter = (
+const SelectFilter = (
   fieldName: string,
   label: string,
   options?:
-    | string
     | { [key: string]: string | React.ReactNode }
-    | { value: string; label: string; subtext?: string }[],
-  type: FilterType = 'select'
+    | { value: string; label: string; subtext?: string }[]
 ) => {
   return ({ isLast }: { isLast: boolean }) => {
     const ctx = React.useContext(FilterContext);
@@ -89,7 +87,7 @@ const Filter = (
       }
     };
 
-    return type === 'select' ? (
+    return (
       <ComboBox
         mods={isLast ? '' : 'u-spaceRightSm'}
         onChange={onChange}
@@ -102,20 +100,48 @@ const Filter = (
             : convertObjsToValueLabel(options as { [key: string]: string | React.ReactNode })
         }
       />
-    ) : (
-      <DateFilter
+    );
+  };
+};
+
+const DateFilter = (
+  fieldName: string,
+  label: string,
+  noDateLabel?: string,
+  yearPlaceholder?: string,
+  rangeMin?: string,
+  rangeMax?: string
+) => {
+  return ({ isLast }: { isLast: boolean }) => {
+    const ctx = React.useContext(FilterContext);
+
+    const onChange = (values) => {
+      if (values?.length > 0 || values?.kind) {
+        ctx.setActiveFilters({ ...ctx.activeFilters, [fieldName]: values });
+      } else {
+        delete ctx.activeFilters[fieldName];
+        ctx.setActiveFilters({ ...ctx.activeFilters });
+      }
+    };
+
+    return (
+      <DateFilterComponent
         mods={isLast ? '' : 'u-spaceRightSm'}
         onChange={onChange}
         name={fieldName}
         title={label}
-        noDateLabel={options as string}
+        noDateLabel={noDateLabel}
+        yearPlaceholder={yearPlaceholder}
+        rangeMin={rangeMin}
+        rangeMax={rangeMax}
       />
     );
   };
 };
 
 type PaginatedTableProps = React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> & {
-  Filter: typeof Filter;
+  SelectFilter: typeof SelectFilter;
+  DateFilter: typeof DateFilter;
 };
 const PaginatedTable: PaginatedTableProps = ({
   loadData,
@@ -155,7 +181,8 @@ const PaginatedTable: PaginatedTableProps = ({
   const [isResettingFilters, setIsResettingFilters] = React.useState(false);
   const shouldPaginateAtTop = paginationPlacement !== Placement.Bottom && filters.length === 0;
   const defaultPageSizeOptions = [10, 25, 50];
-  const customOptions = defaultPageSizeOptions.indexOf(defaultItemsPerPage) < 0 ? [defaultItemsPerPage] : [];
+  const customOptions =
+    defaultPageSizeOptions.indexOf(defaultItemsPerPage) < 0 ? [defaultItemsPerPage] : [];
   const pageSizeOptions = defaultPageSizeOptions.concat(customOptions).sort((a, b) => {
     return a - b;
   });
@@ -405,7 +432,8 @@ const PaginatedTable: PaginatedTableProps = ({
   );
 };
 
-PaginatedTable.Filter = Filter;
+PaginatedTable.SelectFilter = SelectFilter;
+PaginatedTable.DateFilter = DateFilter;
 PaginatedTable.propTypes = propTypes;
 
 export default PaginatedTable;

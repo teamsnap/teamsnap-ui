@@ -50,6 +50,9 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  yearPlaceholder: PropTypes.string,
+  rangeMin: PropTypes.string,
+  rangeMax: PropTypes.string,
 };
 
 type Props = Omit<PropTypes.InferProps<typeof propTypes>, 'onChange'> & {
@@ -65,6 +68,15 @@ const formatDate = (x?: string) => {
   return date;
 };
 
+const formatDisplayDate = (date: string, locales?: string[]): string => {
+  if (locales) {
+    return new Intl.DateTimeFormat(locales).format(formatDate(date));
+  }
+  return new Intl.DateTimeFormat(
+    navigator.languages ? [...navigator.languages] : navigator.language
+  ).format(formatDate(date));
+};
+
 const DateFilter = ({
   name,
   title,
@@ -73,6 +85,9 @@ const DateFilter = ({
   className,
   mods,
   noDateLabel,
+  yearPlaceholder,
+  rangeMin,
+  rangeMax,
   ...props
 }: Props) => {
   const [mode, setMode] = React.useState<'year' | 'range' | 'noDate'>('year');
@@ -82,29 +97,6 @@ const DateFilter = ({
   const [fromDate, setFromDate] = React.useState('');
   const [toDate, setToDate] = React.useState('');
   const [buttonLabel, setButtonLabel] = React.useState(title);
-
-  // Set up handler when flyoutVisibility changes
-  React.useEffect(() => {
-    const handleBodyClick = (e) => {
-      const isTargetingPopup = e.target.closest(`#Combobox-${name}`) != null;
-
-      if (!isTargetingPopup) {
-        toggleFlyout(false);
-      }
-    };
-
-    document.body.addEventListener('click', handleBodyClick, { capture: true });
-
-    return () => {
-      document.body.removeEventListener('click', handleBodyClick);
-    };
-  }, []);
-
-  React.useEffect(() => {
-    if (!flyoutVisible) {
-      applyFilters();
-    }
-  }, [flyoutVisible]);
 
   const clearFilters = () => {
     toggleFlyout(false);
@@ -122,7 +114,7 @@ const DateFilter = ({
   };
 
   const applyFilters = () => {
-    if ((mode === 'year' && !years) || (mode === 'range' && (!fromDate || !toDate))) {
+    if ((mode === 'year' && !years) || (mode === 'range' && !fromDate && !toDate)) {
       setYears('');
       setFromDate('');
       setToDate('');
@@ -134,14 +126,23 @@ const DateFilter = ({
       setFromDate('');
       setToDate('');
       setHasFilters(true);
-      setButtonLabel(`${noDateLabel}`);
+      setButtonLabel(`${noDateLabel || '[No Date]'}`);
       onChange({ kind: 'noDate' });
       return;
     }
 
     if (mode === 'range') {
       setYears('');
-      setButtonLabel([fromDate, toDate].filter((x) => !!x).join(' - '));
+      if (fromDate && !toDate) {
+        setButtonLabel(`After ${formatDisplayDate(fromDate)}`);
+      } else if (toDate && !fromDate) {
+        setButtonLabel(`Before ${formatDisplayDate(toDate)}`);
+      } else {
+        setButtonLabel(
+          [formatDisplayDate(fromDate), formatDisplayDate(toDate)].filter((x) => !!x).join(' - ')
+        );
+      }
+
       setHasFilters(true);
       onChange({
         kind: 'range',
@@ -175,6 +176,29 @@ const DateFilter = ({
     }
   };
 
+  // Set up handler when flyoutVisibility changes
+  React.useEffect(() => {
+    const handleBodyClick = (e) => {
+      const isTargetingPopup = e.target.closest(`#Combobox-${name}`) != null;
+
+      if (!isTargetingPopup) {
+        toggleFlyout(false);
+      }
+    };
+
+    document.body.addEventListener('click', handleBodyClick, { capture: true });
+
+    return () => {
+      document.body.removeEventListener('click', handleBodyClick);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (!flyoutVisible) {
+      applyFilters();
+    }
+  }, [flyoutVisible]);
+
   return (
     <div id={`Combobox-${name}`} className={getClassName(className, mods)} {...props}>
       <button
@@ -197,7 +221,7 @@ const DateFilter = ({
               <Select
                 name="mode"
                 mods={mode === 'noDate' ? '' : 'u-spaceBottomMd'}
-                options={[...modes, { value: 'noDate', label: `${noDateLabel}` }]}
+                options={[...modes, { value: 'noDate', label: `${noDateLabel || '[No Date]'}` }]}
                 inputProps={{
                   value: mode,
                   onChange: (e) => {
@@ -212,7 +236,11 @@ const DateFilter = ({
                   name="years"
                   caption="Use commas to separate multiple years."
                   formFieldProps={{
-                    inputProps: { value: years, onChange: onChangeYear },
+                    inputProps: {
+                      placeholder: yearPlaceholder,
+                      value: years,
+                      onChange: onChangeYear,
+                    },
                   }}
                 />
               )}
@@ -225,7 +253,12 @@ const DateFilter = ({
                     type="date"
                     name="fromDate"
                     formFieldProps={{
-                      inputProps: { value: fromDate, onChange: (e) => setFromDate(e.target.value) },
+                      inputProps: {
+                        min: rangeMin,
+                        max: rangeMax,
+                        value: fromDate,
+                        onChange: (e) => setFromDate(e.target.value),
+                      },
                     }}
                   />
                   <Field
@@ -233,7 +266,12 @@ const DateFilter = ({
                     type="date"
                     name="toDate"
                     formFieldProps={{
-                      inputProps: { value: toDate, onChange: (e) => setToDate(e.target.value) },
+                      inputProps: {
+                        min: rangeMin,
+                        max: rangeMax,
+                        value: toDate,
+                        onChange: (e) => setToDate(e.target.value),
+                      },
                     }}
                   />
                 </>
@@ -267,6 +305,9 @@ DateFilter.defaultProps = {
   style: {},
   className: 'Combobox',
   noDateLabel: 'No Date',
+  yearPlaceholder: null,
+  rangeMin: null,
+  rangeMax: null,
 };
 
 export default DateFilter;
