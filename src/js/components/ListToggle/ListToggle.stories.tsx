@@ -1,15 +1,11 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { ListToggle } from '.';
-
-const stories = storiesOf('ListToggle', module);
 
 export default {
   title: 'ListToggle',
-  component: ListToggle,
 };
 
-stories.add('List Toggle', () => {
+export const Default = () => {
   const [showContainer, setShowContainer] = React.useState(false);
 
   return (
@@ -18,4 +14,4 @@ stories.add('List Toggle', () => {
       {showContainer && <div>Open</div>}
     </div>
   );
-});
+};
