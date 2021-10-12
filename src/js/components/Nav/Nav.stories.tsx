@@ -1,16 +1,12 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { text } from '@storybook/addon-knobs';
 import Nav from './Nav';
 
-const stories = storiesOf('Nav', module);
-
 export default {
   title: 'Nav',
-  component: Nav,
 };
 
-stories.add('Default', () => (
+export const Default = () => (
   <div className="u-flex" style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}>
     <Nav
       mods="u-size3of12"
@@ -49,114 +45,9 @@ stories.add('Default', () => (
       </div>
     </main>
   </div>
-));
+);
 
-stories.add('Default', () => (
-  <div className="u-flex" style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}>
-    <Nav
-      mods="u-size3of12"
-      headerItem={{
-        title: text('Team Name', 'Boulder Youth Soccer'),
-        image: text(
-          'Image Source',
-          'https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png'
-        ),
-      }}
-      flyoutSections={[
-        {
-          heading: 'Organizations',
-          tree: [
-            {
-              title: 'Boulder Sports',
-              tree: [
-                {
-                  title: 'Organization Home',
-                  wrapItem: ({ children }: { children: React.ReactNode }) => (
-                    <a
-                      href="https://organization.teamsnap.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {children}
-                    </a>
-                  ),
-                },
-                {
-                  title: 'Soccer Start',
-                  useBadge: true,
-                  tree: [
-                    {
-                      title: '2021 Spring Season',
-                    },
-                    {
-                      title: '2021 Spring Playoffs',
-                    },
-                  ],
-                },
-                {
-                  title: '6U-8U Rec',
-                  useBadge: true,
-                },
-                {
-                  title: '9U Rec',
-                  useBadge: true,
-                },
-              ],
-            },
-            {
-              title: 'Colorado Soccer',
-            },
-          ],
-        },
-        {
-          heading: 'Teams',
-          tree: [
-            {
-              title: 'Strikers',
-              useBadge: true,
-            },
-            {
-              title: 'Panthers',
-              useBadge: true,
-            },
-            {
-              title: 'Bobcats',
-              useBadge: true,
-            },
-          ],
-        },
-      ]}
-    >
-      <Nav.Item
-        icon="dashboard"
-        isActive
-        wrapItem={({ children }: { children: React.ReactNode }) => (
-          <a href="https://go.teamsnap.com" target="_blank" rel="noreferrer">
-            {children}
-          </a>
-        )}
-      >
-        Dashboard
-      </Nav.Item>
-      <Nav.Item icon="medal" onClick={() => alert('Fire Custom On Click')}>
-        Programs
-      </Nav.Item>
-      <Nav.Item icon="user">Members</Nav.Item>
-      <Nav.Item icon="star">Staff</Nav.Item>
-      <Nav.Item icon="settings">Settings</Nav.Item>
-    </Nav>
-    <main className="u-sizeFill u-flex u-flexAlignItemsCenter u-flexJustifyCenter">
-      <div style={{ width: '40%' }}>
-        This main and the nav are contained in a div that acts as a frame. The left nav is as tall
-        as the frame, which, in this case, has a height manually set to 800px. By default, the nav
-        is as wide as its container, so we use a grid to scope it to the size that we&apos;d like.
-        In this case, It&apos;s a flex grid where the nav is contained in a u-size2of12 div.
-      </div>
-    </main>
-  </div>
-));
-
-stories.add('With Subheading', () => (
+export const WithSubheading = () => (
   <div className="u-flex" style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}>
     <Nav
       mods="u-size3of12"
@@ -260,9 +151,9 @@ stories.add('With Subheading', () => (
       </div>
     </main>
   </div>
-));
+);
 
-stories.add('With content overlay', () => (
+export const WithContentOverlay = () => (
   <div className="u-flex" style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}>
     <Nav
       mods="u-size3of12"
@@ -365,9 +256,9 @@ stories.add('With content overlay', () => (
       </div>
     </main>
   </div>
-));
+);
 
-stories.add('With all items open', () => (
+export const WithAllItemsOpen = () => (
   <div className="u-flex" style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}>
     <Nav
       mods="u-size3of12"
@@ -466,9 +357,9 @@ stories.add('With all items open', () => (
       </div>
     </main>
   </div>
-));
+);
 
-stories.add('With `Nav-child` class', () => (
+export const WithNavChildClass = () => (
   <div className="u-flex" style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}>
     <Nav
       mods="u-size3of12"
@@ -580,9 +471,9 @@ stories.add('With `Nav-child` class', () => (
       </div>
     </main>
   </div>
-));
+);
 
-stories.add('with `Nav-selected` class', () => (
+export const WithNavSelectedClass = () => (
   <div className="u-flex" style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}>
     <Nav
       mods="u-size3of12"
@@ -694,9 +585,9 @@ stories.add('with `Nav-selected` class', () => (
       </div>
     </main>
   </div>
-));
+);
 
-stories.add('with single organization', () => (
+export const WithSingleOrganization = () => (
   <div className="u-flex" style={{ backgroundColor: '#FFEFA5', minHeight: '800px' }}>
     <Nav
       mods="u-size3of12"
@@ -808,9 +699,9 @@ stories.add('with single organization', () => (
       </div>
     </main>
   </div>
-));
+);
 
-stories.add('Without Header', () => (
+export const WithoutHeader = () => (
   <>
     <h4>
       Removing the header items from the Nav allows us to have a more generic, left-aligned
@@ -844,4 +735,4 @@ stories.add('Without Header', () => (
       </main>
     </div>
   </>
-));
+);
