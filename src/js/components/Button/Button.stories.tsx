@@ -1,16 +1,12 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { text, boolean } from '@storybook/addon-knobs';
 import Button from './Button';
 
-const stories = storiesOf('Button', module);
-
 export default {
   title: 'Button',
-  component: Button,
 };
 
-stories.add('Default', () => (
+export const Default = () => (
   <Button
     mods="u-spaceRightSm"
     isDisabled={boolean('isDisabled', false)}
@@ -18,9 +14,9 @@ stories.add('Default', () => (
   >
     Default Button
   </Button>
-));
+);
 
-stories.add('Themed Colors', () => {
+export const ThemedColors = () => {
   const isDisabled = boolean('isDisabled', false);
   const isActive = boolean('isActive', false);
   return (
@@ -33,9 +29,9 @@ stories.add('Themed Colors', () => {
       </Button>
     </div>
   );
-});
+};
 
-stories.add('Text Button', () => {
+export const TextButton = () => {
   return (
     <>
       <p>
@@ -52,9 +48,9 @@ stories.add('Text Button', () => {
       </p>
     </>
   );
-});
+};
 
-stories.add('Sizes', () => (
+export const Sizes = () => (
   <div>
     <Button mods="u-spaceRightSm" size="small">
       Small Button
@@ -70,48 +66,39 @@ stories.add('Sizes', () => (
       This is a `large` button with width of 100%
     </Button>
   </div>
-));
+);
 
-storiesOf('Button', module).add(
-  'with Icon',
-  () => (
-    <div>
-      <Button
-        size="small"
-        isDisabled={boolean('Disabled', false)}
-        mods="u-spaceRightSm"
-        icon={text('Icon Small', 'home')}
-       />
-      <Button
-        isDisabled={boolean('Disabled', false)}
-        mods="u-spaceRightSm"
-        icon={text('Icon Left', 'plus')}
-      >
-        Icon Left (default)
-      </Button>
-      <Button
-        color="primary"
-        mods="u-spaceRightSm"
-        icon={text('Icon Right', 'right')}
-        iconPosition="right"
-        isDisabled={boolean('Disabled', false)}
-      >
-        Primary w/ Icon Right
-      </Button>
-      <Button
-        size="large"
-        color="primary"
-        mods="u-spaceRightSm"
-        icon={text('Icon Right', 'right')}
-        iconPosition="right"
-        isDisabled={boolean('Disabled', false)}
-       />
-    </div>
-  ),
-  {
-    knobs: {
-      timestamps: true,
-      debounce: { wait: 2000, leading: false },
-    },
-  }
+export const WithIcon = () => (
+  <div>
+    <Button
+      size="small"
+      isDisabled={boolean('Disabled', false)}
+      mods="u-spaceRightSm"
+      icon={text('Icon Small', 'home')}
+    />
+    <Button
+      isDisabled={boolean('Disabled', false)}
+      mods="u-spaceRightSm"
+      icon={text('Icon Left', 'plus')}
+    >
+      Icon Left (default)
+    </Button>
+    <Button
+      color="primary"
+      mods="u-spaceRightSm"
+      icon={text('Icon Right', 'right')}
+      iconPosition="right"
+      isDisabled={boolean('Disabled', false)}
+    >
+      Primary w/ Icon Right
+    </Button>
+    <Button
+      size="large"
+      color="primary"
+      mods="u-spaceRightSm"
+      icon={text('Icon Right', 'right')}
+      iconPosition="right"
+      isDisabled={boolean('Disabled', false)}
+    />
+  </div>
 );
