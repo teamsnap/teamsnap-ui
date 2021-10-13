@@ -1,15 +1,11 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import Tabs from './Tabs';
-
-const stories = storiesOf('Tabs', module);
 
 export default {
   title: 'Tabs',
-  component: Tabs,
 };
 
-stories.add('Default', () => (
+export const Default = () => (
   <Tabs
     mods="u-spaceRightSm"
     tabs={[
@@ -23,4 +19,4 @@ stories.add('Default', () => (
       },
     ]}
   />
-));
+);
