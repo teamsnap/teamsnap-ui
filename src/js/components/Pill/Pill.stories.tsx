@@ -1,36 +1,32 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { Icon } from '../Icon';
 import { Pill, PillStatus } from '.';
 import { AttachmentPill } from '../AttachmentPill';
 import { CheckboxPill } from '../CheckboxPill';
 
-const stories = storiesOf('Pill', module);
-
 export default {
   title: 'Pill',
-  component: Pill,
 };
 
-stories.add('Default', () => (
+export const Default = () => (
   <Pill>
     <p>Default</p>
   </Pill>
-));
+);
 
-stories.add('Pill -- Active', () => (
+export const PillActive = () => (
   <Pill status={PillStatus.ACTIVE}>
     <p>Default</p>
   </Pill>
-));
+);
 
-stories.add('Pill -- Error', () => (
+export const PillError = () => (
   <Pill status={PillStatus.ERROR}>
     <p>Default</p>
   </Pill>
-));
+);
 
-stories.add('Pill -- style/ mod overrides', () => (
+export const PillStyleOverrides = () => (
   <Pill
     status={PillStatus.ACTIVE}
     mods="u-padXl"
@@ -40,30 +36,30 @@ stories.add('Pill -- style/ mod overrides', () => (
   >
     <p>Default</p>
   </Pill>
-));
+);
 
-stories.add('Centered Content', () => (
+export const CenteredContent = () => (
   <Pill align="center">
     <p>Centered Content</p>
   </Pill>
-));
+);
 
-stories.add('Checkbok Pill', () => <CheckboxPill />);
+export const CheckbokPill = () => <CheckboxPill />;
 
-stories.add('Attatchment Pill -- Inactive', () => (
+export const AttatchmentPillInactive = () => (
   <AttachmentPill>
     <p>
       <Icon name="file" /> tournament-registration-flyer.pdf (4.5 MB)
     </p>
     <Icon name="dismiss" />
   </AttachmentPill>
-));
+);
 
-stories.add('Attatchment Pill -- Active', () => (
+export const AttatchmentPillActive = () => (
   <AttachmentPill status={PillStatus.ACTIVE}>
     <p>
       <Icon name="file" /> tournament-registration-flyer.pdf (4.5 MB)
     </p>
     <Icon name="dismiss" />
   </AttachmentPill>
-));
+);

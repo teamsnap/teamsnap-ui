@@ -1,16 +1,12 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import ButtonGroup from './ButtonGroup';
 import { Button } from '../Button';
 
-const stories = storiesOf('ButtonGroup', module);
-
 export default {
   title: 'ButtonGroup',
-  component: ButtonGroup,
 };
 
-stories.add('Button Children', () => {
+export const ButtonChildren = () => {
   return (
     <ButtonGroup>
       <Button>Button1</Button>
@@ -18,4 +14,4 @@ stories.add('Button Children', () => {
       <Button>Button2</Button>
     </ButtonGroup>
   );
-});
+};

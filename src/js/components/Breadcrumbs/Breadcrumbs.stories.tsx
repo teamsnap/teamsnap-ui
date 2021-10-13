@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import Breadcrumbs from './Breadcrumbs';
 
 export default {
   title: 'Breadcrumbs',
-  component: Breadcrumbs,
 };
 
 interface Props {
@@ -12,21 +10,19 @@ interface Props {
   href: string;
 }
 
-const stories = storiesOf('Breadcrumbs', module);
-
 const breadcrumbs = [
   <a href="/path-to-organization">Organization</a>,
   <a href="/path-to-season">2021 Fall Season</a>,
   <span>Registration</span>,
 ];
 
-stories.add('Default', () => <Breadcrumbs breadcrumbs={breadcrumbs} />);
+export const Default = () => <Breadcrumbs breadcrumbs={breadcrumbs} />;
 
 const Link = ({ text, href }: Props) => {
   return <a href={href}>{text}</a>;
 };
 
-stories.add('With components', () => {
+export const WithComponents = () => {
   const breadcrumbsWithComponents = [
     <Link text="Organization" href="#org" />,
     <Link text="2021 Fall Season" href="#season" />,
@@ -34,15 +30,15 @@ stories.add('With components', () => {
   ];
 
   return <Breadcrumbs breadcrumbs={breadcrumbsWithComponents} />;
-});
+};
 
-stories.add('With strings', () => {
+export const WithStrings = () => {
   const breadcrumbsWithStrings = ['Organization', '2021 Fall Season', 'Registration'];
 
   return <Breadcrumbs breadcrumbs={breadcrumbsWithStrings} />;
-});
+};
 
-stories.add('With mixed types', () => {
+export const WithMixedTypes = () => {
   const breadcrumbsWithMixedTypes = [
     <a href="#org">Organization</a>,
     <Link text="2021 Fall Season" href="#season" />,
@@ -50,10 +46,10 @@ stories.add('With mixed types', () => {
   ];
 
   return <Breadcrumbs breadcrumbs={breadcrumbsWithMixedTypes} />;
-});
+};
 
-stories.add('With custom separator', () => {
+export const WithCustomSeparator = () => {
   const breadcrumbsWithCustomSeparator = ['Organization', '2021 Fall Season', 'Registration'];
 
   return <Breadcrumbs breadcrumbs={breadcrumbsWithCustomSeparator} separator="🔥" />;
-});
+};

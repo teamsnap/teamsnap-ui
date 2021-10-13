@@ -1,9 +1,6 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { ToggleCheckboxList } from '.';
 import { Tag } from '../Tag';
-
-const stories = storiesOf('ToggleCheckboxList', module);
 
 const data = [
   {
@@ -72,7 +69,7 @@ const data = [
   },
 ];
 
-stories.add('Default', () => {
+export const Default = () => {
   const [activeRows, setActiveRows] = React.useState([]);
   const [headerStatus, setHeaderStatus] = React.useState({});
 
@@ -86,9 +83,9 @@ stories.add('Default', () => {
       setHeaderStatus={setHeaderStatus}
     />
   );
-});
+};
 
-stories.add('Error State', () => {
+export const ErrorState = () => {
   const [activeRows, setActiveRows] = React.useState([]);
   const [headerStatus, setHeaderStatus] = React.useState({});
 
@@ -109,9 +106,9 @@ stories.add('Error State', () => {
       </div>
     </>
   );
-});
+};
 
-stories.add('Empty', () => {
+export const Empty = () => {
   const [activeRows, setActiveRows] = React.useState([]);
   const [headerStatus, setHeaderStatus] = React.useState({});
 
@@ -125,4 +122,4 @@ stories.add('Empty', () => {
       setHeaderStatus={setHeaderStatus}
     />
   );
-});
+};

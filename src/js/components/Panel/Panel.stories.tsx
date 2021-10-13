@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import Panel from './Panel';
 import { PanelHeader } from '../PanelHeader';
 import { PanelBody } from '../PanelBody';
@@ -8,14 +7,11 @@ import { PanelRow } from '../PanelRow';
 import { PanelCell } from '../PanelCell';
 import { PanelRowExpandable } from '../PanelRowExpandable';
 
-const stories = storiesOf('Panel', module);
-
 export default {
   title: 'Panel',
-  component: Panel,
 };
 
-stories.add('Defaults', () => (
+export const Default = () => (
   <>
     <h2>Panel with Set Width</h2>
     <Panel style={{ width: '50%' }}>
@@ -48,9 +44,9 @@ stories.add('Defaults', () => (
       <PanelFooter>Panel Footer Content</PanelFooter>
     </Panel>
   </>
-));
+);
 
-stories.add('Full Panel', () => (
+export const FullPanel = () => (
   <Panel>
     <PanelHeader title="Full Panel, with Nested Child Elements" />
     <PanelBody>
@@ -88,9 +84,9 @@ stories.add('Full Panel', () => (
       <span className="Button Button--primary u-spaceLeftSm">Confirm Button Placeholder</span>
     </PanelFooter>
   </Panel>
-));
+);
 
-stories.add('Image Header Panel', () => (
+export const ImageHeaderPanel = () => (
   <Panel mods="u-lg-size4of12 u-md-size8of12">
     <PanelHeader
       headerImage={{
@@ -113,9 +109,9 @@ stories.add('Image Header Panel', () => (
       </span>
     </PanelFooter>
   </Panel>
-));
+);
 
-stories.add('Expandable Panel Row', () => (
+export const ExpandablePanelRow = () => (
   <Panel>
     <PanelRowExpandable
       parentColumns={[
@@ -128,4 +124,4 @@ stories.add('Expandable Panel Row', () => (
       ]}
     />
   </Panel>
-));
+);

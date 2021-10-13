@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { boolean } from '@storybook/addon-knobs';
 import Toolbar from './Toolbar';
 import { Field } from '../Field';
@@ -7,11 +6,8 @@ import { Icon } from '../Icon';
 import { Nav } from '../Nav';
 import { Breadcrumbs } from '../Breadcrumbs';
 
-const stories = storiesOf('Toolbar', module);
-
 export default {
   title: 'Toolbar',
-  component: Toolbar,
 };
 
 interface LinkType {
@@ -34,112 +30,100 @@ const Search = () => (
   </div>
 );
 
-stories.add('Default', () => (
-  <>
-    <Toolbar
-      showAccount={boolean('Show Account', true)}
-      showAdmin={boolean('Show Admin', true)}
-      showHelp={boolean('Show Help', true)}
+export const Default = () => (
+  <Toolbar
+    showAccount={boolean('Show Account', true)}
+    showAdmin={boolean('Show Admin', true)}
+    showHelp={boolean('Show Help', true)}
+  >
+    <Search />
+  </Toolbar>
+);
+
+export const WithFlyouts = () => (
+  <Toolbar
+    showAccount={boolean('Show Account', true)}
+    showAdmin={boolean('Show Admin', true)}
+    showHelp={boolean('Show Help', true)}
+    helpBody={<p>Help</p>}
+    adminBody={<p>Admin</p>}
+    accountBody={<p>Account</p>}
+  >
+    <Search />
+  </Toolbar>
+);
+
+export const IdealToolbarPlacement = () => (
+  <div
+    className="u-flex"
+    style={{
+      minHeight: '80vh',
+    }}
+  >
+    <Nav
+      headerItem={{
+        image:
+          'https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png',
+        title: 'sample',
+      }}
+      mods="u-size2of12"
     >
-      <Search />
-    </Toolbar>
-  </>
-));
+      <Nav.Item icon="divisions">Programs</Nav.Item>
+    </Nav>
+    <main className="u-sizeFill u-flex u-flexJustifyCenter">
+      <div style={{ width: '100%' }}>
+        <Toolbar />
+        <div>Page content here.</div>
+      </div>
+    </main>
+  </div>
+);
 
-stories.add('With Flyouts', () => (
-  <>
-    <Toolbar
-      showAccount={boolean('Show Account', true)}
-      showAdmin={boolean('Show Admin', true)}
-      showHelp={boolean('Show Help', true)}
-      helpBody={<p>Help</p>}
-      adminBody={<p>Admin</p>}
-      accountBody={<p>Account</p>}
+export const WithSearch = () => (
+  <div
+    className="u-flex"
+    style={{
+      minHeight: '80vh',
+    }}
+  >
+    <Nav
+      headerItem={{
+        image:
+          'https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png',
+        title: 'sample',
+      }}
+      mods="u-size2of12"
     >
-      <Search />
-    </Toolbar>
-  </>
-));
-
-stories.add('Ideal toolbar placement', () => {
-  return (
-    <>
-      <div
-        className="u-flex"
-        style={{
-          minHeight: '80vh',
-        }}
-      >
-        <Nav
-          headerItem={{
-            image:
-              'https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png',
-            title: 'sample',
-          }}
-          mods="u-size2of12"
+      <Nav.Item icon="divisions">Programs</Nav.Item>
+    </Nav>
+    <main className="u-sizeFill u-flex u-flexJustifyCenter">
+      <div style={{ width: '100%' }}>
+        <Toolbar
+          showAccount
+          accountBody={
+            <div className="u-padXs">
+              <div>You&apos;re logged in as Thomas Edison!</div>
+              <div>
+                <a href="#signout">Sign Out?</a>
+              </div>
+            </div>
+          }
+          helpBody={
+            <div className="u-padXs">
+              <h1>You can put whatver you want here!</h1>
+            </div>
+          }
         >
-          <Nav.Item icon="divisions">Programs</Nav.Item>
-        </Nav>
-        <main className="u-sizeFill u-flex u-flexJustifyCenter">
-          <div style={{ width: '100%' }}>
-            <Toolbar />
-            <div>Page content here.</div>
-          </div>
-        </main>
+          <Search />
+        </Toolbar>
+
+        <div>Page content here.</div>
       </div>
-    </>
-  );
-});
+    </main>
+  </div>
+);
 
-stories.add('With Search', () => {
-  return (
-    <>
-      <div
-        className="u-flex"
-        style={{
-          minHeight: '80vh',
-        }}
-      >
-        <Nav
-          headerItem={{
-            image:
-              'https://aa5498032991a101442c-34c0f4eec246050dfc1ee92670a7b97d.ssl.cf1.rackcdn.com/logo-icon-dafd29abff7b6ca55ad71c35bd34d679.png',
-            title: 'sample',
-          }}
-          mods="u-size2of12"
-        >
-          <Nav.Item icon="divisions">Programs</Nav.Item>
-        </Nav>
-        <main className="u-sizeFill u-flex u-flexJustifyCenter">
-          <div style={{ width: '100%' }}>
-            <Toolbar
-              showAccount
-              accountBody={
-                <div className="u-padXs">
-                  <div>You&apos;re logged in as Thomas Edison!</div>
-                  <div>
-                    <a href="#signout">Sign Out?</a>
-                  </div>
-                </div>
-              }
-              helpBody={
-                <div className="u-padXs">
-                  <h1>You can put whatver you want here!</h1>
-                </div>
-              }
-            >
-              <Search />
-            </Toolbar>
-
-            <div>Page content here.</div>
-          </div>
-        </main>
-      </div>
-    </>
-  );
-});
-
-stories.add('With Breadcrumbs', () => {
+export const WithBreadcrumbs = () => {
   const breadcrumbs = [
     <Link text="Boulder Soccer" href="#boulder-soccer" />,
     <Link text="Competitive" href="#competitive" />,
@@ -154,9 +138,9 @@ stories.add('With Breadcrumbs', () => {
       </div>
     </Toolbar>
   );
-});
+};
 
-stories.add('With Breadcrumbs and Search', () => {
+export const WithBreadcrumbsAndSearch = () => {
   const breadcrumbs = [
     <Link text="Boulder Soccer" href="#boulder-soccer" />,
     <Link text="Competitive" href="#competitive" />,
@@ -173,9 +157,9 @@ stories.add('With Breadcrumbs and Search', () => {
       <Search />
     </Toolbar>
   );
-});
+};
 
-stories.add('Hide Admin', () => {
+export const HideAdmin = () => {
   const breadcrumbs = [
     <Link text="Boulder Soccer" href="#boulder-soccer" />,
     <Link text="Competitive" href="#competitive" />,
@@ -192,4 +176,4 @@ stories.add('Hide Admin', () => {
       <Search />
     </Toolbar>
   );
-});
+};
