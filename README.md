@@ -1,12 +1,12 @@
-# teamsnap-ui
+# TeamSnap UI
 
 TeamSnaps UI framework. Built with sass and react.
 
 ![CI](https://github.com/teamsnap/teamsnap-ui/workflows/CI/badge.svg)
 
-### To run locally:
+### Running locally:
 
-Make sure you using the [correct version of node](./.nvmrc).
+Make sure you using a [supported version of node](./.nvmrc).
 
 ```
 nvm use
@@ -22,7 +22,7 @@ To build the dist folder for css, js and icons
 
 `yarn build`
 
-Each item can also be build independently
+Each item can also be built independently
 
 `yarn build:css`
 
@@ -49,22 +49,19 @@ All styles are linted using `sass-lint` and the config `.sass-lint.yml` is avail
 The linter is also run automatically before publishing updates to npm. For full details see [the contributing guide](CONTRIBUTING.md).
 
 To lint both css and js
-
 `yarn lint`
 
 To run the linters manually use:
-
 `yarn lint:css`
-
 `yarn lint:js`
 
-#### Linter packages/ tooling
+#### Linter packages / tooling
 
-We are using [AirBnB JavaScript Style Guide](https://github.com/airbnb/javascript). This style guide provides a good amount of default linting rules that we can leverage to start with and then simply provide some overrides for our team
+We are using [AirBnB JavaScript Style Guide](https://github.com/airbnb/javascript). This style guide is commonly used and provides a lot of reasonable defaults. We may override a few of these, but will aim to stick as true to the airbnb styleguide as makes sense.
 
-We have the option to work with a code editor like VSCode or via command line. For VSCode, you will have to install the [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) VSCode extension and for command line, you will have to install `prettier` globally as a dependency using `yarn` or `npm` (i.e. `yarn add -g prettier`)
+Eslint can be ran from the command line, but there are also extensions in place to help auto-format and auto-fix code as you're developing. For example, with VSCode you will want to install the [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) VSCode extension and for command line, you will have to install `prettier` globally as a dependency using `yarn` or `npm` (i.e. `yarn add -g prettier`)
 
-If you have a different code editor like sublime or atom etc you can find a plugin to work with in the [editors](https://prettier.io/docs/en/editors.html) section of the docs
+If you are using a different code editor you can find a plugin to work with in the [editors](https://prettier.io/docs/en/editors.html) section of Prettier's documentation.
 
 #### Linting with Prettier
 
@@ -97,90 +94,3 @@ To run a single file:
 ```
   yarn test <myFile>
 ```
-
-### TODO:
-
-- Update docs with full process for working locally with TeamSnap-UI
-- Update scripts to use webpack for css management and serving locally
-
-### CSS Components
-
-https://teamsnap-ui-patterns.netlify.com/
-
-| Finished | CSS Component | React Component      | Storybook |
-| -------- | ------------- | -------------------- | --------- |
-| x        | Button        | Button               | x         |
-| x        | Button Group  | Button Group         | x         |
-| x        | Checkbox      | Checkbox Radio       | x         |
-|          | Divider       | Divider              | x         |
-|          | Feedback      |                      |           |
-|          | Field Group   | Field Group          |           |
-|          |               | Field Label          |           |
-|          |               | Field Message        |           |
-|          |               | Field Wrapper        |           |
-|          | Grid          | Grid Cell            |           |
-| x        | Icon          | Icon                 | x         |
-|          | Input Group   | Input                |           |
-|          |               | Input Control        |           |
-|          | Input         | Input Text Area      |           |
-|          | Loader        | Loader               |           |
-| x        | Panel         | Panel                | x         |
-|          |               | Panel Body           | x         |
-|          |               | Panel Cell           | x         |
-|          |               | Panel Header         | x         |
-|          |               | Panel Row            |           |
-|          |               | Panel Row Expandable |           |
-|          | Popup         |                      |           |
-| x        | Progress      | Progress             | x         |
-|          | Select Box    | Select               | x         |
-|          | Step Nav      | Step Nav             | x         |
-|          | Summary List  | Summary List         |           |
-|          | Table         | Table                | x         |
-|          | Tabs          |                      |           |
-|          |               | Text Link            |           |
-|          | Toggle        | Toggle               | x         |
-|          | Tooltip       | Tooltip              |           |
-|          | Pagination    | Pagination           |
-
-### Missing CSS Component List
-
-- [ ] Modal (pr in progress)
-- [ ] Badges
-- [ ] Member Photos / Placeholders
-- [ ] Breadcrumbs
-- [ ] Card (2 photo variants)
-- [ ] Type ahead
-- [ ] Counts
-- [ ] Drop area
-- [ ] Calendar
-- [ ] Primary Navigation (top and side)
-- [ ] Side Tabs Variant (manage my teams & snapboard getting started)
-- [ ] Dropdown Menu
-- [ ] Background utilities
-- [ ] Finish adding icons
-- [ ] Pagination
-- [ ] Miller menu and Tree menu (maybe)
-- [ ] Vertical step nav
-- [ ] Shadow for components
-- [ ] Dynamic Spacing
-- [ ] Blockquote
-- [ ] Triangle pseudo class for callouts/flyouts
-
-### Missing CSS Documentation
-
-- [ ] More Panel Documentation
-- [ ] Theming/Variable Documentation
-- [ ] Spacing Documentation
-- [ ] Color documentation
-- [ ] Typography documentation
-- [ ] Better Grid documentation with sizes
-- [ ] Pagination
-
-### Missing React Component List
-
-- [ ] Feedback
-- [ ] Popup
-- [ ] Modal
-- [ ] Tab
-- [ ] Input Show Hide
-- [ ] Pagination
