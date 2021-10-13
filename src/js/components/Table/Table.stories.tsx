@@ -1,13 +1,9 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { boolean } from '@storybook/addon-knobs';
 import Table from './Table';
 
-const stories = storiesOf('Table', module);
-
 export default {
   title: 'Table',
-  component: Table,
 };
 
 const columns = [
@@ -37,7 +33,7 @@ const smallDataSet = [
   },
 ];
 
-stories.add('Default', () => (
+export const Default = () => (
   <>
     <Table columns={columns} rows={smallDataSet} isLoading={boolean('isLoading', false)} />
     <Table
@@ -52,9 +48,9 @@ stories.add('Default', () => (
       isLoading={boolean('isLoading', false)}
     />
   </>
-));
+);
 
-stories.add('Non-sortable Table', () => (
+export const NonSortableTable = () => (
   <>
     <Table
       style={{ width: '800px' }}
@@ -79,4 +75,4 @@ stories.add('Non-sortable Table', () => (
       isLoading={boolean('isLoading', false)}
     />
   </>
-));
+);
