@@ -1,15 +1,10 @@
 import * as React from 'react';
-
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { select, text } from '@storybook/addon-knobs';
 import FieldWrapper from './FieldWrapper';
 
-const stories = storiesOf('FieldWrapper [deprecated]', module);
-
 export default {
-  title: 'FieldWrapper',
-  component: FieldWrapper,
+  title: 'FieldWrapper [deprecated]',
 };
 
 const statusOptions = {
@@ -18,7 +13,7 @@ const statusOptions = {
   default: null,
 };
 
-stories.add('Default', () => {
+export const Default = () => {
   return (
     <FieldWrapper
       name="example"
@@ -27,9 +22,9 @@ stories.add('Default', () => {
       fieldProps={{ placeholder: 'Some placeholder text' }}
     />
   );
-});
+};
 
-stories.add('Select', () => {
+export const Select = () => {
   const errorMessage = text('Error Message', 'There was an error', null);
   const status = select('status', statusOptions, null);
 
@@ -54,11 +49,11 @@ stories.add('Select', () => {
       }}
     />
   );
-});
+};
 
 // TODO: Array to allow multiple checkboxes or radio buttons in one field wrapper
 
-stories.add('Checkbox', () => {
+export const Checkbox = () => {
   const errorMessage = text('Error Message', 'There was an error', null);
   const status = select('status', statusOptions, null);
 
@@ -80,9 +75,9 @@ stories.add('Checkbox', () => {
       }}
     />
   );
-});
+};
 
-stories.add('Radio', () => {
+export const Radio = () => {
   const errorMessage = text('Error Message', 'There was an error', null);
   const status = select('status', statusOptions, null);
 
@@ -104,9 +99,9 @@ stories.add('Radio', () => {
       }}
     />
   );
-});
+};
 
-stories.add('Toggle', () => {
+export const Toggle = () => {
   const errorMessage = text('Error Message', 'There was an error', null);
   const status = select('status', statusOptions, null);
 
@@ -119,9 +114,9 @@ stories.add('Toggle', () => {
       message={status === 'error' ? errorMessage : null}
     />
   );
-});
+};
 
-stories.add('Textarea', () => {
+export const Textarea = () => {
   const errorMessage = text('Error Message', 'There was an error', null);
   const status = select('status', statusOptions, null);
 
@@ -135,4 +130,4 @@ stories.add('Textarea', () => {
       fieldProps={{ placeholder: 'Some placehodler text' }}
     />
   );
-});
+};

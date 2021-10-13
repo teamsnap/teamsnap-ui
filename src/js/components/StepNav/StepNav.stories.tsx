@@ -1,15 +1,11 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import StepNav from './StepNav';
-
-const stories = storiesOf('StepNav', module);
 
 export default {
   title: 'StepNav',
-  component: StepNav,
 };
 
-stories.add('Default', () => (
+export const Default = () => (
   <div style={{ padding: '20px' }}>
     <StepNav
       title="Lets get familiar with TeamSnap"
@@ -41,9 +37,9 @@ stories.add('Default', () => (
       ]}
     />
   </div>
-));
+);
 
-stories.add('Small', () => (
+export const Small = () => (
   <div style={{ padding: '20px' }}>
     <StepNav
       isSmall
@@ -76,4 +72,4 @@ stories.add('Small', () => (
       ]}
     />
   </div>
-));
+);

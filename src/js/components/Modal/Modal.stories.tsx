@@ -1,17 +1,13 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import Modal from './Modal';
 import { Button } from '../Button';
 import { Loader } from '../Loader';
 
-const stories = storiesOf('Modal', module);
-
 export default {
   title: 'Modal',
-  component: Modal,
 };
 
-stories.add('Default', () => {
+export const Default = () => {
   const [sending, setSending] = React.useState(false);
 
   return (
@@ -28,9 +24,9 @@ stories.add('Default', () => {
       </Modal>
     </>
   );
-});
+};
 
-stories.add('Closing triggered by async action', () => {
+export const ClosingTriggeredByAsyncAction = () => {
   const [sending, setSending] = React.useState(false);
 
   return (
@@ -51,9 +47,9 @@ stories.add('Closing triggered by async action', () => {
       </Modal>
     </>
   );
-});
+};
 
-stories.add('Long Body Text', () => {
+export const LongBodyText = () => {
   const [sending, setSending] = React.useState(false);
 
   return (
@@ -156,9 +152,9 @@ stories.add('Long Body Text', () => {
       </Modal>
     </>
   );
-});
+};
 
-stories.add('Fullscreen', () => {
+export const Fullscreen = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -262,9 +258,9 @@ stories.add('Fullscreen', () => {
       </Modal>
     </>
   );
-});
+};
 
-stories.add('With descriptors', () => {
+export const WithDescriptors = () => {
   const [sending, setSending] = React.useState(false);
 
   return (
@@ -292,9 +288,9 @@ stories.add('With descriptors', () => {
       </Modal>
     </>
   );
-});
+};
 
-stories.add('With close button', () => {
+export const WithCloseButton = () => {
   const [sending, setSending] = React.useState(false);
 
   return (
@@ -313,4 +309,4 @@ stories.add('With close button', () => {
       </Modal>
     </>
   );
-});
+};

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { select, text } from '@storybook/addon-knobs';
 import FieldGroup from './FieldGroup';
 import { FieldLabel } from '../FieldLabel';
@@ -10,11 +9,8 @@ import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 import { Statuses } from '../../types';
 
-const stories = storiesOf('FieldGroup [deprecated]', module);
-
 export default {
   title: 'FieldGroup',
-  component: FieldGroup,
 };
 
 const statusOptions = {
@@ -23,7 +19,7 @@ const statusOptions = {
   default: null,
 };
 
-stories.add('FieldGroup with Input text child', () => {
+export const FieldGroupWithInputTextChild = () => {
   const errorMessage = text('Error Message', 'There was an error', null);
   const status = select('status', statusOptions, null);
 
@@ -36,9 +32,9 @@ stories.add('FieldGroup with Input text child', () => {
       ) : null}
     </FieldGroup>
   );
-});
+};
 
-stories.add('FieldGroup with Select child', () => {
+export const FieldGroupWithSelectChild = () => {
   const errorMessage = text('Error Message', 'There was an error', null);
   const status = select('status', statusOptions, null);
 
@@ -63,9 +59,9 @@ stories.add('FieldGroup with Select child', () => {
       ) : null}
     </FieldGroup>
   );
-});
+};
 
-stories.add('FieldGroup with Input text and Icon children', () => {
+export const FieldGroupWithInputTextAndIconChildren = () => {
   const errorMessage = text('Error Message', 'There was an error');
   const status = select('status', statusOptions, null);
 
@@ -78,9 +74,9 @@ stories.add('FieldGroup with Input text and Icon children', () => {
       ) : null}
     </FieldGroup>
   );
-});
+};
 
-stories.add('FieldGroup with Checkbox children', () => {
+export const FieldGroupWithCheckboxChildren = () => {
   const errorMessage = text('Error Message', 'There was an error', null);
   const status = select('status', statusOptions, null);
 
@@ -94,4 +90,4 @@ stories.add('FieldGroup with Checkbox children', () => {
       ) : null}
     </FieldGroup>
   );
-});
+};

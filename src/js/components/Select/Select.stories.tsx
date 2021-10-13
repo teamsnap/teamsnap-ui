@@ -1,12 +1,8 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import Select from './Select';
-
-const stories = storiesOf('Select', module);
 
 export default {
   title: 'Select',
-  component: Select,
 };
 
 const optionsList = [
@@ -24,16 +20,16 @@ const optionsList = [
   },
 ];
 
-stories.add('Default', () => (
+export const Default = () => (
   <div>
     <label htmlFor="standardSelect" className="FieldGroup-label">
       Standard Select
     </label>
     <Select mods="u-size1of3" name="standardSelect" options={optionsList} />
   </div>
-));
+);
 
-stories.add('Alternates', () => (
+export const Alternates = () => (
   <div>
     <label htmlFor="disabledSelect" className="FieldGroup-label">
       Select with Disabled Option
@@ -62,4 +58,4 @@ stories.add('Alternates', () => (
       options={optionsList}
     />
   </div>
-));
+);

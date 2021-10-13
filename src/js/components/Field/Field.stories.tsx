@@ -1,15 +1,11 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { select, text, boolean } from '@storybook/addon-knobs';
 import Field from './Field';
 import { Icon } from '../Icon';
 import { Sizes, CheckboxStates } from '../../types';
 
-const stories = storiesOf('Field', module);
-
 export default {
   title: 'Field',
-  component: Field,
 };
 
 const statusOptions = {
@@ -25,7 +21,7 @@ const sizeOptions = {
   default: null,
 };
 
-stories.add('Default', () => {
+export const Default = () => {
   const status = select('status', statusOptions, statusOptions[0]);
   const placeholder = text('Placeholder', 'Input Placeholder');
   const size = select('size', sizeOptions, sizeOptions[0]);
@@ -42,9 +38,9 @@ stories.add('Default', () => {
       status={status}
     />
   );
-});
+};
 
-stories.add('With Labels', () => {
+export const WithLabels = () => {
   const status = select('status', statusOptions, null);
   const placeholder = text('Placeholder', 'Input Placeholder');
   const size = select('size', sizeOptions, null);
@@ -63,9 +59,9 @@ stories.add('With Labels', () => {
       status={status}
     />
   );
-});
+};
 
-stories.add('Captions', () => {
+export const Captions = () => {
   const status = select('status', statusOptions, statusOptions[0]);
   const placeholder = text('Placeholder', 'sample@teamsnap.com');
   const caption = text(
@@ -93,9 +89,9 @@ stories.add('Captions', () => {
       />
     </>
   );
-});
+};
 
-stories.add('Sizes', () => {
+export const Sizes = () => {
   const status = select('status', statusOptions, statusOptions[0]);
   const placeholder = text('Placeholder', 'Input Placeholder');
   const disabled = boolean('Disabled', false);
@@ -144,9 +140,9 @@ stories.add('Sizes', () => {
       />
     </>
   );
-});
+};
 
-stories.add('Field with Icons', () => {
+export const FieldWithIcons = () => {
   const status = select('status', statusOptions, null);
   const placeholder = text('Placeholder', 'Input Placeholder');
   const size = select('size', sizeOptions, sizeOptions[0]);
@@ -166,9 +162,9 @@ stories.add('Field with Icons', () => {
       status={status}
     />
   );
-});
+};
 
-stories.add('Status Icons', () => {
+export const StatusIcons = () => {
   const status = select('status', statusOptions, statusOptions[0]);
   const placeholder = text('Placeholder', 'Input Placeholder');
   const size = select('size', sizeOptions, sizeOptions[0]);
@@ -190,9 +186,9 @@ stories.add('Status Icons', () => {
       status={status}
     />
   );
-});
+};
 
-stories.add('Clear Icon', () => {
+export const ClearIcon = () => {
   const status = select('status', statusOptions, statusOptions[0]);
   const placeholder = text('Placeholder', 'Input Placeholder');
   const size = select('size', sizeOptions, sizeOptions[0]);
@@ -227,9 +223,9 @@ stories.add('Clear Icon', () => {
       />
     </>
   );
-});
+};
 
-stories.add('Checkbox', () => {
+export const Checkbox = () => {
   const status = select('status', statusOptions, statusOptions[0]);
   const disabled = boolean('Disabled', false);
 
@@ -254,9 +250,9 @@ stories.add('Checkbox', () => {
       />
     </>
   );
-});
+};
 
-stories.add('Multiple Checkboxes', () => {
+export const MultipleCheckboxes = () => {
   const [dogs, setDogs] = React.useState(false);
   const [cats, setCats] = React.useState(false);
   return (
@@ -295,9 +291,9 @@ stories.add('Multiple Checkboxes', () => {
       <Field.Caption>This determines if you&apos;ll see cat gifs, dog gifs, or both.</Field.Caption>
     </>
   );
-});
+};
 
-stories.add('Indeterminate Checkbox', () => {
+export const IndeterminateCheckbox = () => {
   const status = select('status', statusOptions, statusOptions[0]);
   const disabled = boolean('Disabled', false);
 
@@ -341,9 +337,9 @@ stories.add('Indeterminate Checkbox', () => {
       />
     </>
   );
-});
+};
 
-stories.add('Radios', () => {
+export const Radios = () => {
   const [favoritePet, setFavoritePet] = React.useState('');
 
   return (
@@ -411,4 +407,4 @@ stories.add('Radios', () => {
       <Field.Caption>Pick one!</Field.Caption>
     </>
   );
-});
+};

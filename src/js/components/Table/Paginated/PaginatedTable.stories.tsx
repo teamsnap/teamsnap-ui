@@ -1,6 +1,5 @@
 import * as _ from 'lodash';
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import PaginatedTable from './PaginatedTable';
 import { Placement } from '../../../types/placement';
 import { FilterValue } from './DateFilter';
@@ -11,7 +10,6 @@ eighteenYearsBirthdate.setFullYear(eighteenYearsBirthdate.getFullYear() - 18);
 const seventeenYearsBirthdate = new Date();
 seventeenYearsBirthdate.setFullYear(seventeenYearsBirthdate.getFullYear() - 17);
 
-const stories = storiesOf('PaginatedTable', module);
 /**
  * Columns to configure the table against.
  */
@@ -400,7 +398,7 @@ function mapData(item) {
   };
 }
 
-stories.add('Default', () => (
+export const Default = () => (
   <PaginatedTable
     columns={columns}
     mapDataToRow={mapData}
@@ -408,9 +406,9 @@ stories.add('Default', () => (
     defaultItemsPerPage={2}
     paginationPlacement={Placement.Bottom}
   />
-));
+);
 
-stories.add('Selectable Rows', () => (
+export const SelectableRows = () => (
   <PaginatedTable
     columns={columns}
     rowsAreSelectable
@@ -434,9 +432,9 @@ stories.add('Selectable Rows', () => (
     searchPlaceholder="Search members by name"
     defaultItemsPerPage={2}
   />
-));
+);
 
-stories.add('Basic Search', () => (
+export const BasicSearch = () => (
   <PaginatedTable
     columns={columns}
     mapDataToRow={mapData}
@@ -445,9 +443,9 @@ stories.add('Basic Search', () => (
     includeBasicSearch
     searchPlaceholder="Search members by name"
   />
-));
+);
 
-stories.add('With Search Filters', () => (
+export const WithSearchFilters = () => (
   <PaginatedTable
     columns={columns}
     mapDataToRow={mapData}
@@ -500,4 +498,4 @@ stories.add('With Search Filters', () => (
     includeBasicSearch
     searchPlaceholder="Search members by name"
   />
-));
+);

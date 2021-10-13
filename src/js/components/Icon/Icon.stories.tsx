@@ -1,13 +1,9 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { select } from '@storybook/addon-knobs';
 import Icon from './Icon';
 
-const stories = storiesOf('Icon', module);
-
 export default {
   title: 'Icon',
-  component: Icon,
 };
 
 const iconNames = {
@@ -110,15 +106,9 @@ const iconColors = {
   Primary: 'u-colorPrimary',
 };
 
-stories.add(
-  'Default',
-  () => (
-    <Icon
-      name={select('Icon', iconNames, 'home')}
-      mods={`${select('Size', iconSizes, '')} ${select('Color', iconColors, '')}`}
-    />
-  ),
-  {
-    info: 'Icons inherit the text color and size of their parent element by default. Apply text and color utility classes as mods to alter the size and color of the icon. For a full list of icons, visit UI Patterns: https://teamsnap-ui-patterns.netlify.com/icons.html.',
-  }
+export const Default = () => (
+  <Icon
+    name={select('Icon', iconNames, 'home')}
+    mods={`${select('Size', iconSizes, '')} ${select('Color', iconColors, '')}`}
+  />
 );
