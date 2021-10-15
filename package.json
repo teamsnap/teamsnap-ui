@@ -71,6 +71,7 @@
     "babel-register": "^6.26.0",
     "browser-sync": "^2.26.14",
     "css-loader": "^5.2.6",
+    "cz-conventional-changelog": "^3.3.0",
     "del": "^3.0.0",
     "dotenv-webpack": "^7.0.3",
     "eslint": "^7.30.0",
@@ -125,5 +126,10 @@
     "css-what": "^5.0.1",
     "glob-parent": "^5.1.2",
     "trim": "^0.0.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
