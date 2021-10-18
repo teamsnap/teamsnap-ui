@@ -1,0 +1,5 @@
+{
+  branches: [
+    {name: 'v4', channel: 'alpha', prerelease: 'alpha'}
+  ]
+}
