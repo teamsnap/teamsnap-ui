@@ -408,3 +408,34 @@ export const Radios = () => {
     </>
   );
 };
+
+export const WithStatus = () => (
+  <>
+    <Field
+      label="success"
+      name="success"
+      formFieldProps={{
+        placeholder: 'success',
+      }}
+      status="success"
+    />
+    <br />
+    <Field
+      label="error"
+      name="error"
+      formFieldProps={{
+        placeholder: 'error',
+      }}
+      status="error"
+    />
+    <br />
+    <Field
+      label="warning"
+      name="warning"
+      formFieldProps={{
+        placeholder: 'warning',
+      }}
+      status="warning"
+    />
+  </>
+);
