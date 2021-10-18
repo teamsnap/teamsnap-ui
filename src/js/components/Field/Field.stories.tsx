@@ -2,7 +2,7 @@ import * as React from 'react';
 import { select, text, boolean } from '@storybook/addon-knobs';
 import Field from './Field';
 import { Icon } from '../Icon';
-import { Sizes, CheckboxStates } from '../../types';
+import { Sizes as SizesEnum, CheckboxStates } from '../../types';
 
 export default {
   title: 'Field',
@@ -110,7 +110,7 @@ export const Sizes = () => {
         formFieldProps={{
           leftIcon: <Icon name="home" />,
           placeholder,
-          size: Sizes.SMALL,
+          size: SizesEnum.SMALL,
         }}
         name="Sample"
         status={status}
@@ -133,7 +133,7 @@ export const Sizes = () => {
         formFieldProps={{
           leftIcon: <Icon name="home" />,
           placeholder,
-          size: Sizes.LARGE,
+          size: SizesEnum.LARGE,
         }}
         name="Sample3"
         status={status}
@@ -408,3 +408,34 @@ export const Radios = () => {
     </>
   );
 };
+
+export const WithStatus = () => (
+  <>
+    <Field
+      label="success"
+      name="success"
+      formFieldProps={{
+        placeholder: 'success',
+      }}
+      status="success"
+    />
+    <br />
+    <Field
+      label="error"
+      name="error"
+      formFieldProps={{
+        placeholder: 'error',
+      }}
+      status="error"
+    />
+    <br />
+    <Field
+      label="warning"
+      name="warning"
+      formFieldProps={{
+        placeholder: 'warning',
+      }}
+      status="warning"
+    />
+  </>
+);
