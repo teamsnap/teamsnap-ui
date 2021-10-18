@@ -1,6 +1,5 @@
 {
   branches: [
-    {name: 'master'},
     {name: 'v4', channel: 'alpha', prerelease: 'alpha'}
   ]
 }
