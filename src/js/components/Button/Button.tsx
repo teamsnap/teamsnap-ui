@@ -37,8 +37,8 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
-  otherProps: PropTypes.object,
   testId: PropTypes.string,
+  otherProps: PropTypes.object,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -57,6 +57,7 @@ const Button = ({
   isDisabled,
   onClick,
   style,
+  testId,
   otherProps,
 }: Props) => {
   const cname = getClassName(
@@ -82,6 +83,7 @@ const Button = ({
       style={style}
       onClick={onClick}
       disabled={isDisabled}
+      data-testid={testId}
       {...otherProps}
     >
       <span>
@@ -109,6 +111,7 @@ Button.defaultProps = {
   className: 'Button',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

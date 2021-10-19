@@ -21,6 +21,7 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
@@ -52,7 +53,7 @@ const Loader = (props: PropTypes.InferProps<typeof propTypes>) => {
     return renderSpinAnimation();
   };
 
-  const { type, text, message, className, mods, style, otherProps } = props;
+  const { type, text, message, className, mods, style, testId, otherProps } = props;
 
   if (!text && !message) {
     return renderAnimation(type);
@@ -61,7 +62,7 @@ const Loader = (props: PropTypes.InferProps<typeof propTypes>) => {
   const loaderClasses = getClassName(className, type === 'jello' && 'Loader--jello', mods);
 
   return (
-    <div className={loaderClasses} style={style} {...otherProps}>
+    <div className={loaderClasses} style={style} data-testid={testId} {...otherProps}>
       <div className="Loader-indicator">
         {renderAnimation(type)}
         {text && <div className="Loader-indicatorText">{text}</div>}
@@ -77,6 +78,7 @@ Loader.defaultProps = {
   className: 'Loader',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

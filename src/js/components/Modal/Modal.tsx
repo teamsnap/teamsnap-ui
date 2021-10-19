@@ -8,6 +8,7 @@ export interface Props {
   showClose?: boolean;
   allowOverlayClose?: boolean;
   style?: React.CSSProperties;
+  testId?: string;
   closeFn?: () => void;
   fullscreen?: boolean;
 }
@@ -20,6 +21,7 @@ const Modal: React.FC<Props> = ({
   closeFn,
   allowOverlayClose,
   style,
+  testId,
   fullscreen,
 }: Props) => {
   React.useEffect(() => {
@@ -49,7 +51,7 @@ const Modal: React.FC<Props> = ({
       className={`Modal ${show ? 'Modal--open' : 'Modal--closed'} ${
         fullscreen ? 'Modal--fullscreen' : ''
       }`}
-      data-testid="modal"
+      data-testid={testId ? testId : 'modal'}
     >
       <div className="Modal-content u-posRelative" style={{ ...(style || {}) }}>
         <div className="Modal-header u-flex u-flexJustifyBetween">

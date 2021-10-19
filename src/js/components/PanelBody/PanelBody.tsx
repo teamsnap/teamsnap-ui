@@ -23,13 +23,20 @@ const propTypes = {
   mods: PropTypes.string,
   role: PropTypes.string,
   style: PropTypes.shape({}),
+  testId: PropTypes.string,
   otherProps: PropTypes.shape({}),
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
 
-const PanelBody = ({ children, className, mods, role, style, otherProps }: Props) => (
-  <div className={getClassName(className, mods)} role={role} style={style} {...otherProps}>
+const PanelBody = ({ children, className, mods, role, style, testId, otherProps }: Props) => (
+  <div
+    className={getClassName(className, mods)}
+    role={role}
+    style={style}
+    data-testid={testId}
+    {...otherProps}
+  >
     {children}
   </div>
 );
@@ -38,6 +45,7 @@ PanelBody.defaultProps = {
   className: 'Panel-body',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

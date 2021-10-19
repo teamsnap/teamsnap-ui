@@ -27,6 +27,7 @@ const propTypes = {
     Source: PropTypes.string,
     Placeholder: PropTypes.string,
   }),
+  testId: PropTypes.string,
   otherProps: PropTypes.shape({}),
 };
 
@@ -39,6 +40,7 @@ const PanelHeader = ({
   mods,
   style,
   headerImage,
+  testId,
   otherProps,
 }: Props) => {
   if (headerImage) {
@@ -46,6 +48,7 @@ const PanelHeader = ({
       <header
         className={getClassName(className, 'Panel-header--withImage', mods)}
         style={style}
+        data-testid={testId}
         {...otherProps}
       >
         <div className="Panel-headerImage">
@@ -74,6 +77,7 @@ PanelHeader.defaultProps = {
   mods: null,
   style: {},
   headerImage: null,
+  testId: null,
   otherProps: {},
 };
 

@@ -22,10 +22,20 @@ export interface Props {
   className?: string;
   mods?: string;
   style?: React.CSSProperties;
+  testId?: string;
   otherProps?: object;
 }
 
-const Panel = ({ children, className, mods, isStriped, maxSize, style, otherProps }: Props) => {
+const Panel = ({
+  children,
+  className,
+  mods,
+  isStriped,
+  maxSize,
+  style,
+  testId,
+  otherProps,
+}: Props) => {
   const panelClasses = getClassName(
     className,
     maxSize && `Panel--${maxSize}Max-stacked`,
@@ -34,7 +44,7 @@ const Panel = ({ children, className, mods, isStriped, maxSize, style, otherProp
   );
 
   return (
-    <div className={panelClasses} style={style} {...otherProps}>
+    <div className={panelClasses} style={style} data-testid={testId} {...otherProps}>
       {children}
     </div>
   );
@@ -46,6 +56,7 @@ Panel.defaultProps = {
   maxSize: null,
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

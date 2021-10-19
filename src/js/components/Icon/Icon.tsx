@@ -23,12 +23,13 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
 
-const Icon = ({ name, className, mods, style, otherProps }: Props) => {
+const Icon = ({ name, className, mods, style, testId, otherProps }: Props) => {
   const [icon, setIcon] = React.useState(null);
 
   const loadImage = (iconName: string) => {
@@ -46,6 +47,7 @@ const Icon = ({ name, className, mods, style, otherProps }: Props) => {
         height="24"
         className={getClassName(className, mods)}
         style={style}
+        data-testid={testId}
         {...icon.metadata}
         {...otherProps}
         dangerouslySetInnerHTML={{ __html: icon.source }}

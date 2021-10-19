@@ -12,6 +12,7 @@ const propTypes = {
   setCurrentPage: PropTypes.func.isRequired,
   style: PropTypes.object,
   mods: PropTypes.string,
+  testId: PropTypes.string,
 };
 
 const PaginationButtons: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = ({
@@ -21,6 +22,7 @@ const PaginationButtons: React.FunctionComponent<PropTypes.InferProps<typeof pro
   setCurrentPage,
   style,
   mods,
+  testId,
 }) => {
   const lastPageIndex = getLastPageIndex(totalItems, itemsPerPage);
   const buttonLength = totalItems >= 0 ? lastPageIndex : 0;
@@ -58,7 +60,8 @@ const PaginationButtons: React.FunctionComponent<PropTypes.InferProps<typeof pro
   return (
     <ButtonGroup
       className={buttonGroupClasses}
-      style={({ ...style, overflow: 'auto'})}
+      style={{ ...style, overflow: 'auto' }}
+      data-testid={testId}
     >
       {renderPaginateButton('P', 'Previous', false, currentPage === 1, currentPage - 1)}
       {renderPaginateButton(1, '1', currentPage === 1, currentPage === 1, 1)}

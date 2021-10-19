@@ -9,6 +9,7 @@ export interface Props {
   text?: string;
   iconStyle?: React.CSSProperties;
   style?: React.CSSProperties;
+  testId?: string;
   children?: React.ReactNode;
 }
 
@@ -19,48 +20,48 @@ const SelectCard: React.FunctionComponent<Props> = ({
   text,
   iconStyle,
   style,
+  testId,
   children,
   ...props
 }: Props) => {
-
   const [selected, setSelected] = React.useState(false);
 
   const handleClick = () => {
     setSelected(!selected);
   };
 
-  const cardClasses = getClassName(
-    className,
-    selected && `is-selected`,
-    mods
-  );
+  const cardClasses = getClassName(className, selected && `is-selected`, mods);
 
   return (
-    <div className={cardClasses} style={style} {...props} onClick={handleClick}>
-      {
-        children ||
-        (<div className="Card--container">
+    <div
+      className={cardClasses}
+      style={style}
+      data-testid={testId}
+      {...props}
+      onClick={handleClick}
+    >
+      {children || (
+        <div className="Card--container">
           <div className="Card--icon">
-            <Icon
-              name={iconName} style={iconStyle}
-            />
+            <Icon name={iconName} style={iconStyle} />
           </div>
-          <input type="checkbox" name="option" value={text}/>
+          <input type="checkbox" name="option" value={text} />
           <label htmlFor="option">{text}</label>
-        </div>)
-      }
+        </div>
+      )}
     </div>
   );
 };
 
 SelectCard.defaultProps = {
-  className: "Card",
+  className: 'Card',
   mods: null,
-  iconName: "roster",
-  text: "Select me!",
-  iconStyle: {height:'50px', width:'50px'},
+  iconName: 'roster',
+  text: 'Select me!',
+  iconStyle: { height: '50px', width: '50px' },
   style: {},
-  children: null
+  testId: null,
+  children: null,
 };
 
 export default SelectCard;

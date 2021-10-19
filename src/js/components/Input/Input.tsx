@@ -44,6 +44,7 @@ const propTypes = {
   onClearClicked: PropTypes.func,
   status: Status.PropType,
   isDisabled: PropTypes.bool,
+  testId: PropTypes.string,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -65,6 +66,7 @@ const Input = ({
   onClearClicked,
   status,
   isDisabled,
+  testId,
 }: Props) => {
   const inputClasses = getClassName(
     className,
@@ -75,7 +77,7 @@ const Input = ({
     mods
   );
   return (
-    <div className={inputClasses} style={style} {...otherProps}>
+    <div className={inputClasses} style={style} data-testid={testId} {...otherProps}>
       {leftIcon && <div className="InputGroup-icon--left InputGroup-icon">{leftIcon}</div>}
       <input
         disabled={isDisabled}
@@ -121,6 +123,7 @@ Input.defaultProps = {
   placeholder: '',
   style: {},
   type: 'text',
+  testId: null,
 };
 
 export default Input;

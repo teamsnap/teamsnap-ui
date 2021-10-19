@@ -64,6 +64,7 @@ const navPropTypes = {
   mods: PropTypes.string,
   // Custom React Styles to add to the nav
   style: PropTypes.object,
+  testId: PropTypes.string,
   // Any extraneous props
   otherProps: PropTypes.object,
   headerItem: PropTypes.shape({
@@ -119,7 +120,15 @@ const Item: ItemType = ({ children, icon, iconModifiers, isActive, onClick, wrap
   );
 };
 
-const FlyOutNode = ({ item, openItems, reducer }: { item: Tree; openItems: boolean, reducer: Function }) => {
+const FlyOutNode = ({
+  item,
+  openItems,
+  reducer,
+}: {
+  item: Tree;
+  openItems: boolean;
+  reducer: Function;
+}) => {
   const [isExpanded, setIsExpanded] = React.useState(openItems);
   const Wrapper = item.wrapItem ? item.wrapItem : ({ children }) => <>{children}</>;
 
@@ -199,6 +208,7 @@ const Nav: NavType & { Item: ItemType } = ({
   flyoutSections,
   includeOverlay,
   openItems,
+  testId,
 }) => {
   const [isCollapsed, setCollapsed] = React.useState(false);
   const [isFlyoutActive, setIsFlyoutActive] = React.useState(false);
@@ -224,7 +234,7 @@ const Nav: NavType & { Item: ItemType } = ({
           aria-label="Close Overlay"
         />
       )}
-      <nav className={cname} style={style} {...otherProps}>
+      <nav className={cname} style={style} data-testid={testId} {...otherProps}>
         {headerItem ? (
           <div
             className="Nav-header u-textSemiBold"
@@ -282,6 +292,7 @@ Nav.defaultProps = {
   children: null,
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

@@ -54,6 +54,7 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
   maxTableHeight: PropTypes.string,
   isLoading: PropTypes.bool,
@@ -66,6 +67,7 @@ const Table = ({
   className,
   mods,
   style,
+  testId,
   otherProps,
   maxTableHeight,
   placeHolder,
@@ -207,7 +209,7 @@ const Table = ({
   const withMaxTableHeight = { height: maxTableHeight, overflow: 'scroll' };
 
   return (
-    <Panel className={className} mods={mods} style={style} {...otherProps}>
+    <Panel className={className} mods={mods} style={style} testId={testId} {...otherProps}>
       <PanelBody role="table">
         <PanelRow isWithCells>{columnsJsx}</PanelRow>
         {isLoading ? (
@@ -241,6 +243,7 @@ Table.defaultProps = {
   className: 'Panel',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
   placeHolder: 'Nothing to see here',
   maxTableHeight: null,

@@ -29,7 +29,8 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
-  otherProps: PropTypes.object
+  testId: PropTypes.string,
+  otherProps: PropTypes.object,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -44,6 +45,7 @@ const ProgressBar = ({
   className,
   mods,
   style,
+  testId,
   otherProps,
 }: Props) => {
   const progressClasses = getClassName(
@@ -61,7 +63,7 @@ const ProgressBar = ({
   };
 
   return (
-    <div className={progressClasses} style={style} {...otherProps}>
+    <div className={progressClasses} style={style} data-testid={testId} {...otherProps}>
       <div className="ProgressBar-status" style={progressWidth} />
     </div>
   );
@@ -77,6 +79,7 @@ ProgressBar.defaultProps = {
   className: 'ProgressBar',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

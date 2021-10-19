@@ -29,6 +29,7 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
@@ -42,6 +43,7 @@ Radio.defaultProps = {
   className: 'Checkbox Checkbox--radio',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

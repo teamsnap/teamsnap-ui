@@ -25,6 +25,7 @@ const propTypes = {
   mods: PropTypes.string,
   role: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
@@ -38,6 +39,7 @@ const PanelCell = ({
   mods,
   role,
   style,
+  testId,
   otherProps,
 }: Props) => {
   const renderTitle = () => <h4 className="Panel-title">{children}</h4>;
@@ -45,7 +47,7 @@ const PanelCell = ({
   const cellClasses = getClassName(className, isHeader && 'Panel-cell--header', mods);
 
   return (
-    <div className={cellClasses} role={role} style={style} {...otherProps}>
+    <div className={cellClasses} role={role} style={style} data-testid={testId} {...otherProps}>
       {isTitle ? renderTitle() : children}
     </div>
   );
@@ -59,6 +61,7 @@ PanelCell.defaultProps = {
   mods: null,
   role: 'cell',
   style: {},
+  testId: null,
   otherProps: {},
 };
 

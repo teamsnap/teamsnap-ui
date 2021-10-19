@@ -37,12 +37,13 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes> | any;
 
-const StepNav = ({ steps, title, isSmall, className, mods, style, otherProps }: Props) => {
+const StepNav = ({ steps, title, isSmall, className, mods, style, testId, otherProps }: Props) => {
   const renderTitle = () => {
     return (
       <div className="StepNav-title">
@@ -79,7 +80,7 @@ const StepNav = ({ steps, title, isSmall, className, mods, style, otherProps }: 
   );
 
   return (
-    <div className={stepNavClass} style={style} {...otherProps}>
+    <div className={stepNavClass} style={style} data-testid={testId} {...otherProps}>
       {title && renderTitle()}
 
       <ul className="StepNav-steps">{steps.map((step) => renderStep(step))}</ul>
@@ -93,6 +94,7 @@ StepNav.defaultProps = {
   className: 'StepNav',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

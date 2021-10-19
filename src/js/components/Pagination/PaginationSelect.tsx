@@ -6,16 +6,18 @@ const propTypes = {
   options: PropTypes.arrayOf(PropTypes.number).isRequired,
   setItemsPerPage: PropTypes.func.isRequired,
   itemsPerPage: PropTypes.number,
+  testId: PropTypes.string,
 };
 
 const PaginationSelect: React.FunctionComponent<PropTypes.InferProps<typeof propTypes>> = ({
   setItemsPerPage,
   options,
   itemsPerPage,
+  testId,
 }) => {
   const selectOptions = options.map((num) => ({
     label: `${num} Rows`,
-    value: `${  num}`,
+    value: `${num}`,
   }));
   return (
     <Select
@@ -28,6 +30,7 @@ const PaginationSelect: React.FunctionComponent<PropTypes.InferProps<typeof prop
         },
         value: itemsPerPage,
       }}
+      data-testid={testId}
     />
   );
 };

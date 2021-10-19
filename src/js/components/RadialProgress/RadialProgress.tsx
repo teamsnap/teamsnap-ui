@@ -17,12 +17,22 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
 export type Props = PropTypes.InferProps<typeof propTypes>;
 
-const RadialProgress = ({ progress, size, color, className, mods, style, otherProps }: Props) => {
+const RadialProgress = ({
+  progress,
+  size,
+  color,
+  className,
+  mods,
+  style,
+  testId,
+  otherProps,
+}: Props) => {
   const degrees = 360 * (progress / 100);
   const circle: Circle = {};
 
@@ -44,7 +54,7 @@ const RadialProgress = ({ progress, size, color, className, mods, style, otherPr
   );
 
   return (
-    <div className={radialClassName} style={style} {...otherProps}>
+    <div className={radialClassName} style={style} data-testid={testId} {...otherProps}>
       <div className={circle.className}>
         <div className="RadialProgress-status" style={{ transform: `rotate(${circle.first})` }} />
         <div className="RadialProgress-status" style={{ transform: `rotate(${circle.second})` }} />
@@ -60,6 +70,7 @@ RadialProgress.defaultProps = {
   className: 'RadialProgress',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 
