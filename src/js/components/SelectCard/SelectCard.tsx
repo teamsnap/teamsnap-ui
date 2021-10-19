@@ -26,8 +26,11 @@ const SelectCard: React.FunctionComponent<Props> = ({
 }: Props) => {
   const [selected, setSelected] = React.useState(false);
 
-  const handleClick = () => {
-    setSelected(!selected);
+  const handleClick = (e) => {
+    const KEY_ENTER = 13;
+    if (!e.which || e.which === KEY_ENTER) {
+      setSelected(!selected);
+    }
   };
 
   const cardClasses = getClassName(className, selected && 'is-selected', mods);
