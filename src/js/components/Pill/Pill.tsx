@@ -30,7 +30,7 @@ const Pill = ({ align, status, style, mods, children, onClick, testId }: Props) 
 
   return (
     <div
-      data-testid={testId ? testId : 'pill'}
+      data-testid={testId || 'pill'}
       className={classes}
       style={{
         ...style,

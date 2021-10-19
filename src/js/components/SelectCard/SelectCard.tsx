@@ -30,7 +30,7 @@ const SelectCard: React.FunctionComponent<Props> = ({
     setSelected(!selected);
   };
 
-  const cardClasses = getClassName(className, selected && `is-selected`, mods);
+  const cardClasses = getClassName(className, selected && 'is-selected', mods);
 
   return (
     <div
@@ -39,6 +39,10 @@ const SelectCard: React.FunctionComponent<Props> = ({
       data-testid={testId}
       {...props}
       onClick={handleClick}
+      onKeyDown={handleClick}
+      role="checkbox"
+      aria-checked={selected}
+      tabIndex={0}
     >
       {children || (
         <div className="Card--container">

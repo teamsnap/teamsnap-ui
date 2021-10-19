@@ -51,7 +51,7 @@ const Modal: React.FC<Props> = ({
       className={`Modal ${show ? 'Modal--open' : 'Modal--closed'} ${
         fullscreen ? 'Modal--fullscreen' : ''
       }`}
-      data-testid={testId ? testId : 'modal'}
+      data-testid={testId || 'modal'}
     >
       <div className="Modal-content u-posRelative" style={{ ...(style || {}) }}>
         <div className="Modal-header u-flex u-flexJustifyBetween">
