@@ -26,6 +26,7 @@ const propTypes = {
   helpBody: PropTypes.node,
   accountBody: PropTypes.node,
   adminBody: PropTypes.node,
+  testId: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };
 
@@ -38,6 +39,7 @@ const Toolbar = ({
   helpBody,
   accountBody,
   adminBody,
+  testId,
   children,
 }: Props) => {
   const [activeMenu, setActiveMenu] = React.useState(Menu.None);
@@ -67,7 +69,7 @@ const Toolbar = ({
   };
 
   return (
-    <div className="Grid Toolbar">
+    <div className="Grid Toolbar" data-testid={testId}>
       {children}
 
       <div className="Grid-cell u-flexAuto u-sizeFit u-flex u-flexAlignContentCenter u-flexJustifyEnd u-padXs flyout-container">
@@ -108,6 +110,7 @@ Toolbar.defaultProps = {
   showAccount: true,
   showAdmin: true,
   showHelp: true,
+  testId: null,
 };
 
 export default Toolbar;

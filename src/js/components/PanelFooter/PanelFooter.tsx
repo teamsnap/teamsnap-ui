@@ -22,14 +22,20 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.shape({}),
+  testId: PropTypes.string,
   otherProps: PropTypes.shape({}),
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
 
-const PanelFooter = ({ children, className, mods, style, otherProps }: Props) => {
+const PanelFooter = ({ children, className, mods, style, testId, otherProps }: Props) => {
   return (
-    <footer className={getClassName(className, mods)} style={style} {...otherProps}>
+    <footer
+      className={getClassName(className, mods)}
+      style={style}
+      data-testid={testId}
+      {...otherProps}
+    >
       {children}
     </footer>
   );
@@ -39,6 +45,7 @@ PanelFooter.defaultProps = {
   className: 'Panel-footer',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

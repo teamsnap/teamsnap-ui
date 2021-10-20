@@ -23,16 +23,23 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
 const Tooltip = (props: PropTypes.InferProps<typeof propTypes>) => {
-  const { text, children, type, className, mods, style, otherProps } = props;
+  const { text, children, type, className, mods, style, testId, otherProps } = props;
 
   const tooltipClasses = getClassName(className, type && `Tooltip--${type}`, mods);
 
   return (
-    <span data-tooltip={text} className={tooltipClasses} style={style} {...otherProps}>
+    <span
+      data-tooltip={text}
+      className={tooltipClasses}
+      style={style}
+      data-testid={testId}
+      {...otherProps}
+    >
       {children}
     </span>
   );
@@ -44,6 +51,7 @@ Tooltip.defaultProps = {
   className: 'Tooltip',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

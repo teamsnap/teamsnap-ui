@@ -21,11 +21,12 @@ const propTypes = {
   breadcrumbs: PropTypes.arrayOf(PropTypes.node).isRequired,
   style: PropTypes.object,
   separator: PropTypes.node,
+  testId: PropTypes.string,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
 
-const Breadcrumbs = ({ className, breadcrumbs, id, style, separator }: Props) => {
+const Breadcrumbs = ({ className, breadcrumbs, id, style, separator, testId }: Props) => {
   const Separator = () => <>{separator}</>;
 
   const renderSeparator = () => {
@@ -61,7 +62,13 @@ const Breadcrumbs = ({ className, breadcrumbs, id, style, separator }: Props) =>
   };
 
   return (
-    <nav id={id} aria-label="Breadcrumb" className={className ?? 'Nav-breadcrumb'} style={style}>
+    <nav
+      id={id}
+      aria-label="Breadcrumb"
+      className={className ?? 'Nav-breadcrumb'}
+      style={style}
+      data-testid={testId}
+    >
       <ul className="Breadcrumb">{renderBreadcrumbs()}</ul>
     </nav>
   );
@@ -74,6 +81,7 @@ Breadcrumbs.defaultProps = {
   id: null,
   style: null,
   separator: <Icon className="Icon Icon-separator" name="right" />,
+  testId: null,
 };
 
 export default Breadcrumbs;

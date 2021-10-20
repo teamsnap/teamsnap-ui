@@ -60,6 +60,7 @@ const fieldPropTypes = {
   isDisabled: PropTypes.bool,
   isInline: PropTypes.bool,
   style: PropTypes.any,
+  testId: PropTypes.string,
 };
 
 type FieldProps = PropTypes.InferProps<typeof fieldPropTypes>;
@@ -75,10 +76,17 @@ const Field = ({
   formFieldProps,
   isInline,
   style,
+  testId,
   ...otherProps
 }: FieldProps) => {
   return (
-    <FieldGroup style={style} isInline={isInline} status={status} isDisabled={isDisabled}>
+    <FieldGroup
+      style={style}
+      isInline={isInline}
+      status={status}
+      isDisabled={isDisabled}
+      data-testid={testId}
+    >
       {label && <FieldLabel name={name}>{label}</FieldLabel>}
       {((fieldProps) => {
         const {

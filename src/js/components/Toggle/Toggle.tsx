@@ -22,11 +22,12 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
 const Toggle = (props: PropTypes.InferProps<typeof propTypes>) => {
-  const { name, inputProps, className, mods, style, otherProps } = props;
+  const { name, inputProps, className, mods, style, testId, otherProps } = props;
 
   return (
     <InputControl
@@ -37,6 +38,7 @@ const Toggle = (props: PropTypes.InferProps<typeof propTypes>) => {
       type="checkbox"
       labelProps={{ className: 'Toggle-label' }}
       inputProps={{ className: 'Toggle-input', ...inputProps }}
+      testId={testId}
       {...otherProps}
     />
   );
@@ -47,6 +49,7 @@ Toggle.defaultProps = {
   className: 'Toggle',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

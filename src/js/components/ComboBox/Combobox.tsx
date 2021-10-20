@@ -44,6 +44,7 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
   disabled: PropTypes.bool,
 };
@@ -59,6 +60,7 @@ const ComboBox = ({
   name,
   buttonLabel,
   style,
+  testId,
   otherProps,
   disabled,
   className,
@@ -211,6 +213,7 @@ const ComboBox = ({
       id={`Combobox-${name}`}
       className={getClassName(className, mods)}
       style={style}
+      data-testid={testId}
       {...otherProps}
     >
       <button
@@ -281,6 +284,7 @@ ComboBox.propTypes = propTypes;
 ComboBox.defaultProps = {
   mods: null,
   style: {},
+  testId: null,
   className: 'Combobox',
   otherProps: {},
   selected: [],

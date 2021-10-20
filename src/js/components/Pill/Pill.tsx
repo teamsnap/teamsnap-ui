@@ -9,6 +9,7 @@ export interface Props {
   mods?: string;
   children: any;
   onClick?: () => void;
+  testId?: string;
 }
 
 export enum PillStatus {
@@ -16,7 +17,7 @@ export enum PillStatus {
   ERROR = 'error',
 }
 
-const Pill = ({ align, status, style, mods, children, onClick }: Props) => {
+const Pill = ({ align, status, style, mods, children, onClick, testId }: Props) => {
   const clickable = () => children.props?.type === 'checkbox' || children.props?.type === 'radio';
 
   const classes = getClassName(
@@ -29,7 +30,7 @@ const Pill = ({ align, status, style, mods, children, onClick }: Props) => {
 
   return (
     <div
-      data-testid="pill"
+      data-testid={testId || 'pill'}
       className={classes}
       style={{
         ...style,

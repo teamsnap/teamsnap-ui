@@ -3,13 +3,13 @@ import { Icon } from '../Icon';
 
 export interface Props {
   onClick: () => void;
+  testId?: string;
 }
 
-const ListToggle: React.FC<Props> = ({ onClick }: Props) => {
+const ListToggle: React.FC<Props> = ({ onClick, testId }: Props) => {
   const [expanded, setExpanded] = React.useState<boolean>(false);
 
   const toggleState = (isExpanded) => {
-    console.log('isExpanded', isExpanded);
     setExpanded(!isExpanded);
     onClick();
   };
@@ -20,6 +20,7 @@ const ListToggle: React.FC<Props> = ({ onClick }: Props) => {
       className="u-borderNone u-padNone u-colorInfo"
       style={{ backgroundColor: 'transparent' }}
       onClick={() => toggleState(expanded)}
+      data-testid={testId}
     >
       {expanded === true ? <Icon name="down" /> : <Icon name="right" />}
     </button>

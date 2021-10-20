@@ -24,6 +24,7 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
@@ -43,6 +44,7 @@ Checkbox.defaultProps = {
   className: 'Checkbox',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

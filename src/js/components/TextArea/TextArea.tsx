@@ -19,14 +19,20 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
 const TextArea = (props: PropTypes.InferProps<typeof propTypes>) => {
-  const { name, inputProps, className, mods, style, otherProps } = props;
+  const { name, inputProps, className, mods, style, testId, otherProps } = props;
 
   return (
-    <div className={getClassName(className, mods)} style={style} {...otherProps}>
+    <div
+      className={getClassName(className, mods)}
+      style={style}
+      data-testid={testId}
+      {...otherProps}
+    >
       <textarea name={name} id={name} {...inputProps} />
     </div>
   );
@@ -36,6 +42,7 @@ TextArea.defaultProps = {
   className: '',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

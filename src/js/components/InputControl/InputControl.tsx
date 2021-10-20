@@ -26,6 +26,7 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
@@ -40,6 +41,7 @@ const InputControl = ({
   className,
   mods,
   style,
+  testId,
   otherProps,
   ...rest
 }: PropTypes.InferProps<typeof propTypes>) => {
@@ -59,7 +61,7 @@ const InputControl = ({
   }
 
   return (
-    <div className={classes} style={style} {...otherProps} {...rest}>
+    <div className={classes} style={style} {...otherProps} {...rest} data-testid={testId}>
       <input
         className="Checkbox-input"
         type={type}
@@ -85,6 +87,7 @@ InputControl.defaultProps = {
   className: null,
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 
