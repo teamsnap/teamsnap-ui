@@ -16,7 +16,9 @@ const breadcrumbs = [
   <span>Registration</span>,
 ];
 
-export const Default = () => <Breadcrumbs breadcrumbs={breadcrumbs} />;
+export const Default = () => (
+  <Breadcrumbs breadcrumbs={breadcrumbs} testId={`storybook-breadcrumbs-default`} />
+);
 
 const Link = ({ text, href }: Props) => {
   return <a href={href}>{text}</a>;
