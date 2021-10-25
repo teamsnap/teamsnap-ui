@@ -3397,7 +3397,7 @@ __metadata:
     babel-loader: ^8.0.0
     babel-preset-react-app: ^9.0.0
     babel-register: ^6.26.0
-    browser-sync: ^2.26.14
+    browser-sync: ^2.27.5
     core-js: ^3.1.4
     css-loader: ^5.2.6
     del: ^3.0.0
@@ -5385,21 +5385,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browser-sync-client@npm:^2.27.1":
-  version: 2.27.1
-  resolution: "browser-sync-client@npm:2.27.1"
+"browser-sync-client@npm:^2.27.5":
+  version: 2.27.5
+  resolution: "browser-sync-client@npm:2.27.5"
   dependencies:
     etag: 1.8.1
     fresh: 0.5.2
     mitt: ^1.1.3
     rxjs: ^5.5.6
-  checksum: 11d51862e6cf39753f0a78c07211b0396abf01d301f5653ad12b808eb8e18db9b90b5afa6e80e9abdea668dab0588f5f44427687adde409c4d17d5f029209fa3
+  checksum: c8ee8423c03232de77177f027735448e1f40fa1016f7df3f29db1e7892489d874da7c15df71bd07839fa209da636397c380e8955e68b806a28d4a8b73f938708
   languageName: node
   linkType: hard
 
-"browser-sync-ui@npm:^2.27.1":
-  version: 2.27.1
-  resolution: "browser-sync-ui@npm:2.27.1"
+"browser-sync-ui@npm:^2.27.5":
+  version: 2.27.5
+  resolution: "browser-sync-ui@npm:2.27.5"
   dependencies:
     async-each-series: 0.1.1
     connect-history-api-fallback: ^1
@@ -5407,16 +5407,16 @@ __metadata:
     server-destroy: 1.0.1
     socket.io-client: ^2.4.0
     stream-throttle: ^0.1.3
-  checksum: ac1370a909195034695e57ba5cdb2aed922d721eba39baa169f27315010b382539ff4289bbf88a77e67667055d0bb1348ff298fb46f1e2d5cd394ad970b52ffd
+  checksum: bcce8cc3864186a98775d64d7bef8da806d08a042238c15bf6b9619233aa4d04fe07b9c1bdb3d5e7e769a753cbff384f124c01a520021604a6fbc4bf5b9190c9
   languageName: node
   linkType: hard
 
-"browser-sync@npm:^2.26.14":
-  version: 2.27.1
-  resolution: "browser-sync@npm:2.27.1"
+"browser-sync@npm:^2.27.5":
+  version: 2.27.5
+  resolution: "browser-sync@npm:2.27.5"
   dependencies:
-    browser-sync-client: ^2.27.1
-    browser-sync-ui: ^2.27.1
+    browser-sync-client: ^2.27.5
+    browser-sync-ui: ^2.27.5
     bs-recipes: 1.3.4
     bs-snippet-injector: ^2.0.1
     chokidar: ^3.5.1
@@ -5443,11 +5443,11 @@ __metadata:
     serve-static: 1.13.2
     server-destroy: 1.0.1
     socket.io: 2.4.0
-    ua-parser-js: ^0.7.18
+    ua-parser-js: ^0.7.28
     yargs: ^15.4.1
   bin:
     browser-sync: dist/bin.js
-  checksum: 48dee9bbe151fcd535f8d05185e3a0e1a1a5925838b6bc122471a5b11dc3bf169db382c8cc507e69dc5bb4d329e591871fc1791bb8a510275f14ebb0abee588e
+  checksum: f792fcaa9b7959b2ce37e9c6d75eed5299bff47b25d8695c98c3fa7a6fa38e9b4697f7c6be8734d2855fa8535c12cd512ef908a38fb48c3082942abf885ea4fd
   languageName: node
   linkType: hard
 
@@ -16549,10 +16549,10 @@ typescript@^4.0.3:
   languageName: node
   linkType: hard
 
-"ua-parser-js@npm:^0.7.18":
-  version: 0.7.28
-  resolution: "ua-parser-js@npm:0.7.28"
-  checksum: bf65a24eb48d8ec31f6396494bff16b92228e88d7ea15d0bdaa71505313979d2fd176d832418d849a8fa6e119e8dea482f52a2acffe51a3f1810087d295a9adf
+"ua-parser-js@npm:^0.7.28":
+  version: 0.7.30
+  resolution: "ua-parser-js@npm:0.7.30"
+  checksum: 1e856dd0090b8b453f3afcc634a68aaed478085f0818cd8698295fea58a4bd577572985bb57f63925f825b35cc0592bdb77b52a075f474458f5c007bcef9d3e2
   languageName: node
   linkType: hard
 
