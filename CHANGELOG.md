@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Security`
 
 =======
+
+## [3.12.3] - 2021-10-25
+- https://github.com/teamsnap/teamsnap-ui/pull/957
+- `Security` - Fix UA Parser issue
 ## [3.12.1] - 2021-07-08
 - https://github.com/teamsnap/teamsnap-ui/pull/743
 - `Changed` export consistency in icons
