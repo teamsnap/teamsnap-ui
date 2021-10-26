@@ -31,6 +31,7 @@ export * from './components/Popup';
 export * from './components/ProgressBar';
 export * from './components/RadialProgress';
 export * from './components/Radio';
+export * from './components/ScreenReader';
 export * from './components/Select';
 export * from './components/Skittles';
 export * from './components/StepNav';
