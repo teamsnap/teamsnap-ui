@@ -2,7 +2,7 @@ import * as React from 'react';
 import Tabs from './Tabs';
 
 export default {
-  title: 'Tabs',
+  title: 'Design System/Molecules/Tabs',
 };
 
 export const Default = () => (

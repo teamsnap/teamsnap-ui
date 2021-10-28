@@ -3,7 +3,7 @@ import PopupAction from './PopupAction';
 import PopupConfirmComponent from './PopupConfirm';
 
 export default {
-  title: 'Popup',
+  title: 'Design System/Molecules/Popup',
 };
 
 const actions = [

@@ -3,7 +3,7 @@ import { text } from '@storybook/addon-knobs';
 import Nav from './Nav';
 
 export default {
-  title: 'Nav',
+  title: 'Design System/Organisms/Nav',
 };
 
 export const Default = () => (

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Breadcrumbs from './Breadcrumbs';
 
 export default {
-  title: 'Breadcrumbs',
+  title: 'Design System/Organisms/Breadcrumbs',
 };
 
 interface Props {

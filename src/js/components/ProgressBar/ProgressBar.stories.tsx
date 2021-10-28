@@ -3,7 +3,7 @@ import { select } from '@storybook/addon-knobs';
 import ProgressBar from './ProgressBar';
 
 export default {
-  title: 'ProgressBar',
+  title: 'Design System/Atoms/Progress/ProgressBar',
 };
 
 const sizeOptions = {

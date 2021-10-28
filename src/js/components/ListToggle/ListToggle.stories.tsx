@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ListToggle } from '.';
 
 export default {
-  title: 'ListToggle',
+  title: 'Design System/Atoms/ListToggle',
 };
 
 export const Default = () => {

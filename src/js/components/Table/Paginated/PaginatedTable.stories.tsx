@@ -4,6 +4,11 @@ import PaginatedTable from './PaginatedTable';
 import { Placement } from '../../../types/placement';
 import { FilterValue } from './DateFilter';
 
+export default {
+  title: 'Design System/Organisms/Table/Paginated',
+};
+
+
 const eighteenYearsBirthdate = new Date();
 eighteenYearsBirthdate.setFullYear(eighteenYearsBirthdate.getFullYear() - 18);
 

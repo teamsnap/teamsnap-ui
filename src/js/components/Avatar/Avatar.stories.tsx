@@ -2,7 +2,7 @@ import * as React from 'react';
 import Avatar from './Avatar';
 
 export default {
-  title: 'Avatar',
+  title: 'Design System/Atoms/Avatar',
 };
 
 export const Default = () => (

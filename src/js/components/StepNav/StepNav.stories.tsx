@@ -2,7 +2,7 @@ import * as React from 'react';
 import StepNav from './StepNav';
 
 export default {
-  title: 'StepNav',
+  title: 'Design System/Organisms/StepNav',
 };
 
 export const Default = () => (

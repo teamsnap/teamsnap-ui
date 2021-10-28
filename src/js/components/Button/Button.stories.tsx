@@ -4,7 +4,7 @@ import Button from './Button';
 import { ScreenReader } from '../ScreenReader';
 
 export default {
-  title: 'Button',
+  title: 'Design System/Atoms/Button',
 };
 
 export const Default = () => (

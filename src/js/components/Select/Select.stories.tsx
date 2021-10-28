@@ -2,7 +2,7 @@ import * as React from 'react';
 import Select from './Select';
 
 export default {
-  title: 'Select',
+  title: 'Design System/Atoms/Select',
 };
 
 const optionsList = [

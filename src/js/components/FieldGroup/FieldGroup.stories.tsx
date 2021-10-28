@@ -10,7 +10,7 @@ import { Icon } from '../Icon';
 import { Statuses } from '../../types';
 
 export default {
-  title: 'FieldGroup',
+  title: 'Design System/Molecules/FieldGroup',
 };
 
 const statusOptions = {
