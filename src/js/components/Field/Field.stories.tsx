@@ -5,7 +5,7 @@ import { Icon } from '../Icon';
 import { Sizes as SizesEnum, CheckboxStates } from '../../types';
 
 export default {
-  title: 'Design System/Molecules/Field',
+  title: 'Components/Forms/Field',
 };
 
 const statusOptions = {

@@ -3,7 +3,7 @@ import { ToggleCheckboxList } from '.';
 import { Tag } from '../Tag';
 
 export default {
-  title: 'Design System/Organisms/ToggleCheckboxList',
+  title: 'Components/Data Display/ToggleCheckboxList',
 };
 
 

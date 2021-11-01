@@ -2,7 +2,7 @@ import * as React from 'react';
 import Loader from './Loader';
 
 export default {
-  title: 'Design System/Atoms/Loader',
+  title: 'Components/Feedback/Loader',
 };
 
 export const Default = () => <Loader type="spin" />;

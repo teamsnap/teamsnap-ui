@@ -3,7 +3,7 @@ import { boolean } from '@storybook/addon-knobs';
 import Table from './Table';
 
 export default {
-  title: 'Design System/Organisms/Table',
+  title: 'Components/Data Display/Table',
 };
 
 const columns = [

@@ -2,7 +2,7 @@ import * as React from 'react';
 import SelectCard from './SelectCard';
 
 export default {
-  title: 'Design System/Molecules/SelectCard',
+  title: 'Components/Forms/SelectCard',
 };
 
 export const Default = () => <SelectCard />;

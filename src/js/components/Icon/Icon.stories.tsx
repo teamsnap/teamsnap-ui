@@ -3,7 +3,7 @@ import { select } from '@storybook/addon-knobs';
 import Icon from './Icon';
 
 export default {
-  title: 'Design System/Atoms/Icon',
+  title: 'Components/Data Display/Icon',
 };
 
 const iconNames = {

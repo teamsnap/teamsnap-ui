@@ -8,7 +8,7 @@ import { PanelCell } from '../PanelCell';
 import { PanelRowExpandable } from '../PanelRowExpandable';
 
 export default {
-  title: 'Design System/Molecules/Panel',
+  title: 'Components/Surfaces/Panel',
 };
 
 export const Default = () => (

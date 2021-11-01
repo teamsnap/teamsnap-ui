@@ -5,7 +5,7 @@ import { AttachmentPill } from '../AttachmentPill';
 import { CheckboxPill } from '../CheckboxPill';
 
 export default {
-  title: 'Design System/Atoms/Pill',
+  title: 'Components/Data Display/Pill',
 };
 
 export const Default = () => (

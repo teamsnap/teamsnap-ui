@@ -3,7 +3,7 @@ import ButtonGroup from './ButtonGroup';
 import { Button } from '../Button';
 
 export default {
-  title: 'Design System/Molecules/ButtonGroup',
+  title: 'Components/Forms/ButtonGroup',
 };
 
 export const ButtonChildren = () => {

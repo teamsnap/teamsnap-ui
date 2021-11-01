@@ -7,7 +7,7 @@ import { Nav } from '../Nav';
 import { Breadcrumbs } from '../Breadcrumbs';
 
 export default {
-  title: 'Design System/Molecules/Toolbar',
+  title: 'Components/Navigation/Toolbar',
 };
 
 interface LinkType {

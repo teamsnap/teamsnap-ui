@@ -5,7 +5,7 @@ import { Placement } from '../../../types/placement';
 import { FilterValue } from './DateFilter';
 
 export default {
-  title: 'Design System/Organisms/Table/Paginated',
+  title: 'Components/Data Display/Table/Paginated',
 };
 
 
