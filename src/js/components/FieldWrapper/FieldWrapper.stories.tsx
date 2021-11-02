@@ -4,7 +4,7 @@ import { select, text } from '@storybook/addon-knobs';
 import FieldWrapper from './FieldWrapper';
 
 export default {
-  title: 'FieldWrapper [deprecated]',
+  title: 'Components/Forms/FieldWrapper [deprecated]',
 };
 
 const statusOptions = {

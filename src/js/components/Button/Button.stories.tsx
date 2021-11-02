@@ -4,7 +4,7 @@ import Button from './Button';
 import { ScreenReader } from '../ScreenReader';
 
 export default {
-  title: 'Button',
+  title: 'Components/Forms/Button',
 };
 
 export const Default = () => (

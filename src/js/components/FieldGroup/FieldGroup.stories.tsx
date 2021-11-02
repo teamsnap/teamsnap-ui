@@ -10,7 +10,7 @@ import { Icon } from '../Icon';
 import { Statuses } from '../../types';
 
 export default {
-  title: 'FieldGroup',
+  title: 'Components/Forms/FieldGroup',
 };
 
 const statusOptions = {

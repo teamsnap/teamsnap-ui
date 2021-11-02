@@ -1,0 +1,48 @@
+<!--- colors.stories.mdx -->
+
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+
+<Meta title="Patterns/Colors" />
+
+<div style={{
+  display: 'grid',
+  gridTemplateColumns: 'repeat(5, 1fr)',
+  gridTemplateRows: 'repeat(1, 1fr)',
+  gridColumnGap: '15px',
+  gridRowGap: '0px',
+}}>
+  {['Primary', 'Negative', 'Warning', 'Success', 'Neutral'].map((color) => (
+    <div key={color}>
+      <h3>{color}</h3>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(1, 1fr)',
+        gridTemplateRows: 'repeat(8, 1fr)',
+        gridColumnGap: '0px',
+        gridRowGap: '0px',
+      }}>
+        {Array.from(Array(9).keys()).map((shade) => (
+          <div key={shade}>
+            <span>{color + (shade + 1)}</span>
+            <div style={{ padding: '20px' }} className={`u-bg${color}${shade}`}></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
+
+# How to use Colors
+
+  Colors are defined in SASS and are leveraged by applying specific classes to elements.
+
+  - Use the className `u-bg{color}{shade}` to style an element with a specific background color.
+  - Use the className `u-color{color}{shade}` to style an element with a specific color.
+
+For example, if I wanted to set the background of a div to Primary6 and the foreground to Neutral3, I would use the following:
+
+```jsx
+<div className="u-bgPrimary6 u-colorNeutral3">
+  <p>This is a div with a primary background and neutral foreground.</p>
+</div>
+```

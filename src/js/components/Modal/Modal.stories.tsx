@@ -4,7 +4,7 @@ import { Button } from '../Button';
 import { Loader } from '../Loader';
 
 export default {
-  title: 'Modal',
+  title: 'Components/Surfaces/Modal',
 };
 
 export const Default = () => {

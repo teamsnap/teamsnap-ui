@@ -8,7 +8,7 @@ import { PanelCell } from '../PanelCell';
 import { PanelRowExpandable } from '../PanelRowExpandable';
 
 export default {
-  title: 'Panel',
+  title: 'Components/Surfaces/Panel',
 };
 
 export const Default = () => (
