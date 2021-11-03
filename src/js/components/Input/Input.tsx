@@ -34,6 +34,7 @@ const propTypes = {
   rightIcon: PropTypes.node,
   inputProps: PropTypes.object,
   mods: PropTypes.string,
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   otherProps: PropTypes.object,
   placeholder: PropTypes.string,
@@ -54,6 +55,7 @@ const Input = ({
   inputProps,
   leftIcon,
   mods,
+  id,
   name,
   otherProps,
   placeholder,
@@ -76,12 +78,15 @@ const Input = ({
     'u-flex',
     mods
   );
+
+  id = id || name;
+
   return (
     <div className={inputClasses} style={style} data-testid={testId} {...otherProps}>
       {leftIcon && <div className="InputGroup-icon--left InputGroup-icon">{leftIcon}</div>}
       <input
         disabled={isDisabled}
-        id={name}
+        id={id}
         name={name}
         type={type}
         placeholder={placeholder}

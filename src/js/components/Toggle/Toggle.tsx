@@ -17,6 +17,7 @@ import * as PropTypes from 'prop-types';
 import { InputControl } from '../InputControl';
 
 const propTypes = {
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   inputProps: PropTypes.object,
   className: PropTypes.string,
@@ -27,10 +28,11 @@ const propTypes = {
 };
 
 const Toggle = (props: PropTypes.InferProps<typeof propTypes>) => {
-  const { name, inputProps, className, mods, style, testId, otherProps } = props;
+  const { id, name, inputProps, className, mods, style, testId, otherProps } = props;
 
   return (
     <InputControl
+      id={id}
       name={name}
       className={className}
       mods={mods}

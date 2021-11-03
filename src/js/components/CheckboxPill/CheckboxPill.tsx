@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Grid } from '../Grid';
 import { Cell } from '../Cell';
-import { Pill } from '../Pill';
+import { Pill, PillStatus } from '../Pill';
 import { Field } from '../Field';
 
 const CheckboxPill = () => {
@@ -14,7 +14,7 @@ const CheckboxPill = () => {
   return (
     <Grid>
       <Cell>
-        <Pill align="center">
+        <Pill align="center" status={checked ? PillStatus.ACTIVE : null}>
           <Field
             formFieldProps={{
               checked,

@@ -16,6 +16,7 @@ import { getClassName } from '../../utils/helpers';
 import { CheckboxStates } from '../../types';
 
 const propTypes = {
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   label: PropTypes.node,
@@ -31,6 +32,7 @@ const propTypes = {
 };
 
 const InputControl = ({
+  id,
   name,
   label,
   group,
@@ -60,6 +62,8 @@ const InputControl = ({
     }
   }
 
+  id = id || name;
+
   return (
     <div className={classes} style={style} {...otherProps} {...rest} data-testid={testId}>
       <input
@@ -67,11 +71,11 @@ const InputControl = ({
         type={type}
         name={group || name}
         data-testid={`${name}-input`}
-        id={name}
+        id={id}
         {...inputProps}
         checked={value} // has to come after spreading input props to support indeterminate
       />
-      <label className="Checkbox-label" htmlFor={name} {...labelProps}>
+      <label className="Checkbox-label" htmlFor={id} {...labelProps}>
         {label}
       </label>
     </div>

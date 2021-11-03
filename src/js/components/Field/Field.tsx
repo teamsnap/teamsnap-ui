@@ -50,6 +50,7 @@ const inputShape = PropTypes.shape({
 const fieldPropTypes = {
   type: PropTypes.oneOf(['toggle', 'select', 'input', 'checkbox', 'date']).isRequired,
   formFieldProps: PropTypes.oneOfType([checkboxShape, inputShape]),
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
   caption: PropTypes.string,
@@ -67,6 +68,7 @@ type FieldProps = PropTypes.InferProps<typeof fieldPropTypes>;
 
 const Field = ({
   type,
+  id,
   name,
   label,
   caption,
@@ -107,6 +109,7 @@ const Field = ({
           case 'checkbox':
             return (
               <Checkbox
+                id={id}
                 name={name}
                 inputProps={{
                   checked,
@@ -120,6 +123,7 @@ const Field = ({
           case 'radio':
             return (
               <Radio
+                id={id}
                 name={name}
                 inputProps={{
                   checked,
@@ -133,6 +137,7 @@ const Field = ({
           default:
             return (
               <Input
+                id={id}
                 size={size}
                 placeholder={placeholder}
                 name={name}

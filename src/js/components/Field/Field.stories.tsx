@@ -361,7 +361,8 @@ export const Radios = () => {
             setFavoritePet('cat');
           },
         }}
-        name="Cats"
+        id="favorite-pet-cats"
+        name="favorite-pet"
       />
       <Field
         isInline
@@ -374,7 +375,8 @@ export const Radios = () => {
             setFavoritePet('dog');
           },
         }}
-        name="Dogs"
+        id="favorite-pet-dogs"
+        name="favorite-pet"
       />
       <Field
         isDisabled
