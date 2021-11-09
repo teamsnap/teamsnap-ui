@@ -49,12 +49,6 @@
   }
 }
 
-// Prevent the body from scrolling while the modal is open.
-body.Modal--open {
-  overflow: hidden;
-  height: 100%;
-}
-
 .Modal {
   &.Modal--open {
     display: block;
