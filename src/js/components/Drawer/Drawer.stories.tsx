@@ -45,7 +45,7 @@ export const Default = () => {
       <Drawer
         style={{ width: '500px' }}
         open={isDrawerOpen}
-        onClose={closeDrawer}
+        closeFn={closeDrawer}
         testId={`Drawer-storybook-default`}
       >
         <Panel mods={`u-spaceMd`}>
@@ -107,7 +107,7 @@ export const RightSideWithExplicitWidth = () => {
         open={isDrawerOpen}
         style={{ width: '500px' }}
         testId={`Drawer-storybook-default`}
-        onClose={closeDrawer}
+        closeFn={closeDrawer}
       >
         <Panel mods={`u-spaceMd`}>
           <PanelHeader>
@@ -220,8 +220,7 @@ export const BottomSideWithClickOutsideHandler = () => {
       <Drawer
         placement={Placement.Bottom}
         open={isDrawerOpen}
-        onClose={closeDrawer}
-        allowOverlayClose
+        closeFn={closeDrawer}
         testId={`Drawer-storybook-default`}
       >
         <Panel mods={`u-spaceMd`}>
@@ -274,8 +273,7 @@ export const TopSideWithClickOutsideHandler = () => {
       <Drawer
         placement={Placement.Top}
         open={isDrawerOpen}
-        onClose={closeDrawer}
-        allowOverlayClose
+        closeFn={closeDrawer}
         testId={`Drawer-storybook-default`}
       >
         <Panel mods={`u-spaceMd`}>
@@ -328,8 +326,7 @@ export const CustomTransition = () => {
       <Drawer
         placement={Placement.Right}
         open={isDrawerOpen}
-        onClose={closeDrawer}
-        allowOverlayClose
+        closeFn={closeDrawer}
         style={{ transition: 'transform 500ms ease-in-out 500ms' }}
         testId={`Drawer-storybook-default`}
       >

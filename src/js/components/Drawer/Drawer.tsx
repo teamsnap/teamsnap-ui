@@ -9,9 +9,9 @@ import { useLayoutEffect } from 'react';
 const drawerPropTypes = {
   placement: PropTypes.oneOf(Object.values(Placement)),
   open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
+  closeFn: PropTypes.func.isRequired,
   allowOverlayClose: PropTypes.bool,
-  lockBodyScroll: PropTypes.bool,
+  allowBodyScroll: PropTypes.bool,
   style: PropTypes.object,
   testId: PropTypes.string,
 };
@@ -22,38 +22,38 @@ const Drawer: React.FC<DrawerProps> = ({
   placement = Placement.Left,
   children,
   open,
-  onClose,
+  closeFn,
   allowOverlayClose = true,
-  lockBodyScroll = true,
+  allowBodyScroll = false,
   style,
   testId,
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
 
   const handleClickOutside = React.useCallback(() => {
-    if (allowOverlayClose && onClose && open) {
+    if (allowOverlayClose && closeFn && open) {
       setIsBodyScrollLocked(false);
-      onClose();
+      closeFn();
     }
-  }, [allowOverlayClose, onClose, open]);
+  }, [allowOverlayClose, closeFn, open]);
 
   useOnClickOutside(ref, handleClickOutside);
 
   const { setIsBodyScrollLocked } = useBodyScrollLock();
   React.useEffect(() => {
-    setIsBodyScrollLocked(lockBodyScroll && open);
+    setIsBodyScrollLocked(!allowBodyScroll && open);
     return () => setIsBodyScrollLocked(false);
-  }, [open, lockBodyScroll]);
+  }, [open, allowBodyScroll]);
 
   const showDrawerClass = open ? 'Drawer--open' : '';
-  const anchorAxisClass = [Placement.Left, Placement.Right].includes(placement)
+  const placementAxisClass = [Placement.Left, Placement.Right].includes(placement)
     ? 'Drawer--placement-x'
     : 'Drawer--placement-y';
 
   const classes = getClassName(
     'Drawer',
     `Drawer--placement-${placement}`,
-    anchorAxisClass,
+    placementAxisClass,
     showDrawerClass
   );
 
