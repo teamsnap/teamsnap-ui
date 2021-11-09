@@ -12,19 +12,21 @@ const drawerPropTypes = {
   allowOverlayClose: PropTypes.bool,
   allowBodyScroll: PropTypes.bool,
   style: PropTypes.object,
+  mods: PropTypes.string,
   testId: PropTypes.string,
 };
 
 type DrawerProps = PropTypes.InferProps<typeof drawerPropTypes>;
 
 const Drawer: React.FC<DrawerProps> = ({
-  placement = Placement.Left,
+  placement = Placement.Right,
   children,
   open,
   closeFn,
   allowOverlayClose = true,
   allowBodyScroll = false,
   style,
+  mods,
   testId,
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
@@ -53,7 +55,8 @@ const Drawer: React.FC<DrawerProps> = ({
     'Drawer',
     `Drawer--placement-${placement}`,
     placementAxisClass,
-    showDrawerClass
+    showDrawerClass,
+    mods
   );
 
   return (

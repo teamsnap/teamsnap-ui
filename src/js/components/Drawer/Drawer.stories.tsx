@@ -43,10 +43,10 @@ export const Default = () => {
       <Pill>Drawer is {isDrawerOpen ? 'Open' : 'Closed'}</Pill>
 
       <Drawer
-        style={{ width: '500px' }}
         open={isDrawerOpen}
         closeFn={closeDrawer}
         testId={`Drawer-storybook-default`}
+        mods={`u-size12of24`}
       >
         <Panel mods={`u-spaceMd`}>
           <PanelHeader>
