@@ -4,7 +4,6 @@ import * as PropTypes from 'prop-types';
 import { getClassName } from '../../utils/helpers';
 import { useOnClickOutside, useBodyScrollLock } from '../../hooks';
 import { Placement } from '../../types/placement';
-import { useLayoutEffect } from 'react';
 
 const drawerPropTypes = {
   placement: PropTypes.oneOf(Object.values(Placement)),
