@@ -1,7 +1,7 @@
 $drawer-box-shadow-offset: 6px;
 $drawer-box-shadow-blur: 12px;
 $drawer-box-shadow-color: rgba(0, 0, 0, 0.2);
-$drawer-box-shadow-blur-color: #{$drawer-box-shadow-blur}  #{$drawer-box-shadow-color};
+$drawer-box-shadow-blur-color: #{$drawer-box-shadow-blur} #{$drawer-box-shadow-color};
 $drawer-border: 1px solid #ddd;
 
 .Drawer {
@@ -44,6 +44,23 @@ $drawer-border: 1px solid #ddd;
   transform: translateY(-100vh);
   border-bottom: $drawer-border;
   box-shadow: 0px $drawer-box-shadow-offset $drawer-box-shadow-blur-color;
+}
+
+.Drawer-overlay {
+  z-index: 900;
+  cursor: pointer;
+  background: none;
+
+  &.Drawer-overlay--open {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $cu-overlay-background;
+    transition: background-color 300ms ease-in-out;
+  }
 }
 
 @media screen and (min-width: $breakpoint-xs) {

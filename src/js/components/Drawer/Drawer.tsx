@@ -9,10 +9,13 @@ const drawerPropTypes = {
   placement: PropTypes.oneOf(Object.values(Placement)),
   open: PropTypes.bool.isRequired,
   closeFn: PropTypes.func.isRequired,
+  showOverlay: PropTypes.bool,
   allowOverlayClose: PropTypes.bool,
   allowBodyScroll: PropTypes.bool,
   style: PropTypes.object,
+  overlayStyle: PropTypes.object,
   mods: PropTypes.string,
+  overlayMods: PropTypes.string,
   testId: PropTypes.string,
 };
 
@@ -23,10 +26,13 @@ const Drawer: React.FC<DrawerProps> = ({
   children,
   open,
   closeFn,
+  showOverlay = false,
   allowOverlayClose = true,
   allowBodyScroll = false,
   style,
+  overlayStyle,
   mods,
+  overlayMods,
   testId,
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
@@ -59,10 +65,19 @@ const Drawer: React.FC<DrawerProps> = ({
     mods
   );
 
+  const overlayClasses = getClassName(
+    'Drawer-overlay',
+    open ? 'Drawer-overlay--open' : '',
+    overlayMods
+  );
+
   return (
-    <div ref={ref} className={classes} style={style} data-testid={testId}>
-      {children}
-    </div>
+    <>
+      <div ref={ref} className={classes} style={style} data-testid={testId}>
+        {children}
+      </div>
+      {showOverlay && <div style={overlayStyle} className={overlayClasses}></div>}
+    </>
   );
 };
 

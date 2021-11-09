@@ -153,6 +153,8 @@ $cu-highlight--light: scaleColor($cu-highlight, 1) !default;
 $cu-highlight--dark:  scaleColor($cu-highlight, 0) !default;
 $cu-highlight--bg:   scaleColor($cu-highlight, 10) !default;
 
+$cu-overlay-background: rgba(0, 0, 0, 0.6) !default;
+
 // * 1.a Spot Colors (link, facebook, twitter, etc.)
 
 $color-facebook:                           #3B5998 !default;

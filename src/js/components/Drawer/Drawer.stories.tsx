@@ -47,6 +47,7 @@ export const Default = () => {
         closeFn={closeDrawer}
         testId={`Drawer-storybook-default`}
         mods={`u-size12of24`}
+        showOverlay
       >
         <Panel mods={`u-spaceMd`}>
           <PanelHeader>
