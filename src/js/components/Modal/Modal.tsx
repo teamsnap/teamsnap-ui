@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Button } from '../Button';
+import { useOnClickOutside, useBodyScrollLock } from '../../hooks';
 
 export interface Props {
   heading: React.ReactNode;
@@ -24,27 +25,23 @@ const Modal: React.FC<Props> = ({
   testId,
   fullscreen,
 }: Props) => {
-  React.useEffect(() => {
-    if (allowOverlayClose) {
-      const toggleModal = (event: any) => {
-        if (!document.querySelector('.Modal-content').contains(event.target)) {
-          closeFn?.();
-        }
-      };
-
-      document.body.addEventListener('click', toggleModal, { capture: true });
-
-      return () => {
-        document.body.removeEventListener('click', toggleModal);
-      };
-    }
-
-    return () => {};
-  }, []);
+  const { setIsBodyScrollLocked } = useBodyScrollLock();
 
   React.useEffect(() => {
-    document.body.classList.toggle('Modal--open', show);
+    setIsBodyScrollLocked(show);
+    return () => setIsBodyScrollLocked(false);
   }, [show]);
+
+  const modalContentRef = React.useRef();
+
+  const handleClickOutside = React.useCallback(() => {
+    if (allowOverlayClose && closeFn && show) {
+      setIsBodyScrollLocked(false);
+      closeFn();
+    }
+  }, [allowOverlayClose, closeFn, show]);
+
+  useOnClickOutside(modalContentRef, handleClickOutside);
 
   return (
     <div
@@ -53,7 +50,11 @@ const Modal: React.FC<Props> = ({
       }`}
       data-testid={testId || 'modal'}
     >
-      <div className="Modal-content u-posRelative" style={{ ...(style || {}) }}>
+      <div
+        ref={modalContentRef}
+        className="Modal-content u-posRelative"
+        style={{ ...(style || {}) }}
+      >
         <div className="Modal-header u-flex u-flexJustifyBetween">
           <div className="u-sizeFill">
             <h2 data-testid="modal-heading">{heading}</h2>
