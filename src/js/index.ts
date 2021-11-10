@@ -5,6 +5,7 @@ export * from './components/ButtonGroup';
 export * from './components/Cell';
 export * from './components/Checkbox';
 export * from './components/Divider';
+export * from './components/Drawer';
 export * from './components/Field';
 export * from './components/FieldGroup';
 export * from './components/FieldLabel';
