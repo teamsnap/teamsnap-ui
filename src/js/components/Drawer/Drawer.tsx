@@ -35,23 +35,6 @@ const Drawer: React.FC<DrawerProps> = ({
   overlayMods,
   testId,
 }) => {
-  const ref = React.useRef<HTMLDivElement>(null);
-
-  const handleClickOutside = React.useCallback(() => {
-    if (allowOverlayClose && closeFn && open) {
-      setIsBodyScrollLocked(false);
-      closeFn();
-    }
-  }, [allowOverlayClose, closeFn, open]);
-
-  useOnClickOutside(ref, handleClickOutside);
-
-  const { setIsBodyScrollLocked } = useBodyScrollLock();
-  React.useEffect(() => {
-    setIsBodyScrollLocked(!allowBodyScroll && open);
-    return () => setIsBodyScrollLocked(false);
-  }, [open, allowBodyScroll]);
-
   const showDrawerClass = open ? 'Drawer--open' : '';
   const placementAxisClass = [Placement.Left, Placement.Right].includes(placement)
     ? 'Drawer--placement-x'
@@ -64,12 +47,29 @@ const Drawer: React.FC<DrawerProps> = ({
     showDrawerClass,
     mods
   );
-
   const overlayClasses = getClassName(
     'Drawer-overlay',
     open ? 'Drawer-overlay--open' : '',
     overlayMods
   );
+
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  const { setIsBodyScrollLocked } = useBodyScrollLock();
+
+  const handleClickOutside = React.useCallback(() => {
+    if (allowOverlayClose && closeFn && open) {
+      setIsBodyScrollLocked(false);
+      closeFn();
+    }
+  }, [allowOverlayClose, closeFn, open]);
+
+  useOnClickOutside(ref, handleClickOutside);
+
+  React.useEffect(() => {
+    setIsBodyScrollLocked(!allowBodyScroll && open);
+    return () => setIsBodyScrollLocked(false);
+  }, [open, allowBodyScroll]);
 
   return (
     <>
