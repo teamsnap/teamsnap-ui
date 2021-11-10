@@ -5,7 +5,7 @@ import { getClassName } from '../../utils/helpers';
 import { useOnClickOutside, useBodyScrollLock } from '../../hooks';
 import { Placement } from '../../types/placement';
 
-const drawerPropTypes = {
+const propTypes = {
   placement: PropTypes.oneOf(Object.values(Placement)),
   open: PropTypes.bool.isRequired,
   closeFn: PropTypes.func.isRequired,
@@ -19,7 +19,7 @@ const drawerPropTypes = {
   testId: PropTypes.string,
 };
 
-type DrawerProps = PropTypes.InferProps<typeof drawerPropTypes>;
+type DrawerProps = PropTypes.InferProps<typeof propTypes>;
 
 const Drawer: React.FC<DrawerProps> = ({
   placement = Placement.Right,
@@ -79,6 +79,18 @@ const Drawer: React.FC<DrawerProps> = ({
       {showOverlay && <div style={overlayStyle} className={overlayClasses}></div>}
     </>
   );
+};
+
+Drawer.defaultProps = {
+  placement: Placement.Right,
+  showOverlay: false,
+  allowOverlayClose: true,
+  allowBodyScroll: false,
+  style: {},
+  overlayStyle: {},
+  mods: null,
+  overlayMods: null,
+  testId: null,
 };
 
 export default Drawer;

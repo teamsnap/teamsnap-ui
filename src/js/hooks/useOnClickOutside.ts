@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const useOnClickOutside = (ref, handler) => {
+const useOnClickOutside = (ref: React.RefObject<HTMLElement>, handler: (event: Event) => void) => {
   const listener = (event) => {
     if (ref.current && !ref.current.contains(event.target)) {
       handler(event);
