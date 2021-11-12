@@ -34,6 +34,7 @@ const propTypes = {
   rightIcon: PropTypes.node,
   inputProps: PropTypes.object,
   mods: PropTypes.string,
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   otherProps: PropTypes.object,
   placeholder: PropTypes.string,
@@ -44,6 +45,7 @@ const propTypes = {
   onClearClicked: PropTypes.func,
   status: Status.PropType,
   isDisabled: PropTypes.bool,
+  testId: PropTypes.string,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -53,6 +55,7 @@ const Input = ({
   inputProps,
   leftIcon,
   mods,
+  id,
   name,
   otherProps,
   placeholder,
@@ -65,6 +68,7 @@ const Input = ({
   onClearClicked,
   status,
   isDisabled,
+  testId,
 }: Props) => {
   const inputClasses = getClassName(
     className,
@@ -74,12 +78,15 @@ const Input = ({
     'u-flex',
     mods
   );
+
+  id = id || name;
+
   return (
-    <div className={inputClasses} style={style} {...otherProps}>
+    <div className={inputClasses} style={style} data-testid={testId} {...otherProps}>
       {leftIcon && <div className="InputGroup-icon--left InputGroup-icon">{leftIcon}</div>}
       <input
         disabled={isDisabled}
-        id={name}
+        id={id}
         name={name}
         type={type}
         placeholder={placeholder}
@@ -121,6 +128,7 @@ Input.defaultProps = {
   placeholder: '',
   style: {},
   type: 'text',
+  testId: null,
 };
 
 export default Input;

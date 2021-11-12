@@ -2,7 +2,7 @@ import * as React from 'react';
 import Combobox from './Combobox';
 
 export default {
-  title: 'Combobox',
+  title: 'Components/Forms/Combobox',
 };
 
 export const Default = () => (

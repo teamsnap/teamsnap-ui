@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { text, boolean } from '@storybook/addon-knobs';
 import Button from './Button';
+import { ScreenReader } from '../ScreenReader';
 
 export default {
-  title: 'Button',
+  title: 'Components/Forms/Button',
 };
 
 export const Default = () => (
@@ -75,7 +76,11 @@ export const WithIcon = () => (
       isDisabled={boolean('Disabled', false)}
       mods="u-spaceRightSm"
       icon={text('Icon Small', 'home')}
-    />
+    >
+      <ScreenReader>
+        Home
+      </ScreenReader>
+    </Button>
     <Button
       isDisabled={boolean('Disabled', false)}
       mods="u-spaceRightSm"
@@ -99,6 +104,10 @@ export const WithIcon = () => (
       icon={text('Icon Right', 'right')}
       iconPosition="right"
       isDisabled={boolean('Disabled', false)}
-    />
+    >
+      <ScreenReader>
+        Next
+      </ScreenReader>
+    </Button>
   </div>
 );

@@ -22,10 +22,10 @@ import * as PropTypes from 'prop-types';
 import { Icon } from '../Icon';
 import { getClassName } from '../../utils/helpers';
 import { Size } from '../../types';
+import { ScreenReader } from '../ScreenReader';
 
 const propTypes = {
   type: PropTypes.oneOf(['button', 'submit', 'link', 'text']),
-  label: PropTypes.string,
   children: PropTypes.node,
   icon: PropTypes.string,
   iconPosition: PropTypes.oneOf(['left', 'right']),
@@ -37,8 +37,8 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
-  otherProps: PropTypes.object,
   testId: PropTypes.string,
+  otherProps: PropTypes.object,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -49,7 +49,6 @@ const Button = ({
   size,
   isActive,
   mods,
-  label,
   children,
   icon,
   iconPosition,
@@ -57,6 +56,7 @@ const Button = ({
   isDisabled,
   onClick,
   style,
+  testId,
   otherProps,
 }: Props) => {
   const cname = getClassName(
@@ -70,9 +70,14 @@ const Button = ({
   );
 
   let modifier = null;
-  const hasChildren = label != null || children != null;
-  if (iconPosition === 'left' && hasChildren) modifier = 'u-spaceRightXs';
-  if (iconPosition === 'right' && hasChildren) modifier = 'u-spaceLeftXs';
+
+  const hasVisibleChildren =
+    children != null &&
+    (Array.isArray(children) ||
+    (children as PropTypes.ReactElementLike).type !== ScreenReader);
+
+  if (iconPosition === 'left' && hasVisibleChildren) modifier = 'u-spaceRightXs';
+  if (iconPosition === 'right' && hasVisibleChildren) modifier = 'u-spaceLeftXs';
   const maybeIcon = icon ? <Icon name={icon} mods={modifier} /> : null;
 
   return (
@@ -82,11 +87,12 @@ const Button = ({
       style={style}
       onClick={onClick}
       disabled={isDisabled}
+      data-testid={testId}
       {...otherProps}
     >
       <span>
         {iconPosition === 'left' && maybeIcon}
-        {label || children}
+        {children}
         {iconPosition === 'right' && maybeIcon}
       </span>
     </button>
@@ -97,7 +103,6 @@ Button.propTypes = propTypes;
 
 Button.defaultProps = {
   type: 'button',
-  label: null,
   children: null,
   icon: null,
   iconPosition: 'left',
@@ -109,6 +114,7 @@ Button.defaultProps = {
   className: 'Button',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

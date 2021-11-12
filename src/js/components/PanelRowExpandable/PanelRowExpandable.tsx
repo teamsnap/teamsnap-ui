@@ -30,6 +30,7 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
@@ -42,6 +43,7 @@ const PanelRowExpandable = ({
   className,
   mods,
   style,
+  testId,
   otherProps,
 }: Props) => {
   const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
@@ -100,7 +102,12 @@ const PanelRowExpandable = ({
   const hasChildren = childColumns && childColumns.length > 0;
 
   return (
-    <div className={getClassName(className, mods)} style={style} {...otherProps}>
+    <div
+      className={getClassName(className, mods)}
+      style={style}
+      data-testid={testId}
+      {...otherProps}
+    >
       <PanelRow isWithCells isParent>
         {renderColumns(parentColumns, hasChildren)}
       </PanelRow>
@@ -116,6 +123,7 @@ PanelRowExpandable.defaultProps = {
   className: 'Panel-expandableRow',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

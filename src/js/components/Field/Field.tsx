@@ -50,6 +50,7 @@ const inputShape = PropTypes.shape({
 const fieldPropTypes = {
   type: PropTypes.oneOf(['toggle', 'select', 'input', 'checkbox', 'date']).isRequired,
   formFieldProps: PropTypes.oneOfType([checkboxShape, inputShape]),
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
   caption: PropTypes.string,
@@ -60,12 +61,14 @@ const fieldPropTypes = {
   isDisabled: PropTypes.bool,
   isInline: PropTypes.bool,
   style: PropTypes.any,
+  testId: PropTypes.string,
 };
 
 type FieldProps = PropTypes.InferProps<typeof fieldPropTypes>;
 
 const Field = ({
   type,
+  id,
   name,
   label,
   caption,
@@ -75,10 +78,17 @@ const Field = ({
   formFieldProps,
   isInline,
   style,
+  testId,
   ...otherProps
 }: FieldProps) => {
   return (
-    <FieldGroup style={style} isInline={isInline} status={status} isDisabled={isDisabled}>
+    <FieldGroup
+      style={style}
+      isInline={isInline}
+      status={status}
+      isDisabled={isDisabled}
+      data-testid={testId}
+    >
       {label && <FieldLabel name={name}>{label}</FieldLabel>}
       {((fieldProps) => {
         const {
@@ -99,6 +109,7 @@ const Field = ({
           case 'checkbox':
             return (
               <Checkbox
+                id={id}
                 name={name}
                 inputProps={{
                   checked,
@@ -112,6 +123,7 @@ const Field = ({
           case 'radio':
             return (
               <Radio
+                id={id}
                 name={name}
                 inputProps={{
                   checked,
@@ -125,6 +137,7 @@ const Field = ({
           default:
             return (
               <Input
+                id={id}
                 size={size}
                 placeholder={placeholder}
                 name={name}

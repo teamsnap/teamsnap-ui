@@ -2,7 +2,7 @@ import * as React from 'react';
 import Skittles from './Skittles';
 
 export default {
-  title: 'Skittles',
+  title: 'Components/Data Display/Skittles',
 };
 
 export const Default = () => (

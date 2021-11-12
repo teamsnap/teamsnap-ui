@@ -26,6 +26,7 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
@@ -40,6 +41,7 @@ const Grid = (props: PropTypes.InferProps<typeof propTypes>) => {
     className,
     mods,
     style,
+    testId,
     otherProps,
   } = props;
 
@@ -54,7 +56,7 @@ const Grid = (props: PropTypes.InferProps<typeof propTypes>) => {
   );
 
   return (
-    <div className={gridClasses} style={style} {...otherProps}>
+    <div className={gridClasses} style={style} data-testid={testId} {...otherProps}>
       {children}
     </div>
   );
@@ -69,6 +71,7 @@ Grid.defaultProps = {
   className: 'Grid',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

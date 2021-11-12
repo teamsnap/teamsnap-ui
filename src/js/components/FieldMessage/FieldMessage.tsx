@@ -21,12 +21,13 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
   status: Status.PropType,
 };
 
 const FieldMessage = (props: PropTypes.InferProps<typeof propTypes>) => {
-  const { children, className, mods, style, otherProps, status } = props;
+  const { children, className, mods, style, testId, otherProps, status } = props;
 
   const messageClasses = getClassName(
     'FieldGroup-message',
@@ -38,7 +39,7 @@ const FieldMessage = (props: PropTypes.InferProps<typeof propTypes>) => {
   );
 
   return (
-    <div className={messageClasses} style={style} {...otherProps}>
+    <div className={messageClasses} style={style} data-testid={testId} {...otherProps}>
       {children}
     </div>
   );
@@ -49,6 +50,7 @@ FieldMessage.defaultProps = {
   className: 'FieldGroup-message',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

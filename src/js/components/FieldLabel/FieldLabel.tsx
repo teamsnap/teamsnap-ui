@@ -20,14 +20,21 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
 const FieldLabel = (props: PropTypes.InferProps<typeof propTypes>) => {
-  const { name, children, className, mods, style, otherProps } = props;
+  const { name, children, className, mods, style, testId, otherProps } = props;
 
   return (
-    <label htmlFor={name} className={getClassName(className, mods)} style={style} {...otherProps}>
+    <label
+      htmlFor={name}
+      className={getClassName(className, mods)}
+      style={style}
+      data-testid={testId}
+      {...otherProps}
+    >
       {children}
     </label>
   );
@@ -38,6 +45,7 @@ FieldLabel.defaultProps = {
   className: 'FieldGroup-label',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

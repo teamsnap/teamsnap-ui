@@ -3,7 +3,7 @@ import { select } from '@storybook/addon-knobs';
 import RadialProgress from './RadialProgress';
 
 export default {
-  title: 'RadialProgress',
+  title: 'Components/Feedback/Progress/Radial Progress',
 };
 
 const sizeOptions = {

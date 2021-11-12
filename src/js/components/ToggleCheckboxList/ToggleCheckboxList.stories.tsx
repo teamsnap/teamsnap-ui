@@ -2,6 +2,11 @@ import * as React from 'react';
 import { ToggleCheckboxList } from '.';
 import { Tag } from '../Tag';
 
+export default {
+  title: 'Components/Data Display/ToggleCheckboxList',
+};
+
+
 const data = [
   {
     heading: '007 Blue Dodgeball',

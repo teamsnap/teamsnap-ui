@@ -1,6 +1,6 @@
 {
   "name": "@teamsnap/teamsnap-ui",
-  "version": "4.0.0-alpha.87",
+  "version": "4.0.0-alpha.94",
   "description": "a CSS component library for TeamSnap",
   "main": "dist/js/index.js",
   "types": "dist/js/index.d.ts",
@@ -69,8 +69,9 @@
     "babel-loader": "^8.0.0",
     "babel-preset-react-app": "^9.0.0",
     "babel-register": "^6.26.0",
-    "browser-sync": "^2.26.14",
+    "browser-sync": "^2.27.5",
     "css-loader": "^5.2.6",
+    "cz-conventional-changelog": "^3.3.0",
     "del": "^3.0.0",
     "dotenv-webpack": "^7.0.3",
     "eslint": "^7.30.0",
@@ -103,8 +104,7 @@
     "style-loader": "^2.0.0",
     "svgo": "^1.3.0",
     "ts-jest": "^27.0.4",
-    "typescript": "^4.0.3",
-    "webpack": "4"
+    "typescript": "^4.0.3"
   },
   "dependencies": {
     "@babel/node": "^7.5.5",
@@ -125,5 +125,10 @@
     "css-what": "^5.0.1",
     "glob-parent": "^5.1.2",
     "trim": "^0.0.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

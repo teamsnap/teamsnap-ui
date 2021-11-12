@@ -4,7 +4,7 @@ import { Button } from '../Button';
 import { Loader } from '../Loader';
 
 export default {
-  title: 'Modal',
+  title: 'Components/Surfaces/Modal',
 };
 
 export const Default = () => {
@@ -12,7 +12,7 @@ export const Default = () => {
 
   return (
     <>
-      <Button label="Test Modal" onClick={() => setSending(true)} />
+      <Button onClick={() => setSending(true)}>Test Modal</Button>
 
       <Modal
         heading={<div className="u-textCenter">Sending</div>}
@@ -32,7 +32,6 @@ export const ClosingTriggeredByAsyncAction = () => {
   return (
     <>
       <Button
-        label="Test Modal"
         onClick={() => {
           setTimeout(() => {
             setSending(false);
@@ -40,7 +39,9 @@ export const ClosingTriggeredByAsyncAction = () => {
 
           setSending(true);
         }}
-      />
+      >
+        Test Modal
+      </Button>
 
       <Modal heading={<div className="u-textCenter">Self closing modal</div>} show={sending}>
         <Loader type="spin" text="Sending" message="I close in 5 seconds." />
@@ -54,7 +55,7 @@ export const LongBodyText = () => {
 
   return (
     <>
-      <Button label="Test Modal" onClick={() => setSending(true)} />
+      <Button onClick={() => setSending(true)}>Test Modal</Button>
 
       <Modal
         heading="Sending"
@@ -159,7 +160,7 @@ export const Fullscreen = () => {
 
   return (
     <>
-      <Button label="Test Modal" onClick={() => setIsOpen(true)} />
+      <Button onClick={() => setIsOpen(true)}>Test Modal</Button>
 
       <Modal
         heading="Full bleed"
@@ -265,7 +266,7 @@ export const WithDescriptors = () => {
 
   return (
     <>
-      <Button label="Test Modal" onClick={() => setSending(true)} />
+      <Button onClick={() => setSending(true)}>Test Modal</Button>
 
       <Modal
         heading="Sending"
@@ -295,7 +296,7 @@ export const WithCloseButton = () => {
 
   return (
     <>
-      <Button label="Test Modal" onClick={() => setSending(true)} />
+      <Button onClick={() => setSending(true)}>Test Modal</Button>
 
       <Modal
         heading={<div className="u-textCenter">Sending</div>}
@@ -304,7 +305,9 @@ export const WithCloseButton = () => {
       >
         <Loader type="spin" text="Sending" message="Some really long message here" />
         <div className="Modal-footer u-textCenter">
-          <Button label="Close" color="negative" onClick={() => setSending(false)} icon="dismiss" />
+          <Button color="negative" onClick={() => setSending(false)} icon="dismiss">
+            Close
+          </Button>
         </div>
       </Modal>
     </>

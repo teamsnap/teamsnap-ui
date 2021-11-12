@@ -32,14 +32,15 @@ interface Tab {
 export interface Props {
   mods?: string;
   tabs: Tab[];
+  testId?: string;
 }
 
-const Tabs: React.FunctionComponent<Props> = ({ mods, tabs }: Props) => {
+const Tabs: React.FunctionComponent<Props> = ({ mods, tabs, testId }: Props) => {
   const [activeTabIndex, setActiveTabIndex] = React.useState(0);
   const boolMods = !!mods;
 
   return (
-    <div className={`Tabs ${boolMods ? mods : ''}`}>
+    <div className={`Tabs ${boolMods ? mods : ''}`} data-testid={testId}>
       <ul className="Tabs-header">
         {tabs.map((tab, index) => (
           <li

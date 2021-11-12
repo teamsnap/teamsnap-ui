@@ -27,7 +27,8 @@
   "exclude": [
     "node_modules",
     "dist",
-    "scripts"
+    "scripts",
+    "./src/**/*.stories.tsx"
   ],
   "awesomeTypescriptLoaderOptions": {
     "transpileOnly": true

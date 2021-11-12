@@ -7,11 +7,12 @@ const propTypes = {
   popupStyle: PropTypes.object,
   onAccept: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
+  testId: PropTypes.string,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
 
-const Popup = ({ buttonText, popUpText, popupStyle, onAccept, onCancel }: Props) => {
+const Popup = ({ buttonText, popUpText, popupStyle, onAccept, onCancel, testId }: Props) => {
   const popupRef = React.useRef<HTMLDivElement>(null);
   const [isPopupOpen, setIsPopupOpen] = React.useState<boolean>(false);
 
@@ -32,7 +33,7 @@ const Popup = ({ buttonText, popUpText, popupStyle, onAccept, onCancel }: Props)
   const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
   return (
-    <div className="Popup" ref={popupRef}>
+    <div className="Popup" data-testid={testId} ref={popupRef}>
       <button type="button" className="Button Button--small" onClick={togglePopup}>
         {buttonText}
       </button>

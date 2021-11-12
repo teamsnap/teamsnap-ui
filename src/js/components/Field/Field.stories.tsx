@@ -5,7 +5,7 @@ import { Icon } from '../Icon';
 import { Sizes as SizesEnum, CheckboxStates } from '../../types';
 
 export default {
-  title: 'Field',
+  title: 'Components/Forms/Field',
 };
 
 const statusOptions = {
@@ -361,7 +361,8 @@ export const Radios = () => {
             setFavoritePet('cat');
           },
         }}
-        name="Cats"
+        id="favorite-pet-cats"
+        name="favorite-pet"
       />
       <Field
         isInline
@@ -374,7 +375,8 @@ export const Radios = () => {
             setFavoritePet('dog');
           },
         }}
-        name="Dogs"
+        id="favorite-pet-dogs"
+        name="favorite-pet"
       />
       <Field
         isDisabled

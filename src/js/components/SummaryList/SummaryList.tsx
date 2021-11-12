@@ -40,6 +40,7 @@ const propTypes = {
   mods: PropTypes.string,
   style: PropTypes.object,
   hasBorder: PropTypes.bool,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
@@ -54,6 +55,7 @@ const SummaryList = ({
   mods,
   style,
   hasBorder,
+  testId,
   otherProps,
 }: Props) => {
   const renderColumn = (value) => <span>{value}</span>;
@@ -89,7 +91,7 @@ const SummaryList = ({
   const sectionStyle = hasBorder ? {} : { border: 0 };
 
   return (
-    <div className={summaryClasses} style={style} {...otherProps}>
+    <div className={summaryClasses} style={style} data-testid={testId} {...otherProps}>
       {hasHeading && renderHeading()}
 
       <ul className="SummaryList-section" style={sectionStyle}>
@@ -116,6 +118,7 @@ SummaryList.defaultProps = {
   mods: null,
   style: {},
   hasBorder: true,
+  testId: null,
   otherProps: {},
 };
 

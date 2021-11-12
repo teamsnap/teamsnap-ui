@@ -17,6 +17,7 @@ import { InputControl } from '../InputControl';
 import { CheckboxStates } from '../../types';
 
 const propTypes = {
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.node.isRequired,
   inputProps: PropTypes.any,
@@ -24,6 +25,7 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
@@ -43,6 +45,7 @@ Checkbox.defaultProps = {
   className: 'Checkbox',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

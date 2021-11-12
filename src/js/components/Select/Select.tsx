@@ -42,6 +42,7 @@ const propTypes = {
   style: PropTypes.object,
   otherProps: PropTypes.object,
   disabled: PropTypes.bool,
+  testId: PropTypes.string,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes> | any;
@@ -55,6 +56,7 @@ const Select = ({
   style,
   otherProps,
   disabled,
+  testId,
 }: Props) => {
   const renderOptions = (option) => {
     const { label, value, disabled: disabledProp } = option;
@@ -67,7 +69,12 @@ const Select = ({
   };
 
   return (
-    <div className={getClassName(className, mods)} style={style} {...otherProps}>
+    <div
+      className={getClassName(className, mods)}
+      style={style}
+      data-testid={testId}
+      {...otherProps}
+    >
       <select
         className="SelectBox-options"
         name={name}
@@ -86,6 +93,7 @@ Select.defaultProps = {
   className: 'SelectBox',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

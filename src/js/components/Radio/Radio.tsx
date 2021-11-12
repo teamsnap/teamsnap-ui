@@ -21,6 +21,7 @@ import * as PropTypes from 'prop-types';
 import { InputControl } from '../InputControl';
 
 const propTypes = {
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.node.isRequired,
   group: PropTypes.string.isRequired,
@@ -29,6 +30,7 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
@@ -42,6 +44,7 @@ Radio.defaultProps = {
   className: 'Checkbox Checkbox--radio',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

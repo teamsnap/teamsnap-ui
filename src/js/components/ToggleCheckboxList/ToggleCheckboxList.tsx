@@ -262,11 +262,12 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
       <div className="Grid-cell u-flex u-flexJustifyBetween u-spaceEndsLg u-flexAlignItemsCenter">
         <h4>{label}</h4>
         <Button
-          label={buttonLabel}
           mods="u-padSidesLg"
           isActive={activeRows.length === getFullChildCount(list)}
           onClick={() => toggleAllRows()}
-        />
+        >
+          {buttonLabel}
+        </Button>
       </div>
 
       <div className="Grid-cell">

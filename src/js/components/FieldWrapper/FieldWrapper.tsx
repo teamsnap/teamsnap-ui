@@ -35,6 +35,7 @@ const propTypes = {
   status: Status.PropType,
   label: PropTypes.node,
   message: PropTypes.string,
+  testId: PropTypes.string,
 };
 
 const FieldWrapper = (props: PropTypes.InferProps<typeof propTypes>) => {
@@ -75,10 +76,10 @@ const FieldWrapper = (props: PropTypes.InferProps<typeof propTypes>) => {
     return <FieldTag name={name} {...fieldProps} />;
   };
 
-  const { status, name, label, message } = props;
+  const { status, name, label, message, testId } = props;
 
   return (
-    <FieldGroup status={status}>
+    <FieldGroup status={status} testId={testId}>
       {label && <FieldLabel name={name}>{label} </FieldLabel>}
       {renderFieldComponent()}
       {message && <FieldMessage status={status}>{message}</FieldMessage>}
@@ -91,6 +92,7 @@ FieldWrapper.defaultProps = {
   status: null,
   label: null,
   message: null,
+  testId: null,
 };
 
 export default FieldWrapper;

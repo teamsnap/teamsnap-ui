@@ -3,7 +3,7 @@ import { text } from '@storybook/addon-knobs';
 import Nav from './Nav';
 
 export default {
-  title: 'Nav',
+  title: 'Components/Navigation/Nav',
 };
 
 export const Default = () => (
@@ -333,11 +333,13 @@ export const WithAllItemsOpen = () => (
       <Nav.Item
         icon="dashboard"
         isActive
-        wrapItem={({ children }: { children: React.ReactNode }) => (
-          <a href="https://go.teamsnap.com" target="_blank" rel="noreferrer">
-            {children}
-          </a>
-        )}
+        wrapItem={(props: any) => {
+          return (
+            <a href="https://go.teamsnap.com" target="_blank" rel="noreferrer">
+              {props.children}
+            </a>
+          );
+        }}
       >
         Dashboard
       </Nav.Item>
@@ -447,9 +449,9 @@ export const WithNavChildClass = () => (
       <Nav.Item
         icon="dashboard"
         isActive
-        wrapItem={({ children }: { children: React.ReactNode }) => (
+        wrapItem={(props: any) => (
           <a href="https://go.teamsnap.com" target="_blank" rel="noreferrer">
-            {children}
+            {props.children}
           </a>
         )}
       >
@@ -561,9 +563,9 @@ export const WithNavSelectedClass = () => (
       <Nav.Item
         icon="dashboard"
         isActive
-        wrapItem={({ children }: { children: React.ReactNode }) => (
+        wrapItem={(props: any) => (
           <a href="https://go.teamsnap.com" target="_blank" rel="noreferrer">
-            {children}
+            {props.children}
           </a>
         )}
       >
@@ -675,9 +677,9 @@ export const WithSingleOrganization = () => (
       <Nav.Item
         icon="dashboard"
         isActive
-        wrapItem={({ children }: { children: React.ReactNode }) => (
+        wrapItem={(props: any) => (
           <a href="https://go.teamsnap.com" target="_blank" rel="noreferrer">
-            {children}
+            {props.children}
           </a>
         )}
       >

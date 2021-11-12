@@ -21,12 +21,22 @@ const propTypes = {
   className: PropTypes.string,
   mods: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
 
-const Divider = ({ className, isIndented, isSpaced, isThick, mods, style, otherProps }: Props) => {
+const Divider = ({
+  className,
+  isIndented,
+  isSpaced,
+  isThick,
+  mods,
+  style,
+  testId,
+  otherProps,
+}: Props) => {
   const dividerClasses = getClassName(
     className,
     isIndented && 'Divider--indented',
@@ -35,7 +45,7 @@ const Divider = ({ className, isIndented, isSpaced, isThick, mods, style, otherP
     mods
   );
 
-  return <hr className={dividerClasses} style={style} {...otherProps} />;
+  return <hr className={dividerClasses} style={style} data-testid={testId} {...otherProps} />;
 };
 
 Divider.defaultProps = {
@@ -45,6 +55,7 @@ Divider.defaultProps = {
   className: 'Divider',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

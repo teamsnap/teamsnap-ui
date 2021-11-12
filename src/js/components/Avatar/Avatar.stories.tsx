@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import Avatar from './Avatar';
 
 export default {
-  title: 'Avatar',
+  title: 'Components/Data Display/Avatar',
 };
 
 export const Default = () => (

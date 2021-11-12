@@ -26,6 +26,7 @@ const propTypes = {
   otherProps: PropTypes.object,
   isDisabled: PropTypes.bool,
   isInline: PropTypes.bool,
+  testId: PropTypes.string,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -39,6 +40,7 @@ const FieldGroup = ({
   otherProps,
   isDisabled,
   isInline,
+  testId,
 }: Props) => {
   const fieldClasses = getClassName(
     className,
@@ -51,7 +53,7 @@ const FieldGroup = ({
   );
 
   return (
-    <div className={fieldClasses} style={style} {...otherProps}>
+    <div className={fieldClasses} style={style} data-testid={testId} {...otherProps}>
       {children}
     </div>
   );
@@ -62,6 +64,7 @@ FieldGroup.defaultProps = {
   className: 'FieldGroup',
   mods: null,
   style: {},
+  testId: null,
   otherProps: {},
 };
 

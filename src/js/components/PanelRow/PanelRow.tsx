@@ -24,6 +24,7 @@ const propTypes = {
   mods: PropTypes.string,
   role: PropTypes.string,
   style: PropTypes.object,
+  testId: PropTypes.string,
   otherProps: PropTypes.object,
 };
 
@@ -37,6 +38,7 @@ const PanelRow = ({
   mods,
   role,
   style,
+  testId,
   otherProps,
 }: Props) => {
   const panelClasses = getClassName(
@@ -47,7 +49,7 @@ const PanelRow = ({
   );
 
   return (
-    <div className={panelClasses} role={role} style={style} {...otherProps}>
+    <div className={panelClasses} role={role} style={style} data-testid={testId} {...otherProps}>
       {children}
     </div>
   );
@@ -60,6 +62,7 @@ PanelRow.defaultProps = {
   mods: null,
   role: 'row',
   style: {},
+  testId: null,
   otherProps: {},
 };
 
