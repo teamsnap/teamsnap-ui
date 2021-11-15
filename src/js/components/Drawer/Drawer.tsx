@@ -6,12 +6,12 @@ import { useOnClickOutside, useBodyScrollLock } from '../../hooks';
 import { Placement } from '../../types/placement';
 
 const propTypes = {
-  placement: PropTypes.oneOf(Object.values(Placement)),
+  placement: PropTypes.oneOf(Object.values(Placement)).isRequired,
   open: PropTypes.bool.isRequired,
   closeFn: PropTypes.func.isRequired,
-  showOverlay: PropTypes.bool,
-  allowOverlayClose: PropTypes.bool,
-  allowBodyScroll: PropTypes.bool,
+  showOverlay: PropTypes.bool.isRequired,
+  allowOverlayClose: PropTypes.bool.isRequired,
+  allowBodyScroll: PropTypes.bool.isRequired,
   style: PropTypes.object,
   overlayStyle: PropTypes.object,
   mods: PropTypes.string,
@@ -76,7 +76,7 @@ const Drawer: React.FC<DrawerProps> = ({
       <div ref={ref} className={classes} style={style} data-testid={testId}>
         {children}
       </div>
-      {showOverlay && <div style={overlayStyle} className={overlayClasses}></div>}
+      {showOverlay && <div style={overlayStyle} className={overlayClasses} />}
     </>
   );
 };
@@ -86,11 +86,6 @@ Drawer.defaultProps = {
   showOverlay: false,
   allowOverlayClose: true,
   allowBodyScroll: false,
-  style: {},
-  overlayStyle: {},
-  mods: null,
-  overlayMods: null,
-  testId: null,
 };
 
 export default Drawer;
