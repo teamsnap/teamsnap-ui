@@ -8,7 +8,7 @@ export interface Props {
   style?: React.CSSProperties;
   mods?: string;
   children: any;
-  onClick?: () => void;
+  onClick?: (e) => void;
   testId?: string;
 }
 
