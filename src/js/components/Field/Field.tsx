@@ -48,7 +48,7 @@ const inputShape = PropTypes.shape({
 });
 
 const fieldPropTypes = {
-  type: PropTypes.oneOf(['toggle', 'select', 'input', 'checkbox', 'date']).isRequired,
+  type: PropTypes.oneOf(['toggle', 'select', 'input', 'checkbox', 'date', 'radio']).isRequired,
   formFieldProps: PropTypes.oneOfType([checkboxShape, inputShape]),
   id: PropTypes.string,
   name: PropTypes.string.isRequired,
