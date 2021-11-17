@@ -15,7 +15,7 @@
   - Classic (for NJW): https://github.com/teamsnap/classic/blob/master/app/views/_header_head_tag.html.erb#L33
 
 #### What gets published?
-We use semantic release and conventional commits to determine what triggers a publish. You no longer need to publish v4, as our CI/CD pipeline will take care of that for you, however, you do have to follow the conventional commit message spec to trigger a build. Commitizen is a fantastic tool to help you follow the convention commit spec and we strongly recommend using that.
+We use [semantic release](https://github.com/semantic-release/semantic-release) and [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to determine what triggers a publish. You do not need to manually publish v4, as our CI/CD pipeline will take care of that for you, however, you do have to follow the conventional commit message spec to trigger a build. [Commitizen](https://github.com/commitizen/cz-cli) is a fantastic tool to help you follow the convention commit spec and we strongly recommend using that.
 
 **Note**
 
