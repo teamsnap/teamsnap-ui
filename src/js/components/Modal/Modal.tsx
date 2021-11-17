@@ -6,7 +6,7 @@ export interface Props {
   heading: React.ReactNode;
   show: boolean;
   children: React.ReactNode;
-  closeButton: React.ReactNode;
+  closeButton?: React.ReactNode;
   showClose?: boolean;
   allowOverlayClose?: boolean;
   style?: React.CSSProperties;
@@ -60,7 +60,7 @@ const Modal: React.FC<Props> = ({
         <div className="Modal-header u-flex u-flexJustifyBetween">
           <div className="u-sizeFill">
             <h2 data-testid="modal-heading">{heading}</h2>
-          </div>          
+          </div>
           {showClose && closeButton ? closeButton : (
             <div className="Modal-close">
               <Button
