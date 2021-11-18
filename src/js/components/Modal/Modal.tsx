@@ -61,17 +61,20 @@ const Modal: React.FC<Props> = ({
           <div className="u-sizeFill">
             <h2 data-testid="modal-heading">{heading}</h2>
           </div>
-          {showClose && closeButton ? closeButton : (
-            <div className="Modal-close">
-              <Button
-                type="link"
-                onClick={() => closeFn?.()}
-                icon="dismiss"
-                mods="u-colorNeutral9"
-                otherProps={{ 'data-testid': 'modal-heading-close-btn' }}
-              />
-            </div>
-          )}
+          { showClose && closeButton ? closeButton :
+            showClose && !closeButton ? 
+            (
+              <div className="Modal-close">
+                <Button
+                  type="link"
+                  onClick={() => closeFn?.() }
+                  icon="dismiss"
+                  mods="u-colorNeutral9"
+                  otherProps={{ 'data-testid': 'modal-heading-close-btn' }}
+                />
+              </div>
+            ) : null
+          }
         </div>
         <div className="Modal-body" data-testid="modal-body">
           {children}
