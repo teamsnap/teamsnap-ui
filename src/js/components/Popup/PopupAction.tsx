@@ -11,7 +11,7 @@ const propTypes = {
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   actions: PropTypes.arrayOf(
     PropTypes.shape({
-      text: PropTypes.string.isRequired,
+      text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
       callback: PropTypes.func.isRequired,
       requiresConfirmation: PropTypes.bool,
       confirmationText: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
