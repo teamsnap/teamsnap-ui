@@ -22,18 +22,28 @@
   min-width: 50%;
   height: auto;
   max-height: 90vh;
-  overflow: scroll;
+  overflow: hidden;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Modal-body {
+  flex: 1;
+  overflow: auto;
+}
+
+.Modal-header {
+  flex: 0 0 auto;
 }
 
 .Modal--fullscreen {
   background: white;
 
   .Modal-content {
-    position: relative;
     width: 100vw;
     height: 100vh;
     max-height: none;
@@ -43,8 +53,10 @@
     transform: none;
   }
 
-  .Modal-header,
   .Modal-body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     padding: 0;
   }
 }
