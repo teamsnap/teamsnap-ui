@@ -56,7 +56,7 @@ const fieldPropTypes = {
   caption: PropTypes.string,
   mods: PropTypes.string,
   status: Status.PropType,
-  ref: PropTypes.any,
+  inputRef: PropTypes.any,
   otherProps: PropTypes.any,
   isDisabled: PropTypes.bool,
   isInline: PropTypes.bool,
@@ -72,7 +72,7 @@ const Field = ({
   name,
   label,
   caption,
-  ref,
+  inputRef,
   status,
   isDisabled,
   formFieldProps,
@@ -123,6 +123,7 @@ const Field = ({
           case 'radio':
             return (
               <Radio
+                inputRef={inputRef}
                 id={id}
                 name={name}
                 inputProps={{

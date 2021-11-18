@@ -342,6 +342,8 @@ export const IndeterminateCheckbox = () => {
 export const Radios = () => {
   const [favoritePet, setFavoritePet] = React.useState('');
 
+  const ref = React.useRef();
+
   return (
     <>
       <h4>
@@ -351,6 +353,7 @@ export const Radios = () => {
       <br />
       <Field.Label>Favorite Pet?</Field.Label>
       <Field
+        inputRef={ref}
         isInline
         style={{ marginRight: '12px' }}
         type="radio"

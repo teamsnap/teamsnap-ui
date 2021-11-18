@@ -16,6 +16,7 @@ import { getClassName } from '../../utils/helpers';
 import { CheckboxStates } from '../../types';
 
 const propTypes = {
+  inputRef: PropTypes.any,
   id: PropTypes.string,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -32,6 +33,7 @@ const propTypes = {
 };
 
 const InputControl = ({
+  inputRef,
   id,
   name,
   label,
@@ -67,6 +69,7 @@ const InputControl = ({
   return (
     <div className={classes} style={style} {...otherProps} {...rest} data-testid={testId}>
       <input
+        ref={inputRef}
         className="Checkbox-input"
         type={type}
         name={group || name}

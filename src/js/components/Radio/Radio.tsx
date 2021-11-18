@@ -21,6 +21,7 @@ import * as PropTypes from 'prop-types';
 import { InputControl } from '../InputControl';
 
 const propTypes = {
+  inputRef: PropTypes.any,
   id: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.node.isRequired,
