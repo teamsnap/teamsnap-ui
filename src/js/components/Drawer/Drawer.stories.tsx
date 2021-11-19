@@ -53,7 +53,7 @@ const LoremIpsum = ({ num }) => {
   return (
     <>
       {Array.from(Array(num)).map((_, i) => (
-        <p style={{ marginBottom: 16 }}>
+        <p key={i} style={{ marginBottom: 16 }}>
           [{i + 1}] Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium sint non,
           voluptatum cum placeat distinctio labore, perferendis, magni itaque fuga voluptate
           laborum. Voluptatem voluptates natus alias maiores deleniti quo? Tempore!
