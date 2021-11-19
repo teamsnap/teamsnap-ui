@@ -11,7 +11,7 @@ const propTypes = {
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   actions: PropTypes.arrayOf(
     PropTypes.shape({
-      text: PropTypes.string.isRequired,
+      text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
       callback: PropTypes.func.isRequired,
       requiresConfirmation: PropTypes.bool,
       confirmationText: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
@@ -104,9 +104,9 @@ export default class PopUpAction extends React.Component<Props, State> {
           >
             <div className="Popup-content">
               <div className="u-textLeft">
-                {actions.map((action) => {
+                {actions.map((action, i) => {
                   return (
-                    <div key={action.text}>
+                    <div key={i}>
                       <button
                         type="button"
                         tabIndex={0}
