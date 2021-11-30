@@ -60,6 +60,10 @@ const propTypes = {
   hideRowsSelect: PropTypes.bool,
   includeBasicSearch: PropTypes.bool,
   loadData: PropTypes.func.isRequired,
+  /**
+   * @param {any} reloadDependency - The Table is reloaded every time this value changes
+   */
+  reloadDependency: PropTypes.any,
   mapDataToRow: PropTypes.func.isRequired,
   paginationPlacement: PropTypes.oneOf([Placement.Top, Placement.Bottom]),
   rowsAreSelectable: PropTypes.bool,
@@ -145,6 +149,7 @@ type PaginatedTableProps = React.FunctionComponent<PropTypes.InferProps<typeof p
 };
 const PaginatedTable: PaginatedTableProps = ({
   loadData,
+  reloadDependency,
   columns,
   mapDataToRow,
   defaultPage,
@@ -280,7 +285,7 @@ const PaginatedTable: PaginatedTableProps = ({
 
       if (typeof currentTotalItems === 'number') setTotalItems(currentTotalItems);
     });
-  }, [itemsPerPage, currentPage, sortName, sortAscending, searchTerm, activeFilters]);
+  }, [itemsPerPage, currentPage, sortName, sortAscending, searchTerm, activeFilters, reloadDependency]);
 
   React.useEffect(() => {
     setCurrentPage(1);
