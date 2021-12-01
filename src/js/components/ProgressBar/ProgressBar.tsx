@@ -16,26 +16,30 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import { useSpring, animated } from 'react-spring';
 
 import { getClassName } from '../../utils/helpers';
+import { Easing } from '../../utils/easing';
 
 const propTypes = {
-  progress: PropTypes.number,
+  animate: PropTypes.bool.isRequired,
+  progress: PropTypes.number.isRequired,
   size: PropTypes.string,
   color: PropTypes.string,
-  isPrecise: PropTypes.bool,
-  isVertical: PropTypes.bool,
-  isSquared: PropTypes.bool,
-  className: PropTypes.string,
+  isPrecise: PropTypes.bool.isRequired,
+  isVertical: PropTypes.bool.isRequired,
+  isSquared: PropTypes.bool.isRequired,
+  className: PropTypes.string.isRequired,
   mods: PropTypes.string,
-  style: PropTypes.object,
+  style: PropTypes.object.isRequired,
   testId: PropTypes.string,
-  otherProps: PropTypes.object,
+  otherProps: PropTypes.object.isRequired,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
 
 const ProgressBar = ({
+  animate,
   progress,
   color,
   size,
@@ -48,6 +52,22 @@ const ProgressBar = ({
   testId,
   otherProps,
 }: Props) => {
+  const springConfig = {
+    from: {
+      width: '0%',
+    },
+    to: {
+      width: `${progress}%`,
+    },
+    delay: 200,
+    config: {
+      duration: 800,
+      easing: Easing.easeInOut,
+    },
+  };
+
+  const animation = useSpring(springConfig);
+
   const progressClasses = getClassName(
     className,
     size && `ProgressBar--${size}`,
@@ -58,28 +78,27 @@ const ProgressBar = ({
     mods
   );
 
-  const progressWidth = {
-    [isVertical ? 'height' : 'width']: `${progress}%`,
-  };
+  const propertyKey = isVertical ? 'height' : 'width';
 
   return (
     <div className={progressClasses} style={style} data-testid={testId} {...otherProps}>
-      <div className="ProgressBar-status" style={progressWidth} />
+      {animate ? (
+        <animated.div className="ProgressBar-status" style={{ [propertyKey]: animation.width }} />
+      ) : (
+        <div className="ProgressBar-status" style={{ [propertyKey]: `${progress}%` }} />
+      )}
     </div>
   );
 };
 
 ProgressBar.defaultProps = {
+  animate: false,
   progress: 0,
-  size: null,
-  color: null,
   isPrecise: false,
   isVertical: false,
   isSquared: false,
   className: 'ProgressBar',
-  mods: null,
   style: {},
-  testId: null,
   otherProps: {},
 };
 
