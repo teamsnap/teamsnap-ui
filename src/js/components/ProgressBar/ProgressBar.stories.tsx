@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { select } from '@storybook/addon-knobs';
+import { Button } from '../Button';
 import ProgressBar from './ProgressBar';
 
 export default {
@@ -14,7 +15,17 @@ const sizeOptions = {
   xlarge: 'xlarge',
 };
 
-export const Default = () => <ProgressBar progress={33} />;
+export const Default = () => {
+  const [progress, setProgress] = React.useState(20);
+
+  return (
+    <>
+      <ProgressBar progress={progress} animate />
+      <br />
+      <Button onClick={() => setProgress(progress + 20)}>+20%</Button>
+    </>
+  );
+};
 
 export const VerticalBars = () => {
   const size = select('size', sizeOptions, null);

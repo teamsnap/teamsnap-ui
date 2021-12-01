@@ -110,10 +110,12 @@
     "@babel/node": "^7.5.5",
     "@babel/runtime": "^7.5.5",
     "@storybook/addon-a11y": "^6.3.10",
+    "bezier-easing": "^2.1.0",
     "core-js": "^3.1.4",
     "gulp-rename": "^2.0.0",
     "lodash": "^4.17.21",
-    "prop-types": "^15.6.1"
+    "prop-types": "^15.6.1",
+    "react-spring": "^9.3.0"
   },
   "peerDependencies": {
     "prettier": "^2.3.2",
