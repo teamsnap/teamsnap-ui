@@ -26,7 +26,10 @@ import { Button } from '../Button';
 
 interface Tab {
   heading: React.ReactNode;
-  content: React.ReactNode;
+  content?: React.ReactNode;
+  component?: typeof React.Component;
+  props?: object;
+  onLoad?: () => void;
 }
 
 export interface Props {
@@ -36,8 +39,32 @@ export interface Props {
 }
 
 const Tabs: React.FunctionComponent<Props> = ({ mods, tabs, testId }: Props) => {
-  const [activeTabIndex, setActiveTabIndex] = React.useState(0);
+  const initialTabIndex = 0;
+  const [activeTabIndex, setActiveTabIndex] = React.useState(initialTabIndex);
   const boolMods = !!mods;
+
+  const loadTab = (tabIndex) => {
+    const tab = tabs[tabIndex];
+    // console.log('tab', tab, typeof tab.content, tab.content)
+    // console.log('tab2', tab.content.toString(), tab.content.type['displayName'] || tab.content.type['name'])
+  //  const { type } = tab.content;
+  //   if (type === 'LazyLoadTab') {
+  //     console.log('is lazy load')
+  //   }
+
+    if (tab?.onLoad) {
+      tab.onLoad();
+    }
+  }
+
+  React.useEffect(() => {
+    loadTab(initialTabIndex);
+  }, []);
+
+  const changeTab = (tabIndex) => {
+    loadTab(tabIndex);
+    setActiveTabIndex(tabIndex);
+  }
 
   return (
     <div className={`Tabs ${boolMods ? mods : ''}`} data-testid={testId}>
@@ -49,7 +76,7 @@ const Tabs: React.FunctionComponent<Props> = ({ mods, tabs, testId }: Props) => 
           >
             <Button
               style={{ color: 'inherit' }}
-              onClick={() => setActiveTabIndex(index)}
+              onClick={() => changeTab(index)}
               type="link"
             >
               {tab.heading}
@@ -63,7 +90,8 @@ const Tabs: React.FunctionComponent<Props> = ({ mods, tabs, testId }: Props) => 
             key={`Tabs-contentItem-${index}`}
             className={`Tabs-contentItem ${index === activeTabIndex ? 'is-active' : ''}`}
           >
-            {tab.content}
+            {tab.component && index === activeTabIndex ? <tab.component {...tab.props}/> : null}
+            {!tab.component ? tab.content : null}
           </div>
         ))}
       </div>
