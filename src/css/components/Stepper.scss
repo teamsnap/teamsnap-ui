@@ -1,0 +1,70 @@
+/* ------------------------------------ */
+//  Form Pill portion of Stepper
+/* ------------------------------------ */
+
+/* hide arrows
+Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield !important;
+}
+
+.required-selector {
+  font-style: italic;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color ease 250ms;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+
+  &:hover {
+    color: #1364de !important;
+  }
+}
+
+.Pill {
+  transition: border-color ease 250ms;
+}
+
+.FormPill-validation-error {
+  margin-top: -16px;
+  color: #e26362;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+/* ------------------------------------ */
+//  Summary page portion of Stepper
+/* ------------------------------------ */
+.Summary {
+  display: flex;
+  justify-content: space-between;
+
+  padding-bottom: 1.5rem;
+  border: 0 solid #e5e5e5;
+  border-bottom-width: 1px;
+
+  &-row {
+    display: flex;
+    align-items: flex-start;
+
+    padding-top: 1.15em;
+    padding-bottom: 1.15em;
+    border: 0 solid #e5e5e5;
+    border-bottom-width: 1px;
+
+    &-item {
+      display: flex;
+    }
+  }
+}
