@@ -36,6 +36,20 @@ export const PopupActions = () => (
   </div>
 );
 
+export const PopupActionsNoHover = () => (
+  <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
+    <div>
+      <PopupAction
+        text="..."
+        actions={actions}
+        direction={['down', 'left']}
+        popupStyle={{ width: '150px' }}
+        showOnHover={false}
+      />
+    </div>
+  </div>
+);
+
 export const PopupActionsDownLeft = () => (
   <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
     <div>

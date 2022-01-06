@@ -21,12 +21,18 @@ const propTypes = {
   direction: PropTypes.arrayOf(
     PropTypes.oneOf(['down', 'right', 'left', 'rightHang', 'leftHang', 'overlay'])
   ),
+  showOnHover: PropTypes.bool,
   testId: PropTypes.string,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
 
 export default class PopUpAction extends React.Component<Props, State> {
+  // eslint-disable-next-line react/static-property-placement
+  static defaultProps = {
+    showOnHover: true,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -80,7 +86,7 @@ export default class PopUpAction extends React.Component<Props, State> {
   }
 
   render() {
-    const { actions, direction, popupStyle, text, testId } = this.props;
+    const { actions, direction, popupStyle, text, showOnHover, testId } = this.props;
     const { state } = this;
     const { isConfirmOpen, isPopupOpen, selectedAction } = state;
     const { callback, confirmationText, requiresConfirmation } = selectedAction;
@@ -90,7 +96,7 @@ export default class PopUpAction extends React.Component<Props, State> {
     }, '');
     return (
       <>
-        <div className="Popup Popup--hover" data-testid={testId}>
+        <div className={`Popup ${showOnHover && 'Popup--hover'}`} data-testid={testId}>
           <button
             type="button"
             className="Button Button--small"
