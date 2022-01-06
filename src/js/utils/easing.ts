@@ -1,6 +1,7 @@
 /**
  * Emulate CSS's native transition timing functions.
  *
+ *
  * https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function
  * https://easings.net/
  */
