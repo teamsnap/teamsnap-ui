@@ -48,7 +48,7 @@
     display: flex;
     justify-content: flex-end;
     color: $cu-info--light;
-    font-family: $tu-openSans-fontFamily;
+    font-family: $base-font-family;
     font-weight: $tu-bold-fontWeight;
     span {
       color: $ts-darkblue;
@@ -56,4 +56,3 @@
     }
   }
 }
-

@@ -46,12 +46,12 @@ $StepNav-spacing--xsmall: scaleGrid(-3);
     &.is-active,
     &.is-enabled a:hover {
       .StepNav-stepIcon {
-        box-shadow: 0 0 ($spacing / 2) $cu-primary--dark inset;
+        box-shadow: 0 0 ($spacing / 2) color-primary(7) inset;
       }
     }
     &.is-enabled a:hover {
       .StepNav-stepIcon {
-        box-shadow: 0 0 ($spacing / 2) $cu-primary--dark inset;
+        box-shadow: 0 0 ($spacing / 2) color-primary(7) inset;
       }
     }
   }
@@ -163,7 +163,7 @@ $StepNav-spacing--xsmall: scaleGrid(-3);
   text-align: center;
   margin: 0 auto;
   color: $cu-divider;
-  font-family: $tu-openSans-fontFamily;
+  font-family: $base-font-family;
   font-size: $tu-base-fontSize;
   position: absolute;
   top: 100%;
