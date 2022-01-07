@@ -51,6 +51,7 @@ const iconNames = {
   megaphone: 'megaphone',
   messages: 'messages',
   money: 'money',
+  'more-horiz': 'more-horiz',
   'new-season': 'new-season',
   'non-player': 'non-player',
   notifications: 'notifications',
