@@ -436,6 +436,7 @@ export const SelectableRows = () => (
     searchPlaceholder="Search members by name"
     defaultItemsPerPage={2}
     rowSelected={(selected) => {
+      // Returns the select rows
       console.log(selected);
     }}
   />
