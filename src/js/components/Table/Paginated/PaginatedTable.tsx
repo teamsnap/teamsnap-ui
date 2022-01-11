@@ -70,6 +70,7 @@ const propTypes = {
   searchPlaceholder: PropTypes.string,
   defaultSort: PropTypes.string,
   noResultsText: PropTypes.string,
+  rowSelected: PropTypes.func,
 };
 
 const SelectFilter = (
@@ -164,6 +165,7 @@ const PaginatedTable: PaginatedTableProps = ({
   paginationPlacement,
   defaultSort,
   noResultsText,
+  rowSelected,
 }) => {
   assert(
     !(filters.length && paginationPlacement === Placement.Top),
@@ -285,7 +287,15 @@ const PaginatedTable: PaginatedTableProps = ({
 
       if (typeof currentTotalItems === 'number') setTotalItems(currentTotalItems);
     });
-  }, [itemsPerPage, currentPage, sortName, sortAscending, searchTerm, activeFilters, reloadDependency]);
+  }, [
+    itemsPerPage,
+    currentPage,
+    sortName,
+    sortAscending,
+    searchTerm,
+    activeFilters,
+    reloadDependency,
+  ]);
 
   React.useEffect(() => {
     setCurrentPage(1);
@@ -294,6 +304,12 @@ const PaginatedTable: PaginatedTableProps = ({
   React.useEffect(() => {
     if (isResettingFilters) setIsResettingFilters(false);
   }, [isResettingFilters]);
+
+  React.useEffect(() => {
+    if (rowSelected) {
+      rowSelected(selected);
+    }
+  }, [selected]);
 
   const paginationItems = (
     <div

@@ -8,7 +8,6 @@ export default {
   title: 'Components/Data Display/Table/Paginated',
 };
 
-
 const eighteenYearsBirthdate = new Date();
 eighteenYearsBirthdate.setFullYear(eighteenYearsBirthdate.getFullYear() - 18);
 
@@ -436,6 +435,9 @@ export const SelectableRows = () => (
     includeBasicSearch
     searchPlaceholder="Search members by name"
     defaultItemsPerPage={2}
+    rowSelected={(selected) => {
+      console.log(selected);
+    }}
   />
 );
 
