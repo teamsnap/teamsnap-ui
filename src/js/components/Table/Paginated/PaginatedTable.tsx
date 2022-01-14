@@ -71,6 +71,7 @@ const propTypes = {
   defaultSort: PropTypes.string,
   noResultsText: PropTypes.string,
   rowSelected: PropTypes.func,
+  shouldClearSelectedRows: PropTypes.bool
 };
 
 const SelectFilter = (
@@ -166,6 +167,7 @@ const PaginatedTable: PaginatedTableProps = ({
   defaultSort,
   noResultsText,
   rowSelected,
+  shouldClearSelectedRows
 }) => {
   assert(
     !(filters.length && paginationPlacement === Placement.Top),
@@ -193,6 +195,11 @@ const PaginatedTable: PaginatedTableProps = ({
   const pageSizeOptions = defaultPageSizeOptions.concat(customOptions).sort((a, b) => {
     return a - b;
   });
+
+  React.useEffect(() => {
+    if (shouldClearSelectedRows)
+      setSelected([])
+  }, [shouldClearSelectedRows])
 
   const setNewItemsPerPage = (newItemsPerPage) => {
     setItemsPerPage(newItemsPerPage);

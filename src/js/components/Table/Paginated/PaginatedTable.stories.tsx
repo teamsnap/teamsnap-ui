@@ -3,6 +3,7 @@ import * as React from 'react';
 import PaginatedTable from './PaginatedTable';
 import { Placement } from '../../../types/placement';
 import { FilterValue } from './DateFilter';
+import { Button } from '../../Button';
 
 export default {
   title: 'Components/Data Display/Table/Paginated',
@@ -507,3 +508,31 @@ export const WithSearchFilters = () => (
     searchPlaceholder="Search members by name"
   />
 );
+
+export const ClearSelectedRows = () => {
+  const [shouldClearSelectedRows, setShouldClearSelectedRows] = React.useState(false)
+  const onClick = () => {
+    setShouldClearSelectedRows(true)
+    setTimeout(() => {
+      setShouldClearSelectedRows(false)
+    }, 1000)
+  }
+
+  return (
+    <>
+      <Button onClick={onClick}>Clear selected rows</Button>
+
+      <PaginatedTable
+        columns={columns}
+        mapDataToRow={mapData}
+        loadData={loadSearchData}
+        defaultItemsPerPage={2}
+        paginationPlacement={Placement.Bottom}
+        includeBasicSearch
+        searchPlaceholder="Search members by name"
+        rowsAreSelectable
+        shouldClearSelectedRows={shouldClearSelectedRows}
+      />
+    </>
+  );
+}
