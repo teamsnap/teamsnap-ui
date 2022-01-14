@@ -23,6 +23,10 @@ $Button-padding: 0 scaleGrid(2);
 $Button-hover-color: color-primary(5);
 $Button-active-color: color-primary(7);
 
+button {
+  font-family: $base-font-family;
+}
+
 .Button {
   background-color: $Button-bg;
   border: $Button-border-color solid $Button-border-width;
