@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PopupAction from './PopupAction';
+import PopupTooltip from './PopupTooltip';
 import PopupConfirmComponent from './PopupConfirm';
 import { Icon } from '../Icon';
 
@@ -28,7 +29,7 @@ export const PopupActions = () => (
   <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
     <div>
       <PopupAction
-        text={<Icon name='more-horiz'/>}
+        text={<Icon name="more-horiz" />}
         actions={actions}
         direction={['down', 'center']}
         popupStyle={{ width: '150px' }}
@@ -41,7 +42,7 @@ export const PopupActionsNoHover = () => (
   <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
     <div>
       <PopupAction
-        text={<Icon name='more-horiz'/>}
+        text={<Icon name="more-horiz" />}
         actions={actions}
         direction={['down', 'center']}
         popupStyle={{ width: '150px' }}
@@ -55,7 +56,7 @@ export const PopupActionsDownLeft = () => (
   <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
     <div>
       <PopupAction
-        text={<Icon name='more-horiz'/>}
+        text={<Icon name="more-horiz" />}
         actions={actions}
         direction={['down', 'left']}
         popupStyle={{ width: '150px' }}
@@ -68,7 +69,7 @@ export const PopupActionsDownRight = () => (
   <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
     <div>
       <PopupAction
-        text={<Icon name='more-horiz'/>}
+        text={<Icon name="more-horiz" />}
         actions={actions}
         direction={['down', 'right']}
         popupStyle={{ width: '150px' }}
@@ -81,7 +82,7 @@ export const PopupActionsDownLeftHang = () => (
   <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
     <div>
       <PopupAction
-        text={<Icon name='more-horiz'/>}
+        text={<Icon name="more-horiz" />}
         actions={actions}
         direction={['down', 'leftHang']}
         popupStyle={{ width: '150px' }}
@@ -94,7 +95,7 @@ export const PopupActionsDownRightHang = () => (
   <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
     <div>
       <PopupAction
-        text={<Icon name='more-horiz'/>}
+        text={<Icon name="more-horiz" />}
         actions={actions}
         direction={['down', 'rightHang']}
         popupStyle={{ width: '150px' }}
@@ -107,7 +108,7 @@ export const PopupActionsOverlay = () => (
   <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
     <div>
       <PopupAction
-        text={<Icon name='more-horiz'/>}
+        text={<Icon name="more-horiz" />}
         actions={actions}
         direction={['overlay']}
         popupStyle={{ width: '150px' }}
@@ -139,3 +140,11 @@ export const PopupConfirm = () => {
     </div>
   );
 };
+
+export const PopupTooltipExample = () => (
+  <div
+    style={{ display: 'flex', justifyContent: 'center', minHeight: '100px', paddingTop: '100px' }}
+  >
+    <PopupTooltip text="I'm a tooltip!">Hover Me</PopupTooltip>
+  </div>
+);
