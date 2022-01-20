@@ -222,6 +222,47 @@ $Popup-arrow-borderRadius: 3px;
   }
 }
 
+// * Tooltip modifier
+
+.Popup--tooltip {
+  span {
+    line-height: 1;
+    height: auto;
+    color: color-primary(6);
+    cursor: pointer;
+  }
+  .Popup-container {
+    position: fixed;
+    width: auto;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    text-align: center;
+    transform: translateX(0) translateY(-100%);
+    display: none;
+    visibility: hidden;
+
+    &.is-open {
+      display: block;
+      visibility: visible;
+    }
+    .Popup-content {
+      background-color: #1d2b35;
+    }
+    &::before {
+      top: auto;
+      bottom: -1 * $Popup-arrow-offset;
+      background-color: #1d2b35;
+    }
+    &::after {
+      top: auto;
+      bottom: -1 * ($Popup-arrow-offset - 1);
+      background-color: #1d2b35;
+    }
+  }
+}
+
 // * Animations
 
 @keyframes popIn {
