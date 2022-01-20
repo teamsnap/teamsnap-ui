@@ -3,17 +3,19 @@ import * as PropTypes from 'prop-types';
 
 const propTypes = {
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  popupStyle: PropTypes.object,
   testId: PropTypes.string,
+  ariaDescribeBy: PropTypes.string,
 };
 
 type Props = React.FunctionComponent<PropTypes.InferProps<typeof propTypes>>;
 
-const PopupTooltip: Props = ({ text, testId, children }) => {
+const PopupTooltip: Props = ({ text, testId, ariaDescribeBy, children }) => {
   const buttonRef = React.useRef<HTMLButtonElement | null>(null);
   const tooltipRef = React.useRef<HTMLDivElement | null>(null);
-  const [pos, setPos] = React.useState<{ top: number; left: number }>({ top: 0, left: 0 });
+  const [position, setPosition] = React.useState({ top: 0, left: 0 });
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+
+  const describedby = ariaDescribeBy ? ariaDescribeBy.toLocaleLowerCase().replace(/ /g, '-') : null;
 
   React.useEffect(() => {
     if (isPopupOpen) {
@@ -21,7 +23,7 @@ const PopupTooltip: Props = ({ text, testId, children }) => {
       const tooltip = tooltipRef.current.getBoundingClientRect();
       const buttonOffset = button.width / 2;
       const tooltipOffset = tooltip.width / 2;
-      setPos({
+      setPosition({
         top: buttonRef.current.getBoundingClientRect().top - 10,
         left: button.left + buttonOffset - tooltipOffset,
       });
@@ -36,18 +38,19 @@ const PopupTooltip: Props = ({ text, testId, children }) => {
         onMouseEnter={() => setIsPopupOpen(true)}
         onMouseLeave={() => setIsPopupOpen(false)}
       >
-        <button ref={buttonRef} type="button" className="Button Button--text">
+        <span aria-describedby={describedby} ref={buttonRef}>
           {children}
-        </button>
-        {isPopupOpen && (
-          <div
-            ref={tooltipRef}
-            className={`Popup-container`}
-            style={{ top: `${pos.top}px`, left: `${pos.left}px` }}
-          >
-            <div className="Popup-content u-padEndsXs u-padSidesMd u-colorNeutral3">{text}</div>
-          </div>
-        )}
+        </span>
+        <div
+          role="tooltip"
+          id={describedby}
+          aria-hidden={isPopupOpen ? true : false}
+          ref={tooltipRef}
+          className={`Popup-container ${isPopupOpen ? 'is-open' : ''}`}
+          style={{ top: `${position.top}px`, left: `${position.left}px` }}
+        >
+          <div className="Popup-content u-padEndsXs u-padSidesMd u-colorNeutral3">{text}</div>
+        </div>
       </div>
     </>
   );

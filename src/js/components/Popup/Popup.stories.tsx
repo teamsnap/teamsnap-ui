@@ -145,6 +145,8 @@ export const PopupTooltipExample = () => (
   <div
     style={{ display: 'flex', justifyContent: 'center', minHeight: '100px', paddingTop: '100px' }}
   >
-    <PopupTooltip text="I'm a tooltip!">Hover Me</PopupTooltip>
+    <PopupTooltip text="I'm a tooltip!" ariaDescribeBy="Tooltip Example">
+      Hover Me
+    </PopupTooltip>
   </div>
 );

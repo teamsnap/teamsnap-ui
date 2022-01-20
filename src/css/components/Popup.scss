@@ -225,9 +225,11 @@ $Popup-arrow-borderRadius: 3px;
 // * Tooltip modifier
 
 .Popup--tooltip {
-  button {
+  span {
     line-height: 1;
     height: auto;
+    color: color-primary(6);
+    cursor: pointer;
   }
   .Popup-container {
     position: fixed;
@@ -238,7 +240,13 @@ $Popup-arrow-borderRadius: 3px;
     right: auto;
     text-align: center;
     transform: translateX(0) translateY(-100%);
-    display: block;
+    display: none;
+    visibility: hidden;
+
+    &.is-open {
+      display: block;
+      visibility: visible;
+    }
     .Popup-content {
       background-color: #1d2b35;
     }
