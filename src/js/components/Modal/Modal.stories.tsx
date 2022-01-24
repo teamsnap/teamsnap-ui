@@ -165,7 +165,7 @@ export const Fullscreen = () => {
       <Modal
         heading="Full bleed"
         showClose
-        closeButton={<Button size='large'>Save and Exit</Button>}
+        closeButton={<Button onClick={() => setIsOpen(false)} size='large'>Save and Exit</Button>}
         show={isOpen}
         allowOverlayClose={false}
         closeFn={() => setIsOpen(false)}
