@@ -90,6 +90,8 @@ const iconArray = [
   'trash',
   'up',
   'video',
+  'visibility',
+  'visibility-off',
   'waiver',
 ];
 
