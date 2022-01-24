@@ -1,6 +1,4 @@
-// import * as React from 'react';
-
-import Container, { ContainerDirection } from './Container';
+import Container from './Container';
 
 export default {
   title: 'Components/Experimental/Surfaces/Container',
@@ -57,7 +55,7 @@ const Helper = {
 export const Default = () => {
   return (
     <Helper.Wrapper height={'auto'}>
-      <Container direction={ ContainerDirection.Column }>
+      <Container>
         <Container.Header>
           <Helper.Bookend>
             <h1>Container header</h1>
@@ -94,7 +92,7 @@ export const Default = () => {
 export const ParentWithSetHeight = () => {
   return (
     <Helper.Wrapper height={'500px'}>
-      <Container direction={ ContainerDirection.Column }>
+      <Container>
         <Container.Header>
           <Helper.Bookend>
             <h1>Container header</h1>
@@ -124,7 +122,7 @@ export const ParentWithSetHeight = () => {
 export const ContainerOverflowsParent = () => {
   return (
     <Helper.Wrapper height={'500px'}>
-      <Container direction={ ContainerDirection.Column }>
+      <Container>
         <Container.Header>
           <Helper.Bookend>
             <h1>Container header</h1>
@@ -156,7 +154,7 @@ export const ContainerOverflowsParent = () => {
 export const WithoutStyling = () => {
   return (
     <Helper.Wrapper height={'500px'}>
-      <Container direction={ ContainerDirection.Column }>
+      <Container>
         <Container.Header>
           <h1>Container header</h1>
         </Container.Header>

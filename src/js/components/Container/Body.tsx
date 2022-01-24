@@ -15,14 +15,11 @@ const Body = ({
   style = {},
   testId,
 }: BodyProps) => {
-  const bodyClassName = `
-    Container-body
-    ${className}
-  `;
+  const bodyClassName = `Container-body ${className} ${grow ? 'Container-body--grow' : ''}`;
 
   return (
     <div
-      className={ `${bodyClassName} ${grow ? 'Container-body--grow' : ''}` }
+      className={ bodyClassName }
       style={ { ...style } }
       data-testid={ testId }
     >
