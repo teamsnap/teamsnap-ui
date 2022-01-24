@@ -152,3 +152,31 @@ export const ContainerOverflowsParent = () => {
     </Helper.Wrapper>
   );
 };
+
+export const WithoutStyling = () => {
+  return (
+    <Helper.Wrapper height={'500px'}>
+      <Container direction={ ContainerDirection.Column }>
+        <Container.Header>
+          <h1>Container header</h1>
+        </Container.Header>
+
+        <Container.Body>
+          <div style={{ padding: '10px' }}>
+            <h2>Container body</h2>
+
+            <p style={{ marginBottom: 16 }}>
+              Here, the parent has a set height and the container's content becomes scrollable.
+            </p>
+
+            <Helper.LoremIpsum num={ 20 } />
+          </div>
+        </Container.Body>
+
+        <Container.Footer>
+          <h3>Container footer</h3>
+        </Container.Footer>
+      </Container>
+    </Helper.Wrapper>
+  );
+};
