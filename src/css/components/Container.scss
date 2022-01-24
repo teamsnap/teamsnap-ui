@@ -7,14 +7,4 @@
     flex-grow: 1;
     overflow: auto;
   }
-
-  &.Container--column {
-    flex-direction: column;
-  }
-
-  .Container-header,
-  .Container-body,
-  .Container-footer {
-    order: 1;
-  }
 }

@@ -45,7 +45,7 @@ const Container = ({
 
   const hasHeaderClassName = hasHeader ? 'Container--has-header' : '';
   const hasFooterClassName = hasFooter ? 'Container--has-footer' : '';
-  const flexDirectionClassName = direction === ContainerDirection.Column ? 'Container--column' : '';
+  const flexDirectionClassName = direction === ContainerDirection.Column ? 'u-flexCol' : '';
 
   const containerClassName = `
     Container
