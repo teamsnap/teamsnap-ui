@@ -11,7 +11,6 @@ export enum ContainerDirection {
 
 interface ContainerProps {
   children: React.ReactNode;
-  scroll?: boolean;
   direction?: ContainerDirection;
   className?: string;
   style?: object;
