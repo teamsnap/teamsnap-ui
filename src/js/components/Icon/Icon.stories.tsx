@@ -6,7 +6,7 @@ export default {
   title: 'Components/Data Display/Icon',
 };
 
-const iconArray = [
+const iconNames = [
   'add-event',
   'add-member',
   'alert',
@@ -115,7 +115,7 @@ const iconColors = {
 
 export const Default = () => (
   <Icon
-    name={select('Icon', iconArray, 'home')}
+    name={select('Icon', iconNames, 'home')}
     mods={`${select('Size', iconSizes, '')} ${select('Color', iconColors, '')}`}
   />
 );
@@ -128,13 +128,13 @@ export const Map = () => (
     gridColumnGap: '0px',
     gridRowGap: '32px',
   }}>
-    {iconArray.map((item) => (
+    {iconNames.map((icon) => (
       <div className="u-textCenter">
         <Icon
-          name={item}
+          name={icon}
           mods="u-fontSizeLg"
         />
-        <p>{item}</p>
+        <p>{icon}</p>
       </div>
     ))}
   </div>
