@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Container from './Container';
 
 export default {
@@ -6,7 +7,7 @@ export default {
 };
 
 const Helper = {
-  LoremIpsum: ({ num }) => {
+  LoremIpsum: ({ num }: { num: number }) => {
     return (
       <>
         {Array.from(Array(num)).map((_, i) => (
@@ -19,34 +20,40 @@ const Helper = {
       </>
     );
   },
-  Wrapper: ({ height = 'auto', children }) => (
-    <div style={{
-      height,
-      position: 'relative',
-      margin: '0 0 20px',
-      boxShadow: '2px 2px 8px rgba(0, 0, 0, 0.15)'
-    }}>
-      { children }
-      <pre style={{
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        backgroundColor: '#111',
-        color: '#fff',
-        padding: '0 5px',
-      }}>
-        Height: { height }
+  Wrapper: ({ height = 'auto', children }: { height: string; children: JSX.Element }) => (
+    <div
+      style={{
+        height,
+        position: 'relative',
+        margin: '0 0 20px',
+        boxShadow: '2px 2px 8px rgba(0, 0, 0, 0.15)',
+      }}
+    >
+      {children}
+      <pre
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          backgroundColor: '#111',
+          color: '#fff',
+          padding: '0 5px',
+        }}
+      >
+        Height: {height}
       </pre>
     </div>
   ),
-  Bookend: ({ children }) => {
+  Bookend: ({ children }: { children: JSX.Element }) => {
     return (
-      <div style={{
-        backgroundColor: 'rgb(239, 134, 50)',
-        padding: '5px 10px',
-        border: '2px solid rgb(200, 95, 10)',
-      }}>
-        { children }
+      <div
+        style={{
+          backgroundColor: 'rgb(239, 134, 50)',
+          padding: '5px 10px',
+          border: '2px solid rgb(200, 95, 10)',
+        }}
+      >
+        {children}
       </div>
     );
   },
@@ -54,7 +61,7 @@ const Helper = {
 
 export const Default = () => {
   return (
-    <Helper.Wrapper height={'auto'}>
+    <Helper.Wrapper height="auto">
       <Container>
         <Container.Header>
           <Helper.Bookend>
@@ -67,8 +74,8 @@ export const Default = () => {
             <h2>Container body</h2>
 
             <p style={{ marginBottom: 16 }}>
-              The Container component is a layout component. It expands to its parent height.
-              By default, the header and footer sit at the top and bottom while the body expands to
+              The Container component is a layout component. It expands to its parent height. By
+              default, the header and footer sit at the top and bottom while the body expands to
               fill the remaining height. If the body content is larger than the available space, the
               body becomes scrollable.
             </p>
@@ -91,7 +98,7 @@ export const Default = () => {
 
 export const ParentWithSetHeight = () => {
   return (
-    <Helper.Wrapper height={'500px'}>
+    <Helper.Wrapper height="500px">
       <Container>
         <Container.Header>
           <Helper.Bookend>
@@ -121,7 +128,7 @@ export const ParentWithSetHeight = () => {
 
 export const ContainerOverflowsParent = () => {
   return (
-    <Helper.Wrapper height={'500px'}>
+    <Helper.Wrapper height="500px">
       <Container>
         <Container.Header>
           <Helper.Bookend>
@@ -134,10 +141,10 @@ export const ContainerOverflowsParent = () => {
             <h2>Container body</h2>
 
             <p style={{ marginBottom: 16 }}>
-              Here, the parent has a set height and the container's content becomes scrollable.
+              Here, the parent has a set height and the container&apos;s content becomes scrollable.
             </p>
 
-            <Helper.LoremIpsum num={ 20 } />
+            <Helper.LoremIpsum num={20} />
           </div>
         </Container.Body>
 
@@ -153,7 +160,7 @@ export const ContainerOverflowsParent = () => {
 
 export const WithoutStyling = () => {
   return (
-    <Helper.Wrapper height={'500px'}>
+    <Helper.Wrapper height="500px">
       <Container>
         <Container.Header>
           <h1>Container header</h1>
@@ -164,10 +171,10 @@ export const WithoutStyling = () => {
             <h2>Container body</h2>
 
             <p style={{ marginBottom: 16 }}>
-              Here, the parent has a set height and the container's content becomes scrollable.
+              Here, the parent has a set height and the container&apos;s content becomes scrollable.
             </p>
 
-            <Helper.LoremIpsum num={ 20 } />
+            <Helper.LoremIpsum num={20} />
           </div>
         </Container.Body>
 
