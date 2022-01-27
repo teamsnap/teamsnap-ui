@@ -79,14 +79,14 @@ const Input = ({
     mods
   );
 
-  id = id || name;
+  const inputId = id || name;
 
   return (
     <div className={inputClasses} style={style} data-testid={testId} {...otherProps}>
       {leftIcon && <div className="InputGroup-icon--left InputGroup-icon">{leftIcon}</div>}
       <input
         disabled={isDisabled}
-        id={id}
+        id={inputId}
         name={name}
         type={type}
         placeholder={placeholder}

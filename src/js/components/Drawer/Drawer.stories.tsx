@@ -31,7 +31,15 @@ const useDrawerControls = () => {
   return { isDrawerOpen, openDrawer, closeDrawer };
 };
 
-const DrawerControls = ({ isDrawerOpen, openDrawer, closeDrawer }) => {
+const DrawerControls = ({
+  isDrawerOpen,
+  openDrawer,
+  closeDrawer,
+}: {
+  isDrawerOpen: boolean;
+  openDrawer: () => void;
+  closeDrawer: () => void;
+}) => {
   return (
     <>
       <Button onClick={openDrawer} color="primary" mods="u-spaceRightSm">
@@ -49,7 +57,7 @@ const DrawerControls = ({ isDrawerOpen, openDrawer, closeDrawer }) => {
   );
 };
 
-const LoremIpsum = ({ num }) => {
+const LoremIpsum = ({ num }: { num: number }) => {
   return (
     <>
       {Array.from(Array(num)).map((_, i) => (
@@ -63,15 +71,25 @@ const LoremIpsum = ({ num }) => {
   );
 };
 
-const DrawerPanel = ({ header, children, closeDrawer, fixedHeader = false }) => {
-  let headerStyle = {
+const DrawerPanel = ({
+  header,
+  children,
+  closeDrawer,
+  fixedHeader = false,
+}: {
+  header: string | JSX.Element;
+  children: JSX.Element | JSX.Element[];
+  closeDrawer: () => void;
+  fixedHeader?: boolean;
+}) => {
+  const headerStyle = {
     position: fixedHeader ? 'sticky' : 'static',
     top: '16px',
     backgroundColor: '#fff',
   };
 
   return (
-    <Panel mods={`u-spaceMd`}>
+    <Panel mods="u-spaceMd">
       <PanelHeader style={headerStyle}>
         <h3 style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
           {header}
@@ -107,8 +125,9 @@ export const Default = () => {
           <p>
             It is a fixed position element that can slide in from the left (default), top, right, or
             bottom. It can be configured to close when a click event is registered outside of itself
-            (much like a modal dialog). Its width/height can be set explicitly via the "style" prop.
-            By default, its width/height is determined by its childrens' dimensions.
+            (much like a modal dialog). Its width/height can be set explicitly via the
+            &quot;style&quot; prop. By default, its width/height is determined by its
+            childrens&apos; dimensions.
           </p>
         </DrawerPanel>
       </Drawer>
@@ -132,7 +151,7 @@ export const RightSideWithExplicitWidth = () => {
         <DrawerPanel header="Right side drawer with explicit width" closeDrawer={closeDrawer}>
           <p>
             This Drawer component slides in from the right side. Below is a ton of text to showcase
-            the component's ability to scroll in place with longer content.
+            the component&apos;s ability to scroll in place with longer content.
           </p>
 
           <Divider />
@@ -222,8 +241,8 @@ export const CustomTransition = () => {
       >
         <DrawerPanel header="Custom transition with a delayed animation" closeDrawer={closeDrawer}>
           <p>
-            This drawer has a custom transition passed in via the "style" prop. The animation is a
-            bit slower and it is delayed by 500ms.
+            This drawer has a custom transition passed in via the &quot;style&quot; prop. The
+            animation is a bit slower and it is delayed by 500ms.
           </p>
         </DrawerPanel>
       </Drawer>
