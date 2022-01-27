@@ -50,7 +50,7 @@ const Icon = ({ name, className, mods, style, testId, otherProps }: Props) => {
         data-testid={testId}
         {...icon.metadata}
         {...otherProps}
-        dangerouslySetInnerHTML={{ __html: icon.source }}
+        dangerouslySetInnerHTML={{ __html: icon.source }} // eslint-disable-line
       />
     );
   }
