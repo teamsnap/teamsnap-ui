@@ -65,41 +65,47 @@ h4, h5, h6 {
 }
 
 h1 {
-  font-size: $tu-xxlarge-fontSize;
+  font-size: $tu-base6-fontSize;
   line-height: $tu-base-lineHeight;
   letter-spacing: $tu-xxlarge-letterSpacing;
+  // @media (min-width: $breakpoint-sm) {
+  //   font-size: $tu-xxlarge-fontSize;
+  // }
 }
 
 h2 {
-  font-size: $tu-xlarge-fontSize;
+  font-size: $tu-base5-fontSize;
   line-height: $tu-base-lineHeight;
   letter-spacing: $tu-xlarge-letterSpacing;
+  // @media (min-width: $breakpoint-sm) {
+  //   font-size: $tu-xlarge-fontSize;
+  // }
 }
 
 h3 {
-  font-size: $tu-large-fontSize;
+  font-size: $tu-base4-fontSize;
   font-weight: $tu-semibold-fontWeight;
   line-height: $tu-base-lineHeight;
   letter-spacing: $tu-large-letterSpacing;
 }
 
 h4 {
-  font-size: $tu-base-fontSize;
+  font-size: $tu-base3-fontSize;
   font-weight: $tu-semibold-fontWeight;
   line-height: $tu-small-lineHeight;
   letter-spacing: $tu-base-letterSpacing;
 }
 
 h5 {
-  font-size: $tu-small-fontSize;
+  font-size: $tu-base2-fontSize;
   font-weight: $tu-semibold-fontWeight;
   line-height: $tu-small-lineHeight;
   letter-spacing: $tu-small-letterSpacing;
 }
 
 h6 {
-  font-size: $tu-small-fontSize;
-  font-weight: $tu-base-fontWeight;
+  font-size: $tu-base1-fontSize;
+  font-weight: $tu-semibold-fontWeight;
   line-height: $tu-small-lineHeight;
   letter-spacing: $tu-xsmall-letterSpacing;
 }

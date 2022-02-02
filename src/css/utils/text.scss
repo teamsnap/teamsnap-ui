@@ -53,6 +53,26 @@ $fontSizes: (
  }
 }
 
+$fontScale: (
+  '11': $tu-baseNeg2-fontSize,
+  '12': $tu-baseNeg1-fontSize,
+  '14': $tu-base-fontSize,
+  '16': $tu-base1-fontSize,
+  '18': $tu-base2-fontSize,
+  '20': $tu-base3-fontSize,
+  '22': $tu-base4-fontSize,
+  '25': $tu-base5-fontSize,
+  '28':$tu-base6-fontSize,
+  '32': $tu-base7-fontSize,
+);
+
+@each $name, $value in $fontScale {
+ .u-fontSize#{$name} {
+   font-size: #{$value} !important;
+ }
+}
+
+
 /**
  * Font weight utilities
  */

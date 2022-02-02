@@ -148,6 +148,20 @@ $tu-large-fontSize:             scaleFont($fontSize, 2) !default;
 $tu-xlarge-fontSize:            scaleFont($fontSize, 5) !default;
 $tu-xxlarge-fontSize:           scaleFont($fontSize, 6) !default;
 
+// Updated variables to cover our full typescale range
+
+$tu-baseNeg2-fontSize:         scaleFont($fontSize, -2) !default;
+$tu-baseNeg1-fontSize:         scaleFont($fontSize, -1) !default;
+$tu-base-fontSize:              scaleFont($fontSize, 0) !default;
+$tu-base1-fontSize:             scaleFont($fontSize, 1) !default;
+$tu-base2-fontSize:             scaleFont($fontSize, 2) !default;
+$tu-base3-fontSize:             scaleFont($fontSize, 3) !default;
+$tu-base4-fontSize:             scaleFont($fontSize, 4) !default;
+$tu-base5-fontSize:             scaleFont($fontSize, 5) !default;
+$tu-base6-fontSize:             scaleFont($fontSize, 6) !default;
+$tu-base7-fontSize:             scaleFont($fontSize, 7) !default;
+
+
 // Font Letter Spacing
 
 $tu-xsmall-letterSpacing: scaleFont($letterSpacing, -2) !default;
