@@ -41,6 +41,9 @@ $Checkbox-bg-color: $cu-foreground !default;
     &:before {
       height: $size;
       width: $size;
+      background-size: $size - 4px;
+      background-repeat: no-repeat;
+      background-position: 2px 2px;
     }
   }
 
@@ -173,9 +176,6 @@ $Checkbox-bg-color: $cu-foreground !default;
     top:  0;
     bottom: 0;
     transition: all ease 0.2s;
-    background-size: 90%;
-    background-repeat: no-repeat;
-    background-position: center center;
   }
 }
 
@@ -196,6 +196,7 @@ $Checkbox-bg-color: $cu-foreground !default;
   background-color: color-neutral(1);
   border: solid $border-width-small $cu-divider;
   background-size: 100%;
+  background-position: center;
   transition: none;
 }
 
