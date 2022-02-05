@@ -6,20 +6,60 @@ import { Meta, Canvas, Preview } from '@storybook/addon-docs';
 
 # Type Scale
 
-  TeamSnap UI uses a modular scale with a ratio of 1.125. This small ratio is an ideal scale for utility-based apps that have dense content.
+  TeamSnap UI uses a [modular scale](https://www.modularscale.com/?14&px&1.125) with a ratio of 1.125.
 
-  Select levels of the scale apply to headings and base type, but a wider range of scale levels are available via utility classes if tweaks need to be made without impacting semantic hierarchy.
-
-  Headings have responsive sizing applied so at small screens the larger sizes will automatically scale down.
+  The scale is applied to headings and base type, but type sizing can also be  applied via utility classes if tweaks need to be made without impacting semantic hierarchy.
 
 <Preview>
   <div className="u-spaceBetweenLg">
-    <h1>h1: A Visual Type Scale</h1>
-    <h2>h2: A Visual Type Scale</h2>
-    <h3>h3: A Visual Type Scale</h3>
-    <h4>h4: A Visual Type Scale</h4>
-    <h5>h5: A Visual Type Scale</h5>
-    <h6>h6: A Visual Type Scale</h6>
-    <p>p: A Visual Type Scale</p>
+    <h1>h1: A Visual Type Scale (28px)</h1>
+    <h2>h2: A Visual Type Scale (25px)</h2>
+    <h3>h3: A Visual Type Scale (22px)</h3>
+    <h4>h4: A Visual Type Scale (20px)</h4>
+    <h5>h5: A Visual Type Scale (18px)</h5>
+    <h6>h6: A Visual Type Scale (16px)</h6>
+    <p>Base: A Visual Type Scale (14px)</p>
   </div>
 </Preview>
+
+## Font Size Utility Classes
+
+<Canvas>
+  <div className="u-spaceBetweenLg">
+    <p className="u-fontSize32">u-fontSize32</p>
+    <p className="u-fontSize28">u-fontSize28</p>
+    <p className="u-fontSize25">u-fontSize25</p>
+    <p className="u-fontSize22">u-fontSize22</p>
+    <p className="u-fontSize20">u-fontSize20</p>
+    <p className="u-fontSize18">u-fontSize18</p>
+    <p className="u-fontSize16">u-fontSize16</p>
+    <p className="u-fontSize14">u-fontSize14</p>
+    <p className="u-fontSize12">u-fontSize12</p>
+    <p className="u-fontSize11">u-fontSize11</p>
+  </div>
+</Canvas>
+
+## Responsive Sizing
+
+In cases where font size needs to scale based on viewport size, font sizes can be applied independently at each breakpoint.
+
+<Canvas>
+  <div style={{
+    display:'grid',
+    gridTemplateColumns: 'repeat(4, 1fr)',
+    gridColumnGap: '16px'
+  }}>
+    {['xs', 'sm', 'md', 'lg'].map((breakpoint) => (
+      <div>
+        <h3><code>{breakpoint}</code> breakpoint </h3>
+        <div className="u-spaceBetweenSm">
+          {['10', '12', '14', '16', '18', '20', '22', '25', '28', '32'].map((size) => (
+            <div className="u-bgNeutral2 u-padMd">
+              <p>u-{breakpoint}-fontSize{size}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</Canvas>
