@@ -12,12 +12,12 @@ import { Meta, Canvas, Preview } from '@storybook/addon-docs';
 
 <Preview>
   <div className="u-spaceBetweenLg">
-    <h1>h1: A Visual Type Scale (28px)</h1>
+    <h1>h1: A Visual Type Scale (32px)</h1>
     <h2>h2: A Visual Type Scale (25px)</h2>
-    <h3>h3: A Visual Type Scale (22px)</h3>
-    <h4>h4: A Visual Type Scale (20px)</h4>
-    <h5>h5: A Visual Type Scale (18px)</h5>
-    <h6>h6: A Visual Type Scale (16px)</h6>
+    <h3>h3: A Visual Type Scale (20px)</h3>
+    <h4>h4: A Visual Type Scale (14px)</h4>
+    <h5>h5: A Visual Type Scale (12px)</h5>
+    <h6>h6: A Visual Type Scale (12px)</h6>
     <p>Base: A Visual Type Scale (14px)</p>
   </div>
 </Preview>
@@ -26,16 +26,18 @@ import { Meta, Canvas, Preview } from '@storybook/addon-docs';
 
 <Canvas>
   <div className="u-spaceBetweenLg">
-    <p className="u-fontSize32">u-fontSize32</p>
-    <p className="u-fontSize28">u-fontSize28</p>
-    <p className="u-fontSize25">u-fontSize25</p>
-    <p className="u-fontSize22">u-fontSize22</p>
-    <p className="u-fontSize20">u-fontSize20</p>
-    <p className="u-fontSize18">u-fontSize18</p>
-    <p className="u-fontSize16">u-fontSize16</p>
-    <p className="u-fontSize14">u-fontSize14</p>
-    <p className="u-fontSize12">u-fontSize12</p>
-    <p className="u-fontSize11">u-fontSize11</p>
+    <p className="u-fontSize5x">u-fontSize5x (32px)</p>
+    <p className="u-fontSize4x">u-fontSize4x (28px)</p>
+    <p className="u-fontSizeXxl u-bgNegative1">u-fontSizeXxl (28px) Deprecated</p>
+    <p className="u-fontSize3x">u-fontSize3x (25px)</p>
+    <p className="u-fontSizeXl u-bgNegative1">u-fontSizeXl (25px) Deprecated</p>
+    <p className="u-fontSize2x">u-fontSize2x (22px)</p>
+    <p className="u-fontSize1x">u-fontSize1x (20px)</p>
+    <p className="u-fontSizeLg">u-fontSizeLg (18px)</p>
+    <p className="u-fontSizeMd">u-fontSizeMd (16px)</p>
+    <p className="u-fontSizeBase">u-fontSizeBase (14px)</p>
+    <p className="u-fontSizeSm">u-fontSizeSm (12px)</p>
+    <p className="u-fontSizeXs">u-fontSizeXs (11px)</p>
   </div>
 </Canvas>
 
@@ -53,9 +55,9 @@ In cases where font size needs to scale based on viewport size, font sizes can b
       <div>
         <h3><code>{breakpoint}</code> breakpoint </h3>
         <div className="u-spaceBetweenSm">
-          {['10', '12', '14', '16', '18', '20', '22', '25', '28', '32'].map((size) => (
+          {['Xs', 'Sm', 'Base', 'Md', 'Lg', '1x', '2x', '3x', '4x', '5x'].map((size) => (
             <div className="u-bgNeutral2 u-padMd">
-              <p>u-{breakpoint}-fontSize{size}</p>
+              <p className={`u-${breakpoint}-fontSize${size}`}>u-{breakpoint}-fontSize{size}</p>
             </div>
           ))}
         </div>

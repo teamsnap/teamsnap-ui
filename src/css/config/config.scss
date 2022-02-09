@@ -140,26 +140,21 @@ $tu-bold-fontWeight:      700 !default;
 
 // Font Sizes
 
-$tu-xsmall-fontSize:           scaleFont($fontSize, -2) !default;
-$tu-small-fontSize:            scaleFont($fontSize, -1) !default;
-$tu-base-fontSize:              scaleFont($fontSize, 0) !default;
-$tu-medium-fontSize:            scaleFont($fontSize, 1) !default;
-$tu-large-fontSize:             scaleFont($fontSize, 2) !default;
+$tu-xsmall-fontSize:           scaleFont($fontSize, -2) !default; // 11px
+$tu-small-fontSize:            scaleFont($fontSize, -1) !default; // 12px
+$tu-base-fontSize:              scaleFont($fontSize, 0) !default; // 14px
+$tu-medium-fontSize:            scaleFont($fontSize, 1) !default; // 16px
+$tu-large-fontSize:             scaleFont($fontSize, 2) !default; // 18px
+$tu-1x-fontSize:                scaleFont($fontSize, 3) !default; // 20px
+$tu-2x-fontSize:                scaleFont($fontSize, 4) !default; // 22px
+$tu-3x-fontSize:                scaleFont($fontSize, 5) !default; // 25px
+$tu-4x-fontSize:                scaleFont($fontSize, 6) !default; // 28px
+$tu-5x-fontSize:                scaleFont($fontSize, 7) !default; // 32px
+
+
+// Deprecated
 $tu-xlarge-fontSize:            scaleFont($fontSize, 5) !default;
 $tu-xxlarge-fontSize:           scaleFont($fontSize, 6) !default;
-
-// Updated variables to cover our full typescale range
-
-$tu-fontSize11:            scaleFont($fontSize, -2) !default;
-$tu-fontSize12:            scaleFont($fontSize, -1) !default;
-$tu-fontSize14:             scaleFont($fontSize, 0) !default;
-$tu-fontSize16:             scaleFont($fontSize, 1) !default;
-$tu-fontSize18:             scaleFont($fontSize, 2) !default;
-$tu-fontSize20:             scaleFont($fontSize, 3) !default;
-$tu-fontSize22:             scaleFont($fontSize, 4) !default;
-$tu-fontSize25:             scaleFont($fontSize, 5) !default;
-$tu-fontSize28:             scaleFont($fontSize, 6) !default;
-$tu-fontSize32:             scaleFont($fontSize, 7) !default;
 
 
 // Font Letter Spacing

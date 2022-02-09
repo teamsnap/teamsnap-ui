@@ -41,8 +41,14 @@
 $fontSizes: (
   'Xs': $tu-xsmall-fontSize,
   'Sm': $tu-small-fontSize,
-  'Md': $tu-base-fontSize,
+  'Base': $tu-base-fontSize,
+  'Md': $tu-medium-fontSize,
   'Lg': $tu-large-fontSize,
+  '1x': $tu-1x-fontSize,
+  '2x': $tu-2x-fontSize,
+  '3x': $tu-3x-fontSize,
+  '4x': $tu-4x-fontSize,
+  '5x': $tu-5x-fontSize,
   'Xl': $tu-xlarge-fontSize,
   'Xxl': $tu-xxlarge-fontSize
 );
@@ -52,26 +58,6 @@ $fontSizes: (
    font-size: #{$value} !important;
  }
 }
-
-$fontScale: (
-  '11': $tu-fontSize11,
-  '12': $tu-fontSize12,
-  '14': $tu-fontSize14,
-  '16': $tu-fontSize16,
-  '18': $tu-fontSize18,
-  '20': $tu-fontSize20,
-  '22': $tu-fontSize22,
-  '25': $tu-fontSize25,
-  '28': $tu-fontSize28,
-  '32': $tu-fontSize32,
-);
-
-@each $name, $value in $fontScale {
- .u-fontSize#{$name} {
-   font-size: #{$value} !important;
- }
-}
-
 
 /**
  * Font weight utilities
@@ -112,12 +98,6 @@ $fontScale: (
 @if $responsive == true {
   @each $bp-name, $bp-value in $breakpoints {
     @media (min-width: $bp-value) {
-
-      @each $name, $value in $fontScale {
-       .u-#{$bp-name}-fontSize#{$name} {
-         font-size: #{$value} !important;
-       }
-      }
 
       @each $name, $value in $fontSizes {
        .u-#{$bp-name}-fontSize#{$name} {

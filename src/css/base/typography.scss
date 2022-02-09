@@ -18,7 +18,7 @@
 body {
   color: $base-font-color;
   font-family: $base-font-family;
-  font-size: $tu-fontSize14;
+  font-size: $tu-base-fontSize;
   font-weight: normal;
   font-style: normal;
   font-variant: normal;
@@ -65,41 +65,41 @@ h4, h5, h6 {
 }
 
 h1 {
-  font-size: $tu-fontSize28;
+  font-size: $tu-5x-fontSize;
   line-height: $tu-base-lineHeight;
   letter-spacing: $tu-xxlarge-letterSpacing;
 }
 
 h2 {
-  font-size: $tu-fontSize25;
+  font-size: $tu-3x-fontSize;
   line-height: $tu-base-lineHeight;
   letter-spacing: $tu-xlarge-letterSpacing;
 }
 
 h3 {
-  font-size: $tu-fontSize22;
+  font-size: $tu-1x-fontSize;
   font-weight: $tu-semibold-fontWeight;
   line-height: $tu-base-lineHeight;
   letter-spacing: $tu-large-letterSpacing;
 }
 
 h4 {
-  font-size: $tu-fontSize20;
+  font-size: $tu-base-fontSize;
   font-weight: $tu-semibold-fontWeight;
   line-height: $tu-small-lineHeight;
   letter-spacing: $tu-base-letterSpacing;
 }
 
 h5 {
-  font-size: $tu-fontSize18;
+  font-size: $tu-small-fontSize;
   font-weight: $tu-semibold-fontWeight;
   line-height: $tu-small-lineHeight;
   letter-spacing: $tu-small-letterSpacing;
 }
 
 h6 {
-  font-size: $tu-fontSize16;
-  font-weight: $tu-semibold-fontWeight;
+  font-size: $tu-small-fontSize;
+  font-weight: $tu-base-fontWeight;
   line-height: $tu-small-lineHeight;
   letter-spacing: $tu-xsmall-letterSpacing;
 }
