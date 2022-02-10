@@ -28,9 +28,7 @@ import { Meta, Canvas, Preview } from '@storybook/addon-docs';
   <div className="u-spaceBetweenLg">
     <p className="u-fontSize5x">u-fontSize5x (32px)</p>
     <p className="u-fontSize4x">u-fontSize4x (28px)</p>
-    <p className="u-fontSizeXxl u-bgNegative1">u-fontSizeXxl (28px) Deprecated</p>
     <p className="u-fontSize3x">u-fontSize3x (25px)</p>
-    <p className="u-fontSizeXl u-bgNegative1">u-fontSizeXl (25px) Deprecated</p>
     <p className="u-fontSize2x">u-fontSize2x (22px)</p>
     <p className="u-fontSize1x">u-fontSize1x (20px)</p>
     <p className="u-fontSizeLg">u-fontSizeLg (18px)</p>
@@ -41,9 +39,18 @@ import { Meta, Canvas, Preview } from '@storybook/addon-docs';
   </div>
 </Canvas>
 
+### Deprecated Classes
+
+<Canvas>
+  <div className="u-spaceBetweenLg">
+    <p className="u-fontSizeXxl u-bgNegative1">u-fontSizeXxl (28px) Deprecated</p>
+    <p className="u-fontSizeXl u-bgNegative1">u-fontSizeXl (25px) Deprecated</p>
+  </div>
+</Canvas>
+
 ## Responsive Sizing
 
-In cases where font size needs to scale based on viewport size, font sizes can be applied independently at each breakpoint.
+In cases where font size needs to scale based on viewport size, font sizes can be applied independently at each breakpoint. Change the viewport size to see the font sizes change.
 
 <Canvas>
   <div style={{
