@@ -16,13 +16,15 @@
 
 // * 1. Basic Math Helper Functions
 
+@use "sass:math";
+
 @function quarter($number) {
-  $number: round($number / 4);
+  $number: round($number * 0.25);
   @return $number
 }
 
 @function halve($number) {
-  $number: round($number / 2);
+  $number: round($number * 0.5);
   @return $number
 }
 
@@ -67,7 +69,7 @@
   @else if ($step < 0) {
     $step: convertNegative($step);
     @for $i from 1 through $step {
-      $property: $property / $ratio;
+      $property: math.div($property, $ratio);
     }
   }
 
@@ -162,7 +164,7 @@
 
     // halves base unit based on negative step values
     @for $i from 1 through $step {
-      $spacing: $spacing / 2;
+      $spacing: $spacing * 0.5;
     }
   }
 

@@ -71,6 +71,9 @@ $spaces: (
   .u-padSides#{$name} {
     padding-left: $value !important;
   }
+  .u-spaceBetween#{$name} > * + * {
+    margin-top: $value !important;
+  }
 }
 
 .u-spaceSidesAuto {

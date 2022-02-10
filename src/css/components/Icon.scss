@@ -50,7 +50,7 @@ $Icon--loader-duration: 1.4s;
    stroke-dashoffset: $Icon--loader-offset;
  }
  50% {
-   stroke-dashoffset: $Icon--loader-offset / 4;
+   stroke-dashoffset: $Icon--loader-offset * 0.25;
    transform: rotate(135deg);
  }
  100% {

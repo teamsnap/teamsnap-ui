@@ -65,19 +65,19 @@ h4, h5, h6 {
 }
 
 h1 {
-  font-size: $tu-xxlarge-fontSize;
+  font-size: $tu-5x-fontSize;
   line-height: $tu-base-lineHeight;
   letter-spacing: $tu-xxlarge-letterSpacing;
 }
 
 h2 {
-  font-size: $tu-xlarge-fontSize;
+  font-size: $tu-3x-fontSize;
   line-height: $tu-base-lineHeight;
   letter-spacing: $tu-xlarge-letterSpacing;
 }
 
 h3 {
-  font-size: $tu-large-fontSize;
+  font-size: $tu-1x-fontSize;
   font-weight: $tu-semibold-fontWeight;
   line-height: $tu-base-lineHeight;
   letter-spacing: $tu-large-letterSpacing;

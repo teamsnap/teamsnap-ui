@@ -279,7 +279,7 @@
   white-space: nowrap;
   border-top: 1px solid color-primary(8);
   cursor: pointer;
-  padding: (scaleGrid(3) / 2) scaleGrid(3);
+  padding: (scaleGrid(3) * 0.5) scaleGrid(3);
   color: color-neutral(1);
   .Icon {
     transition: transform 0.2s ease-in-out;
