@@ -5,3 +5,82 @@ $responsive: true;
 @import "base/index";
 @import "components/index";
 @import "utils/index";
+
+
+// Import self-hosted fonts here to resolve path issues when consumed as node module by external libraries
+
+/* Webfont: LatoLatin-Regular */
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/fonts/lato/LatoLatin-Regular.eot'); /* IE9 Compat Modes */
+    src: url('../assets/fonts/lato/LatoLatin-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../assets/fonts/lato/LatoLatin-Regular.woff2') format('woff2'), /* Modern Browsers */
+         url('../assets/fonts/lato/LatoLatin-Regular.woff') format('woff'), /* Modern Browsers */
+         url('../assets/fonts/lato/LatoLatin-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-Italic */
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/fonts/lato/LatoLatin-Italic.eot'); /* IE9 Compat Modes */
+    src: url('../assets/fonts/lato/LatoLatin-Italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../assets/fonts/lato/LatoLatin-Italic.woff2') format('woff2'), /* Modern Browsers */
+         url('../assets/fonts/lato/LatoLatin-Italic.woff') format('woff'), /* Modern Browsers */
+         url('../assets/fonts/lato/LatoLatin-Italic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-Semibold */
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/fonts/lato/LatoLatin-Semibold.eot'); /* IE9 Compat Modes */
+    src: url('../assets/fonts/lato/LatoLatin-Semibold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../assets/fonts/lato/LatoLatin-Semibold.woff2') format('woff2'), /* Modern Browsers */
+         url('../assets/fonts/lato/LatoLatin-Semibold.woff') format('woff'), /* Modern Browsers */
+         url('../assets/fonts/lato/LatoLatin-Semibold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 600;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-SemiboldItalic */
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/fonts/lato/LatoLatin-SemiboldItalic.eot'); /* IE9 Compat Modes */
+    src: url('../assets/fonts/lato/LatoLatin-SemiboldItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../assets/fonts/lato/LatoLatin-SemiboldItalic.woff2') format('woff2'), /* Modern Browsers */
+         url('../assets/fonts/lato/LatoLatin-SemiboldItalic.woff') format('woff'), /* Modern Browsers */
+         url('../assets/fonts/lato/LatoLatin-SemiboldItalic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: 600;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-Bold */@font-face {
+    font-family: 'Lato';
+    src: url('../assets/fonts/lato/LatoLatin-Bold.eot'); /* IE9 Compat Modes */
+    src: url('../assets/fonts/lato/LatoLatin-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../assets/fonts/lato/LatoLatin-Bold.woff2') format('woff2'), /* Modern Browsers */
+         url('../assets/fonts/lato/LatoLatin-Bold.woff') format('woff'), /* Modern Browsers */
+         url('../assets/fonts/lato/LatoLatin-Bold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-BoldItalic */@font-face {
+    font-family: 'Lato';
+    src: url('../assets/fonts/lato/LatoLatin-BoldItalic.eot'); /* IE9 Compat Modes */
+    src: url('../assets/fonts/lato/LatoLatin-BoldItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../assets/fonts/lato/LatoLatin-BoldItalic.woff2') format('woff2'), /* Modern Browsers */
+         url('../assets/fonts/lato/LatoLatin-BoldItalic.woff') format('woff'), /* Modern Browsers */
+         url('../assets/fonts/lato/LatoLatin-BoldItalic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+}

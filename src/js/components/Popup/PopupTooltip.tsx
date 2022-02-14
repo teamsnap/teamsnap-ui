@@ -5,7 +5,7 @@ const propTypes = {
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   testId: PropTypes.string,
   ariaDescribeBy: PropTypes.string,
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
