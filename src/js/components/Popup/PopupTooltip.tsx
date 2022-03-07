@@ -5,12 +5,13 @@ const propTypes = {
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   testId: PropTypes.string,
   ariaDescribeBy: PropTypes.string,
+  mods: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
 
-const PopupTooltip = ({ text, testId, ariaDescribeBy, children }: Props) => {
+const PopupTooltip = ({ text, testId, ariaDescribeBy, mods, children }: Props) => {
   const buttonRef = React.useRef<HTMLButtonElement | null>(null);
   const tooltipRef = React.useRef<HTMLDivElement | null>(null);
   const [position, setPosition] = React.useState({ top: 0, left: 0 });
@@ -34,7 +35,7 @@ const PopupTooltip = ({ text, testId, ariaDescribeBy, children }: Props) => {
   return (
     <>
       <div
-        className="Popup Popup--tooltip"
+        className={`Popup Popup--tooltip ${mods}`}
         data-testid={testId}
         onMouseEnter={() => setIsPopupOpen(true)}
         onMouseLeave={() => setIsPopupOpen(false)}
