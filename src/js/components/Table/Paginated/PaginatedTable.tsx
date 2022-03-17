@@ -16,6 +16,7 @@ import ComboBox from '../../ComboBox/Combobox';
 import { assert } from '../../../utils/assert';
 import { Button } from '../../Button';
 import { Panel } from '../../Panel';
+import { exportToCsv } from '../../../utils/export';
 
 // eslint-disable-next-line import/no-named-default
 import { default as DateFilterComponent } from './DateFilter';
@@ -71,6 +72,8 @@ const propTypes = {
   defaultSort: PropTypes.string,
   noResultsText: PropTypes.string,
   rowSelected: PropTypes.func,
+  shouldClearSelectedRows: PropTypes.bool,
+  onExport: PropTypes.func,
 };
 
 const SelectFilter = (
@@ -148,6 +151,7 @@ type PaginatedTableProps = React.FunctionComponent<PropTypes.InferProps<typeof p
   SelectFilter: typeof SelectFilter;
   DateFilter: typeof DateFilter;
 };
+
 const PaginatedTable: PaginatedTableProps = ({
   loadData,
   reloadDependency,
@@ -166,6 +170,8 @@ const PaginatedTable: PaginatedTableProps = ({
   defaultSort,
   noResultsText,
   rowSelected,
+  shouldClearSelectedRows,
+  onExport = null,
 }) => {
   assert(
     !(filters.length && paginationPlacement === Placement.Top),
@@ -176,7 +182,7 @@ const PaginatedTable: PaginatedTableProps = ({
     defaultItemsPerPage || 10,
     defaultPage || 1
   );
-  const [totalItems, setTotalItems] = React.useState<number | null>(null);
+  const [totalItems, setTotalItems] = React.useState<number>(0);
   const [dataSet, setDataSet] = React.useState([]);
   const [sortName, setSortName] = React.useState('');
   const [sortAscending, setSortAscending] = React.useState(false);
@@ -193,6 +199,11 @@ const PaginatedTable: PaginatedTableProps = ({
   const pageSizeOptions = defaultPageSizeOptions.concat(customOptions).sort((a, b) => {
     return a - b;
   });
+
+  React.useEffect(() => {
+    if (shouldClearSelectedRows)
+      setSelected([])
+  }, [shouldClearSelectedRows])
 
   const setNewItemsPerPage = (newItemsPerPage) => {
     setItemsPerPage(newItemsPerPage);
@@ -385,26 +396,49 @@ const PaginatedTable: PaginatedTableProps = ({
         </div>
         {shouldPaginateAtTop && paginationItems}
         {!shouldPaginateAtTop && (
-          <div>
-            <Button
-              isActive={filterLength > 0 || filterOpen}
-              onClick={() => {
-                setFilterOpen(!filterOpen);
-              }}
-              mods="u-spaceLeftSm"
-              icon="wrench"
-            >
-              Filter{' '}
-              {filterLength > 0 ? (
-                <span
-                  className="u-bgPrimary7 u-colorNeutral1 u-fontSizeXs"
-                  style={{ borderRadius: '50px', padding: '1px 4px' }}
+          <>
+            <div>
+              <Button
+                isActive={filterLength > 0 || filterOpen}
+                onClick={() => {
+                  setFilterOpen(!filterOpen);
+                }}
+                mods="u-spaceLeftSm"
+                icon="wrench"
+              >
+                Filter{' '}
+                {filterLength > 0 ? (
+                  <span
+                    className="u-bgPrimary7 u-colorNeutral1 u-fontSizeXs"
+                    style={{ borderRadius: '50px', padding: '1px 4px' }}
+                  >
+                    {filterLength}
+                  </span>
+                ) : null}
+              </Button>
+            </div>
+            { onExport && (
+              <div>
+                <Button
+                  isActive={dataSet.length > 0}
+                  onClick={() => {
+                    onExport({
+                      exportToCsv,
+                      page: currentPage,
+                      itemsPerPage,
+                      sortBy: sortName,
+                      sortAsc: sortAscending,
+                      filter: includeBasicSearch || activeFilters ? { searchTerm, ...activeFilters } : null,
+                    });
+                  }}
+                  mods="u-spaceLeftSm"
+                  icon="download"
                 >
-                  {filterLength}
-                </span>
-              ) : null}
-            </Button>
-          </div>
+                  Export
+                </Button>
+              </div>
+            ) }
+          </>
         )}
       </div>
       <Panel
@@ -415,7 +449,7 @@ const PaginatedTable: PaginatedTableProps = ({
         <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
           <div className="u-size7of8">
             {!isResettingFilters &&
-              filters.map((Item, index) => <Item isLast={index === filters.length - 1} />)}
+              filters.map((Item, index) => <Item key={index} isLast={index === filters.length - 1} />)}
           </div>
           <div className="u-size1of8 u-textRight u-spaceRightMd">
             <Button

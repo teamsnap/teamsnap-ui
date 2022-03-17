@@ -17,7 +17,7 @@
 
 $form-input-height: $su-xlarge !default;
 $form-input-line-height: $su-xlarge - 2 !default;
-$form-input-bg-color: $cu-foreground--dark !default;
+$form-input-bg-color: $cu-foreground !default;
 
 // * 2. Base Input
 
@@ -39,7 +39,7 @@ $form-input-bg-color: $cu-foreground--dark !default;
   transition: all ease 0.2s;
 
   &:disabled {
-    background: $cu-middleground--dark;
+    background: $cu-middleground;
     color: $ts-grey;
     cursor: not-allowed;
   }
@@ -50,7 +50,6 @@ $form-input-bg-color: $cu-foreground--dark !default;
 
   &:focus {
     outline: none;
-    box-shadow: 0px 0px 15px -5px color-primary(3);
   }
 
   &::-ms-clear {
@@ -62,7 +61,7 @@ $form-input-bg-color: $cu-foreground--dark !default;
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0px 1000px $cu-foreground--dark inset;
+  -webkit-box-shadow: 0 0 0px 1000px $cu-foreground inset;
   -webkit-text-fill-color: $cu-info;
 }
 

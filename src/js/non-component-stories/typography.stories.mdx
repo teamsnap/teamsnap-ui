@@ -1,0 +1,74 @@
+<!--- typography.stories.mdx -->
+
+import { Meta, Canvas, Preview } from '@storybook/addon-docs';
+
+<Meta title="Patterns/Typography" />
+
+# Type Scale
+
+  TeamSnap UI uses a [modular scale](https://www.modularscale.com/?14&px&1.125) with a ratio of 1.125.
+
+  The scale is applied to headings and base type, but type sizing can also be  applied via utility classes if tweaks need to be made without impacting semantic hierarchy.
+
+<Preview>
+  <div className="u-spaceBetweenLg">
+    <h1>h1: A Visual Type Scale (32px)</h1>
+    <h2>h2: A Visual Type Scale (25px)</h2>
+    <h3>h3: A Visual Type Scale (20px)</h3>
+    <h4>h4: A Visual Type Scale (14px)</h4>
+    <h5>h5: A Visual Type Scale (12px)</h5>
+    <h6>h6: A Visual Type Scale (12px)</h6>
+    <p>Base: A Visual Type Scale (14px)</p>
+  </div>
+</Preview>
+
+## Font Size Utility Classes
+
+<Canvas>
+  <div className="u-spaceBetweenLg">
+    <p className="u-fontSize5x">u-fontSize5x (32px)</p>
+    <p className="u-fontSize4x">u-fontSize4x (28px)</p>
+    <p className="u-fontSize3x">u-fontSize3x (25px)</p>
+    <p className="u-fontSize2x">u-fontSize2x (22px)</p>
+    <p className="u-fontSize1x">u-fontSize1x (20px)</p>
+    <p className="u-fontSizeLg">u-fontSizeLg (18px)</p>
+    <p className="u-fontSizeMd">u-fontSizeMd (16px)</p>
+    <p className="u-fontSizeBase">u-fontSizeBase (14px)</p>
+    <p className="u-fontSizeSm">u-fontSizeSm (12px)</p>
+    <p className="u-fontSizeXs">u-fontSizeXs (11px)</p>
+  </div>
+</Canvas>
+
+### Deprecated Classes
+
+<Canvas>
+  <div className="u-spaceBetweenLg">
+    <p className="u-fontSizeXxl u-bgNegative1">u-fontSizeXxl (28px) Deprecated</p>
+    <p className="u-fontSizeXl u-bgNegative1">u-fontSizeXl (25px) Deprecated</p>
+  </div>
+</Canvas>
+
+## Responsive Sizing
+
+In cases where font size needs to scale based on viewport size, font sizes can be applied independently at each breakpoint. Change the viewport size to see the font sizes change.
+
+<Canvas>
+  <div style={{
+    display:'grid',
+    gridTemplateColumns: 'repeat(4, 1fr)',
+    gridColumnGap: '16px'
+  }}>
+    {['xs', 'sm', 'md', 'lg'].map((breakpoint) => (
+      <div>
+        <h3><code>{breakpoint}</code> breakpoint </h3>
+        <div className="u-spaceBetweenSm">
+          {['Xs', 'Sm', 'Base', 'Md', 'Lg', '1x', '2x', '3x', '4x', '5x'].map((size) => (
+            <div className="u-bgNeutral2 u-padMd">
+              <p className={`u-${breakpoint}-fontSize${size}`}>u-{breakpoint}-fontSize{size}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</Canvas>

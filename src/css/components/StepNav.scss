@@ -40,18 +40,18 @@ $StepNav-spacing--xsmall: scaleGrid(-3);
     &:before {
       width: calc(100% - #{$paddedWidth});
       height: $spacing;
-      top: ($size / 2);
+      top: ($size * 0.5);
       right: $paddedWidth;
     }
     &.is-active,
     &.is-enabled a:hover {
       .StepNav-stepIcon {
-        box-shadow: 0 0 ($spacing / 2) $cu-primary--dark inset;
+        box-shadow: 0 0 ($spacing * 0.5) color-primary(7) inset;
       }
     }
     &.is-enabled a:hover {
       .StepNav-stepIcon {
-        box-shadow: 0 0 ($spacing / 2) $cu-primary--dark inset;
+        box-shadow: 0 0 ($spacing * 0.5) color-primary(7) inset;
       }
     }
   }
@@ -62,7 +62,7 @@ $StepNav-spacing--xsmall: scaleGrid(-3);
 
   .StepNav-stepTitle {
     width: $StepNav-titleWidth;
-    left: calc( 0px - #{(($StepNav-titleWidth - $paddedWidth) / 2)});
+    left: calc( 0px - #{(($StepNav-titleWidth - $paddedWidth) * 0.5)});
     padding-top: $spacing;
   }
 
@@ -73,7 +73,7 @@ $StepNav-spacing--xsmall: scaleGrid(-3);
     }
     height: $size;
     width: $size;
-    border-radius: ($size / 2);
+    border-radius: ($size * 0.5);
     padding: $size * .25;
   }
 }
@@ -163,7 +163,7 @@ $StepNav-spacing--xsmall: scaleGrid(-3);
   text-align: center;
   margin: 0 auto;
   color: $cu-divider;
-  font-family: $tu-openSans-fontFamily;
+  font-family: $base-font-family;
   font-size: $tu-base-fontSize;
   position: absolute;
   top: 100%;
@@ -246,7 +246,7 @@ $StepNav-spacing--xsmall: scaleGrid(-3);
   &:before {
     content: '';
     position: absolute;
-    top: ($StepNav-size / 2);
+    top: ($StepNav-size * 0.5);
     left: 100%;
     height: $StepNav-spacing;
     width: 1000%;

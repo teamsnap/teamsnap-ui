@@ -62,7 +62,7 @@ const InputControl = ({
     }
   }
 
-  id = id || name;
+  const inputId = id || name;
 
   return (
     <div className={classes} style={style} {...otherProps} {...rest} data-testid={testId}>
@@ -71,7 +71,7 @@ const InputControl = ({
         type={type}
         name={group || name}
         data-testid={`${name}-input`}
-        id={id}
+        id={inputId}
         {...inputProps}
         checked={value} // has to come after spreading input props to support indeterminate
       />

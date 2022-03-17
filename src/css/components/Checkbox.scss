@@ -41,6 +41,9 @@ $Checkbox-bg-color: $cu-foreground !default;
     &:before {
       height: $size;
       width: $size;
+      background-size: $size - 4px;
+      background-repeat: no-repeat;
+      background-position: 2px 2px;
     }
   }
 
@@ -50,7 +53,7 @@ $Checkbox-bg-color: $cu-foreground !default;
 
       &:before {
         top: 50%;
-        margin-top: ($size / 2) * -1;
+        margin-top: ($size * 0.5) * -1;
         // Centers radio in Pill if text wraps
       }
     }
@@ -165,17 +168,14 @@ $Checkbox-bg-color: $cu-foreground !default;
     display: block;
     cursor: pointer;
     background-color: $Checkbox-bg-color;
-    border: $border-width-small solid $cu-divider;
-    border-radius: $border-radius-medium;
+    border: $border-width-small solid color-neutral(6);
+    border-radius: $border-radius-small;
     margin: 0;
     position: absolute;
     left: 0;
     top:  0;
     bottom: 0;
     transition: all ease 0.2s;
-    background-size: 75%;
-    background-repeat: no-repeat;
-    background-position: center center;
   }
 }
 
@@ -184,7 +184,7 @@ $Checkbox-bg-color: $cu-foreground !default;
 }
 // Active state
 .Checkbox-input:checked + .Checkbox-label:before {
-  background-image: url("data:image/svg+xml; utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 960 960'%3E%3Cpath fill='white' d='M915 178.9c8 6.7 12.3 15.5 13 26.5s-2.3 21.2-9 30.5c-252.7 360.7-389.3 555.3-410 584-21.3 28.7-48.8 43.2-82.5 43.5S365 849.2 343 819.9l-278-391c-6.7-9.3-9.7-19.7-9-31s5-20.3 13-27c34-29.3 72-55.7 114-79 8.7-4.7 18.3-5.3 29-2s19.3 9.7 26 19l188 264 321-456c6.7-9.3 15.2-15.5 25.5-18.5s20.2-2.2 29.5 2.5c44 24 81.7 50 113 78z'%3E%3C/path%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M3 13.45L8.66667 19L20 5' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
   // SVG check icon
   border: none;
   transition: none
@@ -196,6 +196,7 @@ $Checkbox-bg-color: $cu-foreground !default;
   background-color: color-neutral(1);
   border: solid $border-width-small $cu-divider;
   background-size: 100%;
+  background-position: center;
   transition: none;
 }
 

@@ -24,7 +24,7 @@ import { Meta, Story, Canvas } from '@storybook/addon-docs';
         {Array.from(Array(9).keys()).map((shade) => (
           <div key={shade}>
             <span>{color + (shade + 1)}</span>
-            <div style={{ padding: '20px' }} className={`u-bg${color}${shade}`}></div>
+            <div style={{ padding: '20px' }} className={`u-bg${color}${shade + 1}`}></div>
           </div>
         ))}
       </div>

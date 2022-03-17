@@ -3,6 +3,7 @@ import * as React from 'react';
 import PaginatedTable from './PaginatedTable';
 import { Placement } from '../../../types/placement';
 import { FilterValue } from './DateFilter';
+import { Button } from '../../Button';
 
 export default {
   title: 'Components/Data Display/Table/Paginated',
@@ -305,9 +306,9 @@ function loadData({ page, itemsPerPage, sortBy, sortAsc }) {
     finalData = _.reverse(finalData);
   }
 
-  return new Promise((resolve) => {
+  return new Promise<any[]>((resolve) => {
     setTimeout(() => resolve(finalData), 500);
-  }).then((items: any[]) => {
+  }).then((items) => {
     const endIndex = Math.min(items.length, startIndex + itemsPerPage);
     return { data: items.slice(startIndex, endIndex), totalItems: items.length };
   });
@@ -507,3 +508,137 @@ export const WithSearchFilters = () => (
     searchPlaceholder="Search members by name"
   />
 );
+
+export const WithExport = () => {
+  const [allFilteredItems, setAllFilteredItems] = React.useState<any[]>([]);
+
+  return (
+    <PaginatedTable
+      columns={columns}
+      mapDataToRow={mapData}
+      loadData={({ page, itemsPerPage, filter }) => {
+        const startIndex = itemsPerPage * page - itemsPerPage;
+        const filteredItems = data
+          .filter(
+            (item) => !filter.gender || !filter.gender.length || filter.gender.includes(item.gender)
+          )
+          .filter(
+            (item) => !filter.team || !filter.team.length || filter.team.includes(String(item.team?.id))
+          )
+          .filter((item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1);
+
+        const dateFilteredItems = filter.birthdate
+          ? filterBirthDate(filter.birthdate, filteredItems)
+          : filteredItems;
+
+        setAllFilteredItems(dateFilteredItems);
+
+        const endIndex = Math.min(dateFilteredItems.length, startIndex + itemsPerPage);
+        const items = dateFilteredItems.slice(startIndex, endIndex);
+
+        return Promise.resolve({
+          data: items,
+          totalItems: dateFilteredItems.length,
+        });
+      }}
+      defaultItemsPerPage={2}
+      filters={[
+        PaginatedTable.SelectFilter('role', 'Participants Role', {
+          manager: 'Manager',
+          nonplayer: 'Non-Player',
+          player: 'Player',
+          teamOwner: 'Team Owner',
+          coach: 'Coach',
+          supporter: 'Supporter',
+          goalkeeper: 'Goalkeeper',
+        }),
+        // We understand that this is not a comprehensive list of genders but merely a list to display how these filters can be used
+        PaginatedTable.SelectFilter('gender', 'Participants Preferred Gender', {
+          m: 'Male',
+          f: 'Female',
+          other: 'Other',
+          unknown: 'Unknown',
+        }),
+        PaginatedTable.SelectFilter('team', 'Participants Preferred Team', [
+          {
+            value: '1',
+            label: 'Team 1',
+            subtext: 'A Division',
+          },
+          {
+            value: '2',
+            label: 'Team 2',
+            subtext: 'Some Division',
+          },
+          {
+            value: '3',
+            label: 'Team 3',
+            subtext: 'Another Division',
+          },
+        ]),
+        PaginatedTable.DateFilter(
+          'birthdate',
+          'Participants Birthdate',
+          '[No Birthdate]',
+          '2005,2004',
+          null,
+          new Date().toISOString().split('T')[0]
+        ),
+      ]}
+      paginationPlacement={Placement.Bottom}
+      includeBasicSearch
+      searchPlaceholder="Search members by name"
+      onExport={({ exportToCsv }) => {
+        const exportData = allFilteredItems.map((item) => [
+          item.name,
+          item.gender,
+          (new Date(item.birthdate)).toLocaleString(),
+          item.age,
+          item.position,
+        ]);
+
+        // Only capturing the return output here for logging to console.
+        const result = exportToCsv({
+          data: exportData,
+          headers: [
+            'Name',
+            'Gender',
+            'Birthdate',
+            'Age',
+            'Position',
+          ],
+        });
+
+        console.log(result);
+      }}
+    />
+  );
+};
+
+export const ClearSelectedRows = () => {
+  const [shouldClearSelectedRows, setShouldClearSelectedRows] = React.useState(false)
+  const onClick = () => {
+    setShouldClearSelectedRows(true)
+    setTimeout(() => {
+      setShouldClearSelectedRows(false)
+    }, 1000)
+  }
+
+  return (
+    <>
+      <Button onClick={onClick}>Clear selected rows</Button>
+
+      <PaginatedTable
+        columns={columns}
+        mapDataToRow={mapData}
+        loadData={loadSearchData}
+        defaultItemsPerPage={2}
+        paginationPlacement={Placement.Bottom}
+        includeBasicSearch
+        searchPlaceholder="Search members by name"
+        rowsAreSelectable
+        shouldClearSelectedRows={shouldClearSelectedRows}
+      />
+    </>
+  );
+}

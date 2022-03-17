@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "../config/index.scss";
 
 // * Percentage-based size classes for a 24 column grid,
@@ -13,7 +15,7 @@ $responsive: true;
   @for $i from 1 through ($col - 1) {
     .u-size#{$i}of#{$col} {
       flex-basis: auto !important;
-      width: $i / $col * 100% !important;
+      width: math.div($i, $col) * 100% !important;
     }
   }
 }
@@ -51,7 +53,7 @@ $responsive: true;
         @for $i from 1 through ($col - 1) {
           .u-#{$name}-size#{$i}of#{$col} {
             flex-basis: auto !important;
-            width: $i / $col * 100% !important;
+            width: math.div($i, $col) * 100% !important;
           }
         }
       }

@@ -68,7 +68,7 @@ export const WithSubheading = () => (
               tree: [
                 {
                   title: 'Organization Home',
-                  wrapItem: ({ children }: { children: React.ReactNode }) => (
+                  wrapItem: ({ children }) => (
                     <a
                       href="https://organization.teamsnap.com"
                       target="_blank"
@@ -172,7 +172,7 @@ export const WithContentOverlay = () => (
               tree: [
                 {
                   title: 'Organization Home',
-                  wrapItem: ({ children }: { children: React.ReactNode }) => (
+                  wrapItem: ({ children }) => (
                     <a
                       href="https://organization.teamsnap.com"
                       target="_blank"

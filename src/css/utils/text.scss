@@ -41,8 +41,14 @@
 $fontSizes: (
   'Xs': $tu-xsmall-fontSize,
   'Sm': $tu-small-fontSize,
-  'Md': $tu-base-fontSize,
+  'Base': $tu-base-fontSize,
+  'Md': $tu-medium-fontSize,
   'Lg': $tu-large-fontSize,
+  '1x': $tu-1x-fontSize,
+  '2x': $tu-2x-fontSize,
+  '3x': $tu-3x-fontSize,
+  '4x': $tu-4x-fontSize,
+  '5x': $tu-5x-fontSize,
   'Xl': $tu-xlarge-fontSize,
   'Xxl': $tu-xxlarge-fontSize
 );

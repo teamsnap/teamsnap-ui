@@ -3,8 +3,8 @@ $Popup-text-color: $cu-info !default;
 $Popup-border-color: $cu-divider !default;
 $Popup-offset: 10px;
 $Popup-arrow-size: 12px;
-$Popup-arrow-offset: $Popup-arrow-size / 2;
-$Popup-arrow-offsetCover: ($Popup-arrow-size / 2) + 1;
+$Popup-arrow-offset: $Popup-arrow-size * 0.5;
+$Popup-arrow-offsetCover: ($Popup-arrow-size * 0.5) + 1;
 $Popup-arrow-borderRadius: 3px;
 
 // * .Popup
@@ -219,6 +219,47 @@ $Popup-arrow-borderRadius: 3px;
   .Popup-container,
   .Popup-container:focus-within {
     display: block;
+  }
+}
+
+// * Tooltip modifier
+
+.Popup--tooltip {
+  span {
+    line-height: 1;
+    height: auto;
+    color: color-primary(6);
+    cursor: pointer;
+  }
+  .Popup-container {
+    position: fixed;
+    width: auto;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    text-align: center;
+    transform: translateX(0) translateY(-100%);
+    display: none;
+    visibility: hidden;
+
+    &.is-open {
+      display: block;
+      visibility: visible;
+    }
+    .Popup-content {
+      background-color: #1d2b35;
+    }
+    &::before {
+      top: auto;
+      bottom: -1 * $Popup-arrow-offset;
+      background-color: #1d2b35;
+    }
+    &::after {
+      top: auto;
+      bottom: -1 * ($Popup-arrow-offset - 1);
+      background-color: #1d2b35;
+    }
   }
 }
 

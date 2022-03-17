@@ -1,39 +1,16 @@
 //------------------------------------------------------------//
 
-// * TeamSnap-UI Config Variables
-// * 1. TeamSnap Colors
-// * 1.a Color Utilities
-// * 1.b Spot Colors (link, facebook, twitter, etc.)
-// * 2. Typography
-// * 2.a Font Families
-// * 2.b Font Weights
-// * 2.c Font Sizes
-// * 2.d Letter Spacing
-// * 2.e Line Heights
-// * 3. Spacing
-// * 4. Responsive
-// * 5. Borders
-// * 6. Transitions
-// * 7. Box Shadows
-
-// Notes:
-// * scaleColor(), scaleFont(), and scaleGrid() functions or
-// variable utilities should be used to create consistancy in
-// color, typography, and spacing across TeamSnap web
-
-// TODO : add color variables for other social media platforms
-// TODO : look to simplify settings and re-consider themeing
+// TeamSnap-UI Config Variables
+// * TeamSnap Colors
+// * Typography
+// * Spacing
+// * Breakpoints
+// * Borders
+// * Transitions
+// * Box Shadows
 
 //------------------------------------------------------------//
 
-// * 1. TeamSnap Colors
-
-$ts-blue:                                  #1A6BAF !default;
-$ts-darkblue:                              #13426E !default;
-$ts-orange:                                #FF8F00 !default;
-$ts-darkorange:                            #f75b02 !default;
-$ts-green:                                 #7fc243 !default;
-$ts-red:                                   #e26362 !default;
 
 /// V4 colors
 $colors-primary: (
@@ -101,107 +78,86 @@ $colors-success: (
   10: #093A1E,
 ) !default;
 
+// TeamSnap Colors
 
-$ts-black:                                 #222222 !default;
-$ts-grey:                                  #d6d6d6 !default;
-$ts-white:                                 #ffffff !default;
+$ts-blue:                  color-primary(6) !default;
+$ts-darkblue:              color-primary(7) !default;
+$ts-orange:                color-warning(6) !default;
+$ts-green:                 color-success(6) !default;
+$ts-red:                   color-negative(6) !default;
 
-// * 1.a Color Utilities
+$ts-black:                 color-neutral(9) !default;
+$ts-grey:                  color-neutral(5) !default;
+$ts-white:                 #ffffff !default;
 
-$cu-foreground:                          $ts-white !default;
-$cu-foreground--light:                   $ts-white !default;
-$cu-foreground--dark:                    $ts-white !default;
+// Color Utilities
 
-$cu-middleground:          scaleColor($ts-grey, 9) !default;
-$cu-middleground--light:   scaleColor($ts-grey, 9) !default;
-$cu-middleground--dark:    scaleColor($ts-grey, 9) !default;
+$cu-positive:              $ts-green !default;
+$cu-negative:              $ts-red !default;
 
-$cu-background:            scaleColor($ts-grey, 8) !default;
-$cu-background--light:     scaleColor($ts-grey, 8) !default;
-$cu-background--dark:      scaleColor($ts-grey, 8) !default;
+$cu-primary:               $ts-blue !default;
+$cu-secondary:             $ts-green !default;
+$cu-highlight:             $ts-orange !default;
 
-$cu-divider:               scaleColor($ts-grey, 0) !default;
-$cu-divider--light:        scaleColor($ts-grey, 4) !default;
-$cu-divider--dark:         scaleColor($ts-grey, 0) !default;
+$cu-foreground:            $ts-white !default;
+$cu-middleground:          color-neutral(1) !default;
+$cu-background:            color-neutral(2) !default;
 
-$cu-info:                 scaleColor($ts-black, 1) !default;
-$cu-info--light:          scaleColor($ts-black, 4) !default;
-$cu-info--dark:           scaleColor($ts-black, 0) !default;
+$cu-divider:               color-neutral(5) !default;
+$cu-divider--light:        color-neutral(3) !default;
 
-$cu-positive:                            $ts-green !default;
-$cu-positive--light:   scaleColor($cu-positive, 1) !default;
-$cu-positive--dark:   scaleColor($cu-positive, -2) !default;
-$cu-positive--bg:     scaleColor($cu-positive, 10) !default;
+$cu-info:                  color-neutral(9) !default;
+$cu-info--light:           color-neutral(8) !default;
 
-$cu-negative:                              $ts-red !default;
-$cu-negative--light:   scaleColor($cu-negative, 1) !default;
-$cu-negative--dark:   scaleColor($cu-negative, -2) !default;
-$cu-negative--bg:     scaleColor($cu-negative, 10) !default;
+$cu-overlay-background:    rgba($cu-info, 0.6) !default;
 
-$cu-primary:                              $ts-blue !default;
-$cu-primary--light:     scaleColor($cu-primary, 1) !default;
-$cu-primary--dark:     scaleColor($cu-primary, -2) !default;
-$cu-primary--bg:       scaleColor($cu-primary, 10) !default;
 
-$cu-secondary:                           $ts-green !default;
-$cu-secondary--light: scaleColor($cu-secondary, 1) !default;
-$cu-secondary--dark: scaleColor($cu-secondary, -2) !default;
-$cu-secondary--bg:   scaleColor($cu-secondary, 10) !default;
-
-$cu-highlight:                          $ts-orange !default;
-$cu-highlight--light: scaleColor($cu-highlight, 1) !default;
-$cu-highlight--dark:  scaleColor($cu-highlight, 0) !default;
-$cu-highlight--bg:   scaleColor($cu-highlight, 10) !default;
-
-$cu-overlay-background: rgba(0, 0, 0, 0.6) !default;
-
-// * 1.a Spot Colors (link, facebook, twitter, etc.)
-
-$color-facebook:                           #3B5998 !default;
-
-// * 2. Typography
+// Typography
 
 $fontSize:          14px !default;
 $lineHeight:         1.5 !default;
 $letterSpacing: -0.005em !default;
 
 $base-font-color:         $cu-info !default;
-$heading-font-color:   $cu-primary !default;
-$light-font-color: $cu-info--light !default;
+$heading-font-color:      $cu-primary !default;
+$light-font-color:        $cu-info--light !default;
 
-$color-links:                  $cu-primary--light !default;
-$color-links--hover: scaleColor($color-links, -2) !default;
+$color-links:             $cu-primary !default;
+$color-links--hover:      color-primary(5) !default;
 
-// * 2.a Font Families
-
-$tu-museo500-fontFamily:   'MuseoSansRounded500Regular', 'Open Sans', Arial, sans-serif !default;
-$tu-museo700-fontFamily:   'MuseoSansRounded700Regular', 'Open Sans', Arial, sans-serif !default;
-$tu-museo1000-fontFamily: 'MuseoSansRounded1000Regular', 'Open Sans', Arial, sans-serif !default;
-
-$tu-openSans-fontFamily: 'Open Sans', Helvetica, sans-serif !default;
+// Font Families
 
 $tu-lato-fontFamily: 'Lato', 'Open Sans', Helvetica, sans-serif !default;
 
 $base-font-family:    $tu-lato-fontFamily !default;
 $heading-font-family: $tu-lato-fontFamily !default;
 
-// * 2.b Font Weights
+// Font Weights
 
 $tu-base-fontWeight:      400 !default;
 $tu-semibold-fontWeight:  600 !default;
 $tu-bold-fontWeight:      700 !default;
 
-// * 2.c Font Sizes
+// Font Sizes
 
-$tu-xsmall-fontSize:           scaleFont($fontSize, -2) !default;
-$tu-small-fontSize:            scaleFont($fontSize, -1) !default;
-$tu-base-fontSize:              scaleFont($fontSize, 0) !default;
-$tu-medium-fontSize:            scaleFont($fontSize, 1) !default;
-$tu-large-fontSize:             scaleFont($fontSize, 2) !default;
+$tu-xsmall-fontSize:           scaleFont($fontSize, -2) !default; // 11px
+$tu-small-fontSize:            scaleFont($fontSize, -1) !default; // 12px
+$tu-base-fontSize:              scaleFont($fontSize, 0) !default; // 14px
+$tu-medium-fontSize:            scaleFont($fontSize, 1) !default; // 16px
+$tu-large-fontSize:             scaleFont($fontSize, 2) !default; // 18px
+$tu-1x-fontSize:                scaleFont($fontSize, 3) !default; // 20px
+$tu-2x-fontSize:                scaleFont($fontSize, 4) !default; // 22px
+$tu-3x-fontSize:                scaleFont($fontSize, 5) !default; // 25px
+$tu-4x-fontSize:                scaleFont($fontSize, 6) !default; // 28px
+$tu-5x-fontSize:                scaleFont($fontSize, 7) !default; // 32px
+
+
+// Deprecated
 $tu-xlarge-fontSize:            scaleFont($fontSize, 5) !default;
 $tu-xxlarge-fontSize:           scaleFont($fontSize, 6) !default;
 
-// * 2.d Font Letter Spacing
+
+// Font Letter Spacing
 
 $tu-xsmall-letterSpacing: scaleFont($letterSpacing, -2) !default;
 $tu-small-letterSpacing:  scaleFont($letterSpacing, -1) !default;
@@ -210,13 +166,13 @@ $tu-large-letterSpacing:   scaleFont($letterSpacing, 2) !default;
 $tu-xlarge-letterSpacing:  scaleFont($letterSpacing, 5) !default;
 $tu-xxlarge-letterSpacing: scaleFont($letterSpacing, 6) !default;
 
-// * 2.e Font Line Height
+// Font Line Height
 
 $tu-small-lineHeight:        scaleFont($lineHeight, -2) !default;
 $tu-base-lineHeight:          scaleFont($lineHeight, 0) !default;
 $tu-large-lineHeight:         scaleFont($lineHeight, 2) !default;
 
-// * 3. Spacing
+// Spacing
 
 $su-xxxsmall:   scaleGrid(-3) !default; // 1px
 $su-xxsmall:    scaleGrid(-2) !default; // 2px
@@ -227,7 +183,7 @@ $su-large:       scaleGrid(3) !default; // 24px
 $su-xlarge:      scaleGrid(4) !default; // 32px
 $su-xxlarge:     scaleGrid(5) !default; // 40px
 
-// * 4. Responsive
+// Responsive
 
 $responsive: false !default;
 $breakpoint-xs: 480px;
@@ -256,7 +212,7 @@ $max-breakpoints: (
 
 $site-container: 1300px;
 
-// * 5. Borders
+// Borders
 
 $border-radius-small:   scaleGrid(-2) !default; // 2px
 $border-radius-medium:  5px !default;          // 4px
@@ -266,16 +222,11 @@ $border-width-small:   scaleGrid(-3) !default; // 1px
 $border-width-medium:  scaleGrid(-2) !default; // 2px
 $border-width-large:   scaleGrid(-1) !default; // 4px
 
-// * 6. Transitions
+// Transitions
 
 $duration-short: 250ms;
 
 // * 7. Box Shadows
 
 $box-shadow-small:  0 0 scaleGrid(-2) rgba($cu-info, 0.15) !default;
-$box-shadow-medium: 0 0 scaleGrid(-1) rgba($cu-info, 0.25) !default;
 $box-shadow-large:  0 0  scaleGrid(1) rgba($cu-info, 0.35) !default;
-
-$inset-box-shadow-small:  1px 1px 1px rgba($cu-info, 0.15) inset !default;
-$inset-box-shadow-medium: 1px 1px 2px rgba($cu-info, 0.15) inset !default;
-$inset-box-shadow-large:  1px 1px 3px rgba($cu-info, 0.15) inset !default;
