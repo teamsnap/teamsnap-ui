@@ -68,6 +68,7 @@ const propTypes = {
   mapDataToRow: PropTypes.func.isRequired,
   paginationPlacement: PropTypes.oneOf([Placement.Top, Placement.Bottom]),
   rowsAreSelectable: PropTypes.bool,
+  isLoading: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
   defaultSort: PropTypes.string,
   noResultsText: PropTypes.string,
@@ -172,6 +173,7 @@ const PaginatedTable: PaginatedTableProps = ({
   rowSelected,
   shouldClearSelectedRows,
   onExport = null,
+  isLoading
 }) => {
   assert(
     !(filters.length && paginationPlacement === Placement.Top),
@@ -186,13 +188,14 @@ const PaginatedTable: PaginatedTableProps = ({
   const [dataSet, setDataSet] = React.useState([]);
   const [sortName, setSortName] = React.useState('');
   const [sortAscending, setSortAscending] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isFetching, setIsFetching] = React.useState(false);
   const [selected, setSelected] = React.useState([]);
   const [searchTerm, setSearchTerm] = React.useState('');
   const [filterOpen, setFilterOpen] = React.useState(false);
   const [activeFilters, setActiveFilters] = React.useState({});
   const [isResettingFilters, setIsResettingFilters] = React.useState(false);
-  const shouldPaginateAtTop = paginationPlacement !== Placement.Bottom && filters.length === 0;
+  const shouldDisplayPaginationAtBottom = paginationPlacement === Placement.Bottom || paginationPlacement === Placement.RightBottom
+  const shouldPaginateAtTop = !shouldDisplayPaginationAtBottom && filters.length === 0;
   const defaultPageSizeOptions = [10, 25, 50];
   const customOptions =
     defaultPageSizeOptions.indexOf(defaultItemsPerPage) < 0 ? [defaultItemsPerPage] : [];
@@ -284,7 +287,7 @@ const PaginatedTable: PaginatedTableProps = ({
 
   // Load new data when the metadata around pagination changes
   React.useEffect(() => {
-    setIsLoading(true);
+    setIsFetching(true);
 
     loadData({
       page: currentPage,
@@ -293,7 +296,7 @@ const PaginatedTable: PaginatedTableProps = ({
       sortAsc: sortAscending,
       filter: includeBasicSearch || activeFilters ? { searchTerm, ...activeFilters } : null,
     }).then(({ data, totalItems: currentTotalItems }) => {
-      setIsLoading(false);
+      setIsFetching(false);
       if (data) setDataSet(data);
 
       if (typeof currentTotalItems === 'number') setTotalItems(currentTotalItems);
@@ -478,11 +481,11 @@ const PaginatedTable: PaginatedTableProps = ({
             setSortName(name);
             setSortAscending(ascending);
           }}
-          isLoading={isLoading}
+          isLoading={isLoading || isFetching}
           placeHolder={noResultsText}
         />
       </div>
-      {(paginationPlacement === Placement.Bottom || !shouldPaginateAtTop) && paginationItems}
+      {(shouldDisplayPaginationAtBottom) && paginationItems}
     </div>
   );
 };
