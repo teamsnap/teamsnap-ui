@@ -188,7 +188,7 @@ const PaginatedTable: PaginatedTableProps = ({
   const [dataSet, setDataSet] = React.useState([]);
   const [sortName, setSortName] = React.useState('');
   const [sortAscending, setSortAscending] = React.useState(false);
-  const [isFetching, setIsFetching] = React.useState(false);
+  const [isFetchingData, setIsFetchingData] = React.useState(false);
   const [selected, setSelected] = React.useState([]);
   const [searchTerm, setSearchTerm] = React.useState('');
   const [filterOpen, setFilterOpen] = React.useState(false);
@@ -287,7 +287,7 @@ const PaginatedTable: PaginatedTableProps = ({
 
   // Load new data when the metadata around pagination changes
   React.useEffect(() => {
-    setIsFetching(true);
+    setIsFetchingData(true);
 
     loadData({
       page: currentPage,
@@ -296,7 +296,7 @@ const PaginatedTable: PaginatedTableProps = ({
       sortAsc: sortAscending,
       filter: includeBasicSearch || activeFilters ? { searchTerm, ...activeFilters } : null,
     }).then(({ data, totalItems: currentTotalItems }) => {
-      setIsFetching(false);
+      setIsFetchingData(false);
       if (data) setDataSet(data);
 
       if (typeof currentTotalItems === 'number') setTotalItems(currentTotalItems);
@@ -481,11 +481,11 @@ const PaginatedTable: PaginatedTableProps = ({
             setSortName(name);
             setSortAscending(ascending);
           }}
-          isLoading={isLoading || isFetching}
+          isLoading={isLoading || isFetchingData}
           placeHolder={noResultsText}
         />
       </div>
-      {(shouldDisplayPaginationAtBottom) && paginationItems}
+      {shouldDisplayPaginationAtBottom && paginationItems}
     </div>
   );
 };
