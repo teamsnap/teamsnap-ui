@@ -435,7 +435,7 @@ const PaginatedTable: PaginatedTableProps = ({
                     });
                   }}
                   mods="u-spaceLeftSm"
-                  icon="download"
+                  icon="import"
                 >
                   Export
                 </Button>
