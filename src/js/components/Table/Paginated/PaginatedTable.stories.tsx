@@ -409,7 +409,7 @@ export const Default = () => (
     mapDataToRow={mapData}
     loadData={loadData}
     defaultItemsPerPage={2}
-    paginationPlacement={Placement.Bottom}
+    paginationPlacement={Placement.RightBottom}
   />
 );
 
