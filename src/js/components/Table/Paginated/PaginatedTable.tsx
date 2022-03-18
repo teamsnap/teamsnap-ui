@@ -485,7 +485,7 @@ const PaginatedTable: PaginatedTableProps = ({
           placeHolder={noResultsText}
         />
       </div>
-      {(shouldDisplayPaginationAtBottom) && paginationItems}
+      {shouldDisplayPaginationAtBottom && paginationItems}
     </div>
   );
 };
