@@ -75,7 +75,7 @@ const InputControl = ({
         {...inputProps}
         checked={value} // has to come after spreading input props to support indeterminate
       />
-      <label className="Checkbox-label" htmlFor={id} {...labelProps}>
+      <label className="Checkbox-label" htmlFor={inputId} {...labelProps}>
         {label}
       </label>
     </div>
