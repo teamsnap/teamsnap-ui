@@ -66,7 +66,7 @@ const propTypes = {
    */
   reloadDependency: PropTypes.any,
   mapDataToRow: PropTypes.func.isRequired,
-  paginationPlacement: PropTypes.oneOf([Placement.Top, Placement.Bottom]),
+  paginationPlacement: PropTypes.oneOf([Placement.Top, Placement.Bottom, Placement.RightBottom]),
   rowsAreSelectable: PropTypes.bool,
   isLoading: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
@@ -397,51 +397,52 @@ const PaginatedTable: PaginatedTableProps = ({
               )
             : null}
         </div>
+
         {shouldPaginateAtTop && paginationItems}
-        {!shouldPaginateAtTop && (
-          <>
-            <div>
-              <Button
-                isActive={filterLength > 0 || filterOpen}
-                onClick={() => {
-                  setFilterOpen(!filterOpen);
-                }}
-                mods="u-spaceLeftSm"
-                icon="wrench"
-              >
-                Filter{' '}
-                {filterLength > 0 ? (
-                  <span
-                    className="u-bgPrimary7 u-colorNeutral1 u-fontSizeXs"
-                    style={{ borderRadius: '50px', padding: '1px 4px' }}
-                  >
-                    {filterLength}
-                  </span>
-                ) : null}
-              </Button>
-            </div>
-            { onExport && (
-              <div>
-                <Button
-                  isActive={dataSet.length > 0}
-                  onClick={() => {
-                    onExport({
-                      exportToCsv,
-                      page: currentPage,
-                      itemsPerPage,
-                      sortBy: sortName,
-                      sortAsc: sortAscending,
-                      filter: includeBasicSearch || activeFilters ? { searchTerm, ...activeFilters } : null,
-                    });
-                  }}
-                  mods="u-spaceLeftSm"
-                  icon="import"
+
+        {filters.length > 0 && (
+          <div>
+            <Button
+              isActive={filterLength > 0 || filterOpen}
+              onClick={() => {
+                setFilterOpen(!filterOpen);
+              }}
+              mods="u-spaceLeftSm"
+              icon="wrench"
+            >
+              Filter{' '}
+              {filterLength > 0 ? (
+                <span
+                  className="u-bgPrimary7 u-colorNeutral1 u-fontSizeXs"
+                  style={{ borderRadius: '50px', padding: '1px 4px' }}
                 >
-                  Export
-                </Button>
-              </div>
-            ) }
-          </>
+                  {filterLength}
+                </span>
+              ) : null}
+            </Button>
+          </div>
+        )}
+
+        {onExport && (
+          <div>
+            <Button
+              isActive={dataSet.length > 0}
+              onClick={() => {
+                onExport({
+                  exportToCsv,
+                  page: currentPage,
+                  itemsPerPage,
+                  sortBy: sortName,
+                  sortAsc: sortAscending,
+                  filter: includeBasicSearch || activeFilters ? { searchTerm, ...activeFilters } : null,
+                });
+              }}
+              mods="u-spaceLeftSm"
+              icon="import"
+            >
+              Export
+            </Button>
+          </div>
         )}
       </div>
       <Panel
