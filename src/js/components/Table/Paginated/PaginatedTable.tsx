@@ -173,7 +173,7 @@ const PaginatedTable: PaginatedTableProps = ({
   rowSelected,
   shouldClearSelectedRows,
   onExport = null,
-  isLoading
+  isLoading,
 }) => {
   assert(
     !(filters.length && paginationPlacement === Placement.Top),
@@ -194,7 +194,8 @@ const PaginatedTable: PaginatedTableProps = ({
   const [filterOpen, setFilterOpen] = React.useState(false);
   const [activeFilters, setActiveFilters] = React.useState({});
   const [isResettingFilters, setIsResettingFilters] = React.useState(false);
-  const shouldDisplayPaginationAtBottom = paginationPlacement === Placement.Bottom || paginationPlacement === Placement.RightBottom
+  const shouldDisplayPaginationAtBottom =
+    paginationPlacement === Placement.Bottom || paginationPlacement === Placement.RightBottom;
   const shouldPaginateAtTop = !shouldDisplayPaginationAtBottom && filters.length === 0;
   const defaultPageSizeOptions = [10, 25, 50];
   const customOptions =
@@ -204,9 +205,8 @@ const PaginatedTable: PaginatedTableProps = ({
   });
 
   React.useEffect(() => {
-    if (shouldClearSelectedRows)
-      setSelected([])
-  }, [shouldClearSelectedRows])
+    if (shouldClearSelectedRows) setSelected([]);
+  }, [shouldClearSelectedRows]);
 
   const setNewItemsPerPage = (newItemsPerPage) => {
     setItemsPerPage(newItemsPerPage);
@@ -420,7 +420,7 @@ const PaginatedTable: PaginatedTableProps = ({
                 ) : null}
               </Button>
             </div>
-            { onExport && (
+            {onExport && (
               <div>
                 <Button
                   isActive={dataSet.length > 0}
@@ -431,7 +431,10 @@ const PaginatedTable: PaginatedTableProps = ({
                       itemsPerPage,
                       sortBy: sortName,
                       sortAsc: sortAscending,
-                      filter: includeBasicSearch || activeFilters ? { searchTerm, ...activeFilters } : null,
+                      filter:
+                        includeBasicSearch || activeFilters
+                          ? { searchTerm, ...activeFilters }
+                          : null,
                     });
                   }}
                   mods="u-spaceLeftSm"
@@ -440,7 +443,7 @@ const PaginatedTable: PaginatedTableProps = ({
                   Export
                 </Button>
               </div>
-            ) }
+            )}
           </>
         )}
       </div>
@@ -452,7 +455,9 @@ const PaginatedTable: PaginatedTableProps = ({
         <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
           <div className="u-size7of8">
             {!isResettingFilters &&
-              filters.map((Item, index) => <Item key={index} isLast={index === filters.length - 1} />)}
+              filters.map((Item, index) => (
+                <Item key={index} isLast={index === filters.length - 1} />
+              ))}
           </div>
           <div className="u-size1of8 u-textRight u-spaceRightMd">
             <Button
