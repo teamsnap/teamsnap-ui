@@ -73,7 +73,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
             ...headers,
           };
 
-          return rows.map((item) => `${heading}-${subheading}-${item?.trim()}`);
+          return rows.map((item) => `${heading}-${subheading}-${item}`.trim());
         })
         .reduce((curr, next) => [...curr, ...next], []);
     } else {
@@ -107,7 +107,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
       const productChildElements = getChildren(idx);
 
       const rows = [...productChildElements].map(
-        (item) => `${headerName}-${item.innerText?.trim()}`
+        (item) => `${headerName}-${item.innerText}`.trim()
       );
 
       rowData = [...activeRows, ...rows];
@@ -170,7 +170,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
 
   const buildRows = (heading: string, subheading: string, rows: string[], parentIdx: number) => {
     return rows.map((item) => {
-      const uniqueId = `${heading}-${subheading}-${item?.trim()}`;
+      const uniqueId = `${heading}-${subheading}-${item}`.trim();
       const classes = activeRows.includes(uniqueId)
         ? `u-flex u-flexRow u-flexJustifyBetween Panel-row--active ${mods}`
         : `u-flex u-flexRow u-flexJustifyBetween ${mods}`;
