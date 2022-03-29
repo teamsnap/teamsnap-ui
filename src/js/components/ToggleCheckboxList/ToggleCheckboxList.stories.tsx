@@ -62,7 +62,7 @@ const data = [
       'Red Girls Green',
       'Red Girls 2002',
       'Red Girls 2003',
-      'Red Girls 2004',
+      'Red Girls 2004 ',
       'Red Girls 2005',
     ],
   },
