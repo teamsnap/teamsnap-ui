@@ -163,7 +163,6 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
       },
     };
 
-    console.log('set active rows row click', newActiveList);
     setHeaderStatus(itemActiveStatus);
     setActiveRows(newActiveList);
   };
