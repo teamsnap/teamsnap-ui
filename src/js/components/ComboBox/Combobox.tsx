@@ -17,7 +17,6 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { isEqual } from 'lodash';
 import { getClassName } from '../../utils/helpers';
 import { Panel } from '../Panel';
 import { PanelFooter } from '../PanelFooter';
@@ -69,6 +68,7 @@ const ComboBox = ({
   items,
   onChange,
 }: Props) => {
+  const [initialized, setInitialized] = React.useState(false);
   const [flyoutVisible, toggleFlyout] = React.useState(false);
   const [comboLabel, setComboLabel] = React.useState('');
   const [hasFilters, setHasFilters] = React.useState(false);
@@ -93,12 +93,12 @@ const ComboBox = ({
       .join(', ');
   };
 
-  const sortFilters = () => {
+  const sortFilters = (currentFilters) => {
     const checked = [];
     const unchecked = [];
 
     items.forEach((item) => {
-      if (selectedFilters.includes(item.value)) {
+      if (currentFilters.includes(item.value)) {
         checked.push(item);
       } else {
         unchecked.push(item);
@@ -108,8 +108,11 @@ const ComboBox = ({
     setComboLabel(checked.length > 0 ? createLabel(checked) : buttonLabel);
     setFilterList(checked);
     setUncheckedFilterList(unchecked);
-    if (selectedFilters.length > 0) {
+
+    if (currentFilters.length > 0) {
       setHasFilters(true);
+    } else {
+      setHasFilters(false);
     }
   };
 
@@ -121,19 +124,6 @@ const ComboBox = ({
     setComboLabel(buttonLabel);
   };
 
-  const applyFilters = () => {
-    if (!isEqual(selected, selectedFilters)) {
-      if (selectedFilters.length > 0) {
-        setComboLabel(createLabel(filterList));
-        setHasFilters(true);
-        onChange(selectedFilters);
-      } else {
-        clearFilters();
-      }
-    }
-    sortFilters();
-  };
-
   const filtersFromPropsAreDifferent = (fromProps, currentFilters) => {
     return (
       fromProps?.length !== (currentFilters || []).length ||
@@ -141,38 +131,33 @@ const ComboBox = ({
     );
   };
 
-  // Run this when the props change
   React.useEffect(() => {
-    if (filtersFromPropsAreDifferent(selected, selectedFilters)) {
-      setSelectedFilters(selected);
-      applyFilters();
-    }
+    sortFilters(selected);
   }, [selected]);
 
   React.useEffect(() => {
-    sortFilters();
+    setSelectedFilters(selected);
+    sortFilters(selected);
+    setInitialized(true);
   }, []);
 
-  // Set up handler when flyoutVisibility changes
-  React.useEffect(() => {
-    const handleBodyClick = (e) => {
-      const isTargetingPopup = e.target.closest(`#Combobox-${name}`) != null;
-
-      if (!isTargetingPopup) {
-        toggleFlyout(false);
-      }
-    };
-
-    document.body.addEventListener('click', handleBodyClick, { capture: true });
-
-    return () => {
-      document.body.removeEventListener('click', handleBodyClick);
-    };
+  const handleBodyClick = React.useCallback((e) => {
+    e.stopPropagation();
+    const isTargetingPopup = e.target.closest(`#Combobox-${name}`) != null;
+    if (!isTargetingPopup) {
+      toggleFlyout(false);
+    }
   }, []);
 
   React.useEffect(() => {
     if (!flyoutVisible) {
-      applyFilters();
+      if (initialized && filtersFromPropsAreDifferent(selected, selectedFilters)) {
+        onChange(selectedFilters);
+      }
+
+      window.removeEventListener('click', handleBodyClick, false);
+    } else {
+      window.addEventListener('click', handleBodyClick, false);
     }
   }, [flyoutVisible]);
 
@@ -269,7 +254,13 @@ const ComboBox = ({
             >
               Clear
             </Button>
-            <Button onClick={() => toggleFlyout(false)} type="link">
+            <Button
+              onClick={() => {
+                // onChange(selectedFilters);
+                toggleFlyout(false);
+              }}
+              type="link"
+            >
               Done
             </Button>
           </PanelFooter>

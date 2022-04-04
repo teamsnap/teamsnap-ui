@@ -4,6 +4,7 @@ import PaginatedTable from './PaginatedTable';
 import { Placement } from '../../../types/placement';
 import { FilterValue } from './DateFilter';
 import { Button } from '../../Button';
+import { FilterContext } from './PaginatedTable';
 
 export default {
   title: 'Components/Data Display/Table/Paginated',
@@ -353,6 +354,7 @@ const filterBirthDate = (filter: FilterValue, items: any[]) => {
  * @param filter objec - extra info to provide custom search.
  */
 function loadSearchData({ page, itemsPerPage, filter }) {
+  console.log('filter', filter);
   const startIndex = itemsPerPage * page - itemsPerPage;
   const filteredItems = data
     .filter(
@@ -523,7 +525,8 @@ export const WithExport = () => {
             (item) => !filter.gender || !filter.gender.length || filter.gender.includes(item.gender)
           )
           .filter(
-            (item) => !filter.team || !filter.team.length || filter.team.includes(String(item.team?.id))
+            (item) =>
+              !filter.team || !filter.team.length || filter.team.includes(String(item.team?.id))
           )
           .filter((item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1);
 
@@ -592,7 +595,7 @@ export const WithExport = () => {
         const exportData = allFilteredItems.map((item) => [
           item.name,
           item.gender,
-          (new Date(item.birthdate)).toLocaleString(),
+          new Date(item.birthdate).toLocaleString(),
           item.age,
           item.position,
         ]);
@@ -600,13 +603,7 @@ export const WithExport = () => {
         // Only capturing the return output here for logging to console.
         const result = exportToCsv({
           data: exportData,
-          headers: [
-            'Name',
-            'Gender',
-            'Birthdate',
-            'Age',
-            'Position',
-          ],
+          headers: ['Name', 'Gender', 'Birthdate', 'Age', 'Position'],
         });
 
         console.log(result);
@@ -616,13 +613,13 @@ export const WithExport = () => {
 };
 
 export const ClearSelectedRows = () => {
-  const [shouldClearSelectedRows, setShouldClearSelectedRows] = React.useState(false)
+  const [shouldClearSelectedRows, setShouldClearSelectedRows] = React.useState(false);
   const onClick = () => {
-    setShouldClearSelectedRows(true)
+    setShouldClearSelectedRows(true);
     setTimeout(() => {
-      setShouldClearSelectedRows(false)
-    }, 1000)
-  }
+      setShouldClearSelectedRows(false);
+    }, 1000);
+  };
 
   return (
     <>
@@ -641,4 +638,47 @@ export const ClearSelectedRows = () => {
       />
     </>
   );
-}
+};
+
+export const ExternalProvider = () => {
+  const [activeFilters, setActiveFilters] = React.useState({});
+
+  React.useEffect(() => {
+    console.log('stories - activeFilters', activeFilters);
+  }, [activeFilters]);
+
+  return (
+    <>
+      <Button
+        onClick={() => {
+          setActiveFilters({ role: ['coach'] });
+        }}
+      >
+        Add Role Coach
+      </Button>
+      <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
+        <PaginatedTable
+          columns={columns}
+          mapDataToRow={mapData}
+          loadData={loadSearchData}
+          defaultItemsPerPage={2}
+          filters={[
+            PaginatedTable.SelectFilter('role', 'Participants Role', {
+              manager: 'Manager',
+              nonplayer: 'Non-Player',
+              player: 'Player',
+              teamOwner: 'Team Owner',
+              coach: 'Coach',
+              supporter: 'Supporter',
+              goalkeeper: 'Goalkeeper',
+            }),
+          ]}
+          paginationPlacement={Placement.Bottom}
+          includeBasicSearch
+          searchPlaceholder="Search members by name"
+          useExternalFilterProvider
+        />
+      </FilterContext.Provider>
+    </>
+  );
+};
