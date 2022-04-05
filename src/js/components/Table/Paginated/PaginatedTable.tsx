@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import { isEmpty } from 'lodash';
 import Table from '../Table';
 import { convertObjsToValueLabel, getCheckboxStateForBulkActions, usePagination } from './helpers';
 import {
@@ -17,6 +18,7 @@ import { assert } from '../../../utils/assert';
 import { Button } from '../../Button';
 import { Panel } from '../../Panel';
 import { exportToCsv } from '../../../utils/export';
+import FilterContext from '../../../context/filterContext';
 
 // eslint-disable-next-line import/no-named-default
 import { default as DateFilterComponent } from './DateFilter';
@@ -26,16 +28,6 @@ interface BulkAction {
   onSelected: (selected: any) => void;
   disabled?: boolean;
 }
-
-// This context is used to provide the current state of filters to the paginated table
-// and to allow the filters to individually update the context when changes are triggered.
-const FilterContext = React.createContext<{
-  activeFilters: any;
-  setActiveFilters: (filters: any) => void;
-}>({
-  activeFilters: {},
-  setActiveFilters: () => {},
-});
 
 const propTypes = {
   bulkActions: PropTypes.arrayOf(
@@ -75,6 +67,7 @@ const propTypes = {
   rowSelected: PropTypes.func,
   shouldClearSelectedRows: PropTypes.bool,
   onExport: PropTypes.func,
+  useExternalFilterProvider: PropTypes.bool,
 };
 
 const SelectFilter = (
@@ -174,6 +167,7 @@ const PaginatedTable: PaginatedTableProps = ({
   shouldClearSelectedRows,
   onExport = null,
   isLoading,
+  useExternalFilterProvider,
 }) => {
   assert(
     !(filters.length && paginationPlacement === Placement.Top),
@@ -184,6 +178,18 @@ const PaginatedTable: PaginatedTableProps = ({
     defaultItemsPerPage || 10,
     defaultPage || 1
   );
+
+  const filterContext = React.useContext(FilterContext);
+  const [activeStateFilters, setStateActiveFilters] = React.useState({});
+
+  const activeFilters = useExternalFilterProvider
+    ? filterContext.activeFilters
+    : activeStateFilters;
+
+  const setActiveFilters = useExternalFilterProvider
+    ? filterContext.setActiveFilters
+    : setStateActiveFilters;
+
   const [totalItems, setTotalItems] = React.useState<number>(0);
   const [dataSet, setDataSet] = React.useState([]);
   const [sortName, setSortName] = React.useState('');
@@ -192,7 +198,6 @@ const PaginatedTable: PaginatedTableProps = ({
   const [selected, setSelected] = React.useState([]);
   const [searchTerm, setSearchTerm] = React.useState('');
   const [filterOpen, setFilterOpen] = React.useState(false);
-  const [activeFilters, setActiveFilters] = React.useState({});
   const [isResettingFilters, setIsResettingFilters] = React.useState(false);
   const shouldDisplayPaginationAtBottom =
     paginationPlacement === Placement.Bottom || paginationPlacement === Placement.RightBottom;
@@ -289,6 +294,10 @@ const PaginatedTable: PaginatedTableProps = ({
   React.useEffect(() => {
     setIsFetchingData(true);
 
+    if (!isEmpty(activeFilters)) {
+      setFilterOpen(true);
+    }
+
     loadData({
       page: currentPage,
       itemsPerPage,
@@ -355,6 +364,32 @@ const PaginatedTable: PaginatedTableProps = ({
         </div>
       ) : null}
     </div>
+  );
+
+  const filtersSection = (
+    <>
+      <div className="u-size7of8">
+        {filters.map((Item, index) => (
+          <Item key={index} isLast={index === filters.length - 1} />
+        ))}
+      </div>
+      <div className="u-size1of8 u-textRight u-spaceRightMd">
+        <Button
+          type="text"
+          onClick={() => {
+            setActiveFilters({});
+            // This is a bit weird.
+            // We were seeing issues updating the components successfully when clearing out all the filter
+            // values. This, paired with the condition in the filter rendering, forces the filter section
+            // to rerender when we clear out all the filters, ensuring that its rendering with the "freshest"
+            // of values from the context.
+            setIsResettingFilters(true);
+          }}
+        >
+          Clear All
+        </Button>
+      </div>
+    </>
   );
 
   return (
@@ -451,30 +486,13 @@ const PaginatedTable: PaginatedTableProps = ({
           filterOpen ? '' : 'u-hidden'
         } u-padSm u-spaceTopSm u-borderNeutral4 u-bgNeutral1 Grid-cell u-flex`}
       >
-        <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
-          <div className="u-size7of8">
-            {!isResettingFilters &&
-              filters.map((Item, index) => (
-                <Item key={index} isLast={index === filters.length - 1} />
-              ))}
-          </div>
-          <div className="u-size1of8 u-textRight u-spaceRightMd">
-            <Button
-              type="text"
-              onClick={() => {
-                setActiveFilters({});
-                // This is a bit weird.
-                // We were seeing issues updating the components successfully when clearing out all the filter
-                // values. This, paired with the condition in the filter rendering, forces the filter section
-                // to rerender when we clear out all the filters, ensuring that its rendering with the "freshest"
-                // of values from the context.
-                setIsResettingFilters(true);
-              }}
-            >
-              Clear All
-            </Button>
-          </div>
-        </FilterContext.Provider>
+        {useExternalFilterProvider ? (
+          <>{filtersSection}</>
+        ) : (
+          <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
+            {filtersSection}
+          </FilterContext.Provider>
+        )}
       </Panel>
       <div className="Grid-cell u-spaceTopSm">
         <Table
