@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Tabs from './Tabs';
+import { Button } from '../Button';
 
 export default {
   title: 'Components/Surfaces/Tabs',
@@ -92,12 +93,12 @@ export const SetActiveTab = () => {
   };
   return (
     <>
-      <button type="button" onClick={() => selectTab(0)}>
+      <Button type="button" onClick={() => selectTab(0)}>
         Tab 1
-      </button>
-      <button type="button" onClick={() => selectTab(1)}>
+      </Button>
+      <Button type="button" onClick={() => selectTab(1)}>
         Tab 2
-      </button>
+      </Button>
       <Tabs
         ref={tabRef}
         mods="u-spaceRightSm"
