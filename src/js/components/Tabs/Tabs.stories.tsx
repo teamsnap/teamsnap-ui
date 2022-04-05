@@ -82,3 +82,33 @@ export const DisableFirstOnloadCallback = () => (
     ]}
   />
 );
+
+export const SetActiveTab = () => {
+  const tabRef = React.useRef<{ setActiveTabIndex: (index: number) => void }>();
+  const selectTab = (index) => {
+    if (tabRef.current) {
+      tabRef.current.setActiveTabIndex(index);
+    }
+  };
+  return (
+    <>
+      <button onClick={() => selectTab(0)}>Tab 1</button>
+      <button onClick={() => selectTab(1)}>Tab 2</button>
+      <Tabs
+        ref={tabRef}
+        mods="u-spaceRightSm"
+        disableFirstAfterLoad
+        tabs={[
+          {
+            heading: 'Tab 1',
+            content: <h1>Hello from Tab 1!</h1>,
+          },
+          {
+            heading: 'Tab 2',
+            content: <h1>Hello from Tab 2!</h1>,
+          },
+        ]}
+      />
+    </>
+  );
+};
