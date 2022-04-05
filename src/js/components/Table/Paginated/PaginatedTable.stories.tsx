@@ -639,7 +639,7 @@ export const ClearSelectedRows = () => {
   );
 };
 
-export const ExternalProvider = () => {
+export const SetFilterFromOutsideComponent = () => {
   const [activeFilters, setActiveFilters] = React.useState({});
 
   React.useEffect(() => {
@@ -655,6 +655,38 @@ export const ExternalProvider = () => {
       >
         Change Roles Filter To Coach
       </Button>
+      <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
+        <PaginatedTable
+          columns={columns}
+          mapDataToRow={mapData}
+          loadData={loadSearchData}
+          defaultItemsPerPage={2}
+          filters={[
+            PaginatedTable.SelectFilter('role', 'Participants Role', {
+              manager: 'Manager',
+              nonplayer: 'Non-Player',
+              player: 'Player',
+              teamOwner: 'Team Owner',
+              coach: 'Coach',
+              supporter: 'Supporter',
+              goalkeeper: 'Goalkeeper',
+            }),
+          ]}
+          paginationPlacement={Placement.Bottom}
+          includeBasicSearch
+          searchPlaceholder="Search members by name"
+          useExternalFilterProvider
+        />
+      </FilterContext.Provider>
+    </>
+  );
+};
+
+export const PassInFilters = () => {
+  const [activeFilters, setActiveFilters] = React.useState({ role: ['coach'] });
+
+  return (
+    <>
       <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
         <PaginatedTable
           columns={columns}
