@@ -39,7 +39,7 @@ export interface Props {
   disableFirstAfterLoad?: boolean;
 }
 
-const Tabs: React.FunctionComponent<Props> = React.forwardRef(
+const Tabs = React.forwardRef(
   (
     { mods, tabs, testId, renderOnload, disableFirstAfterLoad }: Props,
     ref: MutableRefObject<{ setActiveTabIndex: (index: number) => void }>

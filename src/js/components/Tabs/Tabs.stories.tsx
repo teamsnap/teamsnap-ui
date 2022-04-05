@@ -92,8 +92,12 @@ export const SetActiveTab = () => {
   };
   return (
     <>
-      <button onClick={() => selectTab(0)}>Tab 1</button>
-      <button onClick={() => selectTab(1)}>Tab 2</button>
+      <button type="button" onClick={() => selectTab(0)}>
+        Tab 1
+      </button>
+      <button type="button" onClick={() => selectTab(1)}>
+        Tab 2
+      </button>
       <Tabs
         ref={tabRef}
         mods="u-spaceRightSm"

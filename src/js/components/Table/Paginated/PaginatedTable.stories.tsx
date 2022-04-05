@@ -4,7 +4,7 @@ import PaginatedTable from './PaginatedTable';
 import { Placement } from '../../../types/placement';
 import { FilterValue } from './DateFilter';
 import { Button } from '../../Button';
-import { FilterContext } from './PaginatedTable';
+import FilterContext from '../../../context/filterContext';
 
 export default {
   title: 'Components/Data Display/Table/Paginated',
@@ -354,7 +354,6 @@ const filterBirthDate = (filter: FilterValue, items: any[]) => {
  * @param filter objec - extra info to provide custom search.
  */
 function loadSearchData({ page, itemsPerPage, filter }) {
-  console.log('filter', filter);
   const startIndex = itemsPerPage * page - itemsPerPage;
   const filteredItems = data
     .filter(
@@ -644,7 +643,7 @@ export const ExternalProvider = () => {
   const [activeFilters, setActiveFilters] = React.useState({});
 
   React.useEffect(() => {
-    console.log('stories - activeFilters', activeFilters);
+    console.log('activeFilters', activeFilters);
   }, [activeFilters]);
 
   return (
@@ -654,7 +653,7 @@ export const ExternalProvider = () => {
           setActiveFilters({ role: ['coach'] });
         }}
       >
-        Add Role Coach
+        Change Roles Filter To Coach
       </Button>
       <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
         <PaginatedTable

@@ -33,7 +33,7 @@ const propTypes = {
   searchLabel: PropTypes.node,
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.string,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
       subtext: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     })
@@ -133,6 +133,7 @@ const ComboBox = ({
 
   React.useEffect(() => {
     sortFilters(selected);
+    setSelectedFilters(selected);
   }, [selected]);
 
   React.useEffect(() => {
@@ -256,7 +257,6 @@ const ComboBox = ({
             </Button>
             <Button
               onClick={() => {
-                // onChange(selectedFilters);
                 toggleFlyout(false);
               }}
               type="link"
