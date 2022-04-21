@@ -442,7 +442,7 @@ const PaginatedTable: PaginatedTableProps = ({
               onClick={() => {
                 setFilterOpen(!filterOpen);
               }}
-              mods="u-spaceLeftSm"
+              mods="Button Button--primary u-spaceLeftSm"
               icon="wrench"
             >
               Filter{' '}
