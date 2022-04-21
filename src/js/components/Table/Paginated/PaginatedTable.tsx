@@ -473,7 +473,7 @@ const PaginatedTable: PaginatedTableProps = ({
                     includeBasicSearch || activeFilters ? { searchTerm, ...activeFilters } : null,
                 });
               }}
-              mods="Button Button--primary u-spaceLeftSm"
+              mods="u-spaceLeftSm"
               icon="import"
             >
               Export
