@@ -99,6 +99,10 @@ export const Default = () => (
           label: 'Pending',
           value: 'pending',
         },
+        {
+          label: 'Unknown',
+          value: 'unknown',
+        },
       ]}
       tooltip={
         <div style={{ maxWidth: '180px' }}>
