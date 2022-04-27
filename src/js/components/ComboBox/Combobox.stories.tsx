@@ -99,6 +99,10 @@ export const Default = () => (
           label: 'Pending',
           value: 'pending',
         },
+        {
+          label: 'Unknown',
+          value: 'unknown',
+        },
       ]}
       tooltip={
         <div style={{ maxWidth: '180px' }}>
@@ -107,6 +111,7 @@ export const Default = () => (
           </a>
         </div>
       }
+      tooltipLink="https://google.com"
     />
   </div>
 );
