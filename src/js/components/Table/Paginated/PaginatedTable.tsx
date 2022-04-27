@@ -178,18 +178,6 @@ const PaginatedTable: PaginatedTableProps = ({
     defaultItemsPerPage || 10,
     defaultPage || 1
   );
-
-  const filterContext = React.useContext(FilterContext);
-  const [activeStateFilters, setStateActiveFilters] = React.useState({});
-
-  const activeFilters = useExternalFilterProvider
-    ? filterContext.activeFilters
-    : activeStateFilters;
-
-  const setActiveFilters = useExternalFilterProvider
-    ? filterContext.setActiveFilters
-    : setStateActiveFilters;
-
   const [totalItems, setTotalItems] = React.useState<number>(0);
   const [dataSet, setDataSet] = React.useState([]);
   const [sortName, setSortName] = React.useState('');
@@ -208,6 +196,16 @@ const PaginatedTable: PaginatedTableProps = ({
   const pageSizeOptions = defaultPageSizeOptions.concat(customOptions).sort((a, b) => {
     return a - b;
   });
+
+  const filterContext = React.useContext(FilterContext);
+  const localFilters = React.useState({});
+
+  const { activeFilters, setActiveFilters } = useExternalFilterProvider
+    ? filterContext
+    : {
+      activeFilters: localFilters[0],
+      setActiveFilters: localFilters[1]
+    }
 
   React.useEffect(() => {
     if (shouldClearSelectedRows) setSelected([]);
@@ -392,8 +390,8 @@ const PaginatedTable: PaginatedTableProps = ({
     </>
   );
 
-  return (
-    <div className="Grid">
+  const render = () => (
+    <>
       <div className="Grid Grid-cell u-spaceTopSm">
         {bulkActions?.length > 0 ? (
           <div className="Grid-cell u-spaceRightSm u-flex u-size1of1 u-md-size2of12 u-flexJustifyStart">
@@ -428,6 +426,7 @@ const PaginatedTable: PaginatedTableProps = ({
                 <BasicSearch
                   searchPlaceholder={searchPlaceholder}
                   searchFunction={updateSearchFilter}
+                  useExternalFilterProvider={useExternalFilterProvider}
                 />
               )
             : null}
@@ -486,13 +485,7 @@ const PaginatedTable: PaginatedTableProps = ({
           filterOpen ? '' : 'u-hidden'
         } u-padSm u-spaceTopSm u-borderNeutral4 u-bgNeutral1 Grid-cell u-flex`}
       >
-        {useExternalFilterProvider ? (
-          <>{filtersSection}</>
-        ) : (
-          <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
-            {filtersSection}
-          </FilterContext.Provider>
-        )}
+        {filtersSection}
       </Panel>
       <div className="Grid-cell u-spaceTopSm">
         <Table
@@ -508,6 +501,19 @@ const PaginatedTable: PaginatedTableProps = ({
         />
       </div>
       {shouldDisplayPaginationAtBottom && paginationItems}
+    </>
+  )
+
+  return (
+    <div className="Grid">
+      {useExternalFilterProvider
+        ? render()
+        : (
+          <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
+            {render()} 
+          </FilterContext.Provider>
+        )
+      }
     </div>
   );
 };
