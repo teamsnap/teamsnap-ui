@@ -107,6 +107,7 @@ export const Default = () => (
           </a>
         </div>
       }
+      tooltipLink="https://google.com"
     />
   </div>
 );

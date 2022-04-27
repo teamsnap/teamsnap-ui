@@ -242,6 +242,7 @@ $Popup-arrow-borderRadius: 3px;
     transform: translateX(0) translateY(-100%);
     display: none;
     visibility: hidden;
+    margin-top: 5px;
 
     &.Popup-container--light::before,
     &.Popup-container--light::after {

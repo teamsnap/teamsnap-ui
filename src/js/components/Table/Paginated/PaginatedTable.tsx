@@ -76,7 +76,8 @@ const SelectFilter = (
   options?:
     | { [key: string]: string | React.ReactNode }
     | { value: string; label: string; subtext?: string }[],
-  tooltip?: JSX.Element
+  tooltip?: JSX.Element,
+  tooltipLink?: string
 ) => {
   return ({ isLast }: { isLast: boolean }) => {
     const ctx = React.useContext(FilterContext);
@@ -103,6 +104,7 @@ const SelectFilter = (
             : convertObjsToValueLabel(options as { [key: string]: string | React.ReactNode })
         }
         tooltip={tooltip}
+        tooltipLink={tooltipLink}
       />
     );
   };
@@ -205,9 +207,9 @@ const PaginatedTable: PaginatedTableProps = ({
   const { activeFilters, setActiveFilters } = useExternalFilterProvider
     ? filterContext
     : {
-      activeFilters: localFilters[0],
-      setActiveFilters: localFilters[1]
-    }
+        activeFilters: localFilters[0],
+        setActiveFilters: localFilters[1],
+      };
 
   React.useEffect(() => {
     if (shouldClearSelectedRows) setSelected([]);
@@ -504,18 +506,17 @@ const PaginatedTable: PaginatedTableProps = ({
       </div>
       {shouldDisplayPaginationAtBottom && paginationItems}
     </>
-  )
+  );
 
   return (
     <div className="Grid">
-      {useExternalFilterProvider
-        ? render()
-        : (
-          <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
-            {render()} 
-          </FilterContext.Provider>
-        )
-      }
+      {useExternalFilterProvider ? (
+        render()
+      ) : (
+        <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
+          {render()}
+        </FilterContext.Provider>
+      )}
     </div>
   );
 };

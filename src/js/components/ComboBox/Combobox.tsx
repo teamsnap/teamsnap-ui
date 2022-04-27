@@ -49,6 +49,7 @@ const propTypes = {
   otherProps: PropTypes.object,
   disabled: PropTypes.bool,
   tooltip: PropTypes.element,
+  tooltipLink: PropTypes.string,
 };
 interface Filter {
   value: string;
@@ -57,6 +58,23 @@ interface Filter {
 }
 
 type Props = PropTypes.InferProps<typeof propTypes>;
+
+const TooltipWrapper = ({ tooltipLink, children }) => {
+  if (!tooltipLink) {
+    return <>{children}</>;
+  }
+
+  return (
+    <a href={tooltipLink} target="_blank" rel="noreferrer">
+      {children}
+    </a>
+  );
+};
+
+TooltipWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
+  tooltipLink: PropTypes.string,
+};
 
 const ComboBox = ({
   name,
@@ -71,6 +89,7 @@ const ComboBox = ({
   items,
   onChange,
   tooltip,
+  tooltipLink,
 }: Props) => {
   const [initialized, setInitialized] = React.useState(false);
   const [flyoutVisible, toggleFlyout] = React.useState(false);
@@ -253,7 +272,9 @@ const ComboBox = ({
               <div className="u-padLeftXs">
                 {tooltip && (
                   <PopupTooltip text={tooltip} variant={PopupTooltipVariant.LIGHT}>
-                    <Icon mods="u-colorPrimary5" name="info" />
+                    <TooltipWrapper tooltipLink={tooltipLink}>
+                      <Icon mods="u-colorPrimary5" name="info" />
+                    </TooltipWrapper>
                   </PopupTooltip>
                 )}
               </div>
