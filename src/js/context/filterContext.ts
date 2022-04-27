@@ -5,13 +5,13 @@ import * as React from 'react';
 const FilterContext = React.createContext<{
   activeFilters: any
   setActiveFilters: (filters: any) => void
-  searchValue?: string
-  setSearchValue?: (value: string) => void
+  searchTerm: string
+  setSearchTerm: (value: string) => void
 }>({
   activeFilters: {},
-  searchValue: '',
+  searchTerm: '',
   setActiveFilters: () => {},
-  setSearchValue: () => {}
+  setSearchTerm: () => {}
 });
 
 export default FilterContext;

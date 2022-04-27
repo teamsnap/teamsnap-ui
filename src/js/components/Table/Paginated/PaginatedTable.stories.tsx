@@ -362,6 +362,9 @@ function loadSearchData({ page, itemsPerPage, filter }) {
     .filter(
       (item) => !filter.team || !filter.team.length || filter.team.includes(String(item.team?.id))
     )
+    .filter(
+      (item) => !filter.role || !filter.role.length || filter.role.includes(item.position.toLowerCase())
+    )
     .filter((item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1);
 
   const dateFilteredItems = filter.birthdate
@@ -641,7 +644,7 @@ export const ClearSelectedRows = () => {
 
 export const SetFilterFromOutsideComponent = () => {
   const [activeFilters, setActiveFilters] = React.useState({});
-  const [searchValue, setSearchValue] = React.useState('');
+  const [searchTerm, setSearchTerm] = React.useState('');
 
   return (
     <>
@@ -654,13 +657,13 @@ export const SetFilterFromOutsideComponent = () => {
       </Button>
       <Button
         onClick={() => {
-          setSearchValue('leo');
+          setSearchTerm('leo');
         }}
       >
         Search by Leo
       </Button>
       <FilterContext.Provider
-        value={{ activeFilters, setActiveFilters, searchValue, setSearchValue }}
+        value={{ activeFilters, setActiveFilters, searchTerm, setSearchTerm }}
       >
         <PaginatedTable
           columns={columns}
@@ -700,10 +703,11 @@ export const SetFilterFromOutsideComponent = () => {
 
 export const PassInFilters = () => {
   const [activeFilters, setActiveFilters] = React.useState({ role: ['coach'] });
+  const [searchTerm, setSearchTerm] = React.useState('');
 
   return (
     <>
-      <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
+      <FilterContext.Provider value={{ activeFilters, setActiveFilters, searchTerm, setSearchTerm }}>
         <PaginatedTable
           columns={columns}
           mapDataToRow={mapData}
