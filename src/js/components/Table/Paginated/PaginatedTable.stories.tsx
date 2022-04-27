@@ -38,7 +38,7 @@ const columns = [
  */
 const data = [
   {
-    name: 'Brad',
+    name: 'Leo Habitzreuter',
     gender: 'm',
     birthdate: seventeenYearsBirthdate,
     age: 12,
@@ -641,10 +641,7 @@ export const ClearSelectedRows = () => {
 
 export const SetFilterFromOutsideComponent = () => {
   const [activeFilters, setActiveFilters] = React.useState({});
-
-  React.useEffect(() => {
-    console.log('activeFilters', activeFilters);
-  }, [activeFilters]);
+  const [searchValue, setSearchValue] = React.useState('');
 
   return (
     <>
@@ -655,7 +652,14 @@ export const SetFilterFromOutsideComponent = () => {
       >
         Change Roles Filter To Coach
       </Button>
-      <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
+      <Button
+        onClick={() => {
+          setSearchValue('leo');
+        }}
+      >
+        Search by Leo
+      </Button>
+      <FilterContext.Provider value={{ activeFilters, setActiveFilters, searchValue, setSearchValue }}>
         <PaginatedTable
           columns={columns}
           mapDataToRow={mapData}
