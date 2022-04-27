@@ -80,5 +80,33 @@ export const Default = () => (
         },
       ]}
     />
+
+    <Combobox
+      mods="u-spaceRightMd"
+      name="status"
+      buttonLabel="Payment Status"
+      onChange={(selected) => console.log(selected)}
+      items={[
+        {
+          label: 'Successful',
+          value: 'successful',
+        },
+        {
+          label: 'Failed',
+          value: 'failed',
+        },
+        {
+          label: 'Pending',
+          value: 'pending',
+        },
+      ]}
+      tooltip={
+        <div style={{ maxWidth: '180px' }}>
+          <a href="https://google.com" rel="noreferrer" target="_blank">
+            Click to learn more about payment statuses.
+          </a>
+        </div>
+      }
+    />
   </div>
 );

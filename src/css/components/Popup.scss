@@ -243,17 +243,28 @@ $Popup-arrow-borderRadius: 3px;
     display: none;
     visibility: hidden;
 
+    &.Popup-container--light::before,
+    &.Popup-container--light::after {
+      background-color: white;
+    }
+
     &.is-open {
       display: block;
       visibility: visible;
     }
     .Popup-content {
       background-color: #1d2b35;
+
+      &.Popup-content--light {
+        background-color: white;
+        color: #1d2b35;
+      }
     }
+
     &::before {
       top: auto;
       bottom: -1 * $Popup-arrow-offset;
-      background-color: #1d2b35;
+      background-color: white;
     }
     &::after {
       top: auto;

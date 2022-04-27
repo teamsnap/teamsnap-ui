@@ -26,6 +26,8 @@ import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import { Field } from '../Field';
 import { Icon } from '../Icon';
+import { PopupTooltip } from '../Popup/index';
+import { PopupTooltipVariant } from '../Popup/PopupTooltip';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -46,6 +48,7 @@ const propTypes = {
   testId: PropTypes.string,
   otherProps: PropTypes.object,
   disabled: PropTypes.bool,
+  tooltip: PropTypes.element,
 };
 interface Filter {
   value: string;
@@ -67,6 +70,7 @@ const ComboBox = ({
   mods,
   items,
   onChange,
+  tooltip,
 }: Props) => {
   const [initialized, setInitialized] = React.useState(false);
   const [flyoutVisible, toggleFlyout] = React.useState(false);
@@ -245,24 +249,35 @@ const ComboBox = ({
             )}
           </PanelBody>
           <PanelFooter mods="u-padEndsSm u-padSidesMd">
-            <Button
-              onClick={() => {
-                clearFilters();
-                toggleFlyout(false);
-              }}
-              mods="u-spaceRightMd u-colorNeutral7"
-              type="link"
-            >
-              Clear
-            </Button>
-            <Button
-              onClick={() => {
-                toggleFlyout(false);
-              }}
-              type="link"
-            >
-              Done
-            </Button>
+            <div className="u-flex u-flexAlignItemsCenter u-flexJustifyBetween">
+              <div className="u-padLeftXs">
+                {tooltip && (
+                  <PopupTooltip text={tooltip} variant={PopupTooltipVariant.LIGHT}>
+                    <Icon mods="u-colorPrimary5" name="info" />
+                  </PopupTooltip>
+                )}
+              </div>
+              <div>
+                <Button
+                  onClick={() => {
+                    clearFilters();
+                    toggleFlyout(false);
+                  }}
+                  mods="u-spaceRightMd u-colorNeutral7"
+                  type="link"
+                >
+                  Clear
+                </Button>
+                <Button
+                  onClick={() => {
+                    toggleFlyout(false);
+                  }}
+                  type="link"
+                >
+                  Done
+                </Button>
+              </div>
+            </div>
           </PanelFooter>
         </Panel>
       )}

@@ -1,6 +1,11 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
+export enum PopupTooltipVariant {
+  LIGHT,
+  DARK,
+}
+
 const propTypes = {
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   testId: PropTypes.string,
@@ -8,6 +13,7 @@ const propTypes = {
   mods: PropTypes.string,
   textHighlightColor: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  variant: PropTypes.oneOf([PopupTooltipVariant.LIGHT, PopupTooltipVariant.DARK]),
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -19,7 +25,9 @@ const PopupTooltip = ({
   mods,
   textHighlightColor,
   children,
+  variant = PopupTooltipVariant.DARK,
 }: Props) => {
+  console.log(variant);
   const buttonRef = React.useRef<HTMLButtonElement | null>(null);
   const tooltipRef = React.useRef<HTMLDivElement | null>(null);
   const [position, setPosition] = React.useState({ top: 0, left: 0 });
@@ -56,10 +64,20 @@ const PopupTooltip = ({
           id={describedby}
           aria-hidden={!!isPopupOpen}
           ref={tooltipRef}
-          className={`Popup-container ${isPopupOpen ? 'is-open' : ''}`}
+          className={`Popup-container ${isPopupOpen ? 'is-open' : ''} ${
+            variant === PopupTooltipVariant.LIGHT
+              ? 'Popup-container--light'
+              : 'Popup-container--dark'
+          }`}
           style={{ top: `${position.top}px`, left: `${position.left}px` }}
         >
-          <div className="Popup-content u-padEndsXs u-padSidesMd u-colorNeutral3">{text}</div>
+          <div
+            className={`Popup-content u-padEndsSm u-padSidesMd u-colorNeutral3 ${
+              variant === PopupTooltipVariant.LIGHT ? 'Popup-content--light' : 'Popup-tooltip--dark'
+            }`}
+          >
+            {text}
+          </div>
         </div>
       </div>
     </>
