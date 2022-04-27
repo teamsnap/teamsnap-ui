@@ -27,7 +27,6 @@ const PopupTooltip = ({
   children,
   variant = PopupTooltipVariant.DARK,
 }: Props) => {
-  console.log(variant);
   const buttonRef = React.useRef<HTMLButtonElement | null>(null);
   const tooltipRef = React.useRef<HTMLDivElement | null>(null);
   const [position, setPosition] = React.useState({ top: 0, left: 0 });
