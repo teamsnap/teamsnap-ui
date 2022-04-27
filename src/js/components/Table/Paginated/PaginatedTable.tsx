@@ -75,7 +75,9 @@ const SelectFilter = (
   label: string,
   options?:
     | { [key: string]: string | React.ReactNode }
-    | { value: string; label: string; subtext?: string }[]
+    | { value: string; label: string; subtext?: string }[],
+  tooltip?: JSX.Element,
+  tooltipLink?: string
 ) => {
   return ({ isLast }: { isLast: boolean }) => {
     const ctx = React.useContext(FilterContext);
@@ -101,6 +103,8 @@ const SelectFilter = (
             ? (options as { value: string; label: string; subtext?: string }[])
             : convertObjsToValueLabel(options as { [key: string]: string | React.ReactNode })
         }
+        tooltip={tooltip}
+        tooltipLink={tooltipLink}
       />
     );
   };
