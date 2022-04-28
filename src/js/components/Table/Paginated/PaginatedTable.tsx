@@ -188,7 +188,6 @@ const PaginatedTable: PaginatedTableProps = ({
   const [sortAscending, setSortAscending] = React.useState(false);
   const [isFetchingData, setIsFetchingData] = React.useState(false);
   const [selected, setSelected] = React.useState([]);
-  const [searchTerm, setSearchTerm] = React.useState('');
   const [filterOpen, setFilterOpen] = React.useState(false);
   const [isResettingFilters, setIsResettingFilters] = React.useState(false);
   const shouldDisplayPaginationAtBottom =
@@ -203,13 +202,16 @@ const PaginatedTable: PaginatedTableProps = ({
 
   const filterContext = React.useContext(FilterContext);
   const localFilters = React.useState({});
+  const localSearch = React.useState('');
 
-  const { activeFilters, setActiveFilters } = useExternalFilterProvider
+  const { activeFilters, searchTerm, setSearchTerm, setActiveFilters } = useExternalFilterProvider
     ? filterContext
     : {
-        activeFilters: localFilters[0],
-        setActiveFilters: localFilters[1],
-      };
+      activeFilters: localFilters[0],
+      setActiveFilters: localFilters[1],
+      searchTerm: localSearch[0],
+      setSearchTerm: localSearch[1]
+    }
 
   React.useEffect(() => {
     if (shouldClearSelectedRows) setSelected([]);
@@ -430,7 +432,8 @@ const PaginatedTable: PaginatedTableProps = ({
                 <BasicSearch
                   searchPlaceholder={searchPlaceholder}
                   searchFunction={updateSearchFilter}
-                  useExternalFilterProvider={useExternalFilterProvider}
+                  searchValue={searchTerm}
+                  setSearchValue={setSearchTerm}
                 />
               )
             : null}
@@ -506,17 +509,18 @@ const PaginatedTable: PaginatedTableProps = ({
       </div>
       {shouldDisplayPaginationAtBottom && paginationItems}
     </>
-  );
+  )
 
   return (
     <div className="Grid">
-      {useExternalFilterProvider ? (
-        render()
-      ) : (
-        <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
-          {render()}
-        </FilterContext.Provider>
-      )}
+      {useExternalFilterProvider
+        ? render()
+        : (
+          <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
+            {render()} 
+          </FilterContext.Provider>
+        )
+      }
     </div>
   );
 };
