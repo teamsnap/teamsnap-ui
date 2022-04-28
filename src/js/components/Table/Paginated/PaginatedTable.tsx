@@ -516,7 +516,12 @@ const PaginatedTable: PaginatedTableProps = ({
       {useExternalFilterProvider
         ? render()
         : (
-          <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
+          <FilterContext.Provider value={{
+            searchTerm,
+            setSearchTerm,
+            activeFilters,
+            setActiveFilters
+          }}>
             {render()} 
           </FilterContext.Provider>
         )
