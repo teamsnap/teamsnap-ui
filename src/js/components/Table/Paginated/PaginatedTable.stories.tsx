@@ -650,6 +650,13 @@ export const SetFilterFromOutsideComponent = () => {
     <>
       <Button
         onClick={() => {
+          setActiveFilters({ birthdate: { kind: 'years', value: ['2005'] } });
+        }}
+      >
+        Filter by year 2005
+      </Button>
+      <Button
+        onClick={() => {
           setActiveFilters({ role: ['coach'] });
         }}
       >
@@ -671,6 +678,7 @@ export const SetFilterFromOutsideComponent = () => {
           loadData={loadSearchData}
           defaultItemsPerPage={2}
           filters={[
+            PaginatedTable.DateFilter('birthdate', 'Participants Birthdate'),
             PaginatedTable.SelectFilter(
               'role',
               'Participants Role',
@@ -689,7 +697,7 @@ export const SetFilterFromOutsideComponent = () => {
                 </a>
               </div>,
               'https://google.com'
-            ),
+            )
           ]}
           paginationPlacement={Placement.Bottom}
           includeBasicSearch

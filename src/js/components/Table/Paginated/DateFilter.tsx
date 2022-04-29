@@ -57,6 +57,7 @@ const propTypes = {
 
 type Props = Omit<PropTypes.InferProps<typeof propTypes>, 'onChange'> & {
   onChange: (value?: FilterValue) => void;
+  selected?: FilterValue;
 };
 
 const formatDate = (x?: string) => {
@@ -88,9 +89,10 @@ const DateFilter = ({
   yearPlaceholder,
   rangeMin,
   rangeMax,
+  selected,
   ...props
 }: Props) => {
-  const [mode, setMode] = React.useState<'year' | 'range' | 'noDate'>('year');
+  const [mode, setMode] = React.useState<'years' | 'range' | 'noDate'>('years');
   const [hasFilters, setHasFilters] = React.useState(false);
   const [flyoutVisible, toggleFlyout] = React.useState(false);
   const [years, setYears] = React.useState('');
@@ -108,13 +110,13 @@ const DateFilter = ({
     setButtonLabel(title);
 
     if (mode === 'noDate') {
-      setMode('year');
+      setMode('years');
       toggleFlyout(false);
     }
   };
 
   const applyFilters = () => {
-    if ((mode === 'year' && !years) || (mode === 'range' && !fromDate && !toDate)) {
+    if ((mode === 'years' && !years) || (mode === 'range' && !fromDate && !toDate)) {
       setYears('');
       setFromDate('');
       setToDate('');
@@ -162,6 +164,16 @@ const DateFilter = ({
       setYears(cleanYears);
     }
   };
+
+  React.useEffect(() => {
+    if (selected) {
+      setMode(selected.kind)
+      setYears(selected.kind === 'years' ? selected.value.join(',') : '')
+      setFromDate(selected.kind === 'range' ? (selected.value.from?.toString() || '') : '')
+      setToDate(selected.kind === 'range' ? (selected.value.to?.toString() || '') : '')
+      applyFilters()
+    }
+  }, [selected])
 
   const onChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -230,7 +242,7 @@ const DateFilter = ({
                 }}
               />
 
-              {mode === 'year' && (
+              {mode === 'years' && (
                 <Field
                   type="input"
                   name="years"
