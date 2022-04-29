@@ -97,16 +97,11 @@ const DateFilter = ({
   const [toDate, setToDate] = React.useState('');
 
   const clearFilters = () => {
-    toggleFlyout(false);
     onChange();
-
-    if (mode === 'noDate') {
-      setMode('years');
-      toggleFlyout(false);
-    }
   };
 
   const applyFilters = () => {
+    console.log('applyFilters')
     if ((mode === 'years' && !years) || (mode === 'range' && !fromDate && !toDate)) {
       setYears('');
       setFromDate('');
@@ -147,10 +142,11 @@ const DateFilter = ({
       ? (selected.value.to?.toISOString().split('T')[0] || '')
       : ''
     )
+    toggleFlyout(false)
   }, [selected])
 
   const buttonLabel = React.useMemo(() => {
-    if (!selected)  return title
+    if (!selected) return title
     
     if (selected.kind === 'noDate') return `${noDateLabel || '[No Date]'}`
     
@@ -285,9 +281,7 @@ const DateFilter = ({
           </PanelBody>
           <PanelFooter mods="u-padEndsSm u-padSidesMd">
             <Button
-              onClick={() => {
-                clearFilters();
-              }}
+              onClick={clearFilters}
               mods="u-spaceRightMd u-colorNeutral7"
               type="link"
             >

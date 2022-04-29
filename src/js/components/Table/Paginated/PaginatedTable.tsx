@@ -21,7 +21,7 @@ import { exportToCsv } from '../../../utils/export';
 import FilterContext from '../../../context/filterContext';
 
 // eslint-disable-next-line import/no-named-default
-import { default as DateFilterComponent } from './DateFilter';
+import { default as DateFilterComponent, FilterValue } from './DateFilter';
 
 interface BulkAction {
   label: string;
@@ -121,13 +121,8 @@ const DateFilter = (
   return ({ isLast }: { isLast: boolean }) => {
     const ctx = React.useContext(FilterContext);
 
-    const onChange = (values) => {
-      if (values?.length > 0 || values?.kind) {
-        ctx.setActiveFilters({ ...ctx.activeFilters, [fieldName]: values });
-      } else {
-        delete ctx.activeFilters[fieldName];
-        ctx.setActiveFilters({ ...ctx.activeFilters });
-      }
+    const onChange = (value?: FilterValue) => {
+      ctx.setActiveFilters({ ...ctx.activeFilters, [fieldName]: value });
     };
 
     return (
