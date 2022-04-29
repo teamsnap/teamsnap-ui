@@ -16,6 +16,9 @@ eighteenYearsBirthdate.setFullYear(eighteenYearsBirthdate.getFullYear() - 18);
 const seventeenYearsBirthdate = new Date();
 seventeenYearsBirthdate.setFullYear(seventeenYearsBirthdate.getFullYear() - 17);
 
+const twentyYearsAgo = new Date();
+twentyYearsAgo.setFullYear(twentyYearsAgo.getFullYear() - 20);
+
 /**
  * Columns to configure the table against.
  */
@@ -642,12 +645,38 @@ export const ClearSelectedRows = () => {
   );
 };
 
+const birthdateFilter = PaginatedTable.DateFilter('birthdate', 'Participants Birthdate')
+
 export const SetFilterFromOutsideComponent = () => {
   const [activeFilters, setActiveFilters] = React.useState({});
   const [searchTerm, setSearchTerm] = React.useState('');
 
   return (
     <>
+      <Button
+        onClick={() => {
+          setActiveFilters({ birthdate: { kind: 'years', value: ['2005'] } });
+        }}
+      >
+        Filter by year 2005
+      </Button>
+      <Button
+        onClick={() => {
+          setActiveFilters({ birthdate: { kind: 'noDate' } });
+        }}
+      >
+        Filter by No-Birthdate
+      </Button>
+      <Button
+        onClick={() => {
+          setActiveFilters({ birthdate: {
+            kind: 'range',
+            value: { from: twentyYearsAgo, to: new Date() } }
+          });
+        }}
+      >
+        Filter by the last 20 years
+      </Button>
       <Button
         onClick={() => {
           setActiveFilters({ role: ['coach'] });
@@ -671,6 +700,7 @@ export const SetFilterFromOutsideComponent = () => {
           loadData={loadSearchData}
           defaultItemsPerPage={2}
           filters={[
+            birthdateFilter,
             PaginatedTable.SelectFilter(
               'role',
               'Participants Role',
@@ -689,7 +719,7 @@ export const SetFilterFromOutsideComponent = () => {
                 </a>
               </div>,
               'https://google.com'
-            ),
+            )
           ]}
           paginationPlacement={Placement.Bottom}
           includeBasicSearch

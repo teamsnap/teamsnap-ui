@@ -133,6 +133,7 @@ const DateFilter = (
     return (
       <DateFilterComponent
         mods={isLast ? '' : 'u-spaceRightSm'}
+        selected={ctx.activeFilters[fieldName]}
         onChange={onChange}
         name={fieldName}
         title={label}
