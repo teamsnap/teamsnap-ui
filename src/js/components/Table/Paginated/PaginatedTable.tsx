@@ -68,6 +68,7 @@ const propTypes = {
   shouldClearSelectedRows: PropTypes.bool,
   onExport: PropTypes.func,
   useExternalFilterProvider: PropTypes.bool,
+  fullRowSelect: PropTypes.bool,
 };
 
 const SelectFilter = (
@@ -172,6 +173,7 @@ const PaginatedTable: PaginatedTableProps = ({
   onExport = null,
   isLoading,
   useExternalFilterProvider,
+  fullRowSelect = false,
 }) => {
   assert(
     !(filters.length && paginationPlacement === Placement.Top),
@@ -207,11 +209,11 @@ const PaginatedTable: PaginatedTableProps = ({
   const { activeFilters, searchTerm, setSearchTerm, setActiveFilters } = useExternalFilterProvider
     ? filterContext
     : {
-      activeFilters: localFilters[0],
-      setActiveFilters: localFilters[1],
-      searchTerm: localSearch[0],
-      setSearchTerm: localSearch[1]
-    }
+        activeFilters: localFilters[0],
+        setActiveFilters: localFilters[1],
+        searchTerm: localSearch[0],
+        setSearchTerm: localSearch[1],
+      };
 
   React.useEffect(() => {
     if (shouldClearSelectedRows) setSelected([]);
@@ -256,28 +258,41 @@ const PaginatedTable: PaginatedTableProps = ({
 
     // use IDs as keys to determine uniqueness
     const selectedids = selected.map((e) => e.id);
-    rows = rows.map((ele) => ({
-      ...ele,
-      selected: (
-        <div>
-          <Checkbox
-            name={`select-${ele.id}`}
-            mods="u-padBottomNone"
-            inputProps={{
-              checked: selectedids.includes(ele.id),
-              onChange: () => {},
-              onClick: () => {
-                if (selectedids.includes(ele.id)) {
-                  setSelected(selected.filter((e) => e.id !== ele.id));
-                } else {
-                  setSelected([...selected, ele]);
-                }
-              },
-            }}
-          />
-        </div>
-      ),
-    }));
+    rows = rows.map((ele) => {
+      const rowData = {
+        ...ele,
+        selected: (
+          <div>
+            <Checkbox
+              name={`select-${ele.id}`}
+              mods="u-padBottomNone"
+              inputProps={{
+                checked: selectedids.includes(ele.id),
+                onChange: () => {},
+                onClick: () => {
+                  if (selectedids.includes(ele.id)) {
+                    setSelected(selected.filter((e) => e.id !== ele.id));
+                  } else {
+                    setSelected([...selected, ele]);
+                  }
+                },
+              }}
+            />
+          </div>
+        ),
+      };
+
+      if (rowData.selected && fullRowSelect) {
+        rowData.onClick = () => {
+          if (selectedids.includes(ele.id)) {
+            setSelected(selected.filter((e) => e.id !== ele.id));
+          } else {
+            setSelected([...selected, ele]);
+          }
+        };
+      }
+      return rowData;
+    });
   }
 
   // collisions overwrite
@@ -509,23 +524,24 @@ const PaginatedTable: PaginatedTableProps = ({
       </div>
       {shouldDisplayPaginationAtBottom && paginationItems}
     </>
-  )
+  );
 
   return (
     <div className="Grid">
-      {useExternalFilterProvider
-        ? render()
-        : (
-          <FilterContext.Provider value={{
+      {useExternalFilterProvider ? (
+        render()
+      ) : (
+        <FilterContext.Provider
+          value={{
             searchTerm,
             setSearchTerm,
             activeFilters,
-            setActiveFilters
-          }}>
-            {render()} 
-          </FilterContext.Provider>
-        )
-      }
+            setActiveFilters,
+          }}
+        >
+          {render()}
+        </FilterContext.Provider>
+      )}
     </div>
   );
 };
