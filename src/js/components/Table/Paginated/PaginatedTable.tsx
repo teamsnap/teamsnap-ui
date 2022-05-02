@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { isEmpty } from 'lodash';
+import { isEmpty, negate, isNil } from 'lodash';
 import Table from '../Table';
 import { convertObjsToValueLabel, getCheckboxStateForBulkActions, usePagination } from './helpers';
 import {
@@ -297,7 +297,7 @@ const PaginatedTable: PaginatedTableProps = ({
     return acc;
   }, {});
 
-  const filterLength = Object.entries(activeFilters).length;
+  const filterLength = Object.values(activeFilters).filter(negate(isNil)).length;
   const defaultSortStr = sortName.length ? `${sortAscending ? '-' : ''}${sortName}` : defaultSort;
 
   const updateSearchFilter = ({ searchTerm: search }) => {
