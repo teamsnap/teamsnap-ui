@@ -687,21 +687,21 @@ export const SetFilterFromOutsideComponent = () => {
     <>
       <Button
         onClick={() => {
-          setActiveFilters({ birthdate: { kind: 'years', value: ['2005'] } });
+          setActiveFilters({ ...activeFilters, birthdate: { kind: 'years', value: ['2005'] } });
         }}
       >
         Filter by year 2005
       </Button>
       <Button
         onClick={() => {
-          setActiveFilters({ birthdate: { kind: 'noDate' } });
+          setActiveFilters({ ...activeFilters, birthdate: { kind: 'noDate' } });
         }}
       >
         Filter by No-Birthdate
       </Button>
       <Button
         onClick={() => {
-          setActiveFilters({ birthdate: {
+          setActiveFilters({ ...activeFilters, birthdate: {
             kind: 'range',
             value: { from: twentyYearsAgo, to: new Date() } }
           });
@@ -711,7 +711,7 @@ export const SetFilterFromOutsideComponent = () => {
       </Button>
       <Button
         onClick={() => {
-          setActiveFilters({ role: ['coach'] });
+          setActiveFilters({ ...activeFilters, role: ['coach'] });
         }}
       >
         Change Roles Filter To Coach
