@@ -101,7 +101,6 @@ const DateFilter = ({
   };
 
   const applyFilters = () => {
-    console.log('applyFilters')
     if ((mode === 'years' && !years) || (mode === 'range' && !fromDate && !toDate)) {
       setYears('');
       setFromDate('');

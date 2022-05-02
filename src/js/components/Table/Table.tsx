@@ -223,7 +223,14 @@ const Table = ({
             ) : (
               <div style={maxTableHeight ? withMaxTableHeight : null}>
                 {items.map((row) => (
-                  <PanelRow key={row.id} isWithCells>
+                  <PanelRow
+                    key={row.id}
+                    isWithCells
+                    className={
+                      row.selected && row.onClick ? 'Panel-row Panel-row--selectable' : 'Panel-row'
+                    }
+                    otherProps={{ onClick: row.onClick ? row.onClick : null }}
+                  >
                     {columns.map((column) => renderColumn(column, row))}
                   </PanelRow>
                 ))}

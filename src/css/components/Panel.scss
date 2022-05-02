@@ -1,4 +1,4 @@
-@import "../config/index.scss";
+@import '../config/index.scss';
 
 //------------------------------------------------------------//
 
@@ -23,16 +23,13 @@
 // * 1. Panel Settings
 ///////////////////////////////////////////////////////////////
 
-
 $Panel-bg-color: $cu-foreground !default;
 $Panel-text-color: $cu-info !default;
 $Panel-header-text-color: $cu-info !default;
 
-
 ///////////////////////////////////////////////////////////////
 // * 2. Base Panel
 ///////////////////////////////////////////////////////////////
-
 
 .Panel {
   padding: 0;
@@ -43,7 +40,6 @@ $Panel-header-text-color: $cu-info !default;
   border-radius: $border-radius-large;
   box-sizing: border-box;
 }
-
 
 // * .Panel-body
 //
@@ -57,7 +53,6 @@ $Panel-header-text-color: $cu-info !default;
     display: none !important;
   }
 }
-
 
 // Hide overflowing panel corners by setting border radius on corner children
 
@@ -82,11 +77,10 @@ $Panel-header-text-color: $cu-info !default;
   border-bottom-right-radius: $border-radius-large;
 }
 
-
 // Table Specific Stylings
 
-.Panel-body[role="table"] {
-  & > .Panel-row[role="row"]:first-child {
+.Panel-body[role='table'] {
+  & > .Panel-row[role='row']:first-child {
     box-shadow: 0px 4px 7px -5px color-neutral(5);
     position: relative;
 
@@ -101,7 +95,7 @@ $Panel-header-text-color: $cu-info !default;
     }
   }
 
-  .Panel-row[role="row"] {
+  .Panel-row[role='row'] {
     transition: all ease 300ms;
 
     // Adds blue border to top for hover style
@@ -118,26 +112,29 @@ $Panel-header-text-color: $cu-info !default;
       transition: opacity ease 300ms;
     }
 
-    &:hover {
-      background-color: color-neutral(2) !important;
-      border-color: color-primary(6) !important;
-      position: relative;
-      cursor: pointer;
+    &.Panel-row--selectable {
+      &:hover {
+        background-color: color-neutral(2) !important;
+        border-color: color-primary(6) !important;
+        position: relative;
+        cursor: pointer;
 
-      &:before {
-        opacity: 1
+        &:before {
+          opacity: 1;
+        }
       }
     }
   }
 }
 
 // Column header styles
-.Panel-cell[role="columnheader"] {
+.Panel-cell[role='columnheader'] {
   padding: 0;
   transition: background-color ease 300ms;
   cursor: default;
 
-  .Panel-title > a, .Panel-title > span {
+  .Panel-title > a,
+  .Panel-title > span {
     padding: 16px;
   }
 
@@ -153,11 +150,11 @@ $Panel-header-text-color: $cu-info !default;
 
 // Update the row border color to override panel border color
 // Can this just be updated in Panel?
-.Panel-row[role="row"] {
+.Panel-row[role='row'] {
   border-color: color-neutral(4) !important;
 }
 
-.Panel-body[role="table"] .Panel-row[role="row"] .Panel-cell {
+.Panel-body[role='table'] .Panel-row[role='row'] .Panel-cell {
   font-size: $tu-base-fontSize;
 }
 
@@ -169,7 +166,6 @@ $Panel-header-text-color: $cu-info !default;
   max-width: none;
 }
 
-
 // By default, cells with direct descendent content have padding
 
 .Panel-header,
@@ -178,7 +174,6 @@ $Panel-header-text-color: $cu-info !default;
 .Panel-cell {
   padding: $su-medium;
 }
-
 
 // * .Panel-header
 //
@@ -230,7 +225,6 @@ $Panel-header-text-color: $cu-info !default;
     padding: $su-medium;
     padding-bottom: 0;
   }
-
 }
 
 // * .Panel-headerImage
@@ -246,7 +240,6 @@ $Panel-header-text-color: $cu-info !default;
     vertical-align: top;
     width: 100%;
   }
-
 }
 
 // * .Panel-title
@@ -291,7 +284,6 @@ $Panel-header-text-color: $cu-info !default;
   font-weight: $tu-semibold-fontWeight;
 }
 
-
 // * .Panel-cell
 //
 // 1. By default make cells grow to fill the space.
@@ -301,7 +293,6 @@ $Panel-header-text-color: $cu-info !default;
   flex: 1 1 0%; // 1
   word-break: break-word;
 }
-
 
 // * .Panel-cell--header (Modifier)
 //
@@ -322,11 +313,9 @@ $Panel-header-text-color: $cu-info !default;
   text-align: right; // 1
 }
 
-
 ///////////////////////////////////////////////////////////////
 // * 3. Panel Modifiers
 ///////////////////////////////////////////////////////////////
-
 
 // * .Panel--striped
 //
@@ -335,7 +324,6 @@ $Panel-header-text-color: $cu-info !default;
 .Panel--striped .Panel-row:nth-child(even) {
   background-color: $cu-middleground; // 1
 }
-
 
 // .Panel--[bpMax]-stacked
 //
@@ -357,7 +345,6 @@ $Panel-header-text-color: $cu-info !default;
   @each $name, $value in $max-breakpoints {
     @media (max-width: $value) {
       .Panel--#{$name}-stacked {
-
         .Panel-row {
           flex-wrap: wrap; // 1
           border-bottom: 0;
@@ -402,7 +389,8 @@ $Panel-header-text-color: $cu-info !default;
 // 3. The Parent row needs to be targeted seperately from a static Panel row
 
 .Panel {
-  .Panel-row--parent { // 3
+  .Panel-row--parent {
+    // 3
     border-bottom: none; // 1
   }
 } // 2

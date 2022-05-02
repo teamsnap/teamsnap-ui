@@ -366,7 +366,8 @@ function loadSearchData({ page, itemsPerPage, filter }) {
       (item) => !filter.team || !filter.team.length || filter.team.includes(String(item.team?.id))
     )
     .filter(
-      (item) => !filter.role || !filter.role.length || filter.role.includes(item.position.toLowerCase())
+      (item) =>
+        !filter.role || !filter.role.length || filter.role.includes(item.position.toLowerCase())
     )
     .filter((item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1);
 
@@ -424,6 +425,37 @@ export const SelectableRows = () => (
   <PaginatedTable
     columns={columns}
     rowsAreSelectable
+    bulkActions={[
+      {
+        label: 'Log Selected',
+        onSelected: (selected) => {
+          console.log(selected);
+        },
+      },
+      {
+        label: 'Alert Selected IDs',
+        onSelected: (selected) => {
+          console.log(alert(selected.map((e) => e.id).join(',')));
+        },
+      },
+    ]}
+    mapDataToRow={mapData}
+    loadData={loadData}
+    includeBasicSearch
+    searchPlaceholder="Search members by name"
+    defaultItemsPerPage={2}
+    rowSelected={(selected) => {
+      // Returns the select rows
+      console.log(selected);
+    }}
+  />
+);
+
+export const FullRowClickSelectableRows = () => (
+  <PaginatedTable
+    columns={columns}
+    rowsAreSelectable
+    fullRowSelect
     bulkActions={[
       {
         label: 'Log Selected',
@@ -737,7 +769,9 @@ export const PassInFilters = () => {
 
   return (
     <>
-      <FilterContext.Provider value={{ activeFilters, setActiveFilters, searchTerm, setSearchTerm }}>
+      <FilterContext.Provider
+        value={{ activeFilters, setActiveFilters, searchTerm, setSearchTerm }}
+      >
         <PaginatedTable
           columns={columns}
           mapDataToRow={mapData}
