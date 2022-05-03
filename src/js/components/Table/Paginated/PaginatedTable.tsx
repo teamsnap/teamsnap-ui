@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { isEmpty, isNil } from 'lodash';
+import { isEmpty } from 'lodash';
 import Table from '../Table';
 import { convertObjsToValueLabel, getCheckboxStateForBulkActions, usePagination } from './helpers';
 import {
@@ -21,7 +21,7 @@ import { exportToCsv } from '../../../utils/export';
 import FilterContext from '../../../context/filterContext';
 
 // eslint-disable-next-line import/no-named-default
-import { default as DateFilterComponent, FilterValue } from './DateFilter';
+import { default as DateFilterComponent } from './DateFilter';
 
 interface BulkAction {
   label: string;
@@ -68,7 +68,7 @@ const propTypes = {
   shouldClearSelectedRows: PropTypes.bool,
   onExport: PropTypes.func,
   useExternalFilterProvider: PropTypes.bool,
-  fullRowSelect: PropTypes.bool,
+  fullRowSelect: PropTypes.bool
 };
 
 const SelectFilter = (
@@ -77,8 +77,8 @@ const SelectFilter = (
   options?:
     | { [key: string]: string | React.ReactNode }
     | { value: string; label: string; subtext?: string }[],
-  tooltip?: JSX.Element,
-  tooltipLink?: string
+    tooltip?: JSX.Element,
+    tooltipLink?: string
 ) => {
   return ({ isLast }: { isLast: boolean }) => {
     const ctx = React.useContext(FilterContext);
@@ -99,13 +99,13 @@ const SelectFilter = (
         selected={ctx.activeFilters[fieldName]}
         name={fieldName}
         buttonLabel={label}
+        tooltip={tooltip}
+        tooltipLink={tooltipLink}
         items={
           options.length
             ? (options as { value: string; label: string; subtext?: string }[])
             : convertObjsToValueLabel(options as { [key: string]: string | React.ReactNode })
         }
-        tooltip={tooltip}
-        tooltipLink={tooltipLink}
       />
     );
   };
@@ -122,14 +122,18 @@ const DateFilter = (
   return ({ isLast }: { isLast: boolean }) => {
     const ctx = React.useContext(FilterContext);
 
-    const onChange = (value?: FilterValue) => {
-      ctx.setActiveFilters({ ...ctx.activeFilters, [fieldName]: value });
+    const onChange = (values) => {
+      if (values?.length > 0 || values?.kind) {
+        ctx.setActiveFilters({ ...ctx.activeFilters, [fieldName]: values });
+      } else {
+        delete ctx.activeFilters[fieldName];
+        ctx.setActiveFilters({ ...ctx.activeFilters });
+      }
     };
 
     return (
       <DateFilterComponent
         mods={isLast ? '' : 'u-spaceRightSm'}
-        selected={ctx.activeFilters[fieldName]}
         onChange={onChange}
         name={fieldName}
         title={label}
@@ -169,7 +173,7 @@ const PaginatedTable: PaginatedTableProps = ({
   onExport = null,
   isLoading,
   useExternalFilterProvider,
-  fullRowSelect = false,
+  fullRowSelect = false
 }) => {
   assert(
     !(filters.length && paginationPlacement === Placement.Top),
@@ -186,6 +190,7 @@ const PaginatedTable: PaginatedTableProps = ({
   const [sortAscending, setSortAscending] = React.useState(false);
   const [isFetchingData, setIsFetchingData] = React.useState(false);
   const [selected, setSelected] = React.useState([]);
+  const [searchTerm, setSearchTerm] = React.useState('');
   const [filterOpen, setFilterOpen] = React.useState(false);
   const [isResettingFilters, setIsResettingFilters] = React.useState(false);
   const shouldDisplayPaginationAtBottom =
@@ -200,16 +205,13 @@ const PaginatedTable: PaginatedTableProps = ({
 
   const filterContext = React.useContext(FilterContext);
   const localFilters = React.useState({});
-  const localSearch = React.useState('');
 
-  const { activeFilters, searchTerm, setSearchTerm, setActiveFilters } = useExternalFilterProvider
+  const { activeFilters, setActiveFilters } = useExternalFilterProvider
     ? filterContext
     : {
-        activeFilters: localFilters[0],
-        setActiveFilters: localFilters[1],
-        searchTerm: localSearch[0],
-        setSearchTerm: localSearch[1],
-      };
+      activeFilters: localFilters[0],
+      setActiveFilters: localFilters[1]
+    }
 
   React.useEffect(() => {
     if (shouldClearSelectedRows) setSelected([]);
@@ -297,7 +299,7 @@ const PaginatedTable: PaginatedTableProps = ({
     return acc;
   }, {});
 
-  const filterLength = Object.values(activeFilters).filter(x => !isNil(x) && x !== '').length;
+  const filterLength = Object.entries(activeFilters).length;
   const defaultSortStr = sortName.length ? `${sortAscending ? '-' : ''}${sortName}` : defaultSort;
 
   const updateSearchFilter = ({ searchTerm: search }) => {
@@ -443,8 +445,7 @@ const PaginatedTable: PaginatedTableProps = ({
                 <BasicSearch
                   searchPlaceholder={searchPlaceholder}
                   searchFunction={updateSearchFilter}
-                  searchValue={searchTerm}
-                  setSearchValue={setSearchTerm}
+                  useExternalFilterProvider={useExternalFilterProvider}
                 />
               )
             : null}
@@ -520,24 +521,18 @@ const PaginatedTable: PaginatedTableProps = ({
       </div>
       {shouldDisplayPaginationAtBottom && paginationItems}
     </>
-  );
+  )
 
   return (
     <div className="Grid">
-      {useExternalFilterProvider ? (
-        render()
-      ) : (
-        <FilterContext.Provider
-          value={{
-            searchTerm,
-            setSearchTerm,
-            activeFilters,
-            setActiveFilters,
-          }}
-        >
-          {render()}
-        </FilterContext.Provider>
-      )}
+      {useExternalFilterProvider
+        ? render()
+        : (
+          <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
+            {render()} 
+          </FilterContext.Provider>
+        )
+      }
     </div>
   );
 };

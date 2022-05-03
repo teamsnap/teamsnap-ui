@@ -16,9 +16,6 @@ eighteenYearsBirthdate.setFullYear(eighteenYearsBirthdate.getFullYear() - 18);
 const seventeenYearsBirthdate = new Date();
 seventeenYearsBirthdate.setFullYear(seventeenYearsBirthdate.getFullYear() - 17);
 
-const twentyYearsAgo = new Date();
-twentyYearsAgo.setFullYear(twentyYearsAgo.getFullYear() - 20);
-
 /**
  * Columns to configure the table against.
  */
@@ -365,10 +362,6 @@ function loadSearchData({ page, itemsPerPage, filter }) {
     .filter(
       (item) => !filter.team || !filter.team.length || filter.team.includes(String(item.team?.id))
     )
-    .filter(
-      (item) =>
-        !filter.role || !filter.role.length || filter.role.includes(item.position.toLowerCase())
-    )
     .filter((item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1);
 
   const dateFilteredItems = filter.birthdate
@@ -425,37 +418,6 @@ export const SelectableRows = () => (
   <PaginatedTable
     columns={columns}
     rowsAreSelectable
-    bulkActions={[
-      {
-        label: 'Log Selected',
-        onSelected: (selected) => {
-          console.log(selected);
-        },
-      },
-      {
-        label: 'Alert Selected IDs',
-        onSelected: (selected) => {
-          console.log(alert(selected.map((e) => e.id).join(',')));
-        },
-      },
-    ]}
-    mapDataToRow={mapData}
-    loadData={loadData}
-    includeBasicSearch
-    searchPlaceholder="Search members by name"
-    defaultItemsPerPage={2}
-    rowSelected={(selected) => {
-      // Returns the select rows
-      console.log(selected);
-    }}
-  />
-);
-
-export const FullRowClickSelectableRows = () => (
-  <PaginatedTable
-    columns={columns}
-    rowsAreSelectable
-    fullRowSelect
     bulkActions={[
       {
         label: 'Log Selected',
@@ -677,62 +639,33 @@ export const ClearSelectedRows = () => {
   );
 };
 
-const birthdateFilter = PaginatedTable.DateFilter('birthdate', 'Participants Birthdate')
-
 export const SetFilterFromOutsideComponent = () => {
   const [activeFilters, setActiveFilters] = React.useState({});
-  const [searchTerm, setSearchTerm] = React.useState('');
+  const [searchValue, setSearchValue] = React.useState('');
 
   return (
     <>
       <Button
         onClick={() => {
-          setActiveFilters({ ...activeFilters, birthdate: { kind: 'years', value: ['2005'] } });
-        }}
-      >
-        Filter by year 2005
-      </Button>
-      <Button
-        onClick={() => {
-          setActiveFilters({ ...activeFilters, birthdate: { kind: 'noDate' } });
-        }}
-      >
-        Filter by No-Birthdate
-      </Button>
-      <Button
-        onClick={() => {
-          setActiveFilters({ ...activeFilters, birthdate: {
-            kind: 'range',
-            value: { from: twentyYearsAgo, to: new Date() } }
-          });
-        }}
-      >
-        Filter by the last 20 years
-      </Button>
-      <Button
-        onClick={() => {
-          setActiveFilters({ ...activeFilters, role: ['coach'] });
+          setActiveFilters({ role: ['coach'] });
         }}
       >
         Change Roles Filter To Coach
       </Button>
       <Button
         onClick={() => {
-          setSearchTerm('leo');
+          setSearchValue('leo');
         }}
       >
         Search by Leo
       </Button>
-      <FilterContext.Provider
-        value={{ activeFilters, setActiveFilters, searchTerm, setSearchTerm }}
-      >
+      <FilterContext.Provider value={{ activeFilters, setActiveFilters, searchValue, setSearchValue }}>
         <PaginatedTable
           columns={columns}
           mapDataToRow={mapData}
           loadData={loadSearchData}
           defaultItemsPerPage={2}
           filters={[
-            birthdateFilter,
             PaginatedTable.SelectFilter(
               'role',
               'Participants Role',
@@ -751,7 +684,7 @@ export const SetFilterFromOutsideComponent = () => {
                 </a>
               </div>,
               'https://google.com'
-            )
+            ),
           ]}
           paginationPlacement={Placement.Bottom}
           includeBasicSearch
@@ -765,13 +698,10 @@ export const SetFilterFromOutsideComponent = () => {
 
 export const PassInFilters = () => {
   const [activeFilters, setActiveFilters] = React.useState({ role: ['coach'] });
-  const [searchTerm, setSearchTerm] = React.useState('');
 
   return (
     <>
-      <FilterContext.Provider
-        value={{ activeFilters, setActiveFilters, searchTerm, setSearchTerm }}
-      >
+      <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
         <PaginatedTable
           columns={columns}
           mapDataToRow={mapData}
