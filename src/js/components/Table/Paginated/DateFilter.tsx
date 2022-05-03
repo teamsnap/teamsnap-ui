@@ -31,7 +31,7 @@ export type FilterValue = Range | Years | NoDate;
 const modes = [
   {
     label: 'Year',
-    value: 'year',
+    value: 'years',
   },
   {
     label: 'Date Range',
@@ -57,6 +57,7 @@ const propTypes = {
 
 type Props = Omit<PropTypes.InferProps<typeof propTypes>, 'onChange'> & {
   onChange: (value?: FilterValue) => void;
+  selected?: FilterValue;
 };
 
 const formatDate = (x?: string) => {
@@ -68,10 +69,7 @@ const formatDate = (x?: string) => {
   return date;
 };
 
-const formatDisplayDate = (date: string, locales?: string[]): string => {
-  if (locales) {
-    return new Intl.DateTimeFormat(locales).format(formatDate(date));
-  }
+const formatDisplayDate = (date: string): string => {
   return new Intl.DateTimeFormat(
     navigator.languages ? [...navigator.languages] : navigator.language
   ).format(formatDate(date));
@@ -88,33 +86,22 @@ const DateFilter = ({
   yearPlaceholder,
   rangeMin,
   rangeMax,
+  selected,
   ...props
 }: Props) => {
-  const [mode, setMode] = React.useState<'year' | 'range' | 'noDate'>('year');
+  const [mode, setMode] = React.useState<'years' | 'range' | 'noDate'>('years');
   const [hasFilters, setHasFilters] = React.useState(false);
   const [flyoutVisible, toggleFlyout] = React.useState(false);
   const [years, setYears] = React.useState('');
   const [fromDate, setFromDate] = React.useState('');
   const [toDate, setToDate] = React.useState('');
-  const [buttonLabel, setButtonLabel] = React.useState(title);
 
   const clearFilters = () => {
-    toggleFlyout(false);
-    setYears('');
-    setFromDate('');
-    setToDate('');
-    setHasFilters(false);
     onChange();
-    setButtonLabel(title);
-
-    if (mode === 'noDate') {
-      setMode('year');
-      toggleFlyout(false);
-    }
   };
 
   const applyFilters = () => {
-    if ((mode === 'year' && !years) || (mode === 'range' && !fromDate && !toDate)) {
+    if ((mode === 'years' && !years) || (mode === 'range' && !fromDate && !toDate)) {
       setYears('');
       setFromDate('');
       setToDate('');
@@ -122,28 +109,11 @@ const DateFilter = ({
     }
 
     if (mode === 'noDate') {
-      setYears('');
-      setFromDate('');
-      setToDate('');
-      setHasFilters(true);
-      setButtonLabel(`${noDateLabel || '[No Date]'}`);
       onChange({ kind: 'noDate' });
       return;
     }
 
     if (mode === 'range') {
-      setYears('');
-      if (fromDate && !toDate) {
-        setButtonLabel(`After ${formatDisplayDate(fromDate)}`);
-      } else if (toDate && !fromDate) {
-        setButtonLabel(`Before ${formatDisplayDate(toDate)}`);
-      } else {
-        setButtonLabel(
-          [formatDisplayDate(fromDate), formatDisplayDate(toDate)].filter((x) => !!x).join(' - ')
-        );
-      }
-
-      setHasFilters(true);
       onChange({
         kind: 'range',
         value: { from: formatDate(fromDate), to: formatDate(toDate) },
@@ -153,15 +123,45 @@ const DateFilter = ({
 
     if (years.length > 0) {
       const elements = years.split(',').filter((item) => !!item);
-      const cleanYears = elements.join(',');
-      setButtonLabel(cleanYears);
-      setFromDate('');
-      setToDate('');
-      setHasFilters(true);
       onChange({ kind: 'years', value: elements });
-      setYears(cleanYears);
     }
   };
+
+  React.useEffect(() => {
+    setMode(selected?.kind || 'years')
+    setHasFilters(!!selected)
+    setYears(selected?.kind === 'years' ? selected.value.join(',') : '')
+    setFromDate(
+      selected?.kind === 'range'
+      ? (selected.value.from?.toISOString().split('T')[0] || '')
+      : ''
+    )
+    setToDate(
+      selected?.kind === 'range'
+      ? (selected.value.to?.toISOString().split('T')[0] || '')
+      : ''
+    )
+    toggleFlyout(false)
+  }, [selected])
+
+  const buttonLabel = React.useMemo(() => {
+    if (!selected) return title
+    
+    if (selected.kind === 'noDate') return `${noDateLabel || '[No Date]'}`
+    
+    if (selected.kind === 'years') return selected.value.join(',')
+    
+    const fromRange = selected.value.from?.toString()
+    const toRange = selected.value.to?.toString()
+    
+    if (fromRange && !toRange) return `After ${formatDisplayDate(fromRange)}`
+    
+    if (toRange && !fromRange) return `Before ${formatDisplayDate(toRange)}`
+    
+    return (
+      [formatDisplayDate(fromRange), formatDisplayDate(toRange)].filter((x) => !!x).join(' - ')
+    )
+  }, [selected])
 
   const onChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -230,7 +230,7 @@ const DateFilter = ({
                 }}
               />
 
-              {mode === 'year' && (
+              {mode === 'years' && (
                 <Field
                   type="input"
                   name="years"
@@ -280,9 +280,7 @@ const DateFilter = ({
           </PanelBody>
           <PanelFooter mods="u-padEndsSm u-padSidesMd">
             <Button
-              onClick={() => {
-                clearFilters();
-              }}
+              onClick={clearFilters}
               mods="u-spaceRightMd u-colorNeutral7"
               type="link"
             >

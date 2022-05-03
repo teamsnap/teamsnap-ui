@@ -2,39 +2,25 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
 import { Icon } from '../../Icon';
-import FilterContext from '../../../context/filterContext';
 
 const propTypes = {
   searchPlaceholder: PropTypes.string.isRequired,
   searchFunction: PropTypes.func.isRequired,
-  useExternalFilterProvider: PropTypes.bool.isRequired
+  setSearchValue: PropTypes.func.isRequired,
+  searchValue: PropTypes.string.isRequired
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
 
-const BasicSearchFilter = ({ useExternalFilterProvider, searchPlaceholder, searchFunction }: Props) => {
+const BasicSearchFilter = ({ searchValue, searchPlaceholder, setSearchValue, searchFunction }: Props) => {
   const [lastSearchValue, setLastSearchValue] = React.useState('');
-  const localSearchValue = React.useState('');
-
-  const filterContext = React.useContext(FilterContext);
-  const { searchValue, setSearchValue } = useExternalFilterProvider
-    ? filterContext
-    : {
-      searchValue: localSearchValue[0],
-      setSearchValue: localSearchValue[1]
-    }
-
+  
   const updateSearchField = React.useCallback((e) => setSearchValue(e.target.value), []);
 
   const handleSearch = React.useCallback((searchStr: string) => {
     searchFunction({ searchTerm: searchStr });
     setLastSearchValue(searchStr);
   }, []);
-
-  React.useEffect(() => {
-    searchFunction({ searchTerm: filterContext.searchValue });
-    setLastSearchValue(filterContext.searchValue);
-  }, [filterContext.searchValue]);
 
   const searchAction = React.useCallback(() => {
     handleSearch(searchValue);
