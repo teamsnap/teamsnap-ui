@@ -360,6 +360,9 @@ function loadSearchData({ page, itemsPerPage, filter }) {
       (item) => !filter.gender || !filter.gender.length || filter.gender.includes(item.gender)
     )
     .filter(
+      (item) => !filter.role || !filter.role.length || filter.role.includes(item.position.toLowerCase())
+    )
+    .filter(
       (item) => !filter.team || !filter.team.length || filter.team.includes(String(item.team?.id))
     )
     .filter((item) => item.name.search(new RegExp(filter.searchTerm, 'i')) > -1);
@@ -641,7 +644,6 @@ export const ClearSelectedRows = () => {
 
 export const SetFilterFromOutsideComponent = () => {
   const [activeFilters, setActiveFilters] = React.useState({});
-  const [searchValue, setSearchValue] = React.useState('');
 
   return (
     <>
@@ -652,14 +654,7 @@ export const SetFilterFromOutsideComponent = () => {
       >
         Change Roles Filter To Coach
       </Button>
-      <Button
-        onClick={() => {
-          setSearchValue('leo');
-        }}
-      >
-        Search by Leo
-      </Button>
-      <FilterContext.Provider value={{ activeFilters, setActiveFilters, searchValue, setSearchValue }}>
+      <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
         <PaginatedTable
           columns={columns}
           mapDataToRow={mapData}

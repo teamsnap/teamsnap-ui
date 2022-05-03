@@ -6,15 +6,14 @@ import { Icon } from '../../Icon';
 const propTypes = {
   searchPlaceholder: PropTypes.string.isRequired,
   searchFunction: PropTypes.func.isRequired,
-  setSearchValue: PropTypes.func.isRequired,
-  searchValue: PropTypes.string.isRequired
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
 
-const BasicSearchFilter = ({ searchValue, searchPlaceholder, setSearchValue, searchFunction }: Props) => {
+const BasicSearchFilter = ({ searchPlaceholder, searchFunction }: Props) => {
+  const [searchValue, setSearchValue] = React.useState('');
   const [lastSearchValue, setLastSearchValue] = React.useState('');
-  
+
   const updateSearchField = React.useCallback((e) => setSearchValue(e.target.value), []);
 
   const handleSearch = React.useCallback((searchStr: string) => {
