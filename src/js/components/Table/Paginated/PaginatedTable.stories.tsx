@@ -666,15 +666,25 @@ export const SetFilterFromOutsideComponent = () => {
           loadData={loadSearchData}
           defaultItemsPerPage={2}
           filters={[
-            PaginatedTable.SelectFilter('role', 'Participants Role', {
-              manager: 'Manager',
-              nonplayer: 'Non-Player',
-              player: 'Player',
-              teamOwner: 'Team Owner',
-              coach: 'Coach',
-              supporter: 'Supporter',
-              goalkeeper: 'Goalkeeper',
-            }),
+            PaginatedTable.SelectFilter(
+              'role',
+              'Participants Role',
+              {
+                manager: 'Manager',
+                nonplayer: 'Non-Player',
+                player: 'Player',
+                teamOwner: 'Team Owner',
+                coach: 'Coach',
+                supporter: 'Supporter',
+                goalkeeper: 'Goalkeeper',
+              },
+              <div style={{ maxWidth: '180px' }}>
+                <a href="https://google.com" rel="noreferrer" target="_blank">
+                  Click to learn more about roles.
+                </a>
+              </div>,
+              'https://google.com'
+            ),
           ]}
           paginationPlacement={Placement.Bottom}
           includeBasicSearch

@@ -68,6 +68,7 @@ const propTypes = {
   shouldClearSelectedRows: PropTypes.bool,
   onExport: PropTypes.func,
   useExternalFilterProvider: PropTypes.bool,
+  fullRowSelect: PropTypes.bool
 };
 
 const SelectFilter = (
@@ -75,7 +76,9 @@ const SelectFilter = (
   label: string,
   options?:
     | { [key: string]: string | React.ReactNode }
-    | { value: string; label: string; subtext?: string }[]
+    | { value: string; label: string; subtext?: string }[],
+    tooltip?: JSX.Element,
+    tooltipLink?: string
 ) => {
   return ({ isLast }: { isLast: boolean }) => {
     const ctx = React.useContext(FilterContext);
@@ -96,6 +99,8 @@ const SelectFilter = (
         selected={ctx.activeFilters[fieldName]}
         name={fieldName}
         buttonLabel={label}
+        tooltip={tooltip}
+        tooltipLink={tooltipLink}
         items={
           options.length
             ? (options as { value: string; label: string; subtext?: string }[])
@@ -168,6 +173,7 @@ const PaginatedTable: PaginatedTableProps = ({
   onExport = null,
   isLoading,
   useExternalFilterProvider,
+  fullRowSelect = false
 }) => {
   assert(
     !(filters.length && paginationPlacement === Placement.Top),
@@ -250,28 +256,41 @@ const PaginatedTable: PaginatedTableProps = ({
 
     // use IDs as keys to determine uniqueness
     const selectedids = selected.map((e) => e.id);
-    rows = rows.map((ele) => ({
-      ...ele,
-      selected: (
-        <div>
-          <Checkbox
-            name={`select-${ele.id}`}
-            mods="u-padBottomNone"
-            inputProps={{
-              checked: selectedids.includes(ele.id),
-              onChange: () => {},
-              onClick: () => {
-                if (selectedids.includes(ele.id)) {
-                  setSelected(selected.filter((e) => e.id !== ele.id));
-                } else {
-                  setSelected([...selected, ele]);
-                }
-              },
-            }}
-          />
-        </div>
-      ),
-    }));
+    rows = rows.map((ele) => {
+      const rowData = {
+        ...ele,
+        selected: (
+          <div>
+            <Checkbox
+              name={`select-${ele.id}`}
+              mods="u-padBottomNone"
+              inputProps={{
+                checked: selectedids.includes(ele.id),
+                onChange: () => {},
+                onClick: () => {
+                  if (selectedids.includes(ele.id)) {
+                    setSelected(selected.filter((e) => e.id !== ele.id));
+                  } else {
+                    setSelected([...selected, ele]);
+                  }
+                },
+              }}
+            />
+          </div>
+        ),
+      };
+
+      if (rowData.selected && fullRowSelect) {
+        rowData.onClick = () => {
+          if (selectedids.includes(ele.id)) {
+            setSelected(selected.filter((e) => e.id !== ele.id));
+          } else {
+            setSelected([...selected, ele]);
+          }
+        };
+      }
+      return rowData;
+    });
   }
 
   // collisions overwrite
