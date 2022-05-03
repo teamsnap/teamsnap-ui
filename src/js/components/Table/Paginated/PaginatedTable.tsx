@@ -445,7 +445,6 @@ const PaginatedTable: PaginatedTableProps = ({
                 <BasicSearch
                   searchPlaceholder={searchPlaceholder}
                   searchFunction={updateSearchFilter}
-                  useExternalFilterProvider={useExternalFilterProvider}
                 />
               )
             : null}
