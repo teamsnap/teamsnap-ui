@@ -138,6 +138,7 @@ const DateFilter = (
         name={fieldName}
         title={label}
         noDateLabel={noDateLabel}
+        selected={ctx.activeFilters[fieldName]}
         yearPlaceholder={yearPlaceholder}
         rangeMin={rangeMin}
         rangeMax={rangeMax}

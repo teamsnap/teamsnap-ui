@@ -57,6 +57,7 @@ const propTypes = {
 
 type Props = Omit<PropTypes.InferProps<typeof propTypes>, 'onChange'> & {
   onChange: (value?: FilterValue) => void;
+  selected?: FilterValue;
 };
 
 const formatDate = (x?: string) => {
@@ -88,6 +89,7 @@ const DateFilter = ({
   yearPlaceholder,
   rangeMin,
   rangeMax,
+  selected,
   ...props
 }: Props) => {
   const [mode, setMode] = React.useState<'year' | 'range' | 'noDate'>('year');
@@ -198,6 +200,17 @@ const DateFilter = ({
       applyFilters();
     }
   }, [flyoutVisible]);
+
+  React.useEffect(() => {
+    if (!selected) {
+      toggleFlyout(false);
+      setYears('');
+      setFromDate('');
+      setToDate('');
+      setHasFilters(false);
+      setButtonLabel(title);
+    }
+  }, [selected]);
 
   return (
     <div id={`Combobox-${name}`} className={getClassName(className, mods)} {...props}>
