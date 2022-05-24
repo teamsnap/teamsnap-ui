@@ -23,37 +23,74 @@ const propTypes = {
   style: PropTypes.object,
   testId: PropTypes.string,
   otherProps: PropTypes.object,
+  size: PropTypes.shape({
+    width: PropTypes.number,
+    height: PropTypes.number,
+  }),
 };
 
-const Loader = (props: PropTypes.InferProps<typeof propTypes>) => {
-  const renderSpinAnimation = () => <span className="SpinAnimation" />;
+const Loader = ({
+  type,
+  text,
+  message,
+  className,
+  mods,
+  style,
+  testId,
+  otherProps,
+  size
+}: PropTypes.InferProps<typeof propTypes>) => {
+  const renderSpinAnimation = () => <span style={{ ...size }} className="SpinAnimation" />;
 
   const renderPulseAnimation = () => (
     <span className="PulseAnimation">
-      <span className="PulseAnimation-dot" />
-      <span className="PulseAnimation-dot" />
-      <span className="PulseAnimation-dot" />
+      <span style={{ ...size }} className="PulseAnimation-dot" />
+      <span style={{ ...size }} className="PulseAnimation-dot" />
+      <span style={{ ...size }} className="PulseAnimation-dot" />
     </span>
   );
 
-  const renderJelloAnimation = () => (
-    <span className="JelloAnimation">
-      <span className="JelloAnimation-shadow" />
-      <span className="JelloAnimation-box" />
-    </span>
-  );
+  const renderJelloAnimation = () => {
+    // These numbers are base on the JelloAnimation container size of 40 as well as the
+    // ratio between the container size and the default animation size of 32 which is 0.2
+    let width = 32;
+    let offset = 4;
+    const containerRatio = 0.2;
 
-  const renderAnimation = (type) => {
-    if (type === 'jello') {
+    if (size) {
+      offset = Math.ceil(size?.width / 8);
+      width = size?.width;
+    }
+
+    const containerSize = (containerRatio * width) + width;
+
+    return (
+      <span
+        className="JelloAnimation"
+        style={{ width: containerSize, height: containerSize }}
+      >
+        <span
+          style={{
+            width,
+            height: offset,
+            bottom: -offset,
+          }}
+          className="JelloAnimation-shadow"
+        />
+        <span style={{ ...size }} className="JelloAnimation-box" />
+      </span>
+    );
+  }
+
+  const renderAnimation = (animation) => {
+    if (animation === 'jello') {
       return renderJelloAnimation();
     }
-    if (type === 'pulse') {
+    if (animation === 'pulse') {
       return renderPulseAnimation();
     }
     return renderSpinAnimation();
   };
-
-  const { type, text, message, className, mods, style, testId, otherProps } = props;
 
   if (!text && !message) {
     return renderAnimation(type);

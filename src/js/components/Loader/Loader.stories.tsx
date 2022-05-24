@@ -5,11 +5,22 @@ export default {
   title: 'Components/Feedback/Loader',
 };
 
+const size = {
+  height: 40,
+  width: 40
+}
+
 export const Default = () => <Loader type="spin" />;
+
+export const SpinWithSize = () => <Loader type="spin" size={ size } />;
 
 export const Pulse = () => <Loader type="pulse" />;
 
+export const PulseWithSize = () => <Loader type="pulse" size={ size } />;
+
 export const Jello = () => <Loader type="jello" />;
+
+export const JelloWithSize = () => <Loader type="jello" size={ size} />;
 
 export const LoaderWithText = () => <Loader type="spin" text="Loading" />;
 

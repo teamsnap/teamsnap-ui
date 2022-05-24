@@ -2,6 +2,7 @@ import * as React from 'react';
 import { text, boolean } from '@storybook/addon-knobs';
 import Button from './Button';
 import { ScreenReader } from '../ScreenReader';
+import { Loader } from '../Loader';
 
 export default {
   title: 'Components/Forms/Button',
@@ -108,6 +109,15 @@ export const WithIcon = () => (
       <ScreenReader>
         Next
       </ScreenReader>
+    </Button>
+  </div>
+);
+
+export const WithLoader = () => (
+  <div>
+    <Button mods="u-spaceRightSm" isDisabled>
+      <Loader type="spin" size={{ height: 10, width: 10 }} />
+      &nbsp;Processing
     </Button>
   </div>
 );
