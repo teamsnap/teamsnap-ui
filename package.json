@@ -115,6 +115,7 @@
     "gulp-rename": "^2.0.0",
     "lodash": "^4.17.21",
     "prop-types": "^15.6.1",
+    "react-edit-text": "^5.0.2",
     "react-spring": "^9.3.0"
   },
   "peerDependencies": {
