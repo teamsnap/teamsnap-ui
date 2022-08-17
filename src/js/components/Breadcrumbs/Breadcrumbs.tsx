@@ -12,19 +12,16 @@
  */
 
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import Icon from '../Icon/Icon';
 
-const propTypes = {
-  id: PropTypes.string,
-  className: PropTypes.string,
-  breadcrumbs: PropTypes.arrayOf(PropTypes.node).isRequired,
-  style: PropTypes.object,
-  separator: PropTypes.node,
-  testId: PropTypes.string,
+type Props = {
+  id?: string
+  className?: string
+  breadcrumbs: React.ReactNode[]
+  style?: object
+  separator?: React.ReactNode
+  testId?: string
 };
-
-type Props = PropTypes.InferProps<typeof propTypes>;
 
 const Breadcrumbs = ({ className, breadcrumbs, id, style, separator, testId }: Props) => {
   const Separator = () => <>{separator}</>;
@@ -73,8 +70,6 @@ const Breadcrumbs = ({ className, breadcrumbs, id, style, separator, testId }: P
     </nav>
   );
 };
-
-Breadcrumbs.propTypes = propTypes;
 
 Breadcrumbs.defaultProps = {
   className: null,

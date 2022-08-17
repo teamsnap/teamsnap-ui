@@ -3757,7 +3757,6 @@ __metadata:
     jest-environment-jsdom: ^27.0.6
     lodash: ^4.17.21
     object-path: ">=0.11.5"
-    prop-types: ^15.6.1
     react: ^17.0.1
     react-docgen-typescript-loader: ^3.7.2
     react-docgen-typescript-webpack-plugin: ^1.1.0
