@@ -2,6 +2,8 @@ import * as React from 'react';
 import ReactDatePicker from 'react-datepicker';
 import { Icon } from '../Icon';
 
+import 'react-datepicker/dist/react-datepicker.css';
+
 const months = [
   'January',
   'February',

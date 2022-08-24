@@ -1,5 +1,4 @@
 @import '../config/index.scss';
-@import 'react-datepicker/dist/react-datepicker.min.css';
 
 .date-time-picker {
   .react-datepicker-popper {
@@ -16,10 +15,13 @@
     padding: 0 1rem;
 
     .react-datepicker__triangle {
-      border: none;
+      position: relative !important;
+      padding-top: 8px;
+      left: -100px !important;
+      top: 100px !important;
 
       &:before {
-        border-width: 0;
+        border-width: 0 !important;
       }
     }
 
