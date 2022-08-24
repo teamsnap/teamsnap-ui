@@ -37,6 +37,10 @@ const updateStatePiece = (state, id, value, fieldName): StateUpdate[] => {
 export const Default = () => {
   const [groups, setGroups] = React.useState(['Group 1']);
 
+  React.useEffect(() => {
+    return () => setGroups([]);
+  });
+
   // First thing we do is loop through the groups and create an array of group objects
   const groupObjectList = [];
   groups.forEach((group, idx) => {
@@ -94,6 +98,10 @@ export const ExpandableGroupList = () => {
     'Group 5',
     'Group 6',
   ]);
+
+  React.useEffect(() => {
+    return () => setGroups([]);
+  });
 
   // First thing we do is loop through the groups and create an array of group objects
   const groupObjectList = [];
