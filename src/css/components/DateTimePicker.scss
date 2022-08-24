@@ -17,8 +17,7 @@
     .react-datepicker__triangle {
       position: relative !important;
       padding-top: 8px !important;
-      left: -100px !important;
-      top: 100px !important;
+      left: -999px !important;
 
       &:before {
         border-width: 0 !important;
