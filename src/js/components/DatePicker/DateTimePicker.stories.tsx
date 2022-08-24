@@ -13,6 +13,7 @@ export const Default = () => {
       datetime={date}
       onChange={(datetime: Date) => setDate(datetime)}
       disabled={false}
+      showTimeSelect
     />
   )
 }
@@ -27,6 +28,7 @@ export const Disabled = () => {
       onChange={(datetime: Date) => setDate(datetime)}
       startDate={(new Date())}
       disabled
+      showTimeSelect
     />
   )
 }
@@ -39,6 +41,7 @@ export const DateTimePickerWithSpecificStartDate = () => {
       datetime={date}
       onChange={(datetime: Date) => setDate(datetime)}
       startDate={(new Date(2030, 11, 5))}
+      showTimeSelect
     />
   )
 }
@@ -51,6 +54,7 @@ export const DateTimePickerWithSpecificOpenDate = () => {
       datetime={date}
       onChange={(datetime: Date) => setDate(datetime)}
       openToDate={(new Date(2030, 8, 28))}
+      showTimeSelect
     />
   )
 }
@@ -88,6 +92,18 @@ export const DateTimePickerWithExcludedTimes = () => {
         new Date(2030, 8, 28, 21, 45),
         new Date(2030, 8, 28, 22, 0),
       ]}
+      showTimeSelect
+    />
+  )
+}
+
+export const DateTimePickerWithNoTimeOptions = () => {
+  const [date, setDate] = React.useState<Date | null>(null);
+
+  return (
+    <DateTimePicker
+      datetime={date}
+      onChange={(datetime: Date) => setDate(datetime)}
     />
   )
 }

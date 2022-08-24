@@ -2,10 +2,13 @@
 @import 'react-datepicker/dist/react-datepicker.min.css';
 
 .date-time-picker {
+  .react-datepicker-popper {
+    min-width: 400px
+  }
+
   .react-datepicker {
     position: absolute;
     left: -18px;
-    min-width: 400px;
     border: 1px solid #dce1e7;
     background-color: white;
     box-shadow: 0px 20px 30px 0px #00000033;

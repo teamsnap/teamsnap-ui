@@ -25,6 +25,8 @@ type DatePickerHeaderType = {
   nextMonthButtonDisabled: boolean;
 };
 
+const disabledColor = '#fafafa';
+
 const CustomDatePickerHeader = ({
   date,
   decreaseMonth,
@@ -33,13 +35,23 @@ const CustomDatePickerHeader = ({
   nextMonthButtonDisabled,
 }: DatePickerHeaderType) => (
   <div className="u-flex u-flexAlignItemsCenter u-flexJustifyBetween u-spaceBottomMd">
-    <button type="button" className="u-colorNeutral9" onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+    <button
+      type="button"
+      className="u-colorNeutral9"
+      onClick={decreaseMonth}
+      disabled={prevMonthButtonDisabled}
+    >
       <Icon name="left" />
     </button>
     <div className="react-datepicker__current-month u-colorNeutral9">
       {`${months[date.getMonth()]} ${date.getFullYear()}`}
     </div>
-    <button type="button" className="u-colorNeutral9" onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+    <button
+      type="button"
+      className="u-colorNeutral9"
+      onClick={increaseMonth}
+      disabled={nextMonthButtonDisabled}
+    >
       <Icon name="right" />
     </button>
   </div>
@@ -51,6 +63,7 @@ interface Props {
   disabled?: boolean;
   onChange: (any) => void;
   openToDate?: Date;
+  showTimeSelect?: boolean;
   startDate?: Date;
   filterTime?: (time: Date) => boolean;
   excludeTimes?: Date[];
@@ -63,20 +76,21 @@ const DateTimePicker = ({
   disabled,
   onChange,
   openToDate,
+  showTimeSelect,
   startDate,
   filterTime,
   excludeTimes,
   error,
 }: Props) => (
   <div
-    style={{ backgroundColor: `${disabled ? '#fafafa' : ''}`}}
+    style={{ backgroundColor: `${disabled ? disabledColor : ''}` }}
     className={`date-time-picker Grid-cell u-flex u-border u-borderRadiusLg u-padSidesMd u-flexJustifyBetween u-flexAlignItemsCenter ${inputClasses}`}
     data-testid="date-time-picker-id"
   >
     <ReactDatePicker
       selected={datetime}
       onChange={onChange}
-      showTimeSelect
+      showTimeSelect={showTimeSelect}
       timeIntervals={15}
       dateFormat="Pp"
       minDate={startDate}
@@ -97,6 +111,7 @@ const DateTimePicker = ({
 DateTimePicker.defaultProps = {
   inputClasses: '',
   disabled: false,
+  showTimeSelect: false,
   startDate: new Date(),
   openToDate: undefined,
   filterTime: () => true,
