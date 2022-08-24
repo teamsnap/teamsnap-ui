@@ -4,6 +4,7 @@ export * from './components/Button';
 export * from './components/ButtonGroup';
 export * from './components/Cell';
 export * from './components/Checkbox';
+export * from './components/DatePicker';
 export * from './components/Divider';
 export * from './components/Drawer';
 export * from './components/ExpandableGroup';
