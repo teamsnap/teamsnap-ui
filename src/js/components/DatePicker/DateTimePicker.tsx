@@ -62,22 +62,33 @@ const CustomDatePickerHeader = ({
 
 interface Props {
   containerClasses?: string;
+  dateFormat?: string;
   datetime: Date | null | undefined;
+  disabled?: boolean;
+  excludeTimes?: Date[];
+  filterTime?: (time: Date) => boolean;
   inputClasses?: string;
+  onChange: (e: any) => void;
+  openToDate?: Date;
+  placeholderText?: string;
+  showTimeSelect?: boolean;
+  startDate?: Date;
 }
 
-const DateTimePicker = ({ containerClasses, datetime, inputClasses, ...rest }: Props) => {
-  const {
-    disabled,
-    onChange,
-    showTimeSelect,
-    startDate,
-    placeholderText,
-    openToDate,
-    filterTime,
-    excludeTimes
-  } : ReactDatePicker = rest;
-
+const DateTimePicker = ({
+  containerClasses,
+  dateFormat,
+  datetime,
+  disabled,
+  excludeTimes,
+  filterTime,
+  inputClasses,
+  onChange,
+  openToDate,
+  placeholderText,
+  showTimeSelect,
+  startDate
+}: Props) => {
   return (
     <div
       style={{ backgroundColor: `${disabled ? disabledColor : ''}` }}
@@ -89,7 +100,7 @@ const DateTimePicker = ({ containerClasses, datetime, inputClasses, ...rest }: P
         onChange={onChange}
         showTimeSelect={showTimeSelect}
         timeIntervals={15}
-        dateFormat="Pp"
+        dateFormat={ dateFormat || 'Pp' }
         minDate={startDate}
         placeholderText={placeholderText || 'mm/ dd / yyyy, -- : -- --'}
         className={`u-borderNone u-padEndsMd ${inputClasses}`}
@@ -98,7 +109,6 @@ const DateTimePicker = ({ containerClasses, datetime, inputClasses, ...rest }: P
         filterTime={filterTime}
         excludeTimes={excludeTimes}
         disabled={disabled}
-        {...rest}
       />
 
       <Icon mods={`${disabled ? 'u-colorNeutral5' : ''}`} name="calendar-today" />
@@ -108,7 +118,15 @@ const DateTimePicker = ({ containerClasses, datetime, inputClasses, ...rest }: P
 
 DateTimePicker.defaultProps = {
   containerClasses: '',
+  dateFormat: '',
+  disabled: false,
+  excludeTimes: [],
+  filterTime: () => true,
   inputClasses: '',
+  openToDate: undefined,
+  placeholderText: '',
+  showTimeSelect: false,
+  startDate: new Date(),
 };
 
 export default DateTimePicker;
