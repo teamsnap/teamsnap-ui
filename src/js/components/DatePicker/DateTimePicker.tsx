@@ -29,6 +29,7 @@ type DatePickerHeaderType = {
 
 const disabledColor = '#fafafa';
 
+// Add ability to update font size
 const CustomDatePickerHeader = ({
   date,
   decreaseMonth,
@@ -95,7 +96,7 @@ const DateTimePicker = ({
       dateFormat="Pp"
       minDate={startDate}
       placeholderText="mm/ dd / yyyy, -- : -- --"
-      className="u-borderNone u-padEndsMd"
+      className="u-borderNone u-padEndsMd u-xs-fontSizeLg u-fontSizeMd"
       renderCustomHeader={(props) => <CustomDatePickerHeader {...props} />}
       openToDate={openToDate}
       filterTime={filterTime}
