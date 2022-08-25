@@ -61,61 +61,54 @@ const CustomDatePickerHeader = ({
 );
 
 interface Props {
+  containerClasses?: string;
   datetime: Date | null | undefined;
   inputClasses?: string;
-  disabled?: boolean;
-  onChange: (e: any) => void;
-  openToDate?: Date;
-  showTimeSelect?: boolean;
-  startDate?: Date;
-  filterTime?: (time: Date) => boolean;
-  excludeTimes?: Date[];
 }
 
-const DateTimePicker = ({
-  datetime,
-  inputClasses,
-  disabled,
-  onChange,
-  openToDate,
-  showTimeSelect,
-  startDate,
-  filterTime,
-  excludeTimes,
-}: Props) => (
-  <div
-    style={{ backgroundColor: `${disabled ? disabledColor : ''}` }}
-    className={`date-time-picker Grid-cell u-flex u-border u-borderRadiusLg u-padSidesMd u-flexJustifyBetween u-flexAlignItemsCenter ${inputClasses}`}
-    data-testid="date-time-picker-id"
-  >
-    <ReactDatePicker
-      selected={datetime}
-      onChange={onChange}
-      showTimeSelect={showTimeSelect}
-      timeIntervals={15}
-      dateFormat="Pp"
-      minDate={startDate}
-      placeholderText="mm/ dd / yyyy, -- : -- --"
-      className="u-borderNone u-padEndsMd u-xs-fontSizeLg u-fontSizeMd"
-      renderCustomHeader={(props) => <CustomDatePickerHeader {...props} />}
-      openToDate={openToDate}
-      filterTime={filterTime}
-      excludeTimes={excludeTimes}
-      disabled={disabled}
-    />
+const DateTimePicker = ({ containerClasses, datetime, inputClasses, ...rest }: Props) => {
+  const {
+    disabled,
+    onChange,
+    showTimeSelect,
+    startDate,
+    placeholderText,
+    openToDate,
+    filterTime,
+    excludeTimes
+  } : ReactDatePicker = rest;
 
-    <Icon mods={`${disabled ? 'u-colorNeutral5' : ''}`} name="calendar-today" />
-  </div>
-);
+  return (
+    <div
+      style={{ backgroundColor: `${disabled ? disabledColor : ''}` }}
+      className={`date-time-picker Grid-cell u-flex u-border u-borderRadiusLg u-padSidesMd u-flexJustifyBetween u-flexAlignItemsCenter ${containerClasses}`}
+      data-testid="date-time-picker-id"
+    >
+      <ReactDatePicker
+        selected={datetime}
+        onChange={onChange}
+        showTimeSelect={showTimeSelect}
+        timeIntervals={15}
+        dateFormat="Pp"
+        minDate={startDate}
+        placeholderText={placeholderText || 'mm/ dd / yyyy, -- : -- --'}
+        className={`u-borderNone u-padEndsMd ${inputClasses}`}
+        renderCustomHeader={(props) => <CustomDatePickerHeader {...props} />}
+        openToDate={openToDate}
+        filterTime={filterTime}
+        excludeTimes={excludeTimes}
+        disabled={disabled}
+        {...rest}
+      />
+
+      <Icon mods={`${disabled ? 'u-colorNeutral5' : ''}`} name="calendar-today" />
+    </div>
+  );
+};
 
 DateTimePicker.defaultProps = {
+  containerClasses: '',
   inputClasses: '',
-  disabled: false,
-  showTimeSelect: false,
-  startDate: new Date(),
-  openToDate: undefined,
-  filterTime: () => true,
-  excludeTimes: [],
 };
 
 export default DateTimePicker;
