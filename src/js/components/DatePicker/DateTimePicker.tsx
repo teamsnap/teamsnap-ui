@@ -60,16 +60,15 @@ const CustomDatePickerHeader = ({
 );
 
 interface Props {
-  datetime: Date;
+  datetime: Date | null | undefined;
   inputClasses?: string;
   disabled?: boolean;
-  onChange: (any) => void;
+  onChange: (e: any) => void;
   openToDate?: Date;
   showTimeSelect?: boolean;
   startDate?: Date;
   filterTime?: (time: Date) => boolean;
   excludeTimes?: Date[];
-  error?: boolean;
 }
 
 const DateTimePicker = ({
@@ -82,7 +81,6 @@ const DateTimePicker = ({
   startDate,
   filterTime,
   excludeTimes,
-  error,
 }: Props) => (
   <div
     style={{ backgroundColor: `${disabled ? disabledColor : ''}` }}
@@ -103,7 +101,6 @@ const DateTimePicker = ({
       filterTime={filterTime}
       excludeTimes={excludeTimes}
       disabled={disabled}
-      error={error}
     />
 
     <Icon mods={`${disabled ? 'u-colorNeutral5' : ''}`} name="calendar-today" />
@@ -118,7 +115,6 @@ DateTimePicker.defaultProps = {
   openToDate: undefined,
   filterTime: () => true,
   excludeTimes: [],
-  error: false,
 };
 
 export default DateTimePicker;
