@@ -14,7 +14,7 @@ const PasswordToggleInput = ({ className = '', onBlur, ...rest }: Props) => {
     <div
       className={`PasswordToggleInput Grid-cell u-flex u-border u-borderRadiusLg u-padLeftXs u-padRightMd u-flexAlignItemsCenter ${inputActive ? 'PasswordToggleInput--active' : ''} ${className}`}
       data-testid="password-toggle-input"
-      onKeyDown={() => setVisible(visible)}
+      onKeyDown={() => {}}
       onClick={() => setVisible(!visible)}
       role="button"
       tabIndex={0}

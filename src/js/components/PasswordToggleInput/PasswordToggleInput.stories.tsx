@@ -7,13 +7,11 @@ export default {
 };
 
 export const Default = () => {
-  console.log('Hello');
-
   const otherProps = {
     placeholder: 'something',
     name: 'juaquin',
     type: 'text',
-    className: 'u-padSm'
+    className: 'u-padSm u-padSidesMd'
   }
 
   return (
