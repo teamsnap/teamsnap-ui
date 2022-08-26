@@ -12,12 +12,10 @@ const PasswordToggleInput = ({ className = '', onBlur, ...rest }: Props) => {
 
   return (
     <div
-      className={`PasswordToggleInput Grid-cell u-flex u-border u-borderRadiusLg u-padLeftXs u-padRightMd u-flexAlignItemsCenter ${inputActive ? 'PasswordToggleInput--active' : ''} ${className}`}
+      className={`PasswordToggleInput Grid-cell u-flex u-border u-borderRadiusLg u-padLeftXs u-padRightMd u-flexAlignItemsCenter ${
+        inputActive ? 'PasswordToggleInput--active' : ''
+      } ${className}`}
       data-testid="password-toggle-input"
-      onKeyDown={() => {}}
-      onClick={() => setVisible(!visible)}
-      role="button"
-      tabIndex={0}
     >
       <input
         className="u-sizeFull u-borderNone u-xs-fontSizeLg u-fontSizeMd"
@@ -33,7 +31,9 @@ const PasswordToggleInput = ({ className = '', onBlur, ...rest }: Props) => {
         }}
       />
 
-      <Icon name={visible ? 'visibility-off' : 'visibility'} />
+      <div onKeyDown={() => {}} onClick={() => setVisible(!visible)} role="button" tabIndex={0}>
+        <Icon name={visible ? 'visibility-off' : 'visibility'} />
+      </div>
     </div>
   );
 };
