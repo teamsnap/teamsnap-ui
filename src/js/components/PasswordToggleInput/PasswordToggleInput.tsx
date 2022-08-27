@@ -32,7 +32,7 @@ const PasswordToggleInput = ({ className = '', onBlur, ...rest }: Props) => {
       />
 
       <div onKeyDown={() => {}} onClick={() => setVisible(!visible)} role="button" tabIndex={0}>
-        <Icon name={visible ? 'visibility-off' : 'visibility'} />
+        <Icon mods="u-colorNeutral8" name={visible ? 'visibility-off' : 'visibility'} />
       </div>
     </div>
   );
