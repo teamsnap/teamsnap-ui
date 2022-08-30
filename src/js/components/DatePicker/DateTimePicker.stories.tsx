@@ -26,7 +26,7 @@ export const Disabled = () => {
     <DateTimePicker
       datetime={date}
       onChange={(datetime: Date) => setDate(datetime)}
-      startDate={(new Date())}
+      minDate={(new Date())}
       disabled
       showTimeSelect
     />
@@ -40,7 +40,7 @@ export const DateTimePickerWithSpecificStartDate = () => {
     <DateTimePicker
       datetime={date}
       onChange={(datetime: Date) => setDate(datetime)}
-      startDate={(new Date(2030, 11, 5))}
+      minDate={(new Date(2030, 11, 5))}
       showTimeSelect
     />
   )
