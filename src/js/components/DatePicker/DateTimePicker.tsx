@@ -111,7 +111,7 @@ const DateTimePicker = ({
         disabled={disabled}
       />
 
-      <Icon mods={`${disabled ? 'u-colorNeutral5' : ''}`} name="calendar-today" />
+      <Icon mods={`${disabled ? 'u-colorNeutral5' : 'u-colorNeutral8'}`} name="calendar-today" />
     </div>
   );
 };
@@ -126,7 +126,7 @@ DateTimePicker.defaultProps = {
   openToDate: undefined,
   placeholderText: '',
   showTimeSelect: false,
-  startDate: new Date(),
+  startDate: undefined,
 };
 
 export default DateTimePicker;
