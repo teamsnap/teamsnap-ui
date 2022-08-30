@@ -72,7 +72,7 @@ interface Props {
   openToDate?: Date;
   placeholderText?: string;
   showTimeSelect?: boolean;
-  startDate?: Date;
+  minDate?: Date;
 }
 
 const DateTimePicker = ({
@@ -87,7 +87,7 @@ const DateTimePicker = ({
   openToDate,
   placeholderText,
   showTimeSelect,
-  startDate
+  minDate
 }: Props) => {
   return (
     <div
@@ -101,7 +101,7 @@ const DateTimePicker = ({
         showTimeSelect={showTimeSelect}
         timeIntervals={15}
         dateFormat={ dateFormat || 'Pp' }
-        minDate={startDate}
+        minDate={minDate}
         placeholderText={placeholderText || 'mm/ dd / yyyy, -- : -- --'}
         className={`u-borderNone u-padEndsMd ${inputClasses}`}
         renderCustomHeader={(props) => <CustomDatePickerHeader {...props} />}
@@ -126,7 +126,7 @@ DateTimePicker.defaultProps = {
   openToDate: undefined,
   placeholderText: '',
   showTimeSelect: false,
-  startDate: undefined,
+  minDate: undefined,
 };
 
 export default DateTimePicker;
