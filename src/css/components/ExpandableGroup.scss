@@ -1,0 +1,13 @@
+@import '../config/index.scss';
+
+.expandable-group {
+  .expandable-group--carat button,
+  .expandable-group--trash {
+    cursor: pointer;
+  }
+
+  .expandable-group--trash:hover,
+  .expandable-group--trash:focus {
+    color: color-primary(5);
+  }
+}
