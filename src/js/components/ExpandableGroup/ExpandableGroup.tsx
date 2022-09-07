@@ -12,12 +12,13 @@ const propTypes = {
   label: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
   onLabelChange: PropTypes.func.isRequired,
+  onLabelBlur: PropTypes.func,
   children: PropTypes.node.isRequired,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
 
-const ExpandableGroup = ({ label, onDelete, onLabelChange, children }: Props) => {
+const ExpandableGroup = ({ label, onDelete, onLabelChange, onLabelBlur, children }: Props) => {
   const [expanded, setExpanded] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
 
@@ -45,10 +46,10 @@ const ExpandableGroup = ({ label, onDelete, onLabelChange, children }: Props) =>
   }
 
   return (
-    <Panel mods={`${error ? 'u-padBottomSm' : ''}`}>
+    <Panel mods={`${error ? 'u-padBottomSm' : ''} expandable-group`}>
       <PanelCell mods="u-flex u-flexAlignItemsCenter u-flexJustifyBetween">
         <div className="u-size7of12 u-flex u-flexAlignItemsCenter u-flexAlignContentCenter">
-          <div>
+          <div className="expandable-group--carat">
             <ListToggle onClick={() => setExpanded(!expanded)} />
           </div>
 
@@ -58,9 +59,20 @@ const ExpandableGroup = ({ label, onDelete, onLabelChange, children }: Props) =>
               value={label}
               inline
               onChange={(e) => onLabelChange(e.target.value)}
-              onBlur={() => (label.length === 0 ? setError(true) : setError(false))}
+              onBlur={() => {
+                if (onLabelBlur) {
+                  onLabelBlur();
+                }
+
+                if (label.length === 0) {
+                  setError(true);
+                } else {
+                  setError(false);
+                }
+              }}
               style={styles}
             />
+
             {error ? (
               <span style={{ position: 'absolute', top: 30, left: 8 }} className="u-colorNegative">
                 You must enter a name for the group.
@@ -78,7 +90,7 @@ const ExpandableGroup = ({ label, onDelete, onLabelChange, children }: Props) =>
           className="u-size1of12 u-flex u-flexJustifyEnd"
           onClick={onDelete}
         >
-          <Icon name="trash" style={{ width: 24, height: 24 }} />
+          <Icon mods="expandable-group--trash" name="trash" style={{ width: 24, height: 24, cursor: 'pointer' }} />
         </div>
       </PanelCell>
 
