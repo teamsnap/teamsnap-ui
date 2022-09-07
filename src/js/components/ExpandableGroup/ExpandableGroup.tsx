@@ -90,7 +90,7 @@ const ExpandableGroup = ({ label, onDelete, onLabelChange, onLabelBlur, children
           className="u-size1of12 u-flex u-flexJustifyEnd"
           onClick={onDelete}
         >
-          <Icon mods="expandable-group--trash" name="trash" style={{ width: 24, height: 24, cursor: 'pointer' }} />
+          <Icon mods="expandable-group--trash" name="trash" style={{ width: 24, height: 24 }} />
         </div>
       </PanelCell>
 
