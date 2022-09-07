@@ -72,7 +72,7 @@ const Toolbar = ({
     <div className="Grid Toolbar" data-testid={testId}>
       {children}
 
-      <div className="Grid-cell u-flexAuto u-sizeFit u-flex u-flexAlignContentCenter u-flexJustifyEnd u-padXs flyout-container">
+      <div className="Grid-cell u-sizeFit u-flex u-flexAlignContentCenter u-flexJustifyEnd u-padXs flyout-container">
         <div>
           <Button type="link" style={btnStyle} onClick={() => setActiveMenu(Menu.Help)}>
             {showHelp && <Icon className="Icon u-spaceLeftLg" name="help" style={iconStyle} />}
