@@ -69,6 +69,7 @@ interface Props {
   filterTime?: (time: Date) => boolean;
   inputClasses?: string;
   onChange: (e: any) => void;
+  onBlur?: (e: any) => void;
   openToDate?: Date;
   placeholderText?: string;
   showTimeSelect?: boolean;
@@ -84,10 +85,11 @@ const DateTimePicker = ({
   filterTime,
   inputClasses,
   onChange,
+  onBlur,
   openToDate,
   placeholderText,
   showTimeSelect,
-  minDate
+  minDate,
 }: Props) => {
   return (
     <div
@@ -98,9 +100,10 @@ const DateTimePicker = ({
       <ReactDatePicker
         selected={datetime}
         onChange={onChange}
+        onBlur={onBlur}
         showTimeSelect={showTimeSelect}
         timeIntervals={15}
-        dateFormat={ dateFormat || 'Pp' }
+        dateFormat={dateFormat || 'Pp'}
         minDate={minDate}
         placeholderText={placeholderText || 'mm/ dd / yyyy, -- : -- --'}
         className={`u-borderNone u-padEndsMd ${inputClasses}`}
@@ -122,6 +125,7 @@ DateTimePicker.defaultProps = {
   disabled: false,
   excludeTimes: [],
   filterTime: () => true,
+  onBlur: () => {},
   inputClasses: '',
   openToDate: undefined,
   placeholderText: '',
