@@ -42,6 +42,11 @@ $Combobox-indicator-width: scaleGrid(4);
   }
 }
 
+.Combobox-hyperlink {
+  background: none;
+  border: none;
+}
+
 .Combobox-toggle {
   height: $Combobox-height;
   width: 100%;
