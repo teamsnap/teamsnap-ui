@@ -136,7 +136,7 @@ const ComboBox = ({
       }
     });
 
-    setComboLabel(checked.length > 0 ? createLabel(checked) : buttonLabel);
+    setComboLabel(checked.length > 0 && !showFromHyperlink ? createLabel(checked) : buttonLabel);
     setFilterList(checked);
     setUncheckedFilterList(unchecked);
 
