@@ -227,6 +227,25 @@ export const ComboboxWithHyperlinkOriginElement = () => (
 
     <Combobox
       mods="u-spaceRightMd"
+      name="link-no-label-status"
+      buttonLabel="Genders"
+      onChange={(selected) => console.log(selected)}
+      selected={['male', 'female']}
+      showFromHyperlink
+      items={[
+        {
+          label: 'Male',
+          value: 'male',
+        },
+        {
+          label: 'Female',
+          value: 'female',
+        },
+      ]}
+    />
+
+    <Combobox
+      mods="u-spaceRightMd"
       name="disabled-status"
       buttonLabel="Genders"
       onChange={(selected) => console.log(selected)}
