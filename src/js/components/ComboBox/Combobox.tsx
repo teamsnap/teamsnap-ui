@@ -51,7 +51,7 @@ const propTypes = {
   tooltip: PropTypes.element,
   tooltipLink: PropTypes.string,
   showFromHyperlink: PropTypes.bool,
-  enableClearFilters: PropTypes.bool,
+  canCancel: PropTypes.bool,
   doneButtonText: PropTypes.string,
   showSelectAll: PropTypes.bool,
 };
@@ -95,7 +95,7 @@ const ComboBox = ({
   tooltip,
   tooltipLink,
   showFromHyperlink,
-  enableClearFilters,
+  canCancel,
   doneButtonText,
   showSelectAll,
 }: Props) => {
@@ -183,7 +183,7 @@ const ComboBox = ({
 
   React.useEffect(() => {
     if (!flyoutVisible) {
-      if (initialized && filtersFromPropsAreDifferent(selected, selectedFilters)) {
+      if (initialized && filtersFromPropsAreDifferent(selected, selectedFilters) && !canCancel) {
         onChange(selectedFilters);
       }
 
@@ -310,7 +310,7 @@ const ComboBox = ({
               <div>
                 <Button
                   onClick={() => {
-                    if (enableClearFilters) {
+                    if (!canCancel) {
                       clearFilters();
                     }
 
@@ -319,11 +319,14 @@ const ComboBox = ({
                   mods="u-spaceRightMd u-colorNeutral7"
                   type="link"
                 >
-                  {enableClearFilters ? 'Clear' : 'Cancel'}
+                  {canCancel ? 'Cancel' : 'Clear'}
                 </Button>
                 <Button
                   onClick={() => {
                     toggleFlyout(false);
+                    if (canCancel) {
+                      onChange(selectedFilters);
+                    }
                   }}
                   type="link"
                 >
@@ -348,7 +351,7 @@ ComboBox.defaultProps = {
   otherProps: {},
   selected: [],
   showFromHyperlink: false,
-  enableClearFilters: true,
+  canCancel: false,
   doneButtonText: 'Done',
   showSelectAll: false,
 };
