@@ -345,7 +345,7 @@ export const ComboboxWithSelectAll = () => (
           value: 'white',
         },
       ]}
-      canCancel={true}
+      canCancel
       showSelectAll
     />
 
