@@ -129,7 +129,7 @@ export const ComboboxWithCancelButton = () => (
     <Combobox
       mods="u-spaceRightMd"
       name="cancel-status"
-      buttonLabel="With Cancel button"
+      buttonLabel="Can cancel and close"
       onChange={(selected) => console.log(selected)}
       items={[
         {
@@ -141,7 +141,26 @@ export const ComboboxWithCancelButton = () => (
           value: 'female',
         },
       ]}
-      enableClearFilters={false}
+      canCancel
+    />
+
+    <Combobox
+      mods="u-spaceRightMd"
+      name="cancel-select-all-status"
+      buttonLabel="Can cancel and close"
+      onChange={(selected) => console.log(selected)}
+      showSelectAll
+      items={[
+        {
+          label: 'Male',
+          value: 'male',
+        },
+        {
+          label: 'Female',
+          value: 'female',
+        },
+      ]}
+      canCancel
     />
   </div>
 );
@@ -326,7 +345,7 @@ export const ComboboxWithSelectAll = () => (
           value: 'white',
         },
       ]}
-      enableClearFilters={false}
+      canCancel
       showSelectAll
     />
 
