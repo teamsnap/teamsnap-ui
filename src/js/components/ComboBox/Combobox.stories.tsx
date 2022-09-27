@@ -429,3 +429,84 @@ export const ComboboxWithSelectAll = () => (
     />
   </div>
 );
+
+export const ComboboxWithCustomizedSearchPlaceholder = () => (
+  <div style={{ height: '50vh' }}>
+    <Combobox
+      mods="u-spaceRightMd"
+      name="default-search-placeholder"
+      buttonLabel="Colors"
+      onChange={(selected) => console.log(selected)}
+      items={[
+        {
+          label: 'Red',
+          value: 'red',
+        },
+        {
+          label: 'Green',
+          value: 'green',
+        },
+        {
+          label: 'White',
+          value: 'white',
+        },
+        {
+          label: 'Black',
+          value: 'black',
+        },
+        {
+          label: 'Orange',
+          value: 'orange',
+        },
+        {
+          label: 'Purple',
+          value: 'purple',
+        },
+        {
+          label: 'Pink',
+          value: 'pink',
+        },
+      ]}
+      showSelectAll
+    />
+
+    <Combobox
+      mods="u-spaceRightMd"
+      name="customized-search-placeholder"
+      buttonLabel="Colors"
+      onChange={(selected) => console.log(selected)}
+      items={[
+        {
+          label: 'Red',
+          value: 'red',
+        },
+        {
+          label: 'Green',
+          value: 'green',
+        },
+        {
+          label: 'Blue',
+          value: 'blue',
+        },
+        {
+          label: 'Yellow',
+          value: 'yellow',
+        },
+        {
+          label: 'Orange',
+          value: 'orange',
+        },
+        {
+          label: 'Purple',
+          value: 'purple',
+        },
+        {
+          label: 'Pink',
+          value: 'pink',
+        },
+      ]}
+      showSelectAll
+      searchPlaceholder="Wonderful search bar"
+    />
+  </div>
+);

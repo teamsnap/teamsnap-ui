@@ -54,6 +54,7 @@ const propTypes = {
   canCancel: PropTypes.bool,
   doneButtonText: PropTypes.string,
   showSelectAll: PropTypes.bool,
+  searchPlaceholder: PropTypes.string,
 };
 interface Filter {
   value: string;
@@ -98,6 +99,7 @@ const ComboBox = ({
   canCancel,
   doneButtonText,
   showSelectAll,
+  searchPlaceholder,
 }: Props) => {
   const [initialized, setInitialized] = React.useState(false);
   const [flyoutVisible, toggleFlyout] = React.useState(false);
@@ -270,7 +272,7 @@ const ComboBox = ({
                       value: searchParam,
                       onChange: (e) => setSearchParam(e.target.value),
                     },
-                    placeholder: `Search for a ${buttonLabel}`,
+                    placeholder: searchPlaceholder ? searchPlaceholder : `Search for a ${buttonLabel}`,
                     leftIcon: <Icon className="Icon" name="search" />,
                   }}
                   name="Sample"
@@ -354,6 +356,7 @@ ComboBox.defaultProps = {
   canCancel: false,
   doneButtonText: 'Done',
   showSelectAll: false,
+  searchPlaceholder: null,
 };
 
 export default ComboBox;
