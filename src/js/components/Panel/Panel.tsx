@@ -23,7 +23,6 @@ export interface Props {
   mods?: string;
   style?: React.CSSProperties;
   testId?: string;
-  otherProps?: object;
 }
 
 const Panel = ({
@@ -34,7 +33,7 @@ const Panel = ({
   maxSize,
   style,
   testId,
-  otherProps,
+  ...otherProps
 }: Props) => {
   const panelClasses = getClassName(
     className,
