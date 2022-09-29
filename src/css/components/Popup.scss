@@ -34,9 +34,10 @@ $Popup-arrow-borderRadius: 3px;
 // * 5. Hide until it is triggered.
 
 .Popup-container {
-  position: absolute; // 1
-  bottom: calc(100% + #{$Popup-offset}); // 1
-  left: 50%; // 2
+  position: fixed; // 1
+  // bottom: calc(100% + #{$Popup-offset}); // 1
+  // left: 50%; // 2
+  margin-top: 20px;
   transform: translateX(-50%); // 2
   z-index: 100; // 3
   width: 250px; // 4
@@ -98,8 +99,8 @@ $Popup-arrow-borderRadius: 3px;
 // * Removes arrow pointer
 
 .Popup-container--overlay {
-  bottom: 50%;
-  transform: translateX(-50%) translateY(50%);
+  transform: translateX(-50%) translateY(-50%);
+  margin-top: 0;
 
   &::before,
   &::after {
@@ -128,8 +129,7 @@ $Popup-arrow-borderRadius: 3px;
 // * Aligns popover with left side of toggle
 
 .Popup-container--left {
-  left: 0;
-  transform: none;
+  transform: translateX(-$Popup-arrow-size - 2px);
 
   &::before,
   &::after {
@@ -143,8 +143,7 @@ $Popup-arrow-borderRadius: 3px;
 // * Aligns popover so that it "hangs" off the left side of the toggle
 
 .Popup-container--leftHang {
-  left: -1 * $su-large;
-  transform: none;
+  transform: translateX(-($su-large + $su-small + ($Popup-arrow-size / 2)));
 
   &::before,
   &::after {
@@ -158,9 +157,7 @@ $Popup-arrow-borderRadius: 3px;
 // * Aligns popover with right side of toggle
 
 .Popup-container--right {
-  left: auto;
-  right: 0;
-  transform: none;
+  transform: translateX(calc(-100% + ($Popup-arrow-size + 2px)));
 
   &::before,
   &::after {
@@ -175,9 +172,7 @@ $Popup-arrow-borderRadius: 3px;
 // * Aligns popover so that it "hangs" off the right side of the toggle
 
 .Popup-container--rightHang {
-  left: auto;
-  right: -1 * $su-large;
-  transform: none;
+  transform: translateX(calc(-100% + (($Popup-arrow-size/2) + $su-large + $su-small)));
 
   &::before,
   &::after {
@@ -218,7 +213,7 @@ $Popup-arrow-borderRadius: 3px;
 .Popup--hover:focus {
   .Popup-container,
   .Popup-container:focus-within {
-    display: block;
+    // display: block;
   }
 }
 
@@ -239,10 +234,9 @@ $Popup-arrow-borderRadius: 3px;
     left: auto;
     right: auto;
     text-align: center;
-    transform: translateX(0) translateY(-100%);
+    transform: translateX(-50%) translateY(calc(-100% - $Popup-arrow-size));
     display: none;
     visibility: hidden;
-    margin-top: 5px;
 
     &.Popup-container--light::before,
     &.Popup-container--light::after {
