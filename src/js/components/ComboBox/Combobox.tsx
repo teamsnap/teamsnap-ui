@@ -272,7 +272,7 @@ const ComboBox = ({
                       value: searchParam,
                       onChange: (e) => setSearchParam(e.target.value),
                     },
-                    placeholder: searchPlaceholder ? searchPlaceholder : `Search for a ${buttonLabel}`,
+                    placeholder: searchPlaceholder || `Search for a ${buttonLabel}`,
                     leftIcon: <Icon className="Icon" name="search" />,
                   }}
                   name="Sample"

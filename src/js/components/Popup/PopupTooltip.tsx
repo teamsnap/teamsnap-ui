@@ -29,21 +29,28 @@ const PopupTooltip = ({
 }: Props) => {
   const buttonRef = React.useRef<HTMLButtonElement | null>(null);
   const tooltipRef = React.useRef<HTMLDivElement | null>(null);
-  const [position, setPosition] = React.useState({ top: 0, left: 0 });
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-
+  const [center, setCenter] = React.useState<{ centerX: number, centerY: number }>({ centerX: 0, centerY: 0 });
   const describedby = ariaDescribeBy ? ariaDescribeBy.toLocaleLowerCase().replace(/ /g, '-') : null;
+
+  const centerContent = React.useCallback(() => {
+    if (buttonRef && buttonRef.current) {
+      const { left, top, width, height } = buttonRef.current.getBoundingClientRect()
+      const centerX = left + width / 2;
+      const centerY = top - height;
+
+      setCenter({
+        centerX,
+        centerY,
+      });
+    }
+  }, []);
 
   React.useEffect(() => {
     if (isPopupOpen) {
-      const button = buttonRef.current.getBoundingClientRect();
-      const tooltip = tooltipRef.current.getBoundingClientRect();
-      const buttonOffset = button.width / 2;
-      const tooltipOffset = tooltip.width / 2;
-      setPosition({
-        top: buttonRef.current.getBoundingClientRect().top - 10,
-        left: button.left + buttonOffset - tooltipOffset,
-      });
+      window.addEventListener('scroll', centerContent, true);
+    } else {
+      window.removeEventListener('scroll', centerContent, true);
     }
   }, [isPopupOpen]);
 
@@ -52,7 +59,10 @@ const PopupTooltip = ({
       <div
         className={`Popup Popup--tooltip ${mods}`}
         data-testid={testId}
-        onMouseEnter={() => setIsPopupOpen(true)}
+        onMouseEnter={() => {
+          centerContent() 
+          setIsPopupOpen(true)
+        }}
         onMouseLeave={() => setIsPopupOpen(false)}
       >
         <span aria-describedby={describedby} ref={buttonRef} className={textHighlightColor}>
@@ -68,7 +78,7 @@ const PopupTooltip = ({
               ? 'Popup-container--light'
               : 'Popup-container--dark'
           }`}
-          style={{ top: `${position.top}px`, left: `${position.left}px` }}
+          style={{ top: `${center.centerY}px`, left: `${center.centerX}px` }}
         >
           <div
             className={`Popup-content u-padEndsSm u-padSidesMd u-colorNeutral3 ${
