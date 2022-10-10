@@ -121,7 +121,7 @@ export const PopupActionsCustomizedOrigin = () => (
   <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
     <div>
       <PopupAction
-        text='TS'
+        text={<img src="https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1398359819/ebi2jfu0t7embtj1i35w.png"></img>}
         actions={actions}
         direction={['down', 'rightHang']}
         showOnHover={false}
