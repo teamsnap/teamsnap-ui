@@ -1,243 +1,193 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 
-interface State {
-  hoverPopupOpen: boolean;
-  clickPopupOpen: boolean;
-  isConfirmOpen: boolean;
-  selectedAction: any;
-  centerX: number;
-  centerY: number;
+type Action = {
+  requiresConfirmation?: boolean
+  text: string | React.ReactElement
+  callback: (x?: [React.MouseEvent<HTMLButtonElement, MouseEvent>]) => void
+  confirmationText?: string | React.ReactElement
 }
 
-const propTypes = {
-  text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  actions: PropTypes.arrayOf(
-    PropTypes.shape({
-      text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-      callback: PropTypes.func.isRequired,
-      requiresConfirmation: PropTypes.bool,
-      confirmationText: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    })
-  ),
-  popupStyle: PropTypes.object,
-  direction: PropTypes.arrayOf(
-    PropTypes.oneOf(['down', 'right', 'left', 'rightHang', 'leftHang', 'overlay'])
-  ),
-  showOnHover: PropTypes.bool,
-  testId: PropTypes.string,
-  selectorRef: PropTypes.any,
-  buttonStyle: PropTypes.object
-};
+type Props = {
+  text: string | React.ReactElement
+  showOnHover?: boolean
+  testId?: string
+  buttonStyle?: object
+  popupStyle: object
+  direction: ('down' | 'right' | 'left' | 'rightHang' | 'leftHang' | 'overlay')[]
+  actions: Action[]
+}
 
-type Props = PropTypes.InferProps<typeof propTypes>;
+const PopUpAction = ({
+  showOnHover = true,
+  actions,
+  direction,
+  popupStyle,
+  text,
+  testId,
+  buttonStyle
+}: Props) => {
+  const [hoverPopupOpen, setHoverPopupOpen] = React.useState(false)
+  const [clickPopupOpen, setClickPopupOpen] = React.useState(false)
+  const [isConfirmOpen, setIsConfirmOpen] = React.useState(false)
+  const [selectedAction, setSelectedAction] = React.useState<Action | null>(null)
+  const [centerX, setCenterX] = React.useState(0)
+  const [centerY, setCenterY] = React.useState(0)
 
-export default class PopUpAction extends React.Component<Props, State> {
-  // eslint-disable-next-line react/static-property-placement
-  static defaultProps = {
-    showOnHover: true,
-  }
-
-  buttonTrigger: React.RefObject<HTMLButtonElement>;
-
-  centerFn: any;
+  const buttonTrigger = React.useRef<HTMLButtonElement>();
   
-  handleBodyClickFn: any;
-
-  constructor(props) {
-    super(props);
-    this.buttonTrigger = React.createRef();
-    this.state = {
-      hoverPopupOpen: false,
-      clickPopupOpen: false,
-      isConfirmOpen: false,
-      selectedAction: {},
-      centerX: 0,
-      centerY: 0,
-    };
-
-    this.centerFn = this.centerContent.bind(this);
-    this.handleBodyClickFn = this.handleBodyClick.bind(this);
-  }
-  
-  componentDidUpdate() {
-    const {clickPopupOpen, hoverPopupOpen} = this.state;
-    if (clickPopupOpen || hoverPopupOpen) {
-      document.body.addEventListener('click', this.handleBodyClickFn, true);
-      window.addEventListener('scroll', this.centerFn, true);
-    } else {
-      document.body.removeEventListener('click', this.handleBodyClickFn, true);
-      window.removeEventListener('scroll', this.centerFn, true);
+  const centerContent = () => {
+    if (buttonTrigger && buttonTrigger.current) {
+      const { left, top, width, height } = buttonTrigger.current.getBoundingClientRect()
+      setCenterX(left + width / 2)
+      setCenterY(top + height / 2)
     }
   }
 
-  handleBodyClick(e: any) {
-    this.centerFn();
+  const handleBodyClick = (e: any) => {
+    centerContent()
     const isTargetingPopup = e.target.closest('.Popup') != null;
     
     if (!isTargetingPopup) {
-      this.setState({
-        hoverPopupOpen: false,
-        isConfirmOpen: false,
-        clickPopupOpen: false,
-      });
+      setHoverPopupOpen(false)
+      setIsConfirmOpen(false)
+      setClickPopupOpen(false)
     }
   }
 
-  handleActionClick(action) {
-    const { state } = this;
+  React.useEffect(() => {
+    if (clickPopupOpen || hoverPopupOpen) {
+      document.body.addEventListener('click', handleBodyClick, true);
+      window.addEventListener('scroll', centerContent, true);
+    } else {
+      document.body.removeEventListener('click', handleBodyClick, true);
+      window.removeEventListener('scroll', centerContent, true);
+    }
+  }, [clickPopupOpen, hoverPopupOpen, handleBodyClick, centerContent])
 
+  const handleActionClick = (action: Action) => {
     if (action.requiresConfirmation) {
-      this.setState({
-        ...state,
-        isConfirmOpen: true,
-        selectedAction: action,
-      });
+      setIsConfirmOpen(true)
+      setSelectedAction(action)
     } else {
       action.callback();
     }
   }
 
-  centerContent() {
-    if (this.buttonTrigger && this.buttonTrigger.current) {
-      const { left, top, width, height } = this.buttonTrigger.current.getBoundingClientRect()
-      const centerX = left + width / 2;
-      const centerY = top + height / 2;
-      
-      this.setState({
-        centerX,
-        centerY,
-      });
-    }
-  }
-
-  togglePopup(e) {
+  const togglePopup = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
 
-    const { clickPopupOpen } = this.state;
+    setHoverPopupOpen(false)
+    setClickPopupOpen(!clickPopupOpen)
 
-    this.setState({
-      hoverPopupOpen: false,
-      clickPopupOpen: !clickPopupOpen,
-    });
-
-    this.centerFn();
+    centerContent()
   }
 
-  render() {
-    const { actions, direction, popupStyle, text, showOnHover, testId, buttonStyle } = this.props;
-    const { state } = this;
-    const { isConfirmOpen, hoverPopupOpen, selectedAction, clickPopupOpen } = state;
-    const { callback, confirmationText, requiresConfirmation } = selectedAction;
+  const { callback = undefined, confirmationText = undefined, requiresConfirmation = undefined } = selectedAction || {};
 
-    const dirString = direction.reduce((acc, cur) => {
-      return `${acc} Popup-container--${cur}`;
-    }, '');
-    return (
-      <>
-        <div 
-            data-testid={testId}
-            className={`Popup ${showOnHover && 'Popup--hover'}`} 
-            onMouseEnter={() => {
-              this.centerFn();
-              if (showOnHover) this.setState({hoverPopupOpen: true});
-            }}
-            onMouseLeave={() => showOnHover ? this.setState({hoverPopupOpen: false}) : null}
-          >
-          <button
-            ref={this.buttonTrigger}
-            type="button"
-            className="Button Button--small"
-            onClick={this.togglePopup.bind(this)}
-            style={buttonStyle}
-          >
-            {text}
-          </button>
-          { (hoverPopupOpen || clickPopupOpen) && 
-            <div
-              className={`Popup-container ${dirString} is-open`}
-              style={{
-                ...popupStyle,
-                left: `${state.centerX}px`,
-                top: `${state.centerY}px`,
-              }}
-            >
-              <div className="Popup-content">
-                <div className="u-textLeft">
-                  {actions.map((action, i) => {
-                    return (
-                      <div key={i}>
-                        <button
-                          type="button"
-                          tabIndex={0}
-                          className="u-padEndsSm u-padSidesMd"
-                          style={{
-                            cursor: 'pointer',
-                            appearance: 'none',
-                            border: 'none',
-                            background: 'none',
-                            width: '100%',
-                            textAlign: 'left',
-                          }}
-                          onClick={this.handleActionClick.bind(this, action)}
-                        >
-                          {action.text}
-                        </button>
-                        <hr className="Divider u-spaceEndsNone" />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          }
-        </div>
-        <div className="Popup">
-          <div
-            className={`Popup-container Popup-container--overlay ${
-              requiresConfirmation && isConfirmOpen ? 'is-open' : ''
-            }`}
-            style={{
-              left: `${state.centerX}px`,
-              top: `${state.centerY}px`,
-            }}
-          >
-            <div className="Popup-content u-padMd">
-              <h3 className="u-spaceBottomSm u-textCenter">Are you sure?</h3>
-              <p className="u-textLeft">{confirmationText}</p>
-              <div className="u-textCenter u-spaceTopMd">
-                <button
-                  type="button"
-                  onClick={() =>
-                    this.setState({
-                      ...state,
-                      isConfirmOpen: false,
-                      selectedAction: {},
-                    })
-                  }
-                  className="u-spaceRightSm Button Button--negative"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  onClick={(...args) => {
-                    callback(args);
-                    this.setState({
-                      ...state,
-                      isConfirmOpen: false,
-                      selectedAction: {},
-                    });
-                  }}
-                  className="Button Button--primary"
-                >
-                  Confirm
-                </button>
-              </div>
+  const dirString = direction.reduce((acc, cur) => {
+    return `${acc} Popup-container--${cur}`;
+  }, '');
+
+  return (
+    <>
+      <div 
+          data-testid={testId}
+          className={`Popup ${showOnHover && 'Popup--hover'}`} 
+          onMouseEnter={() => {
+            centerContent()
+            if (showOnHover) setHoverPopupOpen(true)
+          }}
+          onMouseLeave={() => showOnHover && setHoverPopupOpen(false)}
+        >
+        <button
+          ref={buttonTrigger}
+          type="button"
+          className="Button Button--small"
+          onClick={e => togglePopup(e)}
+          style={buttonStyle}
+        >
+          {text}
+        </button>
+        
+        <div
+          className={`Popup-container ${dirString} is-open ${(hoverPopupOpen || clickPopupOpen) ? '' : 'u-hidden'}`}
+          style={{
+            ...popupStyle,
+            left: `${centerX}px`,
+            top: `${centerY}px`,
+          }}
+        >
+          <div className="Popup-content">
+            <div className="u-textLeft">
+              {actions.map((action, i) => {
+                return (
+                  <div key={i}>
+                    <button
+                      type="button"
+                      tabIndex={0}
+                      className="u-padEndsSm u-padSidesMd"
+                      style={{
+                        cursor: 'pointer',
+                        appearance: 'none',
+                        border: 'none',
+                        background: 'none',
+                        width: '100%',
+                        textAlign: 'left',
+                      }}
+                      onClick={() => handleActionClick(action)}
+                    >
+                      {action.text}
+                    </button>
+                    <hr className="Divider u-spaceEndsNone" />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
-      </>
-    );
-  }
+      </div>
+      <div className="Popup">
+        <div
+          className={`Popup-container Popup-container--overlay ${
+            requiresConfirmation && isConfirmOpen ? 'is-open' : ''
+          }`}
+          style={{
+            left: `${centerX}px`,
+            top: `${centerY}px`,
+          }}
+        >
+          <div className="Popup-content u-padMd">
+            <h3 className="u-spaceBottomSm u-textCenter">Are you sure?</h3>
+            <p className="u-textLeft">{confirmationText}</p>
+            <div className="u-textCenter u-spaceTopMd">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsConfirmOpen(false)
+                  setSelectedAction(null)
+                }}
+                className="u-spaceRightSm Button Button--negative"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={(...args) => {
+                  if (callback) callback(args);
+                  setIsConfirmOpen(false)
+                  setSelectedAction(null)
+                }}
+                className="Button Button--primary"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+  
 }
+
+export default PopUpAction

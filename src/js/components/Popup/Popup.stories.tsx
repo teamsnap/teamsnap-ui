@@ -31,7 +31,7 @@ export const PopupActions = () => (
       <PopupAction
         text={<Icon name="more-horiz" />}
         actions={actions}
-        direction={['down', 'center']}
+        direction={['down', 'overlay']}
         popupStyle={{ width: '150px' }}
       />
     </div>
@@ -44,7 +44,7 @@ export const PopupActionsNoHover = () => (
       <PopupAction
         text={<Icon name="more-horiz" />}
         actions={actions}
-        direction={['down', 'center']}
+        direction={['down', 'overlay']}
         popupStyle={{ width: '150px' }}
         showOnHover={false}
       />
@@ -121,7 +121,7 @@ export const PopupActionsCustomizedOrigin = () => (
   <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
     <div>
       <PopupAction
-        text={<img src="https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1398359819/ebi2jfu0t7embtj1i35w.png"></img>}
+        text={<img alt='teamsnap-logo' src="https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1398359819/ebi2jfu0t7embtj1i35w.png" />}
         actions={actions}
         direction={['down', 'rightHang']}
         showOnHover={false}
