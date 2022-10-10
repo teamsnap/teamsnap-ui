@@ -117,6 +117,25 @@ export const PopupActionsOverlay = () => (
   </div>
 );
 
+export const PopupActionsCustomizedOrigin = () => (
+  <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100px' }}>
+    <div>
+      <PopupAction
+        text={<img src="https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1398359819/ebi2jfu0t7embtj1i35w.png"></img>}
+        actions={actions}
+        direction={['down', 'rightHang']}
+        showOnHover={false}
+        popupStyle={{ width: '150px' }}
+        buttonStyle={{
+          height: '40px',
+          width: '40px',
+          borderRadius: '20px',
+        }}
+      />
+    </div>
+  </div>
+);
+
 export const PopupConfirm = () => {
   const popupText = <h4>Do you really want to hurt me? Do you really want to make me cry?</h4>;
   const onAccept = () => {
