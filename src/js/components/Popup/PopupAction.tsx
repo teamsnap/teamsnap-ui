@@ -27,6 +27,7 @@ const propTypes = {
   showOnHover: PropTypes.bool,
   testId: PropTypes.string,
   selectorRef: PropTypes.any,
+  originButtonStyle: PropTypes.object
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -124,7 +125,7 @@ export default class PopUpAction extends React.Component<Props, State> {
   }
 
   render() {
-    const { actions, direction, popupStyle, text, showOnHover, testId } = this.props;
+    const { actions, direction, popupStyle, text, showOnHover, testId, originButtonStyle } = this.props;
     const { state } = this;
     const { isConfirmOpen, hoverPopupOpen, selectedAction, clickPopupOpen } = state;
     const { callback, confirmationText, requiresConfirmation } = selectedAction;
@@ -148,6 +149,7 @@ export default class PopUpAction extends React.Component<Props, State> {
             type="button"
             className="Button Button--small"
             onClick={this.togglePopup.bind(this)}
+            style={originButtonStyle}
           >
             {text}
           </button>
