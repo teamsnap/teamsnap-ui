@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 =======
 
+## [3.12.4] - 2022-11-07
+- https://github.com/teamsnap/teamsnap-ui/pull/1413
+- `Changed` - Documentation to reflect main as the new default branch
 ## [3.12.3] - 2021-10-25
 - https://github.com/teamsnap/teamsnap-ui/pull/957
 - `Security` - Fix UA Parser issue
