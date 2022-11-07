@@ -8,7 +8,7 @@ Once your user is created and added to the org this guide details the steps to p
 
 #### Steps for publishing an update
 
-* rebase and get  your branch ahead of master
+* rebase and get  your branch ahead of main
 * then from your working branch
 * run `yarn npm audit` to ensure there are no vulnerabilities with level high or critical.
 * run `yarn run build` to ensure the package builds with no errors
@@ -17,14 +17,14 @@ Once your user is created and added to the org this guide details the steps to p
 * Update CHANGELOG.md with new npm version and release notes
 * Commit CHANGELOG
 * `git push origin branch-name`
-* merge branch into master from git
-* `git checkout master`
-* `git pull origin master`
+* merge branch into main from git
+* `git checkout main`
+* `git pull origin main`
 * `npm login --scope=@teamsnap`
 * `npm publish`
 
 #### Netlify deploy
-Merging to master triggers a Netlify deploy where static assets will be available if not using npm to serve the package.
+Merging to main triggers a Netlify deploy where static assets will be available if not using npm to serve the package.
 
 CSS URL: https://teamsnap-ui.teamsnap.com/css/teamsnap-ui.css
 Themes: https://teamsnap-ui.teamsnap.com/css/themes/{theme_name}
