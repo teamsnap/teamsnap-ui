@@ -40,7 +40,7 @@ To access on Netlify:
 
 https://ts-ui-storybook.netlify.com
 
-Netlify makes our Storybook accessible without having to run it locally. Each PR runs a test deploy with a preview, and every merge to master automatically updates the Netlify site.
+Netlify makes our Storybook accessible without having to run it locally. Each PR runs a test deploy with a preview, and every merge to main automatically updates the Netlify site.
 
 ### Linters
 
