@@ -45,6 +45,7 @@ const iconNames = [
   'info',
   'installments',
   'left',
+  'link',
   'loader',
   'location',
   'lock',
