@@ -58,7 +58,7 @@ const ExpandableGroup = ({
       <PanelCell mods="u-flex u-flexAlignItemsCenter u-flexJustifyBetween">
         <div className="u-size7of12 u-flex u-flexAlignItemsCenter u-flexAlignContentCenter">
           <div className="expandable-group--carat">
-            <ListToggle onClick={() => setExpanded(!expanded)} />
+            <ListToggle isExpanded={isExpanded} onClick={() => setExpanded(!expanded)} />
           </div>
 
           <div style={{ position: 'relative' }}>

@@ -2,15 +2,16 @@ import * as React from 'react';
 import { Icon } from '../Icon';
 
 export interface Props {
+  isExpanded?: boolean;
   onClick: () => void;
   testId?: string;
 }
 
-const ListToggle: React.FC<Props> = ({ onClick, testId }: Props) => {
-  const [expanded, setExpanded] = React.useState<boolean>(false);
+const ListToggle: React.FC<Props> = ({ isExpanded, onClick, testId }: Props) => {
+  const [expanded, setExpanded] = React.useState<boolean>(isExpanded ?? false);
 
-  const toggleState = (isExpanded) => {
-    setExpanded(!isExpanded);
+  const toggleState = (expansionState) => {
+    setExpanded(!expansionState);
     onClick();
   };
 
