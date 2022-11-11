@@ -9,6 +9,7 @@ import { Panel } from '../Panel';
 import { PanelCell } from '../PanelCell';
 
 const propTypes = {
+  isExpanded: PropTypes.bool,
   label: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
   onLabelChange: PropTypes.func.isRequired,
@@ -18,8 +19,15 @@ const propTypes = {
 
 type Props = PropTypes.InferProps<typeof propTypes>;
 
-const ExpandableGroup = ({ label, onDelete, onLabelChange, onLabelBlur, children }: Props) => {
-  const [expanded, setExpanded] = React.useState<boolean>(false);
+const ExpandableGroup = ({
+  isExpanded,
+  label,
+  onDelete,
+  onLabelChange,
+  onLabelBlur,
+  children,
+}: Props) => {
+  const [expanded, setExpanded] = React.useState<boolean>(isExpanded ?? false);
   const [error, setError] = React.useState<boolean>(false);
 
   React.useEffect(() => {
