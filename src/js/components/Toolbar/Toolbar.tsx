@@ -17,10 +17,12 @@ enum Menu {
   Account,
   Admin,
   Help,
+  Notifications,
 }
 
 const propTypes = {
   showHelp: PropTypes.bool,
+  showNotifications: PropTypes.bool,
   showAccount: PropTypes.bool,
   showAdmin: PropTypes.bool,
   helpBody: PropTypes.node,
@@ -34,6 +36,7 @@ type Props = PropTypes.InferProps<typeof propTypes>;
 
 const Toolbar = ({
   showHelp,
+  showNotifications,
   showAccount,
   showAdmin,
   helpBody,
@@ -71,7 +74,6 @@ const Toolbar = ({
   return (
     <div className="Grid Toolbar" data-testid={testId}>
       {children}
-
       <div className="Grid-cell u-sizeFit u-flex u-flexAlignContentCenter u-flexJustifyEnd u-padXs flyout-container">
         <div>
           <Button type="link" style={btnStyle} onClick={() => setActiveMenu(Menu.Help)}>
@@ -81,6 +83,13 @@ const Toolbar = ({
             <div className="u-posAbsolute Toolbar-flyout">{helpBody}</div>
           )}
         </div>
+        {showNotifications && (
+          <div id="toolbar-notifications">
+            <Button type="link" style={btnStyle} onClick={() => setActiveMenu(Menu.Notifications)}>
+              <Icon className="Icon u-spaceLeftLg" name="notifications" style={iconStyle} />
+            </Button>
+          </div>
+        )}
         <div>
           <Button type="link" style={btnStyle} onClick={() => setActiveMenu(Menu.Account)}>
             {showAccount && <Icon className="Icon u-spaceLeftLg" name="user" style={iconStyle} />}
