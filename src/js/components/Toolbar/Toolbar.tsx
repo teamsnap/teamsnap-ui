@@ -75,14 +75,16 @@ const Toolbar = ({
     <div className="Grid Toolbar" data-testid={testId}>
       {children}
       <div className="Grid-cell u-sizeFit u-flex u-flexAlignContentCenter u-flexJustifyEnd u-padXs flyout-container">
-        <div>
-          <Button type="link" style={btnStyle} onClick={() => setActiveMenu(Menu.Help)}>
-            {showHelp && <Icon className="Icon u-spaceLeftLg" name="help" style={iconStyle} />}
-          </Button>
-          {activeMenu === Menu.Help && (
-            <div className="u-posAbsolute Toolbar-flyout">{helpBody}</div>
-          )}
-        </div>
+        {helpBody && (
+          <div>
+            <Button type="link" style={btnStyle} onClick={() => setActiveMenu(Menu.Help)}>
+              {showHelp && <Icon className="Icon u-spaceLeftLg" name="help" style={iconStyle} />}
+            </Button>
+            {activeMenu === Menu.Help && (
+              <div className="u-posAbsolute Toolbar-flyout">{helpBody}</div>
+            )}
+          </div>
+        )}
         {showNotifications && (
           <div id="toolbar-notifications">
             <Button type="link" style={btnStyle} onClick={() => setActiveMenu(Menu.Notifications)}>
@@ -94,7 +96,7 @@ const Toolbar = ({
           <Button type="link" style={btnStyle} onClick={() => setActiveMenu(Menu.Account)}>
             {showAccount && <Icon className="Icon u-spaceLeftLg" name="user" style={iconStyle} />}
           </Button>
-          {activeMenu === Menu.Account && (
+          {activeMenu === Menu.Account && accountBody && (
             <div className="u-posAbsolute Toolbar-flyout">{accountBody}</div>
           )}
         </div>
@@ -103,7 +105,7 @@ const Toolbar = ({
             <Button type="link" style={btnStyle} onClick={() => setActiveMenu(Menu.Admin)}>
               <Icon className="Icon u-spaceLeftLg" name="wrench" style={iconStyle} />
             </Button>
-            {activeMenu === Menu.Admin && (
+            {activeMenu === Menu.Admin && adminBody && (
               <div className="u-posAbsolute Toolbar-flyout">{adminBody}</div>
             )}
           </div>
