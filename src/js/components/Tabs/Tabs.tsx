@@ -32,6 +32,7 @@ interface Tab {
 }
 
 export interface Props {
+  activeIndex?: number;
   mods?: string;
   tabs: Tab[];
   testId?: string;
@@ -41,10 +42,10 @@ export interface Props {
 
 const Tabs = React.forwardRef(
   (
-    { mods, tabs, testId, renderOnload, disableFirstAfterLoad }: Props,
+    { activeIndex, mods, tabs, testId, renderOnload, disableFirstAfterLoad }: Props,
     ref: MutableRefObject<{ setActiveTabIndex: (index: number) => void }>
   ) => {
-    const [activeTabIndex, setActiveTabIndex] = React.useState(0);
+    const [activeTabIndex, setActiveTabIndex] = React.useState(activeIndex ?? 0);
     const [initialized, setInitialized] = React.useState(false);
     const boolMods = !!mods;
 
