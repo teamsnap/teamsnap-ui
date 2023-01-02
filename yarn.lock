@@ -3404,7 +3404,7 @@ __metadata:
     dotenv-webpack: ^7.0.3
     eslint: ^4.19.1
     eslint-plugin-react: ^7.14.3
-    fs-extra: ^5.0.0
+    fs-extra: ^11.1.0
     glob: ^7.1.4
     gulp: ^4.0.2
     gulp-autoprefixer: ^8.0.0
@@ -3414,7 +3414,7 @@ __metadata:
     gulp-util: ^3.0.8
     html-webpack-plugin: ^5.3.1
     lodash: ^4.17.15
-    object-path: ">=0.11.5"
+    object-path: ">=0.11.8"
     prop-types: ^15.6.1
     react: ^17.0.1
     react-docgen-typescript-loader: ^3.1.0
@@ -8689,14 +8689,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "fs-extra@npm:5.0.0"
+"fs-extra@npm:^11.1.0":
+  version: 11.1.0
+  resolution: "fs-extra@npm:11.1.0"
   dependencies:
-    graceful-fs: ^4.1.2
-    jsonfile: ^4.0.0
-    universalify: ^0.1.0
-  checksum: 987ba3937fa7f13e34c6da6f36831391dbd47cce271422ee4edae67ec06f857fd9bd5fb296c862e07e611853d3998d95c94394c1fe3a5be6576cabfe5fb40141
+    graceful-fs: ^4.2.0
+    jsonfile: ^6.0.1
+    universalify: ^2.0.0
+  checksum: 873b1532fe1a7a3e916936c3206da3d280e840b2d1bf0fe5050b4916c627371a8de228d41ab2a70e0a6fbd0919c55da5db9192338be829320c8f0aaa445dd7b8
   languageName: node
   linkType: hard
 
@@ -10958,18 +10958,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"jsonfile@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "jsonfile@npm:4.0.0"
-  dependencies:
-    graceful-fs: ^4.1.6
-  dependenciesMeta:
-    graceful-fs:
-      optional: true
-  checksum: a40b7b64da41c84b0dc7ad753737ba240bb0dc50a94be20ec0b73459707dede69a6f89eb44b4d29e6994ed93ddf8c9b6e57f6b1f09dd707567959880ad6cee7f
-  languageName: node
-  linkType: hard
-
 "jsonfile@npm:^6.0.1":
   version: 6.1.0
   resolution: "jsonfile@npm:6.1.0"
@@ -12455,10 +12443,10 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"object-path@npm:>=0.11.5":
-  version: 0.11.5
-  resolution: "object-path@npm:0.11.5"
-  checksum: a2be57f65eb247161763280e857ddbafcfbb41ad7cfcfb0a78aca2e8adb990a7b5afe6b182c20baf0e218e541ec75c1807fd04d50e3049920c2ec65e6eb9c900
+"object-path@npm:>=0.11.8":
+  version: 0.11.8
+  resolution: "object-path@npm:0.11.8"
+  checksum: daf845abe3054b38a2ecd40ada58ffca30b4704d102f0426aa87afa6a02313226d87c9db6a0e9297aeb387047b567dbc790fb0599ab1a53e630298f7f79687db
   languageName: node
   linkType: hard
 
