@@ -66,16 +66,22 @@ const ExpandableGroup = ({
               className="u-fontSize1x u-textBold u-spaceLeftSm"
               value={label}
               inline
-              onChange={(e) => onLabelChange(e.target.value)}
-              onBlur={() => {
-                if (onLabelBlur) {
-                  onLabelBlur();
-                }
-
+              onChange={(e) => {
                 if (label.length === 0) {
                   setError(true);
                 } else {
                   setError(false);
+                  onLabelChange(e.target.value);
+                }
+              }}
+              onBlur={() => {
+                if (label.length === 0) {
+                  setError(true);
+                } else {
+                  setError(false);
+                  if (onLabelBlur) {
+                    onLabelBlur();
+                  }
                 }
               }}
               style={styles}
