@@ -53,6 +53,26 @@ const ExpandableGroup = ({
     };
   }
 
+  const handleOnChange = (e) => {
+    if (label.length === 0) {
+      setError(true);
+    } else {
+      setError(false);
+      onLabelChange(e.target.value);
+    }
+  }
+
+  const handleOnBlur = () => {
+    if (label.length === 0) {
+      setError(true);
+    } else {
+      setError(false);
+      if (onLabelBlur) {
+        onLabelBlur();
+      }
+    }
+  }
+
   return (
     <Panel mods={`${error ? 'u-padBottomSm' : ''} expandable-group`}>
       <PanelCell mods="u-flex u-flexAlignItemsCenter u-flexJustifyBetween">
@@ -66,18 +86,8 @@ const ExpandableGroup = ({
               className="u-fontSize1x u-textBold u-spaceLeftSm"
               value={label}
               inline
-              onChange={(e) => onLabelChange(e.target.value)}
-              onBlur={() => {
-                if (onLabelBlur) {
-                  onLabelBlur();
-                }
-
-                if (label.length === 0) {
-                  setError(true);
-                } else {
-                  setError(false);
-                }
-              }}
+              onChange={handleOnChange}
+              onBlur={handleOnBlur}
               style={styles}
             />
 
