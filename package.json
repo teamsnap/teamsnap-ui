@@ -40,7 +40,7 @@
     "suit"
   ],
   "engines": {
-    "node": ">=14.7.0"
+    "node": ">=18"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
