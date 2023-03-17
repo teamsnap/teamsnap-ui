@@ -7,6 +7,7 @@ import { Icon } from '../Icon';
 import { ListToggle } from '../ListToggle';
 import { Panel } from '../Panel';
 import { PanelCell } from '../PanelCell';
+import { getClassName } from '../../utils/helpers';
 
 const propTypes = {
   isExpanded: PropTypes.bool,
@@ -15,6 +16,7 @@ const propTypes = {
   onLabelChange: PropTypes.func.isRequired,
   onLabelBlur: PropTypes.func,
   children: PropTypes.node.isRequired,
+  mods: PropTypes.string,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -26,6 +28,7 @@ const ExpandableGroup = ({
   onLabelChange,
   onLabelBlur,
   children,
+  mods,
 }: Props) => {
   const [expanded, setExpanded] = React.useState<boolean>(isExpanded ?? false);
   const [error, setError] = React.useState<boolean>(false);
@@ -40,7 +43,6 @@ const ExpandableGroup = ({
     marginLeft: 10,
     paddingLeft: 4,
     width: '314px',
-    height: '29px',
     background: '#FFFFFF',
     borderRadius: '5px',
     border: '1px solid inherit',
@@ -53,8 +55,14 @@ const ExpandableGroup = ({
     };
   }
 
+  const className = getClassName(
+    'expandable-group',
+    error && 'u-padBottomSm',
+    mods
+  )
+
   return (
-    <Panel mods={`${error ? 'u-padBottomSm' : ''} expandable-group`}>
+    <Panel mods={className}>
       <PanelCell mods="u-flex u-flexAlignItemsCenter u-flexJustifyBetween">
         <div className="u-size7of12 u-flex u-flexAlignItemsCenter u-flexAlignContentCenter">
           <div className="expandable-group--carat">
