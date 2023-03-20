@@ -78,6 +78,8 @@ const Tabs = React.forwardRef(
                 onClick={() => setActiveTabIndex(index)}
                 type="link"
               >
+                {/* 
+                // @ts-ignore */}
                 {tab.heading}
               </Button>
             </li>
