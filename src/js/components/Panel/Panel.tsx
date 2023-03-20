@@ -56,7 +56,7 @@ Panel.defaultProps = {
   mods: null,
   style: {},
   testId: null,
-  otherProps: {},
+  otherProps: {}, // eslint-disable-line react/default-props-match-prop-types
 };
 
 export default Panel;
