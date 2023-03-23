@@ -3405,7 +3405,7 @@ __metadata:
     eslint: ^4.19.1
     eslint-plugin-react: ^7.14.3
     fs-extra: ^5.0.0
-    glob: ^7.1.4
+    glob: ^9.3.2
     gulp: ^4.0.2
     gulp-autoprefixer: ^8.0.0
     gulp-clean-css: ^4.3.0
@@ -3414,7 +3414,7 @@ __metadata:
     gulp-util: ^3.0.8
     html-webpack-plugin: ^5.3.1
     lodash: ^4.17.15
-    object-path: ">=0.11.5"
+    object-path: ">=0.11.8"
     prop-types: ^15.6.1
     react: ^17.0.1
     react-docgen-typescript-loader: ^3.1.0
@@ -5348,6 +5348,15 @@ __metadata:
     balanced-match: ^1.0.0
     concat-map: 0.0.1
   checksum: 4c878e25e4858baf801945dfd63eb68feab2e502cf1122f25f3915c0e3bf397af3a93ff6bef0798db41c0d81ef28c08e55daac38058710f749a3b96eee6b8f40
+  languageName: node
+  linkType: hard
+
+"brace-expansion@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "brace-expansion@npm:2.0.1"
+  dependencies:
+    balanced-match: ^1.0.0
+  checksum: c4997879681c552122f3c46859a8e90a1d082ed4431514099d5b981e75c6e9c76838de700f9b680326a16cfdc05306b384a581aacd00d0bfe2109c560b2ac008
   languageName: node
   linkType: hard
 
@@ -9006,6 +9015,18 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"glob@npm:^9.3.2":
+  version: 9.3.2
+  resolution: "glob@npm:9.3.2"
+  dependencies:
+    fs.realpath: ^1.0.0
+    minimatch: ^7.4.1
+    minipass: ^4.2.4
+    path-scurry: ^1.6.1
+  checksum: 1dc563162d29265dbef965aa3cb49c0b7a075f07eee63f491d7b1f347d14326dc875f3d7da7588f5c34d26cb989a880081bda4859c883007a5f08650b413dc3e
+  languageName: node
+  linkType: hard
+
 "global-modules@npm:2.0.0":
   version: 2.0.0
   resolution: "global-modules@npm:2.0.0"
@@ -11491,6 +11512,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"lru-cache@npm:^7.14.1":
+  version: 7.18.3
+  resolution: "lru-cache@npm:7.18.3"
+  checksum: b937c2138a70d178eac29934bdc0301e7a2cbb91026bca781c496c392cabbe08b473277414e539cada972749096e0fc201e02242ebdc485b36dddc6a81a31e15
+  languageName: node
+  linkType: hard
+
 "make-dir@npm:^2.0.0, make-dir@npm:^2.1.0":
   version: 2.1.0
   resolution: "make-dir@npm:2.1.0"
@@ -11915,6 +11943,15 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"minimatch@npm:^7.4.1":
+  version: 7.4.3
+  resolution: "minimatch@npm:7.4.3"
+  dependencies:
+    brace-expansion: ^2.0.1
+  checksum: 567ec6bfdaee262d72592738561849cb1df66fa87833019c90034773b9210496e43747c85259d7f3630897a9bc903a188ae037d08de5fc6657498c854cd67586
+  languageName: node
+  linkType: hard
+
 "minimist@npm:^1.1.0, minimist@npm:^1.1.1, minimist@npm:^1.2.0, minimist@npm:^1.2.5":
   version: 1.2.5
   resolution: "minimist@npm:1.2.5"
@@ -11979,6 +12016,13 @@ fsevents@^1.2.7:
   dependencies:
     yallist: ^4.0.0
   checksum: d12b95a845f15950bce7a77730c89400cf0c4f55e7066338da1d201ac148ece4ea8efa79e45a2c07c868c61bcaf9e996c4c3d6bf6b85c038ffa454521fc6ecd5
+  languageName: node
+  linkType: hard
+
+"minipass@npm:^4.0.2, minipass@npm:^4.2.4":
+  version: 4.2.5
+  resolution: "minipass@npm:4.2.5"
+  checksum: 9df164109389dc289559a1ed82009bfa3316892c507ce2299f8e0790890d2d3ce3a2d761848372ec58f7242cf803ebb28ec612fdc28f23009952d3d4bc4bbbfe
   languageName: node
   linkType: hard
 
@@ -12455,10 +12499,10 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"object-path@npm:>=0.11.5":
-  version: 0.11.5
-  resolution: "object-path@npm:0.11.5"
-  checksum: a2be57f65eb247161763280e857ddbafcfbb41ad7cfcfb0a78aca2e8adb990a7b5afe6b182c20baf0e218e541ec75c1807fd04d50e3049920c2ec65e6eb9c900
+"object-path@npm:>=0.11.8":
+  version: 0.11.8
+  resolution: "object-path@npm:0.11.8"
+  checksum: daf845abe3054b38a2ecd40ada58ffca30b4704d102f0426aa87afa6a02313226d87c9db6a0e9297aeb387047b567dbc790fb0599ab1a53e630298f7f79687db
   languageName: node
   linkType: hard
 
@@ -13056,6 +13100,16 @@ fsevents@^1.2.7:
   dependencies:
     path-root-regex: ^0.1.0
   checksum: ccf11d9c9bf9b895f422099021fcff2c5d300f3b032ef5df414fb993cd6968c0c5bab5bdd89e505266f0f156f66bc242a357636d1cbcd8a2cada71e56291269f
+  languageName: node
+  linkType: hard
+
+"path-scurry@npm:^1.6.1":
+  version: 1.6.3
+  resolution: "path-scurry@npm:1.6.3"
+  dependencies:
+    lru-cache: ^7.14.1
+    minipass: ^4.0.2
+  checksum: 314f7d9a565a9b3305cae31e24dca9d3ea5ef8dc4ca6842d125c79f49a9e43c7c6af6bd54b1c499e112cc336d821fde8a4b3ab80171cddd89ea6b1f0b82a6827
   languageName: node
   linkType: hard
 
