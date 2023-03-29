@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { EditText } from 'react-edit-text';
 import * as PropTypes from 'prop-types';
+import { EditText } from 'react-edit-text';
 
 // Local imports
 import { Icon } from '../Icon';
