@@ -85,12 +85,8 @@ export const DisableFirstOnloadCallback = () => (
 );
 
 export const SetActiveTab = () => {
-  const tabRef = React.useRef<{ setActiveTabIndex: (index: number) => void }>();
-  const selectTab = (index) => {
-    if (tabRef.current) {
-      tabRef.current.setActiveTabIndex(index);
-    }
-  };
+  const [tab, selectTab] = React.useState(0);
+
   return (
     <>
       <Button type="button" onClick={() => selectTab(0)}>
@@ -100,7 +96,8 @@ export const SetActiveTab = () => {
         Tab 2
       </Button>
       <Tabs
-        ref={tabRef}
+        activeIndex={tab}
+        setActiveIndex={selectTab}
         mods="u-spaceRightSm"
         disableFirstAfterLoad
         tabs={[
