@@ -22,7 +22,6 @@
  */
 
 import * as React from 'react';
-import { MutableRefObject } from 'react';
 import { Button } from '../Button';
 
 interface Tab {
@@ -33,6 +32,7 @@ interface Tab {
 
 export interface Props {
   activeIndex?: number;
+  setActiveIndex?: (index: number) => void;
   mods?: string;
   tabs: Tab[];
   testId?: string;
@@ -40,72 +40,70 @@ export interface Props {
   disableFirstAfterLoad?: boolean;
 }
 
-const Tabs = React.forwardRef(
-  (
-    { activeIndex, mods, tabs, testId, renderOnload, disableFirstAfterLoad }: Props,
-    ref: MutableRefObject<{ setActiveTabIndex: (index: number) => void }>
-  ) => {
-    const [activeTabIndex, setActiveTabIndex] = React.useState(activeIndex ?? 0);
-    const [initialized, setInitialized] = React.useState(false);
-    const boolMods = !!mods;
+const Tabs = ({
+  activeIndex,
+  setActiveIndex,
+  mods,
+  tabs,
+  testId,
+  renderOnload,
+  disableFirstAfterLoad
+}: Props) => {
+  const [internalIndex, setInternalIndex] = React.useState(0);
+  const [initialized, setInitialized] = React.useState(false);
+  const boolMods = !!mods;
+  const [activeTabIndex, setActiveTabIndex] = setActiveIndex
+    ? [activeIndex, setActiveIndex]
+    : [internalIndex, setInternalIndex]
 
-    React.useImperativeHandle(ref, () => ({
-      setActiveTabIndex: (index: number) => {
-        setActiveTabIndex(index);
-      },
-    }));
+  React.useEffect(() => {
+    setInitialized(true);
+  }, []);
 
-    React.useEffect(() => {
-      setInitialized(true);
-    }, []);
+  React.useEffect(() => {
+    if (tabs[activeTabIndex].afterLoad && (!disableFirstAfterLoad || initialized)) {
+      tabs[activeTabIndex].afterLoad();
+    }
+  }, [activeTabIndex]);
 
-    React.useEffect(() => {
-      if (tabs[activeTabIndex].afterLoad && (!disableFirstAfterLoad || initialized)) {
-        tabs[activeTabIndex].afterLoad();
-      }
-    }, [activeTabIndex]);
-
-    return (
-      <div className={`Tabs ${boolMods ? mods : ''}`} data-testid={testId}>
-        <ul className="Tabs-header">
-          {tabs.map((tab, index) => (
-            <li
-              key={`Tabs-headerItem-${index}`}
-              className={`Tabs-headerItem ${index === activeTabIndex ? 'is-active' : ''}`}
+  return (
+    <div className={`Tabs ${boolMods ? mods : ''}`} data-testid={testId}>
+      <ul className="Tabs-header">
+        {tabs.map((tab, index) => (
+          <li
+            key={`Tabs-headerItem-${index}`}
+            className={`Tabs-headerItem ${index === activeTabIndex ? 'is-active' : ''}`}
+          >
+            <Button
+              style={{ color: 'inherit' }}
+              onClick={() => setActiveTabIndex(index)}
+              type="link"
             >
-              <Button
-                style={{ color: 'inherit' }}
-                onClick={() => setActiveTabIndex(index)}
-                type="link"
+              {tab.heading}
+            </Button>
+          </li>
+        ))}
+      </ul>
+      <div className="Tabs-content">
+        {renderOnload ? (
+          <div key={`Tabs-contentItem-${activeTabIndex}`} className="Tabs-contentItem is-active">
+            {tabs[activeTabIndex].content}
+          </div>
+        ) : (
+          <>
+            {tabs.map((tab, index) => (
+              <div
+                key={`Tabs-contentItem-${index}`}
+                className={`Tabs-contentItem ${index === activeTabIndex ? 'is-active' : ''}`}
               >
-                {/* 
-                // @ts-ignore */}
-                {tab.heading}
-              </Button>
-            </li>
-          ))}
-        </ul>
-        <div className="Tabs-content">
-          {renderOnload ? (
-            <div key={`Tabs-contentItem-${activeTabIndex}`} className="Tabs-contentItem is-active">
-              {tabs[activeTabIndex].content}
-            </div>
-          ) : (
-            <>
-              {tabs.map((tab, index) => (
-                <div
-                  key={`Tabs-contentItem-${index}`}
-                  className={`Tabs-contentItem ${index === activeTabIndex ? 'is-active' : ''}`}
-                >
-                  {tab.content}
-                </div>
-              ))}
-            </>
-          )}
-        </div>
+                {tab.content}
+              </div>
+            ))}
+          </>
+        )}
       </div>
-    );
-  }
-);
+    </div>
+  );
+};
 
 export default Tabs;
