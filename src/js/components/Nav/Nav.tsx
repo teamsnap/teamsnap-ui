@@ -77,6 +77,7 @@ const navPropTypes = {
   flyoutSections: PropTypes.arrayOf(PropTypes.shape(flyoutSectionsPropTypes)),
   includeOverlay: PropTypes.bool,
   openItems: PropTypes.bool,
+  footerImage: PropTypes.string,
 };
 
 const itemPropTypes = {
@@ -209,6 +210,7 @@ const Nav: NavType & { Item: ItemType } = ({
   includeOverlay,
   openItems,
   testId,
+  footerImage,
 }) => {
   const [isCollapsed, setCollapsed] = React.useState(false);
   const [isFlyoutActive, setIsFlyoutActive] = React.useState(false);
@@ -264,7 +266,14 @@ const Nav: NavType & { Item: ItemType } = ({
           </div>
         ) : null}
         <div className="Nav-body">
-          {isFlyoutActive ? generateFlyoutContents(flyoutSections, openItems) : <ul>{children}</ul>}
+          <div className="Nav-body-content">
+            {isFlyoutActive ? (
+              generateFlyoutContents(flyoutSections, openItems)
+            ) : (
+              <ul>{children}</ul>
+            )}
+            {footerImage && <img className="u-padMd" src={footerImage} alt="" />}
+          </div>
         </div>
         {!isFlyoutActive && (
           <div
