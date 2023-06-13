@@ -79,6 +79,8 @@ const Tabs = ({
               onClick={() => setActiveTabIndex(index)}
               type="link"
             >
+              {/* 
+                // @ts-ignore */}
               {tab.heading}
             </Button>
           </li>
