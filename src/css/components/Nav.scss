@@ -217,6 +217,16 @@
   flex-basis: 0% !important;
 }
 
+.Nav-body-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  > ul {
+    flex: 1;
+  }
+}
+
 .Nav-headerIcon {
   width: scaleGrid(3);
   display: block;
