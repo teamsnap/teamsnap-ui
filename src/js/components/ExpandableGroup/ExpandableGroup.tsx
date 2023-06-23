@@ -99,15 +99,17 @@ const ExpandableGroup = ({
           </div>
         </div>
 
-        <div
-          onKeyDown={() => {}}
-          role="button"
-          tabIndex={0}
-          className="u-size1of12 u-flex u-flexJustifyEnd"
-          onClick={onDelete}
-        >
-          <Icon mods="expandable-group--trash" name="trash" style={{ width: 24, height: 24 }} />
-        </div>
+        {onDelete ? (
+          <div
+            onKeyDown={() => {}}
+            role="button"
+            tabIndex={0}
+            className="u-size1of12 u-flex u-flexJustifyEnd"
+            onClick={onDelete}
+          >
+            <Icon mods="expandable-group--trash" name="trash" style={{ width: 24, height: 24 }} />
+          </div>
+        ): null}
       </PanelCell>
 
       {expanded && children}
