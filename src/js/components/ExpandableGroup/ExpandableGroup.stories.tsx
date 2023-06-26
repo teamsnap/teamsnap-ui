@@ -233,7 +233,7 @@ export const GroupListWithOutEditableLabels = () => {
     <ExpandableGroup
       key={group.id}
       label={group.name}
-      isLabelEditable={false}
+      isExpanded
     >
       <PanelCell className="Panel-cell u-padTopNone u-spaceSidesLg">
         <p className="u-fontSizeLg u-spaceBottomXs">Description</p>
