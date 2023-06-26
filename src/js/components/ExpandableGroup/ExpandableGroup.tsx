@@ -12,9 +12,8 @@ import { getClassName } from '../../utils/helpers';
 const propTypes = {
   isExpanded: PropTypes.bool,
   label: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  onLabelChange: PropTypes.func.isRequired,
-  isLabelEditable: PropTypes.bool,
+  onDelete: PropTypes.func,
+  onLabelChange: PropTypes.func,
   onLabelBlur: PropTypes.func,
   children: PropTypes.node.isRequired,
   mods: PropTypes.string,
@@ -25,7 +24,6 @@ type Props = PropTypes.InferProps<typeof propTypes>;
 const ExpandableGroup = ({
   isExpanded,
   label,
-  isLabelEditable = true,
   onDelete,
   onLabelChange,
   onLabelBlur,
@@ -68,7 +66,7 @@ const ExpandableGroup = ({
           </div>
 
           <div style={{ position: 'relative' }}>
-            {isLabelEditable ? (
+            {onLabelChange ? (
               <>
                 <EditText
                   className="u-fontSize1x u-textBold u-spaceLeftSm"
@@ -101,7 +99,7 @@ const ExpandableGroup = ({
               </>
             ) : (
               <button
-                type='button'
+                type="button"
                 className="u-fontSize1x u-textBold u-spaceLeftSm u-borderNone u-padNone"
                 style={{ backgroundColor: 'transparent', cursor: 'pointer' }}
                 onClick={() => setExpanded(!expanded)}
