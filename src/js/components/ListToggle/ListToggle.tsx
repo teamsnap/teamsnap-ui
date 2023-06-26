@@ -3,7 +3,7 @@ import { Icon } from '../Icon';
 
 export interface Props {
   isExpanded?: boolean;
-  onClick: () => void;
+  onClick: (boolean) => void;
   testId?: string;
 }
 
@@ -12,8 +12,12 @@ const ListToggle: React.FC<Props> = ({ isExpanded, onClick, testId }: Props) => 
 
   const toggleState = (expansionState) => {
     setExpanded(!expansionState);
-    onClick();
+    onClick(!expansionState);
   };
+
+  React.useEffect(() => {
+    setExpanded(isExpanded);
+  }, [isExpanded]);
 
   return (
     <button
