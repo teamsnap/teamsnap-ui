@@ -66,7 +66,7 @@ export const Default = () => {
         <p className="u-fontSizeLg u-spaceBottomXs">Description</p>
 
         <textarea
-          style={{ height: 'auto' }}
+          style={{ height: 'auto', resize: 'none' }}
           className="Input u-colorNeutral8"
           value={group.description}
           name="locationNotesInput"
@@ -128,7 +128,7 @@ export const GroupList = () => {
         <p className="u-fontSizeLg u-spaceBottomXs">Description</p>
 
         <textarea
-          style={{ height: 'auto' }}
+          style={{ height: 'auto', resize: 'none' }}
           className="Input u-colorNeutral8"
           value={group.description}
           name="locationNotesInput"
@@ -239,7 +239,7 @@ export const GroupListWithOutEditableLabels = () => {
         <p className="u-fontSizeLg u-spaceBottomXs">Description</p>
 
         <textarea
-          style={{ height: 'auto' }}
+          style={{ height: 'auto', resize: 'none' }}
           className="Input u-colorNeutral8"
           value={group.description}
           name="locationNotesInput"
