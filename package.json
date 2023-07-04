@@ -47,7 +47,7 @@
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-    "@storybook/addon-actions": "^6.3.0",
+    "@storybook/addon-actions": "^7.0.25",
     "@storybook/addon-docs": "^6.3.0",
     "@storybook/addon-knobs": "^6.2.9",
     "@storybook/react": "^6.3.0",
