@@ -12,8 +12,8 @@ import { getClassName } from '../../utils/helpers';
 const propTypes = {
   isExpanded: PropTypes.bool,
   label: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  onLabelChange: PropTypes.func.isRequired,
+  onDelete: PropTypes.func,
+  onLabelChange: PropTypes.func,
   onLabelBlur: PropTypes.func,
   children: PropTypes.node.isRequired,
   mods: PropTypes.string,
@@ -64,35 +64,50 @@ const ExpandableGroup = ({
       <PanelCell mods="u-flex u-flexAlignItemsCenter u-flexJustifyBetween">
         <div className="u-size7of12 u-flex u-flexAlignItemsCenter u-flexAlignContentCenter">
           <div className="expandable-group--carat">
-            <ListToggle isExpanded={isExpanded} onClick={() => setExpanded(!expanded)} />
+            <ListToggle isExpanded={expanded} onClick={() => setExpanded(!expanded)} />
           </div>
 
           <div style={{ position: 'relative' }}>
-            <EditText
-              className="u-fontSize1x u-textBold u-spaceLeftSm"
-              value={label}
-              inline
-              onChange={(e) => onLabelChange(e.target.value)}
-              onBlur={() => {
-                if (onLabelBlur) {
-                  onLabelBlur();
-                }
+            {onLabelChange ? (
+              <>
+                <EditText
+                  className="u-fontSize1x u-textBold u-spaceLeftSm"
+                  value={label}
+                  inline
+                  onChange={(e) => onLabelChange(e.target.value)}
+                  onBlur={() => {
+                    if (onLabelBlur) {
+                      onLabelBlur();
+                    }
 
-                if (label.length === 0) {
-                  setError(true);
-                } else {
-                  setError(false);
-                }
-              }}
-              style={styles}
-            />
-
-            {error ? (
-              <span style={{ position: 'absolute', top: 30, left: 8 }} className="u-colorNegative">
-                You must enter a name for the group.
-              </span>
+                    if (label.length === 0) {
+                      setError(true);
+                    } else {
+                      setError(false);
+                    }
+                  }}
+                  style={styles}
+                />
+                {error ? (
+                  <span
+                    style={{ position: 'absolute', top: 30, left: 8 }}
+                    className="u-colorNegative"
+                  >
+                    You must enter a name for the group.
+                  </span>
+                ) : (
+                  ''
+                )}
+              </>
             ) : (
-              ''
+              <button
+                type="button"
+                className="u-fontSize1x u-textBold u-spaceLeftSm u-borderNone u-padNone"
+                style={{ backgroundColor: 'transparent', cursor: 'pointer' }}
+                onClick={() => setExpanded(!expanded)}
+              >
+                {label}
+              </button>
             )}
           </div>
         </div>
