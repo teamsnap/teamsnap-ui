@@ -205,7 +205,7 @@ export const GroupListWithoutDelete = () => {
   ));
 };
 
-export const GroupListWithOutEditableLabels = () => {
+export const GroupListWithoutEditableLabels = () => {
   const [groups, setGroups] = React.useState(['Group 1', 'Group 2']);
 
   React.useEffect(() => {
