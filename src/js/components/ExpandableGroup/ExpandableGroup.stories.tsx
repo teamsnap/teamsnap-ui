@@ -151,12 +151,8 @@ export const GroupList = () => {
   ));
 };
 
-
-export const GroupListWithOutDelete = () => {
-  const [groups, setGroups] = React.useState([
-    'Group 1',
-    'Group 2'
-  ]);
+export const GroupListWithoutDelete = () => {
+  const [groups, setGroups] = React.useState(['Group 1', 'Group 2']);
 
   React.useEffect(() => {
     return () => setGroups([]);
@@ -209,8 +205,55 @@ export const GroupListWithOutDelete = () => {
   ));
 };
 
-
 export const GroupListWithOutEditableLabels = () => {
+  const [groups, setGroups] = React.useState(['Group 1', 'Group 2']);
+
+  React.useEffect(() => {
+    return () => setGroups([]);
+  });
+
+  // First thing we do is loop through the groups and create an array of group objects
+  const groupObjectList = [];
+  groups.forEach((group, idx) => {
+    groupObjectList.push({
+      id: idx,
+      name: group,
+      description: '',
+    });
+  });
+
+  const [groupList, setGroupList] = React.useState(groupObjectList);
+
+  return groupList.map((group) => (
+    <ExpandableGroup key={group.id} label={group.name} isExpanded>
+      <PanelCell className="Panel-cell u-padTopNone u-spaceSidesLg">
+        <p className="u-fontSizeLg u-spaceBottomXs">Description</p>
+
+        <textarea
+          style={{ height: 'auto', resize: 'none' }}
+          className="Input u-colorNeutral8"
+          value={group.description}
+          name="locationNotesInput"
+          id="locationNotesInput"
+          cols={30}
+          rows={3}
+          onChange={(e) =>
+            setGroupList((prevState) =>
+              updateStatePiece(prevState, group.id, e.target.value, 'description')
+            )
+          }
+          placeholder="Description about the group for registrants to veiw"
+        />
+
+        <span className="u-fontSizeSm u-colorNeutral8">
+          Description will display for registrants when they select groups to register for.
+        </span>
+      </PanelCell>
+    </ExpandableGroup>
+  ));
+};
+
+export const groupListWithoutDeleteAndGroupHelperText = () => {
   const [groups, setGroups] = React.useState(['Group 1', 'Group 2']);
 
   React.useEffect(() => {
@@ -233,13 +276,72 @@ export const GroupListWithOutEditableLabels = () => {
     <ExpandableGroup
       key={group.id}
       label={group.name}
-      isExpanded
+      onLabelChange={(value) =>
+        setGroupList((prevState) => updateStatePiece(prevState, group.id, value, 'name'))
+      }
+      groupHelperText="This is the helper text"
     >
       <PanelCell className="Panel-cell u-padTopNone u-spaceSidesLg">
         <p className="u-fontSizeLg u-spaceBottomXs">Description</p>
 
         <textarea
-          style={{ height: 'auto', resize: 'none' }}
+          style={{ height: 'auto' }}
+          className="Input u-colorNeutral8"
+          value={group.description}
+          name="locationNotesInput"
+          id="locationNotesInput"
+          cols={30}
+          rows={3}
+          onChange={(e) =>
+            setGroupList((prevState) =>
+              updateStatePiece(prevState, group.id, e.target.value, 'description')
+            )
+          }
+          placeholder="Description about the group for registrants to veiw"
+        />
+
+        <span className="u-fontSizeSm u-colorNeutral8">
+          Description will display for registrants when they select groups to register for.
+        </span>
+      </PanelCell>
+    </ExpandableGroup>
+  ));
+};
+
+export const groupListWithDeleteAndGroupHelperText = () => {
+  const [groups, setGroups] = React.useState(['Group 1', 'Group 2']);
+
+  React.useEffect(() => {
+    return () => setGroups([]);
+  });
+
+  // First thing we do is loop through the groups and create an array of group objects
+  const groupObjectList = [];
+  groups.forEach((group, idx) => {
+    groupObjectList.push({
+      id: idx,
+      name: group,
+      description: '',
+    });
+  });
+
+  const [groupList, setGroupList] = React.useState(groupObjectList);
+
+  return groupList.map((group) => (
+    <ExpandableGroup
+      key={group.id}
+      label={group.name}
+      onLabelChange={(value) =>
+        setGroupList((prevState) => updateStatePiece(prevState, group.id, value, 'name'))
+      }
+      groupHelperText="This is the helper text"
+      onDelete={() => setGroupList(groupList.filter((currGroup) => currGroup.id !== group.id))}
+    >
+      <PanelCell className="Panel-cell u-padTopNone u-spaceSidesLg">
+        <p className="u-fontSizeLg u-spaceBottomXs">Description</p>
+
+        <textarea
+          style={{ height: 'auto' }}
           className="Input u-colorNeutral8"
           value={group.description}
           name="locationNotesInput"

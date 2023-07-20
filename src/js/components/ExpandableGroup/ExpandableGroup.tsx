@@ -17,6 +17,7 @@ const propTypes = {
   onLabelBlur: PropTypes.func,
   children: PropTypes.node.isRequired,
   mods: PropTypes.string,
+  groupHelperText: PropTypes.string || PropTypes.node,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -29,6 +30,7 @@ const ExpandableGroup = ({
   onLabelBlur,
   children,
   mods,
+  groupHelperText,
 }: Props) => {
   const [expanded, setExpanded] = React.useState<boolean>(isExpanded ?? false);
   const [error, setError] = React.useState<boolean>(false);
@@ -109,6 +111,12 @@ const ExpandableGroup = ({
             )}
           </div>
         </div>
+
+        {!expanded && groupHelperText && (
+          <div className="u-size4of12 u-flex u-flexJustifyEnd u-colorNeutral7">
+            {groupHelperText}
+          </div>
+        )}
 
         {onDelete ? (
           <div
