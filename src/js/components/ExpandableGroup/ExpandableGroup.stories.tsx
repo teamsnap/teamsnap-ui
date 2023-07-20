@@ -353,7 +353,7 @@ export const groupListWithDeleteAndGroupHelperText = () => {
               updateStatePiece(prevState, group.id, e.target.value, 'description')
             )
           }
-          placeholder="Description about the group for registrants to veiw"
+          placeholder="This is the placeholder text"
         />
 
         <span className="u-fontSizeSm u-colorNeutral8">
