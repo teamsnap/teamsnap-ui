@@ -17,6 +17,7 @@ const propTypes = {
   onLabelBlur: PropTypes.func,
   children: PropTypes.node.isRequired,
   mods: PropTypes.string,
+  closedHelperText: PropTypes.string || PropTypes.node,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -29,6 +30,7 @@ const ExpandableGroup = ({
   onLabelBlur,
   children,
   mods,
+  closedHelperText,
 }: Props) => {
   const [expanded, setExpanded] = React.useState<boolean>(isExpanded ?? false);
   const [error, setError] = React.useState<boolean>(false);
@@ -55,11 +57,7 @@ const ExpandableGroup = ({
     };
   }
 
-  const className = getClassName(
-    'expandable-group',
-    error && 'u-padBottomSm',
-    mods
-  )
+  const className = getClassName('expandable-group', error && 'u-padBottomSm', mods);
 
   return (
     <Panel mods={className}>
@@ -99,6 +97,10 @@ const ExpandableGroup = ({
           </div>
         </div>
 
+        {!expanded && closedHelperText && (
+          <div className="u-size4of12 u-flex u-flexJustifyEnd">{closedHelperText}</div>
+        )}
+
         {onDelete ? (
           <div
             onKeyDown={() => {}}
@@ -109,7 +111,7 @@ const ExpandableGroup = ({
           >
             <Icon mods="expandable-group--trash" name="trash" style={{ width: 24, height: 24 }} />
           </div>
-        ): null}
+        ) : null}
       </PanelCell>
 
       {expanded && children}
