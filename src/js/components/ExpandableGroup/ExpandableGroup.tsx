@@ -18,6 +18,7 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   mods: PropTypes.string,
   groupHelperText: PropTypes.string || PropTypes.node,
+  hasError: PropTypes.bool,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -31,6 +32,7 @@ const ExpandableGroup = ({
   children,
   mods,
   groupHelperText,
+  hasError,
 }: Props) => {
   const [expanded, setExpanded] = React.useState<boolean>(isExpanded ?? false);
   const [error, setError] = React.useState<boolean>(false);
@@ -40,6 +42,12 @@ const ExpandableGroup = ({
       setError(false);
     }
   }, [label]);
+
+  React.useEffect(() => {
+    if (hasError) {
+      setExpanded(true);
+    }
+  }, [hasError]);
 
   let styles = {
     marginLeft: 10,
