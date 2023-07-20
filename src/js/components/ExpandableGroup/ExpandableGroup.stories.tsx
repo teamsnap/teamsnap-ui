@@ -253,7 +253,7 @@ export const GroupListWithOutEditableLabels = () => {
   ));
 };
 
-export const groupListWithoutDeleteAndClosedHelperText = () => {
+export const groupListWithoutDeleteAndGroupHelperText = () => {
   const [groups, setGroups] = React.useState(['Group 1', 'Group 2']);
 
   React.useEffect(() => {
@@ -279,7 +279,7 @@ export const groupListWithoutDeleteAndClosedHelperText = () => {
       onLabelChange={(value) =>
         setGroupList((prevState) => updateStatePiece(prevState, group.id, value, 'name'))
       }
-      closedHelperText="This is the helper text"
+      groupHelperText="This is the helper text"
     >
       <PanelCell className="Panel-cell u-padTopNone u-spaceSidesLg">
         <p className="u-fontSizeLg u-spaceBottomXs">Description</p>
@@ -308,7 +308,7 @@ export const groupListWithoutDeleteAndClosedHelperText = () => {
   ));
 };
 
-export const groupListWithDeleteAndClosedHelperText = () => {
+export const groupListWithDeleteAndGroupHelperText = () => {
   const [groups, setGroups] = React.useState(['Group 1', 'Group 2']);
 
   React.useEffect(() => {
@@ -334,7 +334,7 @@ export const groupListWithDeleteAndClosedHelperText = () => {
       onLabelChange={(value) =>
         setGroupList((prevState) => updateStatePiece(prevState, group.id, value, 'name'))
       }
-      closedHelperText="This is the helper text"
+      groupHelperText="This is the helper text"
       onDelete={() => setGroupList(groupList.filter((currGroup) => currGroup.id !== group.id))}
     >
       <PanelCell className="Panel-cell u-padTopNone u-spaceSidesLg">
