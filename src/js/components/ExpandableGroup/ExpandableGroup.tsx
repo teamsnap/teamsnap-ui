@@ -18,6 +18,7 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   mods: PropTypes.string,
   groupHelperText: PropTypes.string || PropTypes.node,
+  testId: PropTypes.string,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -31,6 +32,7 @@ const ExpandableGroup = ({
   children,
   mods,
   groupHelperText,
+  testId,
 }: Props) => {
   const [expanded, setExpanded] = React.useState<boolean>(isExpanded ?? false);
   const [error, setError] = React.useState<boolean>(false);
@@ -60,7 +62,7 @@ const ExpandableGroup = ({
   const className = getClassName('expandable-group', error && 'u-padBottomSm', mods);
 
   return (
-    <Panel mods={className}>
+    <Panel mods={className} testId={testId}>
       <PanelCell mods="u-flex u-flexAlignItemsCenter u-flexJustifyBetween">
         <div className="u-size7of12 u-flex u-flexAlignItemsCenter u-flexAlignContentCenter">
           <div className="expandable-group--carat">

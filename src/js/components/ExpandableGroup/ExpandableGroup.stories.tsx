@@ -56,6 +56,7 @@ export const Default = () => {
   return groupList.map((group) => (
     <ExpandableGroup
       key={group.id}
+      testId="group-test"
       label={group.name}
       onLabelChange={(value) =>
         setGroupList((prevState) => updateStatePiece(prevState, group.id, value, 'name'))
