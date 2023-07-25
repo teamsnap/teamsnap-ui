@@ -10,6 +10,7 @@ import { PanelCell } from '../PanelCell';
 import { getClassName } from '../../utils/helpers';
 
 const propTypes = {
+  id: PropTypes.number,
   isExpanded: PropTypes.bool,
   label: PropTypes.string.isRequired,
   onDelete: PropTypes.func,
@@ -19,11 +20,13 @@ const propTypes = {
   mods: PropTypes.string,
   groupHelperText: PropTypes.string || PropTypes.node,
   hasError: PropTypes.bool,
+  onExpandedChange: PropTypes.func,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
 
 const ExpandableGroup = ({
+  id,
   isExpanded,
   label,
   onDelete,
@@ -32,9 +35,8 @@ const ExpandableGroup = ({
   children,
   mods,
   groupHelperText,
-  hasError,
-}: Props) => {
-  const [expanded, setExpanded] = React.useState<boolean>(isExpanded ?? false);
+  onExpandedChange
+}: Props, ref) => {
   const [error, setError] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -42,12 +44,6 @@ const ExpandableGroup = ({
       setError(false);
     }
   }, [label]);
-
-  React.useEffect(() => {
-    if (hasError) {
-      setExpanded(true);
-    }
-  }, [hasError]);
 
   let styles = {
     marginLeft: 10,
@@ -61,7 +57,7 @@ const ExpandableGroup = ({
   if (error) {
     styles = {
       ...styles,
-      border: '1px solid red',
+      border: '1px solid #D63333',
     };
   }
 
@@ -72,10 +68,10 @@ const ExpandableGroup = ({
       <PanelCell mods="u-flex u-flexAlignItemsCenter u-flexJustifyBetween">
         <div className="u-size7of12 u-flex u-flexAlignItemsCenter u-flexAlignContentCenter">
           <div className="expandable-group--carat">
-            <ListToggle isExpanded={expanded} onClick={() => setExpanded(!expanded)} />
+            <ListToggle isExpanded={isExpanded} onClick={() => onExpandedChange(id)} />
           </div>
 
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative' }} ref={ref}>
             {onLabelChange ? (
               <>
                 <EditText
@@ -112,7 +108,7 @@ const ExpandableGroup = ({
                 type="button"
                 className="u-fontSize1x u-textBold u-spaceLeftSm u-borderNone u-padNone"
                 style={{ backgroundColor: 'transparent', cursor: 'pointer' }}
-                onClick={() => setExpanded(!expanded)}
+                onClick={() => onExpandedChange(id)}
               >
                 {label}
               </button>
@@ -120,7 +116,7 @@ const ExpandableGroup = ({
           </div>
         </div>
 
-        {!expanded && groupHelperText && (
+        {!isExpanded && groupHelperText && (
           <div className="u-size4of12 u-flex u-flexJustifyEnd u-colorNeutral7">
             {groupHelperText}
           </div>
@@ -139,9 +135,9 @@ const ExpandableGroup = ({
         ) : null}
       </PanelCell>
 
-      {expanded && children}
+      {isExpanded && children}
     </Panel>
   );
 };
 
-export default ExpandableGroup;
+export default React.forwardRef(ExpandableGroup);
