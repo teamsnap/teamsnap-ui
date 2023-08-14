@@ -187,6 +187,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
               onClick: () => {
                 onRowClick(heading, subheading, uniqueId, parentIdx);
               },
+              onChange: () => {}
             }}
           />
         </PanelRow>
@@ -242,6 +243,7 @@ const ToggleCheckboxList: React.FunctionComponent<Props> = ({
                 formFieldProps={{
                   checked: headerStatus[headerName] && headerStatus[headerName].status,
                   onClick: () => toggleSubheadingRows(heading, subheading, idx),
+                  onChange: () => {}
                 }}
               />
             </div>

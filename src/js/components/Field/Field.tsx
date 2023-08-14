@@ -33,6 +33,7 @@ const checkboxShape = PropTypes.shape({
   text: PropTypes.string,
   checked: CheckboxState.PropType,
   onClick: PropTypes.func,
+  onChange: PropTypes.func,
   isIndeterminate: PropTypes.bool,
 });
 
@@ -95,6 +96,7 @@ const Field = ({
           text,
           checked,
           onClick,
+          onChange,
           leftIcon,
           rightIcon,
           placeholder,
@@ -114,6 +116,7 @@ const Field = ({
                 inputProps={{
                   checked,
                   onClick,
+                  onChange,
                   disabled: isDisabled,
                 }}
                 label={text}
@@ -128,6 +131,7 @@ const Field = ({
                 inputProps={{
                   checked,
                   onClick,
+                  onChange,
                   disabled: isDisabled,
                 }}
                 label={text}
