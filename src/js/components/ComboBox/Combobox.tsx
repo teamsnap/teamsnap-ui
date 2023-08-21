@@ -55,6 +55,7 @@ const propTypes = {
   doneButtonText: PropTypes.string,
   showSelectAll: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
+  onHoverText: PropTypes.string,
 };
 interface Filter {
   value: string;
@@ -100,6 +101,7 @@ const ComboBox = ({
   doneButtonText,
   showSelectAll,
   searchPlaceholder,
+  onHoverText,
 }: Props) => {
   const [initialized, setInitialized] = React.useState(false);
   const [flyoutVisible, toggleFlyout] = React.useState(false);
@@ -255,7 +257,7 @@ const ComboBox = ({
         id={name}
         data-testid="comboboxButton"
         disabled={disabled}
-        title={comboLabel ?? ''}
+        title={onHoverText && disabled ? onHoverText : comboLabel ?? ''}
         onClick={() => toggleFlyout(!flyoutVisible)}
       >
         {comboLabel ?? buttonLabel}
@@ -357,6 +359,7 @@ ComboBox.defaultProps = {
   doneButtonText: 'Done',
   showSelectAll: false,
   searchPlaceholder: null,
+  onHoverText: '',
 };
 
 export default ComboBox;
