@@ -90,27 +90,30 @@ const PopUpAction = ({
 
   return (
     <>
-      <div 
-          data-testid={testId}
-          className={`Popup ${showOnHover && 'Popup--hover'}`} 
-          onMouseEnter={() => {
-            centerContent()
-            if (showOnHover) setHoverPopupOpen(true)
-          }}
-          onMouseLeave={() => showOnHover && setHoverPopupOpen(false)}
-        >
+      <div
+        data-testid={testId}
+        className={`Popup ${showOnHover && 'Popup--hover'}`}
+        onMouseEnter={() => {
+          centerContent();
+          if (showOnHover) setHoverPopupOpen(true);
+        }}
+        onMouseLeave={() => showOnHover && setHoverPopupOpen(false)}
+      >
         <button
           ref={buttonTrigger}
           type="button"
           className="Button Button--small"
-          onClick={e => togglePopup(e)}
+          onClick={(e) => togglePopup(e)}
           style={buttonStyle}
+          data-testid={`${testId}-button`}
         >
           {text}
         </button>
-        
+
         <div
-          className={`Popup-container ${dirString} is-open ${(hoverPopupOpen || clickPopupOpen) ? '' : 'u-hidden'}`}
+          className={`Popup-container ${dirString} is-open ${
+            hoverPopupOpen || clickPopupOpen ? '' : 'u-hidden'
+          }`}
           style={{
             ...popupStyle,
             left: `${centerX}px`,
@@ -135,6 +138,7 @@ const PopUpAction = ({
                         textAlign: 'left',
                       }}
                       onClick={() => handleActionClick(action)}
+                      data-testid={`${testId}-action-${i}`}
                     >
                       {action.text}
                     </button>
@@ -146,7 +150,7 @@ const PopUpAction = ({
           </div>
         </div>
       </div>
-      <div className="Popup">
+      <div className="Popup" data-testid="Popup-confirm">
         <div
           className={`Popup-container Popup-container--overlay ${
             requiresConfirmation && isConfirmOpen ? 'is-open' : ''
@@ -163,10 +167,11 @@ const PopUpAction = ({
               <button
                 type="button"
                 onClick={() => {
-                  setIsConfirmOpen(false)
-                  setSelectedAction(null)
+                  setIsConfirmOpen(false);
+                  setSelectedAction(null);
                 }}
                 className="u-spaceRightSm Button Button--negative"
+                data-testid={`${testId}-cancel`}
               >
                 Cancel
               </button>
@@ -174,10 +179,11 @@ const PopUpAction = ({
                 type="button"
                 onClick={(...args) => {
                   if (callback) callback(args);
-                  setIsConfirmOpen(false)
-                  setSelectedAction(null)
+                  setIsConfirmOpen(false);
+                  setSelectedAction(null);
                 }}
                 className="Button Button--primary"
+                data-testid={`${testId}-confirm`}
               >
                 Confirm
               </button>

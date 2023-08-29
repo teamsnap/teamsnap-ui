@@ -219,7 +219,7 @@ const Table = ({
               <div className="u-padMd u-textCenter">{placeHolder}</div>
             ) : (
               <div style={maxTableHeight ? withMaxTableHeight : null}>
-                {items.map((row) => (
+                {items.map((row, index) => (
                   <PanelRow
                     key={row.id}
                     isWithCells
@@ -227,6 +227,7 @@ const Table = ({
                       row.selected && row.onClick ? 'Panel-row Panel-row--selectable' : 'Panel-row'
                     }
                     otherProps={{ onClick: row.onClick ? row.onClick : null }}
+                    testId={`table-panel-row-${index}`}
                   >
                     {columns.map((column) => renderColumn(column, row))}
                   </PanelRow>
