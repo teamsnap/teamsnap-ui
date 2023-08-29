@@ -30,14 +30,26 @@ const PopupTooltip = ({
   const buttonRef = React.useRef<HTMLButtonElement | null>(null);
   const tooltipRef = React.useRef<HTMLDivElement | null>(null);
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  const [center, setCenter] = React.useState<{ centerX: number, centerY: number }>({ centerX: 0, centerY: 0 });
+  const [center, setCenter] = React.useState<{ centerX: number; centerY: number }>({
+    centerX: 0,
+    centerY: 0,
+  });
   const describedby = ariaDescribeBy ? ariaDescribeBy.toLocaleLowerCase().replace(/ /g, '-') : null;
 
   const centerContent = React.useCallback(() => {
     if (buttonRef && buttonRef.current) {
-      const { left, top, width, height } = buttonRef.current.getBoundingClientRect()
-      const centerX = left + width / 2;
-      const centerY = top - height;
+      const { left, top, width, height } = buttonRef.current.getBoundingClientRect();
+      const closestScrollableParent = buttonRef.current.closest('.Modal-body'); // Assuming the modal (or any scrollable container) has a class of `.scrollable`
+      console.log('closestScrollableParent', closestScrollableParent);
+      let parentOffset = { x: 0, y: 0 };
+
+      if (closestScrollableParent) {
+        const parentRect = closestScrollableParent.getBoundingClientRect();
+        parentOffset = { x: parentRect.left, y: parentRect.top };
+      }
+
+      const centerX = left + width / 2 - parentOffset.x;
+      const centerY = top - height - parentOffset.y;
 
       setCenter({
         centerX,
@@ -60,8 +72,8 @@ const PopupTooltip = ({
         className={`Popup Popup--tooltip ${mods}`}
         data-testid={testId}
         onMouseEnter={() => {
-          centerContent() 
-          setIsPopupOpen(true)
+          centerContent();
+          setIsPopupOpen(true);
         }}
         onMouseLeave={() => setIsPopupOpen(false)}
       >

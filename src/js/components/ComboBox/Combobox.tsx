@@ -201,6 +201,7 @@ const ComboBox = ({
     return (
       <Checkbox
         key={`${name}-${idx}`}
+        testId={`${name}-${idx}`}
         mods={`${idx === items.length - 1 ? 'u-padBottomNone' : ''}`}
         name={filter.value}
         label={
@@ -217,12 +218,14 @@ const ComboBox = ({
           value: filter.value,
           onChange: () => {
             if (filter.value === 'select-all') {
-              let newList = filteredItems.map((i) => i.value).concat(filterList.map((i) => i.value))
+              let newList = filteredItems
+                .map((i) => i.value)
+                .concat(filterList.map((i) => i.value));
               const index = selectedFilters.indexOf('select-all');
               if (index === -1) {
-                newList.push('select-all')
+                newList.push('select-all');
               } else {
-                newList = []
+                newList = [];
               }
               setSelectedFilters(newList);
             } else if (selectedFilters.includes(filter.value)) {
@@ -265,7 +268,7 @@ const ComboBox = ({
       {flyoutVisible && (
         <Panel mods="Combobox-checkboxContainer" data-testid="flyout">
           <PanelBody mods="Combobox-checkboxes">
-            {shouldShowSearchBar &&  (
+            {shouldShowSearchBar && (
               <PanelRow mods="Grid-cell u-flexAuto u-padBottomMd">
                 <Field
                   type="input"
@@ -282,12 +285,12 @@ const ComboBox = ({
               </PanelRow>
             )}
             {showSelectAll && items.length > 1 && (
-              <PanelRow>
-                {buildCheckbox({ value: 'select-all', label: 'Select All'}, 0)}
-              </PanelRow>
+              <PanelRow>{buildCheckbox({ value: 'select-all', label: 'Select All' }, 0)}</PanelRow>
             )}
             {filterList?.length > 0 && (
-              <PanelRow mods={`Grid-cell u-flexAuto u-padBottomSm ${showSelectAll ? 'u-padLeftXl' : ''}`}>
+              <PanelRow
+                mods={`Grid-cell u-flexAuto u-padBottomSm ${showSelectAll ? 'u-padLeftXl' : ''}`}
+              >
                 {filterList.map((item: Filter, idx) => buildCheckbox(item, idx))}
               </PanelRow>
             )}
@@ -322,6 +325,7 @@ const ComboBox = ({
                   }}
                   mods="u-spaceRightMd u-colorNeutral7"
                   type="link"
+                  testId="combobox-cancel-button"
                 >
                   {canCancel ? 'Cancel' : 'Clear'}
                 </Button>
@@ -333,6 +337,7 @@ const ComboBox = ({
                     }
                   }}
                   type="link"
+                  testId="combobox-done-button"
                 >
                   {doneButtonText}
                 </Button>
