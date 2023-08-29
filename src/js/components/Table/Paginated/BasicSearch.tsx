@@ -54,6 +54,7 @@ const BasicSearchFilter = ({ searchPlaceholder, searchFunction }: Props) => {
         onChange={updateSearchField}
         onKeyPress={handleSearchKeyPress}
         style={{ minWidth: 250 }}
+        data-testid="basic-search-input"
       />
       <button
         type="submit"
