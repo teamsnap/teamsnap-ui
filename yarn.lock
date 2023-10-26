@@ -3389,7 +3389,7 @@ __metadata:
     "@storybook/addon-docs": ^6.3.0
     "@storybook/addon-knobs": ^6.2.9
     "@storybook/react": ^6.3.0
-    "@types/node": ^12.6.2
+    "@types/node": ^20.8.9
     "@types/react": ^16.8.23
     "@whitespace/storybook-addon-html": ^5.0.0
     awesome-typescript-loader: ^5.0.0
@@ -3414,7 +3414,7 @@ __metadata:
     gulp-util: ^3.0.8
     html-webpack-plugin: ^5.3.1
     lodash: ^4.17.15
-    object-path: ">=0.11.5"
+    object-path: ">=0.11.8"
     prop-types: ^15.6.1
     react: ^17.0.1
     react-docgen-typescript-loader: ^3.1.0
@@ -3593,17 +3593,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^12.6.2":
-  version: 12.20.15
-  resolution: "@types/node@npm:12.20.15"
-  checksum: 1233326726d017e9fdc1b89e966e5e4a3944060e00308ba6fbf4c6e91f307612dbf2e2bcab4132c35f6195b310a902ef6fe10a107e3e67c7582d31b79f1bef30
-  languageName: node
-  linkType: hard
-
 "@types/node@npm:^14.0.10":
   version: 14.17.4
   resolution: "@types/node@npm:14.17.4"
   checksum: 947ada8b39710c8fedf60f342b4ac1a08de8ebfbd4f09471b4e0006c2b0c7b832513e4dc2cdd455af5236910e2e725899bd9ce0aaecd097b2867d3e2ab62d8c6
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.8.9":
+  version: 20.8.9
+  resolution: "@types/node@npm:20.8.9"
+  dependencies:
+    undici-types: ~5.26.4
+  checksum: f5e450a4cca81a97354b59c6c8e91078b0888a9620d6c32d9fe57d088fb42d0e227c7673e04d07f571569662cfe9558ca5c2a5cf399cf25dc6c7d07068575cd1
   languageName: node
   linkType: hard
 
@@ -12455,10 +12457,10 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"object-path@npm:>=0.11.5":
-  version: 0.11.5
-  resolution: "object-path@npm:0.11.5"
-  checksum: a2be57f65eb247161763280e857ddbafcfbb41ad7cfcfb0a78aca2e8adb990a7b5afe6b182c20baf0e218e541ec75c1807fd04d50e3049920c2ec65e6eb9c900
+"object-path@npm:>=0.11.8":
+  version: 0.11.8
+  resolution: "object-path@npm:0.11.8"
+  checksum: daf845abe3054b38a2ecd40ada58ffca30b4704d102f0426aa87afa6a02313226d87c9db6a0e9297aeb387047b567dbc790fb0599ab1a53e630298f7f79687db
   languageName: node
   linkType: hard
 
@@ -16597,6 +16599,13 @@ typescript@^4.0.3:
     object.reduce: ^1.0.0
     undertaker-registry: ^1.0.0
   checksum: 8fd661579a6a3dfdedb853344f10d4191b1db8e11c7b5ef21a9a9ecf17f4052db58511a4de46391c4f29e6ce6577ec2a2e016dc9d288b834ee756db2e550c406
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~5.26.4":
+  version: 5.26.5
+  resolution: "undici-types@npm:5.26.5"
+  checksum: 55e14a010998c7e70681ac5533974dec80d8ae780cfbf7f99489abc28e764b051f94f94bff1ecf20a3df93590569e30e3b9cdafd54cebb78768f6a9a9577e2ee
   languageName: node
   linkType: hard
 
