@@ -89,6 +89,120 @@ export const Default = () => {
   ));
 };
 
+export const DisabledExpandableGroupWithTooltip = () => {
+  const [groups, setGroups] = React.useState(['Group 1']);
+
+  React.useEffect(() => {
+    return () => setGroups([]);
+  });
+
+  // First thing we do is loop through the groups and create an array of group objects
+  const groupObjectList = [];
+  groups.forEach((group, idx) => {
+    groupObjectList.push({
+      id: idx,
+      name: group,
+      description: '',
+    });
+  });
+
+  const [groupList, setGroupList] = React.useState(groupObjectList);
+
+  return groupList.map((group) => (
+    <ExpandableGroup
+      deleteDisabled
+      deleteTooltipText={'You cannot delete this group'}
+      key={group.id}
+      label={group.name}
+      onLabelChange={(value) =>
+        setGroupList((prevState) => updateStatePiece(prevState, group.id, value, 'name'))
+      }
+      onDelete={() => setGroupList(groupList.filter((currGroup) => currGroup.id !== group.id))}
+    >
+      <PanelCell className="Panel-cell u-padTopNone u-spaceSidesLg">
+        <p className="u-fontSizeLg u-spaceBottomXs">Description</p>
+
+        <textarea
+          style={{ height: 'auto', resize: 'none' }}
+          className="Input u-colorNeutral8"
+          value={group.description}
+          name="locationNotesInput"
+          id="locationNotesInput"
+          cols={30}
+          rows={3}
+          onChange={(e) =>
+            setGroupList((prevState) =>
+              updateStatePiece(prevState, group.id, e.target.value, 'description')
+            )
+          }
+          placeholder="Description about the group for registrants to veiw"
+        />
+
+        <span className="u-fontSizeSm u-colorNeutral8">
+          Description will display for registrants when they select groups to register for.
+        </span>
+      </PanelCell>
+    </ExpandableGroup>
+  ));
+};
+
+export const ExpandableGroupWithToggleAndTooltipsAndHelperText = () => {
+  const groups = ['Group 1'];
+  const [checked, setChecked] = React.useState<boolean>(true);
+
+  // First thing we do is loop through the groups and create an array of group objects
+  const groupObjectList = [];
+  groups.forEach((group, idx) => {
+    groupObjectList.push({
+      id: idx,
+      name: group,
+      description: '',
+    });
+  });
+
+  const [groupList, setGroupList] = React.useState(groupObjectList);
+
+  return groupList.map((group) => (
+    <ExpandableGroup
+      toggleValue={checked}
+      deleteTooltipText="You can delete this group"
+      toggleTooltipText="You can toggle this group"
+      groupHelperText="This is the helper text"
+      onToggle={() => setChecked(!checked)}
+      key={group.id}
+      label={group.name}
+      onLabelChange={(value) =>
+        setGroupList((prevState) => updateStatePiece(prevState, group.id, value, 'name'))
+      }
+      onDelete={() => setGroupList(groupList.filter((currGroup) => currGroup.id !== group.id))}
+    >
+      <PanelCell className="Panel-cell u-padTopNone u-spaceSidesLg">
+        <p className="u-fontSizeLg u-spaceBottomXs">Description</p>
+
+        <textarea
+          style={{ height: 'auto', resize: 'none' }}
+          className="Input u-colorNeutral8"
+          value={group.description}
+          name="locationNotesInput"
+          id="locationNotesInput"
+          cols={30}
+          rows={3}
+          onChange={(e) =>
+            setGroupList((prevState) =>
+              updateStatePiece(prevState, group.id, e.target.value, 'description')
+            )
+          }
+          placeholder="Description about the group for registrants to veiw"
+        />
+
+        <span className="u-fontSizeSm u-colorNeutral8">
+          Description will display for registrants when they select groups to register for.
+        </span>
+      </PanelCell>
+    </ExpandableGroup>
+  ));
+};
+
 export const GroupList = () => {
   const [groups, setGroups] = React.useState([
     'Group 1',
