@@ -111,7 +111,7 @@ export const DisabledExpandableGroupWithTooltip = () => {
   return groupList.map((group) => (
     <ExpandableGroup
       deleteDisabled
-      deleteTooltip={'You cannot delete this group'}
+      deleteTooltipText={'You cannot delete this group'}
       key={group.id}
       label={group.name}
       onLabelChange={(value) =>
@@ -147,11 +147,8 @@ export const DisabledExpandableGroupWithTooltip = () => {
 };
 
 export const ExpandableGroupWithToggleAndTooltipsAndHelperText = () => {
-  const [groups, setGroups] = React.useState(['Group 1']);
-
-  React.useEffect(() => {
-    return () => setGroups([]);
-  });
+  const groups = ['Group 1'];
+  const [checked, setChecked] = React.useState<boolean>(true);
 
   // First thing we do is loop through the groups and create an array of group objects
   const groupObjectList = [];
@@ -167,11 +164,11 @@ export const ExpandableGroupWithToggleAndTooltipsAndHelperText = () => {
 
   return groupList.map((group) => (
     <ExpandableGroup
-      toggleValue
-      deleteTooltip="You can delete this group"
-      toggleTooltip="You can toggle this group"
+      toggleValue={checked}
+      deleteTooltipText="You can delete this group"
+      toggleTooltipText="You can toggle this group"
       groupHelperText="This is the helper text"
-      onToggle={() => console.log('Hello, from the toggle')}
+      onToggle={() => setChecked(!checked)}
       key={group.id}
       label={group.name}
       onLabelChange={(value) =>

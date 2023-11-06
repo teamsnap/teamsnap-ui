@@ -25,10 +25,10 @@ const propTypes = {
   onExpandedChange: PropTypes.func,
   testId: PropTypes.string,
   deleteDisabled: PropTypes.bool,
-  deleteTooltip: PropTypes.string,
+  deleteTooltipText: PropTypes.string,
   onToggle: PropTypes.func,
   toggleValue: PropTypes.bool,
-  toggleTooltip: PropTypes.string,
+  toggleTooltipText: PropTypes.string,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
@@ -47,10 +47,10 @@ const ExpandableGroup = (
     onExpandedChange,
     testId,
     deleteDisabled,
-    deleteTooltip,
+    deleteTooltipText,
     onToggle,
     toggleValue,
-    toggleTooltip,
+    toggleTooltipText,
   }: Props,
   ref
 ) => {
@@ -80,47 +80,34 @@ const ExpandableGroup = (
 
   const className = getClassName('expandable-group', error && 'u-padBottomSm', mods);
 
-  const deleteWithTooltip = (
-    <PopupTooltip text={deleteTooltip}>
-      <Icon
-        testId={`ExpandableGroup--delete-${testId}`}
-        mods={`${
-          deleteDisabled ? 'disabled u-colorNeutral5' : 'expandable-group--trash u-colorNegative4'
-        }`}
-        name="trash"
-        style={{
-          width: 24,
-          height: 24,
-          cursor: deleteDisabled ? 'not-allowed' : 'pointer',
-        }}
-      />
-    </PopupTooltip>
-  );
+  const iconStyles = {
+    width: 24,
+    height: 24,
+    cursor: deleteDisabled ? 'not-allowed' : 'pointer',
+  };
 
-  const deleteWithoutTooltip = (
+  const deleteIconWithoutTooltip = (
     <Icon
       testId={`ExpandableGroup--delete-${testId}`}
-      mods={` ${deleteDisabled ? 'u-colorNeutral5' : 'expandable-group--trash u-colorNegative4'}`}
+      mods={`${deleteDisabled ? 'u-colorNeutral5' : 'expandable-group--trash u-colorNegative4'}`}
       name="trash"
-      style={{
-        width: 24,
-        height: 24,
-        cursor: deleteDisabled ? 'not-allowed' : 'pointer',
-      }}
+      style={iconStyles}
+    />
+  );
+
+  const deleteIconWithTooltip = (
+    <PopupTooltip text={deleteTooltipText}>{deleteIconWithoutTooltip}</PopupTooltip>
+  );
+
+  const toggleWithoutTooltip = (
+    <Toggle
+      testId={`ExpandableGroup--toggle-${testId}`}
+      inputProps={{ onChange: onToggle, checked: toggleValue }}
     />
   );
 
   const toggleWithTooltip = (
-    <PopupTooltip text={toggleTooltip}>
-      <Toggle
-        testId={`ExpandableGroup--toggle-${testId}`}
-        inputProps={{ onChange: onToggle, checked: toggleValue }}
-      />
-    </PopupTooltip>
-  );
-
-  const toggleWithoutTooltip = (
-    <Toggle testId={`ExpandableGroup--toggle-${testId}`} inputProps={{ onChange: onToggle }} />
+    <PopupTooltip text={toggleTooltipText}>{toggleWithoutTooltip}</PopupTooltip>
   );
 
   return (
@@ -184,7 +171,7 @@ const ExpandableGroup = (
 
         {(onToggle || onDelete) && (
           <div className="u-flex u-spaceLeftLg">
-            {onToggle ? <>{toggleTooltip ? toggleWithTooltip : toggleWithoutTooltip}</> : null}
+            {onToggle ? <>{toggleTooltipText ? toggleWithTooltip : toggleWithoutTooltip}</> : null}
 
             {onDelete ? (
               <div
@@ -196,7 +183,7 @@ const ExpandableGroup = (
                 }`}
                 onClick={deleteDisabled ? () => {} : onDelete}
               >
-                {deleteTooltip ? deleteWithTooltip : deleteWithoutTooltip}
+                {deleteTooltipText ? deleteIconWithTooltip : deleteIconWithoutTooltip}
               </div>
             ) : null}
           </div>
