@@ -80,18 +80,16 @@ const ExpandableGroup = (
 
   const className = getClassName('expandable-group', error && 'u-padBottomSm', mods);
 
-  const iconStyles = {
-    width: 24,
-    height: 24,
-    cursor: deleteDisabled ? 'not-allowed' : 'pointer',
-  };
-
   const deleteIconWithoutTooltip = (
     <Icon
       testId={`ExpandableGroup--delete-${testId}`}
       mods={`${deleteDisabled ? 'u-colorNeutral5' : 'expandable-group--trash u-colorNegative4'}`}
       name="trash"
-      style={iconStyles}
+      style={{
+        width: 24,
+        height: 24,
+        cursor: deleteDisabled ? 'not-allowed' : 'pointer',
+      }}
     />
   );
 
