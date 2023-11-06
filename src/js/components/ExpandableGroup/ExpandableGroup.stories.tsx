@@ -111,7 +111,7 @@ export const DisabledExpandableGroupWithTooltip = () => {
   return groupList.map((group) => (
     <ExpandableGroup
       deleteDisabled
-      deleteTooltipText={'You cannot delete this group'}
+      deleteTooltipText="You cannot delete this group"
       key={group.id}
       label={group.name}
       onLabelChange={(value) =>
