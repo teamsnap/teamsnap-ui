@@ -8,6 +8,8 @@ import { ListToggle } from '../ListToggle';
 import { Panel } from '../Panel';
 import { PanelCell } from '../PanelCell';
 import { getClassName } from '../../utils/helpers';
+import { PopupTooltip } from '../Popup';
+import { Toggle } from '../Toggle';
 
 const propTypes = {
   id: PropTypes.number,
@@ -21,24 +23,37 @@ const propTypes = {
   groupHelperText: PropTypes.string || PropTypes.node,
   hasError: PropTypes.bool,
   onExpandedChange: PropTypes.func,
-  testId: PropTypes.string
+  testId: PropTypes.string,
+  deleteDisabled: PropTypes.bool,
+  deleteTooltip: PropTypes.string,
+  onToggle: PropTypes.func,
+  toggleValue: PropTypes.bool,
+  toggleTooltip: PropTypes.string,
 };
 
 type Props = PropTypes.InferProps<typeof propTypes>;
 
-const ExpandableGroup = ({
-  id,
-  isExpanded,
-  label,
-  onDelete,
-  onLabelChange,
-  onLabelBlur,
-  children,
-  mods,
-  groupHelperText,
-  onExpandedChange,
-  testId
-}: Props, ref) => {
+const ExpandableGroup = (
+  {
+    id,
+    isExpanded,
+    label,
+    onDelete,
+    onLabelChange,
+    onLabelBlur,
+    children,
+    mods,
+    groupHelperText,
+    onExpandedChange,
+    testId,
+    deleteDisabled,
+    deleteTooltip,
+    onToggle,
+    toggleValue,
+    toggleTooltip,
+  }: Props,
+  ref
+) => {
   const [error, setError] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -64,6 +79,49 @@ const ExpandableGroup = ({
   }
 
   const className = getClassName('expandable-group', error && 'u-padBottomSm', mods);
+
+  const deleteWithTooltip = (
+    <PopupTooltip text={deleteTooltip}>
+      <Icon
+        testId={`ExpandableGroup--delete-${testId}`}
+        mods={`${
+          deleteDisabled ? 'disabled u-colorNeutral5' : 'expandable-group--trash u-colorNegative4'
+        }`}
+        name="trash"
+        style={{
+          width: 24,
+          height: 24,
+          cursor: deleteDisabled ? 'not-allowed' : 'pointer',
+        }}
+      />
+    </PopupTooltip>
+  );
+
+  const deleteWithoutTooltip = (
+    <Icon
+      testId={`ExpandableGroup--delete-${testId}`}
+      mods={` ${deleteDisabled ? 'u-colorNeutral5' : 'expandable-group--trash u-colorNegative4'}`}
+      name="trash"
+      style={{
+        width: 24,
+        height: 24,
+        cursor: deleteDisabled ? 'not-allowed' : 'pointer',
+      }}
+    />
+  );
+
+  const toggleWithTooltip = (
+    <PopupTooltip text={toggleTooltip}>
+      <Toggle
+        testId={`ExpandableGroup--toggle-${testId}`}
+        inputProps={{ onChange: onToggle, checked: toggleValue }}
+      />
+    </PopupTooltip>
+  );
+
+  const toggleWithoutTooltip = (
+    <Toggle testId={`ExpandableGroup--toggle-${testId}`} inputProps={{ onChange: onToggle }} />
+  );
 
   return (
     <Panel mods={className} testId={testId}>
@@ -124,17 +182,25 @@ const ExpandableGroup = ({
           </div>
         )}
 
-        {onDelete ? (
-          <div
-            onKeyDown={() => {}}
-            role="button"
-            tabIndex={0}
-            className="u-size1of12 u-flex u-flexJustifyEnd"
-            onClick={onDelete}
-          >
-            <Icon mods="expandable-group--trash" name="trash" style={{ width: 24, height: 24 }} />
+        {(onToggle || onDelete) && (
+          <div className="u-flex u-spaceLeftLg">
+            {onToggle ? <>{toggleTooltip ? toggleWithTooltip : toggleWithoutTooltip}</> : null}
+
+            {onDelete ? (
+              <div
+                onKeyDown={() => {}}
+                role="button"
+                tabIndex={0}
+                className={`u-size12of12 u-flex u-flexJustifyEnd ${
+                  onToggle ? 'u-spaceLeftLg' : ''
+                }`}
+                onClick={deleteDisabled ? () => {} : onDelete}
+              >
+                {deleteTooltip ? deleteWithTooltip : deleteWithoutTooltip}
+              </div>
+            ) : null}
           </div>
-        ) : null}
+        )}
       </PanelCell>
 
       {isExpanded && children}

@@ -8,6 +8,6 @@
 
   .expandable-group--trash:hover,
   .expandable-group--trash:focus {
-    color: color-primary(5);
+    color: color-negative(5) !important;
   }
 }
