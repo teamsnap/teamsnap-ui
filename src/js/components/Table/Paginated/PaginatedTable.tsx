@@ -68,7 +68,7 @@ const propTypes = {
   shouldClearSelectedRows: PropTypes.bool,
   onExport: PropTypes.func,
   useExternalFilterProvider: PropTypes.bool,
-  fullRowSelect: PropTypes.bool
+  fullRowSelect: PropTypes.bool,
 };
 
 const SelectFilter = (
@@ -77,8 +77,8 @@ const SelectFilter = (
   options?:
     | { [key: string]: string | React.ReactNode }
     | { value: string; label: string; subtext?: string }[],
-    tooltip?: JSX.Element,
-    tooltipLink?: string
+  tooltip?: JSX.Element,
+  tooltipLink?: string
 ) => {
   return ({ isLast }: { isLast: boolean }) => {
     const ctx = React.useContext(FilterContext);
@@ -94,6 +94,7 @@ const SelectFilter = (
 
     return (
       <ComboBox
+        testId={`PaginatedTable--${fieldName}-filter`}
         mods={isLast ? '' : 'u-spaceRightSm'}
         onChange={onChange}
         selected={ctx.activeFilters[fieldName]}
@@ -173,7 +174,7 @@ const PaginatedTable: PaginatedTableProps = ({
   onExport = null,
   isLoading,
   useExternalFilterProvider,
-  fullRowSelect = false
+  fullRowSelect = false,
 }) => {
   assert(
     !(filters.length && paginationPlacement === Placement.Top),
@@ -209,9 +210,9 @@ const PaginatedTable: PaginatedTableProps = ({
   const { activeFilters, setActiveFilters } = useExternalFilterProvider
     ? filterContext
     : {
-      activeFilters: localFilters[0],
-      setActiveFilters: localFilters[1]
-    }
+        activeFilters: localFilters[0],
+        setActiveFilters: localFilters[1],
+      };
 
   React.useEffect(() => {
     if (shouldClearSelectedRows) setSelected([]);
@@ -357,7 +358,10 @@ const PaginatedTable: PaginatedTableProps = ({
         !shouldPaginateAtTop ? 'u-sizeFill u-sizeFull' : 'u-sizeFit'
       }`}
     >
-      <div className="u-spaceAuto u-spaceRightSm">
+      <div
+        data-testid="PaginatedTable--pagination-subset-display"
+        className="u-spaceAuto u-spaceRightSm"
+      >
         <PaginationCurrentSubsetDisplay
           itemsPerPage={itemsPerPage}
           currentPage={currentPage}
@@ -455,6 +459,7 @@ const PaginatedTable: PaginatedTableProps = ({
         {filters.length > 0 && (
           <div>
             <Button
+              data-testid="PaginatedTabled--filter-button"
               isActive={filterLength > 0 || filterOpen}
               onClick={() => {
                 setFilterOpen(!filterOpen);
@@ -520,18 +525,17 @@ const PaginatedTable: PaginatedTableProps = ({
       </div>
       {shouldDisplayPaginationAtBottom && paginationItems}
     </>
-  )
+  );
 
   return (
     <div className="Grid">
-      {useExternalFilterProvider
-        ? render()
-        : (
-          <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
-            {render()} 
-          </FilterContext.Provider>
-        )
-      }
+      {useExternalFilterProvider ? (
+        render()
+      ) : (
+        <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
+          {render()}
+        </FilterContext.Provider>
+      )}
     </div>
   );
 };
