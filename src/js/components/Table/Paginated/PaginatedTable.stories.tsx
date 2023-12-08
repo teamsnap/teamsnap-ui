@@ -20,16 +20,23 @@ seventeenYearsBirthdate.setFullYear(seventeenYearsBirthdate.getFullYear() - 17);
  * Columns to configure the table against.
  */
 const columns = [
-  { name: 'name', label: 'Member Name', isSortable: true, mods: 'u-size1of2' },
-  { name: 'gender', label: 'Gender', isSortable: true, mods: 'u-size1of2' },
-  { name: 'birthdate', label: 'Birthdate', isSortable: false, mods: 'u-size1of2' },
-  { name: 'age', label: 'Age', isSortable: true, mods: 'u-size1of2' },
-  { name: 'team', label: 'Team', isSortable: true, mods: 'u-size1of2' },
+  { name: 'name', label: 'Member Name', isSortable: true, mods: 'u-size1of2', testId: 'name' },
+  { name: 'gender', label: 'Gender', isSortable: true, mods: 'u-size1of2', testId: 'gender' },
+  {
+    name: 'birthdate',
+    label: 'Birthdate',
+    isSortable: false,
+    mods: 'u-size1of2',
+    testId: 'birthdate',
+  },
+  { name: 'age', label: 'Age', isSortable: true, mods: 'u-size1of2', testId: 'age' },
+  { name: 'team', label: 'Team', isSortable: true, mods: 'u-size1of2', testId: 'team' },
   {
     name: 'programs',
     label: 'Active Programs',
     isSortable: true,
     mods: 'u-size1of2',
+    testId: 'programs',
   },
 ];
 
@@ -53,6 +60,7 @@ const data = [
       name: 'Team 1',
       id: 1,
     },
+    testID: 'leo',
   },
   {
     name: 'Dustin',

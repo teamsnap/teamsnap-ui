@@ -225,7 +225,7 @@ const PaginatedTable: PaginatedTableProps = ({
 
   let rows = dataSet.map(mapDataToRow);
   let cols = columns;
-  const checkboxState = getCheckboxStateForBulkActions(selected, rows);
+    const checkboxState = getCheckboxStateForBulkActions(selected, rows);
   if (rowsAreSelectable) {
     cols = [
       {

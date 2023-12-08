@@ -46,6 +46,7 @@ const propTypes = {
       mods: PropTypes.string,
       style: PropTypes.object,
       otherProps: PropTypes.object,
+      testId: PropTypes.string,
     })
   ),
   rows: PropTypes.arrayOf(PropTypes.object),
@@ -74,14 +75,14 @@ const sortItems = (
   if (!sortColumn) {
     return newItems;
   }
-  
+
   const { name, sortType, sortFn } = sortColumn;
   return sortByFn(newItems, {
     name,
     sortType,
     sortFn,
     isReverse: sortByReverse,
-  })
+  });
 };
 
 const Table = ({
@@ -119,7 +120,7 @@ const Table = ({
     e.preventDefault();
     const sortName = e.currentTarget.getAttribute('href');
     const isCurrentSortedColumn = sortName === sortBy;
-    const sortDir = isCurrentSortedColumn && sortDirection === 'down'
+    const sortDir = isCurrentSortedColumn && sortDirection === 'down';
 
     // If an function is provided here, we let the parent component figure out the sorting
     // This is valuable when we sort beyond the data thats currently in the table
@@ -151,6 +152,7 @@ const Table = ({
         style={column.style}
         isTitle={column.isTitle}
         {...column.otherProps}
+        testId={`${column.testId} row`}
       >
         {children}
       </PanelCell>
@@ -179,7 +181,12 @@ const Table = ({
     );
 
     const children = column.isSortable ? (
-      <TextLink location={column.name} onClick={handleSortClick} mods={textLinkMods}>
+      <TextLink
+        location={column.name}
+        onClick={handleSortClick}
+        mods={textLinkMods}
+        otherProps={{ 'data-testid': `${column.testId} columnheader` }}
+      >
         <span className="u-colorInfo u-textNoWrap u-flex u-flexAlignItemsCenter">
           {column.label}
         </span>
@@ -191,7 +198,10 @@ const Table = ({
         </div>
       </TextLink>
     ) : (
-      <span className={`u-colorInfo u-textNoWrap u-flex u-flexAlignItemsCenter ${textLinkMods}`}>
+      <span
+        data-testid={`${column.testId} columnheader`}
+        className={`u-colorInfo u-textNoWrap u-flex u-flexAlignItemsCenter ${textLinkMods}`}
+      >
         {column.label}
       </span>
     );
