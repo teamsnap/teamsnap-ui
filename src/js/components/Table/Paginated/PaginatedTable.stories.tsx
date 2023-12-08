@@ -60,7 +60,6 @@ const data = [
       name: 'Team 1',
       id: 1,
     },
-    testID: 'leo',
   },
   {
     name: 'Dustin',
@@ -368,7 +367,8 @@ function loadSearchData({ page, itemsPerPage, filter }) {
       (item) => !filter.gender || !filter.gender.length || filter.gender.includes(item.gender)
     )
     .filter(
-      (item) => !filter.role || !filter.role.length || filter.role.includes(item.position.toLowerCase())
+      (item) =>
+        !filter.role || !filter.role.length || filter.role.includes(item.position.toLowerCase())
     )
     .filter(
       (item) => !filter.team || !filter.team.length || filter.team.includes(String(item.team?.id))
