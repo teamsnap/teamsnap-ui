@@ -23,7 +23,7 @@ describe('DateFilter component', () => {
   test('should open flyout when click on button', () => {
     render(<DateFilter name="myDate" onChange={() => {}} title="Click here to select a date" />);
 
-    const Button = screen.getByRole('button');
+    const Button = screen.getByTestId('toggle-flyout-button');
     fireEvent.click(Button);
     const Flyout = screen.queryByTestId('flyout');
 

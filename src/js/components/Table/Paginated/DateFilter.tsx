@@ -202,6 +202,7 @@ const DateFilter = ({
   return (
     <div id={`Combobox-${name}`} className={getClassName(className, mods)} {...props}>
       <button
+        data-testid="toggle-flyout-button"
         type="button"
         className={`Combobox-toggle ${hasFilters ? 'Combobox-toggle--active' : ''}`}
         name={name}
@@ -215,7 +216,7 @@ const DateFilter = ({
         {buttonLabel}
       </button>
       {flyoutVisible && (
-        <Panel otherProps={{ 'data-testid': 'flyout' }} mods="Combobox-checkboxContainer">
+        <Panel testId="flyout" mods="Combobox-checkboxContainer">
           <PanelBody>
             <PanelRow mods="Grid-cell u-flexAuto u-padBottomMd">
               <Select
