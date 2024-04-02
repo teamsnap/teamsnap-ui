@@ -150,7 +150,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/generator@npm:^7.12.11, @babel/generator@npm:^7.12.5, @babel/generator@npm:^7.13.9, @babel/generator@npm:^7.14.5, @babel/generator@npm:^7.9.0":
+"@babel/generator@npm:^7.12.11, @babel/generator@npm:^7.12.5, @babel/generator@npm:^7.14.5, @babel/generator@npm:^7.9.0":
   version: 7.14.5
   resolution: "@babel/generator@npm:7.14.5"
   dependencies:
@@ -509,7 +509,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.12.11, @babel/parser@npm:^7.12.7, @babel/parser@npm:^7.13.12, @babel/parser@npm:^7.14.5, @babel/parser@npm:^7.14.6, @babel/parser@npm:^7.14.7, @babel/parser@npm:^7.9.0":
+"@babel/parser@npm:^7.12.11, @babel/parser@npm:^7.12.7, @babel/parser@npm:^7.14.5, @babel/parser@npm:^7.14.6, @babel/parser@npm:^7.14.7, @babel/parser@npm:^7.9.0":
   version: 7.14.7
   resolution: "@babel/parser@npm:7.14.7"
   bin:
@@ -2547,7 +2547,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/api@npm:6.3.0, @storybook/api@npm:^6.1.21":
+"@storybook/api@npm:6.3.0":
   version: 6.3.0
   resolution: "@storybook/api@npm:6.3.0"
   dependencies:
@@ -2827,7 +2827,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/components@npm:6.3.0, @storybook/components@npm:^6.1.21":
+"@storybook/components@npm:6.3.0":
   version: 6.3.0
   resolution: "@storybook/components@npm:6.3.0"
   dependencies:
@@ -3391,7 +3391,7 @@ __metadata:
     "@storybook/react": ^6.3.0
     "@types/node": ^12.6.2
     "@types/react": ^16.8.23
-    "@whitespace/storybook-addon-html": ^5.0.0
+    "@whitespace/storybook-addon-html": ^6.0.4
     awesome-typescript-loader: ^5.0.0
     babel-eslint: ^8.2.3
     babel-loader: ^8.0.0
@@ -3414,7 +3414,7 @@ __metadata:
     gulp-util: ^3.0.8
     html-webpack-plugin: ^5.3.1
     lodash: ^4.17.15
-    object-path: ">=0.11.5"
+    object-path: ">=0.11.8"
     prop-types: ^15.6.1
     react: ^17.0.1
     react-docgen-typescript-loader: ^3.1.0
@@ -3981,21 +3981,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@whitespace/storybook-addon-html@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "@whitespace/storybook-addon-html@npm:5.0.0"
-  dependencies:
-    "@babel/generator": ^7.13.9
-    "@babel/parser": ^7.13.12
-    "@storybook/api": ^6.1.21
-    "@storybook/components": ^6.1.21
-    prettier: ^2.2.1
-    react-syntax-highlighter: ^15.4.3
+"@whitespace/storybook-addon-html@npm:^6.0.4":
+  version: 6.0.4
+  resolution: "@whitespace/storybook-addon-html@npm:6.0.4"
   peerDependencies:
-    "@storybook/addons": ^6.1.21
-    react: ^16.8.0 || ^17.0.0
-    react-dom: ^16.8.0 || ^17.0.0
-  checksum: e9a6818d44b158ae990f05bce7e1cb45c5f74c75a894b4c6a64a2af47302ac8824fb354cc447e9417a05cda64f08adf2db0f95f0b4e8698ebfa107d2428bc773
+    prettier: ^3.0.0
+    react-syntax-highlighter: ^15.0.0
+  checksum: bcf584560791e4380c5f11762b0de9292f743cd60febd87177cfdf6f082a96487d31ac7ac4235b9604d090336f3989ea3796c4aa45de1dc757170b9f331b3005
   languageName: node
   linkType: hard
 
@@ -9561,7 +9553,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"highlight.js@npm:^10.1.1, highlight.js@npm:^10.4.1, highlight.js@npm:~10.7.0":
+"highlight.js@npm:^10.1.1, highlight.js@npm:~10.7.0":
   version: 10.7.3
   resolution: "highlight.js@npm:10.7.3"
   checksum: 2b7bc9890d447e6cb0135f3a53fc54f1ddb11c76f8255896715bfcba94e0df32d7e8527778ab0d79a00c57bbcb6326532bb62d1d2b343fd3d685c1c8fdc0c321
@@ -11453,7 +11445,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"lowlight@npm:^1.14.0, lowlight@npm:^1.17.0":
+"lowlight@npm:^1.14.0":
   version: 1.20.0
   resolution: "lowlight@npm:1.20.0"
   dependencies:
@@ -12455,10 +12447,10 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"object-path@npm:>=0.11.5":
-  version: 0.11.5
-  resolution: "object-path@npm:0.11.5"
-  checksum: a2be57f65eb247161763280e857ddbafcfbb41ad7cfcfb0a78aca2e8adb990a7b5afe6b182c20baf0e218e541ec75c1807fd04d50e3049920c2ec65e6eb9c900
+"object-path@npm:>=0.11.8":
+  version: 0.11.8
+  resolution: "object-path@npm:0.11.8"
+  checksum: daf845abe3054b38a2ecd40ada58ffca30b4704d102f0426aa87afa6a02313226d87c9db6a0e9297aeb387047b567dbc790fb0599ab1a53e630298f7f79687db
   languageName: node
   linkType: hard
 
@@ -13405,15 +13397,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.2.1":
-  version: 2.3.1
-  resolution: "prettier@npm:2.3.1"
-  bin:
-    prettier: bin-prettier.js
-  checksum: 9b4a695b87ce5f510fc20feec01cce7371f0fa0b92ffe79d543f6be52e2004c532861629de4d7ab1c577e1f649dce3cfccd62cb2ca6526b1da8d9c63eb84bf36
-  languageName: node
-  linkType: hard
-
 "prettier@npm:~2.2.1":
   version: 2.2.1
   resolution: "prettier@npm:2.2.1"
@@ -13450,7 +13433,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"prismjs@npm:^1.21.0, prismjs@npm:^1.22.0, prismjs@npm:~1.23.0":
+"prismjs@npm:^1.21.0, prismjs@npm:~1.23.0":
   version: 1.23.0
   resolution: "prismjs@npm:1.23.0"
   dependencies:
@@ -14086,21 +14069,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-syntax-highlighter@npm:^15.4.3":
-  version: 15.4.3
-  resolution: "react-syntax-highlighter@npm:15.4.3"
-  dependencies:
-    "@babel/runtime": ^7.3.1
-    highlight.js: ^10.4.1
-    lowlight: ^1.17.0
-    prismjs: ^1.22.0
-    refractor: ^3.2.0
-  peerDependencies:
-    react: ">= 0.14.0"
-  checksum: 99866d865279aebc93946c07bf9ff471c890adcd6b620ffea84bb57e6efabba3b06c815e47b1064d05e0038f7827e032e47670cd005cbfb4cc96af60950699e6
-  languageName: node
-  linkType: hard
-
 "react-textarea-autosize@npm:^8.3.0":
   version: 8.3.3
   resolution: "react-textarea-autosize@npm:8.3.3"
@@ -14259,7 +14227,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"refractor@npm:^3.1.0, refractor@npm:^3.2.0":
+"refractor@npm:^3.1.0":
   version: 3.3.1
   resolution: "refractor@npm:3.3.1"
   dependencies:
