@@ -1,6 +1,7 @@
 {
   branches: [
     {name: 'main'},
-    {name: 'v4', channel: 'alpha', prerelease: 'alpha'}
+    {name: 'v4', channel: 'alpha', prerelease: 'alpha'},
+    {name: 'test-*', prerelease: true}
   ]
 }
