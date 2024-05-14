@@ -4307,7 +4307,7 @@ __metadata:
     style-loader: ^2.0.0
     svgo: ^3.0.2
     ts-jest: ^27.0.4
-    typescript: ^4.0.3
+    typescript: ^5.4.5
   peerDependencies:
     prettier: ^2.3.2
     react: ^17.0.1
