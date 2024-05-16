@@ -13,7 +13,7 @@ const createIconModule = (svgs) => svgs.map((svg) => {
   const json = JSON.stringify({ ...svg, source })
 
   return {
-    filepath: `${svg.metadata.name}.ts`,
+    filepath: `${svg.metadata.name}.js`,
     source: `module.exports = ${json}`
   }
 })
