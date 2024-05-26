@@ -3390,7 +3390,7 @@ __metadata:
     "@storybook/addon-knobs": ^6.2.9
     "@storybook/react": ^6.3.0
     "@types/node": ^12.6.2
-    "@types/react": ^16.8.23
+    "@types/react": ^18.3.3
     "@whitespace/storybook-addon-html": ^5.0.0
     awesome-typescript-loader: ^5.0.0
     babel-eslint: ^8.2.3
@@ -3414,9 +3414,9 @@ __metadata:
     gulp-util: ^3.0.8
     html-webpack-plugin: ^5.3.1
     lodash: ^4.17.15
-    object-path: ">=0.11.5"
+    object-path: ">=0.11.8"
     prop-types: ^15.6.1
-    react: ^17.0.1
+    react: ^18.3.1
     react-docgen-typescript-loader: ^3.1.0
     react-docgen-typescript-webpack-plugin: ^1.1.0
     react-dom: ^17.0.1
@@ -3427,7 +3427,7 @@ __metadata:
     typescript: ^4.0.3
     webpack: 4
   peerDependencies:
-    react: ^17.0.1
+    react: ^18.3.1
   languageName: unknown
   linkType: soft
 
@@ -12455,10 +12455,10 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"object-path@npm:>=0.11.5":
-  version: 0.11.5
-  resolution: "object-path@npm:0.11.5"
-  checksum: a2be57f65eb247161763280e857ddbafcfbb41ad7cfcfb0a78aca2e8adb990a7b5afe6b182c20baf0e218e541ec75c1807fd04d50e3049920c2ec65e6eb9c900
+"object-path@npm:>=0.11.8":
+  version: 0.11.8
+  resolution: "object-path@npm:0.11.8"
+  checksum: daf845abe3054b38a2ecd40ada58ffca30b4704d102f0426aa87afa6a02313226d87c9db6a0e9297aeb387047b567dbc790fb0599ab1a53e630298f7f79687db
   languageName: node
   linkType: hard
 
@@ -14129,13 +14129,12 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react@npm:^17.0.1":
-  version: 17.0.2
-  resolution: "react@npm:17.0.2"
+"react@npm:^18.3.1":
+  version: 18.3.1
+  resolution: "react@npm:18.3.1"
   dependencies:
     loose-envify: ^1.1.0
-    object-assign: ^4.1.1
-  checksum: 7d0dfebafe1d297503157abb2e9acdb49852185deb8700c16f4a6faad87642f84903ab18cfc16f40b9a0dfe97540f99834982ee953e6d48b39c41608dc3e4b29
+  checksum: d815f84a173627922e34f13d52ca8de726b41f3d0be499e5041f15e1df1b9e499772fca8fb2d1b126da241d9f7233dde40a7ed77480b1c894fdc46fe075e7588
   languageName: node
   linkType: hard
 
