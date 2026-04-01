@@ -102,5 +102,13 @@
     "css-what": "^5.0.1",
     "glob-parent": "^5.1.2",
     "trim": "^0.0.3"
+  },
+  "dependenciesMeta": {
+    "core-js": {
+      "built": true
+    },
+    "core-js-pure": {
+      "built": true
+    }
   }
 }
