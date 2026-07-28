@@ -1,1 +1,4 @@
 * @teamsnap/orgs-web-frontend
+.teamsnap/** @teamsnap/platform @teamsnap/orgs-web-frontend
+.github/** @teamsnap/platform @teamsnap/quality @teamsnap/orgs-web-frontend
+CODEOWNERS @teamsnap/platform @teamsnap/orgs-web-frontend
