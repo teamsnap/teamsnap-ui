@@ -56,7 +56,7 @@
     "@whitespace/storybook-addon-html": "^5.0.0",
     "awesome-typescript-loader": "^5.0.0",
     "babel-eslint": "^8.2.3",
-    "babel-loader": "^8.0.0",
+    "babel-loader": "^10.0.0",
     "babel-preset-react-app": "^9.0.0",
     "babel-register": "^6.26.0",
     "browser-sync": "^2.27.5",
