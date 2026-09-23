@@ -32,6 +32,9 @@ const svgOptimize = (globPattern, callback) => {
       console.log(`Optimizing Icon ${filepath} -> ${config.icons.dest}/${name}.js`)
 
       const result = optimize(data, { path: filepath })
+      if (result.error) {
+        throw new Error(`Failed to optimize ${filepath}: ${result.error}`)
+      }
       const attributes = svgAttributes(result.data)
 
       svgIcons.push({
