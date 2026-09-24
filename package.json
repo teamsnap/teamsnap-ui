@@ -139,7 +139,8 @@
     "typescript": "4.8.4",
     "trim": "^0.0.3",
     "lodash": "^4.18.0",
-    "postcss": "^8.5.18"
+    "postcss": "^8.5.18",
+    "autoprefixer": "^10.4.20"
   },
   "config": {
     "commitizen": {
