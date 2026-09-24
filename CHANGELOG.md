@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 =======
 
+## [3.13.0] - 2026-09-24
+- https://github.com/teamsnap/teamsnap-ui/pull/1933
+- `Security` - Resolve critical and high dependency vulnerabilities
+- `Changed` - Reference GCS instead of Rackspace for assets ([PLAT-2922](https://github.com/teamsnap/teamsnap-ui/pull/1551))
+- `Changed` - Update CODEOWNERS to make Platform owner of infra files
+- `Changed` - Move dependabot to run only on Sundays
+
 ## [3.12.4] - 2022-11-07
 - https://github.com/teamsnap/teamsnap-ui/pull/1413
 - `Changed` - Documentation to reflect main as the new default branch
