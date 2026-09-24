@@ -6,7 +6,7 @@
 	base = "/"
 
 [build.environment]
-  NODE_VERSION = "14.7.0"
+  NODE_VERSION = "22"
 
 # Specific branch context, all deploys from this specific branch will inherit these settings.
 
