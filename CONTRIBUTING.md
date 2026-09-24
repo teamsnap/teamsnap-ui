@@ -1,39 +1,29 @@
 ## Contributing
 
-This package is managed via npm so you will need to create a user and be added to the teamsnap org in order to publish updates.
+### Releasing
 
-Once your user is created and added to the org this guide details the steps to publish an update to npm.
+Releases are automated via [semantic-release](https://github.com/semantic-release/semantic-release) and [npm trusted publishing](https://docs.npmjs.com/trusted-publishers). When a PR is merged to `main`, the release workflow runs automatically.
 
-<https://docs.npmjs.com/getting-started/publishing-npm-packages>
+**Versioning is determined by commit messages** using [Conventional Commits](https://www.conventionalcommits.org/):
 
-#### Steps for publishing an update
+* `fix: ...` — patch release (e.g. 3.13.0 → 3.13.1)
+* `feat: ...` — minor release (e.g. 3.13.0 → 3.14.0)
+* `feat!: ...` or `BREAKING CHANGE:` in the commit body — major release (e.g. 3.13.0 → 4.0.0)
+* `chore: ...`, `docs: ...`, `ci: ...` — no release
 
-* rebase and get  your branch ahead of main
-* then from your working branch
-* run `yarn npm audit` to ensure there are no vulnerabilities with level high or critical.
-* run `yarn run build` to ensure the package builds with no errors
-* As necessary, update packages to resolve npm audit failures for level high or critical vulnerabilities.
-* Update the package.json version number `npm version [major|minor|patch] -m "commit message"`
-* Update CHANGELOG.md with new npm version and release notes
-* Commit CHANGELOG
-* `git push origin branch-name`
-* merge branch into main from git
-* `git checkout main`
-* `git pull origin main`
-* `npm login --scope=@teamsnap`
-* `npm publish`
+**To publish a new version:**
 
-#### Netlify deploy
+1. Create a branch and make your changes
+2. Open a PR against `main`
+3. Use a `feat:` or `fix:` prefix in your commit message (or PR title if squash-merging)
+4. Merge the PR — the release workflow handles versioning, tagging, npm publish, and GitHub release creation
+
+No manual `npm login` or `npm publish` is needed.
+
+### Netlify deploy
+
 Merging to main triggers a Netlify deploy where static assets will be available if not using npm to serve the package.
 
 CSS URL: https://teamsnap-ui.teamsnap.com/css/teamsnap-ui.css
 Themes: https://teamsnap-ui.teamsnap.com/css/themes/{theme_name}
 Example: https://teamsnap-ui.teamsnap.com/css/themes/league.css
-
-
-**Note**
-
-The sass-lint plugin is configured as a prepublish step so if there are linting errors you will need to resolve them before publishing.
-
-If you run into issues updating the package version number, try logging in first and trying again. The npm
-version number must be updated via `npm version [major|minor|patch] -m “commit message”`.
